@@ -5,3 +5,6 @@ resources:
 - enc_duckdns-secret-token.yaml
 - enc_duckdns-secret-subdomains.yaml
 - duckdns-deployment.yaml
+
+commonLabels:
+  app: duckdns
