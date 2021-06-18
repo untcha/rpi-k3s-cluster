@@ -6,6 +6,7 @@ resources:
 - traefik-service-account.yaml
 - traefik-cluster-role-binding.yaml
 - traefik-crd.yaml
+- enc_traefik-duckdns-secret-token.yaml
 
 commonLabels:
   app: traefik-v2
