@@ -4,6 +4,7 @@ resources:
 - traefik-namespace.yaml
 - traefik-cluster-role.yaml
 - traefik-service-account.yaml
+- traefik-cluster-role-binding.yaml
 
 commonLabels:
   app: traefik-v2
