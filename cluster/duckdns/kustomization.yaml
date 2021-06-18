@@ -4,4 +4,4 @@ resources:
 - duckdns-namespace.yaml
 - enc_duckdns-secret-token.yaml
 - enc_duckdns-secret-subdomains.yaml
-#- duckdns-deployment.yaml
+- duckdns-deployment.yaml
