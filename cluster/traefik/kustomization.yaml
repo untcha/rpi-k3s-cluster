@@ -3,6 +3,7 @@ kind: Kustomization
 resources:
 - traefik-namespace.yaml
 - traefik-cluster-role.yaml
+- traefik-service-account.yaml
 
 commonLabels:
   app: traefik-v2
