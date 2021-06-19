@@ -7,14 +7,9 @@ resources:
 - traefik-cluster-role-binding.yaml
 - traefik-crd.yaml
 - enc_traefik-secrets.yaml
-#- enc_traefik-duckdns-secret-token.yaml
 - traefik-daemon-set.yaml
+
 - whoami
-#- whoami-deployment.yaml
-#- whoami-tls-options.yaml
-#- whoami-middleware-headers.yaml
-#- whoami-ingress.yaml
-#- whoami-ingress-route.yaml
 
 commonLabels:
   app: traefik-v2
