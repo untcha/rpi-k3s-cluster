@@ -9,7 +9,7 @@ resources:
 - enc_traefik-secrets.yaml
 #- enc_traefik-duckdns-secret-token.yaml
 - traefik-daemon-set.yaml
-- tls-options.yaml
+- whoami-tls-options.yaml
 - middleware.yaml
 - whoami-deployment.yaml
 - whoami-ingress.yaml
