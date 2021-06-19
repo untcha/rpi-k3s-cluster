@@ -6,6 +6,3 @@ resources:
 - whoami-middleware-headers.yaml
 - whoami-ingress.yaml
 - whoami-ingress-route.yaml
-
-commonLabels:
-  app: whoami
