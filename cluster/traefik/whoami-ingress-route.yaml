@@ -1,0 +1,31 @@
+---
+kind: IngressRoute
+apiVersion: traefik.containo.us/v1alpha1
+metadata:
+  name: whoami-ingress-route
+  namespace: traefik-v2
+  annotations:
+    kubernetes.io/ingress.class: traefik
+spec:
+  entryPoints:
+    - websecure
+  routes:
+    - kind: Rule
+      match: Host(`whoami.DOMAIN.duckdns.org`)
+      middlewares:
+        - name: whoami-headers
+        #- name: whoami-basic-auth
+      services:
+        - name: whoami
+          port: 80
+  tls:
+    options:
+      name: whoami-tls-options
+      namespace: traefik-v2
+    certResolver: myresolver
+  env:
+    - name: DOMAIN
+      valueFrom:
+        secretKeyRef:
+          name: traefik-secrets
+          key: domain

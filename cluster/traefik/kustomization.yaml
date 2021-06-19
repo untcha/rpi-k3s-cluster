@@ -8,9 +8,12 @@ resources:
 - traefik-crd.yaml
 - enc_traefik-secrets.yaml
 #- enc_traefik-duckdns-secret-token.yaml
-#- traefik-daemon-set.yaml
-#- tls-options.yaml
-#- middleware.yaml
+- traefik-daemon-set.yaml
+- tls-options.yaml
+- middleware.yaml
+- whoami-deployment.yaml
+- whoami-ingress.yaml
+- whoami-ingress-route.yaml
 
 commonLabels:
   app: traefik-v2

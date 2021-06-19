@@ -1,0 +1,39 @@
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: Middleware
+metadata:
+  name: whoami-headers
+  namespace: traefik-v2
+
+spec:
+  headers:
+    browserXssFilter: true
+    contentTypeNosniff: true
+    frameDeny: true
+    sslRedirect: true
+    forceSTSHeader: true
+    stsIncludeSubdomains: true
+    stsPreload: true
+    stsSeconds: 63072000
+    #customRequestHeaders:
+      #X-Frame-Options: "SAMEORIGIN"
+    #customFrameOptionsValue: "SAMEORIGIN"
+    #contentSecurityPolicy: "frame-ancestors 'self' whoami.DOMAIN.duckdns.org"
+    #contentSecurityPolicy: "default-src 'self'; script-src https://whoami.DOMAIN.duckdns.org"
+    contentSecurityPolicy: |
+      default-src 'none';form-action 'none';frame-ancestors 'none';base-uri 'none'
+    accessControlAllowMethods:
+      - "GET"
+      - "POST"
+    accessControlAllowOriginList:
+      - "https://*.DOMAIN.duckdns.org"
+      - "https://whoami.DOMAIN.duckdns.org"
+    accessControlMaxAge: 100
+    addVaryHeader: true
+    referrerPolicy: "same-origin"
+  env:
+    - name: DOMAIN
+      valueFrom:
+        secretKeyRef:
+          name: traefik-secrets
+          key: domain
