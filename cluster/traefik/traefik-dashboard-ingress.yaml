@@ -1,0 +1,42 @@
+kind: Ingress
+apiVersion: networking.k8s.io/v1
+metadata:
+  name: traefik-dashboard-ingress
+  namespace: traefik-v2
+  annotations:
+    kubernetes.io/ingress.class: traefik
+    traefik.ingress.kubernetes.io/router.entrypoints: websecure
+    traefik.ingress.kubernetes.io/router.tls: "true"
+    traefik.ingress.kubernetes.io/router.tls.certresolver: myresolver
+spec:
+  rules:
+  - host: "traefik.iamalex82.duckdns.org"
+    http:
+      paths:
+      - pathType: Prefix
+        path: "/"
+        backend:
+          service:
+            name: api@internal
+            port:
+              number: 8080
+              
+---
+kind: IngressRoute
+apiVersion: traefik.containo.us/v1alpha1
+metadata:
+  name: traefik-dashboard-ingress-route
+  namespace: traefik-v2
+  annotations:
+    kubernetes.io/ingress.class: traefik
+spec:
+  entryPoints:
+    - websecure
+  routes:
+    - kind: Rule
+      match: Host(`traefik.iamalex82.duckdns.org`)
+      services:
+        - name: api@internal
+          port: 8080
+  tls:
+    certResolver: myresolver
