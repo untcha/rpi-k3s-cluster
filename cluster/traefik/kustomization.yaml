@@ -2,11 +2,11 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
 - traefik-namespace.yaml
-- traefik-cluster-role.yaml
-- traefik-service-account.yaml
-- traefik-cluster-role-binding.yaml
-- traefik-crd.yaml
 - enc_traefik-secrets.yaml
+- traefik-service-account.yaml
+- traefik-crd.yaml
+- traefik-cluster-role.yaml
+- traefik-cluster-role-binding.yaml
 - traefik-daemon-set.yaml
 
 - whoami
