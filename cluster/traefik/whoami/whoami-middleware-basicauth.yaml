@@ -1,0 +1,9 @@
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: Middleware
+metadata:
+  name: whoami-middleware-basicauth
+  namespace: traefik-v2
+spec:
+  basicAuth:
+    secret: whoami-secret-basicauth

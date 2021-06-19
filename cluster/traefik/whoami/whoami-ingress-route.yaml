@@ -14,7 +14,7 @@ spec:
       match: Host(`whoami.iamalex82.duckdns.org`)
       middlewares:
         - name: whoami-middleware-headers
-        #- name: whoami-basic-auth
+        - name: whoami-middleware-basicauth
       services:
         - name: whoami
           port: 80
