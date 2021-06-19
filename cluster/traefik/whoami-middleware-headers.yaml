@@ -2,7 +2,7 @@
 apiVersion: traefik.containo.us/v1alpha1
 kind: Middleware
 metadata:
-  name: whoami-headers
+  name: whoami-middleware-headers
   namespace: traefik-v2
 
 spec:

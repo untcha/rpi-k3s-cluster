@@ -13,7 +13,7 @@ spec:
     - kind: Rule
       match: Host(`whoami.iamalex82.duckdns.org`)
       middlewares:
-        - name: whoami-headers
+        - name: whoami-middleware-headers
         #- name: whoami-basic-auth
       services:
         - name: whoami
