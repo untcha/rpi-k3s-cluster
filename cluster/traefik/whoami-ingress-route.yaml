@@ -23,9 +23,9 @@ spec:
       name: whoami-tls-options
       namespace: traefik-v2
     certResolver: myresolver
-  env:
-    - name: DOMAIN
-      valueFrom:
-        secretKeyRef:
-          name: traefik-secrets
-          key: domain
+env:
+  - name: DOMAIN
+    valueFrom:
+      secretKeyRef:
+        name: traefik-secrets
+        key: domain
