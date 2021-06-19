@@ -18,22 +18,16 @@ spec:
     #customRequestHeaders:
       #X-Frame-Options: "SAMEORIGIN"
     #customFrameOptionsValue: "SAMEORIGIN"
-    #contentSecurityPolicy: "frame-ancestors 'self' whoami.DOMAIN.duckdns.org"
-    #contentSecurityPolicy: "default-src 'self'; script-src https://whoami.DOMAIN.duckdns.org"
+    #contentSecurityPolicy: "frame-ancestors 'self' whoami.iamalex82.duckdns.org"
+    #contentSecurityPolicy: "default-src 'self'; script-src https://whoami.iamalex82.duckdns.org"
     contentSecurityPolicy: |
       default-src 'none';form-action 'none';frame-ancestors 'none';base-uri 'none'
     accessControlAllowMethods:
       - "GET"
       - "POST"
     accessControlAllowOriginList:
-      - "https://*.DOMAIN.duckdns.org"
-      - "https://whoami.DOMAIN.duckdns.org"
+      - "https://*.iamalex82.duckdns.org"
+      - "https://whoami.iamalex82.duckdns.org"
     accessControlMaxAge: 100
     addVaryHeader: true
     referrerPolicy: "same-origin"
-  env:
-    - name: DOMAIN
-      valueFrom:
-        secretKeyRef:
-          name: traefik-secrets
-          key: domain

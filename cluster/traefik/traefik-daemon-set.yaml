@@ -48,7 +48,7 @@ spec:
           - --log.level=INFO
 
           # Let's Encrypt Configurtion.
-          - --certificatesresolvers.myresolver.acme.email=EMAIL_ADDRESS
+          - --certificatesresolvers.myresolver.acme.email=alexander@untch.com
           - --certificatesresolvers.myresolver.acme.storage=acme.json
           #- --certificatesresolvers.myresolver.acme.dnschallange
           - --certificatesResolvers.myresolver.acme.dnschallenge.provider=duckdns
@@ -62,8 +62,3 @@ spec:
               secretKeyRef:
                 name: traefik-secrets
                 key: duckdns-token
-          - name: EMAIL_ADDRESS
-            valueFrom:
-              secretKeyRef:
-                name: traefik-secrets
-                key: email-address

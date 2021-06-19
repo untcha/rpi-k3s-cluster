@@ -11,7 +11,7 @@ spec:
     - websecure
   routes:
     - kind: Rule
-      match: Host(`whoami.DOMAIN.duckdns.org`)
+      match: Host(`whoami.iamalex82.duckdns.org`)
       middlewares:
         - name: whoami-headers
         #- name: whoami-basic-auth
@@ -23,9 +23,4 @@ spec:
       name: whoami-tls-options
       namespace: traefik-v2
     certResolver: myresolver
-env:
-  - name: DOMAIN
-    valueFrom:
-      secretKeyRef:
-        name: traefik-secrets
-        key: domain
+    

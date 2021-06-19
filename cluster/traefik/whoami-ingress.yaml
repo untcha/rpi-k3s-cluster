@@ -12,7 +12,7 @@ metadata:
     #traefik.ingress.kubernetes.io/router.middlewares: traefik-v2-whoami-headers@kubernetescrd
 spec:
   rules:
-  - host: "whoami.DOMAIN.duckdns.org"
+  - host: "whoami.iamalex82.duckdns.org"
     http:
       paths:
       - pathType: Prefix
@@ -22,9 +22,3 @@ spec:
             name: whoami
             port:
               number: 80
-    env:
-      - name: DOMAIN
-        valueFrom:
-          secretKeyRef:
-            name: traefik-secrets
-            key: domain
