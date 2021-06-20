@@ -34,7 +34,7 @@ spec:
     - websecure
   routes:
     - kind: Rule
-      match: Host(`traefik.iamalex82.duckdns.org`)
+      match: Host(`traefik.localhost`) && (PathPrefix(`/dashboard`) || PathPrefix(`/api`))
       services:
         - name: api@internal
           port: 8080
