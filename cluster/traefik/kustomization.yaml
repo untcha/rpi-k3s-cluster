@@ -9,7 +9,7 @@ resources:
 - traefik-cluster-role-binding.yaml
 - traefik-daemon-set.yaml
 
-- whoami
+#- whoami
 
 commonLabels:
   app: traefik-v2
