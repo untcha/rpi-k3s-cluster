@@ -2,11 +2,11 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
 
-namespace: nfs-subdir-external-provisioner
+namespace: nfs-provisioner
 
 resources:
-  - namespace.yaml
-  - rbac.yaml
-  - class.yaml
-  - deployment.yaml
+  - nfs-provisioner-namespace.yaml
+  - nfs-provisioner-rbac.yaml
+  - nfs-provisioner-storageclass.yaml
+  - nfs-provisioner-deployment.yaml
   #- pvc-nfs-pv1.yaml
