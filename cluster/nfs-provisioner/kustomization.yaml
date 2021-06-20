@@ -7,6 +7,6 @@ namespace: nfs-provisioner
 resources:
   - nfs-provisioner-namespace.yaml
   - nfs-provisioner-rbac.yaml
-  #- nfs-provisioner-storageclass.yaml
-  #- nfs-provisioner-deployment.yaml
+  - nfs-provisioner-storageclass.yaml
+  - nfs-provisioner-deployment.yaml
   #- pvc-nfs-pv1.yaml
