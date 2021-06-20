@@ -9,4 +9,4 @@ resources:
   - rbac.yaml
   - class.yaml
   - deployment.yaml
-  - pvc-nfs-pv1.yaml
+  #- pvc-nfs-pv1.yaml
