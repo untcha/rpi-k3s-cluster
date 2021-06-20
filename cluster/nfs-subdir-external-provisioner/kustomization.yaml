@@ -5,6 +5,7 @@ resources:
 namespace: nfs-subdir-external-provisioner
 
 resources:
+  - namespace.yaml
   - rbac.yaml
   - class.yaml
   - deployment.yaml
