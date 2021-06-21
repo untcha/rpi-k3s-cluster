@@ -5,7 +5,7 @@ metadata:
   namespace: nginx
 spec:
   selector:
-    app: nginx-deploy-main
+    app: nginx-main
   ports:
   - name: http
     port: 80
