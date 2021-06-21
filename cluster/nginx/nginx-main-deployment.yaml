@@ -4,7 +4,6 @@ metadata:
   name: nginx-deploy-main
   namespace: nginx
 spec:
-  type: LoadBalancer
   ports:
   - name: http
     port: 80
