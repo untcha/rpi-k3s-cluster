@@ -3,3 +3,4 @@ kind: Kustomization
 resources:
   - namespace.yaml
   - enc_traefik-secrets.yaml
+  - traefik-pvc.yaml
