@@ -7,8 +7,8 @@ spec:
   selector:
     run: nginx-main
   ports:
-  - name: http
-    port: 80
+  - name: https
+    port: 443
 
 ---
 apiVersion: apps/v1
