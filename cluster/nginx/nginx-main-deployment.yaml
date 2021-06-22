@@ -40,7 +40,7 @@ metadata:
   namespace: nginx
 spec:
   entryPoints:
-    - web
+    - websecure
   routes:
     - match: Host(`nginx.example.com`)
       kind: Rule
