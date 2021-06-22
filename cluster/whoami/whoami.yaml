@@ -42,3 +42,19 @@ spec:
           ports:
             - name: web
               containerPort: 80
+
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: whoami-1-ingressroute
+  namespace: whoami
+spec:
+  entryPoints:
+    - web
+  routes:
+    - match: Host(`whoami.example.com`)
+      kind: Rule
+      services:
+        - name: whoami
+          port: 80
