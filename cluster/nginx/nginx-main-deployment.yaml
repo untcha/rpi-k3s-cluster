@@ -40,10 +40,12 @@ metadata:
   namespace: nginx
 spec:
   entryPoints:
-    - web
+    - websecure
   routes:
-    - match: Host(`nginx.example.com`)
+    - match: Host(`nginx.untch.duckdns.org`)
       kind: Rule
       services:
         - name: nginx-deploy-main
           port: 80
+  tls:
+    certResolver: letsencrypt
