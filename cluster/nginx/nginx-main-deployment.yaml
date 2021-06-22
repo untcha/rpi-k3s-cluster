@@ -7,8 +7,8 @@ spec:
   selector:
     run: nginx-main
   ports:
-  - name: http
-    port: 80
+  - name: https
+    port: 443
 
 ---
 apiVersion: apps/v1
@@ -46,4 +46,4 @@ spec:
       kind: Rule
       services:
         - name: nginx-deploy-main
-          port: 80
+          port: 443
