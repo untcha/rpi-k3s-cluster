@@ -86,7 +86,7 @@ spec:
     persistence:
       accessMode: ReadWriteOnce
       annotations: {}
-      enabled: true
+      enabled: false
       name: data
       path: /data
       size: 128Mi

@@ -353,7 +353,7 @@ autoscaling:
 # - "--certificatesresolvers.le.acme.storage=/data/acme.json"
 # It will persist TLS certificates.
 persistence:
-  enabled: true
+  enabled: false
   name: data
   # existingClaim: "traefik-nfs-pvc"
   accessMode: ReadWriteOnce
