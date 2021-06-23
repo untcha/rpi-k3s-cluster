@@ -3,3 +3,4 @@ kind: Kustomization
 resources:
 - namespaces
 - kubernetes-dashboard
+- metallb-system
