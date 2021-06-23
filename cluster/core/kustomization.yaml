@@ -4,3 +4,4 @@ resources:
 - namespaces
 - kubernetes-dashboard
 - metallb-system
+- nfs-provisioner
