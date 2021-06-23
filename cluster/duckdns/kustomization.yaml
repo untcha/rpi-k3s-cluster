@@ -8,3 +8,9 @@ resources:
 
 commonLabels:
   app: duckdns
+
+spec:
+  decryption:
+    provider: sops
+    secretRef:
+      name: sops-gpg
