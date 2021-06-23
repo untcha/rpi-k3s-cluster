@@ -4,3 +4,4 @@ kind: Kustomization
 resources:
   - nfs-provisioner.yaml
   - duckdns.yaml
+  - traefik.yaml
