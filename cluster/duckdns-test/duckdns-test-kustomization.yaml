@@ -6,8 +6,8 @@ metadata:
   namespace: flux-system
 spec:
   interval: 10m0s
-  dependsOn:
-  - name: core
+  #dependsOn:
+  #- name: core
   path: ./cluster/duckdns-test
   prune: true
   sourceRef:
