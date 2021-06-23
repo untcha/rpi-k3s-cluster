@@ -6,3 +6,4 @@ resources:
   - kubernetes-dashboard
   - metallb-system
   - nfs-provisioner
+  - traefik
