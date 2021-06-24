@@ -16,7 +16,11 @@ spec:
   interval: 1m0s
   targetNamespace: traefik
   values:
-    additionalArguments: []
+    additionalArguments:
+    - --certificatesresolvers.letsencrypt.acme.email=alexander@untch.com
+    - --certificatesresolvers.letsencrypt.acme.storage=/data/acme.json
+    - --certificatesResolvers.letsencrypt.acme.dnschallenge.provider=duckdns
+    - --certificatesresolvers.letsencrypt.acme.dnschallenge.delaybeforecheck=0
     additionalVolumeMounts: []
     affinity: {}
     autoscaling:
@@ -33,7 +37,12 @@ spec:
       podAnnotations: {}
       podLabels: {}
       replicas: 1
-    env: []
+    env:
+    - name: DUCKDNS_TOKEN
+      valueFrom:
+        secretKeyRef:
+          key: duckdns-token
+          name: traefik-secrets
     envFrom: []
     experimental:
       kubernetesGateway:
