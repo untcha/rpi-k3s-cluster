@@ -53,10 +53,10 @@ spec:
   entryPoints:
     - websecure
   routes:
-  - match: Host(`whoami.untch.duckdns.org`)
-    kind: Rule
-    services:
-      - name: whoami
-        port: 80
+    - match: Host(`whoami.untch.duckdns.org`)
+      kind: Rule
+      services:
+        - name: whoami
+          port: 80
   tls:
     certResolver: letsencrypt
