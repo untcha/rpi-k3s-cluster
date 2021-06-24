@@ -20,6 +20,7 @@ spec:
     - --certificatesresolvers.letsencrypt.acme.email=alexander@untch.com
     - --certificatesresolvers.letsencrypt.acme.storage=/data/acme.json
     - --certificatesResolvers.letsencrypt.acme.dnschallenge.provider=duckdns
+    - --certificatesresolvers.letsencrypt.acme.dnschallenge.delaybeforecheck=0
     additionalVolumeMounts: []
     affinity: {}
     autoscaling:
