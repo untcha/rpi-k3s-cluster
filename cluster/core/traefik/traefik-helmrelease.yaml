@@ -132,7 +132,7 @@ spec:
           enabled: false
     rbac:
       enabled: true
-      namespaced: false
+      namespaced: true
     resources: {}
     rollingUpdate:
       maxSurge: 1
