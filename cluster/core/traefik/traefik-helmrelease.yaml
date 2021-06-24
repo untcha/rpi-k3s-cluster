@@ -118,7 +118,7 @@ spec:
         tls:
           certResolver: letsencrypt
           domains: []
-          enabled: true
+          enabled: false
           options: ""
     priorityClassName: ""
     providers:
