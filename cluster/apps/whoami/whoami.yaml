@@ -57,6 +57,7 @@ spec:
       kind: Rule
       middlewares:
         - name: whoami-middleware-headers
+        - name: whomai-middleware-basicauth
       services:
         - name: whoami
           port: 80
@@ -96,3 +97,13 @@ spec:
     accessControlMaxAge: 100
     addVaryHeader: true
     referrerPolicy: "same-origin"
+
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: Middleware
+metadata:
+  name: whoami-middleware-basicauth
+  namespace: whoami
+spec:
+  basicAuth:
+    secret: whoami-secret-basicauth
