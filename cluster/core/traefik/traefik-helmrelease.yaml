@@ -18,6 +18,7 @@ spec:
   values:
     additionalArguments:
     - --certificatesresolvers.letsencrypt.acme.email=alexander@untch.com
+    - --certificatesresolvers.letsencrypt.acme.storage=/data/acme.json
     - --certificatesResolvers.letsencrypt.acme.dnschallenge.provider=duckdns
     - --certificatesresolvers.letsencrypt.acme.dnschallenge.delaybeforecheck=0
     - --certificatesresolvers.letsencrypt.acme.caserver=https://acme-v02.api.letsencrypt.org/directory
@@ -85,7 +86,7 @@ spec:
     persistence:
       accessMode: ReadWriteOnce
       annotations: {}
-      enabled: false
+      enabled: true
       name: data
       path: /data
       size: 128Mi
