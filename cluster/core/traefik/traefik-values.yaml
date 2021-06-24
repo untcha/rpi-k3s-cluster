@@ -108,7 +108,7 @@ providers:
     namespaces: []
       # - "default"
   kubernetesIngress:
-    enabled: true
+    enabled: false
     # labelSelector: environment=production,method=traefik
     namespaces: []
       # - "default"

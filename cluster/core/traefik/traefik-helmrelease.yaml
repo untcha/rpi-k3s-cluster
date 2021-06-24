@@ -126,7 +126,7 @@ spec:
         enabled: true
         namespaces: []
       kubernetesIngress:
-        enabled: true
+        enabled: false
         namespaces: []
         publishedService:
           enabled: false
