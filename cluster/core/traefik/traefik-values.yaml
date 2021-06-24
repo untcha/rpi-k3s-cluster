@@ -203,7 +203,7 @@ additionalArguments:
   - --certificatesresolvers.letsencrypt.acme.dnschallenge.delaybeforecheck=0
   # Use the staging ACME server. Uncomment this while testing to prevent
   # hitting rate limits in production.
-  - --certificatesresolvers.letsencrypt.acme.caserver=https://acme-staging-v02.api.letsencrypt.org/directory
+  # - --certificatesresolvers.letsencrypt.acme.caserver=https://acme-staging-v02.api.letsencrypt.org/directory
 
 # Environment variables to be passed to Traefik's binary
 env:
