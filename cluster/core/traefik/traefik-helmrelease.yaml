@@ -79,7 +79,7 @@ spec:
             names: {}
         filters: {}
       general:
-        level: ERROR
+        level: DEBUG
     nodeSelector: {}
     persistence:
       accessMode: ReadWriteOnce
