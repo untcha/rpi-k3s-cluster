@@ -47,11 +47,11 @@ spec:
 apiVersion: traefik.containo.us/v1alpha1
 kind: IngressRoute
 metadata:
-  name: whoami-1-ingressroute
+  name: whoami-ingressroute
   namespace: whoami
 spec:
   entryPoints:
-    - websecure
+    - web
   routes:
     - match: Host(`whoami.untch.duckdns.org`)
       kind: Rule

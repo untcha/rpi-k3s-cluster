@@ -16,11 +16,7 @@ spec:
   interval: 1m0s
   targetNamespace: traefik
   values:
-    additionalArguments:
-    - --certificatesresolvers.letsencrypt.acme.email=alexander@untch.com
-    - --certificatesresolvers.letsencrypt.acme.storage=/data/acme.json
-    - --certificatesResolvers.letsencrypt.acme.dnschallenge.provider=duckdns
-    - --certificatesresolvers.letsencrypt.acme.dnschallenge.delaybeforecheck=0
+    additionalArguments: []
     additionalVolumeMounts: []
     affinity: {}
     autoscaling:
@@ -37,12 +33,7 @@ spec:
       podAnnotations: {}
       podLabels: {}
       replicas: 1
-    env:
-    - name: DUCKDNS_TOKEN
-      valueFrom:
-        secretKeyRef:
-          key: duckdns-token
-          name: traefik-secrets
+    env: []
     envFrom: []
     experimental:
       kubernetesGateway:
@@ -80,7 +71,7 @@ spec:
             names: {}
         filters: {}
       general:
-        level: DEBUG
+        level: ERROR
     nodeSelector: {}
     persistence:
       accessMode: ReadWriteOnce
@@ -109,7 +100,6 @@ spec:
         exposedPort: 80
         port: 8000
         protocol: TCP
-        redirectTo: websecure
       websecure:
         expose: true
         exposedPort: 443
@@ -126,7 +116,7 @@ spec:
         enabled: true
         namespaces: []
       kubernetesIngress:
-        enabled: false
+        enabled: true
         namespaces: []
         publishedService:
           enabled: false
@@ -139,8 +129,6 @@ spec:
       maxUnavailable: 1
     securityContext:
       capabilities:
-        add:
-        - NET_BIND_SERVICE
         drop:
         - ALL
       readOnlyRootFilesystem: true
