@@ -131,7 +131,7 @@ spec:
         publishedService:
           enabled: false
     rbac:
-      enabled: false
+      enabled: true
       namespaced: false
     resources: {}
     rollingUpdate:
