@@ -57,7 +57,7 @@ spec:
       kind: Rule
       middlewares:
         - name: whoami-middleware-headers
-        - name: whomai-middleware-basicauth
+        - name: whoami-middleware-basicauth
       services:
         - name: whoami
           port: 80
