@@ -21,6 +21,7 @@ spec:
     - --certificatesresolvers.letsencrypt.acme.storage=/data/acme.json
     - --certificatesResolvers.letsencrypt.acme.dnschallenge.provider=duckdns
     - --certificatesresolvers.letsencrypt.acme.dnschallenge.delaybeforecheck=0
+    - --certificatesresolvers.letsencrypt.acme.caserver=https://acme-v02.api.letsencrypt.org/directory
     additionalVolumeMounts: []
     affinity: {}
     autoscaling:

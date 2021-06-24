@@ -51,7 +51,7 @@ metadata:
   namespace: whoami
 spec:
   entryPoints:
-    - web
+    - websecure
   routes:
     - match: Host(`whoami.untch.duckdns.org`)
       kind: Rule
