@@ -116,9 +116,9 @@ spec:
         port: 8443
         protocol: TCP
         tls:
-          certResolver: letsencrypt
+          certResolver: ""
           domains: []
-          enabled: false
+          enabled: true
           options: ""
     priorityClassName: ""
     providers:
