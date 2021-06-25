@@ -4,3 +4,4 @@ kind: Kustomization
 resources:
   - duckdns
   - whoami
+  - nginx
