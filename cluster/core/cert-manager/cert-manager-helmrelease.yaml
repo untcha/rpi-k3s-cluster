@@ -1,0 +1,118 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: cert-manager
+  namespace: flux-system
+spec:
+  chart:
+    spec:
+      chart: cert-manager
+      sourceRef:
+        kind: HelmRepository
+        name: jetstack
+      version: v1.4.0
+  install: {}
+  interval: 1m0s
+  targetNamespace: cert-manager
+  values:
+    affinity: {}
+    cainjector:
+      affinity: {}
+      containerSecurityContext: {}
+      enabled: true
+      extraArgs: []
+      image:
+        pullPolicy: IfNotPresent
+        repository: quay.io/jetstack/cert-manager-cainjector
+      nodeSelector: {}
+      podLabels: {}
+      replicaCount: 1
+      resources: {}
+      securityContext:
+        runAsNonRoot: true
+      serviceAccount:
+        automountServiceAccountToken: true
+        create: true
+      strategy: {}
+      tolerations: []
+    clusterResourceNamespace: ""
+    containerSecurityContext: {}
+    extraArgs: []
+    extraEnv: []
+    featureGates: ""
+    global:
+      imagePullSecrets: []
+      leaderElection:
+        namespace: kube-system
+      logLevel: 2
+      podSecurityPolicy:
+        enabled: false
+        useAppArmor: true
+      priorityClassName: ""
+      rbac:
+        create: true
+    image:
+      pullPolicy: IfNotPresent
+      repository: quay.io/jetstack/cert-manager-controller
+    ingressShim: {}
+    installCRDs: false
+    nodeSelector: {}
+    podLabels: {}
+    prometheus:
+      enabled: true
+      servicemonitor:
+        enabled: false
+        interval: 60s
+        labels: {}
+        path: /metrics
+        prometheusInstance: default
+        scrapeTimeout: 30s
+        targetPort: 9402
+    replicaCount: 1
+    resources: {}
+    securityContext:
+      runAsNonRoot: true
+    serviceAccount:
+      automountServiceAccountToken: true
+      create: true
+    strategy: {}
+    tolerations: []
+    volumeMounts: []
+    volumes: []
+    webhook:
+      affinity: {}
+      containerSecurityContext: {}
+      extraArgs: []
+      hostNetwork: false
+      image:
+        pullPolicy: IfNotPresent
+        repository: quay.io/jetstack/cert-manager-webhook
+      livenessProbe:
+        failureThreshold: 3
+        initialDelaySeconds: 60
+        periodSeconds: 10
+        successThreshold: 1
+        timeoutSeconds: 1
+      nodeSelector: {}
+      podLabels: {}
+      readinessProbe:
+        failureThreshold: 3
+        initialDelaySeconds: 5
+        periodSeconds: 5
+        successThreshold: 1
+        timeoutSeconds: 1
+      replicaCount: 1
+      resources: {}
+      securePort: 10250
+      securityContext:
+        runAsNonRoot: true
+      serviceAccount:
+        automountServiceAccountToken: true
+        create: true
+      serviceType: ClusterIP
+      strategy: {}
+      timeoutSeconds: 10
+      tolerations: []
+      url: {}
+
