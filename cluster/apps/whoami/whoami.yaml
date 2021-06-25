@@ -87,6 +87,7 @@ apiVersion: traefik.containo.us/v1alpha1
 kind: Middleware
 metadata:
   name: whoami-middleware-redirect-scheme
+  namespace: whoami
 spec:
   redirectScheme:
     scheme: https
