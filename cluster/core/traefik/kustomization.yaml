@@ -4,5 +4,5 @@ kind: Kustomization
 resources:
   - enc_traefik-secrets.yaml
   - traefik-helmrelease.yaml
-  # - traefik-dashboard-ingressroute.yaml
+  - traefik-dashboard-ingressroute.yaml
   # - traefik-pvc.yaml
