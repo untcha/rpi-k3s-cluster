@@ -62,6 +62,8 @@ spec:
   routes:
     - match: Host(`nginx.untch.duckdns.org`)
       kind: Rule
+      middlewares:
+        - nginx-middleware-headers
       services:
         - name: nginx-deploy-main
           port: 80
@@ -79,3 +81,37 @@ spec:
     scheme: https
     permanent: true
     port: "443"
+
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: Middleware
+metadata:
+  name: nginx-middleware-headers
+  namespace: nginx
+
+spec:
+  headers:
+    browserXssFilter: true
+    contentTypeNosniff: true
+    frameDeny: true
+    sslRedirect: true
+    forceSTSHeader: true
+    stsIncludeSubdomains: true
+    stsPreload: true
+    stsSeconds: 63072000
+    #customRequestHeaders:
+      #X-Frame-Options: "SAMEORIGIN"
+    #customFrameOptionsValue: "SAMEORIGIN"
+    #contentSecurityPolicy: "frame-ancestors 'self' nginx.untch.duckdns.org"
+    #contentSecurityPolicy: "default-src 'self'; script-src https://nginx.untch.duckdns.org"
+    contentSecurityPolicy: |
+      default-src 'none';form-action 'none';frame-ancestors 'none';base-uri 'none'
+    accessControlAllowMethods:
+      - "GET"
+      - "POST"
+    accessControlAllowOriginList:
+      - "https://*.untch.duckdns.org"
+      - "https://nginx.untch.duckdns.org"
+    accessControlMaxAge: 100
+    addVaryHeader: true
+    referrerPolicy: "same-origin"
