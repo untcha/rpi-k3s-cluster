@@ -36,7 +36,25 @@ spec:
 apiVersion: traefik.containo.us/v1alpha1
 kind: IngressRoute
 metadata:
-  name: nginx-1-ingressroute
+  name: nginx-http-ingressroute
+  namespace: nginx
+spec:
+  entryPoints:
+    - web
+  routes:
+    - match: Host(`nginx.untch.duckdns.org`)
+      kind: Rule
+      middlewares:
+        - name: nginx-middleware-redirect-scheme
+      services:
+        - name: nginx-deploy-main
+          port: 80
+
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: nginx-https-ingressroute
   namespace: nginx
 spec:
   entryPoints:
@@ -49,3 +67,15 @@ spec:
           port: 80
   tls:
     certResolver: letsencrypt
+
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: Middleware
+metadata:
+  name: ngninx-middleware-redirect-scheme
+  namespace: nginx
+spec:
+  redirectScheme:
+    scheme: https
+    permanent: true
+    port: "443"
