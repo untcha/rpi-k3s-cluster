@@ -47,7 +47,25 @@ spec:
 apiVersion: traefik.containo.us/v1alpha1
 kind: IngressRoute
 metadata:
-  name: whoami-ingressroute
+  name: whoami-http-ingressroute
+  namespace: whoami
+spec:
+  entryPoints:
+    - web
+  routes:
+    - match: Host(`whoami.untch.duckdns.org`)
+      kind: Rule
+      middlewares:
+        - name: whoami-middleware-redirect-scheme
+      services:
+        - name: whoami
+          port: 80
+
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: whoami-https-ingressroute
   namespace: whoami
 spec:
   entryPoints:
@@ -63,6 +81,17 @@ spec:
           port: 80
   tls:
     certResolver: letsencrypt
+
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: Middleware
+metadata:
+  name: whoami-middleware-redirect-scheme
+spec:
+  redirectScheme:
+    scheme: https
+    permanent: true
+    port: "443"
 
 ---
 apiVersion: traefik.containo.us/v1alpha1
