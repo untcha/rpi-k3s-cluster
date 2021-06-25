@@ -62,8 +62,8 @@ spec:
   routes:
     - match: Host(`nginx.untch.duckdns.org`)
       kind: Rule
-      middlewares:
-        - nginx-middleware-headers
+      #middlewares:
+      #  - nginx-middleware-headers
       services:
         - name: nginx-deploy-main
           port: 80
