@@ -5,3 +5,4 @@ resources:
   - duckdns
   - whoami
   - nginx
+  - wireguard
