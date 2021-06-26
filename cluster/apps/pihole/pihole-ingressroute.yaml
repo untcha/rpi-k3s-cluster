@@ -11,5 +11,5 @@ spec:
     - match: Host(`pihole.untch.duckdns.org`)
       kind: Rule
       services:
-        - name: pihole-admin
+        - name: pihole
           port: 80
