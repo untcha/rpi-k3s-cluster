@@ -6,4 +6,4 @@ resources:
   - cert-manager.yaml
   - duckdns.yaml
   - traefik.yaml
-  - wireguard.yaml
+  #- wireguard.yaml
