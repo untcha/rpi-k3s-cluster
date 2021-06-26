@@ -2,8 +2,8 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
-  - wireguard-pvc.yaml
-  - wireguard-configmap.yaml
-  - wireguard-pod.yaml
-  - wireguard-service.yaml
-  
+  #- wireguard-pvc.yaml
+  #- wireguard-configmap.yaml
+  #- wireguard-pod.yaml
+  #- wireguard-service.yaml
+
