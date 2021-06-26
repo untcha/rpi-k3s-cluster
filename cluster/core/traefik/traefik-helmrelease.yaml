@@ -67,7 +67,7 @@ spec:
     ingressRoute:
       dashboard:
         annotations: {}
-        enabled: true
+        enabled: false
         labels: {}
     logs:
       access:
