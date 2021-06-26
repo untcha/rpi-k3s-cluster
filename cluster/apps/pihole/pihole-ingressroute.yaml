@@ -8,7 +8,7 @@ spec:
   entryPoints:
     - web
   routes:
-    - match: Host(`pihole.untch.duckdns.org`)
+    - match: Host(`pihole.untch.duckdns.org`) && PathPrefix(`/admin`)
       kind: Rule
       services:
         - name: pihole
