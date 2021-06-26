@@ -4,5 +4,6 @@ kind: Kustomization
 resources:
   - duckdns
   - whoami
-  #- wireguard
-  #- pihole
+  - nginx
+  - wireguard
+  - pihole

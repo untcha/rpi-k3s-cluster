@@ -1,0 +1,117 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: nginx-deploy-main
+  namespace: nginx
+spec:
+  selector:
+    run: nginx-main
+  ports:
+  - name: http
+    port: 80
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    run: nginx
+  name: nginx-deploy-main
+  namespace: nginx
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      run: nginx-main
+  template:
+    metadata:
+      labels:
+        run: nginx-main
+    spec:
+      containers:
+      - image: nginx
+        name: nginx
+
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: nginx-http-ingressroute
+  namespace: nginx
+spec:
+  entryPoints:
+    - web
+  routes:
+    - match: Host(`nginx.untch.duckdns.org`)
+      kind: Rule
+      middlewares:
+        - name: nginx-middleware-redirect-scheme
+      services:
+        - name: nginx-deploy-main
+          port: 80
+
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: nginx-https-ingressroute
+  namespace: nginx
+spec:
+  entryPoints:
+    - websecure
+  routes:
+    - match: Host(`nginx.untch.duckdns.org`)
+      kind: Rule
+      #middlewares:
+      #  - nginx-middleware-headers
+      services:
+        - name: nginx-deploy-main
+          port: 80
+  tls:
+    certResolver: letsencrypt
+
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: Middleware
+metadata:
+  name: nginx-middleware-redirect-scheme
+  namespace: nginx
+spec:
+  redirectScheme:
+    scheme: https
+    permanent: true
+    port: "443"
+
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: Middleware
+metadata:
+  name: nginx-middleware-headers
+  namespace: nginx
+
+spec:
+  headers:
+    browserXssFilter: true
+    contentTypeNosniff: true
+    frameDeny: true
+    sslRedirect: true
+    forceSTSHeader: true
+    stsIncludeSubdomains: true
+    stsPreload: true
+    stsSeconds: 63072000
+    #customRequestHeaders:
+      #X-Frame-Options: "SAMEORIGIN"
+    #customFrameOptionsValue: "SAMEORIGIN"
+    #contentSecurityPolicy: "frame-ancestors 'self' nginx.untch.duckdns.org"
+    #contentSecurityPolicy: "default-src 'self'; script-src https://nginx.untch.duckdns.org"
+    contentSecurityPolicy: |
+      default-src 'none';form-action 'none';frame-ancestors 'none';base-uri 'none'
+    accessControlAllowMethods:
+      - "GET"
+      - "POST"
+    accessControlAllowOriginList:
+      - "https://*.untch.duckdns.org"
+      - "https://nginx.untch.duckdns.org"
+    accessControlMaxAge: 100
+    addVaryHeader: true
+    referrerPolicy: "same-origin"
