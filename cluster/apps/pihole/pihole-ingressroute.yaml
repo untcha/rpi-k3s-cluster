@@ -1,0 +1,15 @@
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: pihole-http-ingressroute
+  namespace: pihole
+spec:
+  entryPoints:
+    - web
+  routes:
+    - match: Host(`pihole.untch.duckdns.org`)
+      kind: Rule
+      services:
+        - name: pihole-admin
+          port: 80
