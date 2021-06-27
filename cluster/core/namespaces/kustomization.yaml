@@ -7,4 +7,4 @@ resources:
   - duckdns.yaml
   - traefik.yaml
   # - wireguard.yaml
-  - pihole.yaml
+  # - pihole.yaml
