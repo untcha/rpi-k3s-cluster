@@ -46,9 +46,9 @@ spec:
               name: pihole-secrets
               key: PIHOLE_WEBPASSWORD
         - name: DNS1
-          value: "1.1.1.1"
+          value: "8.8.8.8"
         - name: DNS2
-          value: "no"
+          value: "1.1.1.1"
         #- name: DNSMASQ_LISTENING
         #  value:
         ports:
