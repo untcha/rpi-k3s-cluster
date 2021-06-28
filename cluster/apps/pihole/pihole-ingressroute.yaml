@@ -49,17 +49,17 @@ spec:
   tls:
     certResolver: letsencrypt
 
----
-apiVersion: traefik.containo.us/v1alpha1
-kind: IngressRouteTCP
-metadata:
-  name: pihole-tcp-ingressroute
-  namespace: pihole
-spec:
-  #entryPoints:
-  #  - dns
-  routes:
-  - match: HostSNI(`*`)
-    services:
-    - name: pihole
-      port: 53
+# ---
+# apiVersion: traefik.containo.us/v1alpha1
+# kind: IngressRouteTCP
+# metadata:
+#   name: pihole-tcp-ingressroute
+#   namespace: pihole
+# spec:
+#   #entryPoints:
+#   #  - dns
+#   routes:
+#   - match: HostSNI(`*`)
+#     services:
+#     - name: pihole
+#       port: 53
