@@ -22,7 +22,6 @@ spec:
     - --certificatesResolvers.letsencrypt.acme.dnschallenge.provider=duckdns
     - --certificatesresolvers.letsencrypt.acme.dnschallenge.delaybeforecheck=0
     - --certificatesresolvers.letsencrypt.acme.caserver=https://acme-v02.api.letsencrypt.org/directory
-    - --entrypoints.dns.address=:53
     additionalVolumeMounts: []
     affinity: {}
     autoscaling:
