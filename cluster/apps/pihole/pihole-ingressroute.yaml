@@ -1,5 +1,17 @@
 ---
 apiVersion: traefik.containo.us/v1alpha1
+kind: Middleware
+metadata:
+  name: pihole-middleware-redirect-scheme
+  namespace: pihole
+spec:
+  redirectScheme:
+    scheme: https
+    permanent: true
+    port: "443"
+
+---
+apiVersion: traefik.containo.us/v1alpha1
 kind: IngressRoute
 metadata:
   name: pihole-http-ingressroute
@@ -10,6 +22,29 @@ spec:
   routes:
     - match: Host(`pihole.${SECRET_DOMAIN}`) && PathPrefix(`/admin`)
       kind: Rule
+      middlewares:
+        - name: pihole-middleware-redirect-scheme
       services:
         - name: pihole
           port: 80
+
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: pihole-https-ingressroute
+  namespace: pihole
+spec:
+  entryPoints:
+    - websecure
+  routes:
+    - match: Host(`pihole.${SECRET_DOMAIN}`)
+      kind: Rule
+      #middlewares:
+      #  - name: -middleware-headers
+      #  - name: -middleware-basicauth
+      services:
+        - name: pihole
+          port: 80
+  tls:
+    certResolver: letsencrypt
