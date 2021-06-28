@@ -41,10 +41,11 @@ spec:
         - name: TZ
           value: "Europe/Berlin"
         - name: WEBPASSWORD
-          valueFrom:
-            secretKeyRef:
-              name: pihole-secrets
-              key: PIHOLE_WEBPASSWORD
+          value: "${PIHOLE_WEBPASSWORD}"
+        #  valueFrom:
+        #    secretKeyRef:
+        #      name: pihole-secrets
+        #      key: PIHOLE_WEBPASSWORD
         - name: DNS1
           value: "8.8.8.8"
         - name: DNS2
