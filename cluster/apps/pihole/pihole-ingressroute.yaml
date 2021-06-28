@@ -56,8 +56,8 @@ metadata:
   name: pihole-tcp-ingressroute
   namespace: pihole
 spec:
-  entryPoints:
-    - dns
+  #entryPoints:
+  #  - dns
   routes:
   - match: HostSNI(`*`)
     services:
