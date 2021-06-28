@@ -17,35 +17,70 @@ spec:
         app: pihole
         name: pihole
     spec:
-      #securityContext:
-      #  fsGroup: 1000
-      #  runAsUser: 1000
-      #  runAsGroup: 1000
+      dnsConfig:
+        nameservers:
+        - 127.0.0.1
+      hostAliases:
+      - ip: "127.0.0.1"
+        hostnames:
+        - "pi.hole"
       containers:
-        - name: pihole
-          image: pihole/pihole:latest
-          env:
-            - name: TZ
-              value: 'Europe/Berlin'
-            - name: WEBPASSWORD
-              valueFrom:
-                secretKeyRef:
-                  name: pihole-secrets
-                  key: PIHOLE_WEBPASSWORD
-            #  value: 'test1234'
-            #- name: DNS1
-            #  value: '1.1.1.1'
-            #- name: DNS2
-            #  value: 'no'
-          volumeMounts:
-            - name: pihole-local-etc-volume
-              mountPath: '/etc/pihole'
-            - name: pihole-local-dnsmasq-volume
-              mountPath: '/etc/dnsmasq.d'
-      volumes:
+      - name: pihole
+        image: pihole/pihole:latest
+        securityContext:
+          capabilities:
+            add:
+            - NET_ADMIN
+        env:
+        - name: ServerIP
+          value: "0.0.0.0"
+        - name: IPv6
+          value: "false"
+        - name: ServerIPv6
+          value: "::"
+        - name: TZ
+          value: "Europe/Berlin"
+        - name: WEBPASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: pihole-secrets
+              key: PIHOLE_WEBPASSWORD
+        - name: DNS1
+          value: "8.8.8.8"
+        - name: DNS2
+          value: "no"
+        #- name: DNSMASQ_LISTENING
+        #  value:
+        ports:
+        - name: http
+          containerPort: 80
+          protocol: TCP
+        - name: dns
+          containerPort: 53
+          protocol: TCP
+        - name: dns-udp
+          containerPort: 53
+          protocol: UDP
+        - name: bootp
+          containerPort: 67
+          protocol: UDP
+        livenessProbe:
+          httpGet:
+            path: /
+            port: http
+        readinessProbe:
+          httpGet:
+            path: /
+            port: http
+        volumeMounts:
         - name: pihole-local-etc-volume
-          persistentVolumeClaim:
-            claimName: pihole-etc-pvc
+          mountPath: '/etc/pihole'
         - name: pihole-local-dnsmasq-volume
-          persistentVolumeClaim:
-            claimName: pihole-dnsmasq-pvc
+          mountPath: '/etc/dnsmasq.d'
+      volumes:
+      - name: pihole-local-etc-volume
+        persistentVolumeClaim:
+          claimName: pihole-etc-pvc
+      - name: pihole-local-dnsmasq-volume
+        persistentVolumeClaim:
+          claimName: pihole-dnsmasq-pvc
