@@ -7,7 +7,10 @@ metadata:
 spec:
   selector:
     app: pihole
+  sessionAffinity: None
+  externalTrafficPolicy: Local
   type: LoadBalancer
+  loadBalancerIP: 192.168.178.244
   ports:
   - name: http
     port: 80
