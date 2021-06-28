@@ -7,7 +7,6 @@ metadata:
 spec:
   selector:
     app: pihole
-  #clusterIP: 10.41.0.2
   type: LoadBalancer
   ports:
   - name: http
@@ -19,16 +18,6 @@ spec:
   - name: dns-udp
     port: 53
     protocol: UDP
-
-  # ports:
-  #   - port: 80
-  #     targetPort: 80
-  #     name: pihole-admin
-  #   - port: 53
-  #     targetPort: 53
-  #     protocol: TCP
-  #     name: dns-tcp
-  #   - port: 53
-  #     targetPort: 53
-  #     protocol: UDP
-  #     name: dns-udp
+  - name: bootp
+    port: 67
+    protocol: UDP
