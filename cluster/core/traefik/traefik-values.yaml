@@ -206,6 +206,8 @@ additionalArguments:
   # hitting rate limits in production.
   # - "--certificatesresolvers.letsencrypt.acme.caserver=https://acme-staging-v02.api.letsencrypt.org/directory"
 
+  - "--entrypoints.dns.address=:53"
+
 # Environment variables to be passed to Traefik's binary
 env:
 # - name: SOME_VAR
