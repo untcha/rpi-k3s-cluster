@@ -4,7 +4,7 @@ kind: Service
 metadata:
   annotations:
     metallb.universe.tf/address-pool: network-services
-    metallb.universe.tf/allow-shared-ip: pihole-svc
+    metallb.universe.tf/allow-shared-ip: pihole-udp
   name: pihole-tcp
   namespace: pihole
 spec:
