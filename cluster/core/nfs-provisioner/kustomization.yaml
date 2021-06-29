@@ -5,4 +5,4 @@ resources:
   ## - nfs-provisioner-storageclass.yaml
   - nfs-provisioner-storageclass-default.yaml
   - nfs-provisioner-deployment.yaml
-  ## - pvc-nfs-pv1.yaml
+  - pvc-nfs-pv1.yaml

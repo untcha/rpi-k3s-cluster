@@ -2,6 +2,8 @@ apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
   name: pvc-nfs-pv1
+  annotations:
+    nfs.io/storage-path: "/test/test/test"
 spec:
   storageClassName: managed-nfs-storage
   accessModes:
