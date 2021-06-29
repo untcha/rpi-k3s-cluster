@@ -7,4 +7,4 @@ resources:
   - metallb-system
   - nfs-provisioner
   # - cert-manager
-  - traefik
+  #- traefik
