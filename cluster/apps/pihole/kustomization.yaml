@@ -6,5 +6,6 @@ resources:
   - pihole-etc-pvc.yaml
   - pihole-dnsmasq-pvc.yaml
   - pihole-deployment.yaml
-  - pihole-service.yaml
+  - pihole-tcp-service.yaml
+  - pihole-upd-service.yaml
   - pihole-ingressroute.yaml
