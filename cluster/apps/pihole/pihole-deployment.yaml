@@ -41,7 +41,7 @@ spec:
         - name: TZ
           value: "Europe/Berlin"
         - name: WEBPASSWORD
-          value: ${SECRET_PIHOLE_WEBPASSWORD}
+          value: "${SECRET_PIHOLE_WEBPASSWORD}"
           #valueFrom:
           #  secretKeyRef:
           #    name: pihole-secrets
