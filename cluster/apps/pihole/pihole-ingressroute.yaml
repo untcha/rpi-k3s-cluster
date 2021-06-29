@@ -25,7 +25,7 @@ spec:
       middlewares:
         - name: pihole-middleware-redirect-scheme
       services:
-        - name: pihole
+        - name: pihole-tcp
           port: 80
 
 ---
@@ -44,7 +44,7 @@ spec:
       #  - name: -middleware-headers
       #  - name: -middleware-basicauth
       services:
-        - name: pihole
+        - name: pihole-tcp
           port: 80
   tls:
     certResolver: letsencrypt
