@@ -4,6 +4,8 @@ kind: PersistentVolumeClaim
 metadata:
   name: pihole-dnsmasq-pvc
   namespace: pihole
+  annotations:
+    nfs.io/storage-path: "/etc/dnsmasq.d"
 spec:
   accessModes:
     - ReadWriteOnce

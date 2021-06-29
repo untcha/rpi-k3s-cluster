@@ -4,6 +4,8 @@ kind: PersistentVolumeClaim
 metadata:
   name: pihole-etc-pvc
   namespace: pihole
+  annotations:
+    nfs.io/storage-path: "/etc/pihole"
 spec:
   accessModes:
     - ReadWriteOnce
