@@ -20,5 +20,5 @@ spec:
   postBuild:
     substitute: {}
     substituteFrom:
-    - kind: Secret
-      name: cluster-secrets
+      - kind: Secret
+        name: cluster-secrets
