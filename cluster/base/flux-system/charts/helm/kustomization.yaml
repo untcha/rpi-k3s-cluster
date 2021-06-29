@@ -3,3 +3,4 @@ kind: Kustomization
 resources:
   # - jetstack-charts.yaml
   - traefik-charts.yaml
+  - influxdata-charts.yaml
