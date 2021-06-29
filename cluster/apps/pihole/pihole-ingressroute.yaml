@@ -40,11 +40,20 @@ spec:
   routes:
     - match: Host(`pihole.${SECRET_DOMAIN}`)
       kind: Rule
-      #middlewares:
-      #  - name: -middleware-headers
-      #  - name: -middleware-basicauth
+      middlewares:
+        - name: pihole-middleware-basicauth
       services:
         - name: pihole-tcp
           port: 80
   tls:
     certResolver: letsencrypt
+
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: Middleware
+metadata:
+  name: pihole-middleware-basicauth
+  namespace: pihole
+spec:
+  basicAuth:
+    secret: pihole-secret-basicauth
