@@ -5,7 +5,7 @@ metadata:
   annotations:
     metallb.universe.tf/address-pool: network-services
     metallb.universe.tf/allow-shared-ip: pihole-svc
-  name: pihole-tcp
+  name: pihole-udp
   namespace: pihole
 spec:
   selector:
@@ -15,9 +15,9 @@ spec:
   type: LoadBalancer
   loadBalancerIP: 192.168.178.124
   ports:
-  - name: http
-    port: 80
-    protocol: TCP
-  - name: dns-tcp
+  - name: dns-udp
     port: 53
-    protocol: TCP
+    protocol: UDP
+  - name: client-udp
+    port: 67
+    protocol: UDP
