@@ -20,9 +20,9 @@ spec:
   - name: dns-tcp
     port: 53
     protocol: TCP
-  - name: dns-udp
-    port: 53
-    protocol: UDP
-  - name: bootp
-    port: 67
-    protocol: UDP
+  #- name: dns-udp
+  #  port: 53
+  #  protocol: UDP
+  #- name: bootp
+  #  port: 67
+  #  protocol: UDP
