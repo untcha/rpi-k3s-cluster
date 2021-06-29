@@ -1,0 +1,15 @@
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: kubernetes-dashboard-http-ingressroute
+  namespace: kubernetes-dashboard
+spec:
+  entryPoints:
+    - web
+  routes:
+    - match: Host(`kubernetes-dashboard.untch.local`)
+      kind: Rule
+      services:
+        - name: kubernetes-dashboard
+          port: 443
