@@ -56,7 +56,7 @@ adminUser:
   ## The password and token are obtained from an existing secret. The expected
   ## keys are `admin-password` and `admin-token`.
   ## If set, the password and token values above are ignored.
-  # existingSecret: influxdb-auth
+  existingSecret: influxdb-auth
 
 ## Persist data to a persistent volume
 ##
@@ -75,7 +75,7 @@ persistence:
   ##
   # storageClass: "-"
   accessMode: ReadWriteOnce
-  size: 50Gi
+  size: 5Gi
   mountPath: /var/lib/influxdbv2
 
 service:
