@@ -4,6 +4,7 @@ metadata:
   name: managed-nfs-storage
   annotations:
     storageclass.kubernetes.io/is-default-class: "true"
+    kustomize.toolkit.fluxcd.io/substitute: disabled
 provisioner: k8s-sigs.io/nfs-subdir-external-provisioner # or choose another name, must match deployment's env PROVISIONER_NAME'
 parameters:
   archiveOnDelete: "true"
