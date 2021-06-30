@@ -3,3 +3,4 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
   - enc_influxdb2-auth-secret.yaml
+  - influxdb2-pvc.yaml
