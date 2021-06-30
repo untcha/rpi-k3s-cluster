@@ -1,0 +1,124 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: influxdb
+  namespace: flux-system
+spec:
+  chart:
+    spec:
+      chart: influxdb
+      sourceRef:
+        kind: HelmRepository
+        name: influxdata
+      version: 4.9.14
+  install: {}
+  interval: 1m0s
+  targetNamespace: influxdata
+  values:
+    affinity: {}
+    backup:
+      annotations: {}
+      enabled: false
+      persistence:
+        accessMode: ReadWriteOnce
+        annotations: null
+        enabled: false
+        size: 8Gi
+      podAnnotations: {}
+      resources:
+        requests:
+          ephemeral-storage: 8Gi
+      schedule: 0 0 * * *
+      startingDeadlineSeconds: ""
+    backupRetention:
+      annotations: {}
+      daysToRetain: 7
+      enabled: false
+      podAnnotations: {}
+      resources:
+        requests: null
+      schedule: 0 0 * * *
+      startingDeadlineSeconds: null
+    config:
+      collectd: {}
+      continuous_queries: {}
+      coordinator: {}
+      data: {}
+      graphite: {}
+      http: {}
+      logging: {}
+      meta: {}
+      monitor: {}
+      opentsdb: {}
+      reporting_disabled: false
+      retention: {}
+      rpc: {}
+      shard_precreation: {}
+      subscriber: {}
+      tls: {}
+      udp: {}
+    enterprise:
+      clusterSize: 4
+      enabled: false
+      licensekey: {}
+      meta:
+        clusterSize: 3
+        image:
+          tag: meta
+        resources: {}
+        seed: dead-beef-cafe-bae
+    env: {}
+    envFromSecret: {}
+    extraContainers: {}
+    image:
+      pullPolicy: IfNotPresent
+      repository: influxdb
+      tag: 1.8.4
+    ingress:
+      annotations: {}
+      className: null
+      enabled: false
+      hostname: influxdb.foobar.com
+      path: /
+      tls: false
+    initScripts:
+      enabled: false
+      scripts:
+        init.iql: |+
+          CREATE DATABASE "telegraf" WITH DURATION 30d REPLICATION 1 NAME "rp_30d"
+
+    livenessProbe: {}
+    nodeSelector: {}
+    persistence:
+      accessMode: ReadWriteOnce
+      annotations: null
+      enabled: true
+      existingClaim: influxdb-pvc
+      size: 8Gi
+    podAnnotations: {}
+    podLabels: {}
+    readinessProbe: {}
+    resources: {}
+    securityContext: {}
+    service:
+      type: ClusterIP
+    serviceAccount:
+      annotations: {}
+      create: true
+      name: null
+    setDefaultUser:
+      activeDeadline: 300
+      backoffLimit: 6
+      enabled: false
+      hookDeletePolicy: hook-succeeded
+      image: appropriate/curl:latest
+      restartPolicy: OnFailure
+      user:
+        existingSecret: influxdb-auth
+        privileges: WITH ALL PRIVILEGES
+        username: admin
+    startupProbe:
+      enabled: false
+    tolerations: []
+

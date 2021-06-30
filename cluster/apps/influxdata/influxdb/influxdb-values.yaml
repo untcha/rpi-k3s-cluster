@@ -2,7 +2,7 @@
 ## ref: https://hub.docker.com/r/library/influxdb/tags/
 image:
   repository: "influxdb"
-  tag: "1.8.0-alpine"
+  tag: "1.8.4"
   pullPolicy: IfNotPresent
   ## If specified, use these secrets to access the images
   # pullSecrets:
@@ -59,7 +59,7 @@ persistence:
   ## A manually managed Persistent Volume and Claim
   ## Requires persistence.enabled: true
   ## If defined, PVC must be created manually before volume will be bound
-  # existingClaim:
+  existingClaim: influxdb-pvc
   ## influxdb data Persistent Volume Storage Class
   ## If defined, storageClassName: <storageClass>
   ## If set to "-", storageClassName: "", which disables dynamic provisioning
@@ -142,7 +142,7 @@ setDefaultUser:
     ## The user name and password are obtained from an existing secret. The expected
     ## keys are `influxdb-user` and `influxdb-password`.
     ## If set, the username and password values above are ignored.
-    # existingSecret: influxdb-auth
+    existingSecret: influxdb-auth
 
     ## User privileges
     ## Default: "WITH ALL PRIVILEGES"

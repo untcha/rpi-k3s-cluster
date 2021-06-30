@@ -5,10 +5,10 @@ metadata:
   name: influxdb-pvc
   namespace: influxdata
   annotations:
-    nfs.io/storage-path: "influxdb/var/lib/influxdbv2"
+    nfs.io/storage-path: "influxdb/data"
 spec:
   accessModes:
     - ReadWriteOnce
   resources:
     requests:
-      storage: 5Gi
+      storage: 8Gi
