@@ -5,7 +5,7 @@ metadata:
   name: influxdb-pvc
   namespace: influxdata
   annotations:
-    nfs.io/storage-path: "influxdb/data"
+    nfs.io/storage-path: "influxdb"
 spec:
   accessModes:
     - ReadWriteOnce
