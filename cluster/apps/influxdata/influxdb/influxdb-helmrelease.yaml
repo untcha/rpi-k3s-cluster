@@ -102,7 +102,9 @@ spec:
     resources: {}
     securityContext: {}
     service:
-      type: ClusterIP
+      annotations:
+        metallb.universe.tf/address-pool: network-services
+      type: LoadBalancer
     serviceAccount:
       annotations: {}
       create: true

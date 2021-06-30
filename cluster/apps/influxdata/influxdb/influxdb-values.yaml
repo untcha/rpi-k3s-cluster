@@ -47,8 +47,9 @@ startupProbe:
 ##
 service:
   ## Add annotations to service
-  # annotations: {}
-  type: ClusterIP
+  annotations:
+    metallb.universe.tf/address-pool: network-services
+  type: LoadBalancer
   # externalIPs: []
   # externalTrafficPolicy: ""
 
