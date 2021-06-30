@@ -63,9 +63,9 @@ adminUser:
 persistence:
   enabled: true
   ## If true will use an existing PVC instead of creating one
-  # useExisting: false
+  useExisting: true
   ## Name of existing PVC to be used in the influx deployment
-  # name:
+  name: influxdb-pvc
   ## influxdb data Persistent Volume Storage Class
   ## If defined, storageClassName: <storageClass>
   ## If set to "-", storageClassName: "", which disables dynamic provisioning
