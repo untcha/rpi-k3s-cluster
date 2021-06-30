@@ -1,14 +1,14 @@
 ---
 apiVersion: traefik.containo.us/v1alpha1
-kind: IngressRoute
+kind: IngressRouteTCP
 metadata:
-  name: influxdb-http-ingressroute
+  name: influxdb-tcp-ingressroute
   namespace: influxdata
 spec:
   entryPoints:
     - web
   routes:
-    - match: Host(`influxdb.${SECRET_DOMAIN_LOCAL}`)
+    - match: HostSNI(`*`)
       kind: Rule
       services:
         - name: influxdata-influxdb
