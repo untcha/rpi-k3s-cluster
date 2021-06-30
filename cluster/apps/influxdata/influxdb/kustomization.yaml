@@ -4,4 +4,4 @@ kind: Kustomization
 resources:
   - enc_influxdb-auth-secret.yaml
   - influxdb-pvc.yaml
-  #- influxdb-helmrelease.yaml
+  - influxdb-helmrelease.yaml
