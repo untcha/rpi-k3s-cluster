@@ -11,5 +11,5 @@ spec:
     - match: Host(`chronograf.${SECRET_DOMAIN_LOCAL}`)
       kind: Rule
       services:
-        - name: pihole-tcp
+        - name: influxdata-chronograf-chronograf
           port: 80
