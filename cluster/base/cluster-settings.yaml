@@ -5,4 +5,4 @@ metadata:
   namespace: flux-system
   name: cluster-settings
 data:
-  PIHOLE_SVC_ADDRESS: "192.168.178.124"
+  PIHOLE_SVC_LB_IP: "192.168.178.124"
