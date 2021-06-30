@@ -30,7 +30,7 @@ spec:
     image:
       pullPolicy: IfNotPresent
       repository: influxdb
-      tag: 2.0.6-alpine
+      tag: 2.0.6
     ingress:
       annotations: {}
       enabled: false
