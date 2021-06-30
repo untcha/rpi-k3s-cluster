@@ -1,6 +1,6 @@
 image:
   repository: influxdb
-  tag: 2.0.6
+  tag: 2.0.7
   pullPolicy: IfNotPresent
 
 podAnnotations: {}
