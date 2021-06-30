@@ -20,7 +20,7 @@ spec:
   entryPoints:
     - web
   routes:
-    - match: Host(`pihole.${SECRET_DOMAIN}`) && PathPrefix(`/admin`)
+    - match: (Host(`pihole.${SECRET_DOMAIN}`) && PathPrefix(`/admin`)) || (Host(`pihole.${SECRET_DOMAIN_LOCAL}`) && PathPrefix(`/admin`))
       kind: Rule
       middlewares:
         - name: pihole-middleware-redirect-scheme
@@ -38,7 +38,7 @@ spec:
   entryPoints:
     - websecure
   routes:
-    - match: Host(`pihole.${SECRET_DOMAIN}`)
+    - match: (Host(`pihole.${SECRET_DOMAIN}`) && PathPrefix(`/admin`)) || (Host(`pihole.${SECRET_DOMAIN_LOCAL}`) && PathPrefix(`/admin`))
       kind: Rule
       middlewares:
         - name: pihole-middleware-basicauth
