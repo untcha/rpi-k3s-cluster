@@ -1,0 +1,15 @@
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: chronograf-local-ingressroute
+  namespace: influxdata
+spec:
+  entryPoints:
+    - web
+  routes:
+    - match: Host(`chronograf.${SECRET_DOMAIN_LOCAL}`)
+      kind: Rule
+      services:
+        - name: pihole-tcp
+          port: 80
