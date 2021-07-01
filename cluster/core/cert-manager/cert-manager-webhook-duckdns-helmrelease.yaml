@@ -1,0 +1,49 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: cert-manager-webhook-duckdns
+  namespace: flux-system
+spec:
+  chart:
+    spec:
+      chart: cert-manager-webhook-duckdns
+      sourceRef:
+        kind: HelmRepository
+        name: cert-manager-webhook-duckdns
+      version: v1.2.3
+  install: {}
+  interval: 1m0s
+  targetNamespace: cert-manager
+  values:
+    affinity: {}
+    certManager:
+      namespace: cert-manager
+      serviceAccountName: cert-manager
+    clusterIssuer:
+      email: name@example.com
+      production:
+        create: false
+      staging:
+        create: false
+    duckdns:
+      token: ""
+    extraEnv: {}
+    fullnameOverride: ""
+    groupName: acme.duckdns.org
+    image:
+      pullPolicy: IfNotPresent
+      repository: ebrianne/cert-manager-webhook-duckdns
+      tag: v1.2.2
+    logLevel: 2
+    nameOverride: ""
+    nodeSelector: {}
+    resources: {}
+    secret:
+      existingSecret: false
+      existingSecretName: ""
+    service:
+      port: 443
+      type: ClusterIP
+    tolerations: []
+
