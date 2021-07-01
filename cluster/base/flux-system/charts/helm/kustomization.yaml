@@ -4,4 +4,4 @@ resources:
   - jetstack-charts.yaml
   - traefik-charts.yaml
   - influxdata-charts.yaml
-  - cert-manager-webhook-duckdns.yaml
+  - ebrianne.github.io-charts.yaml
