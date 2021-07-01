@@ -87,14 +87,15 @@ apiVersion: traefik.containo.us/v1alpha1
 kind: IngressRoute
 metadata:
   annotations:
-    cert-manager.io/cluster-issuer: cert-manager-cert-manager-webhook-duckdns-staging
-  name: whoami-https-ingressroute
+    external-dns.alpha.kubernetes.io/hostname: whoami.${DOMAIN}
+    #cert-manager.io/cluster-issuer: cert-manager-cert-manager-webhook-duckdns-staging
+  name: whoami-http-ingressroute
   namespace: whoami
 spec:
   entryPoints:
-    - websecure
+    - web
   routes:
-    - match: Host(`iamalex82.duckdns.org`)
+    - match: Host(`whoami.${DOMAIN}`)
       kind: Rule
       middlewares:
         #- name: whoami-middleware-headers
@@ -102,10 +103,6 @@ spec:
       services:
         - name: whoami
           port: 80
-  tls:
-    secretName: iamalex82.duckdns.org-2mqbc
-    domain:
-    - main: iamalex82.duckdns.org
 
 ---
 apiVersion: traefik.containo.us/v1alpha1
