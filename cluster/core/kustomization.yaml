@@ -6,5 +6,5 @@ resources:
   - kubernetes-dashboard
   - metallb-system
   - nfs-provisioner
-  # - cert-manager
+  - cert-manager
   - traefik
