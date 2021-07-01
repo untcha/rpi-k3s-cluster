@@ -10,7 +10,7 @@ spec:
       chart: cert-manager-webhook-duckdns
       sourceRef:
         kind: HelmRepository
-        name: ebrianne.github.io
+        name: cert-manager-webhook-duckdns
       version: v1.2.3
   install: {}
   interval: 1m0s
@@ -27,10 +27,10 @@ spec:
       staging:
         create: false
     duckdns:
-      token: ""
+      token: ${SECRET_DUCKDNS_TOKEN}
     extraEnv: {}
     fullnameOverride: ""
-    groupName: acme.duckdns.org
+    groupName: ${SECRET_DOMAIN_TEST}
     image:
       pullPolicy: IfNotPresent
       repository: ebrianne/cert-manager-webhook-duckdns
