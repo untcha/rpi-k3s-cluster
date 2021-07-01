@@ -94,7 +94,7 @@ spec:
   entryPoints:
     - websecure
   routes:
-    - match: Host(`whoami.iamalex82.duckdns.org`)
+    - match: Host(`iamalex82.duckdns.org`)
       kind: Rule
       middlewares:
         #- name: whoami-middleware-headers
