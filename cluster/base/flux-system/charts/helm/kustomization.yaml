@@ -4,4 +4,3 @@ resources:
   - jetstack-charts.yaml
   - traefik-charts.yaml
   - influxdata-charts.yaml
-  - ebrianne-charts.yaml
