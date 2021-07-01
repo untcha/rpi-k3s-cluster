@@ -21,7 +21,7 @@ spec:
       namespace: cert-manager
       serviceAccountName: cert-manager
     clusterIssuer:
-      email: name@example.com
+      email: ${SECRET_EMAIL}
       production:
         create: false
       staging:

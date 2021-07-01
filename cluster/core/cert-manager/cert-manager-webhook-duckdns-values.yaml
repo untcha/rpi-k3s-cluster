@@ -22,7 +22,7 @@ secret:
   existingSecretName: ""
 
 clusterIssuer:
-  email: name@example.com
+  email: ${SECRET_EMAIL}
   staging:
     create: true
   production:
