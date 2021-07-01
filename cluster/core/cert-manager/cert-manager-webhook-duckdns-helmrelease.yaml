@@ -25,7 +25,7 @@ spec:
       production:
         create: false
       staging:
-        create: false
+        create: true
     duckdns:
       token: ${SECRET_DUCKDNS_TOKEN}
     extraEnv: {}

@@ -24,7 +24,7 @@ secret:
 clusterIssuer:
   email: name@example.com
   staging:
-    create: false
+    create: true
   production:
     create: false
 
