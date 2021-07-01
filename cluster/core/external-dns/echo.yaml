@@ -28,7 +28,7 @@ spec:
     spec:
       containers:
       - name: echo
-        image: hashicorp/http-echo
+        image: royletron/http-echo
         args:
         - "-text=Echo!"
         ports:
