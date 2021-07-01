@@ -4,3 +4,4 @@ kind: Kustomization
 resources:
   - external-dns-helmrelease.yaml
   #- echo.yaml
+  - nginx.yaml
