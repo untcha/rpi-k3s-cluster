@@ -103,9 +103,9 @@ spec:
         - name: whoami
           port: 80
   tls:
-  - hosts:
-    - iamalex82.duckdns.org
     secretName: iamalex82.duckdns.org-2mqbc
+    domain:
+    - main: iamalex82.duckdns.org
 
 ---
 apiVersion: traefik.containo.us/v1alpha1
