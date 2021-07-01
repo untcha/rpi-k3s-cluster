@@ -56,7 +56,7 @@ spec:
       pullPolicy: IfNotPresent
       repository: quay.io/jetstack/cert-manager-controller
     ingressShim: {}
-    installCRDs: false
+    installCRDs: true
     nodeSelector: {}
     podLabels: {}
     prometheus:
