@@ -100,7 +100,7 @@ spec:
       pullPolicy: IfNotPresent
       registry: docker.io
       repository: bitnami/external-dns
-      tag: 0.8.0-debian-10-r26
+      tag: 0.8.0
     infoblox:
       domainFilter: ""
       gridHost: ""
