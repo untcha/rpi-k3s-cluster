@@ -10,7 +10,7 @@ spec:
       chart: cert-manager-webhook-duckdns
       sourceRef:
         kind: HelmRepository
-        name: cert-manager-webhook-duckdns
+        name: ebrianne.github.io
       version: v1.2.3
   install: {}
   interval: 1m0s
