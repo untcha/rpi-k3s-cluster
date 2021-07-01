@@ -12,8 +12,8 @@
 ##
 image:
   registry: docker.io
-  repository: bitnami/external-dns
-  tag: 0.8.0
+  repository: raspbernetes/external-dns
+  tag: 1a8e2310ca97a3758d85a3a435e491911a486e7d
   ## Specify a imagePullPolicy
   ## Defaults to 'Always' if image tag is 'latest', else set to 'IfNotPresent'
   ## ref: http://kubernetes.io/docs/user-guide/images/#pre-pulling-images
