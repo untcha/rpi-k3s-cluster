@@ -2,7 +2,7 @@
  kind: Certificate
  metadata:
    name: iamalex82.duckdns.org
-   namespace: services
+   namespace: whoami
  spec:
    dnsNames:
    - 'iamalex82.duckdns.org'
