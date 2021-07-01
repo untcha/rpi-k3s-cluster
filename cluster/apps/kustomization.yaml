@@ -5,6 +5,5 @@ resources:
   - duckdns
   - whoami
   # - nginx
-  # - wireguard
   - pihole
   - influxdata
