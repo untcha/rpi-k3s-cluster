@@ -61,17 +61,40 @@ spec:
         - name: whoami
           port: 80
 
+# ---
+# apiVersion: traefik.containo.us/v1alpha1
+# kind: IngressRoute
+# metadata:
+#   name: whoami-https-ingressroute
+#   namespace: whoami
+# spec:
+#   entryPoints:
+#     - websecure
+#   routes:
+#     - match: Host(`whoami.untch.duckdns.org`)
+#       kind: Rule
+#       middlewares:
+#         - name: whoami-middleware-headers
+#         - name: whoami-middleware-basicauth
+#       services:
+#         - name: whoami
+#           port: 80
+#   tls:
+#     certResolver: letsencrypt
+
 ---
 apiVersion: traefik.containo.us/v1alpha1
 kind: IngressRoute
 metadata:
+  annotations:
+    cert-manager.io/cluster-issuer: cert-manager-cert-manager-webhook-duckdns-staging
   name: whoami-https-ingressroute
   namespace: whoami
 spec:
   entryPoints:
     - websecure
   routes:
-    - match: Host(`whoami.untch.duckdns.org`)
+    - match: Host(`whoami.iamalex82.duckdns.org`)
       kind: Rule
       middlewares:
         - name: whoami-middleware-headers
@@ -80,7 +103,9 @@ spec:
         - name: whoami
           port: 80
   tls:
-    certResolver: letsencrypt
+  - hosts:
+    - iamalex82.duckdns.org
+    secretName: iamalex82.duckdns.org-2mqbc
 
 ---
 apiVersion: traefik.containo.us/v1alpha1
