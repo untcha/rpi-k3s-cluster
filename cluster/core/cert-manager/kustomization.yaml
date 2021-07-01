@@ -4,3 +4,4 @@ kind: Kustomization
 resources:
   - cert-manager-helmrelease.yaml
   - cert-manager-webhook-duckdns-helmrelease.yaml
+  - certificate.yaml
