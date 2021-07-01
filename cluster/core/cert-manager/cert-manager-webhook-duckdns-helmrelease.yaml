@@ -30,7 +30,7 @@ spec:
       token: ${SECRET_DUCKDNS_TOKEN}
     extraEnv: {}
     fullnameOverride: ""
-    groupName: ${SECRET_DOMAIN_TEST}
+    groupName: untch.com
     image:
       pullPolicy: IfNotPresent
       repository: ebrianne/cert-manager-webhook-duckdns
