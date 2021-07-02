@@ -197,7 +197,7 @@ additionalArguments:
 #  - "--log.level=DEBUG"
 
 # Let's Encrypt Configurtion.
-  #- "--certificatesresolvers.letsencrypt.acme.email=alexander@untch.com"
+  #- "--certificatesresolvers.letsencrypt.acme.email=mail@example.com"
   #- "--certificatesresolvers.letsencrypt.acme.storage=/data/acme.json"
   #- "--certificatesResolvers.letsencrypt.acme.dnschallenge.provider=duckdns"
   #- "--certificatesresolvers.letsencrypt.acme.dnschallenge.delaybeforecheck=0"
@@ -220,11 +220,11 @@ env:
 #     secretKeyRef:
 #       name: secret-name
 #       key: secret-key
-  - name: DUCKDNS_TOKEN
-    valueFrom:
-      secretKeyRef:
-        name: traefik-secrets
-        key: duckdns-token
+  # - name: DUCKDNS_TOKEN
+  #   valueFrom:
+  #     secretKeyRef:
+  #       name: traefik-secrets
+  #       key: duckdns-token
 
 envFrom: []
 # - configMapRef:
@@ -369,7 +369,7 @@ autoscaling:
 # - "--certificatesresolvers.le.acme.storage=/data/acme.json"
 # It will persist TLS certificates.
 persistence:
-  enabled: true
+  enabled: false
   name: data
 #  existingClaim: ""
   accessMode: ReadWriteOnce
@@ -401,7 +401,7 @@ podSecurityPolicy:
 serviceAccount:
   # If set, an existing service account is used
   # If not set, a service account is created automatically using the fullname template
-  name: ""
+  name: "traefik"
 
 # Additional serviceAccount annotations (e.g. for oidc authentication)
 serviceAccountAnnotations: {}

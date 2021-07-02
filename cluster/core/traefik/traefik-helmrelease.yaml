@@ -33,12 +33,7 @@ spec:
       podAnnotations: {}
       podLabels: {}
       replicas: 1
-    env:
-    - name: DUCKDNS_TOKEN
-      valueFrom:
-        secretKeyRef:
-          key: duckdns-token
-          name: traefik-secrets
+    env: null
     envFrom: []
     experimental:
       kubernetesGateway:
@@ -81,7 +76,7 @@ spec:
     persistence:
       accessMode: ReadWriteOnce
       annotations: {}
-      enabled: true
+      enabled: false
       name: data
       path: /data
       size: 128Mi
@@ -151,7 +146,7 @@ spec:
       spec: {}
       type: LoadBalancer
     serviceAccount:
-      name: ""
+      name: traefik
     serviceAccountAnnotations: {}
     tlsOptions:
       default:
