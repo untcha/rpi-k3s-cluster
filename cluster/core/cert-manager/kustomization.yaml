@@ -4,6 +4,6 @@ kind: Kustomization
 resources:
   - enc_digitalocean-access-token.yaml
   - cert-manager-helmrelease.yaml
-  #- letsencrypt-staging-clusterissuer.yaml
-  #- letsencrypt-domain-01-staging-certificate.yaml
-  #- letsencrypt-domain-01-tls.yaml
+  - letsencrypt-staging-clusterissuer.yaml
+  - letsencrypt-domain-01-staging-certificate.yaml
+  - letsencrypt-domain-01-tls.yaml
