@@ -82,7 +82,7 @@ spec:
         - name: whoami
           port: 80
   tls:
-    secretName: domain-01-s64cq
+    secretName: domain-01-tls
     #certResolver: letsencrypt
   #- hosts:
   #  - whoami.${SECRET_DIGITALOCEAN_DOMAIN_01}
