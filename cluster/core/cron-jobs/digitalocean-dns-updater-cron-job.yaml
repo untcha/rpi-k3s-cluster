@@ -35,8 +35,7 @@ metadata:
 data:
   digitalocean-dns-updater.sh: |
     #!/bin/sh
-    
- 
+
     #################### CHANGE THE FOLLOWING VARIABLES ####################
     TOKEN="${SECRET_DIGITALOCEAN_API_TOKEN}"
     DOMAIN="${SECRET_DIGITALOCEAN_DOMAIN_01}"
