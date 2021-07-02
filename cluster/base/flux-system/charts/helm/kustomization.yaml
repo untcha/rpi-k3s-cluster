@@ -5,3 +5,4 @@ resources:
   - traefik-charts.yaml
   - influxdata-charts.yaml
   - bitnami-charts.yaml
+  - grafana-charts.yaml
