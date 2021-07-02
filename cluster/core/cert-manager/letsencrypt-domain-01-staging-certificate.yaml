@@ -1,13 +1,27 @@
+# apiVersion: cert-manager.io/v1
+# kind: Certificate
+# metadata:
+#   name: domain-01
+#   namespace: whoami
+# spec:
+#   secretName: domain-01-tls
+#   issuerRef:
+#     name: letsencrypt-staging
+#   dnsNames:
+#   - '*.${SECRET_DIGITALOCEAN_DOMAIN_01}'
+#   - ${SECRET_DIGITALOCEAN_DOMAIN_01}
+
+---
 apiVersion: cert-manager.io/v1
 kind: Certificate
 metadata:
-  name: domain-01
+  name: whoami-cert
   namespace: whoami
 spec:
-  secretName: domain-01-tls
-  issuerRef:
-    name: letsencrypt-staging
+  commonName: whoami.${SECRET_DIGITALOCEAN_DOMAIN_01}
+  secretName: whoami-cert
   dnsNames:
-  - '*.${SECRET_DIGITALOCEAN_DOMAIN_01}'
-  - ${SECRET_DIGITALOCEAN_DOMAIN_01}
-  
+    - whoami.${SECRET_DIGITALOCEAN_DOMAIN_01}
+  issuerRef:
+    name: letsencrypt-dns01-staging-do
+    kind: ClusterIssuer

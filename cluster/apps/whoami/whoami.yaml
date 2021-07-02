@@ -84,7 +84,7 @@ spec:
         - name: whoami
           port: 80
   tls:
-    secretName: letsencrypt-staging
+    secretName: whoami-cert
     #certResolver: letsencrypt
   #- hosts:
   #  - whoami.${SECRET_DIGITALOCEAN_DOMAIN_01}
