@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: Secret
+metadata:
+  name: domain-01-tls
+  namespace: cert-manager
+data:
+  tls.key:
