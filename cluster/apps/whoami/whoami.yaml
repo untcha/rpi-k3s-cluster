@@ -68,7 +68,9 @@ metadata:
   name: whoami-https-ingressroute
   namespace: whoami
   annotations:
-    cert-manager.io/cluster-issuer: "letsencrypt-staging"
+    kubernetes.io/ingress.class: "traefik"
+    cert-manager.io/cluster-issuer: "letsencrypt-dns01-staging-do"
+    kubernetes.io/tls-acme: "true"
 spec:
   entryPoints:
     - websecure
@@ -82,7 +84,7 @@ spec:
         - name: whoami
           port: 80
   tls:
-    secretName: domain-01-tls
+    secretName: letsencrypt-staging
     #certResolver: letsencrypt
   #- hosts:
   #  - whoami.${SECRET_DIGITALOCEAN_DOMAIN_01}
