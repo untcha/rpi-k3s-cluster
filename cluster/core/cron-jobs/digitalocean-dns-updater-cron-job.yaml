@@ -1,31 +1,31 @@
-# ---
-# apiVersion: batch/v1beta1
-# kind: CronJob
-# metadata:
-#   name: digitalocean-dns-updater-cron-job
-# spec:
-#   schedule: "*/1 * * * *"
-#   jobTemplate:
-#     spec:
-#       template:
-#         spec:
-#           containers:
-#           - name: digitalocean-dns-updater
-#             image: praqma/network-multitool
-#             command: 
-#             - /bin/sh
-#             - -c
-#             - "/configmap/hass.sh"
-#             volumeMounts:
-#               - name: configmap-hass
-#                 mountPath: /configmap
-#                 subPath: hass.sh
-#           restartPolicy: Never
-#           volumes:
-#             - name: configmap-hass
-#               configMap:
-#                 name: hass
-#                 defaultMode: 0777
+---
+apiVersion: batch/v1beta1
+kind: CronJob
+metadata:
+  name: digitalocean-dns-updater-cron-job
+spec:
+  schedule: "*/1 * * * *"
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+          - name: digitalocean-dns-updater-tool
+            image: praqma/network-multitool
+            command: 
+            - /bin/sh
+            - -c
+            - "/script/digitalocean-dns-updater.sh"
+            volumeMounts:
+              - name: digitalocean-dns-updater-volume
+                mountPath: /script
+                #subPath: hass.sh
+          restartPolicy: Never
+          volumes:
+            - name: digitalocean-dns-updater-volume
+              configMap:
+                name: digitalocean-dns-updater-configmap
+                defaultMode: 0744
 
 ---
 apiVersion: v1
