@@ -1,0 +1,13 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: domain-01
+  namespace: cert-manager
+spec:
+  secretName: domain-01-tls
+  issuerRef:
+    name: letsencrypt-staging
+  dnsNames:
+  - '*.${SECRET_DIGITALOCEAN_DOMAIN_01}'
+  - ${SECRET_DIGITALOCEAN_DOMAIN_01}
+  
