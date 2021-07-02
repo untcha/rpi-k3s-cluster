@@ -4,3 +4,4 @@ kind: Kustomization
 resources:
   - enc_whoami-secret-basicauth.yaml
   - whoami.yaml
+  - whoami-letsencrypt-certificate.yaml
