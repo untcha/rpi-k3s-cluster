@@ -1,9 +1,0 @@
-apiVersion: v1
-kind: Secret
-metadata:
-  name: domain-01-tls
-  namespace: whoami
-type: kubernetes.io/tls
-data:
-  tls.key:
-  tls.crt:

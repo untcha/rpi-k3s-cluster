@@ -55,8 +55,8 @@ spec:
   routes:
     - match: Host(`whoami.${SECRET_DIGITALOCEAN_DOMAIN_01}`)
       kind: Rule
-      #middlewares:
-      #  - name: whoami-middleware-redirect-scheme
+      middlewares:
+        - name: whoami-middleware-redirect-scheme
       services:
         - name: whoami
           port: 80
@@ -68,9 +68,7 @@ metadata:
   name: whoami-https-ingressroute
   namespace: whoami
   annotations:
-  #  kubernetes.io/ingress.class: "traefik"
     cert-manager.io/cluster-issuer: "letsencrypt-dns01-staging-do"
-  #  kubernetes.io/tls-acme: "true"
 spec:
   entryPoints:
     - websecure
@@ -85,10 +83,6 @@ spec:
           port: 80
   tls:
     secretName: whoami-cert
-    #certResolver: letsencrypt
-  #- hosts:
-  #  - whoami.${SECRET_DIGITALOCEAN_DOMAIN_01}
-    
 
 ---
 apiVersion: traefik.containo.us/v1alpha1
@@ -122,16 +116,16 @@ spec:
     #customRequestHeaders:
       #X-Frame-Options: "SAMEORIGIN"
     #customFrameOptionsValue: "SAMEORIGIN"
-    #contentSecurityPolicy: "frame-ancestors 'self' whoami.untch.duckdns.org"
-    #contentSecurityPolicy: "default-src 'self'; script-src https://whoami.untch.duckdns.org"
+    #contentSecurityPolicy: "frame-ancestors 'self' whoami.${SECRET_DIGITALOCEAN_DOMAIN_01}"
+    #contentSecurityPolicy: "default-src 'self'; script-src https://whoami.${SECRET_DIGITALOCEAN_DOMAIN_01}"
     contentSecurityPolicy: |
       default-src 'none';form-action 'none';frame-ancestors 'none';base-uri 'none'
     accessControlAllowMethods:
       - "GET"
       - "POST"
     accessControlAllowOriginList:
-      - "https://*.untch.duckdns.org"
-      - "https://whoami.untch.duckdns.org"
+      #- "https://*.${SECRET_DIGITALOCEAN_DOMAIN_01}"
+      - "https://whoami.${SECRET_DIGITALOCEAN_DOMAIN_01}"
     accessControlMaxAge: 100
     addVaryHeader: true
     referrerPolicy: "same-origin"
