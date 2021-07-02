@@ -34,11 +34,13 @@ kind: IngressRoute
 metadata:
   name: pihole-https-ingressroute
   namespace: pihole
+  annotations:
+    cert-manager.io/cluster-issuer: "letsencrypt-dns01-production-do"
 spec:
   entryPoints:
     - websecure
   routes:
-    - match: Host(`pihole.${SECRET_DOMAIN}`) && PathPrefix(`/admin`)
+    - match: Host(`pihole.${SECRET_DIGITALOCEAN_DOMAIN_01}`) && PathPrefix(`/admin`)
       kind: Rule
       middlewares:
         - name: pihole-middleware-basicauth
@@ -46,7 +48,7 @@ spec:
         - name: pihole-tcp
           port: 80
   tls:
-    certResolver: letsencrypt
+    secretName: pihole-letsencrypt-production-certificate
 
 ---
 apiVersion: traefik.containo.us/v1alpha1
