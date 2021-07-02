@@ -82,7 +82,7 @@ spec:
         - name: whoami
           port: 80
   tls:
-    secretName: whoami-cert
+    secretName: whoami-letsencrypt-staging-certificate
 
 ---
 apiVersion: traefik.containo.us/v1alpha1

@@ -2,13 +2,28 @@
 apiVersion: cert-manager.io/v1
 kind: Certificate
 metadata:
-  name: whoami-cert
+  name: whoami-letsencrypt-staging-certificate
   namespace: whoami
 spec:
   commonName: whoami.${SECRET_DIGITALOCEAN_DOMAIN_01}
-  secretName: whoami-cert
+  secretName: whoami-letsencrypt-staging-certificate
   dnsNames:
     - whoami.${SECRET_DIGITALOCEAN_DOMAIN_01}
   issuerRef:
     name: letsencrypt-dns01-staging-do
+    kind: ClusterIssuer
+
+---
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: whoami-letsencrypt-production-certificate
+  namespace: whoami
+spec:
+  commonName: whoami.${SECRET_DIGITALOCEAN_DOMAIN_01}
+  secretName: whoami-letsencrypt-production-certificate
+  dnsNames:
+    - whoami.${SECRET_DIGITALOCEAN_DOMAIN_01}
+  issuerRef:
+    name: letsencrypt-dns01-production-do
     kind: ClusterIssuer
