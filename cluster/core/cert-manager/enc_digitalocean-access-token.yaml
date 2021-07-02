@@ -1,20 +1,18 @@
 apiVersion: v1
 kind: Secret
 metadata:
-    name: digitalocean-access-token
+    name: digitalocean-dns
     namespace: cert-manager
 data:
     access-token: ENC[AES256_GCM,data:cg1iCfS3twSnYtQDY1DF8SD2Tm72ZFyffimRZS/KdYTdtghXfveApzWFtLdbhJmN7t7URx6pldERMigUMQRWj76XJIpJ5kzBFmoBpTOmtI8U80rDjIhdBA==,iv:ffe4VQIw08Essb8zWmJmZYw4gzrD2tn8gjrAZH0DACI=,tag:QkFf1VLgK4+51JVWXdItPA==,type:str]
-stringData:
-    test: ENC[AES256_GCM,data:0GhPkGTlpAs=,iv:JYMSixaEQhGFtKY7sdZnexHEiU+wR7kq0rh9VSDd9+c=,tag:efkUoAMSHJAJn+JTnWLbPA==,type:str]
 sops:
     kms: []
     gcp_kms: []
     azure_kv: []
     hc_vault: []
     age: []
-    lastmodified: "2021-07-02T11:52:44Z"
-    mac: ENC[AES256_GCM,data:6165te09ODNVAN2LWonKlNj4ExctLid52wwESMsdmLFR3hZS2wM0zt20yHj1z5MzFwl0WPXMW9RBPUau2dRty/j1uKI/gN/HKIJUk09TJi07exIBa4oEQyIRtDaKjXEapc6zQ63yfwsBujvNmNUK2ACH+xhW4wTR2Gj8THPcAxs=,iv:kxSrBBj0uTy5iFZ4cu/Bwb+ql9HGI/ptCf4y8jiT0X8=,tag:Ki8riYOEI5nc8lkFNl4RCA==,type:str]
+    lastmodified: "2021-07-02T14:05:09Z"
+    mac: ENC[AES256_GCM,data:jzMdT1tZMt3cSWBYxwgZZj00gaIK3pUqusJCMDx80Pilra6NlPax9Iq7IrihDV3nMnO/p9S7liJXDuaEueYgZvZAJvPjCu7J4XVVUruVECruKy4ivlyvif8u6NNQj6tsfXVM3DqBIVpvI5MVXRM4RzHIdFiP1FwUHDy+a8ItILA=,iv:Uzk5wPIIqu4KbHO7/pzuXU2QDyl5vuEl3rTuzhrn62c=,tag:i+gSvahqgnv2kY07sOA32Q==,type:str]
     pgp:
         - created_at: "2021-07-02T11:33:55Z"
           enc: |
