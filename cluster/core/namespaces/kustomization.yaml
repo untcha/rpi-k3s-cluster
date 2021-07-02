@@ -8,3 +8,4 @@ resources:
   - traefik.yaml
   - pihole.yaml
   - influxdata.yaml
+  - grafana.yaml
