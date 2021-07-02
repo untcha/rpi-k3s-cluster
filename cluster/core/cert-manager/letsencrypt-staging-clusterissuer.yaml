@@ -1,8 +1,7 @@
 apiVersion: cert-manager.io/v1alpha2
 kind: ClusterIssuer
 metadata:
-  name: letsencrypt-staging
-  namespace: cert-manager
+  name: letsencrypt-dns01-staging-do
 spec:
   acme:
     # The ACME server URL
@@ -17,5 +16,5 @@ spec:
     - dns01:
         digitalocean:
           tokenSecretRef:
-            name: digitalocean-access-token
+            name: digitalocean-dns
             key: access-token
