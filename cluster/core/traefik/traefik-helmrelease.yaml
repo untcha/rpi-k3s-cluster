@@ -16,12 +16,7 @@ spec:
   interval: 1m0s
   targetNamespace: traefik
   values:
-    additionalArguments:
-    - --certificatesresolvers.letsencrypt.acme.email=alexander@untch.com
-    - --certificatesresolvers.letsencrypt.acme.storage=/data/acme.json
-    - --certificatesResolvers.letsencrypt.acme.dnschallenge.provider=duckdns
-    - --certificatesresolvers.letsencrypt.acme.dnschallenge.delaybeforecheck=0
-    - --certificatesresolvers.letsencrypt.acme.caserver=https://acme-staging-v02.api.letsencrypt.org/directory
+    additionalArguments: null
     additionalVolumeMounts: []
     affinity: {}
     autoscaling:
