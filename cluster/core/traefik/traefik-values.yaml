@@ -401,7 +401,7 @@ podSecurityPolicy:
 serviceAccount:
   # If set, an existing service account is used
   # If not set, a service account is created automatically using the fullname template
-  name: "traefik"
+  name: ""
 
 # Additional serviceAccount annotations (e.g. for oidc authentication)
 serviceAccountAnnotations: {}
