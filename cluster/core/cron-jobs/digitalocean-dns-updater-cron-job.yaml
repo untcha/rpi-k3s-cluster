@@ -1,0 +1,55 @@
+# ---
+# apiVersion: batch/v1beta1
+# kind: CronJob
+# metadata:
+#   name: digitalocean-dns-updater-cron-job
+# spec:
+#   schedule: "*/1 * * * *"
+#   jobTemplate:
+#     spec:
+#       template:
+#         spec:
+#           containers:
+#           - name: digitalocean-dns-updater
+#             image: praqma/network-multitool
+#             command: 
+#             - /bin/sh
+#             - -c
+#             - "/configmap/hass.sh"
+#             volumeMounts:
+#               - name: configmap-hass
+#                 mountPath: /configmap
+#                 subPath: hass.sh
+#           restartPolicy: Never
+#           volumes:
+#             - name: configmap-hass
+#               configMap:
+#                 name: hass
+#                 defaultMode: 0777
+
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: digitalocean-dns-updater-configmap
+data:
+  digitalocean-dns-updater.sh: |
+    #!/bin/sh
+ 
+    #################### CHANGE THE FOLLOWING VARIABLES ####################
+    TOKEN="${SECRET_DIGITALOCEAN_API_TOKEN}"
+    DOMAIN="${SECRET_DIGITALOCEAN_DOMAIN_01}"
+    RECORD_ID="${SECRET_DIGITALOCEAN_RECORD_ID_DOMAIN_01}"
+    LOG_FILE="$HOME/ips.txt"
+    ########################################################################
+    
+    CURRENT_IPV4="$(dig +short myip.opendns.com @resolver1.opendns.com)"
+    LAST_IPV4="$(tail -1 $LOG_FILE | awk -F, '{print $2}')"
+    
+    if [ "$CURRENT_IPV4" = "$LAST_IPV4" ]; then
+        echo "IP has not changed ($CURRENT_IPV4)"
+    else
+        echo "IP has changed: $CURRENT_IPV4"
+        echo "$(date),$CURRENT_IPV4" >> "$LOG_FILE"
+        curl -X PUT -H "Content-Type: application/json" -H "Authorization: Bearer $TOKEN" -d '{"data":"'"$CURRENT_IPV4"'"}' "https://api.digitalocean.com/v2/domains/$DOMAIN/records/$RECORD_ID"
+    fi
