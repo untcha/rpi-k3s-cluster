@@ -67,9 +67,9 @@ kind: IngressRoute
 metadata:
   name: whoami-https-ingressroute
   namespace: whoami
-  #annotations:
+  annotations:
   #  kubernetes.io/ingress.class: "traefik"
-  #  cert-manager.io/cluster-issuer: "letsencrypt-dns01-staging-do"
+    cert-manager.io/cluster-issuer: "letsencrypt-dns01-staging-do"
   #  kubernetes.io/tls-acme: "true"
 spec:
   entryPoints:
