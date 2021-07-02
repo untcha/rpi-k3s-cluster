@@ -8,8 +8,6 @@ metadata:
 kind: Service
 apiVersion: v1
 metadata:
-  annotations:
-    external-dns.alpha.kubernetes.io/hostname: whoami.${DOMAIN}
   name: whoami
   namespace: whoami
 spec:
@@ -45,23 +43,23 @@ spec:
             - name: web
               containerPort: 80
 
-# ---
-# apiVersion: traefik.containo.us/v1alpha1
-# kind: IngressRoute
-# metadata:
-#   name: whoami-http-ingressroute
-#   namespace: whoami
-# spec:
-#   entryPoints:
-#     - web
-#   routes:
-#     - match: Host(`whoami.untch.duckdns.org`)
-#       kind: Rule
-#       middlewares:
-#         - name: whoami-middleware-redirect-scheme
-#       services:
-#         - name: whoami
-#           port: 80
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: whoami-http-ingressroute
+  namespace: whoami
+spec:
+  entryPoints:
+    - web
+  routes:
+    - match: Host(`whoami.${SECRET_DIGITALOCEAN_DOMAIN_01}`)
+      kind: Rule
+      #middlewares:
+      #  - name: whoami-middleware-redirect-scheme
+      services:
+        - name: whoami
+          port: 80
 
 # ---
 # apiVersion: traefik.containo.us/v1alpha1
@@ -83,28 +81,6 @@ spec:
 #           port: 80
 #   tls:
 #     certResolver: letsencrypt
-
----
-apiVersion: traefik.containo.us/v1alpha1
-kind: IngressRoute
-metadata:
-  annotations:
-    external-dns.alpha.kubernetes.io/hostname: whoami.${DOMAIN}
-    #cert-manager.io/cluster-issuer: cert-manager-cert-manager-webhook-duckdns-staging
-  name: whoami-http-ingressroute
-  namespace: whoami
-spec:
-  entryPoints:
-    - web
-  routes:
-    - match: Host(`whoami.${DOMAIN}`)
-      kind: Rule
-      middlewares:
-        #- name: whoami-middleware-headers
-        - name: whoami-middleware-basicauth
-      services:
-        - name: whoami
-          port: 80
 
 ---
 apiVersion: traefik.containo.us/v1alpha1
