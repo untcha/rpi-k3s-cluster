@@ -256,7 +256,7 @@ config:
 # /docker-entrypoint-initdb.d folder, it will execute them. The order they are
 # executed in is determined by the shell. This is usually alphabetical order.
 initScripts:
-  enabled: false
+  enabled: true
   scripts:
     init.iql: |+
       CREATE DATABASE "telegraf" WITH DURATION 30d REPLICATION 1 NAME "rp_30d"
