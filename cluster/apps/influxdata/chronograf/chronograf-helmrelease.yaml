@@ -56,7 +56,6 @@ spec:
     persistence:
       accessMode: ReadWriteOnce
       enabled: true
-      existingClaim: chronograf-pvc
       size: 8Gi
     resources:
       limits:
