@@ -133,7 +133,7 @@ setDefaultUser:
 
     ## The user name
     ## Default: "admin"
-    username: "admin"
+    #username: "admin"
 
     ## User password
     ## single quotes must be escaped (\')
