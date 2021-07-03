@@ -19,7 +19,6 @@ spec:
             volumeMounts:
               - name: digitalocean-dns-updater-volume
                 mountPath: /script
-                #subPath: hass.sh
           restartPolicy: Never
           volumes:
             - name: digitalocean-dns-updater-volume
