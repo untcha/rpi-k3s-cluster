@@ -42,7 +42,7 @@ spec:
   entryPoints:
     - web
   routes:
-    - match: Host(`nginx.untch.duckdns.org`)
+    - match: Host(`nginx.${SECRET_DIGITALOCEAN_DOMAIN_01}`)
       kind: Rule
       middlewares:
         - name: nginx-middleware-redirect-scheme
@@ -56,19 +56,21 @@ kind: IngressRoute
 metadata:
   name: nginx-https-ingressroute
   namespace: nginx
+  annotations:
+    cert-manager.io/cluster-issuer: "letsencrypt-dns01-staging-do"
 spec:
   entryPoints:
     - websecure
   routes:
-    - match: Host(`nginx.untch.duckdns.org`)
+    - match: Host(`nginx.${SECRET_DIGITALOCEAN_DOMAIN_01}`)
       kind: Rule
-      #middlewares:
-      #  - nginx-middleware-headers
+      middlewares:
+        - nginx-middleware-headers
       services:
         - name: nginx-deploy-main
           port: 80
   tls:
-    certResolver: letsencrypt
+    secretName: pihole-letsencrypt-staging-certificate
 
 ---
 apiVersion: traefik.containo.us/v1alpha1
@@ -102,16 +104,16 @@ spec:
     #customRequestHeaders:
       #X-Frame-Options: "SAMEORIGIN"
     #customFrameOptionsValue: "SAMEORIGIN"
-    #contentSecurityPolicy: "frame-ancestors 'self' nginx.untch.duckdns.org"
-    #contentSecurityPolicy: "default-src 'self'; script-src https://nginx.untch.duckdns.org"
+    #contentSecurityPolicy: "frame-ancestors 'self' nginx.${SECRET_DIGITALOCEAN_DOMAIN_01}"
+    #contentSecurityPolicy: "default-src 'self'; script-src https://nginx.${SECRET_DIGITALOCEAN_DOMAIN_01}"
     contentSecurityPolicy: |
       default-src 'none';form-action 'none';frame-ancestors 'none';base-uri 'none'
     accessControlAllowMethods:
       - "GET"
       - "POST"
     accessControlAllowOriginList:
-      - "https://*.untch.duckdns.org"
-      - "https://nginx.untch.duckdns.org"
+      #- "https://*.${SECRET_DIGITALOCEAN_DOMAIN_01}"
+      - "https://nginx.${SECRET_DIGITALOCEAN_DOMAIN_01}"
     accessControlMaxAge: 100
     addVaryHeader: true
     referrerPolicy: "same-origin"

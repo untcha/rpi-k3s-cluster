@@ -1,0 +1,14 @@
+---
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: nginx-letsencrypt-staging-certificate
+  namespace: nginx
+spec:
+  commonName: nginx.${SECRET_DIGITALOCEAN_DOMAIN_01}
+  secretName: nginx-letsencrypt-staging-certificate
+  dnsNames:
+    - nginx.${SECRET_DIGITALOCEAN_DOMAIN_01}
+  issuerRef:
+    name: letsencrypt-dns01-staging-do
+    kind: ClusterIssuer
