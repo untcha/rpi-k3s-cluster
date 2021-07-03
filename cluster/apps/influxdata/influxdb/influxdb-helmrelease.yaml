@@ -112,7 +112,7 @@ spec:
     setDefaultUser:
       activeDeadline: 300
       backoffLimit: 6
-      enabled: false
+      enabled: true
       hookDeletePolicy: hook-succeeded
       image: appropriate/curl:latest
       restartPolicy: OnFailure
