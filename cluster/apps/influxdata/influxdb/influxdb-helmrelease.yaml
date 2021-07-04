@@ -119,6 +119,7 @@ spec:
       user:
         existingSecret: influxdb-auth
         privileges: WITH ALL PRIVILEGES
+        username: admin
     startupProbe:
       enabled: false
     tolerations: []
