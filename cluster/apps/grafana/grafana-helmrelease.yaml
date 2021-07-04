@@ -28,18 +28,7 @@ spec:
     dashboardProviders: {}
     dashboards: {}
     dashboardsConfigMaps: {}
-    datasources:
-      datasources.yaml:
-        apiVersion: 1
-        datasources:
-        - access: proxy
-          database: ${SECRET_INFLUXDB_DB_NAME01}
-          isDefault: false
-          name: InfluxDB-fritzboxstats
-          password: ${SECRET_INFLUXDB_ADMIN_PASSWORD}
-          type: influxdb
-          url: http://192.168.178.125:8086
-          user: ${SECRET_INFLUXDB_ADMIN_USER}
+    datasources: {}
     deploymentStrategy:
       type: RollingUpdate
     downloadDashboards:
