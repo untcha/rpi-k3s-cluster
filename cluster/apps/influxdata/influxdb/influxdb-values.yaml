@@ -108,7 +108,7 @@ setDefaultUser:
   ## Image of the container used for job
   ## Default: appropriate/curl:latest
   ##
-  image: rancher/curlimages-curl:latest
+  image: curlimages/curl:latest
 
   ## Deadline for job so it does not retry forever.
   ## Default: activeDeadline: 300

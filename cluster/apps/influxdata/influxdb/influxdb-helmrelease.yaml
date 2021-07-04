@@ -114,7 +114,7 @@ spec:
       backoffLimit: 6
       enabled: true
       hookDeletePolicy: hook-succeeded
-      image: rancher/curlimages-curl:latest
+      image: curlimages/curl:latest
       restartPolicy: OnFailure
       user:
         existingSecret: influxdb-auth
