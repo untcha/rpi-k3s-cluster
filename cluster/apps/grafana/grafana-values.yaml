@@ -269,7 +269,7 @@ extraContainerVolumes: []
 ##
 persistence:
   type: pvc
-  enabled: false
+  enabled: true
   # storageClassName: default
   accessModes:
     - ReadWriteOnce
@@ -279,7 +279,7 @@ persistence:
     - kubernetes.io/pvc-protection
   # selectorLabels: {}
   # subPath: ""
-  # existingClaim:
+  existingClaim: grafana-pvc
 
   ## If persistence is not enabled, this allows to mount the
   ## local storage in-memory to improve performance
@@ -440,7 +440,16 @@ plugins: []
 ## Configure grafana datasources
 ## ref: http://docs.grafana.org/administration/provisioning/#datasources
 ##
-datasources: {}
+datasources:
+  datasources.yaml:
+    apiVersion: 1
+    datasources:
+    - name: InfluxDB
+      type: influxdb
+      url: https://192.168.178.125:8086
+      access: server
+      isDefault: true
+
 #  datasources.yaml:
 #    apiVersion: 1
 #    datasources:
