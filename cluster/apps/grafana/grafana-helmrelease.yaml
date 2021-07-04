@@ -28,7 +28,15 @@ spec:
     dashboardProviders: {}
     dashboards: {}
     dashboardsConfigMaps: {}
-    datasources: {}
+    datasources:
+      datasources.yaml:
+        apiVersion: 1
+        datasources:
+        - access: proxy
+          isDefault: true
+          name: InfluxDB-test
+          type: influxdb
+          url: http://192.168.178.125:8086
     deploymentStrategy:
       type: RollingUpdate
     downloadDashboards:
@@ -133,7 +141,8 @@ spec:
     persistence:
       accessModes:
       - ReadWriteOnce
-      enabled: false
+      enabled: true
+      existingClaim: grafana-pvc
       finalizers:
       - kubernetes.io/pvc-protection
       inMemory:

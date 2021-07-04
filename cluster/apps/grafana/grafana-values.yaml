@@ -447,7 +447,7 @@ datasources:
     - name: InfluxDB-test
       type: influxdb
       url: http://192.168.178.125:8086
-      access: server
+      access: proxy
       isDefault: true
 
 #  datasources.yaml:
