@@ -444,9 +444,9 @@ datasources:
   datasources.yaml:
     apiVersion: 1
     datasources:
-    - name: InfluxDB
+    - name: InfluxDB-test
       type: influxdb
-      url: https://192.168.178.125:8086
+      url: http://192.168.178.125:8086
       access: server
       isDefault: true
 
