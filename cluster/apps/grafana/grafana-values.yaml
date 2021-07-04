@@ -81,7 +81,7 @@ image:
   #   - myRegistrKeySecretName
 
 testFramework:
-  enabled: true
+  enabled: false
   image: "bats/bats"
   tag: "v1.1.0"
   imagePullPolicy: IfNotPresent
@@ -324,7 +324,7 @@ adminUser: admin
 
 # Use an existing secret for the admin user.
 admin:
-  existingSecret: ""
+  existingSecret: "grafana-auth"
   userKey: admin-user
   passwordKey: admin-password
 
