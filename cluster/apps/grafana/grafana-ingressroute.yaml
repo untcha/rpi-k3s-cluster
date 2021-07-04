@@ -13,3 +13,53 @@ spec:
       services:
         - name: grafana-grafana
           port: 80
+
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: grafana-http-ingressroute
+  namespace: grafana
+spec:
+  entryPoints:
+    - web
+  routes:
+    - match: Host(`grafana.${SECRET_DIGITALOCEAN_DOMAIN_01}`)
+      kind: Rule
+      middlewares:
+        - name: grafana-middleware-redirect-scheme
+      services:
+        - name: grafana-grafana
+          port: 80
+
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: grafana-https-ingressroute
+  namespace: grafana
+  annotations:
+    cert-manager.io/cluster-issuer: "letsencrypt-dns01-production-do"
+spec:
+  entryPoints:
+    - websecure
+  routes:
+    - match: Host(`grafana.${SECRET_DIGITALOCEAN_DOMAIN_01}`)
+      kind: Rule
+      services:
+        - name: grafana-grafana
+          port: 80
+  tls:
+    secretName: grafana-letsencrypt-production-certificate
+
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: Middleware
+metadata:
+  name: grafana-middleware-redirect-scheme
+  namespace: grafana
+spec:
+  redirectScheme:
+    scheme: https
+    permanent: true
+    port: "443"

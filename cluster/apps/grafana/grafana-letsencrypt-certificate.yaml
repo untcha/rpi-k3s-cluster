@@ -1,0 +1,14 @@
+---
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: grafana-letsencrypt-production-certificate
+  namespace: grafana
+spec:
+  commonName: grafana.${SECRET_DIGITALOCEAN_DOMAIN_01}
+  secretName: grafana-letsencrypt-production-certificate
+  dnsNames:
+    - grafana.${SECRET_DIGITALOCEAN_DOMAIN_01}
+  issuerRef:
+    name: letsencrypt-dns01-production-do
+    kind: ClusterIssuer
