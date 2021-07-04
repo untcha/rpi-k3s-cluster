@@ -86,7 +86,9 @@ spec:
       enabled: true
       scripts:
         init.iql: |+
-          CREATE DATABASE "telegraf" WITH DURATION 30d REPLICATION 1 NAME "rp_30d"
+          CREATE DATABASE "telegraf" WITH DURATION 365d REPLICATION 1 NAME "rp_365d"
+          CREATE DATABASE "fritzboxstats" WITH DURATION 365d REPLICATION 1 NAME "rp_365d"
+          CREATE DATABASE "sysstats" WITH DURATION 365d REPLICATION 1 NAME "rp_365d"
 
     livenessProbe: {}
     nodeSelector: {}
