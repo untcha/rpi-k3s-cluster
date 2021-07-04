@@ -444,11 +444,14 @@ datasources:
   datasources.yaml:
     apiVersion: 1
     datasources:
-    - name: InfluxDB-test
+    - name: InfluxDB-fritzboxstats
       type: influxdb
-      url: http://192.168.178.125:8086
       access: proxy
-      isDefault: true
+      url: http://192.168.178.125:8086
+      password: ${SECRET_INFLUXDB_ADMIN_PASSWORD}
+      user: ${SECRET_INFLUXDB_ADMIN_USER}
+      database: ${SECRET_INFLUXDB_DB_NAME01}
+      isDefault: false
 
 #  datasources.yaml:
 #    apiVersion: 1
