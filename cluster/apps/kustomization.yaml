@@ -7,4 +7,4 @@ resources:
   # - nginx
   - pihole
   - influxdata
-  - grafana
+  #- grafana
