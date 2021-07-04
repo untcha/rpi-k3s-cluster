@@ -261,6 +261,8 @@ initScripts:
     init.iql: |+
       CREATE DATABASE "telegraf" WITH DURATION 30d REPLICATION 1 NAME "rp_30d"
 
+# CREATE USER ${INFLUXDB_USER} WITH PASSWORD '${INFLUXDB_PASSWORD}' WITH ALL PRIVILEGES
+
 backup:
   enabled: false
   ## By default emptyDir is used as a transitory volume before uploading to object store.
