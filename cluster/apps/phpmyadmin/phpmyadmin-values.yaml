@@ -253,13 +253,13 @@ sidecars: {}
 service:
   ## Service type.
   ##
-  type: ClusterIP
+  type: LoadBalancer
   ## HTTP Port
   ##
-  port: 8088
+  port: 80
   ## HTTPS Port
   ##
-  httpsPort: 4443
+  httpsPort: 443
   ## Specify the nodePort values for the LoadBalancer and NodePort service types.
   ## ref: https://kubernetes.io/docs/concepts/services-networking/service/#type-nodeport
   ##
