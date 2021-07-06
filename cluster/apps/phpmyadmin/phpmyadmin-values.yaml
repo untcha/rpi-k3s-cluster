@@ -256,10 +256,10 @@ service:
   type: ClusterIP
   ## HTTP Port
   ##
-  port: 80
+  port: 8088
   ## HTTPS Port
   ##
-  httpsPort: 443
+  httpsPort: 4443
   ## Specify the nodePort values for the LoadBalancer and NodePort service types.
   ## ref: https://kubernetes.io/docs/concepts/services-networking/service/#type-nodeport
   ##

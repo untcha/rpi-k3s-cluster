@@ -125,12 +125,12 @@ spec:
     service:
       annotations: {}
       externalTrafficPolicy: Cluster
-      httpsPort: 443
+      httpsPort: 4443
       loadBalancerSourceRanges: []
       nodePorts:
         http: ""
         https: ""
-      port: 80
+      port: 8088
       type: ClusterIP
     sidecars: {}
     tolerations: []
