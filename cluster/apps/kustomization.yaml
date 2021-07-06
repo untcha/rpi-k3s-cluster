@@ -8,4 +8,4 @@ resources:
   - pihole
   - influxdata
   - grafana
-  - phpmyadmin
+  #- phpmyadmin
