@@ -16,7 +16,8 @@ spec:
   interval: 1m0s
   targetNamespace: traefik
   values:
-    additionalArguments: null
+    additionalArguments:
+    - --metrics.prometheus=true
     additionalVolumeMounts: []
     affinity: {}
     autoscaling:
