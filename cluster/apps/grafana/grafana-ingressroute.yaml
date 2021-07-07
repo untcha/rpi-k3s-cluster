@@ -46,6 +46,8 @@ spec:
   routes:
     - match: Host(`grafana.${SECRET_DIGITALOCEAN_DOMAIN_01}`)
       kind: Rule
+      middlewares:
+        - name: grafana-middleware-headers
       services:
         - name: grafana-grafana
           port: 80
@@ -63,3 +65,37 @@ spec:
     scheme: https
     permanent: true
     port: "443"
+
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: Middleware
+metadata:
+  name: grafana-middleware-headers
+  namespace: grafana
+
+spec:
+  headers:
+    browserXssFilter: true
+    contentTypeNosniff: true
+    frameDeny: true
+    sslRedirect: true
+    forceSTSHeader: true
+    stsIncludeSubdomains: true
+    stsPreload: true
+    stsSeconds: 63072000
+    #customRequestHeaders:
+      #X-Frame-Options: "SAMEORIGIN"
+    #customFrameOptionsValue: "SAMEORIGIN"
+    #contentSecurityPolicy: "frame-ancestors 'self' grafana.${SECRET_DIGITALOCEAN_DOMAIN_01}"
+    #contentSecurityPolicy: "default-src 'self'; script-src https://grafana.${SECRET_DIGITALOCEAN_DOMAIN_01}"
+    contentSecurityPolicy: |
+      default-src 'none';form-action 'none';frame-ancestors 'none';base-uri 'none'
+    accessControlAllowMethods:
+      - "GET"
+      - "POST"
+    accessControlAllowOriginList:
+      #- "https://*.${SECRET_DIGITALOCEAN_DOMAIN_01}"
+      - "https://grafana.${SECRET_DIGITALOCEAN_DOMAIN_01}"
+    accessControlMaxAge: 100
+    addVaryHeader: true
+    referrerPolicy: "same-origin"
