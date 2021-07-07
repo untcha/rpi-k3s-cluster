@@ -59,3 +59,37 @@ metadata:
 spec:
   basicAuth:
     secret: pihole-secret-basicauth
+
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: Middleware
+metadata:
+  name: pihole-middleware-headers
+  namespace: pihole
+
+spec:
+  headers:
+    browserXssFilter: true
+    contentTypeNosniff: true
+    frameDeny: true
+    sslRedirect: true
+    forceSTSHeader: true
+    stsIncludeSubdomains: true
+    stsPreload: true
+    stsSeconds: 63072000
+    #customRequestHeaders:
+      #X-Frame-Options: "SAMEORIGIN"
+    #customFrameOptionsValue: "SAMEORIGIN"
+    #contentSecurityPolicy: "frame-ancestors 'self' pihole.${SECRET_DIGITALOCEAN_DOMAIN_01}"
+    #contentSecurityPolicy: "default-src 'self'; script-src https://pihole.${SECRET_DIGITALOCEAN_DOMAIN_01}"
+    contentSecurityPolicy: |
+      default-src 'none';form-action 'none';frame-ancestors 'none';base-uri 'none'
+    accessControlAllowMethods:
+      - "GET"
+      - "POST"
+    accessControlAllowOriginList:
+      #- "https://*.${SECRET_DIGITALOCEAN_DOMAIN_01}"
+      - "https://pihole.${SECRET_DIGITALOCEAN_DOMAIN_01}"
+    accessControlMaxAge: 100
+    addVaryHeader: true
+    referrerPolicy: "same-origin"
