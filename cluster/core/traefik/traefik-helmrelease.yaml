@@ -11,7 +11,7 @@ spec:
       sourceRef:
         kind: HelmRepository
         name: traefik
-      version: 9.19.2
+      version: 10.0.0
   install: {}
   interval: 1m0s
   targetNamespace: traefik
