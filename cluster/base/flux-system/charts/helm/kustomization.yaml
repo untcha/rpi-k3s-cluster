@@ -6,3 +6,4 @@ resources:
   - influxdata-charts.yaml
   - bitnami-charts.yaml
   - grafana-charts.yaml
+  - prometheus-community-charts.yaml
