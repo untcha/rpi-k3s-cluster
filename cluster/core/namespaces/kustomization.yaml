@@ -10,3 +10,4 @@ resources:
   - pihole.yaml
   - influxdata.yaml
   - grafana.yaml
+  - prometheus.yaml
