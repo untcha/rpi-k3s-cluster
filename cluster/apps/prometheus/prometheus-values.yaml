@@ -327,7 +327,8 @@ alertmanager:
     fsGroup: 65534
 
   service:
-    annotations: {}
+    annotations:
+      metallb.universe.tf/address-pool: network-services
     labels: {}
     clusterIP: ""
 
@@ -345,7 +346,7 @@ alertmanager:
     servicePort: 80
     # nodePort: 30000
     sessionAffinity: None
-    type: ClusterIP
+    type: LoadBalancer
 
 ## Monitors ConfigMap changes and POSTs to a URL
 ## Ref: https://github.com/jimmidyson/configmap-reload
