@@ -37,7 +37,12 @@ k3sup join \
     --server-ip $K3S_CLUSTER_IP_M01 \
     --k3s-version $K3S_CLUSTER_VERSION
 
-# echo Installing Worker 2
+echo Installing Worker 2
+k3sup join \
+    --ip $K3S_CLUSTER_IP_W02 \
+    --user $K3S_CLUSTER_USER \
+    --server-ip $K3S_CLUSTER_IP_M01 \
+    --k3s-version $K3S_CLUSTER_VERSION
 
 # echo Installing Worker 3
 
