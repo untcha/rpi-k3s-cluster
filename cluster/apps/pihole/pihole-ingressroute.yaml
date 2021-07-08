@@ -31,7 +31,8 @@ spec:
     - match: Host(`pihole.${SECRET_DIGITALOCEAN_DOMAIN_01}`) && PathPrefix(`/admin`)
       kind: Rule
       middlewares:
-        - name: pihole-middleware-basicauth
+        #- name: pihole-middleware-basicauth
+        - name: pihole-middleware-headers
       services:
         - name: pihole-tcp
           port: 80
