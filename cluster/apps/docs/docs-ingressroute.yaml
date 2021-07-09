@@ -1,0 +1,15 @@
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: docs-local-ingressroute
+  namespace: docs
+spec:
+  entryPoints:
+    - web
+  routes:
+    - match: Host(`docs.${SECRET_DOMAIN_LOCAL}`)
+      kind: Rule
+      services:
+        - name: docs-static-nginx
+          port: 80

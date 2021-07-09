@@ -5,3 +5,4 @@ resources:
   - docs-namespace.yaml
   - docs-pvc.yaml
   - docs-deployment.yaml
+  - docs-ingressroute.yaml
