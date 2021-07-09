@@ -7,3 +7,6 @@ Thumbs.db
 
 # SOPS
 .decrypted~*.yaml
+
+# tmp playground
+/tmp
