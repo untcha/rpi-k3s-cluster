@@ -10,3 +10,6 @@ Thumbs.db
 
 # tmp playground
 /tmp
+
+# MkDocs site
+/site
