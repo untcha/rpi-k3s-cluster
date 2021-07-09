@@ -64,7 +64,7 @@ ssh-keygen -lf id_rsa.pub
 ssh-keygen -E md5 -lf id_rsa.pub
 ```
 
-## :lock: Logging in with a ssh private key
+## :two: :lock: Logging in with a ssh private key
 
 ### Deloy public key
 
@@ -129,7 +129,7 @@ ssh -i .ssh/id_rsa pi<ip-address|domain>
 chmod 600 id_rsa
 ```
 
-## :ghost: Enable ssh daemon on macOS :material-apple:
+## :three: :ghost: Enable ssh daemon on macOS :material-apple:
 
 ### How to check if ssh remote login is enabled in macOS
 

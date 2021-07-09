@@ -12,6 +12,7 @@ copyright: Copyright &copy; 2021 Alexander Untch
 nav:
   - Home: index.md
   - Netboot (PXE + iSCSI): netboot.md
+  - Encryption with GPG and Mozilla SOPS: gpg-sops.md
   - Misc Guides:
     - Raspberry Setup: rpi-setup.md
     - SSH Guide: ssh.md
