@@ -1,4 +1,5 @@
 ## :material-bullseye-arrow: Prerequisites
+
 I assume that an `iSCSI` capabale server is in place. In my case this is a QNAP NAS with configured `iSCSI targets` and already created and attached `block-based LUNs`.
 
 :material-target: `iSCSI-TARGET1` :material-transit-connection-horizontal: :octicons-database-16: `LUN_m01` :material-transit-connection-horizontal: :strawberry: `rpi-k3s-master-01`<br>
@@ -7,6 +8,9 @@ I assume that an `iSCSI` capabale server is in place. In my case this is a QNAP 
 :material-target: `iSCSI-TARGET4` :material-transit-connection-horizontal: :octicons-database-16: `LUN_w01` :material-transit-connection-horizontal: :strawberry: `rpi-k3s-worker-01`<br>
 
 and so on ...
+
+!!! warning
+    TODO: draw.io diagram
 
 Since I don't know if my solution is cluster ready I did not attached more than one `LUN` to a `target` and gave every RasPi a `LUN` with an unique `iSCSI target`.
 

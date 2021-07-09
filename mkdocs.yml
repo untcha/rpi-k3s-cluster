@@ -12,7 +12,7 @@ copyright: Copyright &copy; 2021 Alexander Untch
 nav:
   - Home: index.md
   - Netboot (PXE + iSCSI): netboot.md
-  - Misc:
+  - Misc Guides:
     - Raspberry Setup: rpi-setup.md
     - SSH Guide: ssh.md
 
@@ -24,13 +24,53 @@ theme:
     code: Roboto Mono
   logo: assets/images/logo.png
   favicon: assets/images/logo.png
+  features:
+    - navigation.top
+  palette:
+    - scheme: default
+      primary: indigo
+      accent: blue
+      toggle:
+        icon: material/toggle-switch-off-outline
+        name: Switch to dark mode
+    - scheme: slate
+      primary: blue
+      accent: indigo
+      toggle:
+        icon: material/toggle-switch
+        name: Switch to light mode
 
 # Extensions
 markdown_extensions:
   - admonition
+  - abbr
+  - attr_list
+  - def_list
+  - footnotes
+  - meta
+  - md_in_html
+  - toc:
+      permalink: true
+  - pymdownx.arithmatex:
+      generic: true
+  - pymdownx.betterem:
+      smart_enable: all
   - pymdownx.highlight
   - pymdownx.superfences
   - pymdownx.emoji:
       emoji_index: !!python/name:materialx.emoji.twemoji
       emoji_generator: !!python/name:materialx.emoji.to_svg
+  - pymdownx.highlight
+  - pymdownx.inlinehilite
   - pymdownx.keys
+  - pymdownx.mark
+  - pymdownx.smartsymbols
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid-experimental
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - pymdownx.tabbed
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - pymdownx.tilde
