@@ -11,7 +11,10 @@ copyright: Copyright &copy; 2021 Alexander Untch
 # Page tree
 nav:
   - Home: index.md
-  - Netboot (PXE + iSCSI) Tutorial: netboot.md
+  - Netboot (PXE + iSCSI): netboot.md
+  - Misc:
+    - Raspberry Setup: rpi-setup.md
+    - SSH Guide: ssh.md
 
 # Theme settings
 theme:
@@ -30,3 +33,4 @@ markdown_extensions:
   - pymdownx.emoji:
       emoji_index: !!python/name:materialx.emoji.twemoji
       emoji_generator: !!python/name:materialx.emoji.to_svg
+  - pymdownx.keys
