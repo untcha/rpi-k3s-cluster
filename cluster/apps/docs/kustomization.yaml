@@ -6,3 +6,4 @@ resources:
   - docs-pvc.yaml
   - docs-deployment.yaml
   - docs-ingressroute.yaml
+  - docs-letsencrypt-certificate.yaml
