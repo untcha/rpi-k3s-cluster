@@ -1,0 +1,32 @@
+---
+site_name: untcha | Raspberry Pi K3S Cluster
+site_description: >-
+  My home Kubernetes (k3s) cluster managed by GitOps (Flux2)
+site_author: Alexander Untch
+site_url: https://example.com
+copyright: Copyright &copy; 2021 Alexander Untch
+
+# Repository
+
+# Page tree
+nav:
+  - Home: index.md
+  - Netboot (PXE + iSCSI) Tutorial: netboot.md
+
+# Theme settings
+theme:
+  name: material
+  font:
+    text: Roboto
+    code: Roboto Mono
+  logo: assets/images/logo.png
+  favicon: assets/images/logo.png
+
+# Extensions
+markdown_extensions:
+  - admonition
+  - pymdownx.highlight
+  - pymdownx.superfences
+  - pymdownx.emoji:
+      emoji_index: !!python/name:materialx.emoji.twemoji
+      emoji_generator: !!python/name:materialx.emoji.to_svg
