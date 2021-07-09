@@ -1,0 +1,41 @@
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: docs-static-nginx
+  namespace: docs
+spec:
+  selector:
+    run: docs-static-nginx
+  ports:
+  - name: http
+    port: 80
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    run: docs-static-nginx
+  name: docs-static-nginx
+  namespace: docs
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      run: docs-static-nginx
+  template:
+    metadata:
+      labels:
+        run: docs-static-nginx
+    spec:
+      containers:
+      - image: nginx
+        name: nginx
+        volumeMounts:
+          - mountPath: /usr/share/nginx/html
+            name: static-content
+      volumes:
+        - name: static-content
+          persistentVolumeClaim:
+            claimName: docs-static-nginx-pvc
