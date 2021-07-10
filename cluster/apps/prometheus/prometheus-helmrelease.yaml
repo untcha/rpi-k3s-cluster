@@ -334,7 +334,7 @@ spec:
         statefulsetReplica:
           enabled: false
           replica: 0
-        type: ClusterIP
+        type: LoadBalancer
       sidecarContainers: {}
       sidecarTemplateValues: {}
       statefulSet:
