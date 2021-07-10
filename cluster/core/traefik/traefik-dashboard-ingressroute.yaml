@@ -1,3 +1,4 @@
+---
 apiVersion: traefik.containo.us/v1alpha1
 kind: IngressRoute
 metadata:
@@ -11,4 +12,20 @@ spec:
       kind: Rule
       services:
         - name: api@internal
+          kind: TraefikService
+
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: traefik-metrics-local-ingressroute
+  namespace: traefik
+spec:
+  entryPoints:
+    - metrics
+  routes:
+    - match: Host(`traefik.${SECRET_DOMAIN_LOCAL}`) && PathPrefix(`/metrics`)
+      kind: Rule
+      services:
+        - name: prometheus@internal
           kind: TraefikService
