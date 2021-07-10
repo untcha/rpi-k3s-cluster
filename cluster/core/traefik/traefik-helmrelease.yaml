@@ -144,7 +144,8 @@ spec:
       externalIPs: []
       labels: {}
       loadBalancerSourceRanges: []
-      spec: {}
+      spec:
+        loadBalancerIP: ${TRAEFIK_SVC_LB_IP}
       type: LoadBalancer
     serviceAccount:
       name: ""
