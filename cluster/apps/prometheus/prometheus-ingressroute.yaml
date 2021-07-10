@@ -1,0 +1,31 @@
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: prometheus-local-ingressroute
+  namespace: prometheus
+spec:
+  entryPoints:
+    - web
+  routes:
+    - match: Host(`prometheus.${SECRET_DOMAIN_LOCAL}`)
+      kind: Rule
+      services:
+        - name: prometheus-prometheus-server
+          port: 80
+
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: prometheus-alertmanager-local-ingressroute
+  namespace: prometheus
+spec:
+  entryPoints:
+    - web
+  routes:
+    - match: Host(`prometheus-alertmanager.${SECRET_DOMAIN_LOCAL}`)
+      kind: Rule
+      services:
+        - name: prometheus-prometheus-alertmanager
+          port: 80
