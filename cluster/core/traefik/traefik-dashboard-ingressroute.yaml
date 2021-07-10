@@ -22,7 +22,7 @@ metadata:
   namespace: traefik
 spec:
   entryPoints:
-    - metrics
+    - web
   routes:
     - match: Host(`traefik.${SECRET_DOMAIN_LOCAL}`) && PathPrefix(`/metrics`)
       kind: Rule
