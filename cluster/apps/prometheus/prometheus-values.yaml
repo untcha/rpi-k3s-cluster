@@ -445,7 +445,7 @@ nodeExporter:
 
   ## If true, node-exporter pods share the host network namespace
   ##
-  hostNetwork: false
+  hostNetwork: true
 
   ## If true, node-exporter pods share the host PID namespace
   ##
@@ -591,7 +591,7 @@ nodeExporter:
     loadBalancerIP: ""
     loadBalancerSourceRanges: []
     servicePort: 9100
-    type: LoadBalancer
+    type: ClusterIP
 
 server:
   ## Prometheus server container name

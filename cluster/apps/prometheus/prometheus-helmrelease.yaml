@@ -142,7 +142,7 @@ spec:
       extraConfigmapMounts: []
       extraHostPathMounts: []
       extraInitContainers: []
-      hostNetwork: false
+      hostNetwork: true
       hostPID: true
       hostRootfs: true
       image:
@@ -176,7 +176,7 @@ spec:
         loadBalancerIP: ""
         loadBalancerSourceRanges: []
         servicePort: 9100
-        type: LoadBalancer
+        type: ClusterIP
       tolerations: []
       updateStrategy:
         type: RollingUpdate
