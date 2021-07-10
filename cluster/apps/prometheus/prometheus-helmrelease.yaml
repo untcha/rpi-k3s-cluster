@@ -643,7 +643,7 @@ spec:
       alertmanager:
         annotations: {}
         create: true
-        name: alertmanager
+        name: null
       nodeExporter:
         annotations: {}
         create: true

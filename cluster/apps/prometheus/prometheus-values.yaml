@@ -12,7 +12,7 @@ imagePullSecrets:
 serviceAccounts:
   alertmanager:
     create: true
-    name: "alertmanager"
+    name:
     annotations: {}
   nodeExporter:
     create: true
