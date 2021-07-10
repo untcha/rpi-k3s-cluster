@@ -5,5 +5,6 @@ metadata:
   namespace: flux-system
   name: cluster-settings
 data:
-  PIHOLE_SVC_LB_IP: "192.168.178.124"
-  TRAEFIK_SVC_LB_IP: "192.168.178.240"
+  PIHOLE_SVC_LB_IP:   "192.168.178.124"
+  INFLUXDB_SVC_LB_IP: "192.168.178.125"
+  TRAEFIK_SVC_LB_IP:  "192.168.178.240"
