@@ -141,7 +141,8 @@ spec:
         enabled: false
       size: 10Gi
       type: pvc
-    plugins: []
+    plugins:
+    - grafana-piechart-panel
     podDisruptionBudget: {}
     podPortName: grafana
     rbac:
