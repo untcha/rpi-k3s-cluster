@@ -327,7 +327,7 @@ spec:
           enabled: false
           servicePort: 10901
         labels: {}
-        loadBalancerIP: ""
+        loadBalancerIP: ${PROMETHEUS_SVC_LB_IP}
         loadBalancerSourceRanges: []
         servicePort: 80
         sessionAffinity: None
