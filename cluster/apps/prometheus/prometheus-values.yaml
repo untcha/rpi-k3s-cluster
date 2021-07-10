@@ -1701,6 +1701,13 @@ serverFiles:
 # must be a string so you have to add a | after extraScrapeConfigs:
 # example adds prometheus-blackbox-exporter scrape config
 extraScrapeConfigs:
+  - job_name: 'traefik-metrics'
+    scrape_interval: 5s
+    scheme: http
+    metrics_path: /metrics
+    static_configs:
+      - targets:
+        - traefik.untch.local
   # - job_name: 'prometheus-blackbox-exporter'
   #   metrics_path: /probe
   #   params:

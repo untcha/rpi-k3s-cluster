@@ -128,7 +128,14 @@ spec:
           tag: v0.5.0
         name: configmap-reload
         resources: {}
-    extraScrapeConfigs: null
+    extraScrapeConfigs:
+    - job_name: traefik-metrics
+      metrics_path: /metrics
+      scheme: http
+      scrape_interval: 5s
+      static_configs:
+      - targets:
+        - traefik.untch.local
     forceNamespace: null
     imagePullSecrets: null
     kubeStateMetrics:
