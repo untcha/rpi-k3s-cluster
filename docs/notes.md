@@ -13,3 +13,7 @@ Prometheus 2.0 Stats (comes with Datasource)
 
 Traefik
 https://grafana.com/grafana/dashboards/6293
+
+
+Node Exporter Full
+https://grafana.com/grafana/dashboards/1860
