@@ -176,7 +176,7 @@ spec:
         loadBalancerIP: ""
         loadBalancerSourceRanges: []
         servicePort: 9100
-        type: ClusterIP
+        type: LoadBalancer
       tolerations: []
       updateStrategy:
         type: RollingUpdate
