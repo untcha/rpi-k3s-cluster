@@ -137,7 +137,7 @@ spec:
       enabled: false
     nodeExporter:
       dnsConfig: {}
-      enabled: false
+      enabled: true
       extraArgs: {}
       extraConfigmapMounts: []
       extraHostPathMounts: []
