@@ -104,8 +104,8 @@ spec:
     resources: {}
     securityContext: {}
     service:
-      annotations:
-        metallb.universe.tf/address-pool: network-services
+      annotations: null
+      loadBalancerIP: 192.168.178.126
       type: LoadBalancer
     serviceAccount:
       annotations: {}

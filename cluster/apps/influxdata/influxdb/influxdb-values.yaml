@@ -48,8 +48,9 @@ startupProbe:
 service:
   ## Add annotations to service
   annotations:
-    metallb.universe.tf/address-pool: network-services
+    # metallb.universe.tf/address-pool: network-services
   type: LoadBalancer
+  loadBalancerIP: "192.168.178.126"
   # externalIPs: []
   # externalTrafficPolicy: ""
 
