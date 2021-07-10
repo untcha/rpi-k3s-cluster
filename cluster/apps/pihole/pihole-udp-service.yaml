@@ -3,7 +3,7 @@ apiVersion: v1
 kind: Service
 metadata:
   annotations:
-    metallb.universe.tf/address-pool: network-services
+    # metallb.universe.tf/address-pool: network-services
     metallb.universe.tf/allow-shared-ip: pihole-svc
   name: pihole-udp
   namespace: pihole
