@@ -142,7 +142,7 @@ spec:
       extraConfigmapMounts: []
       extraHostPathMounts: []
       extraInitContainers: []
-      hostNetwork: true
+      hostNetwork: false
       hostPID: true
       hostRootfs: true
       image:
