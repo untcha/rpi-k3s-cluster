@@ -73,8 +73,7 @@ spec:
         runAsNonRoot: true
         runAsUser: 65534
       service:
-        annotations:
-          metallb.universe.tf/address-pool: network-services
+        annotations: {}
         clusterIP: ""
         externalIPs: []
         labels: {}
@@ -82,7 +81,7 @@ spec:
         loadBalancerSourceRanges: []
         servicePort: 80
         sessionAffinity: None
-        type: LoadBalancer
+        type: ClusterIP
       statefulSet:
         annotations: {}
         enabled: false
