@@ -10,3 +10,6 @@ Pi k3s Simple Dashboard
 https://grafana.com/grafana/dashboards/13043
 
 Prometheus 2.0 Stats (comes with Datasource)
+
+Traefik
+https://grafana.com/grafana/dashboards/6293
