@@ -9,3 +9,4 @@ resources:
   - wordpress-pvc.yaml
   - wordpress-service.yaml
   - wordpress-deployment.yaml
+  - wordpress-ingressroute.yaml
