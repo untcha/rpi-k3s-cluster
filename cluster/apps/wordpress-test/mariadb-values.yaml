@@ -369,15 +369,22 @@ primary:
 
   ## Extra init containers to add to the MariaDB Primary pod(s)
   ##
-  initContainers: []
-  # - name: mariadb-create-directory-structure
-  #   image: busybox
-  #   command:
-  #     [
-  #       "sh",
-  #       "-c",
-  #       "/bin/mkdir -p /bitnami/mariadb/data && /bin/chmod -R 777 /bitnami/mariadb",
-  #     ]
+  initContainers:
+  - name: mariadb-create-directory-structure
+    image: busybox
+    command:
+      [
+        "sh",
+        "-c",
+        "/bin/mkdir -p /bitnami/mariadb/data && /bin/chmod -R 777 /bitnami/mariadb",
+      ]
+    volumeMounts:
+      - name: mariadb-data
+        mountPath: /bitnami
+    volumes:
+      - name: mariadb-data
+        persistentVolumeClaim:
+          claimName: mariadb-pvc
 
   ## Extra sidecar containers to add to the MariaDB Primary pod(s)
   ##
@@ -766,13 +773,11 @@ rbac:
 ## volumePermissions: Change the owner and group of the persistent volume mountpoint to runAsUser:fsGroup values from the securityContext section.
 ##
 volumePermissions:
-  enabled: true
+  enabled: false
   image:
     registry: docker.io
-    repository: busybox
-    tag: stable
-    # repository: bitnami/bitnami-shell
-    # tag: 10-debian-10-r115
+    repository: bitnami/bitnami-shell
+    tag: 10-debian-10-r115
     pullPolicy: Always
     ## Optionally specify an array of imagePullSecrets.
     ## Secrets must be manually created in the namespace.
