@@ -10,7 +10,7 @@ spec:
   selector:
     app: wordpress
     tier: mariadb
-  type: ClusterIP
+  clusterIP: none
   ports:
     - port: 3306
   
