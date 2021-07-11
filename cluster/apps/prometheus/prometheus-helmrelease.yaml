@@ -284,7 +284,7 @@ spec:
       global:
         evaluation_interval: 1m
         scrape_interval: 1m
-        scrape_timeout: 12s
+        scrape_timeout: 15s
       hostAliases: []
       hostNetwork: false
       image:
