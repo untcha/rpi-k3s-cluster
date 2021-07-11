@@ -369,7 +369,15 @@ primary:
 
   ## Extra init containers to add to the MariaDB Primary pod(s)
   ##
-  initContainers: []
+  initContainers:
+  - name: mariadb-create-directory-structure
+    image: busybox
+    command:
+      [
+        "sh",
+        "-c",
+        "/bin/mkdir -p /bitnami/mariadb/data && /bin/chmod -R 777 /bitnami/mariadb",
+      ]
 
   ## Extra sidecar containers to add to the MariaDB Primary pod(s)
   ##

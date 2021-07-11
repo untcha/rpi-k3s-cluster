@@ -116,7 +116,13 @@ spec:
       extraVolumeMounts: []
       extraVolumes: []
       hostAliases: []
-      initContainers: []
+      initContainers:
+      - command:
+        - sh
+        - -c
+        - /bin/mkdir -p /bitnami/mariadb/data && /bin/chmod -R 777 /bitnami/mariadb
+        image: busybox
+        name: mariadb-create-directory-structure
       livenessProbe:
         enabled: true
         failureThreshold: 3
