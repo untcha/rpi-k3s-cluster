@@ -24,7 +24,7 @@ spec:
     fullnameOverride: ""
     image:
       pullPolicy: IfNotPresent
-      repository: mariadb
+      repository: linuxserver/mariadb
       tag: ""
     imagePullSecrets: []
     livenessProbe:

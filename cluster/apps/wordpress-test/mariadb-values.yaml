@@ -2,7 +2,7 @@
 
 ## MariaDB docker image
 image:
-  repository: mariadb
+  repository: linuxserver/mariadb
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
   tag: ""
