@@ -78,6 +78,32 @@ spec:
       affinity: {}
       args: []
       command: []
+      configuration: |-
+        [mysqld]
+        skip-name-resolve
+        explicit_defaults_for_timestamp
+        basedir=/opt/bitnami/mariadb
+        plugin_dir=/opt/bitnami/mariadb/plugin
+        port=3306
+        socket=/opt/bitnami/mariadb/tmp/mysql.sock
+        tmpdir=/opt/bitnami/mariadb/tmp
+        max_allowed_packet=16M
+        bind-address=0.0.0.0
+        pid-file=/opt/bitnami/mariadb/tmp/mysqld.pid
+        log-error=/opt/bitnami/mariadb/logs/mysqld.log
+        character-set-server=UTF8
+        collation-server=utf8_general_ci
+
+        [client]
+        port=3306
+        socket=/opt/bitnami/mariadb/tmp/mysql.sock
+        default-character-set=UTF8
+        plugin_dir=/opt/bitnami/mariadb/plugin
+
+        [manager]
+        port=3306
+        socket=/opt/bitnami/mariadb/tmp/mysql.sock
+        pid-file=/opt/bitnami/mariadb/tmp/mysqld.pid
       containerSecurityContext: {}
       customLivenessProbe: {}
       customReadinessProbe: {}
@@ -146,9 +172,31 @@ spec:
       affinity: {}
       args: []
       command: []
-      containerSecurityContext:
-        enabled: true
-        runAsUser: 1001
+      configuration: |-
+        [mysqld]
+        skip-name-resolve
+        explicit_defaults_for_timestamp
+        basedir=/opt/bitnami/mariadb
+        port=3306
+        socket=/opt/bitnami/mariadb/tmp/mysql.sock
+        tmpdir=/opt/bitnami/mariadb/tmp
+        max_allowed_packet=16M
+        bind-address=0.0.0.0
+        pid-file=/opt/bitnami/mariadb/tmp/mysqld.pid
+        log-error=/opt/bitnami/mariadb/logs/mysqld.log
+        character-set-server=UTF8
+        collation-server=utf8_general_ci
+
+        [client]
+        port=3306
+        socket=/opt/bitnami/mariadb/tmp/mysql.sock
+        default-character-set=UTF8
+
+        [manager]
+        port=3306
+        socket=/opt/bitnami/mariadb/tmp/mysql.sock
+        pid-file=/opt/bitnami/mariadb/tmp/mysqld.pid
+      containerSecurityContext: {}
       customLivenessProbe: {}
       customReadinessProbe: {}
       extraEnvVars: []
@@ -184,9 +232,7 @@ spec:
       podAffinityPreset: ""
       podAnnotations: {}
       podAntiAffinityPreset: soft
-      podSecurityContext:
-        enabled: true
-        fsGroup: 1001
+      podSecurityContext: {}
       priorityClassName: ""
       readinessProbe:
         enabled: true
