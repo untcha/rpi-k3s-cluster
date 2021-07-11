@@ -1,0 +1,15 @@
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: mariadb-metrics-local-ingressroute
+  namespace: wordpress-test
+spec:
+  entryPoints:
+    - web
+  routes:
+    - match: Host(`mariadb-metrics.${SECRET_DOMAIN_LOCAL}`) && PathPrefix(`/metrics`)
+      kind: Rule
+      services:
+        - name: mariadb
+          port: 9104
