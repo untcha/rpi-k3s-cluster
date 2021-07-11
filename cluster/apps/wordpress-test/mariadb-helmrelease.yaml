@@ -78,9 +78,7 @@ spec:
       affinity: {}
       args: []
       command: []
-      containerSecurityContext:
-        enabled: false
-        runAsUser: 1001
+      containerSecurityContext: {}
       customLivenessProbe: {}
       customReadinessProbe: {}
       extraEnvVars: []
@@ -117,9 +115,7 @@ spec:
       podAffinityPreset: ""
       podAnnotations: {}
       podAntiAffinityPreset: soft
-      podSecurityContext:
-        enabled: false
-        fsGroup: 1001
+      podSecurityContext: {}
       priorityClassName: ""
       readinessProbe:
         enabled: true
