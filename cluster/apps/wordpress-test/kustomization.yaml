@@ -7,6 +7,4 @@ resources:
   - enc_mariadb-secrets.yaml
   - mariadb.yaml
   #- wordpress-pvc.yaml
-  #- wordpress-service.yaml
-  #- wordpress-deployment.yaml
   #- wordpress-ingressroute.yaml
