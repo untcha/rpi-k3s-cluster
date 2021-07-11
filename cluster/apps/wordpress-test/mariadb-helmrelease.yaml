@@ -10,7 +10,7 @@ spec:
       chart: mariadb
       sourceRef:
         kind: HelmRepository
-        name: goundhog2k
+        name: groundhog2k
       version: 0.2.12
   install: {}
   interval: 1m0s
