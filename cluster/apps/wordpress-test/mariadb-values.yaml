@@ -39,13 +39,13 @@ podSecurityContext:
   fsGroup: 999
 
 ## Default security options to run MariaDB as non-root, read only container without privilege escalation
-securityContext:
-  allowPrivilegeEscalation: false
-  privileged: false
-  readOnlyRootFilesystem: true
-  runAsNonRoot: true
-  runAsGroup: 999
-  runAsUser: 999
+securityContext: {}
+  # allowPrivilegeEscalation: false
+  # privileged: false
+  # readOnlyRootFilesystem: true
+  # runAsNonRoot: true
+  # runAsGroup: 999
+  # runAsUser: 999
 
 ## Default database service port (default MySQL/MariaDB port)
 service:
