@@ -3,7 +3,7 @@ apiVersion: cert-manager.io/v1
 kind: Certificate
 metadata:
   name: whoami-letsencrypt-staging-certificate
-  namespace: whoami
+  namespace: tools
 spec:
   commonName: whoami.${SECRET_DIGITALOCEAN_DOMAIN_01}
   secretName: whoami-letsencrypt-staging-certificate
@@ -18,7 +18,7 @@ apiVersion: cert-manager.io/v1
 kind: Certificate
 metadata:
   name: whoami-letsencrypt-production-certificate
-  namespace: whoami
+  namespace: tools
 spec:
   commonName: whoami.${SECRET_DIGITALOCEAN_DOMAIN_01}
   secretName: whoami-letsencrypt-production-certificate
