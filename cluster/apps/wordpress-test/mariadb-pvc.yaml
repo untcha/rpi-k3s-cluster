@@ -4,6 +4,8 @@ kind: PersistentVolumeClaim
 metadata:
   name: mariadb-pvc
   namespace: wordpress-test
+  labels:
+    app: wordpress
   annotations:
     nfs.io/storage-path: "/mariadb"
 spec:

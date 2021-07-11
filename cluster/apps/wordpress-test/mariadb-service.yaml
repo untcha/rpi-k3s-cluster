@@ -1,0 +1,16 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: wordpress-mariadb
+  namespace: wordpress-test
+  labels:
+    app: wordpress
+spec:
+  selector:
+    app: wordpress
+    tier: mariadb
+  type: ClusterIP
+  ports:
+    - port: 3306
+  
