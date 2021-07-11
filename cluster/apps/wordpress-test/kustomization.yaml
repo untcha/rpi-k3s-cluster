@@ -6,4 +6,6 @@ resources:
   - mariadb-pvc.yaml
   - mariadb-service.yaml
   - mariadb-deployment.yaml
-  #- wordpress-pvc.yaml
+  - wordpress-pvc.yaml
+  - wordpress-service.yaml
+  - wordpress-deployment.yaml
