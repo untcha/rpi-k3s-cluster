@@ -2,8 +2,10 @@
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: wordpress-pvc
+  name: wordpress-data
   namespace: wordpress-test
+  labels:
+    app: wordpress
   annotations:
     nfs.io/storage-path: "/wordpress"
 spec:
