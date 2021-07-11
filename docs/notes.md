@@ -17,3 +17,23 @@ https://grafana.com/grafana/dashboards/6293
 
 Node Exporter Full
 https://grafana.com/grafana/dashboards/1860
+
+### Prometheus
+https://devopscube.com/setup-prometheus-monitoring-on-kubernetes/
+
+https://grafana.com/blog/2019/12/04/how-to-explore-prometheus-with-easy-hello-world-projects/
+
+https://www.kuerbis.org/2021/01/native-traefik-metriken-mit-prometheus-sammeln/#Das_Ziel_-_mit_kleinen_Abweichungen_vom_Standard
+
+
+https://www.jeffgeerling.com/blog/2020/raspberry-pi-cluster-episode-4-minecraft-pi-hole-grafana-and-more
+
+
+https://hierl.dev/posts/rpi-cluster-en/
+
+initcontainers
+https://github.com/bitnami/bitnami-docker-mariadb/issues/186
+
+https://dev.to/jmarhee/getting-started-with-kubernetes-initcontainers-and-volume-pre-population-j83
+
+https://snyk.io/blog/10-kubernetes-security-context-settings-you-should-understand/
