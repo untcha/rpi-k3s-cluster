@@ -4,6 +4,8 @@ kind: Kustomization
 resources:
   - wordpress-test-namespace.yaml
   - mariadb-pvc.yaml
+  - enc_mariadb-secrets.yaml
+  - mariadb.yaml
   #- wordpress-pvc.yaml
   #- wordpress-service.yaml
   #- wordpress-deployment.yaml
