@@ -5,5 +5,5 @@ resources:
   - wordpress-test-namespace.yaml
   - mariadb-pvc.yaml
   - wordpress-pvc.yaml
-  - mariadb-helmrelease.yaml
+  #- mariadb-helmrelease.yaml
   #- wordpress-helmrelease.yaml
