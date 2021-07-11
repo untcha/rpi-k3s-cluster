@@ -2,10 +2,10 @@
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: mariadb-pvc
+  name: mariadb-data
   namespace: wordpress-test
   labels:
-    app: wordpress
+    app: mariadb
   annotations:
     nfs.io/storage-path: "/mariadb"
 spec:
