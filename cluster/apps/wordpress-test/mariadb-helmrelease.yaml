@@ -116,13 +116,7 @@ spec:
       extraVolumeMounts: []
       extraVolumes: []
       hostAliases: []
-      initContainers:
-      - command:
-        - sh
-        - -c
-        - /bin/mkdir -p /bitnami/mariadb/data && /bin/chmod -R 777 /bitnami/mariadb
-        image: busybox
-        name: mariadb-create-directory-structure
+      initContainers: []
       livenessProbe:
         enabled: true
         failureThreshold: 3
@@ -276,11 +270,11 @@ spec:
       annotations: {}
       create: true
     volumePermissions:
-      enabled: false
+      enabled: true
       image:
         pullPolicy: Always
         registry: docker.io
-        repository: bitnami/bitnami-shell
-        tag: 10-debian-10-r115
+        repository: busybox
+        tag: stable
       resources: {}
 
