@@ -114,7 +114,10 @@ spec:
       extraEnvVarsSecret: ""
       extraFlags: ""
       extraVolumeMounts: []
-      extraVolumes: []
+      extraVolumes:
+      - name: mariadb-data
+        persistentVolumeClaim:
+          claimName: mariadb-pvc
       hostAliases: []
       initContainers:
       - command:
@@ -126,10 +129,6 @@ spec:
         volumeMounts:
         - mountPath: /bitnami
           name: mariadb-data
-        volumes:
-        - name: mariadb-data
-          persistentVolumeClaim:
-            claimName: mariadb-pvc
       livenessProbe:
         enabled: true
         failureThreshold: 3
