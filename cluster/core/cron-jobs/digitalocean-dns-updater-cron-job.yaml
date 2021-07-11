@@ -19,12 +19,18 @@ spec:
             volumeMounts:
               - name: digitalocean-dns-updater-volume
                 mountPath: /script
+              - name: digitalocean-dns-updater-log
+                mountPath: /data
           restartPolicy: Never
           volumes:
             - name: digitalocean-dns-updater-volume
               configMap:
                 name: digitalocean-dns-updater-configmap
                 defaultMode: 0744
+            - name: digitalocean-dns-updater-log
+              persistentVolumeClaim:
+                claimName: cron-job-pvc
+
 
 ---
 apiVersion: v1
@@ -39,7 +45,7 @@ data:
     TOKEN="${SECRET_DIGITALOCEAN_API_TOKEN}"
     DOMAIN="${SECRET_DIGITALOCEAN_DOMAIN_01}"
     RECORD_ID="${SECRET_DIGITALOCEAN_RECORD_ID_DOMAIN_01}"
-    LOG_FILE="$HOME/ips.txt"
+    LOG_FILE="/data/digital-ocean-dns-updater-log.txt"
     ########################################################################
     
     CURRENT_IPV4="$(dig +short myip.opendns.com @resolver1.opendns.com)"
