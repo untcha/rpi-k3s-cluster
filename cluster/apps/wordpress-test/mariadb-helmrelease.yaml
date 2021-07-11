@@ -104,7 +104,9 @@ spec:
         port=3306
         socket=/opt/bitnami/mariadb/tmp/mysql.sock
         pid-file=/opt/bitnami/mariadb/tmp/mysqld.pid
-      containerSecurityContext: {}
+      containerSecurityContext:
+        enabled: true
+        runAsUser: 1001
       customLivenessProbe: {}
       customReadinessProbe: {}
       extraEnvVars: []
@@ -141,7 +143,9 @@ spec:
       podAffinityPreset: ""
       podAnnotations: {}
       podAntiAffinityPreset: soft
-      podSecurityContext: {}
+      podSecurityContext:
+        enabled: true
+        fsGroup: 1001
       priorityClassName: ""
       readinessProbe:
         enabled: true
@@ -196,7 +200,9 @@ spec:
         port=3306
         socket=/opt/bitnami/mariadb/tmp/mysql.sock
         pid-file=/opt/bitnami/mariadb/tmp/mysqld.pid
-      containerSecurityContext: {}
+      containerSecurityContext:
+        enabled: true
+        runAsUser: 1001
       customLivenessProbe: {}
       customReadinessProbe: {}
       extraEnvVars: []
@@ -232,7 +238,9 @@ spec:
       podAffinityPreset: ""
       podAnnotations: {}
       podAntiAffinityPreset: soft
-      podSecurityContext: {}
+      podSecurityContext:
+        enabled: true
+        fsGroup: 1001
       priorityClassName: ""
       readinessProbe:
         enabled: true

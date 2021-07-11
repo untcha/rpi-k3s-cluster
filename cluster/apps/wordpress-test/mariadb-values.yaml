@@ -234,16 +234,16 @@ primary:
   ## MariaDB primary Pod security context
   ## ref: https://kubernetes.io/docs/tasks/configure-pod-container/security-context/#set-the-security-context-for-a-pod
   ##
-  podSecurityContext: {}
-    # enabled: true
-    # fsGroup: 1001
+  podSecurityContext:
+    enabled: true
+    fsGroup: 1001
 
   ## MariaDB primary container security context
   ## ref: https://kubernetes.io/docs/tasks/configure-pod-container/security-context/#set-the-security-context-for-a-container
   ##
-  containerSecurityContext: {}
-    # enabled: true
-    # runAsUser: 1001
+  containerSecurityContext:
+    enabled: true
+    runAsUser: 1001
 
   ## MariaDB primary container's resource requests and limits
   ## ref: http://kubernetes.io/docs/user-guide/compute-resources/
@@ -546,16 +546,16 @@ secondary:
   ## MariaDB secondary Pod security context
   ## ref: https://kubernetes.io/docs/tasks/configure-pod-container/security-context/#set-the-security-context-for-a-pod
   ##
-  podSecurityContext: {}
-    # enabled: true
-    # fsGroup: 1001
+  podSecurityContext:
+    enabled: true
+    fsGroup: 1001
 
   ## MariaDB secondary container security context
   ## ref: https://kubernetes.io/docs/tasks/configure-pod-container/security-context/#set-the-security-context-for-a-container
   ##
-  containerSecurityContext: {}
-    # enabled: true
-    # runAsUser: 1001
+  containerSecurityContext:
+    enabled: true
+    runAsUser: 1001
 
   ## MariaDB secondary container's resource requests and limits
   ## ref: http://kubernetes.io/docs/user-guide/compute-resources/
