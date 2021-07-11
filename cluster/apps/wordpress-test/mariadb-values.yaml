@@ -129,32 +129,32 @@ primary:
   ## Configure MariaDB Primary with a custom my.cnf file
   ## ref: https://mysql.com/kb/en/mysql/configuring-mysql-with-mycnf/#example-of-configuration-file
   ##
-  configuration: |-
-    [mysqld]
-    skip-name-resolve
-    explicit_defaults_for_timestamp
-    basedir=/opt/bitnami/mariadb
-    plugin_dir=/opt/bitnami/mariadb/plugin
-    port=3306
-    socket=/opt/bitnami/mariadb/tmp/mysql.sock
-    tmpdir=/opt/bitnami/mariadb/tmp
-    max_allowed_packet=16M
-    bind-address=0.0.0.0
-    pid-file=/opt/bitnami/mariadb/tmp/mysqld.pid
-    log-error=/opt/bitnami/mariadb/logs/mysqld.log
-    character-set-server=UTF8
-    collation-server=utf8_general_ci
+  # configuration: |-
+  #   [mysqld]
+  #   skip-name-resolve
+  #   explicit_defaults_for_timestamp
+  #   basedir=/opt/bitnami/mariadb
+  #   plugin_dir=/opt/bitnami/mariadb/plugin
+  #   port=3306
+  #   socket=/opt/bitnami/mariadb/tmp/mysql.sock
+  #   tmpdir=/opt/bitnami/mariadb/tmp
+  #   max_allowed_packet=16M
+  #   bind-address=0.0.0.0
+  #   pid-file=/opt/bitnami/mariadb/tmp/mysqld.pid
+  #   log-error=/opt/bitnami/mariadb/logs/mysqld.log
+  #   character-set-server=UTF8
+  #   collation-server=utf8_general_ci
 
-    [client]
-    port=3306
-    socket=/opt/bitnami/mariadb/tmp/mysql.sock
-    default-character-set=UTF8
-    plugin_dir=/opt/bitnami/mariadb/plugin
+  #   [client]
+  #   port=3306
+  #   socket=/opt/bitnami/mariadb/tmp/mysql.sock
+  #   default-character-set=UTF8
+  #   plugin_dir=/opt/bitnami/mariadb/plugin
 
-    [manager]
-    port=3306
-    socket=/opt/bitnami/mariadb/tmp/mysql.sock
-    pid-file=/opt/bitnami/mariadb/tmp/mysqld.pid
+  #   [manager]
+  #   port=3306
+  #   socket=/opt/bitnami/mariadb/tmp/mysql.sock
+  #   pid-file=/opt/bitnami/mariadb/tmp/mysqld.pid
 
   ## Name of existing ConfigMap with MariaDB Primary configuration.
   ## NOTE: When it's set the 'configuration' parameter is ignored
@@ -443,30 +443,30 @@ secondary:
   ## Configure MariaDB Secondary with a custom my.cnf file
   ## ref: https://mysql.com/kb/en/mysql/configuring-mysql-with-mycnf/#example-of-configuration-file
   ##
-  configuration: |-
-    [mysqld]
-    skip-name-resolve
-    explicit_defaults_for_timestamp
-    basedir=/opt/bitnami/mariadb
-    port=3306
-    socket=/opt/bitnami/mariadb/tmp/mysql.sock
-    tmpdir=/opt/bitnami/mariadb/tmp
-    max_allowed_packet=16M
-    bind-address=0.0.0.0
-    pid-file=/opt/bitnami/mariadb/tmp/mysqld.pid
-    log-error=/opt/bitnami/mariadb/logs/mysqld.log
-    character-set-server=UTF8
-    collation-server=utf8_general_ci
+  # configuration: |-
+  #   [mysqld]
+  #   skip-name-resolve
+  #   explicit_defaults_for_timestamp
+  #   basedir=/opt/bitnami/mariadb
+  #   port=3306
+  #   socket=/opt/bitnami/mariadb/tmp/mysql.sock
+  #   tmpdir=/opt/bitnami/mariadb/tmp
+  #   max_allowed_packet=16M
+  #   bind-address=0.0.0.0
+  #   pid-file=/opt/bitnami/mariadb/tmp/mysqld.pid
+  #   log-error=/opt/bitnami/mariadb/logs/mysqld.log
+  #   character-set-server=UTF8
+  #   collation-server=utf8_general_ci
 
-    [client]
-    port=3306
-    socket=/opt/bitnami/mariadb/tmp/mysql.sock
-    default-character-set=UTF8
+  #   [client]
+  #   port=3306
+  #   socket=/opt/bitnami/mariadb/tmp/mysql.sock
+  #   default-character-set=UTF8
 
-    [manager]
-    port=3306
-    socket=/opt/bitnami/mariadb/tmp/mysql.sock
-    pid-file=/opt/bitnami/mariadb/tmp/mysqld.pid
+  #   [manager]
+  #   port=3306
+  #   socket=/opt/bitnami/mariadb/tmp/mysql.sock
+  #   pid-file=/opt/bitnami/mariadb/tmp/mysqld.pid
 
   ## Name of existing ConfigMap with MariaDB Secondary configuration.
   ## NOTE: When it's set the 'configuration' parameter is ignored
