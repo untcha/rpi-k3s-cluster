@@ -79,7 +79,7 @@ spec:
       args: []
       command: []
       containerSecurityContext:
-        enabled: true
+        enabled: false
         runAsUser: 1001
       customLivenessProbe: {}
       customReadinessProbe: {}
@@ -118,7 +118,7 @@ spec:
       podAnnotations: {}
       podAntiAffinityPreset: soft
       podSecurityContext:
-        enabled: true
+        enabled: false
         fsGroup: 1001
       priorityClassName: ""
       readinessProbe:
