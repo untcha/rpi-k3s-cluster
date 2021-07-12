@@ -4,4 +4,4 @@ kind: Kustomization
 resources:
   - blog-test-namespace.yaml
   - mariadb
-  #- wordpress
+  - wordpress
