@@ -5,3 +5,4 @@ resources:
   - blog-test-namespace.yaml
   - mariadb
   - wordpress
+  - blog-test-ingressroute.yaml
