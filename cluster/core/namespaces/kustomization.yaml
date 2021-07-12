@@ -5,7 +5,6 @@ resources:
   #- test.yaml
   - nfs-provisioner.yaml
   - cert-manager.yaml
-  - database.yaml
   - duckdns.yaml
   - traefik.yaml
   - pihole.yaml
