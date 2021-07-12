@@ -10,4 +10,4 @@ resources:
   - influxdata
   - grafana
   - prometheus
-  - wordpress-test
+  #- blog
