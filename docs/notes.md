@@ -37,3 +37,15 @@ https://github.com/bitnami/bitnami-docker-mariadb/issues/186
 https://dev.to/jmarhee/getting-started-with-kubernetes-initcontainers-and-volume-pre-population-j83
 
 https://snyk.io/blog/10-kubernetes-security-context-settings-you-should-understand/
+
+
+
+https://www.jeffgeerling.com/blog/2020/raspberry-pi-cluster-episode-4-minecraft-pi-hole-grafana-and-more
+
+https://blog.alexellis.io/get-a-tls-enabled-docker-registry-in-5-minutes/
+
+https://loft.sh/blog/kubernetes-readiness-probes-examples-common-pitfalls/
+
+https://docs.bitnami.com/tutorials/deploy-static-content-apache-kubernetes/
+
+https://medium.com/@taweesoft/chapter-1-how-to-easily-deploy-your-web-on-kubernetes-83209a8618be
