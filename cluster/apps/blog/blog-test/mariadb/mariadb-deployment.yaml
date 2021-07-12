@@ -3,7 +3,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: mariadb
-  namespace: database
+  namespace: blog-test
 spec:
   replicas: 1
   strategy:
