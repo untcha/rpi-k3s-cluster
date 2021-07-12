@@ -9,3 +9,4 @@ resources:
   - nfs-provisioner
   - cert-manager
   - traefik
+  - database
