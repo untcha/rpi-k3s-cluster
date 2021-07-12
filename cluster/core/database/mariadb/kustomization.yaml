@@ -5,5 +5,5 @@ resources:
   - enc_mariadb-secrets.yaml
   - mariadb-pvc.yaml
   - mariadb-config.yaml
-  #- mariadb-deployment.yaml
-  #- mariadb-service.yaml
+  - mariadb-deployment.yaml
+  - mariadb-service.yaml
