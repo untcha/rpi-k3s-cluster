@@ -8,3 +8,4 @@ resources:
   - grafana-charts.yaml
   - prometheus-community-charts.yaml
   - groundhog2k-charts.yaml
+  - longhorn-charts.yaml
