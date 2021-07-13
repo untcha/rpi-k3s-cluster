@@ -51,12 +51,12 @@ k3sup join \
     --server-ip $K3S_CLUSTER_IP_M01 \
     --k3s-version $K3S_CLUSTER_VERSION
 
-echo Installing Worker 4
-k3sup join \
-    --ip $K3S_CLUSTER_IP_W04 \
-    --user $K3S_CLUSTER_USER \
-    --server-ip $K3S_CLUSTER_IP_M01 \
-    --k3s-version $K3S_CLUSTER_VERSION
+# echo Installing Worker 4
+# k3sup join \
+#     --ip $K3S_CLUSTER_IP_W04 \
+#     --user $K3S_CLUSTER_USER \
+#     --server-ip $K3S_CLUSTER_IP_M01 \
+#     --k3s-version $K3S_CLUSTER_VERSION
 
 # Install 'kubernetes-dashboard'
 echo Installing kubernetes-dashboard
