@@ -4,6 +4,7 @@ kind: Kustomization
 resources:
   #- test.yaml
   - nfs-provisioner.yaml
+  - longhorn-system.yaml
   - cert-manager.yaml
   - duckdns.yaml
   - traefik.yaml
