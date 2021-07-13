@@ -8,7 +8,9 @@ k3sup install \
     --merge --local-path $HOME/.kube/config-files/$K3S_CLUSTER_KUBECONFIG_NAME \
     --k3s-extra-args "--disable traefik --disable servicelb --disable local-storage" \
     --context $K3S_CLUSTER_CONTEXT \
+    --ssh-key "~/.ssh/id_rsa" \
     --k3s-version $K3S_CLUSTER_VERSION
+
 
 echo Installing Server 2
 k3sup join \
@@ -18,6 +20,7 @@ k3sup join \
     --server-user $K3S_CLUSTER_USER \
     --server \
     --k3s-extra-args "--disable traefik --disable servicelb --disable local-storage" \
+    --ssh-key "~/.ssh/id_rsa" \
     --k3s-version $K3S_CLUSTER_VERSION
 
 echo Installing Server 3
@@ -28,6 +31,7 @@ k3sup join \
     --server-user $K3S_CLUSTER_USER \
     --server \
     --k3s-extra-args "--disable traefik --disable servicelb --disable local-storage" \
+    --ssh-key "~/.ssh/id_rsa" \
     --k3s-version $K3S_CLUSTER_VERSION
 
 echo Installing Worker 1
@@ -35,6 +39,7 @@ k3sup join \
     --ip $K3S_CLUSTER_IP_W01 \
     --user $K3S_CLUSTER_USER \
     --server-ip $K3S_CLUSTER_IP_M01 \
+    --ssh-key "~/.ssh/id_rsa" \
     --k3s-version $K3S_CLUSTER_VERSION
 
 echo Installing Worker 2
@@ -42,6 +47,7 @@ k3sup join \
     --ip $K3S_CLUSTER_IP_W02 \
     --user $K3S_CLUSTER_USER \
     --server-ip $K3S_CLUSTER_IP_M01 \
+    --ssh-key "~/.ssh/id_rsa" \
     --k3s-version $K3S_CLUSTER_VERSION
 
 echo Installing Worker 3
@@ -49,6 +55,7 @@ k3sup join \
     --ip $K3S_CLUSTER_IP_W03 \
     --user $K3S_CLUSTER_USER \
     --server-ip $K3S_CLUSTER_IP_M01 \
+    --ssh-key "~/.ssh/id_rsa" \
     --k3s-version $K3S_CLUSTER_VERSION
 
 # echo Installing Worker 4
