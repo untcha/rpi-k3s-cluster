@@ -48,7 +48,8 @@ alertmanager:
   ##
   image:
     repository: quay.io/prometheus/alertmanager
-    tag: v0.21.0
+    # tag: v0.21.0
+    tag: v0.22.2
     pullPolicy: IfNotPresent
 
   ## alertmanager priorityClassName
@@ -638,7 +639,8 @@ server:
   ##
   image:
     repository: quay.io/prometheus/prometheus
-    tag: v2.26.0
+    # tag: v2.26.0
+    tag: v2.28.1
     pullPolicy: IfNotPresent
 
   ## prometheus server priorityClassName
@@ -1075,7 +1077,8 @@ pushgateway:
   ##
   image:
     repository: prom/pushgateway
-    tag: v1.3.1
+    # tag: v1.3.1
+    tag: v1.4.1
     pullPolicy: IfNotPresent
 
   ## pushgateway priorityClassName

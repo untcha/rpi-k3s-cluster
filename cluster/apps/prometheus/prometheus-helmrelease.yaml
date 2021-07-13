@@ -11,7 +11,7 @@ spec:
       sourceRef:
         kind: HelmRepository
         name: prometheus-community
-      version: 14.3.1
+      version: 14.4.0
   install: {}
   interval: 1m0s
   targetNamespace: prometheus
@@ -35,7 +35,7 @@ spec:
       image:
         pullPolicy: IfNotPresent
         repository: quay.io/prometheus/alertmanager
-        tag: v0.21.0
+        tag: v0.22.2
       ingress:
         annotations: {}
         enabled: false
@@ -212,7 +212,7 @@ spec:
       image:
         pullPolicy: IfNotPresent
         repository: prom/pushgateway
-        tag: v1.3.1
+        tag: v1.4.1
       ingress:
         annotations: {}
         enabled: false
@@ -290,7 +290,7 @@ spec:
       image:
         pullPolicy: IfNotPresent
         repository: quay.io/prometheus/prometheus
-        tag: v2.26.0
+        tag: v2.28.1
       ingress:
         annotations: {}
         enabled: false
