@@ -45,7 +45,6 @@ spec:
         enabled: false
     globalArguments:
     - --global.checknewversion
-    - --global.sendanonymoususage
     hostNetwork: false
     image:
       name: traefik

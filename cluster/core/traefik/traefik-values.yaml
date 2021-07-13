@@ -185,7 +185,7 @@ logs:
 
 globalArguments:
   - "--global.checknewversion"
-  - "--global.sendanonymoususage"
+  #- "--global.sendanonymoususage"
 
 #
 # Configure Traefik static configuration
