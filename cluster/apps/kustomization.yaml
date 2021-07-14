@@ -2,12 +2,12 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
-  - docs
-  - tools
-  - duckdns
-  # - nginx
-  - pihole
-  - influxdata
-  - grafana
-  - prometheus
-  - blog
+  # - docs
+  # - tools
+  # - duckdns
+  ## - nginx
+  # - pihole
+  # - influxdata
+  # - grafana
+  # - prometheus
+  # - blog
