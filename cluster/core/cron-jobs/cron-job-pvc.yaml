@@ -3,7 +3,7 @@ apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
   name: cron-job-pvc
-  namespace: default
+  namespace: cron-jobs
   annotations:
     nfs.io/storage-path: "/cron-jobs/data"
 spec:

@@ -3,6 +3,7 @@ apiVersion: batch/v1beta1
 kind: CronJob
 metadata:
   name: digitalocean-dns-updater-cron-job
+  namespace: cron-jobs
 spec:
   schedule: "*/15 * * * *"
   jobTemplate:
@@ -37,6 +38,7 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: digitalocean-dns-updater-configmap
+  namespace: cron-jobs
 data:
   digitalocean-dns-updater.sh: |
     #!/bin/sh
