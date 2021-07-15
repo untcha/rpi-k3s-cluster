@@ -162,12 +162,66 @@ spec:
 apiVersion: kustomize.toolkit.fluxcd.io/v1beta1
 kind: Kustomization
 metadata:
-  name: core-ingress-controller
+  name: core-certs
   namespace: flux-system
 spec:
   interval: 10m0s
   dependsOn:
   - name: core-cert-manager
+  path: ./cluster/core/certs
+  prune: true
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+  decryption:
+    provider: sops
+    secretRef:
+      name: sops-gpg
+  postBuild:
+    substitute: {}
+    substituteFrom:
+      - kind: ConfigMap
+        name: cluster-settings
+      - kind: Secret
+        name: cluster-secrets
+
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta1
+kind: Kustomization
+metadata:
+  name: core-kubernetes-dashboard
+  namespace: flux-system
+spec:
+  interval: 10m0s
+  dependsOn:
+  - name: core-certs
+  path: ./cluster/core/kubernetes-dashboard
+  prune: true
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+  decryption:
+    provider: sops
+    secretRef:
+      name: sops-gpg
+  postBuild:
+    substitute: {}
+    substituteFrom:
+      - kind: ConfigMap
+        name: cluster-settings
+      - kind: Secret
+        name: cluster-secrets
+
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta1
+kind: Kustomization
+metadata:
+  name: core-ingress-controller
+  namespace: flux-system
+spec:
+  interval: 10m0s
+  dependsOn:
+  - name: core-kubernetes-dashboard
   path: ./cluster/core/traefik
   prune: true
   sourceRef:
