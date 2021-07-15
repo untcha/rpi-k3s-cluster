@@ -1,14 +1,175 @@
+# ---
+# apiVersion: kustomize.toolkit.fluxcd.io/v1beta1
+# kind: Kustomization
+# metadata:
+#   name: core
+#   namespace: flux-system
+# spec:
+#   interval: 10m0s
+#   #dependsOn:
+#   #- name: crds
+#   path: ./cluster/core
+#   prune: true
+#   sourceRef:
+#     kind: GitRepository
+#     name: flux-system
+#   decryption:
+#     provider: sops
+#     secretRef:
+#       name: sops-gpg
+#   postBuild:
+#     substitute: {}
+#     substituteFrom:
+#       - kind: ConfigMap
+#         name: cluster-settings
+#       - kind: Secret
+#         name: cluster-secrets
+
 ---
 apiVersion: kustomize.toolkit.fluxcd.io/v1beta1
 kind: Kustomization
 metadata:
-  name: core
+  name: core-namespaces
   namespace: flux-system
 spec:
   interval: 10m0s
-  #dependsOn:
-  #- name: crds
-  path: ./cluster/core
+  path: ./cluster/core/namespaces
+  prune: true
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+  decryption:
+    provider: sops
+    secretRef:
+      name: sops-gpg
+  postBuild:
+    substitute: {}
+    substituteFrom:
+      - kind: ConfigMap
+        name: cluster-settings
+      - kind: Secret
+        name: cluster-secrets
+
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta1
+kind: Kustomization
+metadata:
+  name: core-network
+  namespace: flux-system
+spec:
+  interval: 10m0s
+  dependsOn:
+  - name: core-namespaces
+  path: ./cluster/core/metallb-system
+  prune: true
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+  decryption:
+    provider: sops
+    secretRef:
+      name: sops-gpg
+  postBuild:
+    substitute: {}
+    substituteFrom:
+      - kind: ConfigMap
+        name: cluster-settings
+      - kind: Secret
+        name: cluster-secrets
+
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta1
+kind: Kustomization
+metadata:
+  name: core-storage-remote
+  namespace: flux-system
+spec:
+  interval: 10m0s
+  dependsOn:
+  - name: core-network
+  path: ./cluster/core/storage/nfs-provisioner
+  prune: true
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+  decryption:
+    provider: sops
+    secretRef:
+      name: sops-gpg
+  postBuild:
+    substitute: {}
+    substituteFrom:
+      - kind: ConfigMap
+        name: cluster-settings
+      - kind: Secret
+        name: cluster-secrets
+
+
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta1
+kind: Kustomization
+metadata:
+  name: core-cron-jobs
+  namespace: flux-system
+spec:
+  interval: 10m0s
+  dependsOn:
+  - name: core-storage-remote
+  path: ./cluster/core/cron-jobs
+  prune: true
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+  decryption:
+    provider: sops
+    secretRef:
+      name: sops-gpg
+  postBuild:
+    substitute: {}
+    substituteFrom:
+      - kind: ConfigMap
+        name: cluster-settings
+      - kind: Secret
+        name: cluster-secrets
+
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta1
+kind: Kustomization
+metadata:
+  name: core-cert-manager
+  namespace: flux-system
+spec:
+  interval: 10m0s
+  dependsOn:
+  - name: core-cron-jobs
+  path: ./cluster/core/cert-manager
+  prune: true
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+  decryption:
+    provider: sops
+    secretRef:
+      name: sops-gpg
+  postBuild:
+    substitute: {}
+    substituteFrom:
+      - kind: ConfigMap
+        name: cluster-settings
+      - kind: Secret
+        name: cluster-secrets
+
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta1
+kind: Kustomization
+metadata:
+  name: core-ingress-controller
+  namespace: flux-system
+spec:
+  interval: 10m0s
+  dependsOn:
+  - name: core-cert-manager
+  path: ./cluster/core/traefik
   prune: true
   sourceRef:
     kind: GitRepository
