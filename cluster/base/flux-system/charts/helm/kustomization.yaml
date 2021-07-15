@@ -4,7 +4,6 @@ resources:
   - jetstack-charts.yaml
   - traefik-charts.yaml
   - influxdata-charts.yaml
-  - bitnami-charts.yaml
   - grafana-charts.yaml
   - prometheus-community-charts.yaml
   - groundhog2k-charts.yaml
