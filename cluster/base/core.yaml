@@ -232,11 +232,11 @@ spec:
   sourceRef:
     kind: GitRepository
     name: flux-system
-  healthChecks:
-    - apiVersion: apps/v1
-      kind: Deployment
-      name: traefik-traefik
-      namespace: traefik
+  # healthChecks:
+  #   - apiVersion: apps/v1
+  #     kind: Deployment
+  #     name: traefik-traefik
+  #     namespace: traefik
   decryption:
     provider: sops
     secretRef:
