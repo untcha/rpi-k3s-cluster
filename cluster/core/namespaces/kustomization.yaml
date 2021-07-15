@@ -5,6 +5,7 @@ resources:
   #- test.yaml
   - nfs-provisioner.yaml
   - longhorn-system.yaml
+  - cron-jobs.yaml
   - cert-manager.yaml
   - duckdns.yaml
   - traefik.yaml
