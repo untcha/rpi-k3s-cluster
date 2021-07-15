@@ -65,7 +65,7 @@ k3sup join \
 #     --server-ip $K3S_CLUSTER_IP_M01 \
 #     --k3s-version $K3S_CLUSTER_VERSION
 
-source ~/.zshrc
+#source ~/.zshrc
 
 # Install 'kubernetes-dashboard'
 #echo Installing kubernetes-dashboard
