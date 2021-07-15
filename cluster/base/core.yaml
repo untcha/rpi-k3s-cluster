@@ -233,8 +233,8 @@ spec:
     kind: GitRepository
     name: flux-system
   healthChecks:
-    - apiVersion: helm.toolkit.fluxcd.io/v1beta1
-      kind: HelmRelease
+    - apiVersion: apps/v1
+      kind: Deployment
       name: traefik
       namespace: traefik
   decryption:
