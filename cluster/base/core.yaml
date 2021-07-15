@@ -235,7 +235,7 @@ spec:
   healthChecks:
     - apiVersion: apps/v1
       kind: Deployment
-      name: traefik
+      name: traefik-traefik
       namespace: traefik
   decryption:
     provider: sops
