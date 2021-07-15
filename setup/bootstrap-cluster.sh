@@ -42,21 +42,21 @@ k3sup join \
     --ssh-key "~/.ssh/id_rsa" \
     --k3s-version $K3S_CLUSTER_VERSION
 
-echo Installing Worker 2
-k3sup join \
-    --ip $K3S_CLUSTER_IP_W02 \
-    --user $K3S_CLUSTER_USER \
-    --server-ip $K3S_CLUSTER_IP_M01 \
-    --ssh-key "~/.ssh/id_rsa" \
-    --k3s-version $K3S_CLUSTER_VERSION
+# echo Installing Worker 2
+# k3sup join \
+#     --ip $K3S_CLUSTER_IP_W02 \
+#     --user $K3S_CLUSTER_USER \
+#     --server-ip $K3S_CLUSTER_IP_M01 \
+#     --ssh-key "~/.ssh/id_rsa" \
+#     --k3s-version $K3S_CLUSTER_VERSION
 
-echo Installing Worker 3
-k3sup join \
-    --ip $K3S_CLUSTER_IP_W03 \
-    --user $K3S_CLUSTER_USER \
-    --server-ip $K3S_CLUSTER_IP_M01 \
-    --ssh-key "~/.ssh/id_rsa" \
-    --k3s-version $K3S_CLUSTER_VERSION
+# echo Installing Worker 3
+# k3sup join \
+#     --ip $K3S_CLUSTER_IP_W03 \
+#     --user $K3S_CLUSTER_USER \
+#     --server-ip $K3S_CLUSTER_IP_M01 \
+#     --ssh-key "~/.ssh/id_rsa" \
+#     --k3s-version $K3S_CLUSTER_VERSION
 
 # echo Installing Worker 4
 # k3sup join \
