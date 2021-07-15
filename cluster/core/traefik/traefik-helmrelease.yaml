@@ -16,8 +16,7 @@ spec:
   interval: 1m0s
   targetNamespace: traefik
   values:
-    additionalArguments:
-    - --metrics.prometheus=true
+    additionalArguments: null
     additionalVolumeMounts: []
     affinity: {}
     autoscaling:
@@ -45,6 +44,7 @@ spec:
         enabled: false
     globalArguments:
     - --global.checknewversion
+    - --global.sendanonymoususage
     hostNetwork: false
     image:
       name: traefik
