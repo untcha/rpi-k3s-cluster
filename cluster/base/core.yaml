@@ -87,7 +87,7 @@ spec:
   interval: 10m0s
   dependsOn:
   - name: core-network
-  path: ./cluster/core/storage/nfs-provisioner
+  path: ./cluster/core/nfs-provisioner
   prune: true
   sourceRef:
     kind: GitRepository
@@ -103,7 +103,6 @@ spec:
         name: cluster-settings
       - kind: Secret
         name: cluster-secrets
-
 
 ---
 apiVersion: kustomize.toolkit.fluxcd.io/v1beta1
