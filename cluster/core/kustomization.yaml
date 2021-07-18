@@ -5,7 +5,7 @@ resources:
   - namespaces
   - kubernetes-dashboard
   - metallb-system
-  - nfs-provisioner
+  - storage
   - cron-jobs
   - cert-manager
   - certs
