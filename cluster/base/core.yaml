@@ -87,7 +87,7 @@ spec:
   interval: 10m0s
   dependsOn:
   - name: core-network
-  path: ./cluster/core/nfs-provisioner
+  path: ./cluster/core/storage/remote
   prune: true
   sourceRef:
     kind: GitRepository
