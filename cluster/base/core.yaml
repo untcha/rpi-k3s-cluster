@@ -217,34 +217,34 @@ spec:
 #       - kind: Secret
 #         name: cluster-secrets
 
----
-apiVersion: kustomize.toolkit.fluxcd.io/v1beta1
-kind: Kustomization
-metadata:
-  name: core-ingress-controller
-  namespace: flux-system
-spec:
-  interval: 10m0s
-  dependsOn:
-  - name: core-cert-manager-issuer
-  path: ./cluster/core/traefik
-  prune: true
-  sourceRef:
-    kind: GitRepository
-    name: flux-system
-  # healthChecks:
-  #   - apiVersion: apps/v1
-  #     kind: Deployment
-  #     name: traefik-traefik
-  #     namespace: traefik
-  decryption:
-    provider: sops
-    secretRef:
-      name: sops-gpg
-  postBuild:
-    substitute: {}
-    substituteFrom:
-      - kind: ConfigMap
-        name: cluster-settings
-      - kind: Secret
-        name: cluster-secrets
+# ---
+# apiVersion: kustomize.toolkit.fluxcd.io/v1beta1
+# kind: Kustomization
+# metadata:
+#   name: core-ingress-controller
+#   namespace: flux-system
+# spec:
+#   interval: 10m0s
+#   dependsOn:
+#   - name: core-cert-manager-issuer
+#   path: ./cluster/core/traefik
+#   prune: true
+#   sourceRef:
+#     kind: GitRepository
+#     name: flux-system
+#   # healthChecks:
+#   #   - apiVersion: apps/v1
+#   #     kind: Deployment
+#   #     name: traefik-traefik
+#   #     namespace: traefik
+#   decryption:
+#     provider: sops
+#     secretRef:
+#       name: sops-gpg
+#   postBuild:
+#     substitute: {}
+#     substituteFrom:
+#       - kind: ConfigMap
+#         name: cluster-settings
+#       - kind: Secret
+#         name: cluster-secrets
