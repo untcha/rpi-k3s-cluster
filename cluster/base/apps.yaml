@@ -6,18 +6,13 @@ metadata:
   namespace: flux-system
 spec:
   interval: 10m0s
-  #dependsOn:
-  #- name: core-ingress-controller
+  dependsOn:
+  - name: core-ingress-controller
   path: ./cluster/apps
   prune: true
   sourceRef:
     kind: GitRepository
     name: flux-system
-  # healthChecks:
-  #   - apiVersion: helm.toolkit.fluxcd.io/v1beta1
-  #     kind: HelmRelease
-  #     name: traefik
-  #     namespace: traefik
   decryption:
     provider: sops
     secretRef:
