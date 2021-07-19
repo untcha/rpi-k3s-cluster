@@ -14,8 +14,7 @@ spec:
       version: 10.0.0
   install: {}
   interval: 1m0s
-  #targetNamespace: traefik
-  storageNamespace: traefik
+  targetNamespace: traefik
   values:
     additionalArguments:
     - --metrics.prometheus=true
