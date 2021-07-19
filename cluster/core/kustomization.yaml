@@ -7,4 +7,4 @@ resources:
   - storage
   - cron-jobs
   - cert-manager
-  - traefik
+  #- traefik
