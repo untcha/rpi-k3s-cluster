@@ -60,7 +60,7 @@ spec:
   interval: 10m0s
   dependsOn:
   - name: core-namespaces
-  path: ./cluster/core/metallb-system
+  path: ./cluster/core/network/metallb-system
   prune: true
   sourceRef:
     kind: GitRepository
