@@ -6,8 +6,8 @@ metadata:
   namespace: flux-system
 spec:
   interval: 10m0s
-  dependsOn:
-  - name: core-ingress-controller
+  #dependsOn:
+  #- name: core-ingress-controller
   path: ./cluster/apps
   prune: true
   sourceRef:
