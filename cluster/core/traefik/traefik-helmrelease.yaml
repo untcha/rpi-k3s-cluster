@@ -14,10 +14,8 @@ spec:
       version: 10.0.0
   install: {}
   interval: 1m0s
-  targetNamespace: traefik
   values:
-    additionalArguments:
-    - --metrics.prometheus=true
+    additionalArguments: null
     additionalVolumeMounts: []
     affinity: {}
     autoscaling:
