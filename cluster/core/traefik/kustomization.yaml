@@ -6,3 +6,8 @@ resources:
   - traefik-helmrelease.yaml
   - traefik-dashboard-ingressroute.yaml
   # - traefik-pvc.yaml
+
+configMapGenerator:
+- name: traefik-values
+  files:
+    - values.yaml=traefik-values.yaml
