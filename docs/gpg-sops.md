@@ -25,6 +25,31 @@ run the `trust`command and change the trust. Or just reimport the trustlevel (if
 gpg --import-ownertrust < trustlevel.txt
 ```
 
+```bash
+gpg --export-ownertrust > trustlevel.txt
+```
+
+## List keys
+
+```bash
+gpg --list-keys
+```
+
+## Export keys
+
+```bash
+# public key
+gpg --output public-key.asc --armor --export [key-id]
+
+# private key
+gpg --output private-key.asc --armor --export-secret-key [key-id]
+
+# create backup key
+gpg --output backup.asc --armor --export-secret-keys --export-options export-backup [key-id]
+
+# This will export all necessary information to restore the secrets keys including the trust database information.
+# https://www.jabberwocky.com/software/paperkey/
+```
 
 ## Encrypt and decrypt with `gpg`
 
