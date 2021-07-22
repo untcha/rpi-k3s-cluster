@@ -10,7 +10,6 @@ k3sup install \
     --context $K3S_CLUSTER_CONTEXT \
     --k3s-version $K3S_CLUSTER_VERSION
 
-
 echo Installing Server 2
 k3sup join \
     --ip $K3S_CLUSTER_IP_M02 \
@@ -59,13 +58,25 @@ k3sup join \
     --server-ip $K3S_CLUSTER_IP_M01 \
     --k3s-version $K3S_CLUSTER_VERSION
 
+# This label is to have nice name when running kubectl get nodes.
+# kubectl label nodes rpi-k3s-worker-01 kubernetes.io/role=worker
+# kubectl label nodes rpi-k3s-worker-02 kubernetes.io/role=worker
+# kubectl label nodes rpi-k3s-worker-03 kubernetes.io/role=worker
+# kubectl label nodes rpi-k3s-worker-04 kubernetes.io/role=worker
+
+# Another label/tag. This one I will use to tell deployments to prefer nodes with node-type worker. The node-type is our chosen name for value, you can call it whatever.
+# kubectl label nodes rpi-k3s-worker-01 node-type=worker
+# kubectl label nodes rpi-k3s-worker-02 node-type=worker
+# kubectl label nodes rpi-k3s-worker-03 node-type=worker
+# kubectl label nodes rpi-k3s-worker-04 node-type=worker
+
 # Install 'kubernetes-dashboard'
-#echo Installing kubernetes-dashboard
-#arkade install kubernetes-dashboard
+# echo Installing kubernetes-dashboard
+# arkade install kubernetes-dashboard
 
 # Create 'flux-system' namespace
-#echo Creating flux-system namespace
-#kubectl create namespace flux-system
+# echo Creating flux-system namespace
+# kubectl create namespace flux-system
 
 # Create 
 
