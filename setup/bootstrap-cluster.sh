@@ -71,7 +71,7 @@ k3sup join \
 
 # Add the Flux GPG key in-order for Flux to decrypt SOPS secrets
 # TODO: place encrypted sops-gpg.yaml in the repository
-# gpg --export-secret-keys --armor "${FLUX_KEY_FP_TESTING}" |
+# gpg --export-secret-keys --armor "${FLUX_KEY_FP}" |
 # kubectl create secret generic sops-gpg \
 #     --namespace=flux-system \
 #     --from-file=sops.asc=/dev/stdin
