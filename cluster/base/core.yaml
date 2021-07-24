@@ -108,12 +108,39 @@ spec:
 apiVersion: kustomize.toolkit.fluxcd.io/v1beta1
 kind: Kustomization
 metadata:
-  name: core-cron-jobs
+  name: core-storage-local
   namespace: flux-system
 spec:
   interval: 10m0s
   dependsOn:
   - name: core-storage-remote
+  path: ./cluster/core/storage/local
+  prune: true
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+  decryption:
+    provider: sops
+    secretRef:
+      name: sops-gpg
+  postBuild:
+    substitute: {}
+    substituteFrom:
+      - kind: ConfigMap
+        name: cluster-settings
+      - kind: Secret
+        name: cluster-secrets
+
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta1
+kind: Kustomization
+metadata:
+  name: core-cron-jobs
+  namespace: flux-system
+spec:
+  interval: 10m0s
+  dependsOn:
+  - name: core-storage-local
   path: ./cluster/core/cron-jobs
   prune: true
   sourceRef:
