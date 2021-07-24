@@ -122,7 +122,7 @@ spec:
       tolerations: []
     namespaceOverride: ""
     persistence:
-      defaultClass: true
+      defaultClass: false
       defaultClassReplicaCount: 3
       reclaimPolicy: Delete
       recurringJobs:
