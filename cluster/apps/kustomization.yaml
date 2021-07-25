@@ -8,7 +8,7 @@ resources:
   # - duckdns
   ## - nginx
   # - pihole
-  # - influxdata
+  - influxdata
   # - grafana
   # - prometheus
   # - blog
