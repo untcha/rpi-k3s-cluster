@@ -29,7 +29,7 @@ service:
   # Set the httpNodePort and edgeNodePort only if the type is NodePort
   # For Ingress, set the type to be ClusterIP and set ingress.enabled to true
   # For Cloud Providers, set the type to be LoadBalancer
-  type: NodePort
+  type: ClusterIP
   httpPort: 9000
   httpNodePort: 30777
   edgePort: 8000
@@ -47,6 +47,7 @@ ingress:
 resources: {}
 
 persistence:
+  existingClaim: portainer-pvc
   size: "10Gi"
   annotations: {}
   storageClass:
