@@ -11,7 +11,7 @@ spec:
       sourceRef:
         kind: HelmRepository
         name: grafana
-      version: 6.13.6
+      version: 6.14.1
   install: {}
   interval: 1m0s
   targetNamespace: grafana
@@ -71,7 +71,7 @@ spec:
       pullPolicy: IfNotPresent
       repository: grafana/grafana
       sha: ""
-      tag: 8.0.3
+      tag: 8.0.5
     imageRenderer:
       enabled: false
       env:
@@ -172,6 +172,7 @@ spec:
       targetPort: 3000
       type: ClusterIP
     serviceAccount:
+      autoMount: true
       create: true
       name: null
       nameTest: null
@@ -226,10 +227,10 @@ spec:
       passwordKey: password
       userKey: user
     testFramework:
-      enabled: false
+      enabled: true
       image: bats/bats
       imagePullPolicy: IfNotPresent
       securityContext: {}
-      tag: v1.1.0
+      tag: v1.4.1
     tolerations: []
 

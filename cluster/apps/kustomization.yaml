@@ -9,7 +9,7 @@ resources:
   ## - nginx
   # - pihole
   - influxdata
-  # - grafana
+  - grafana
   # - prometheus
   # - blog
   - portainer

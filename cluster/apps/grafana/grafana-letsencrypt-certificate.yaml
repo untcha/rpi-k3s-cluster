@@ -5,10 +5,10 @@ metadata:
   name: grafana-letsencrypt-production-certificate
   namespace: grafana
 spec:
-  commonName: grafana.${SECRET_DIGITALOCEAN_DOMAIN_01}
+  commonName: grafana.${SECRET_DIGITALOCEAN_DOMAIN_02}
   secretName: grafana-letsencrypt-production-certificate
   dnsNames:
-    - grafana.${SECRET_DIGITALOCEAN_DOMAIN_01}
+    - grafana.${SECRET_DIGITALOCEAN_DOMAIN_02}
   issuerRef:
     name: letsencrypt-dns01-production-do
     kind: ClusterIssuer
