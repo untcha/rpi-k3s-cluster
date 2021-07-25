@@ -4,3 +4,4 @@ kind: Kustomization
 resources:
   - enc_slack-webhook-secret.yaml
   - slack-notification-provider.yaml
+  - alert.yaml
