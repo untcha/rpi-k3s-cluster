@@ -3,7 +3,7 @@
 image:
   repository: "chronograf"
   ## default: quay.io/influxdb/chronograf
-  tag: "1.8.8"
+  tag: "1.8.9.1"
   pullPolicy: IfNotPresent
 
 ## Specify a service type
@@ -28,7 +28,7 @@ persistence:
   ## If keepPvc is true, pvc will not be deleted after running helm uninstall
   # keepPvc:
   accessMode: ReadWriteOnce
-  size: 8Gi
+  size: 2Gi
 
 ## Configure resource requests and limits
 ## ref: http://kubernetes.io/docs/user-guide/compute-resources/
