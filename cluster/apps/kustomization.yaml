@@ -12,3 +12,4 @@ resources:
   # - grafana
   # - prometheus
   # - blog
+  - portainer
