@@ -4,3 +4,4 @@ kind: Kustomization
 resources:
   - portainer-pvc.yaml
   - portainer-helmrelease.yaml
+  - portainer-ingressroute.yaml

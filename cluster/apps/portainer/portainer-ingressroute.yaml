@@ -1,0 +1,15 @@
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: portainer-local-ingressroute
+  namespace: portainer
+spec:
+  entryPoints:
+    - web
+  routes:
+    - match: Host(`portainer.${SECRET_DOMAIN_LOCAL}`)
+      kind: Rule
+      services:
+        - name: portainer-portainer
+          port: 9000
