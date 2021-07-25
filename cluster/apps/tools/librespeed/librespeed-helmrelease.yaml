@@ -1,0 +1,38 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: librespeed
+  namespace: flux-system
+spec:
+  chart:
+    spec:
+      chart: librespeed
+      sourceRef:
+        kind: HelmRepository
+        name: k8s-at-home
+      version: 4.1.0
+  install: {}
+  interval: 1m0s
+  targetNamespace: tools
+  values:
+    env:
+      PGID: "1001"
+      PUID: "1001"
+      TZ: UTC
+    image:
+      pullPolicy: IfNotPresent
+      repository: linuxserver/librespeed
+      tag: version-5.2.4
+    ingress:
+      main:
+        enabled: false
+    persistence:
+      config:
+        enabled: false
+    service:
+      main:
+        ports:
+          http:
+            port: 80
+
