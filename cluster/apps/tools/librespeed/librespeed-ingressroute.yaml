@@ -1,0 +1,15 @@
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: librespeed-local-ingressroute
+  namespace: librespeed
+spec:
+  entryPoints:
+    - web
+  routes:
+    - match: Host(`speedtest.${SECRET_DOMAIN_LOCAL}`)
+      kind: Rule
+      services:
+        - name: tools-librespeed
+          port: 80
