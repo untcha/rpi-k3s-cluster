@@ -8,3 +8,4 @@ resources:
   - prometheus-community-charts.yaml
   - groundhog2k-charts.yaml
   - longhorn-charts.yaml
+  - portainer-charts.yaml
