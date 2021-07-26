@@ -104,41 +104,41 @@ spec:
       - kind: Secret
         name: cluster-secrets
 
-# ---
-# apiVersion: kustomize.toolkit.fluxcd.io/v1beta1
-# kind: Kustomization
-# metadata:
-#   name: core-storage-local
-#   namespace: flux-system
-# spec:
-#   interval: 10m0s
-#   dependsOn:
-#   - name: core-storage-remote
-#   path: ./cluster/core/storage/local
-#   prune: true
-#   sourceRef:
-#     kind: GitRepository
-#     name: flux-system
-#   healthChecks:
-#     - apiVersion: helm.toolkit.fluxcd.io/v1beta1
-#       kind: HelmRelease
-#       name: longhorn
-#       namespace: flux-system
-#     # - apiVersion: apps/v1
-#     #   kind: Deployment
-#     #   name: traefik-traefik
-#     #   namespace: traefik
-#   decryption:
-#     provider: sops
-#     secretRef:
-#       name: sops-gpg
-#   postBuild:
-#     substitute: {}
-#     substituteFrom:
-#       - kind: ConfigMap
-#         name: cluster-settings
-#       - kind: Secret
-#         name: cluster-secrets
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta1
+kind: Kustomization
+metadata:
+  name: core-storage-local
+  namespace: flux-system
+spec:
+  interval: 10m0s
+  dependsOn:
+  - name: core-storage-remote
+  path: ./cluster/core/storage/local
+  prune: true
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+  healthChecks:
+    - apiVersion: helm.toolkit.fluxcd.io/v1beta1
+      kind: HelmRelease
+      name: longhorn
+      namespace: flux-system
+    # - apiVersion: apps/v1
+    #   kind: Deployment
+    #   name: traefik-traefik
+    #   namespace: traefik
+  decryption:
+    provider: sops
+    secretRef:
+      name: sops-gpg
+  postBuild:
+    substitute: {}
+    substituteFrom:
+      - kind: ConfigMap
+        name: cluster-settings
+      - kind: Secret
+        name: cluster-secrets
 
 ---
 apiVersion: kustomize.toolkit.fluxcd.io/v1beta1
@@ -149,7 +149,7 @@ metadata:
 spec:
   interval: 10m0s
   dependsOn:
-  - name: core-storage-remote
+  - name: core-storage-local
   path: ./cluster/core/cron-jobs
   prune: true
   sourceRef:
