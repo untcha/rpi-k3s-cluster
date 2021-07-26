@@ -57,4 +57,4 @@ spec:
           valueFrom:
             secretKeyRef:
               name: traefik-forward-auth-secrets
-              key: traefik-forward-auth-generic-oauth-secret
+              key: traefik-forward-auth-generic-oauth-client-secret
