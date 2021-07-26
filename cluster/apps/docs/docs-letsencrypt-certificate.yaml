@@ -5,10 +5,10 @@ metadata:
   name: docs-letsencrypt-production-certificate
   namespace: docs
 spec:
-  commonName: docs.${SECRET_DIGITALOCEAN_DOMAIN_01}
+  commonName: docs.${SECRET_DIGITALOCEAN_DOMAIN_02}
   secretName: docs-letsencrypt-production-certificate
   dnsNames:
-    - docs.${SECRET_DIGITALOCEAN_DOMAIN_01}
+    - docs.${SECRET_DIGITALOCEAN_DOMAIN_02}
   issuerRef:
     name: letsencrypt-dns01-production-do
     kind: ClusterIssuer
