@@ -1,48 +1,3 @@
-# ---
-# apiVersion: v1
-# kind: Namespace
-# metadata:
-#   name: whoami
-
----
-kind: Service
-apiVersion: v1
-metadata:
-  name: whoami
-  namespace: tools
-spec:
-  selector:
-    app: whoami
-  ports:
-  - name: http
-    port: 80
-
----
-kind: Deployment
-apiVersion: apps/v1
-metadata:
-  name: whoami
-  namespace: tools
-  labels:
-    app: whoami
-
-spec:
-  replicas: 2
-  selector:
-    matchLabels:
-      app: whoami
-  template:
-    metadata:
-      labels:
-        app: whoami
-    spec:
-      containers:
-        - name: whoami
-          image: traefik/whoami
-          ports:
-            - name: web
-              containerPort: 80
-
 ---
 apiVersion: traefik.containo.us/v1alpha1
 kind: IngressRoute
@@ -98,9 +53,9 @@ spec:
   routes:
     - match: Host(`whoami.${SECRET_DIGITALOCEAN_DOMAIN_02}`)
       kind: Rule
-      middlewares:
-        - name: whoami-middleware-headers
-        - name: whoami-middleware-basicauth
+      #middlewares:
+        #- name: whoami-middleware-headers
+        #- name: whoami-middleware-basicauth
       services:
         - name: whoami
           port: 80
@@ -125,7 +80,6 @@ kind: Middleware
 metadata:
   name: whoami-middleware-headers
   namespace: tools
-
 spec:
   headers:
     browserXssFilter: true

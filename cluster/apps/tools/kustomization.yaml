@@ -5,4 +5,4 @@ resources:
   - tools-namespace.yaml
   - network-multitool
   - librespeed
-  #- whoami
+  - whoami
