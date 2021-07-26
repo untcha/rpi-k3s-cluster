@@ -6,3 +6,4 @@ resources:
   - whoami-deployment.yaml
   - whoami-letsencrypt-certificate.yaml
   - whoami-ingressroute.yaml
+  - traefik-forward-auth
