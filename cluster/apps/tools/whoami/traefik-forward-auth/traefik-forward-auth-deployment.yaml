@@ -33,6 +33,8 @@ spec:
         # INSECURE_COOKIE is required unless using https entrypoint
         - name: INSECURE_COOKIE
           value: "true"
+        - name: DEFAULT_PROVIDER
+          value: "generic-oauth"
         - name: PROVIDERS_GENERIC_OAUTH_AUTH_URL
           valueFrom:
             secretKeyRef:
