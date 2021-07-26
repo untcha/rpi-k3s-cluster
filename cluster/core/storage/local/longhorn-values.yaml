@@ -67,7 +67,7 @@ csi:
   snapshotterReplicaCount: ~
 
 defaultSettings:
-  backupTarget: ~
+  backupTarget: nfs://${SECRET_NFS_BACKUPSTORE_IP}:/Backup/LonghornBackupstore
   backupTargetCredentialSecret: ~
   allowRecurringJobWhileVolumeDetached: ~
   createDefaultDiskLabeledNodes: ~
