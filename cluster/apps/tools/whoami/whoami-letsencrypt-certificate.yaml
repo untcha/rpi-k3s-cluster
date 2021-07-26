@@ -5,10 +5,10 @@ metadata:
   name: whoami-letsencrypt-staging-certificate
   namespace: tools
 spec:
-  commonName: whoami.${SECRET_DIGITALOCEAN_DOMAIN_01}
+  commonName: whoami.${SECRET_DIGITALOCEAN_DOMAIN_02}
   secretName: whoami-letsencrypt-staging-certificate
   dnsNames:
-    - whoami.${SECRET_DIGITALOCEAN_DOMAIN_01}
+    - whoami.${SECRET_DIGITALOCEAN_DOMAIN_02}
   issuerRef:
     name: letsencrypt-dns01-staging-do
     kind: ClusterIssuer
@@ -20,10 +20,10 @@ metadata:
   name: whoami-letsencrypt-production-certificate
   namespace: tools
 spec:
-  commonName: whoami.${SECRET_DIGITALOCEAN_DOMAIN_01}
+  commonName: whoami.${SECRET_DIGITALOCEAN_DOMAIN_02}
   secretName: whoami-letsencrypt-production-certificate
   dnsNames:
-    - whoami.${SECRET_DIGITALOCEAN_DOMAIN_01}
+    - whoami.${SECRET_DIGITALOCEAN_DOMAIN_02}
   issuerRef:
     name: letsencrypt-dns01-production-do
     kind: ClusterIssuer
