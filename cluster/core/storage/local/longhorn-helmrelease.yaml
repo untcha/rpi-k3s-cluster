@@ -33,7 +33,7 @@ spec:
       backingImageCleanupWaitInterval: null
       backupTarget: nfs://${SECRET_NFS_BACKUPSTORE_IP}:/Backup/LonghornBackupstore
       backupTargetCredentialSecret: null
-      backupstorePollInterval: null
+      backupstorePollInterval: 350
       concurrentAutomaticEngineUpgradePerNodeLimit: null
       createDefaultDiskLabeledNodes: null
       defaultDataLocality: null

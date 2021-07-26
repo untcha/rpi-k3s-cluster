@@ -80,7 +80,7 @@ defaultSettings:
   defaultReplicaCount: ~
   guaranteedEngineCPU: ~
   defaultLonghornStaticStorageClass: ~
-  backupstorePollInterval: ~
+  backupstorePollInterval: 350
   taintToleration: ~
   systemManagedComponentsNodeSelector: ~
   priorityClass: ~
