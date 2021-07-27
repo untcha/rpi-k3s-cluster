@@ -11,6 +11,7 @@ copyright: Copyright &copy; 2021 Alexander Untch
 # Page tree
 nav:
   - Home: index.md
+  - Flux: flux.md
   - Netboot (PXE + iSCSI): netboot.md
   - Encryption with GPG and Mozilla SOPS: gpg-sops.md
   - Misc Guides:
