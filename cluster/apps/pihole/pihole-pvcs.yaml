@@ -24,7 +24,7 @@ spec:
   storageClassName: longhorn
   resources:
     requests:
-      storage: 128Mi
+      storage: 512Mi
 
 #
 # Old NFS PVCs
