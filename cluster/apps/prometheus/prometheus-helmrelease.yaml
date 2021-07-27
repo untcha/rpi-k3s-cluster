@@ -11,7 +11,7 @@ spec:
       sourceRef:
         kind: HelmRepository
         name: prometheus-community
-      version: 14.4.0
+      version: 14.4.1
   install: {}
   interval: 1m0s
   targetNamespace: prometheus
@@ -35,7 +35,7 @@ spec:
       image:
         pullPolicy: IfNotPresent
         repository: quay.io/prometheus/alertmanager
-        tag: v0.22.2
+        tag: v0.21.0
       ingress:
         annotations: {}
         enabled: false
@@ -52,7 +52,7 @@ spec:
         - ReadWriteOnce
         annotations: {}
         enabled: true
-        existingClaim: ""
+        existingClaim: prometheus-alertmanager-pvc
         mountPath: /data
         size: 2Gi
         subPath: ""
@@ -135,7 +135,7 @@ spec:
         metrics_path: /metrics
         static_configs:
           - targets:
-            - traefik.untch.local
+            - traefik.${SECRET_DOMAIN_LOCAL}
       # - job_name: 'prometheus-blackbox-exporter'
       #   metrics_path: /probe
       #   params:
@@ -212,7 +212,7 @@ spec:
       image:
         pullPolicy: IfNotPresent
         repository: prom/pushgateway
-        tag: v1.4.1
+        tag: v1.3.1
       ingress:
         annotations: {}
         enabled: false
@@ -284,13 +284,13 @@ spec:
       global:
         evaluation_interval: 1m
         scrape_interval: 1m
-        scrape_timeout: 30s
+        scrape_timeout: 10s
       hostAliases: []
       hostNetwork: false
       image:
         pullPolicy: IfNotPresent
         repository: quay.io/prometheus/prometheus
-        tag: v2.28.1
+        tag: v2.26.0
       ingress:
         annotations: {}
         enabled: false

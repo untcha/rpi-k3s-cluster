@@ -10,6 +10,6 @@ resources:
   # - pihole
   - influxdata
   - grafana
-  # - prometheus
+  - prometheus
   # - blog
   - portainer
