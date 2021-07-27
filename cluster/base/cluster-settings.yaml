@@ -9,5 +9,6 @@ data:
   INFLUXDB_SVC_LB_IP:         "192.168.178.125"
   PROMETHEUS_SVC_LB_IP:       "192.168.178.126"
   TRAEFIK_SVC_LB_IP:          "192.168.178.240"
+  TZ:                         "Europe/Berlin"
   LONGHORN_DEFAULT_DATAPATH:  "/storage/"
   LONGHORN_BACKUPTARGET_PATH: "/Backup/LonghornBackupstore"
