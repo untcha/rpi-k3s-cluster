@@ -31,13 +31,13 @@ spec:
       autoDeletePodWhenVolumeDetachedUnexpectedly: null
       autoSalvage: null
       backingImageCleanupWaitInterval: null
-      backupTarget: null
+      backupTarget: nfs://${SECRET_NFS_SERVER_IP}:${LONGHORN_BACKUPTARGET_PATH}
       backupTargetCredentialSecret: null
       backupstorePollInterval: null
       concurrentAutomaticEngineUpgradePerNodeLimit: null
       createDefaultDiskLabeledNodes: null
       defaultDataLocality: null
-      defaultDataPath: null
+      defaultDataPath: ${LONGHORN_DEFAULT_DATAPATH}
       defaultLonghornStaticStorageClass: null
       defaultReplicaCount: null
       disableReplicaRebuild: null
@@ -52,7 +52,7 @@ spec:
       replicaReplenishmentWaitInterval: null
       replicaSoftAntiAffinity: null
       replicaZoneSoftAntiAffinity: null
-      storageMinimalAvailablePercentage: null
+      storageMinimalAvailablePercentage: 10
       storageOverProvisioningPercentage: null
       systemManagedComponentsNodeSelector: null
       systemManagedPodsImagePullPolicy: null
