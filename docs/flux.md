@@ -142,6 +142,12 @@ flux create source helm mojo2600 \
     --export > mojo2600-charts.yaml
 ```
 
+## Helm Chart Values
+
+```bash
+helm show values <repository/chart> <chart>-values.yaml
+```
+
 ## Helm Release
 
 ### Longhorn
