@@ -67,15 +67,15 @@ csi:
   snapshotterReplicaCount: ~
 
 defaultSettings:
-  backupTarget: ~ # nfs://${NFS_SERVER_IP}:/Backup/LonghornBackupstore
+  backupTarget: nfs://${SECRET_NFS_SERVER_IP}:${LONGHORN_BACKUPTARGET_PATH}
   backupTargetCredentialSecret: ~
   allowRecurringJobWhileVolumeDetached: ~
   createDefaultDiskLabeledNodes: ~
-  defaultDataPath: ~ # /storage/
+  defaultDataPath: ${LONGHORN_DEFAULT_DATAPATH}
   defaultDataLocality: ~
   replicaSoftAntiAffinity: ~
   storageOverProvisioningPercentage: ~
-  storageMinimalAvailablePercentage: ~
+  storageMinimalAvailablePercentage: 10
   upgradeChecker: ~
   defaultReplicaCount: ~
   guaranteedEngineCPU: ~
