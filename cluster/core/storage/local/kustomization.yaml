@@ -4,4 +4,4 @@ kind: Kustomization
 resources:
   - longhorn-helmrelease.yaml
   - longhorn-ingressroute.yaml
-  - longhonn-test-pvc.yaml
+  - longhorn-test-pvc.yaml
