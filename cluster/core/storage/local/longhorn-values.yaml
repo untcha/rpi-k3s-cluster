@@ -67,11 +67,11 @@ csi:
   snapshotterReplicaCount: ~
 
 defaultSettings:
-  backupTarget: nfs://${SECRET_NFS_BACKUPSTORE_IP}:/Backup/LonghornBackupstore
+  backupTarget: ~ # nfs://${NFS_SERVER_IP}:/Backup/LonghornBackupstore
   backupTargetCredentialSecret: ~
   allowRecurringJobWhileVolumeDetached: ~
   createDefaultDiskLabeledNodes: ~
-  defaultDataPath: ~
+  defaultDataPath: ~ # /storage/
   defaultDataLocality: ~
   replicaSoftAntiAffinity: ~
   storageOverProvisioningPercentage: ~
@@ -80,7 +80,7 @@ defaultSettings:
   defaultReplicaCount: ~
   guaranteedEngineCPU: ~
   defaultLonghornStaticStorageClass: ~
-  backupstorePollInterval: 350
+  backupstorePollInterval: ~
   taintToleration: ~
   systemManagedComponentsNodeSelector: ~
   priorityClass: ~
