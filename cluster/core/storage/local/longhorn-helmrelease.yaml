@@ -31,9 +31,9 @@ spec:
       autoDeletePodWhenVolumeDetachedUnexpectedly: null
       autoSalvage: null
       backingImageCleanupWaitInterval: null
-      backupTarget: nfs://${SECRET_NFS_BACKUPSTORE_IP}:/Backup/LonghornBackupstore
+      backupTarget: null
       backupTargetCredentialSecret: null
-      backupstorePollInterval: 350
+      backupstorePollInterval: null
       concurrentAutomaticEngineUpgradePerNodeLimit: null
       createDefaultDiskLabeledNodes: null
       defaultDataLocality: null
