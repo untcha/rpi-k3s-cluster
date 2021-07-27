@@ -228,7 +228,7 @@ spec:
         - ReadWriteOnce
         annotations: {}
         enabled: false
-        existingClaim: ""
+        existingClaim: prometheus-pushgateway-pvc
         mountPath: /data
         size: 2Gi
         subPath: ""
@@ -312,7 +312,7 @@ spec:
         - ReadWriteOnce
         annotations: {}
         enabled: true
-        existingClaim: ""
+        existingClaim: prometheus-server-pvc
         mountPath: /data
         size: 8Gi
         subPath: ""
