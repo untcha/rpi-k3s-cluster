@@ -25,3 +25,36 @@ spec:
   resources:
     requests:
       storage: 128Mi
+
+#
+# Old NFS PVCs
+#
+# ---
+# apiVersion: v1
+# kind: PersistentVolumeClaim
+# metadata:
+#   name: pihole-etc-pvc
+#   namespace: pihole
+#   annotations:
+#     nfs.io/storage-path: "/etc/pihole"
+# spec:
+#   accessModes:
+#     - ReadWriteOnce
+#   resources:
+#     requests:
+#       storage: 128Mi
+
+# ---
+# apiVersion: v1
+# kind: PersistentVolumeClaim
+# metadata:
+#   name: pihole-dnsmasq-pvc
+#   namespace: pihole
+#   annotations:
+#     nfs.io/storage-path: "/etc/dnsmasq.d"
+# spec:
+#   accessModes:
+#     - ReadWriteOnce
+#   resources:
+#     requests:
+#       storage: 128Mi
