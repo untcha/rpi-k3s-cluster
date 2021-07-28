@@ -36,8 +36,7 @@ spec:
     spec:
       containers:
       - name: pihole-exporter
-      image:
-        repository: ekofr/pihole-exporter:latest
+        image: ekofr/pihole-exporter:latest
         pullPolicy: IfNotPresent
         env:
         - name: INTERVAL
