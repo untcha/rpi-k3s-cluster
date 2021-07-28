@@ -44,7 +44,7 @@ spec:
               name: pihole-secrets
               key: PIHOLE_WEBPASSWORD
         - name: PIHOLE_DNS_
-          value: "8.8.8.8;8.8.4.4;208.67.222.222;208.67.220.220"
+          value: "8.8.8.8;8.8.4.4;208.67.222.222;208.67.220.220;4.2.2.1;4.2.2.2;8.26.56.26;8.20.247.20;84.200.69.80;84.200.70.40;9.9.9.9;149.112.112.112;9.9.9.10;149.112.112.10;9.9.9.11;149.112.112.11;1.1.1.1;1.0.0.1"
         - name: DNSSEC
           value: "false"
         - name: DNS_BOGUS_PRIV
@@ -94,9 +94,6 @@ spec:
           mountPath: '/etc/pihole'
         - name: pihole-dnsmasq-volume
           mountPath: '/etc/dnsmasq.d'
-        - name: adlists
-          mountPath: '/etc/pihole/adlists.list'
-          subPath: adlists.list
       volumes:
       - name: pihole-data-volume
         persistentVolumeClaim:
@@ -104,7 +101,6 @@ spec:
       - name: pihole-dnsmasq-volume
         persistentVolumeClaim:
           claimName: pihole-dnsmasq-pvc
-      - configMap:
-          defaultMode: 420
-          name: pihole-configmap-adlists
-        name: adlists
+
+
+
