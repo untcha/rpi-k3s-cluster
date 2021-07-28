@@ -41,7 +41,7 @@ spec:
         - name: TZ
           value: "Europe/Berlin"
         - name: WEBPASSWORD
-          value: "${SECRET_PIHOLE_WEBPASSWORD}"
+          value: ${SECRET_PIHOLE_WEBPASSWORD}
           #valueFrom:
           #  secretKeyRef:
           #    name: pihole-secrets
@@ -77,23 +77,14 @@ spec:
             path: /
             port: http
         volumeMounts:
-        - name: pihole-local-etc-volume
-          mountPath: /etc/pihole
-        - name: custom-dnsmasq
-          mountPath: /etc/dnsmasq.d/02-custom.conf
-          subPath: 02-custom.conf
-        # - name: pihole-local-dnsmasq-volume
-        #   mountPath: '/etc/dnsmasq.d'
+        - name: pihole-data-volume
+          mountPath: '/etc/pihole'
+        - name: pihole-dnsmasq-volume
+          mountPath: '/etc/dnsmasq.d'
       volumes:
-      - name: pihole-local-etc-volume
+      - name: pihole-data-volume
         persistentVolumeClaim:
           claimName: pihole-data-pvc
-          # claimName: pihole-etc-pvc
-      - configMap:
-          defaultMode: 420
-          name: pihole-custom-dnsmasq
-        name: custom-dnsmasq
-
-      # - name: pihole-local-dnsmasq-volume
-      #   persistentVolumeClaim:
-      #     claimName: pihole-dnsmasq-pvc
+      - name: pihole-dnsmasq-volume
+        persistentVolumeClaim:
+          claimName: pihole-dnsmasq-pvc
