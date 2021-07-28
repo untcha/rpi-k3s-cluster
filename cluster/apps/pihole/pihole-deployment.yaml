@@ -34,20 +34,19 @@ spec:
             add:
             - NET_ADMIN
         env:
-        # - name: ServerIP
-        #   value: "0.0.0.0"
-        # - name: IPv6
-        #   value: "false"
-        # - name: ServerIPv6
-        #   value: "::"
+        - name: ServerIP
+          value: ${PIHOLE_SVC_LB_IP}
+        - name: IPv6
+          value: "false"
+        - name: ServerIPv6
+          value: "::"
         - name: TZ
-          value: "Europe/Berlin"
+          value: ${TZ}
         - name: WEBPASSWORD
-          value: ${SECRET_PIHOLE_WEBPASSWORD}
-          #valueFrom:
-          #  secretKeyRef:
-          #    name: pihole-secrets
-          #    key: PIHOLE_WEBPASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: pihole-secrets
+              key: PIHOLE_WEBPASSWORD
         - name: DNS1
           value: "8.8.8.8"
         - name: DNS2
