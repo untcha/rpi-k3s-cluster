@@ -1,0 +1,163 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: pihole
+  namespace: flux-system
+spec:
+  chart:
+    spec:
+      chart: pihole
+      sourceRef:
+        kind: HelmRepository
+        name: mojo2600
+      version: 2.0.0
+  install: {}
+  interval: 1m0s
+  targetNamespace: pihole
+  values:
+    DNS1: 8.8.8.8
+    DNS2: 8.8.4.4
+    adlists: {}
+    admin:
+      existingSecret: ""
+      passwordKey: password
+    adminPassword: ${SECRET_PIHOLE_WEBPASSWORD}
+    affinity: {}
+    antiaff:
+      avoidRelease: pihole1
+      enabled: false
+      strict: true
+    blacklist: {}
+    customVolumes:
+      config: {}
+      enabled: false
+    dnsHostPort:
+      enabled: false
+      port: 53
+    dnsmasq:
+      additionalHostsEntries: []
+      customDnsEntries:
+      - address=/traefik.${SECRET_DOMAIN_LOCAL}/${TRAEFIK_SVC_LB_IP}
+      customSettings: null
+      staticDhcpEntries: []
+      upstreamServers:
+      - server=208.67.222.222
+      - server=208.67.220.220
+      - server=4.2.2.1
+      - server=4.2.2.2
+      - server=8.26.56.26
+      - server=8.20.247.20
+      - server=84.200.69.80
+      - server=84.200.70.40
+      - server=9.9.9.9
+      - server=149.112.112.112
+      - server=9.9.9.10
+      - server=149.112.112.10
+      - server=9.9.9.11
+      - server=149.112.112.11
+      - server=1.1.1.1
+      - server=1.0.0.1
+      - server=173.245.58.51
+      - server=173.245.59.41
+    doh:
+      enabled: false
+      envVars: {}
+      name: cloudflared
+      probes:
+        liveness:
+          enabled: true
+          failureThreshold: 10
+          initialDelaySeconds: 60
+          timeoutSeconds: 5
+      pullPolicy: IfNotPresent
+      repository: crazymax/cloudflared
+      tag: latest
+    extraEnvVars:
+      TZ: ${TZ}
+    extraEnvVarsSecret: {}
+    ftl: {}
+    hostNetwork: "false"
+    image:
+      pullPolicy: IfNotPresent
+      repository: pihole/pihole
+      tag: latest
+    ingress:
+      annotations: {}
+      enabled: false
+      hosts:
+      - chart-example.local
+      path: /
+      tls: []
+    maxSurge: 1
+    maxUnavailable: 1
+    monitoring:
+      podMonitor:
+        enabled: false
+      sidecar:
+        enabled: false
+        image:
+          pullPolicy: IfNotPresent
+          repository: ekofr/pihole-exporter
+          tag: 0.0.10
+        port: 9617
+        resources:
+          limits:
+            memory: 128Mi
+    nodeSelector: {}
+    persistentVolumeClaim:
+      accessModes:
+      - ReadWriteOnce
+      annotations: {}
+      enabled: true
+      existingClaim: pihole-data-pvc
+      size: 500Mi
+    privileged: "false"
+    probes:
+      liveness:
+        enabled: true
+        failureThreshold: 10
+        initialDelaySeconds: 60
+        timeoutSeconds: 5
+      readiness:
+        enabled: true
+        failureThreshold: 3
+        initialDelaySeconds: 60
+        timeoutSeconds: 5
+    regex: {}
+    replicaCount: 1
+    resources: {}
+    serviceDhcp:
+      annotations:
+        metallb.universe.tf/allow-shared-ip: pihole-svc
+      enabled: true
+      externalTrafficPolicy: Local
+      loadBalancerIP: ${PIHOLE_SVC_LB_IP}
+      type: LoadBalancer
+    serviceDns:
+      annotations:
+        metallb.universe.tf/allow-shared-ip: pihole-svc
+      externalTrafficPolicy: Local
+      loadBalancerIP: ${PIHOLE_SVC_LB_IP}
+      port: 53
+      type: LoadBalancer
+    serviceWeb:
+      annotations:
+        metallb.universe.tf/allow-shared-ip: pihole-svc
+      externalTrafficPolicy: Local
+      http:
+        enabled: true
+        port: 80
+      https:
+        enabled: true
+        port: 443
+      loadBalancerIP: ${PIHOLE_SVC_LB_IP}
+      type: LoadBalancer
+    strategyType: RollingUpdate
+    tolerations: []
+    topologySpreadConstraints: []
+    virtualHost: pi.hole
+    webHttp: "80"
+    webHttps: "443"
+    whitelist: {}
+

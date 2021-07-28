@@ -219,7 +219,7 @@ dnsmasq:
   - server=173.245.58.51
   - server=173.245.59.41
 
-  customDnsEntries: []
+  customDnsEntries:
   # Here you can add custom dns entries to override the
   # dns resolution with. All lines will be added to the
   # pihole dnsmasq configuration.
