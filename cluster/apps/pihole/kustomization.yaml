@@ -5,6 +5,7 @@ resources:
   - enc_pihole-secrets.yaml
   - enc_pihole-secret-basicauth.yaml
   - pihole-pvcs.yaml
+  - pihole-configmap-adlists.yaml
   - pihole-deployment.yaml
   - pihole-tcp-service.yaml
   - pihole-udp-service.yaml

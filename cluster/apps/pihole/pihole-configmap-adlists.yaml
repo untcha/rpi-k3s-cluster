@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: pihole-configmap-adlists
+  namespace: pihole
+  labels:
+    app: pihole
+data:
+  adlists.list: |
+    https://hosts.oisd.nl/
+    https://raw.githubusercontent.com/PolishFiltersTeam/KADhosts/master/KADhosts_without_controversies.txt
