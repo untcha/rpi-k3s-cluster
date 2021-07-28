@@ -3,6 +3,7 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: pihole-custom-dnsmasq
+  namespace: pihole
   labels:
     app: pihole
 data:
