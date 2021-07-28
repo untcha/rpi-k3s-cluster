@@ -2,6 +2,38 @@
 apiVersion: traefik.containo.us/v1alpha1
 kind: IngressRoute
 metadata:
+  name: pihole-local-ingressroute
+  namespace: pihole
+spec:
+  entryPoints:
+    - web
+  routes:
+    - match: Host(`pihole.${SECRET_DOMAIN_LOCAL}`) && PathPrefix(`/admin`)
+      kind: Rule
+      services:
+        - name: pihole-tcp
+          port: 80
+
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: pihole-metrics-local-ingressroute
+  namespace: pihole
+spec:
+  entryPoints:
+    - web
+  routes:
+    - match: Host(`pihole.${SECRET_DOMAIN_LOCAL}`) && PathPrefix(`/metrics`)
+      kind: Rule
+      services:
+        - name: pihole-exporter
+          port: 9617
+
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
   name: pihole-http-ingressroute
   namespace: pihole
 spec:
