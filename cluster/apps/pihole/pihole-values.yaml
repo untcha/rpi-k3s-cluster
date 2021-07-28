@@ -228,10 +228,11 @@ dnsmasq:
   # - address=/bar.foo/192.168.178.11
   - address=/traefik.${SECRET_DOMAIN_LOCAL}/${TRAEFIK_SVC_LB_IP}
 
-  additionalHostsEntries: []
+  additionalHostsEntries:
   # Dnsmasq reads the /etc/hosts file to resolve ips. You can add additional entries if you like
   # - 192.168.0.3     host4
   # - 192.168.0.4     host5
+  - ${TRAEFIK_SVC_LB_IP}    traefik.${SECRET_DOMAIN_LOCAL}
 
   staticDhcpEntries: []
   # Static DHCP config
