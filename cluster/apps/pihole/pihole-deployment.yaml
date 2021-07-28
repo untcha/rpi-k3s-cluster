@@ -95,7 +95,7 @@ spec:
         - name: pihole-dnsmasq-volume
           mountPath: '/etc/dnsmasq.d'
         - name: adlists
-          mountPath: 'etc/pihole/adlists.list'
+          mountPath: '/etc/pihole/adlists.list'
           subPath: adlists.list
       volumes:
       - name: pihole-data-volume

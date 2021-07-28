@@ -8,4 +8,3 @@ metadata:
 data:
   adlists.list: |
     https://hosts.oisd.nl/
-    https://raw.githubusercontent.com/PolishFiltersTeam/KADhosts/master/KADhosts_without_controversies.txt
