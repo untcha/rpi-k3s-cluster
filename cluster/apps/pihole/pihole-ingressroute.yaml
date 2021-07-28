@@ -24,7 +24,7 @@ spec:
   entryPoints:
     - web
   routes:
-    - match: Host(`pihole.${SECRET_DOMAIN_LOCAL}`) && PathPrefix(`/metrics`)
+    - match: Host(`pihole-metrics.${SECRET_DOMAIN_LOCAL}`) && PathPrefix(`/metrics`)
       kind: Rule
       services:
         - name: pihole-exporter
