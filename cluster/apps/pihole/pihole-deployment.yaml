@@ -56,6 +56,9 @@ spec:
         - name: http
           containerPort: 80
           protocol: TCP
+        - name: https # added
+          containerPort: 443
+          protocol: TCP
         - name: dns
           containerPort: 53
           protocol: TCP
@@ -75,13 +78,22 @@ spec:
             port: http
         volumeMounts:
         - name: pihole-local-etc-volume
-          mountPath: '/etc/pihole'
-        - name: pihole-local-dnsmasq-volume
-          mountPath: '/etc/dnsmasq.d'
+          mountPath: /etc/pihole
+        - name: custom-dnsmasq
+          mountPath: /etc/dnsmasq.d/02-custom.conf
+          subPath: 02-custom.conf
+        # - name: pihole-local-dnsmasq-volume
+        #   mountPath: '/etc/dnsmasq.d'
       volumes:
       - name: pihole-local-etc-volume
         persistentVolumeClaim:
-          claimName: pihole-etc-pvc
-      - name: pihole-local-dnsmasq-volume
-        persistentVolumeClaim:
-          claimName: pihole-dnsmasq-pvc
+          claimName: pihole-data-pvc
+          # claimName: pihole-etc-pvc
+      - configMap:
+          defaultMode: 420
+          name: pihole-custom-dnsmasq
+        name: custom-dnsmasq
+
+      # - name: pihole-local-dnsmasq-volume
+      #   persistentVolumeClaim:
+      #     claimName: pihole-dnsmasq-pvc
