@@ -38,10 +38,10 @@ spec:
       port: 53
     dnsmasq:
       additionalHostsEntries: {}
-      customDnsEntries: {}
+      customDnsEntries:
+      - address=/foo.bar/192.168.178.10
       customSettings:
-      - PIHOLE_DNS_3=208.67.222.222
-      - PIHOLE_DNS_4=208.67.220.220
+      - rebind-domain-ok=/plex.direct/
       staticDhcpEntries: {}
       upstreamServers: null
     doh:

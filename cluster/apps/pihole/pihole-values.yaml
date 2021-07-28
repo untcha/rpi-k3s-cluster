@@ -219,12 +219,12 @@ dnsmasq:
   # - server=173.245.58.51
   # - server=173.245.59.41
 
-  customDnsEntries: {}
+  customDnsEntries:
   # Here you can add custom dns entries to override the
   # dns resolution with. All lines will be added to the
   # pihole dnsmasq configuration.
   # The format should be like:
-  # - address=/foo.bar/192.168.178.10
+  - address=/foo.bar/192.168.178.10
   # - address=/bar.foo/192.168.178.11
 
   additionalHostsEntries: {}
@@ -240,9 +240,7 @@ dnsmasq:
   customSettings:
   # Other options
   # otherSettings:
-  # - rebind-domain-ok=/plex.direct/
-  - PIHOLE_DNS_3=208.67.222.222
-  - PIHOLE_DNS_4=208.67.220.220
+  - rebind-domain-ok=/plex.direct/
 
 adlists:
   # If you want to provide blocklists, add them here.
