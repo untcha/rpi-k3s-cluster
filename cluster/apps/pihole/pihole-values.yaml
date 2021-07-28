@@ -224,10 +224,10 @@ dnsmasq:
   # otherSettings:
   - rebind-domain-ok=/plex.direct/
 
-adlists: {}
+adlists:
   # If you want to provide blocklists, add them here.
   # - https://hosts-file.net/grm.txt
-  # - https://reddestdream.github.io/Projects/MinimalHosts/etc/MinimalHostsBlocker/minimalhosts
+  - https://reddestdream.github.io/Projects/MinimalHosts/etc/MinimalHostsBlocker/minimalhosts
 
 whitelist: {}
   # If you want to provide whitelisted domains, add them here.
