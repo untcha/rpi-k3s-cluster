@@ -200,24 +200,6 @@ dnsmasq:
   # The format should be like:
   # - server=/foo.bar/192.168.178.10
   # - server=/bar.foo/192.168.178.11
-  - server=208.67.222.222
-  - server=208.67.220.220
-  - server=4.2.2.1
-  - server=4.2.2.2
-  - server=8.26.56.26
-  - server=8.20.247.20
-  - server=84.200.69.80
-  - server=84.200.70.40
-  - server=9.9.9.9
-  - server=149.112.112.112
-  - server=9.9.9.10
-  - server=149.112.112.10
-  - server=9.9.9.11
-  - server=149.112.112.11
-  - server=1.1.1.1
-  - server=1.0.0.1
-  - server=173.245.58.51
-  - server=173.245.59.41
 
   customDnsEntries:
   # Here you can add custom dns entries to override the
@@ -226,13 +208,11 @@ dnsmasq:
   # The format should be like:
   # - address=/foo.bar/192.168.178.10
   # - address=/bar.foo/192.168.178.11
-  - address=/traefik.${SECRET_DOMAIN_LOCAL}/${TRAEFIK_SVC_LB_IP}
 
   additionalHostsEntries:
   # Dnsmasq reads the /etc/hosts file to resolve ips. You can add additional entries if you like
   # - 192.168.0.3     host4
   # - 192.168.0.4     host5
-  - ${TRAEFIK_SVC_LB_IP}    traefik.${SECRET_DOMAIN_LOCAL}
 
   staticDhcpEntries: []
   # Static DHCP config
