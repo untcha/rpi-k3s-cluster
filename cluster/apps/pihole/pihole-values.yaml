@@ -241,7 +241,6 @@ dnsmasq:
   # Other options
   # otherSettings:
   # - rebind-domain-ok=/plex.direct/
-  - WEBTHEME=default-dark
   - PIHOLE_DNS_3=208.67.222.222
   - PIHOLE_DNS_4=208.67.220.220
 

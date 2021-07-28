@@ -40,7 +40,6 @@ spec:
       additionalHostsEntries: {}
       customDnsEntries: {}
       customSettings:
-      - WEBTHEME=default-dark
       - PIHOLE_DNS_3=208.67.222.222
       - PIHOLE_DNS_4=208.67.220.220
       staticDhcpEntries: {}
