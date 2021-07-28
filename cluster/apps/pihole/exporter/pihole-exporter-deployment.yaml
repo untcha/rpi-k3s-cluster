@@ -36,7 +36,7 @@ spec:
     spec:
       containers:
       - name: pihole-exporter
-        image: ekofr/pihole-exporter:latest
+        image: ekofr/pihole-exporter:arm64
         env:
         - name: INTERVAL
           value: "10s"
