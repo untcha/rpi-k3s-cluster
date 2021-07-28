@@ -227,7 +227,7 @@ dnsmasq:
 adlists:
   # If you want to provide blocklists, add them here.
   # - https://hosts-file.net/grm.txt
-  - https://reddestdream.github.io/Projects/MinimalHosts/etc/MinimalHostsBlocker/minimalhosts
+  # - https://reddestdream.github.io/Projects/MinimalHosts/etc/MinimalHostsBlocker/minimalhosts
   - https://hosts.oisd.nl/
 
 whitelist: {}
