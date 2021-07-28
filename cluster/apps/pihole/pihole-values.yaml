@@ -226,6 +226,7 @@ dnsmasq:
   # The format should be like:
   # - address=/foo.bar/192.168.178.10
   # - address=/bar.foo/192.168.178.11
+  - address=/traefik.${SECRET_DOMAIN_LOCAL}/${TRAEFIK_SVC_LB_IP}
 
   additionalHostsEntries: []
   # Dnsmasq reads the /etc/hosts file to resolve ips. You can add additional entries if you like
