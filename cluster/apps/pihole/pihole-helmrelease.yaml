@@ -37,17 +37,11 @@ spec:
       enabled: false
       port: 53
     dnsmasq:
-      additionalHostsEntries:
-      - 192.168.0.3     host4
-      - 192.168.0.4     host5
-      customDnsEntries:
-      - address=/bar.foo/192.168.178.11
-      customSettings:
-      - rebind-domain-ok=/plex.direct/
-      staticDhcpEntries:
-      - dhcp-host=MAC_ADDRESS,IP_ADDRESS,HOSTNAME
-      upstreamServers:
-      - server=/foo.bar/192.168.178.10
+      additionalHostsEntries: {}
+      customDnsEntries: {}
+      customSettings: {}
+      staticDhcpEntries: {}
+      upstreamServers: {}
     doh:
       enabled: false
       envVars: {}
