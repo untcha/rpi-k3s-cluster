@@ -37,7 +37,6 @@ spec:
       containers:
       - name: pihole-exporter
         image: ekofr/pihole-exporter:latest
-        pullPolicy: IfNotPresent
         env:
         - name: INTERVAL
           value: "10s"
