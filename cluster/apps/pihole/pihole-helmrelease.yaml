@@ -36,7 +36,8 @@ spec:
       enabled: false
       port: 53
     dnsmasq:
-      additionalHostsEntries: []
+      additionalHostsEntries:
+      - ${TRAEFIK_SVC_LB_IP}    traefik.${SECRET_DOMAIN_LOCAL}
       customDnsEntries:
       - address=/traefik.${SECRET_DOMAIN_LOCAL}/${TRAEFIK_SVC_LB_IP}
       customSettings: null
