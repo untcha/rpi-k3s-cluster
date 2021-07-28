@@ -10,4 +10,4 @@ resources:
   - pihole-udp-service.yaml
   - pihole-ingressroute.yaml
   - pihole-letsencrypt-certificate.yaml
-  - exporter
+  #- exporter
