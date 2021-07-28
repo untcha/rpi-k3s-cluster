@@ -32,12 +32,12 @@ spec:
             add:
             - NET_ADMIN
         env:
-        - name: ServerIP
-          value: "0.0.0.0"
-        - name: IPv6
-          value: "false"
-        - name: ServerIPv6
-          value: "::"
+        # - name: ServerIP
+        #   value: "0.0.0.0"
+        # - name: IPv6
+        #   value: "false"
+        # - name: ServerIPv6
+        #   value: "::"
         - name: TZ
           value: "Europe/Berlin"
         - name: WEBPASSWORD
