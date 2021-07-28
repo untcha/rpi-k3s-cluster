@@ -4,8 +4,8 @@ kind: Kustomization
 resources:
   - enc_pihole-secret-basicauth.yaml
   - pihole-pvcs.yaml
-  # - pihole-deployment.yaml
-  # - pihole-tcp-service.yaml
-  # - pihole-udp-service.yaml
-  # - pihole-ingressroute.yaml
-  # - pihole-letsencrypt-certificate.yaml
+  - pihole-deployment.yaml
+  - pihole-tcp-service.yaml
+  - pihole-udp-service.yaml
+  - pihole-ingressroute.yaml
+  - pihole-letsencrypt-certificate.yaml
