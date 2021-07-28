@@ -20,6 +20,7 @@ spec:
     DNS2: 8.8.4.4
     adlists:
     - https://reddestdream.github.io/Projects/MinimalHosts/etc/MinimalHostsBlocker/minimalhosts
+    - https://hosts.oisd.nl/
     admin:
       existingSecret: ""
       passwordKey: password
