@@ -49,3 +49,10 @@ https://loft.sh/blog/kubernetes-readiness-probes-examples-common-pitfalls/
 https://docs.bitnami.com/tutorials/deploy-static-content-apache-kubernetes/
 
 https://medium.com/@taweesoft/chapter-1-how-to-easily-deploy-your-web-on-kubernetes-83209a8618be
+
+
+Gitea
+wiki.js
+bitwarden?
+gitlab?
+nextcloud
