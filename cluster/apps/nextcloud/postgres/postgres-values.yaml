@@ -126,7 +126,7 @@ userDatabase: {}
   # password:
 
 ## Optional custom configuration block that will be mounted as file in /etc/postgresql/postgresql.conf
-customConfig: |-
+# customConfig: |-
 
 ## Storage parameters
 storage:
