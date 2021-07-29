@@ -5,10 +5,10 @@ metadata:
   name: nginx-letsencrypt-staging-certificate
   namespace: nginx
 spec:
-  commonName: nginx.${SECRET_DIGITALOCEAN_DOMAIN_01}
+  commonName: nginx.${SECRET_DIGITALOCEAN_DOMAIN_02}
   secretName: nginx-letsencrypt-staging-certificate
   dnsNames:
-    - nginx.${SECRET_DIGITALOCEAN_DOMAIN_01}
+    - nginx.${SECRET_DIGITALOCEAN_DOMAIN_02}
   issuerRef:
     name: letsencrypt-dns01-staging-do
     kind: ClusterIssuer

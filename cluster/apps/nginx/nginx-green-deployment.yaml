@@ -1,8 +1,9 @@
+---
 kind: Service
 apiVersion: v1
 metadata:
   name: nginx-deploy-green
-  namespace: nginx
+  namespace: tools
 spec:
   ports:
   - name: http
@@ -15,7 +16,7 @@ metadata:
   labels:
     run: nginx
   name: nginx-deploy-green
-  namespace: nginx
+  namespace: tools
 spec:
   replicas: 1
   selector:

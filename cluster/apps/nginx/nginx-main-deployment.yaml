@@ -1,8 +1,9 @@
+---
 kind: Service
 apiVersion: v1
 metadata:
   name: nginx-deploy-main
-  namespace: nginx
+  namespace: tools
 spec:
   selector:
     run: nginx-main
@@ -17,7 +18,7 @@ metadata:
   labels:
     run: nginx
   name: nginx-deploy-main
-  namespace: nginx
+  namespace: tools
 spec:
   replicas: 1
   selector:
@@ -37,12 +38,12 @@ apiVersion: traefik.containo.us/v1alpha1
 kind: IngressRoute
 metadata:
   name: nginx-http-ingressroute
-  namespace: nginx
+  namespace: tools
 spec:
   entryPoints:
     - web
   routes:
-    - match: Host(`nginx.${SECRET_DIGITALOCEAN_DOMAIN_01}`)
+    - match: Host(`nginx.${SECRET_DIGITALOCEAN_DOMAIN_02}`)
       kind: Rule
       middlewares:
         - name: nginx-middleware-redirect-scheme
@@ -55,14 +56,14 @@ apiVersion: traefik.containo.us/v1alpha1
 kind: IngressRoute
 metadata:
   name: nginx-https-ingressroute
-  namespace: nginx
+  namespace: tools
   annotations:
     cert-manager.io/cluster-issuer: "letsencrypt-dns01-staging-do"
 spec:
   entryPoints:
     - websecure
   routes:
-    - match: Host(`nginx.${SECRET_DIGITALOCEAN_DOMAIN_01}`)
+    - match: Host(`nginx.${SECRET_DIGITALOCEAN_DOMAIN_02}`)
       kind: Rule
       middlewares:
         - nginx-middleware-headers
@@ -77,7 +78,7 @@ apiVersion: traefik.containo.us/v1alpha1
 kind: Middleware
 metadata:
   name: nginx-middleware-redirect-scheme
-  namespace: nginx
+  namespace: tools
 spec:
   redirectScheme:
     scheme: https
@@ -89,8 +90,7 @@ apiVersion: traefik.containo.us/v1alpha1
 kind: Middleware
 metadata:
   name: nginx-middleware-headers
-  namespace: nginx
-
+  namespace: tools
 spec:
   headers:
     browserXssFilter: true
@@ -104,16 +104,16 @@ spec:
     #customRequestHeaders:
       #X-Frame-Options: "SAMEORIGIN"
     #customFrameOptionsValue: "SAMEORIGIN"
-    #contentSecurityPolicy: "frame-ancestors 'self' nginx.${SECRET_DIGITALOCEAN_DOMAIN_01}"
-    #contentSecurityPolicy: "default-src 'self'; script-src https://nginx.${SECRET_DIGITALOCEAN_DOMAIN_01}"
+    #contentSecurityPolicy: "frame-ancestors 'self' nginx.${SECRET_DIGITALOCEAN_DOMAIN_02}"
+    #contentSecurityPolicy: "default-src 'self'; script-src https://nginx.${SECRET_DIGITALOCEAN_DOMAIN_02}"
     contentSecurityPolicy: |
       default-src 'none';form-action 'none';frame-ancestors 'none';base-uri 'none'
     accessControlAllowMethods:
       - "GET"
       - "POST"
     accessControlAllowOriginList:
-      #- "https://*.${SECRET_DIGITALOCEAN_DOMAIN_01}"
-      - "https://nginx.${SECRET_DIGITALOCEAN_DOMAIN_01}"
+      #- "https://*.${SECRET_DIGITALOCEAN_DOMAIN_02}"
+      - "https://nginx.${SECRET_DIGITALOCEAN_DOMAIN_02}"
     accessControlMaxAge: 100
     addVaryHeader: true
     referrerPolicy: "same-origin"

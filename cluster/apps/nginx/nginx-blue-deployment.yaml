@@ -1,22 +1,22 @@
+---
 kind: Service
 apiVersion: v1
 metadata:
   name: nginx-deploy-blue
-  namespace: nginx
+  namespace: tools
 spec:
   ports:
   - name: http
     port: 80
 
 ---
-
 apiVersion: apps/v1
 kind: Deployment
 metadata:
   labels:
     run: nginx
   name: nginx-deploy-blue
-  namespace: nginx
+  namespace: tools
 spec:
   replicas: 1
   selector:
