@@ -99,8 +99,8 @@ readinessProbe:
 
 ## Additional environment variables
 env:
-# - name: PGTZ
-#   value: ${TZ}
+- name: PGTZ
+  value: ${TZ}
 - name: TZ
   value: ${TZ}
 

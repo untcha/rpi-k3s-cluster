@@ -22,6 +22,8 @@ spec:
     customLivenessProbe: {}
     customReadinessProbe: {}
     env:
+    - name: PGTZ
+      value: ${TZ}
     - name: TZ
       value: ${TZ}
     fullnameOverride: ""
