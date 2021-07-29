@@ -266,16 +266,36 @@ flux create helmrelease librespeed \
   --export > librespeed-helmrelease.yaml
 ```
 
-### pihole
+### Nextcloud, postgres, redis 
 
 ```bash
-flux create helmrelease pihole \
-  --source=HelmRepository/mojo2600 \
-  --chart=pihole \
-  --chart-version="2.0.0" \
-  --target-namespace=pihole \
-  --values=pihole-values.yaml \
-  --export > pihole-helmrelease.yaml
+flux create helmrelease nextcloud \
+  --source=HelmRepository/groundhog2k \
+  --chart=nextcloud \
+  --chart-version="0.6.2" \
+  --target-namespace=nextcloud \
+  --values=nextcloud-values.yaml \
+  --export > nextcloud-helmrelease.yaml
+```
+
+```bash
+flux create helmrelease postgres \
+  --source=HelmRepository/groundhog2k \
+  --chart=postgres \
+  --chart-version="0.2.11" \
+  --target-namespace=nextcloud \
+  --values=postgres-values.yaml \
+  --export > postgres-helmrelease.yaml
+```
+
+```bash
+flux create helmrelease redis \
+  --source=HelmRepository/groundhog2k \
+  --chart=redis \
+  --chart-version="0.4.7" \
+  --target-namespace=nextcloud \
+  --values=redis-values.yaml \
+  --export > redis-helmrelease.yaml
 ```
 
 ## Useful commands
