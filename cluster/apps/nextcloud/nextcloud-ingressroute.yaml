@@ -1,0 +1,15 @@
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: pihole-local-ingressroute
+  namespace: nextcloud
+spec:
+  entryPoints:
+    - web
+  routes:
+    - match: Host(`cloud.${SECRET_DOMAIN_LOCAL}`)
+      kind: Rule
+      services:
+        - name: nextcloud-nextcloud
+          port: 80
