@@ -68,7 +68,7 @@ spec:
       name: ""
     settings:
       arguments: []
-      rootPassword: ${SECRET_NEXTCLOUD_POSTGRES_SUPERUSER_PASSWORD}
+      rootPassword: ${SECRET_NEXTCLOUD_MARIADB_ROOT_PASSWORD}
     storage:
       accessModes:
       - ReadWriteOnce

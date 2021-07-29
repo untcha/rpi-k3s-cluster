@@ -109,7 +109,7 @@ settings:
   #  - --collation-server=utf8mb4_unicode_ci
 
   ## The root user password (default: a 10 char. alpahnumerical random password will be generated)
-  rootPassword: ${SECRET_NEXTCLOUD_POSTGRES_SUPERUSER_PASSWORD}
+  rootPassword: ${SECRET_NEXTCLOUD_MARIADB_ROOT_PASSWORD}
 
 ## Optional user database which is created during first startup with user and password
 userDatabase: {}
