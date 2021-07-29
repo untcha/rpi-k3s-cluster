@@ -38,14 +38,14 @@ spec:
     externalCache:
       enabled: true
       host: nextcloud-redis
-      password: null
+      password: ${SECRET_NEXTCLOUD_REDIS_PASSWORD}
       port: 6379
     externalDatabase:
-      host: nexcloud-mariadb
-      name: nextcloud
-      password: nexcloud
-      type: mariadb
-      user: nextcloud
+      host: nexcloud-postgres
+      name: ${SECRET_NEXTCLOUD_DB_NAME}
+      password: ${SECRET_NEXTCLOUD_DB_PASSWORD}
+      type: postgres
+      user: ${SECRET_NEXTCLOUD_DB_USER}
     fullnameOverride: ""
     image:
       pullPolicy: IfNotPresent
