@@ -289,6 +289,16 @@ flux create helmrelease postgres \
 ```
 
 ```bash
+flux create helmrelease mariadb \
+  --source=HelmRepository/groundhog2k \
+  --chart=mariadb \
+  --chart-version="0.2.13" \
+  --target-namespace=nextcloud \
+  --values=mariadb-values.yaml \
+  --export > mariadb-helmrelease.yaml
+```
+
+```bash
 flux create helmrelease redis \
   --source=HelmRepository/groundhog2k \
   --chart=redis \
