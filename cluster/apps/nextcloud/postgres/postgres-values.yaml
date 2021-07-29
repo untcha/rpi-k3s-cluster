@@ -106,7 +106,7 @@ args: []
 ## Database configuration
 settings:
   ## The superuser password (default: a 10 char. alpahnumerical random password will be generated)
-  superuserPassword:
+  superuserPassword: ${SECRET_NEXTCLOUD_POSTGRES_SUPERUSER_PASSWORD}
 
   ## Postgres database authentication method (default: md5)
   authMethod: "md5"
@@ -115,15 +115,15 @@ settings:
   initDbArgs:
 
 ## Optional user database which is created during first startup with user and password
-userDatabase: {}
+userDatabase:
   ## Name of the user database
-  # name:
+  name: ${SECRET_NEXTCLOUD_DB_NAME}
 
   ## Database user with full access rights
-  # user:
+  user: ${SECRET_NEXTCLOUD_DB_USER}
 
   ## Password of the database user (default: a 10 char. alpahnumerical random password will be generated)
-  # password:
+  password: ${SECRET_NEXTCLOUD_DB_PASSWORD}
 
 ## Optional custom configuration block that will be mounted as file in /etc/postgresql/postgresql.conf
 customConfig: |-
@@ -131,7 +131,7 @@ customConfig: |-
 ## Storage parameters
 storage:
   ##  Set persistentVolumenClaimName to reference an existing PVC
-  persistentVolumeClaimName:
+  persistentVolumeClaimName: postgres-pvc
 
   ## Alternative set requestedSize to define a size for a dynmaically created PVC
   requestedSize:

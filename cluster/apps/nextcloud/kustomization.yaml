@@ -5,7 +5,7 @@ resources:
   - nextcloud-namespace.yaml
   - redis
   - mariadb
-  # - postgres
+  - postgres
   - nextcloud-pvcs.yaml
   - nextcloud-helmrelease.yaml
   - nextcloud-ingressroute.yaml

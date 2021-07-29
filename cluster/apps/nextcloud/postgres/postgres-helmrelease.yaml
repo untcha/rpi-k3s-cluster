@@ -11,7 +11,7 @@ spec:
       sourceRef:
         kind: HelmRepository
         name: groundhog2k
-      version: 0.2.11
+      version: 0.2.12
   install: {}
   interval: 1m0s
   targetNamespace: nextcloud
@@ -70,14 +70,17 @@ spec:
     settings:
       authMethod: md5
       initDbArgs: null
-      superuserPassword: null
+      superuserPassword: ${SECRET_NEXTCLOUD_POSTGRES_SUPERUSER_PASSWORD}
     storage:
       accessModes:
       - ReadWriteOnce
       className: null
-      persistentVolumeClaimName: null
+      persistentVolumeClaimName: postgres-pvc
       requestedSize: null
     tolerations: []
     updateStrategyType: RollingUpdate
-    userDatabase: {}
+    userDatabase:
+      name: ${SECRET_NEXTCLOUD_DB_NAME}
+      password: ${SECRET_NEXTCLOUD_DB_PASSWORD}
+      user: ${SECRET_NEXTCLOUD_DB_USER}
 
