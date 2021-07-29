@@ -74,7 +74,7 @@ affinity: {}
 revisionHistoryLimit:
 
 ## Custom liveness probe (overwrites default liveness probe)
-customLivenessProbe: {}
+# customLivenessProbe: {}
 
 ## Default health check
 livenessProbe:
@@ -86,7 +86,7 @@ livenessProbe:
   periodSeconds: 10
 
 ## Custom readiness probe (overwrites default readiness probe)
-customReadinessProbe: {}
+# customReadinessProbe: {}
 
 ## Default readiness probe
 readinessProbe:
