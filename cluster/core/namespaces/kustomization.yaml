@@ -7,7 +7,6 @@ resources:
   - longhorn-system.yaml
   - cron-jobs.yaml
   - cert-manager.yaml
-  - duckdns.yaml
   - traefik.yaml
   - pihole.yaml
   - influxdata.yaml
