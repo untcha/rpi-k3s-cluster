@@ -119,7 +119,9 @@ readinessProbe:
   periodSeconds: 10
 
 ## Additional environment variables (Redis server and Sentinel)
-env: []
+env:
+- name: TZ
+  value: ${TZ}
 
 ## Arguments for the container entrypoint process (Redis server)
 args: []
