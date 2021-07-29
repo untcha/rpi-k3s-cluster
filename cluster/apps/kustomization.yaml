@@ -5,10 +5,10 @@ resources:
   - kubernetes-dashboard
   - docs
   - tools
-  ## - nginx
   - pihole
   - influxdata
   - grafana
   - prometheus
   # - blog
   - portainer
+  - nextcloud
