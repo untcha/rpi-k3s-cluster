@@ -6,5 +6,5 @@ resources:
   - redis
   - mariadb
   # - postgres
-  # - nextcloud-pvc.yaml
-  # - nextcloud-helmrelease.yaml
+  - nextcloud-pvcs.yaml
+  - nextcloud-helmrelease.yaml

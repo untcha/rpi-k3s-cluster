@@ -1,0 +1,177 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: nextcloud
+  namespace: flux-system
+spec:
+  chart:
+    spec:
+      chart: nextcloud
+      sourceRef:
+        kind: HelmRepository
+        name: groundhog2k
+      version: 0.6.2
+  install: {}
+  interval: 1m0s
+  targetNamespace: nextcloud
+  values:
+    affinity: {}
+    apacheDefaultSiteConfig: ""
+    apachePortsConfig: ""
+    args: []
+    containerPort: 8000
+    cronJobs: {}
+    customLivenessProbe: {}
+    customPhpConfig: ""
+    customStartupProbe: {}
+    defaultCronJobs:
+    - affinity: {}
+      command: php -f /var/www/html/cron.php
+      name: cronphp
+      nodeSelector: {}
+      resources: {}
+      schedule: '*/5 * * * *'
+      tolerations: []
+    enablePostUpgradeHook: false
+    env: []
+    externalCache:
+      enabled: true
+      host: nextcloud-redis
+      password: null
+      port: 6379
+    externalDatabase:
+      host: nexcloud-mariadb
+      name: nextcloud
+      password: nexcloud
+      type: mariadb
+      user: nextcloud
+    fullnameOverride: ""
+    image:
+      pullPolicy: IfNotPresent
+      repository: nextcloud
+      tag: ""
+    imagePullSecrets: []
+    ingress:
+      annotations: {}
+      enabled: false
+      hosts:
+      - host: null
+      maxBodySize: 64m
+      tls: []
+    initImage:
+      pullPolicy: IfNotPresent
+      repository: busybox
+      tag: latest
+    livenessProbe:
+      enabled: true
+      failureThreshold: 5
+      initialDelaySeconds: 120
+      periodSeconds: 10
+      successThreshold: 1
+      timeoutSeconds: 5
+    mariadb:
+      enabled: false
+      settings:
+        arguments:
+        - --character-set-server=utf8mb4
+        - --collation-server=utf8mb4_unicode_ci
+        rootPassword: null
+      storage:
+        className: null
+        persistentVolumeClaimName: null
+        requestedSize: null
+      userDatabase: {}
+    memoryLimitConfig: ""
+    nameOverride: ""
+    nodeSelector: {}
+    podAnnotations: {}
+    podDisruptionBudget: {}
+    podSecurityContext:
+      fsGroup: 33
+      runAsNonRoot: true
+      runAsUser: 33
+    postUpgradeHookDelay: 10
+    postUpgradeSteps:
+    - php -f /var/www/html/occ db:add-missing-indices -n
+    - php -f /var/www/html/occ db:add-missing-columns -n
+    - php -f /var/www/html/occ db:add-missing-primary-keys -n
+    - php -f /var/www/html/occ db:convert-filecache-bigint -n
+    postgres:
+      enabled: false
+      settings:
+        superuserPassword: null
+      storage:
+        className: null
+        persistentVolumeClaimName: null
+        requestedSize: null
+      userDatabase: {}
+    redis:
+      enabled: false
+      storage:
+        className: null
+        persistentVolumeClaimName: null
+        requestedSize: null
+    replicas: 1
+    resources: {}
+    revisionHistoryLimit: null
+    securityContext:
+      allowPrivilegeEscalation: false
+      privileged: false
+      readOnlyRootFilesystem: true
+    service:
+      clusterIP: null
+      loadBalancerIP: null
+      nodePort: null
+      port: 80
+      type: ClusterIP
+    serviceAccount:
+      annotations: {}
+      create: false
+      name: ""
+    settings:
+      admin:
+        name: ${SECRET_NEXTCLOUD_ADMIN_USER}
+        password: ${SECRET_NEXTCLOUD_ADMIN_PASSWORD}
+      disableRewriteIP: false
+      maxFileUploadSize: 64M
+      memoryLimit: 512M
+      smtp:
+        authType: LOGIN
+        domain: null
+        enabled: false
+        from: null
+        host: null
+        name: null
+        password: null
+        port: 465
+        secure: true
+      trustedDomains: ""
+      trustedProxies: 10.0.0.0/8
+      update: false
+    startupProbe:
+      enabled: true
+      failureThreshold: 5
+      initialDelaySeconds: 120
+      periodSeconds: 30
+      successThreshold: 1
+      timeoutSeconds: 5
+    storage:
+      nextcloud:
+        accessModes:
+        - ReadWriteOnce
+        className: null
+        keepPvc: false
+        persistentVolumeClaimName: nextcloud-data-pvc
+        requestedSize: null
+      nextcloudData:
+        accessModes:
+        - ReadWriteOnce
+        className: null
+        keepPvc: false
+        persistentVolumeClaimName: nextcloud-user-data-pvc
+        requestedSize: null
+    strategy:
+      type: RollingUpdate
+    tolerations: []
+

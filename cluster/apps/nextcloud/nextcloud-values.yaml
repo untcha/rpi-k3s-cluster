@@ -1,0 +1,403 @@
+## Default values for Nextcloud deployment
+
+## Netxcloud docker image
+image:
+  repository: nextcloud
+  pullPolicy: IfNotPresent
+  # Overrides the image tag whose default is the chart appVersion.
+  tag: ""
+
+# Default Init container image
+initImage:
+  repository: busybox
+  pullPolicy: IfNotPresent
+  tag: "latest"
+
+## Pull secrets and name override options
+imagePullSecrets: []
+nameOverride: ""
+fullnameOverride: ""
+
+## Pod deployment strategy
+strategy:
+  type: RollingUpdate
+
+## Internal default cron jobs (cron.php)
+defaultCronJobs:
+  - name: cronphp
+    schedule: "*/5 * * * *"
+    command: "php -f /var/www/html/cron.php"
+    nodeSelector: {}
+    tolerations: []
+    affinity: {}
+    resources: {}
+
+## Additional cron jobs
+cronJobs: {}
+#  - name: imagepregen
+#    schedule: "*/30 * * * *"
+#    command: "php -f /var/www/html/occ preview:pre-generate"
+#    nodeSelector: {}
+#    tolerations: []
+#    affinity: {}
+#    resources: {}
+
+## Number of replicas
+replicas: 1
+
+## Optional service account
+serviceAccount:
+  # Specifies whether a service account should be created
+  create: false
+  # Annotations to add to the service account
+  annotations: {}
+  # The name of the service account to use.
+  # If not set and create is true, a name is generated using the fullname template
+  name: ""
+
+## Additional node selector
+nodeSelector: {}
+
+## Additional pod annotations
+podAnnotations: {}
+
+## Pod security options (default: www-data as fsGroup and user running as non-root)
+podSecurityContext:
+  fsGroup: 33
+  runAsUser: 33
+  runAsNonRoot: true
+
+## Default security options to run Nextcloud as read only container without privilege escalation
+securityContext:
+  readOnlyRootFilesystem: true
+  allowPrivilegeEscalation: false
+  privileged: false
+
+## Default nextcloud service port (default web service port)
+service:
+  type: ClusterIP
+  port: 80
+  ## The node port (only relevant for type LoadBalancer or NodePort)
+  nodePort:
+  ## The cluster ip address (only relevant for type LoadBalancer or NodePort)
+  clusterIP:
+  ## The loadbalancer ip address (only relevant for type LoadBalancer)
+  loadBalancerIP:
+
+## Ingress configuration
+ingress:
+  ## Enable ingress endpoint
+  enabled: false
+
+  ## Maximal body size (default: 64m - increase if uploads to nextcloud failing)
+  maxBodySize: 64m
+
+  ## Additional ingress annotations
+  annotations: {}
+#   kubernetes.io/ingress.class: nginx
+#   kubernetes.io/tls-acme: "true"
+
+  ## Hosts
+  hosts:
+    - host:
+
+  ## TLS settings for hosts
+  tls: []
+  # - secretName: chart-example-tls
+  #     hosts:
+  #       - chart-example.local
+
+## Resource limits and requests
+resources: {}
+# limits:
+#   cpu: 100m
+#   memory: 128Mi
+# requests:
+#   cpu: 100m
+#   memory: 128Mi
+
+## Custom liveness probe (overwrites default liveness probe)
+customLivenessProbe: {}
+
+## Default liveness probe
+livenessProbe:
+  enabled: true
+  initialDelaySeconds: 120
+  timeoutSeconds: 5
+  failureThreshold: 5
+  successThreshold: 1
+  periodSeconds: 10
+
+## Custom startup probe (overwrites default startup probe)
+customStartupProbe: {}
+
+## Default startup probe
+startupProbe:
+  enabled: true
+  initialDelaySeconds: 120
+  timeoutSeconds: 5
+  failureThreshold: 5
+  successThreshold: 1
+  periodSeconds: 30
+
+tolerations: []
+
+affinity: {}
+
+## Maximum number of revisions maintained in revision history
+revisionHistoryLimit:
+
+## Pod disruption budget
+podDisruptionBudget: {}
+  ## Minimum number of pods that must be available after eviction
+  # minAvailable:
+  ## Maximum number of pods that can be unavailable after eviction
+  # maxUnavailable:
+
+## Internal container port (default: 8000)
+containerPort: 8000
+
+## Additional environment variables
+env: []
+
+## Arguments for the container entrypoint process
+args: []
+
+## Enable post upgrade hook
+enablePostUpgradeHook: false
+## Delay before database upgrade steps are initiated (default: 10 seconds)
+postUpgradeHookDelay: 10
+## Post upgrade steps
+postUpgradeSteps:
+  - php -f /var/www/html/occ db:add-missing-indices -n
+  - php -f /var/www/html/occ db:add-missing-columns -n
+  - php -f /var/www/html/occ db:add-missing-primary-keys -n
+  - php -f /var/www/html/occ db:convert-filecache-bigint -n
+
+## External database settings (is used when mariadb.enabled is false and postgres.enabled is false)
+externalDatabase:
+  ## Type of database ("sqlite", "mysql" or "mariadb", "postgres" are supported - default: sqlite)
+  type: mariadb
+
+  ## Name of the database (default: nextcloud)
+  name: nextcloud
+
+  ## Database user (only for postgres or mysql)
+  user: nextcloud
+
+  ## Database password (only for postgres or mysql)
+  password: nexcloud
+
+  ## Database host (only for postgres or mysql)
+  host: nexcloud-mariadb
+
+## External redis cache settings
+externalCache:
+  ## Enable usage of redis as session storage and cache (Default: disabled)
+  enabled: true
+
+  ## Redis host
+  host: nextcloud-redis
+
+  ## Redis port (default: 6379)
+  port: 6379
+
+  ## Redis password
+  password:
+
+## Nextcloud specific configuration
+settings:
+  ## Enable update processing (Only necessary if custom command is used)
+  update: false
+
+  ## Maximum file upload size (default: 64M)
+  maxFileUploadSize: 64M
+  ## PHP memory limit (default: 512M)
+  memoryLimit: 512M
+
+  ## Nextcloud administrative user
+  admin:
+    ## Administrative user name
+    name: ${SECRET_NEXTCLOUD_ADMIN_USER}
+
+    ## Password for administrative user (default: a 10 char. alpahnumerical random password will be generated)
+    password: ${SECRET_NEXTCLOUD_ADMIN_PASSWORD}
+
+  ## Trusted domains as space separated list (should be identical to ingress hosts - default: "")
+  trustedDomains: ""
+
+  ## Trusted proxies in your Kubernetes cluster as space separated list (Default: 10.0.0.0/8)
+  trustedProxies: "10.0.0.0/8"
+
+  ## Disable rewriting the IP address (Default: false)
+  disableRewriteIP: false
+
+  ## Overwrite web root URI (for creating nexcloud in a sub-url f.i.: /nextcloud)
+  # overwriteWebRoot: /nextcloud
+
+  ## Overwrite options for host (hostname and port), protocol (http or https) and CondAddr (Regex dependent on remote address)
+  # overwriteHost:
+  # overwriteProtocol:
+  # overwriteCondAddr:
+
+  ## SMTP configuration
+  smtp:
+    ## Enable SMTP (default: false)
+    enabled: false
+
+    ## SMTP host
+    host:
+
+    ## SMTP port (default: 465)
+    port: 465
+
+    ## Secure SMTP secure connection (default: true)
+    secure: true
+
+    ## Auth type (default: LOGIN)
+    authType: LOGIN
+
+    ## SMTP user name
+    name:
+
+    ## SMTP password
+    password:
+
+    ## SMTP from address
+    from:
+
+    ## SMTP mail domain
+    domain:
+
+## Additional PHP custom.ini
+customPhpConfig: |
+
+## Additional PHP memory-limit.ini
+memoryLimitConfig: |
+
+## Overwrite default apache ports.conf
+apachePortsConfig: |
+
+## Overwrite default apache 000-default.conf
+apacheDefaultSiteConfig: |
+
+## Storage parameters
+storage:
+  ## Nextcloud storage (all Nextcloud internal files, plugins, extensions etc.)
+  nextcloud:
+    ## Set persistentVolumenClaimName to reference an existing PVC
+    persistentVolumeClaimName: nextcloud-data-pvc
+
+    ## Alternative set requestedSize to define a size for a dynmaically created PVC
+    requestedSize:
+
+    ## the storage class name
+    className:
+
+    ## Default access mode (ReadWriteOnce)
+    accessModes:
+      - ReadWriteOnce
+
+    ## Keep a created Persistent volume claim when uninstalling the helm chart
+    keepPvc: false
+
+  ## Nextcloud user data storage
+  nextcloudData:
+    ## Set persistentVolumenClaimName to reference an existing PVC
+    persistentVolumeClaimName: nextcloud-user-data-pvc
+
+    ## Alternative set requestedSize to define a size for a dynmaically created PVC
+    requestedSize:
+
+    ## the storage class name
+    className:
+
+    ## Default access mode (ReadWriteOnce)
+    accessModes:
+      - ReadWriteOnce
+
+    ## Keep a created Persistent volume claim when uninstalling the helm chart
+    keepPvc: false
+
+## MariaDB configuration
+mariadb:
+  ## Enable MariaDB helm chart for deployment (default: false)
+  enabled: false
+
+  ## Database configuration
+  settings:
+    ## Database startup arguments (enable UTF8MB4 and Unicode support)
+    arguments:
+      - --character-set-server=utf8mb4
+      - --collation-server=utf8mb4_unicode_ci
+
+    ## The root user password (default: a 10 char. alpahnumerical random password will be generated)
+    rootPassword:
+
+  ## Optional user database which is created during first startup with user and password
+  userDatabase: {}
+    ## Name of the user database
+    # name:
+    ## Database user with full access rights
+    # user:
+    ## Password of the database user (default: a 10 char. alpahnumerical random password will be generated)
+    # password:
+
+  # Storage parameters
+  storage:
+    ## Set persistentVolumenClaimName to reference an existing PVC
+    persistentVolumeClaimName:
+
+    ## Alternative set requestedSize to define a size for a dynmaically created PVC
+    requestedSize:
+
+    ## the storage class name
+    className:
+
+## PostgreSQL configuration
+postgres:
+  ## Enable PostgreSQL helm chart for deployment (default: false)
+  enabled: false
+
+  ## Database configuration
+  settings:
+
+    ## The superuser password (default: a 10 char. alpahnumerical random password will be generated)
+    superuserPassword:
+
+  ## User database which is created during first startup with user and password
+  userDatabase: {}
+    ## Database name
+    # name:
+    ## Database user
+    # user:
+    ## Database password (default: 10 alphanum. random characters)
+    # password:
+
+  # Storage parameters
+  storage:
+    ## Set persistentVolumenClaimName to reference an existing PVC
+    persistentVolumeClaimName:
+
+    ## Alternative set requestedSize to define a size for a dynmaically created PVC
+    requestedSize:
+
+    ## the storage class name
+    className:
+
+## Redis configuration
+redis:
+  ## Enable Redis helm chart for deployment (default: false)
+  enabled: false
+
+  # Storage parameters
+  storage:
+    ## Set persistentVolumenClaimName to reference an existing PVC
+    persistentVolumeClaimName:
+
+    ## Alternative set requestedSize to define a size for a dynmaically created PVC
+    requestedSize:
+
+    ## the storage class name
+    className:
+
