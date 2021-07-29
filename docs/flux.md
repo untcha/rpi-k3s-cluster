@@ -282,7 +282,7 @@ flux create helmrelease nextcloud \
 flux create helmrelease postgres \
   --source=HelmRepository/groundhog2k \
   --chart=postgres \
-  --chart-version="0.2.11" \
+  --chart-version="0.2.12" \
   --target-namespace=nextcloud \
   --values=postgres-values.yaml \
   --export > postgres-helmrelease.yaml
