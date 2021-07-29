@@ -18,6 +18,8 @@ spec:
   values:
     affinity: {}
     args: []
+    customLivenessProbe: {}
+    customReadinessProbe: {}
     env: []
     fullnameOverride: ""
     image:
@@ -76,5 +78,4 @@ spec:
       requestedSize: null
     tolerations: []
     updateStrategyType: RollingUpdate
-    userDatabase: {}
 
