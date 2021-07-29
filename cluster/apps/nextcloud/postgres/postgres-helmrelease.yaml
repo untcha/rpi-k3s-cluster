@@ -21,7 +21,8 @@ spec:
     customConfig: ""
     customLivenessProbe: {}
     customReadinessProbe: {}
-    env: []
+    env:
+    - PGTZ: ${TZ}
     fullnameOverride: ""
     image:
       pullPolicy: IfNotPresent
