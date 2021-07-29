@@ -18,6 +18,7 @@ spec:
   values:
     affinity: {}
     args: []
+    customConfig: ""
     customLivenessProbe: {}
     customReadinessProbe: {}
     env: []
@@ -69,13 +70,14 @@ spec:
     settings:
       authMethod: md5
       initDbArgs: null
-      superuserPassword: ${SECRET_NEXTCLOUD_POSTGRES_SUPERUSER_PASSWORD}
+      superuserPassword: null
     storage:
       accessModes:
       - ReadWriteOnce
       className: null
-      persistentVolumeClaimName: postgres-pvc
+      persistentVolumeClaimName: null
       requestedSize: null
     tolerations: []
     updateStrategyType: RollingUpdate
+    userDatabase: {}
 
