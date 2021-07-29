@@ -99,7 +99,8 @@ readinessProbe:
 
 ## Additional environment variables
 env:
-  - PGTZ: ${TZ}
+- name: PGTZ
+  value: ${TZ}
 
 ## Arguments for the container entrypoint process
 args: []
