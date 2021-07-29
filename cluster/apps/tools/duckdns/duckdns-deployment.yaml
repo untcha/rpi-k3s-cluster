@@ -3,7 +3,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: duckdns
-  namespace: duckdns
+  namespace: tools
   labels:
     app: duckdns
 spec:
