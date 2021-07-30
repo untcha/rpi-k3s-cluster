@@ -224,7 +224,7 @@ settings:
     password: ${SECRET_NEXTCLOUD_ADMIN_PASSWORD}
 
   ## Trusted domains as space separated list (should be identical to ingress hosts - default: "")
-  trustedDomains: "cloud.${SECRET_DOMAIN_LOCAL}"
+  trustedDomains: "cloud.${SECRET_DOMAIN_LOCAL} cloud.${SECRET_DIGITALOCEAN_DOMAIN_02}"
 
   ## Trusted proxies in your Kubernetes cluster as space separated list (Default: 10.0.0.0/8)
   trustedProxies: "10.0.0.0/8"

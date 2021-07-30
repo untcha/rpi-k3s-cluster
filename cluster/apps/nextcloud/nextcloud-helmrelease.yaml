@@ -146,7 +146,7 @@ spec:
         password: null
         port: 465
         secure: true
-      trustedDomains: cloud.${SECRET_DOMAIN_LOCAL}
+      trustedDomains: cloud.${SECRET_DOMAIN_LOCAL} cloud.${SECRET_DIGITALOCEAN_DOMAIN_02}
       trustedProxies: 10.0.0.0/8
       update: false
     startupProbe:
