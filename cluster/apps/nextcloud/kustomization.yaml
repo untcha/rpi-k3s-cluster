@@ -4,7 +4,6 @@ kind: Kustomization
 resources:
   - nextcloud-namespace.yaml
   - redis
-  - mariadb
   - postgres
   # - nextcloud-pvcs.yaml
   # - nextcloud-helmrelease.yaml
