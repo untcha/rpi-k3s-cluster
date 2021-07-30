@@ -218,10 +218,10 @@ settings:
   ## Nextcloud administrative user
   admin:
     ## Administrative user name
-    name: ${SECRET_NEXTCLOUD_ADMIN_USER}
+    name:
 
     ## Password for administrative user (default: a 10 char. alpahnumerical random password will be generated)
-    password: ${SECRET_NEXTCLOUD_ADMIN_PASSWORD}
+    password:
 
   ## Trusted domains as space separated list (should be identical to ingress hosts - default: "")
   trustedDomains: "cloud.${SECRET_DOMAIN_LOCAL} cloud.${SECRET_DIGITALOCEAN_DOMAIN_02}"
