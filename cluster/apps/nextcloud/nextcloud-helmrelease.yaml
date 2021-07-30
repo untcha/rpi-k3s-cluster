@@ -37,11 +37,11 @@ spec:
     env: []
     externalCache:
       enabled: true
-      host: nextcloud-redis
+      host: nextcloud-redis.nextcloud.svc.cluster.local
       password: ${SECRET_NEXTCLOUD_REDIS_PASSWORD}
       port: 6379
     externalDatabase:
-      host: nexcloud-postgres
+      host: nextcloud-postgres.nextcloud.svc.cluster.local
       name: ${SECRET_NEXTCLOUD_DB_NAME}
       password: ${SECRET_NEXTCLOUD_DB_PASSWORD}
       type: postgres

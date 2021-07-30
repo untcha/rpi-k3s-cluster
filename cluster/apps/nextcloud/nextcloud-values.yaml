@@ -189,7 +189,7 @@ externalDatabase:
   password: ${SECRET_NEXTCLOUD_DB_PASSWORD}
 
   ## Database host (only for postgres or mysql)
-  host: nextcloud-postgres
+  host: nextcloud-postgres.nextcloud.svc.cluster.local
 
 ## External redis cache settings
 externalCache:
@@ -197,7 +197,7 @@ externalCache:
   enabled: true
 
   ## Redis host
-  host: nextcloud-redis
+  host: nextcloud-redis.nextcloud.svc.cluster.local
 
   ## Redis port (default: 6379)
   port: 6379
