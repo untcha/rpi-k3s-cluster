@@ -5,3 +5,4 @@ resources:
   - enc_slack-webhook-url-secret.yaml
   - flux-slack-notification-provider.yaml
   - flux-alert.yaml
+  # - nextcloud-helmrelease-alert.yaml
