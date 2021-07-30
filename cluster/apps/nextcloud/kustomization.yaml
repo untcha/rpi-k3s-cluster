@@ -7,5 +7,5 @@ resources:
   - postgres
   - nextcloud-pvcs.yaml
   - nextcloud-helmrelease.yaml
-  # - nextcloud-letsencrypt-certificate.yaml
+  - nextcloud-letsencrypt-certificate.yaml
   - nextcloud-ingressroute.yaml

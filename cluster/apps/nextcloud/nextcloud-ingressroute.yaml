@@ -14,87 +14,87 @@ spec:
         - name: nextcloud-nextcloud
           port: 80
 
-# ---
-# apiVersion: traefik.containo.us/v1alpha1
-# kind: IngressRoute
-# metadata:
-#   name: nextcloud-http-ingressroute
-#   namespace: nextcloud
-# spec:
-#   entryPoints:
-#     - web
-#   routes:
-#     - match: Host(`cloud.${SECRET_DIGITALOCEAN_DOMAIN_02}`)
-#       kind: Rule
-#       middlewares:
-#         - name: nextcloud-middleware-redirect-scheme
-#       services:
-#         - name: nextcloud-nextcloud
-#           port: 80
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: nextcloud-http-ingressroute
+  namespace: nextcloud
+spec:
+  entryPoints:
+    - web
+  routes:
+    - match: Host(`cloud.${SECRET_DIGITALOCEAN_DOMAIN_02}`)
+      kind: Rule
+      middlewares:
+        - name: nextcloud-middleware-redirect-scheme
+      services:
+        - name: nextcloud-nextcloud
+          port: 80
 
-# ---
-# apiVersion: traefik.containo.us/v1alpha1
-# kind: IngressRoute
-# metadata:
-#   name: nextcloud-https-ingressroute
-#   namespace: nextcloud
-#   annotations:
-#     cert-manager.io/cluster-issuer: "letsencrypt-dns01-production-do"
-# spec:
-#   entryPoints:
-#     - websecure
-#   routes:
-#     - match: Host(`cloud.${SECRET_DIGITALOCEAN_DOMAIN_02}`)
-#       kind: Rule
-#       # middlewares:
-#       #   - name: nextcloud-middleware-headers
-#       services:
-#         - name: nextcloud-nextcloud
-#           port: 80
-#   tls:
-#     secretName: nextcloud-letsencrypt-production-certificate
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: nextcloud-https-ingressroute
+  namespace: nextcloud
+  annotations:
+    cert-manager.io/cluster-issuer: "letsencrypt-dns01-production-do"
+spec:
+  entryPoints:
+    - websecure
+  routes:
+    - match: Host(`cloud.${SECRET_DIGITALOCEAN_DOMAIN_02}`)
+      kind: Rule
+      # middlewares:
+      #   - name: nextcloud-middleware-headers
+      services:
+        - name: nextcloud-nextcloud
+          port: 80
+  tls:
+    secretName: nextcloud-letsencrypt-production-certificate
 
-# ---
-# apiVersion: traefik.containo.us/v1alpha1
-# kind: Middleware
-# metadata:
-#   name: nextcloud-middleware-redirect-scheme
-#   namespace: nextcloud
-# spec:
-#   redirectScheme:
-#     scheme: https
-#     permanent: true
-#     port: "443"
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: Middleware
+metadata:
+  name: nextcloud-middleware-redirect-scheme
+  namespace: nextcloud
+spec:
+  redirectScheme:
+    scheme: https
+    permanent: true
+    port: "443"
 
-# ---
-# apiVersion: traefik.containo.us/v1alpha1
-# kind: Middleware
-# metadata:
-#   name: nextcloud-middleware-headers
-#   namespace: nextcloud
-# spec:
-#   headers:
-#     browserXssFilter: true
-#     contentTypeNosniff: true
-#     frameDeny: true
-#     sslRedirect: true
-#     forceSTSHeader: true
-#     stsIncludeSubdomains: true
-#     stsPreload: true
-#     stsSeconds: 63072000
-#     #customRequestHeaders:
-#       #X-Frame-Options: "SAMEORIGIN"
-#     #customFrameOptionsValue: "SAMEORIGIN"
-#     #contentSecurityPolicy: "frame-ancestors 'self' nextcloud.${SECRET_DIGITALOCEAN_DOMAIN_02}"
-#     #contentSecurityPolicy: "default-src 'self'; script-src https://nextcloud.${SECRET_DIGITALOCEAN_DOMAIN_02}"
-#     contentSecurityPolicy: |
-#       default-src 'none';form-action 'none';frame-ancestors 'none';base-uri 'none'
-#     accessControlAllowMethods:
-#       - "GET"
-#       - "POST"
-#     accessControlAllowOriginList:
-#       #- "https://*.${SECRET_DIGITALOCEAN_DOMAIN_02}"
-#       - "https://nextcloud.${SECRET_DIGITALOCEAN_DOMAIN_02}"
-#     accessControlMaxAge: 100
-#     addVaryHeader: true
-#     referrerPolicy: "same-origin"
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: Middleware
+metadata:
+  name: nextcloud-middleware-headers
+  namespace: nextcloud
+spec:
+  headers:
+    browserXssFilter: true
+    contentTypeNosniff: true
+    frameDeny: true
+    sslRedirect: true
+    forceSTSHeader: true
+    stsIncludeSubdomains: true
+    stsPreload: true
+    stsSeconds: 63072000
+    #customRequestHeaders:
+      #X-Frame-Options: "SAMEORIGIN"
+    #customFrameOptionsValue: "SAMEORIGIN"
+    #contentSecurityPolicy: "frame-ancestors 'self' nextcloud.${SECRET_DIGITALOCEAN_DOMAIN_02}"
+    #contentSecurityPolicy: "default-src 'self'; script-src https://nextcloud.${SECRET_DIGITALOCEAN_DOMAIN_02}"
+    contentSecurityPolicy: |
+      default-src 'none';form-action 'none';frame-ancestors 'none';base-uri 'none'
+    accessControlAllowMethods:
+      - "GET"
+      - "POST"
+    accessControlAllowOriginList:
+      #- "https://*.${SECRET_DIGITALOCEAN_DOMAIN_02}"
+      - "https://nextcloud.${SECRET_DIGITALOCEAN_DOMAIN_02}"
+    accessControlMaxAge: 100
+    addVaryHeader: true
+    referrerPolicy: "same-origin"
