@@ -76,11 +76,11 @@ spec:
     sentinelResources: {}
     service:
       clusterIP: null
-      loadBalancerIP: null
+      loadBalancerIP: ${NEXTCLOUD_REDIS_SVC_LB_IP}
       nodePort: null
       sentinelPort: 26379
       serverPort: 6379
-      type: ClusterIP
+      type: LoadBalancer
     serviceAccount:
       annotations: {}
       create: false
