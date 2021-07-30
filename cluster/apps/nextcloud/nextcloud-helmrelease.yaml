@@ -37,11 +37,11 @@ spec:
     env: []
     externalCache:
       enabled: true
-      host: nextcloud-redis.nextcloud.svc.cluster.local
+      host: ${NEXTCLOUD_REDIS_SVC_LB_IP}
       password: ${SECRET_NEXTCLOUD_REDIS_PASSWORD}
       port: 6379
     externalDatabase:
-      host: nextcloud-postgres.nextcloud.svc.cluster.local
+      host: ${NEXTCLOUD_POSTGRES_SVC_LB_IP}
       name: ${SECRET_NEXTCLOUD_DB_NAME}
       password: ${SECRET_NEXTCLOUD_DB_PASSWORD}
       type: postgres
@@ -131,8 +131,8 @@ spec:
       name: ""
     settings:
       admin:
-        name: ${SECRET_NEXTCLOUD_ADMIN_USER}
-        password: ${SECRET_NEXTCLOUD_ADMIN_PASSWORD}
+        name: null
+        password: null
       disableRewriteIP: false
       maxFileUploadSize: 64M
       memoryLimit: 512M
