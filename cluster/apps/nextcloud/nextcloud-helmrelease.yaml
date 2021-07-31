@@ -147,7 +147,7 @@ spec:
         port: 465
         secure: true
       trustedDomains: cloud.${SECRET_DOMAIN_LOCAL} cloud.${SECRET_DIGITALOCEAN_DOMAIN_02}
-      trustedProxies: 10.0.0.0/8
+      trustedProxies: ${SECRET_NEXTCLOUD_TRUSTED_PROXY_IP}
       update: false
     startupProbe:
       enabled: true
