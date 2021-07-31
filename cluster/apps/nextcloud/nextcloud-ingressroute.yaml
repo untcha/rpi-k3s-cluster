@@ -87,12 +87,12 @@ metadata:
   namespace: nextcloud
 spec:
   headers:
-    browserXssFilter: "true"
-    contentTypeNoSniff: "true"
-    forceSTSHeader: "true"
-    frameDeny: "true"
-    stsIncludeSubdomains: "true"
-    stsPreload: "true"
+    browserXssFilter: true
+    contentTypeNoSniff: true
+    forceSTSHeader: true
+    frameDeny: true
+    stsIncludeSubdomains: true
+    stsPreload: true
     stsSeconds: 315360000
     customFrameOptionsValue: SAMEORIGIN
 
