@@ -88,7 +88,7 @@ metadata:
 spec:
   headers:
     browserXssFilter: true
-    contentTypeNoSniff: true
+    contentTypeNosniff: true
     forceSTSHeader: true
     frameDeny: true
     stsIncludeSubdomains: true
