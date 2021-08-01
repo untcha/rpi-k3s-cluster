@@ -239,7 +239,7 @@ settings:
   # overwriteWebRoot: /nextcloud
 
   ## Overwrite options for host (hostname and port), protocol (http or https) and CondAddr (Regex dependent on remote address)
-  overwriteHost: ${SECRET_NEXTCLOUD_TRUSTED_PROXY_IP}
+  overwriteHost: cloud.${SECRET_DIGITALOCEAN_DOMAIN_02}
   overwriteProtocol: https
   # overwriteCondAddr:
 

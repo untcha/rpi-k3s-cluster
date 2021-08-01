@@ -137,7 +137,7 @@ spec:
       disableRewriteIP: false
       maxFileUploadSize: 64M
       memoryLimit: 512M
-      overwriteHost: ${SECRET_NEXTCLOUD_TRUSTED_PROXY_IP}
+      overwriteHost: cloud.${SECRET_DIGITALOCEAN_DOMAIN_02}
       overwriteProtocol: https
       smtp:
         authType: LOGIN
