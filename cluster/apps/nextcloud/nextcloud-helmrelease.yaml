@@ -14,7 +14,6 @@ spec:
       version: 0.6.2
   install: {}
   interval: 1m0s
-  timeout: 15m
   targetNamespace: nextcloud
   values:
     affinity: {}
@@ -35,7 +34,9 @@ spec:
       schedule: '*/5 * * * *'
       tolerations: []
     enablePostUpgradeHook: false
-    env: []
+    env:
+    - name: NEXTCLOUD_TRUSTED_DOMAINS
+      value: cloud.${SECRET_DOMAIN_LOCAL} cloud.${SECRET_DIGITALOCEAN_DOMAIN_02}
     externalCache:
       enabled: true
       host: ${NEXTCLOUD_REDIS_SVC_LB_IP}
@@ -147,8 +148,7 @@ spec:
         password: null
         port: 465
         secure: true
-      trustedDomains: cloud.${SECRET_DOMAIN_LOCAL} cloud.${SECRET_DIGITALOCEAN_DOMAIN_02}
-      trustedProxies: ${SECRET_NEXTCLOUD_TRUSTED_PROXY_IP}
+      trustedProxies: ${SECRET_NEXTCLOUD_TRUSTED_PROXY_IP} 10.0.0.0/8
       update: false
     startupProbe:
       enabled: true
