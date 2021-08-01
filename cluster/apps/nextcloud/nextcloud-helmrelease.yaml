@@ -14,6 +14,7 @@ spec:
       version: 0.6.2
   install: {}
   interval: 1m0s
+  timeout: 20m
   targetNamespace: nextcloud
   values:
     affinity: {}
@@ -34,9 +35,7 @@ spec:
       schedule: '*/5 * * * *'
       tolerations: []
     enablePostUpgradeHook: false
-    env:
-    - name: NEXTCLOUD_TRUSTED_DOMAINS
-      value: cloud.${SECRET_DOMAIN_LOCAL} cloud.${SECRET_DIGITALOCEAN_DOMAIN_02}
+    env: []
     externalCache:
       enabled: true
       host: ${NEXTCLOUD_REDIS_SVC_LB_IP}
@@ -138,6 +137,8 @@ spec:
       disableRewriteIP: false
       maxFileUploadSize: 64M
       memoryLimit: 512M
+      overwriteHost: ${SECRET_NEXTCLOUD_TRUSTED_PROXY_IP}
+      overwriteProtocol: https
       smtp:
         authType: LOGIN
         domain: null
@@ -148,7 +149,8 @@ spec:
         password: null
         port: 465
         secure: true
-      trustedProxies: ${SECRET_NEXTCLOUD_TRUSTED_PROXY_IP} 10.0.0.0/8
+      trustedDomains: cloud.${SECRET_DIGITALOCEAN_DOMAIN_02}
+      trustedProxies: ${SECRET_NEXTCLOUD_TRUSTED_PROXY_IP}
       update: false
     startupProbe:
       enabled: true

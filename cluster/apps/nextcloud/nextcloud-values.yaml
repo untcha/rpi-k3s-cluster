@@ -158,9 +158,7 @@ podDisruptionBudget: {}
 containerPort: 8000
 
 ## Additional environment variables
-env:
-- name: NEXTCLOUD_TRUSTED_DOMAINS
-  value: cloud.${SECRET_DOMAIN_LOCAL} cloud.${SECRET_DIGITALOCEAN_DOMAIN_02}
+env: []
 
 ## Arguments for the container entrypoint process
 args: []
@@ -228,10 +226,11 @@ settings:
   ## Trusted domains as space separated list (should be identical to ingress hosts - default: "")
   # trustedDomains: ""
   # trustedDomains: "cloud.${SECRET_DOMAIN_LOCAL} cloud.${SECRET_DIGITALOCEAN_DOMAIN_02}"
+  trustedDomains: "cloud.${SECRET_DIGITALOCEAN_DOMAIN_02}"
 
   ## Trusted proxies in your Kubernetes cluster as space separated list (Default: 10.0.0.0/8)
   # trustedProxies: "10.0.0.0/8"
-  trustedProxies: "${SECRET_NEXTCLOUD_TRUSTED_PROXY_IP} 10.0.0.0/8"
+  trustedProxies: "${SECRET_NEXTCLOUD_TRUSTED_PROXY_IP}"
 
   ## Disable rewriting the IP address (Default: false)
   disableRewriteIP: false
@@ -240,8 +239,8 @@ settings:
   # overwriteWebRoot: /nextcloud
 
   ## Overwrite options for host (hostname and port), protocol (http or https) and CondAddr (Regex dependent on remote address)
-  # overwriteHost:
-  # overwriteProtocol:
+  overwriteHost: ${SECRET_NEXTCLOUD_TRUSTED_PROXY_IP}
+  overwriteProtocol: https
   # overwriteCondAddr:
 
   ## SMTP configuration
