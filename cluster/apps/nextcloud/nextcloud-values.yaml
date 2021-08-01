@@ -224,11 +224,12 @@ settings:
     password:
 
   ## Trusted domains as space separated list (should be identical to ingress hosts - default: "")
+  trustedDomains: ""
   trustedDomains: "cloud.${SECRET_DOMAIN_LOCAL} cloud.${SECRET_DIGITALOCEAN_DOMAIN_02}"
 
   ## Trusted proxies in your Kubernetes cluster as space separated list (Default: 10.0.0.0/8)
   # trustedProxies: "10.0.0.0/8"
-  trustedProxies: "${SECRET_NEXTCLOUD_TRUSTED_PROXY_IP}"
+  # trustedProxies: "${SECRET_NEXTCLOUD_TRUSTED_PROXY_IP}"
 
   ## Disable rewriting the IP address (Default: false)
   disableRewriteIP: false
