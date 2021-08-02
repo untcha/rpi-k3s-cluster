@@ -160,11 +160,11 @@ containerPort: 8000
 ## Additional environment variables
 env:
 - name: NC_default_language
-  value: "de"
+  value: "en"
 - name: NC_default_locale
   value: "de_DE"
 - name: NC_default_phone_region
-  value: "DE"
+  value: "GB"
 
 ## Arguments for the container entrypoint process
 args: []
