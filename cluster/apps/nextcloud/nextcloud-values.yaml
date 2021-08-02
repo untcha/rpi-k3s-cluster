@@ -158,6 +158,7 @@ podDisruptionBudget: {}
 containerPort: 8000
 
 ## Additional environment variables
+# https://github.com/nextcloud/server/pull/3966
 env:
 - name: NC_default_language
   value: "de"
