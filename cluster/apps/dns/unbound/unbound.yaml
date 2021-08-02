@@ -23,7 +23,7 @@ spec:
     spec:
       containers:
       - name: unbound
-        image: klutchell/unbound
+        image: klutchell/unbound-dnscrypt
         imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 53
