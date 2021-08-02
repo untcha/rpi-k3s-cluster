@@ -37,13 +37,11 @@ spec:
     enablePostUpgradeHook: false
     env:
     - name: NC_default_language
-      value: en
+      value: de
     - name: NC_default_locale
       value: de_DE
     - name: NC_default_phone_region
-      value: GB
-    - name: NC_force_language
-      value: en
+      value: de
     externalCache:
       enabled: true
       host: ${NEXTCLOUD_REDIS_SVC_LB_IP}
