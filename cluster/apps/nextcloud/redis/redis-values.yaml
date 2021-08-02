@@ -5,7 +5,7 @@ image:
   repository: redis
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
-  tag: ""
+  tag: "6.2.5"
 
 ## Pull secrets and name override options
 imagePullSecrets: []
@@ -50,7 +50,7 @@ securityContext:
 ## Default redis service port (default Redis server port 6379, defaul Redis sentinel port 26379)
 service:
   ## Type of service (not available when haMode is enabled)
-  type: LoadBalancer
+  type: ClusterIP
   ## Redis server port
   serverPort: 6379
   ## Redis sentinel mode (only when haMode is enabled)
@@ -60,7 +60,7 @@ service:
   ## The cluster ip address (only relevant for type LoadBalancer or NodePort)
   clusterIP:
   ## The loadbalancer ip address (only relevant for type LoadBalancer - not available when haMode is enabled)
-  loadBalancerIP: ${NEXTCLOUD_REDIS_SVC_LB_IP}
+  loadBalancerIP:
 
 ## Resource limits and requests (for Redis)
 resources: {}
@@ -121,7 +121,7 @@ readinessProbe:
 ## Additional environment variables (Redis server and Sentinel)
 env:
 - name: TZ
-  value: ${TZ}
+  value: ${TIMEZONE}
 
 ## Arguments for the container entrypoint process (Redis server)
 args: []

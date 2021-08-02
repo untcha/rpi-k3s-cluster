@@ -11,6 +11,6 @@ data:
   NEXTCLOUD_REDIS_SVC_LB_IP:      "192.168.178.127"
   NEXTCLOUD_POSTGRES_SVC_LB_IP:   "192.168.178.128"
   TRAEFIK_SVC_LB_IP:              "192.168.178.240"
-  TZ:                             "Europe/Berlin"
+  TIMEZONE:                       "Europe/Berlin"
   LONGHORN_DEFAULT_DATAPATH:      "/storage/"
   LONGHORN_BACKUPTARGET_PATH:     "/Backup/LonghornBackupstore"

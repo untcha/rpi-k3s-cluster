@@ -22,7 +22,7 @@ spec:
     customReadinessProbe: {}
     env:
     - name: TZ
-      value: ${TZ}
+      value: ${TIMEZONE}
     fullnameOverride: ""
     haMode:
       downAfterMilliseconds: 5000
@@ -37,7 +37,7 @@ spec:
     image:
       pullPolicy: IfNotPresent
       repository: redis
-      tag: ""
+      tag: 6.2.5
     imagePullSecrets: []
     livenessProbe:
       enabled: true
@@ -76,11 +76,11 @@ spec:
     sentinelResources: {}
     service:
       clusterIP: null
-      loadBalancerIP: ${NEXTCLOUD_REDIS_SVC_LB_IP}
+      loadBalancerIP: null
       nodePort: null
       sentinelPort: 26379
       serverPort: 6379
-      type: LoadBalancer
+      type: ClusterIP
     serviceAccount:
       annotations: {}
       create: false
