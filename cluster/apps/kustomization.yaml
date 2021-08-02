@@ -5,6 +5,7 @@ resources:
   - kubernetes-dashboard
   - docs
   - tools
+  - dns
   - pihole
   - influxdata
   - grafana
