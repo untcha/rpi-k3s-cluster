@@ -27,4 +27,4 @@ spec:
   storageClassName: managed-nfs-storage
   resources:
     requests:
-      storage: 15Gi
+      storage: 10Gi
