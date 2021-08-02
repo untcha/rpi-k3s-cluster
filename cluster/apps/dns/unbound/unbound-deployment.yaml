@@ -8,25 +8,28 @@ metadata:
     app: unbound
 spec:
   replicas: 7
-  selector:
-    matchLabels:
-      app: unbound
   strategy:
     rollingUpdate:
       maxSurge: 1
       maxUnavailable: 0
     type: RollingUpdate
+  selector:
+    matchLabels:
+      app: unbound
   template:
     metadata:
       labels:
         app: unbound
+        name: unbound
     spec:
       containers:
       - name: unbound
-        image: klutchell/unbound-dnscrypt
+        image: klutchell/unbound-dnscrypt:1.13.1
         imagePullPolicy: IfNotPresent
         ports:
-        - containerPort: 53
+        - name: dns-tcp
+          containerPort: 53
           protocol: TCP
-        - containerPort: 53
+        - name: dns-udp
+          containerPort: 53
           protocol: UDP
