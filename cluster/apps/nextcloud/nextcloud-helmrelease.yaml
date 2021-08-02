@@ -14,7 +14,7 @@ spec:
       version: 0.6.2
   install: {}
   interval: 1m0s
-  timeout: 20m
+  timeout: 30m
   targetNamespace: nextcloud
   values:
     affinity: {}
@@ -35,14 +35,20 @@ spec:
       schedule: '*/5 * * * *'
       tolerations: []
     enablePostUpgradeHook: false
-    env: []
+    env:
+    - name: NC_default_language
+      value: de
+    - name: NC_default_locale
+      value: de_DE
+    - name: NC_default_phone_region
+      value: DE
     externalCache:
       enabled: true
       host: ${NEXTCLOUD_REDIS_SVC_LB_IP}
       password: ${SECRET_NEXTCLOUD_REDIS_PASSWORD}
       port: 6379
     externalDatabase:
-      host: ${NEXTCLOUD_POSTGRES_SVC_LB_IP}
+      host: nextcloud-postgres.nextcloud.svc.cluster.local
       name: ${SECRET_NEXTCLOUD_DB_NAME}
       password: ${SECRET_NEXTCLOUD_DB_PASSWORD}
       type: postgres
@@ -150,7 +156,7 @@ spec:
         port: 465
         secure: true
       trustedDomains: cloud.${SECRET_DIGITALOCEAN_DOMAIN_02}
-      trustedProxies: ${SECRET_NEXTCLOUD_TRUSTED_PROXY_IP}
+      trustedProxies: traefik-traefik.traefik.svc.cluster.local
       update: false
     startupProbe:
       enabled: true

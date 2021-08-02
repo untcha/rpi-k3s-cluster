@@ -4,8 +4,8 @@ kind: Kustomization
 resources:
   - nextcloud-namespace.yaml
   - redis
-  #- postgres
-  #- nextcloud-pvcs.yaml
+  - postgres
+  - nextcloud-pvcs.yaml
   #- nextcloud-helmrelease.yaml
   - nextcloud-letsencrypt-certificate.yaml
   - nextcloud-ingressroute.yaml
