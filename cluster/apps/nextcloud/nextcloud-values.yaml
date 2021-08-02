@@ -165,6 +165,8 @@ env:
   value: "de_DE"
 - name: NC_default_phone_region
   value: "GB"
+- name: NC_force_language
+  value: "en"
 
 ## Arguments for the container entrypoint process
 args: []
