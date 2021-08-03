@@ -38,7 +38,7 @@ spec:
       #       mountPath: /opt/unbound/etc/unbound/unbound.conf
       #       subPath: unbound.conf
           - name: unbound-a-records
-            mountPath: /opt/unbound/etc/unbound/a-records.conf
+            mountPath: /etc/unbound/a-records.conf
             subPath: a-records.conf
       volumes:
       #   - name: unbound-config
