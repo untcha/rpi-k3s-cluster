@@ -35,8 +35,8 @@ spec:
           protocol: UDP
         volumeMounts:
           - name: config
-            mountPath: /etc/unbound/unbound.conf
-            subPath: unbound.conf
+            mountPath: /etc/unbound/unbound.conf.d/pi-hole.conf
+            subPath: pi-hole.conf
       volumes:
         - name: config
           configMap:
