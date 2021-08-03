@@ -40,9 +40,9 @@ spec:
           - name: unbound-root-hints
             mountPath: /etc/unbound/root.hints
             subPath: root.hints
-          # - name: unbound-root-key
-          #   mountPath: /etc/unbound/root.key
-          #   subPath: root.key
+          - name: unbound-root-key
+            mountPath: /usr/local/etc/unbound/root.key
+            subPath: root.key
           - name: unbound-a-records
             mountPath: /etc/unbound/a-records.conf
             subPath: a-records.conf

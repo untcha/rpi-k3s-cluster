@@ -16,7 +16,7 @@ data:
 
         # If given, after binding the port the user privileges are dropped.
         # Default is "unbound". If you give username: "" no user change is performed.
-        username: ""
+        username: "unbound"
 
         # No need to chroot as this container has been stripped of all other binaries.
         chroot: ""
@@ -106,7 +106,7 @@ data:
         # The initial file can be one with contents as described in trust-anchor-file.
         # The file is written to when the anchor is updated, so the unbound user must
         # have write permission.
-        #auto-trust-anchor-file: /etc/unbound/root.key
+        auto-trust-anchor-file: /usr/local/etc/unbound/root.key
 
         include: /etc/unbound/a-records.conf
 
