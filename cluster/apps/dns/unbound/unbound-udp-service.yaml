@@ -14,8 +14,8 @@ spec:
     app: unbound
   ports:
   - name: dns-udp
-    port: 5335
+    port: 53
     protocol: UDP
-    targetPort: 5335
+    targetPort: 53
   type: LoadBalancer
   loadBalancerIP: ${UNBOUND_SVC_LB_IP}

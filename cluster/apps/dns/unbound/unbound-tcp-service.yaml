@@ -14,8 +14,8 @@ spec:
     app: unbound
   ports:
   - name: dns-tcp
-    port: 5335
+    port: 53
     protocol: TCP
-    targetPort: 5335
+    targetPort: 53
   type: LoadBalancer
   loadBalancerIP: ${UNBOUND_SVC_LB_IP}
