@@ -13,3 +13,19 @@ spec:
       services:
         - name: pihole-tcp
           port: 80
+
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: pihole-metrics-local-ingressroute
+  namespace: dns
+spec:
+  entryPoints:
+    - web
+  routes:
+    - match: Host(`pihole-metrics.${SECRET_DOMAIN_LOCAL_02}`) && PathPrefix(`/metrics`)
+      kind: Rule
+      services:
+        - name: pihole-exporter
+          port: 9617
