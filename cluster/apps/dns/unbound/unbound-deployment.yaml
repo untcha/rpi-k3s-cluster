@@ -37,9 +37,9 @@ spec:
           - name: unbound-config
             mountPath: /etc/unbound/unbound.conf
             subPath: unbound.conf
-          # - name: unbound-root-hints
-          #   mountPath: /etc/unbound/root.hints
-          #   subPath: root.hints
+          - name: unbound-root-hints
+            mountPath: /etc/unbound/root.hints
+            subPath: root.hints
           # - name: unbound-root-key
           #   mountPath: /etc/unbound/root.key
           #   subPath: root.key
