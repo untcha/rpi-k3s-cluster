@@ -33,3 +33,11 @@ spec:
         - name: dns-udp
           containerPort: 5335
           protocol: UDP
+        volumeMounts:
+          - name: config
+            mountPath: /etc/unbound/unbound.conf.d/unbound.conf
+            subPath: unbound.conf
+      volumes:
+        - name: config
+          configMap:
+            name: unbound-config
