@@ -4,3 +4,4 @@ kind: Kustomization
 resources:
   - dns-namespace.yaml
   - unbound
+  - pihole

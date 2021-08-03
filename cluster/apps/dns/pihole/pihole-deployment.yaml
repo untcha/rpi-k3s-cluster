@@ -1,0 +1,139 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pihole
+  namespace: dns
+  labels:
+    app: pihole
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: pihole
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 0
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        app: pihole
+        name: pihole
+    spec:
+      containers:
+      - name: pihole
+        image: pihole/pihole:latest
+        imagePullPolicy: IfNotPresent
+        securityContext:
+          capabilities:
+            add:
+            - NET_ADMIN
+        env:
+        - name: ADMIN_EMAIL
+          value: ${SECRET_EMAIL}
+        - name: TZ
+          value: ${TIMEZONE}
+        - name: WEBPASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: pihole-secrets
+              key: PIHOLE_WEBPASSWORD
+        - name: DNS1
+          value: ${UNBOUND_SVC_LB_IP}
+        - name: DNS2
+          value: ${UNBOUND_SVC_LB_IP}
+        - name: ServerIP
+          value: ${PIHOLE_SVC_LB_IP}
+        - name: IPv6
+          value: "false"
+        - name: ServerIPv6
+          value: "::"
+        - name: TEMPERATUREUNIT
+          value: c
+        - name: WEBUIBOXEDLAYOUT
+          value: boxed
+        ports:
+        - name: http
+          containerPort: 80
+          protocol: TCP
+        - name: https
+          containerPort: 443
+          protocol: TCP
+        - name: dns-tcp
+          containerPort: 53
+          protocol: TCP
+        - name: dns-udp
+          containerPort: 53
+          protocol: UDP
+        - name: client-upd
+          containerPort: 67
+          protocol: UDP
+        livenessProbe:
+          httpGet:
+            path: /
+            port: http
+        readinessProbe:
+          httpGet:
+            path: /
+            port: http
+        volumeMounts:
+        - name: etc-pihole
+          mountPath: /etc/pihole
+        - name: etc-dnsmasq
+          mountPath: /etc/dnsmasq.d
+        - name: var-log
+          mountPath: /var/log
+        - name: var-log-lighttpd
+          mountPath: /var/log/lighttpd
+        - name: ftlconf
+          mountPath: /etc/pihole/pihole-FTL.conf
+          subPath: pihole-FTL.conf
+        - name: regex
+          mountPath: /etc/pihole/regex.list
+          subPath: regex.list
+        - name: whitelist
+          mountPath: /etc/pihole/whitelist.txt
+          subPath: whitelist.txt
+        - name: adlists
+          mountPath: /etc/pihole/adlists.list
+          subPath: adlists.list
+      restartPolicy: Always
+      volumes:
+      - name: etc-pihole
+        emptyDir:
+          medium: Memory
+      - name: etc-dnsmasq
+        emptyDir:
+          medium: Memory
+      - name: var-log
+        emptyDir:
+          medium: Memory
+      - name: var-log-lighttpd
+        emptyDir:
+          medium: Memory
+      - name: ftlconf
+        configMap:
+          name: pihole-ftl.conf
+          items:
+            - key: pihole-FTL.conf
+              path: pihole-FTL.conf
+      - name: regex
+        configMap:
+          name: regex.list
+          items:
+            - key: regex.list
+              path: regex.list
+      - name: whitelist
+        configMap:
+          name: whitelist.txt
+          items:
+            - key: whitelist.txt
+              path: whitelist.txt
+      - name: adlists
+        configMap:
+          name: adlists.list
+          items:
+            - key: adlists.list
+              path: adlists.list
