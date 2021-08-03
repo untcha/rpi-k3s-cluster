@@ -34,10 +34,18 @@ spec:
           containerPort: 5335
           protocol: UDP
         volumeMounts:
-          - name: config
+          - name: unbound-config
             mountPath: /opt/unbound/etc/unbound/unbound.conf
             subPath: unbound.conf
+          - name: unbound-a-records
+            mountPath: /opt/unbound/etc/unbound/a-records.conf
+            subPath: a-records.conf
       volumes:
-        - name: config
+        - name: unbound-config
           configMap:
-            name: unbound-config
+            name: unbound-config-files
+            key: unbound.conf
+        - name: unbound-a-records
+          configMap:
+            name: unbound-config-files
+            key: a-records.conf

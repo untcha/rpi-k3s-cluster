@@ -2,7 +2,7 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: unbound-config
+  name: unbound-config-files
   namespace: dns
 data:
   unbound.conf: |
@@ -60,3 +60,9 @@ data:
     private-address: 10.0.0.0/8
     private-address: fd00::/8
     private-address: fe80::/10
+  
+  a-records.conf: |
+    # A Record
+	  local-data: "netgear.local. A 192.168.1.2"
+    # PTR Record
+	  local-data-ptr: "192.168.1.2 netgear.local."
