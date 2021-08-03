@@ -33,19 +33,19 @@ spec:
         - name: dns-udp
           containerPort: 5335
           protocol: UDP
-        volumeMounts:
-          - name: unbound-config
-            mountPath: /opt/unbound/etc/unbound/unbound.conf
-            subPath: unbound.conf
-          - name: unbound-a-records
-            mountPath: /opt/unbound/etc/unbound/a-records.conf
-            subPath: a-records.conf
-      volumes:
-        - name: unbound-config
-          configMap:
-            name: unbound-config-files
-            key: unbound.conf
-        - name: unbound-a-records
-          configMap:
-            name: unbound-config-files
-            key: a-records.conf
+      #   volumeMounts:
+      #     - name: unbound-config
+      #       mountPath: /opt/unbound/etc/unbound/unbound.conf
+      #       subPath: unbound.conf
+      #     - name: unbound-a-records
+      #       mountPath: /opt/unbound/etc/unbound/a-records.conf
+      #       subPath: a-records.conf
+      # volumes:
+      #   - name: unbound-config
+      #     configMap:
+      #       name: unbound-config-files
+      #       key: unbound.conf
+      #   - name: unbound-a-records
+      #     configMap:
+      #       name: unbound-config-files
+      #       key: a-records.conf
