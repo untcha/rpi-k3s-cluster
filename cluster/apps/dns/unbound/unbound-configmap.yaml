@@ -221,6 +221,6 @@ metadata:
 data:
   a-records.conf: |
     # A Record
-    local-data: "netgear.local. A 192.168.178.2"
+    local-data: "pihole.${SECRET_DOMAIN_LOCAL}. A 192.168.178.121"
     # PTR Record
-    local-data-ptr: "192.168.178.2 netgear.local."
+    local-data-ptr: "192.168.178.121 pihole.${SECRET_DOMAIN_LOCAL}."
