@@ -35,7 +35,7 @@ data:
         # Level 4 gives algorithm level information.
         # Level 5 logs client identification for cache misses.
         # Default is level 1. The verbosity can also be increased from the commandline.
-        verbosity: 3
+        verbosity: 1
 
         # Listen on all ipv4 interfaces, answer queries from the local subnet.
         interface: 0.0.0.0
@@ -87,6 +87,7 @@ data:
         access-control: 10.0.0.0/8 allow
 
         # Ensure privacy of local IP ranges
+        private-address: 192.168.178.0/24
         private-address: 192.168.0.0/16
         private-address: 169.254.0.0/16
         private-address: 172.16.0.0/12
@@ -210,24 +211,6 @@ data:
     M.ROOT-SERVERS.NET.      3600000      A     202.12.27.33
     M.ROOT-SERVERS.NET.      3600000      AAAA  2001:dc3::35
     ; End of file
-
----
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: unbound-root-key
-  namespace: dns
-data:
-  root.key: |
-    ; autotrust trust anchor file
-    ;;id: . 1
-    ;;last_queried: 1607451082 ;;Tue Dec  8 18:11:22 2020
-    ;;last_success: 1607451082 ;;Tue Dec  8 18:11:22 2020
-    ;;next_probe_time: 1607491905 ;;Wed Dec  9 05:31:45 2020
-    ;;query_failed: 0
-    ;;query_interval: 43200
-    ;;retry_time: 8640
-    .	86400	IN	DNSKEY	257 3 8 AwEAAaz/tAm8yTn4Mfeh5eyI96WSVexTBAvkMgJzkKTOiW1vkIbzxeF3+/4RgWOq7HrxRixHlFlExOLAJr5emLvN7SWXgnLh4+B5xQlNVz8Og8kvArMtNROxVQuCaSnIDdD5LKyWbRd2n9WGe2R8PzgCmr3EgVLrjyBxWezF0jLHwVN8efS3rCj/EWgvIWgb9tarpVUDK/b58Da+sqqls3eNbuv7pr+eoZG+SrDK6nWeL3c6H5Apxz7LjVc1uTIdsIXxuOLYA4/ilBmSVIzuDWfdRUfhHdY6+cn8HFRm+2hM8AnXGXws9555KrUB5qihylGa8subX2Nn6UwNR1AkUTV74bU= ;{id = 20326 (ksk), size = 2048b} ;;state=2 [  VALID  ] ;;count=0 ;;lastchange=1607451082 ;;Tue Dec  8 18:11:22 2020
 
 ---
 apiVersion: v1
