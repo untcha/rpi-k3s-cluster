@@ -8,7 +8,7 @@ spec:
   entryPoints:
     - web
   routes:
-    - match: Host(`pihole.${SECRET_DOMAIN_LOCAL}`) && PathPrefix(`/admin`)
+    - match: Host(`pihole.${SECRET_DOMAIN_LOCAL_02}`) && PathPrefix(`/admin`)
       kind: Rule
       services:
         - name: pihole-tcp
