@@ -106,7 +106,7 @@ data:
         # The initial file can be one with contents as described in trust-anchor-file.
         # The file is written to when the anchor is updated, so the unbound user must
         # have write permission.
-        auto-trust-anchor-file: /etc/unbound/root.key
+        #auto-trust-anchor-file: /etc/unbound/root.key
 
         include: /etc/unbound/a-records.conf
 
