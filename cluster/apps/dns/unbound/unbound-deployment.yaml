@@ -28,23 +28,34 @@ spec:
         imagePullPolicy: IfNotPresent
         ports:
         - name: dns-tcp
-          containerPort: 5335
+          containerPort: 53
           protocol: TCP
         - name: dns-udp
-          containerPort: 5335
+          containerPort: 53
           protocol: UDP
         volumeMounts:
-      #     - name: unbound-config
-      #       mountPath: /opt/unbound/etc/unbound/unbound.conf
-      #       subPath: unbound.conf
+          - name: unbound-config
+            mountPath: /etc/unbound/unbound.conf
+            subPath: unbound.conf
+          - name: unbound-root-hints
+            mountPath: /etc/unbound/root.hints
+            subPath: root.hints
+          - name: unbound-root-key
+            mountPath: /etc/unbound/root.key
+            subPath: root.key
           - name: unbound-a-records
             mountPath: /etc/unbound/a-records.conf
             subPath: a-records.conf
       volumes:
-      #   - name: unbound-config
-      #     configMap:
-      #       name: unbound-config-files
-      #       key: unbound.conf
+        - name: unbound-config
+          configMap:
+            name: unbound-config
+        - name: unbound-root-hints
+          configMap:
+            name: unbound-root-hints
+        - name: unbound-root-key
+          configMap:
+            name: unbound-root-key
         - name: unbound-a-records
           configMap:
             name: unbound-a-records
