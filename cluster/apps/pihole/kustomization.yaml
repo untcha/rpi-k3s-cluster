@@ -8,6 +8,6 @@ resources:
   # - pihole-deployment.yaml
   # - pihole-tcp-service.yaml
   # - pihole-udp-service.yaml
-  - pihole-ingressroute.yaml
+  # - pihole-ingressroute.yaml
   - pihole-letsencrypt-certificate.yaml
   # - exporter
