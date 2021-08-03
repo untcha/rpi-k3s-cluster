@@ -9,7 +9,7 @@ data:
     server:
     # If no logfile is specified, syslog is used
     # logfile: "/var/log/unbound/unbound.log"
-    verbosity: 0
+    verbosity: 2
 
     interface: ${UNBOUND_SVC_LB_IP}
     port: 5335
