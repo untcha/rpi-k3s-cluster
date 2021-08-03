@@ -5,7 +5,7 @@ metadata:
   name: unbound-config
   namespace: dns
 data:
-  pi-hole.conf: |
+  unbound.conf: |
     server:
     # If no logfile is specified, syslog is used
     # logfile: "/var/log/unbound/unbound.log"
