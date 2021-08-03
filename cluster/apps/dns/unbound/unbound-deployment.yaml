@@ -50,9 +50,9 @@ spec:
         - name: unbound-config
           configMap:
             name: unbound-config
-        # - name: unbound-root-hints
-        #   configMap:
-        #     name: unbound-root-hints
+        - name: unbound-root-hints
+          configMap:
+            name: unbound-root-hints
         # - name: unbound-root-key
         #   configMap:
         #     name: unbound-root-key
