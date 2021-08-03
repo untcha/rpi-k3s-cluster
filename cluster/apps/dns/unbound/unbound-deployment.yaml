@@ -41,8 +41,8 @@ spec:
             mountPath: /etc/unbound/root.hints
             subPath: root.hints
           - name: unbound-root-key
-            mountPath: /usr/local/etc/unbound/root.key
-            subPath: root.key
+            mountPath: /usr/local/etc/unbound
+            # subPath: root.key
           - name: unbound-a-records
             mountPath: /etc/unbound/a-records.conf
             subPath: a-records.conf
@@ -54,8 +54,11 @@ spec:
           configMap:
             name: unbound-root-hints
         - name: unbound-root-key
-          configMap:
-            name: unbound-root-key
+          persistentVolumeClaim:
+            claimName: unbound-root-key-pvc
+        # - name: unbound-root-key
+        #   configMap:
+        #     name: unbound-root-key
         - name: unbound-a-records
           configMap:
             name: unbound-a-records
