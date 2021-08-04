@@ -243,6 +243,7 @@ data:
     local-data-ptr: "192.168.178.240 longhorn.${SECRET_DOMAIN_LOCAL_02}."
     local-data-ptr: "192.168.178.240 pihole-metrics.${SECRET_DOMAIN_LOCAL_02}."
     local-data-ptr: "192.168.178.240 pihole.${SECRET_DOMAIN_LOCAL_02}."
+    local-data-ptr: "192.168.178.240 portainer.${SECRET_DOMAIN_LOCAL_02}."
     local-data-ptr: "192.168.178.240 prometheus-alertmanager.${SECRET_DOMAIN_LOCAL_02}."
     local-data-ptr: "192.168.178.240 prometheus.${SECRET_DOMAIN_LOCAL_02}."
     local-data-ptr: "192.168.178.240 traefik.${SECRET_DOMAIN_LOCAL_02}."
