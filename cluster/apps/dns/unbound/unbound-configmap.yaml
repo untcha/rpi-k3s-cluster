@@ -224,3 +224,7 @@ data:
     local-data: "pihole.${SECRET_DOMAIN_LOCAL_02}. A 192.168.178.121"
     # PTR Record
     local-data-ptr: "192.168.178.121 pihole.${SECRET_DOMAIN_LOCAL_02}."
+    # A Record
+    local-data: "test.${SECRET_DOMAIN_LOCAL_02}. A 192.168.178.121"
+    # PTR Record
+    local-data-ptr: "192.168.178.121 test.${SECRET_DOMAIN_LOCAL_02}."
