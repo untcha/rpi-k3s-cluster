@@ -59,6 +59,11 @@ spec:
         # - name: unbound-root-key
         #   configMap:
         #     name: unbound-root-key
+        # - name: unbound-a-records
+        #   configMap:
+        #     name: unbound-a-records
         - name: unbound-a-records
-          configMap:
-            name: unbound-a-records
+          secret:
+            secretName: unbound-a-record-secrets
+            items:
+            - key: a-records.conf
