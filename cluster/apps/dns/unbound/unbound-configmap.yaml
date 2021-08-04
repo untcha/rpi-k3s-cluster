@@ -221,10 +221,28 @@ metadata:
 data:
   a-records.conf: |
     # A Record
-    local-data: "pihole.${SECRET_DOMAIN_LOCAL_02}. A 192.168.178.121"
+    local-data: "blog-test.${SECRET_DOMAIN_LOCAL_02}.                A 192.168.178.240"
+    local-data: "chronograf.${SECRET_DOMAIN_LOCAL_02}.               A 192.168.178.240"
+    local-data: "cloud.${SECRET_DOMAIN_LOCAL_02}.                    A 192.168.178.240"
+    local-data: "docs.${SECRET_DOMAIN_LOCAL_02}.                     A 192.168.178.240"
+    local-data: "grafana.${SECRET_DOMAIN_LOCAL_02}.                  A 192.168.178.240"
+    local-data: "longhorn.${SECRET_DOMAIN_LOCAL_02}.                 A 192.168.178.240"
+    local-data: "pihole-metrics.${SECRET_DOMAIN_LOCAL_02}.           A 192.168.178.240"
+    local-data: "pihole.${SECRET_DOMAIN_LOCAL_02}.                   A 192.168.178.240"
+    local-data: "portainer.${SECRET_DOMAIN_LOCAL_02}.                A 192.168.178.240"
+    local-data: "prometheus-alertmanager.${SECRET_DOMAIN_LOCAL_02}.  A 192.168.178.240"
+    local-data: "prometheus.${SECRET_DOMAIN_LOCAL_02}.               A 192.168.178.240"
+    local-data: "traefik.${SECRET_DOMAIN_LOCAL_02}.                  A 192.168.178.240"
+
     # PTR Record
-    local-data-ptr: "192.168.178.121 pihole.${SECRET_DOMAIN_LOCAL_02}."
-    # A Record
-    local-data: "test.${SECRET_DOMAIN_LOCAL_02}. A 192.168.178.121"
-    # PTR Record
-    local-data-ptr: "192.168.178.121 test.${SECRET_DOMAIN_LOCAL_02}."
+    local-data-ptr: "192.168.178.240 blog-test.${SECRET_DOMAIN_LOCAL_02}."
+    local-data-ptr: "192.168.178.240 chronograf.${SECRET_DOMAIN_LOCAL_02}."
+    local-data-ptr: "192.168.178.240 cloud.${SECRET_DOMAIN_LOCAL_02}."
+    local-data-ptr: "192.168.178.240 docs.${SECRET_DOMAIN_LOCAL_02}."
+    local-data-ptr: "192.168.178.240 grafana.${SECRET_DOMAIN_LOCAL_02}."
+    local-data-ptr: "192.168.178.240 longhorn.${SECRET_DOMAIN_LOCAL_02}."
+    local-data-ptr: "192.168.178.240 pihole-metrics.${SECRET_DOMAIN_LOCAL_02}."
+    local-data-ptr: "192.168.178.240 pihole.${SECRET_DOMAIN_LOCAL_02}."
+    local-data-ptr: "192.168.178.240 prometheus-alertmanager.${SECRET_DOMAIN_LOCAL_02}."
+    local-data-ptr: "192.168.178.240 prometheus.${SECRET_DOMAIN_LOCAL_02}."
+    local-data-ptr: "192.168.178.240 traefik.${SECRET_DOMAIN_LOCAL_02}."
