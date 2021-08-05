@@ -2,6 +2,24 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
+  name: pihole-env-vars
+  namespace: dns
+data:
+  ADMIN_EMAIL: ${SECRET_EMAIL}
+  TZ: ${TIMEZONE}
+  DNS1: ${UNBOUND_SVC_LB_IP}
+  DNS2: ${UNBOUND_SVC_LB_IP}
+  ServerIP: ${PIHOLE_SVC_LB_IP}
+  IPv6: "false"
+  ServerIPv6: "::"
+  TEMPERATUREUNIT: c
+  WEBUIBOXEDLAYOUT: boxed
+
+
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
   name: pihole-ftl.conf
   namespace: dns
 data:
