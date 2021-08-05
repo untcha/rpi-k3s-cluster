@@ -8,7 +8,7 @@ spec:
   entryPoints:
     - web
   routes:
-    - match: Host(`docs.${SECRET_DOMAIN_LOCAL}`)
+    - match: Host(`docs.${SECRET_DOMAIN_LOCAL_02}`)
       kind: Rule
       services:
         - name: docs-static-nginx

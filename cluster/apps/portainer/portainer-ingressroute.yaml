@@ -8,7 +8,7 @@ spec:
   entryPoints:
     - web
   routes:
-    - match: Host(`portainer.${SECRET_DOMAIN_LOCAL}`)
+    - match: Host(`portainer.${SECRET_DOMAIN_LOCAL_02}`)
       kind: Rule
       services:
         - name: portainer-portainer

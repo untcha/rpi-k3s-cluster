@@ -8,7 +8,7 @@ spec:
   entryPoints:
     - web
   routes:
-    - match: Host(`chronograf.${SECRET_DOMAIN_LOCAL}`)
+    - match: Host(`chronograf.${SECRET_DOMAIN_LOCAL_02}`)
       kind: Rule
       services:
         - name: influxdata-chronograf-chronograf
