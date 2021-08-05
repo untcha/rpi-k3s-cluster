@@ -70,14 +70,26 @@ spec:
         - name: client-upd
           containerPort: 67
           protocol: UDP
+        # livenessProbe:
+        #   httpGet:
+        #     path: /
+        #     port: http
+        # readinessProbe:
+        #   httpGet:
+        #     path: /
+        #     port: http
         livenessProbe:
           httpGet:
-            path: /
-            port: http
+            path: /admin.index.php
+            port: 80
+          initialDelaySeconds: 60
+          periodSeconds: 5
         readinessProbe:
           httpGet:
-            path: /
-            port: http
+            path: /admin.index.php
+            port: 80
+          initialDelaySeconds: 25
+          periodSeconds: 5
         volumeMounts:
         - name: etc-pihole
           mountPath: /etc/pihole
