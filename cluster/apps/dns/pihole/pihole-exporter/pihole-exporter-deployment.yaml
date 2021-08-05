@@ -41,8 +41,8 @@ spec:
         - name: INTERVAL
           value: "10s"
         - name: PIHOLE_HOSTNAME
-          value: ${PIHOLE_SVC_LB_IP}
-          #value: "pihole-tcp.pihole.svc.cluster.local"
+          value: "pihole-tcp.dns.svc.cluster.local"
+          # value: ${PIHOLE_SVC_LB_IP}
         envFrom:
           - secretRef:
               name: pihole-exporter-secrets
