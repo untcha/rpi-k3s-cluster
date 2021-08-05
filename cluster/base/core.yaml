@@ -65,11 +65,11 @@ spec:
   sourceRef:
     kind: GitRepository
     name: flux-system
-  # healthChecks:
-  #   - apiVersion: helm.toolkit.fluxcd.io/v1beta1
-  #     kind: HelmRelease
-  #     name: metallb
-  #     namespace: flux-system
+  healthChecks:
+    - apiVersion: helm.toolkit.fluxcd.io/v1beta1
+      kind: HelmRelease
+      name: metallb
+      namespace: flux-system
   decryption:
     provider: sops
     secretRef:
