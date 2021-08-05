@@ -6,7 +6,8 @@ metadata:
   name: cluster-settings
 data:
   UNBOUND_SVC_LB_IP:              "192.168.178.122"
-  PIHOLE_SVC_LB_IP:               "192.168.178.120"
+  PIHOLE_SVC_LB_IP:               "192.168.178.123"
+  # PIHOLE_SVC_LB_IP:               "192.168.178.120"
   INFLUXDB_SVC_LB_IP:             "192.168.178.125"
   PROMETHEUS_SVC_LB_IP:           "192.168.178.126"
   NEXTCLOUD_REDIS_SVC_LB_IP:      "192.168.178.127"
