@@ -91,7 +91,7 @@ metadata:
 spec:
   interval: 10m0s
   dependsOn:
-  - name: core-namespace
+  - name: core-namespaces
   path: ./cluster/core/storage/remote
   prune: true
   sourceRef:
