@@ -8,7 +8,7 @@ spec:
   entryPoints:
     - web
   routes:
-    - match: Host(`longhorn.${SECRET_DOMAIN_LOCAL}`)
+    - match: Host(`longhorn.${SECRET_DOMAIN_LOCAL_02}`)
       kind: Rule
       services:
         - name: longhorn-frontend
