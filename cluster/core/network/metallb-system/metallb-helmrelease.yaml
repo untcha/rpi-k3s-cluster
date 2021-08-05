@@ -1,0 +1,130 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: metallb
+  namespace: flux-system
+spec:
+  chart:
+    spec:
+      chart: metallb
+      sourceRef:
+        kind: HelmRepository
+        name: metallb
+      version: 0.10.2
+  install: {}
+  interval: 1m0s
+  targetNamespace: metallb-system
+  values:
+    configInline: {}
+    controller:
+      affinity: {}
+      enabled: true
+      image:
+        pullPolicy: null
+        repository: quay.io/metallb/controller
+        tag: null
+      livenessProbe:
+        enabled: true
+        failureThreshold: 3
+        initialDelaySeconds: 10
+        periodSeconds: 10
+        successThreshold: 1
+        timeoutSeconds: 1
+      nodeSelector: {}
+      podAnnotations: {}
+      readinessProbe:
+        enabled: true
+        failureThreshold: 3
+        initialDelaySeconds: 10
+        periodSeconds: 10
+        successThreshold: 1
+        timeoutSeconds: 1
+      resources: {}
+      serviceAccount:
+        annotations: {}
+        create: true
+        name: ""
+      tolerations: []
+    existingConfigMap: config
+    fullnameOverride: ""
+    imagePullSecrets: []
+    nameOverride: ""
+    prometheus:
+      metricsPort: 7472
+      podMonitor:
+        enabled: false
+        interval: null
+        jobLabel: app.kubernetes.io/name
+        metricRelabelings: []
+        relabelings: []
+      prometheusRule:
+        addressPoolExhausted:
+          enabled: true
+          labels:
+            severity: alert
+        addressPoolUsage:
+          enabled: true
+          thresholds:
+          - labels:
+              severity: warning
+            percent: 75
+          - labels:
+              severity: warning
+            percent: 85
+          - labels:
+              severity: alert
+            percent: 95
+        bgpSessionDown:
+          enabled: true
+          labels:
+            severity: alert
+        configNotLoaded:
+          enabled: true
+          labels:
+            severity: warning
+        enabled: false
+        extraAlerts: []
+        staleConfig:
+          enabled: true
+          labels:
+            severity: warning
+      scrapeAnnotations: false
+    psp:
+      create: true
+    rbac:
+      create: true
+    speaker:
+      affinity: {}
+      enabled: true
+      image:
+        pullPolicy: null
+        repository: quay.io/metallb/speaker
+        tag: null
+      livenessProbe:
+        enabled: true
+        failureThreshold: 3
+        initialDelaySeconds: 10
+        periodSeconds: 10
+        successThreshold: 1
+        timeoutSeconds: 1
+      memberlist:
+        enabled: true
+        mlBindPort: 7946
+      nodeSelector: {}
+      podAnnotations: {}
+      readinessProbe:
+        enabled: true
+        failureThreshold: 3
+        initialDelaySeconds: 10
+        periodSeconds: 10
+        successThreshold: 1
+        timeoutSeconds: 1
+      resources: {}
+      serviceAccount:
+        annotations: {}
+        create: true
+        name: ""
+      tolerateMaster: true
+      tolerations: []
+
