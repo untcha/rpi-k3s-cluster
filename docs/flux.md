@@ -150,6 +150,18 @@ helm show values <repository/chart> <chart>-values.yaml
 
 ## Helm Release
 
+### metallb
+
+```bash
+flux create helmrelease metallb \
+  --source=HelmRepository/metallb \
+  --chart=metallb \
+  --chart-version="0.10.2" \
+  --target-namespace=metallb-system \
+  --values=metallb-values.yaml \
+  --export > metallb-helmrelease.yaml
+```
+
 ### Longhorn
 
 ```bash
