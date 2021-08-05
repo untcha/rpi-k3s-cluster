@@ -56,3 +56,15 @@ wiki.js
 bitwarden?
 gitlab?
 nextcloud
+
+
+### pi-hole
+https://medium.com/@tim.webster/highly-available-stateless-pi-hole-with-microk8s-9566c5c0f31d
+
+https://github.com/timwebster9/pihole-microk8s-demo
+
+https://docs.pi-hole.net/guides/dns/unbound/
+
+https://strobelstefan.org/2021/02/26/pi-hole-mit-unbound-werbeblocker-und-kontrolle-ueber-die-dns-anfragen-erhalten/
+
+https://runf11s.com/PiHole-and-Unbound-on-k8s
