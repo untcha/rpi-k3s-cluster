@@ -15,7 +15,6 @@ data:
   TEMPERATUREUNIT: c
   WEBUIBOXEDLAYOUT: boxed
 
-
 ---
 apiVersion: v1
 kind: ConfigMap
@@ -26,6 +25,16 @@ data:
   pihole-FTL.conf: |
     MAXDBDAYS=7
     LOGFILE=/var/log/pihole/pihole-FTL.log
+
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: custom.list
+  namespace: dns
+data:
+  custom.list: |
+    192.168.178.240 traefik.${SECRET_DOMAIN_LOCAL_02}
 
 ---
 apiVersion: v1

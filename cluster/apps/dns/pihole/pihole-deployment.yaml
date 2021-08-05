@@ -105,6 +105,9 @@ spec:
         - name: ftlconf
           mountPath: /etc/pihole/pihole-FTL.conf
           subPath: pihole-FTL.conf
+        - name: dns-records
+          mountPath: /etc/pihole/custom.list
+          subPath: custom.list
         - name: regex
           mountPath: /etc/pihole/regex.list
           subPath: regex.list
@@ -134,6 +137,12 @@ spec:
           items:
             - key: pihole-FTL.conf
               path: pihole-FTL.conf
+      - name: dns-records
+        configMap:
+          name: custom.list
+          items:
+            - key: custom.list
+              path: custom.list
       - name: regex
         configMap:
           name: regex.list
