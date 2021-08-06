@@ -14,7 +14,6 @@ spec:
       version: 0.6.2
   install: {}
   interval: 1m0s
-  timeout: 10m
   targetNamespace: nextcloud
   values:
     affinity: {}
@@ -73,7 +72,7 @@ spec:
     livenessProbe:
       enabled: true
       failureThreshold: 5
-      initialDelaySeconds: 360
+      initialDelaySeconds: 120
       periodSeconds: 10
       successThreshold: 1
       timeoutSeconds: 5
@@ -161,7 +160,7 @@ spec:
     startupProbe:
       enabled: true
       failureThreshold: 5
-      initialDelaySeconds: 120
+      initialDelaySeconds: 360
       periodSeconds: 30
       successThreshold: 1
       timeoutSeconds: 5
