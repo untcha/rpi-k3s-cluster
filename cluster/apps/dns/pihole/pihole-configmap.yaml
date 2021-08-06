@@ -14,7 +14,7 @@ data:
   ServerIPv6: "::"
   TEMPERATUREUNIT: c
   WEBUIBOXEDLAYOUT: boxed
-  WEBTHEME: default-dark
+  WEBTHEME: "default-dark"
 
 ---
 apiVersion: v1
