@@ -5,7 +5,7 @@ image:
   repository: postgres
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
-  tag: ""
+  tag: "13.3"
 
 ## Pull secrets and name override options
 imagePullSecrets: []
@@ -100,9 +100,9 @@ readinessProbe:
 ## Additional environment variables
 env:
 - name: PGTZ
-  value: ${TZ}
+  value: ${TIMEZONE}
 - name: TZ
-  value: ${TZ}
+  value: ${TIMEZONE}
 
 ## Arguments for the container entrypoint process
 args: []

@@ -23,14 +23,14 @@ spec:
     customReadinessProbe: {}
     env:
     - name: PGTZ
-      value: ${TZ}
+      value: ${TIMEZONE}
     - name: TZ
-      value: ${TZ}
+      value: ${TIMEZONE}
     fullnameOverride: ""
     image:
       pullPolicy: IfNotPresent
       repository: postgres
-      tag: ""
+      tag: "13.3"
     imagePullSecrets: []
     livenessProbe:
       enabled: true
