@@ -6,7 +6,6 @@ resources:
   - docs
   - tools
   - dns
-  - pihole
   - influxdata
   - grafana
   - prometheus
