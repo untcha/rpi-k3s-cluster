@@ -31,29 +31,11 @@ spec:
             add:
             - NET_ADMIN
         env:
-        # - name: ADMIN_EMAIL
-        #   value: ${SECRET_EMAIL}
-        # - name: TZ
-        #   value: ${TIMEZONE}
         - name: WEBPASSWORD
           valueFrom:
             secretKeyRef:
               name: pihole-secrets
               key: PIHOLE_WEBPASSWORD
-        # - name: DNS1
-        #   value: ${UNBOUND_SVC_LB_IP}
-        # - name: DNS2
-        #   value: ${UNBOUND_SVC_LB_IP}
-        # - name: ServerIP
-        #   value: ${PIHOLE_SVC_LB_IP}
-        # - name: IPv6
-        #   value: "false"
-        # - name: ServerIPv6
-        #   value: "::"
-        # - name: TEMPERATUREUNIT
-        #   value: c
-        # - name: WEBUIBOXEDLAYOUT
-        #   value: boxed
         envFrom:
         - configMapRef:
             name: pihole-env-vars
