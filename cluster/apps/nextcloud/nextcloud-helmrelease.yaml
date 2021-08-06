@@ -44,7 +44,7 @@ spec:
       value: de
     externalCache:
       enabled: true
-      host: ${NEXTCLOUD_REDIS_SVC_LB_IP}
+      host: nextcloud-redis.nextcloud.svc.cluster.local
       password: ${SECRET_NEXTCLOUD_REDIS_PASSWORD}
       port: 6379
     externalDatabase:
@@ -57,7 +57,7 @@ spec:
     image:
       pullPolicy: IfNotPresent
       repository: nextcloud
-      tag: ""
+      tag: 22.0.0-apache
     imagePullSecrets: []
     ingress:
       annotations: {}

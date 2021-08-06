@@ -5,7 +5,7 @@ image:
   repository: nextcloud
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
-  tag: ""
+  tag: "22.0.0-apache"
 
 # Default Init container image
 initImage:
@@ -207,7 +207,8 @@ externalCache:
   enabled: true
 
   ## Redis host
-  host: ${NEXTCLOUD_REDIS_SVC_LB_IP}
+  # host: ${NEXTCLOUD_REDIS_SVC_LB_IP}
+  host: nextcloud-redis.nextcloud.svc.cluster.local
 
   ## Redis port (default: 6379)
   port: 6379
