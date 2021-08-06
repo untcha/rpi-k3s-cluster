@@ -50,7 +50,7 @@ securityContext:
 ## Default redis service port (default Redis server port 6379, defaul Redis sentinel port 26379)
 service:
   ## Type of service (not available when haMode is enabled)
-  type: ClusterIP
+  type: LoadBalancer
   ## Redis server port
   serverPort: 6379
   ## Redis sentinel mode (only when haMode is enabled)
@@ -60,7 +60,7 @@ service:
   ## The cluster ip address (only relevant for type LoadBalancer or NodePort)
   clusterIP:
   ## The loadbalancer ip address (only relevant for type LoadBalancer - not available when haMode is enabled)
-  loadBalancerIP:
+  loadBalancerIP: ${NEXTCLOUD_REDIS_SVC_LB_IP}
 
 ## Resource limits and requests (for Redis)
 resources: {}
