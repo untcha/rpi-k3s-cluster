@@ -1707,7 +1707,7 @@ extraScrapeConfigs: |
     metrics_path: /metrics
     static_configs:
       - targets:
-        - traefik.${SECRET_DOMAIN_LOCAL}
+        - traefik.${SECRET_DOMAIN_LOCAL_02}
   - job_name: 'pihole-metrics'
     scrape_interval: 5s
     scheme: http
