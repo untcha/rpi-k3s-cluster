@@ -57,7 +57,7 @@ spec:
     image:
       pullPolicy: IfNotPresent
       repository: nextcloud
-      tag: 22.0.0-apache
+      tag: ""
     imagePullSecrets: []
     ingress:
       annotations: {}
