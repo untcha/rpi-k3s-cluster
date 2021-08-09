@@ -1,12 +1,67 @@
+## Prerequisites
+
+### Create a Flux GPG Key and export the fingerprint
+
+```bash
+gpg --batch --full-generate-key <<EOF
+%no-protection
+Key-Type: 1
+Key-Length: 4096
+Subkey-Type: 1
+Subkey-Length: 4096
+Expire-Date: 0
+Name-Real: ${FLUX_KEY_NAME}
+EOF
+```
+
+```bash
+gpg --list-secret-keys "${FLUX_KEY_NAME}"
+```
+
+```bash
+gpg --list-keys "$FLUX_KEY_NAME" | grep pub -A 1 | grep -v pub
+```
+
+### Add the Flux GPG key in-order for Flux to decrypt SOPS secrets
+
+TODO: place encrypted sops-gpg.yaml in the repository
+
+```bash
+gpg --export-secret-keys --armor "${FLUX_KEY_FP}" |
+kubectl create secret generic sops-gpg \
+    --namespace=flux-system \
+    --from-file=sops.asc=/dev/stdin
+```
+
+### Create / adapt `.sops.yaml` in the repository root
+
+```bash
+echo "---
+creation_rules:
+- encrypted_regex: '^(data|stringData)$'
+  pgp: >-
+    ${FLUX_KEY_FP},
+    ${PERSONAL_KEY_FP}" >> .sops.yaml
+```
+
+### Modify the `gotk-sync.yaml`
+
+Append the following:
+
+```yaml
+  ...
+  validation: client
+  # add the sops provider and secret reference
+  decryption:
+    provider: sops
+    secretRef:
+      name: sops-gpg
+```
+
 ## Bootstrap GitHub Repository
 
 ```bash
 flux check --pre
-```
-
-```bash
-# Testing latest stable: v0.15.2
-# --network-policy=false \
 ```
 
 ```bash
@@ -18,6 +73,9 @@ flux bootstrap github \
   --version="v0.16.1" \
   --network-policy=false \
   --personal
+
+# Testing latest stable: v0.15.2
+# --network-policy=false \
 ```
 
 ## Clone the git repository
@@ -335,5 +393,17 @@ flux create helmrelease telegraf \
 ## Useful commands
 
 ```bash
+echo -n 'test' | base64
+```
+
+```bash
 watch flux get all
 ```
+
+## Links and References
+[https://blog.stack-labs.com/code/kustomize-101/](https://blog.stack-labs.com/code/kustomize-101/)
+
+[https://blog.sldk.de/2021/02/introduction-to-gitops-on-kubernetes-with-flux-v2/](https://blog.sldk.de/2021/02/introduction-to-gitops-on-kubernetes-with-flux-v2/)
+[https://blog.sldk.de/2021/03/handling-secrets-in-flux-v2-repositories-with-sops/](https://blog.sldk.de/2021/03/handling-secrets-in-flux-v2-repositories-with-sops/)
+
+
