@@ -174,7 +174,7 @@ flux create helmrelease chronograf \
   --export > chronograf-helmrelease.yaml
 ```
 
-### Grafana (check update!)
+### Grafana
 
 ```bash
 flux create helmrelease grafana \
