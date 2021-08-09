@@ -11,7 +11,7 @@ spec:
       sourceRef:
         kind: HelmRepository
         name: prometheus-community
-      version: 14.4.1
+      version: 14.5.0
   install: {}
   interval: 1m0s
   targetNamespace: prometheus
@@ -600,7 +600,7 @@ spec:
             - __meta_kubernetes_pod_name
             target_label: kubernetes_pod_name
           - action: drop
-            regex: Pending|Succeeded|Failed
+            regex: Pending|Succeeded|Failed|Completed
             source_labels:
             - __meta_kubernetes_pod_phase
         - job_name: kubernetes-pods-slow
