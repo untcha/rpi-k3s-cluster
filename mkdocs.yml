@@ -17,6 +17,7 @@ nav:
   - Misc Guides:
     - Raspberry Setup: rpi-setup.md
     - SSH Guide: ssh.md
+    - Neofetch: neofetch.md
 
 # Theme settings
 theme:
