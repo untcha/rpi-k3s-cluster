@@ -246,13 +246,13 @@ flux create helmrelease nextcloud \
   --export > nextcloud-helmrelease.yaml
 ```
 
-### Portainer (check update!)
+### Portainer
 
 ```bash
 flux create helmrelease portainer \
   --source=HelmRepository/portainer \
   --chart=portainer \
-  --chart-version="1.0.15" \
+  --chart-version="1.0.16" \
   --target-namespace=portainer \
   --values=portainer-values.yaml \
   --export > portainer-helmrelease.yaml

@@ -11,7 +11,7 @@ spec:
       sourceRef:
         kind: HelmRepository
         name: portainer
-      version: 1.0.15
+      version: 1.0.16
   install: {}
   interval: 1m0s
   targetNamespace: portainer
@@ -21,7 +21,7 @@ spec:
       image:
         pullPolicy: Always
         repository: portainer/portainer-ee
-        tag: 2.4.0
+        tag: 2.7.0
     image:
       pullPolicy: Always
       repository: portainer/portainer-ce
