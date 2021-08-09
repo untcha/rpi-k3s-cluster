@@ -270,13 +270,13 @@ flux create helmrelease postgres \
   --export > postgres-helmrelease.yaml
 ```
 
-### Prometheus (check update!)
+### Prometheus
 
 ```bash
 flux create helmrelease prometheus \
   --source=HelmRepository/prometheus-community \
   --chart=prometheus \
-  --chart-version="14.4.1" \
+  --chart-version="14.5.0" \
   --target-namespace=prometheus \
   --values=prometheus-values.yaml \
   --export > prometheus-helmrelease.yaml
