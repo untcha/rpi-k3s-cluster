@@ -63,27 +63,19 @@ TODO: create kustomization.yaml files recursively
 ## Helm Repositories
 
 ```bash
-# longhorn
+# grafana
 
-flux create source helm longhorn \
-    --url https://charts.longhorn.io \
-    --export > longhorn-charts.yaml
+flux create source helm grafana \
+    --url https://grafana.github.io/helm-charts \
+    --export > grafana-charts.yaml
 ```
 
 ```bash
-# cert-manager
+# nextcloud, postgres, redis
 
-flux create source helm jetstack \
-    --url https://charts.jetstack.io \
-    --export > jetstack-charts.yaml
-```
-
-```bash
-# traefik
-
-flux create source helm traefik \
-    --url https://helm.traefik.io/traefik \
-    --export > traefik-charts.yaml
+flux create source helm groundhog2k \
+    --url https://groundhog2k.github.io/helm-charts/ \
+    --export > groundhog2k-charts.yaml
 ```
 
 ```bash
@@ -95,19 +87,35 @@ flux create source helm influxdata \
 ```
 
 ```bash
-# grafana
+# cert-manager
 
-flux create source helm grafana \
-    --url https://grafana.github.io/helm-charts \
-    --export > grafana-charts.yaml
+flux create source helm jetstack \
+    --url https://charts.jetstack.io \
+    --export > jetstack-charts.yaml
 ```
 
 ```bash
-# prometheus
+# librespeed
 
-flux create source helm prometheus-community \
-    --url https://prometheus-community.github.io/helm-charts \
-    --export > prometheus-community-charts.yaml
+flux create source helm k8s-at-home \
+    --url https://k8s-at-home.com/charts/ \
+    --export > k8s-at-home-charts.yaml
+```
+
+```bash
+# longhorn
+
+flux create source helm longhorn \
+    --url https://charts.longhorn.io \
+    --export > longhorn-charts.yaml
+```
+
+```bash
+# metallb
+
+flux create source helm metallb \
+    --url https://metallb.github.io/metallb \
+    --export > metallb-charts.yaml
 ```
 
 ```bash
@@ -119,27 +127,19 @@ flux create source helm portainer \
 ```
 
 ```bash
-# k8s-at-home
+# prometheus
 
-flux create source helm k8s-at-home \
-    --url https://k8s-at-home.com/charts/ \
-    --export > k8s-at-home-charts.yaml
+flux create source helm prometheus-community \
+    --url https://prometheus-community.github.io/helm-charts \
+    --export > prometheus-community-charts.yaml
 ```
 
 ```bash
-# groundhog2k
+# traefik
 
-flux create source helm groundhog2k \
-    --url https://groundhog2k.github.io/helm-charts/ \
-    --export > groundhog2k-charts.yaml
-```
-
-```bash
-# mojo2600
-
-flux create source helm mojo2600 \
-    --url https://mojo2600.github.io/pihole-kubernetes/ \
-    --export > mojo2600-charts.yaml
+flux create source helm traefik \
+    --url https://helm.traefik.io/traefik \
+    --export > traefik-charts.yaml
 ```
 
 ## Helm Chart Values
@@ -150,31 +150,7 @@ helm show values <repository/chart> <chart>-values.yaml
 
 ## Helm Release
 
-### metallb
-
-```bash
-flux create helmrelease metallb \
-  --source=HelmRepository/metallb \
-  --chart=metallb \
-  --chart-version="0.10.2" \
-  --target-namespace=metallb-system \
-  --values=metallb-values.yaml \
-  --export > metallb-helmrelease.yaml
-```
-
-### Longhorn
-
-```bash
-flux create helmrelease longhorn \
-  --source=HelmRepository/longhorn \
-  --chart=longhorn \
-  --chart-version="1.1.2" \
-  --target-namespace=longhorn-system \
-  --values=longhorn-values.yaml \
-  --export > longhorn-helmrelease.yaml
-```
-
-### Cert-Manager
+### Cert-Manager (check update!)
 
 ```bash
 flux create helmrelease cert-manager \
@@ -186,29 +162,7 @@ flux create helmrelease cert-manager \
   --export > cert-manager-helmrelease.yaml
 ```
 
-### Traefik
-
-```bash
-flux create helmrelease traefik \
-  --source=HelmRepository/traefik \
-  --chart=traefik \
-  --chart-version="10.0.0" \
-  --target-namespace=traefik \
-  --values=traefik-values.yaml \
-  --export > traefik-helmrelease.yaml
-```
-
-### InfluxDB, Chronograf, Telegraf
-
-```bash
-flux create helmrelease influxdb \
-  --source=HelmRepository/influxdata \
-  --chart=influxdb \
-  --chart-version="4.9.14" \
-  --target-namespace=influxdata \
-  --values=influxdb-values.yaml \
-  --export > influxdb-helmrelease.yaml
-```
+### Chronograf
 
 ```bash
 flux create helmrelease chronograf \
@@ -220,17 +174,7 @@ flux create helmrelease chronograf \
   --export > chronograf-helmrelease.yaml
 ```
 
-```bash
-flux create helmrelease telegraf \
-  --source=HelmRepository/influxdata \
-  --chart=telegraf \
-  --chart-version="1.8.2" \
-  --target-namespace=influxdata \
-  --values=telegraf-values.yaml \
-  --export > telegraf-helmrelease.yaml
-```
-
-### Grafana
+### Grafana (check update!)
 
 ```bash
 flux create helmrelease grafana \
@@ -242,28 +186,16 @@ flux create helmrelease grafana \
   --export > grafana-helmrelease.yaml
 ```
 
-### Prometheus
+### InfluxDB (check update!)
 
 ```bash
-flux create helmrelease prometheus \
-  --source=HelmRepository/prometheus-community \
-  --chart=prometheus \
-  --chart-version="14.4.1" \
-  --target-namespace=prometheus \
-  --values=prometheus-values.yaml \
-  --export > prometheus-helmrelease.yaml
-```
-
-### Portainer
-
-```bash
-flux create helmrelease portainer \
-  --source=HelmRepository/portainer \
-  --chart=portainer \
-  --chart-version="1.0.15" \
-  --target-namespace=portainer \
-  --values=portainer-values.yaml \
-  --export > portainer-helmrelease.yaml
+flux create helmrelease influxdb \
+  --source=HelmRepository/influxdata \
+  --chart=influxdb \
+  --chart-version="4.9.14" \
+  --target-namespace=influxdata \
+  --values=influxdb-values.yaml \
+  --export > influxdb-helmrelease.yaml
 ```
 
 ### LibreSpeed
@@ -278,7 +210,31 @@ flux create helmrelease librespeed \
   --export > librespeed-helmrelease.yaml
 ```
 
-### Nextcloud, postgres, redis 
+### Longhorn
+
+```bash
+flux create helmrelease longhorn \
+  --source=HelmRepository/longhorn \
+  --chart=longhorn \
+  --chart-version="1.1.2" \
+  --target-namespace=longhorn-system \
+  --values=longhorn-values.yaml \
+  --export > longhorn-helmrelease.yaml
+```
+
+### MetalLB
+
+```bash
+flux create helmrelease metallb \
+  --source=HelmRepository/metallb \
+  --chart=metallb \
+  --chart-version="0.10.2" \
+  --target-namespace=metallb-system \
+  --values=metallb-values.yaml \
+  --export > metallb-helmrelease.yaml
+```
+
+### Nextcloud
 
 ```bash
 flux create helmrelease nextcloud \
@@ -290,6 +246,20 @@ flux create helmrelease nextcloud \
   --export > nextcloud-helmrelease.yaml
 ```
 
+### Portainer (check update!)
+
+```bash
+flux create helmrelease portainer \
+  --source=HelmRepository/portainer \
+  --chart=portainer \
+  --chart-version="1.0.15" \
+  --target-namespace=portainer \
+  --values=portainer-values.yaml \
+  --export > portainer-helmrelease.yaml
+```
+
+### Postgres
+
 ```bash
 flux create helmrelease postgres \
   --source=HelmRepository/groundhog2k \
@@ -299,6 +269,46 @@ flux create helmrelease postgres \
   --values=postgres-values.yaml \
   --export > postgres-helmrelease.yaml
 ```
+
+### Prometheus (check update!)
+
+```bash
+flux create helmrelease prometheus \
+  --source=HelmRepository/prometheus-community \
+  --chart=prometheus \
+  --chart-version="14.4.1" \
+  --target-namespace=prometheus \
+  --values=prometheus-values.yaml \
+  --export > prometheus-helmrelease.yaml
+```
+
+### Redis
+
+```bash
+flux create helmrelease redis \
+  --source=HelmRepository/groundhog2k \
+  --chart=redis \
+  --chart-version="0.4.7" \
+  --target-namespace=nextcloud \
+  --values=redis-values.yaml \
+  --export > redis-helmrelease.yaml
+```
+
+### Traefik (check update!)
+
+```bash
+flux create helmrelease traefik \
+  --source=HelmRepository/traefik \
+  --chart=traefik \
+  --chart-version="10.0.0" \
+  --target-namespace=traefik \
+  --values=traefik-values.yaml \
+  --export > traefik-helmrelease.yaml
+```
+
+### Not in use
+
+#### MariaDB
 
 ```bash
 flux create helmrelease mariadb \
@@ -310,14 +320,16 @@ flux create helmrelease mariadb \
   --export > mariadb-helmrelease.yaml
 ```
 
+#### Telegraf (check update!)
+
 ```bash
-flux create helmrelease redis \
-  --source=HelmRepository/groundhog2k \
-  --chart=redis \
-  --chart-version="0.4.7" \
-  --target-namespace=nextcloud \
-  --values=redis-values.yaml \
-  --export > redis-helmrelease.yaml
+flux create helmrelease telegraf \
+  --source=HelmRepository/influxdata \
+  --chart=telegraf \
+  --chart-version="1.8.2" \
+  --target-namespace=influxdata \
+  --values=telegraf-values.yaml \
+  --export > telegraf-helmrelease.yaml
 ```
 
 ## Useful commands
