@@ -186,13 +186,13 @@ flux create helmrelease grafana \
   --export > grafana-helmrelease.yaml
 ```
 
-### InfluxDB (check update!)
+### InfluxDB
 
 ```bash
 flux create helmrelease influxdb \
   --source=HelmRepository/influxdata \
   --chart=influxdb \
-  --chart-version="4.9.14" \
+  --chart-version="4.10.0" \
   --target-namespace=influxdata \
   --values=influxdb-values.yaml \
   --export > influxdb-helmrelease.yaml
