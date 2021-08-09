@@ -53,19 +53,19 @@ gpg --output backup.asc --armor --export-secret-keys --export-options export-bac
 
 ## Encrypt and decrypt with `gpg`
 
-#### Encrypt:
+Encrypt:
 
 ```bash
 gpg -e -o file.txt.encrypted -r [key-id] file.txt
 ```
 
-#### Decrypt:
+Decrypt:
 
 ```bash
 gpg -d -o file.txt.decrypted file.txt.encrypted
 ```
 
-## Encrypt secrets in config files with `SOPS`:
+## Encrypt secrets in config files with `SOPS`
 
 Find the public fingerprint for the key:
 
@@ -95,7 +95,7 @@ sops --encrypted-regex 'certificate-authority-data|client-certificate-data|clien
 sops --pgp $KEY_FP --encrypt config.yaml > config_encrypted.yaml
 ```
 
-## Decrypt secrets in config files with `SOPS`:
+## Decrypt secrets in config files with `SOPS`
 
 For decryption `gpg-agent` needs to be unlocked with the private key password before. First run:
 
