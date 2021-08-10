@@ -77,5 +77,8 @@ spec:
       requestedSize: null
     tolerations: []
     updateStrategyType: RollingUpdate
-    userDatabase: {}
+    userDatabase:
+      name: wordpress
+      password: wordpress
+      user: wordpress
 

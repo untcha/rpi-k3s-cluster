@@ -112,15 +112,15 @@ settings:
   rootPassword: ${SECRET_MARIADB_ROOT_PASSWORD}
 
 ## Optional user database which is created during first startup with user and password
-userDatabase: {}
+userDatabase:
   ## Name of the user database
-  # name:
+  name: wordpress
 
   ## Database user with full access rights
-  # user:
+  user: wordpress
 
   ## Password of the database user (default: a 10 char. alpahnumerical random password will be generated)
-  # password:
+  password: wordpress
 
 ## Optional custom configuration block that will be mounted as file in /etc/mysql/conf.d/custom.cnf
 customConfig: |-
