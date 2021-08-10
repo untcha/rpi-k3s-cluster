@@ -1,0 +1,81 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: mariadb
+  namespace: flux-system
+spec:
+  chart:
+    spec:
+      chart: mariadb
+      sourceRef:
+        kind: HelmRepository
+        name: groundhog2k
+      version: 0.2.13
+  install: {}
+  interval: 1m0s
+  targetNamespace: nextcloud
+  values:
+    affinity: {}
+    customConfig: ""
+    customLivenessProbe: {}
+    customReadinessProbe: {}
+    env: []
+    fullnameOverride: ""
+    image:
+      pullPolicy: IfNotPresent
+      repository: mariadb
+      tag: ""
+    imagePullSecrets: []
+    livenessProbe:
+      enabled: true
+      failureThreshold: 3
+      initialDelaySeconds: 120
+      periodSeconds: 10
+      successThreshold: 1
+      timeoutSeconds: 5
+    nameOverride: ""
+    nodeSelector: {}
+    podAnnotations: {}
+    podManagementPolicy: OrderedReady
+    podSecurityContext:
+      fsGroup: 999
+    readinessProbe:
+      enabled: true
+      failureThreshold: 3
+      initialDelaySeconds: 30
+      periodSeconds: 10
+      successThreshold: 1
+      timeoutSeconds: 5
+    resources: {}
+    revisionHistoryLimit: null
+    securityContext:
+      allowPrivilegeEscalation: false
+      privileged: false
+      readOnlyRootFilesystem: true
+      runAsGroup: 999
+      runAsNonRoot: true
+      runAsUser: 999
+    service:
+      clusterIP: null
+      loadBalancerIP: null
+      nodePort: null
+      port: 3306
+      type: ClusterIP
+    serviceAccount:
+      annotations: {}
+      create: false
+      name: ""
+    settings:
+      arguments: []
+      rootPassword: ${SECRET_MARIADB_ROOT_PASSWORD}
+    storage:
+      accessModes:
+      - ReadWriteOnce
+      className: null
+      persistentVolumeClaimName: mariadb-data
+      requestedSize: null
+    tolerations: []
+    updateStrategyType: RollingUpdate
+    userDatabase: {}
+
