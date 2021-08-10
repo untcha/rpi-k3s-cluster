@@ -11,5 +11,5 @@ spec:
     - match: Host(`blog2-test.${SECRET_DOMAIN_LOCAL_02}`)
       kind: Rule
       services:
-        - name: wordpress
+        - name: blog2-test-wordpress
           port: 80
