@@ -64,8 +64,8 @@ spec:
       type: ClusterIP
     serviceAccount:
       annotations: {}
-      create: false
-      name: ""
+      create: true
+      name: database
     settings:
       arguments: []
       rootPassword: ${SECRET_MARIADB_ROOT_PASSWORD}
