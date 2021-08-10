@@ -9,6 +9,6 @@ resources:
   - influxdata
   - grafana
   - prometheus
-  # - blog
+  - blog
   - portainer
   - nextcloud
