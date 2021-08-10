@@ -1,0 +1,15 @@
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: blog2-test-local-ingressroute
+  namespace: blog2-test
+spec:
+  entryPoints:
+    - web
+  routes:
+    - match: Host(`blog2-test.${SECRET_DOMAIN_LOCAL_02}`)
+      kind: Rule
+      services:
+        - name: wordpress
+          port: 80

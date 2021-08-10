@@ -137,18 +137,18 @@ env: []
 args: []
 
 ## External database settings (is used when mariadb.enabled is false)
-externalDatabase: {}
+externalDatabase:
   ## Name of the database (default: wordpress)
-  # name: wordpress
+  name: wordpress
 
   ## Database user
-  # user:
+  user: wordpress
 
   ## Database password
-  # password:
+  password: wordpress
 
   ## Database host
-  # host:
+  host: blog2-test-mariadb.blog2-test.svc.cluster.local
 
 ## Wordpress specific settings
 settings:
@@ -171,7 +171,7 @@ apacheDefaultSiteConfig: |
 ## Storage parameters
 storage:
   ## Set persistentVolumenClaimName to reference an existing PVC
-  persistentVolumeClaimName:
+  persistentVolumeClaimName: wordpress-data
 
   ## Alternative set requestedSize to define a size for a dynmaically created PVC
   requestedSize:
