@@ -222,6 +222,7 @@ data:
   a-records.conf: |
     # A Record
     local-data: "blog-test.${SECRET_DOMAIN_LOCAL_02}.                A 192.168.178.240"
+    local-data: "blog2-test.${SECRET_DOMAIN_LOCAL_02}.               A 192.168.178.240"
     local-data: "chronograf.${SECRET_DOMAIN_LOCAL_02}.               A 192.168.178.240"
     local-data: "cloud.${SECRET_DOMAIN_LOCAL_02}.                    A 192.168.178.240"
     local-data: "docs.${SECRET_DOMAIN_LOCAL_02}.                     A 192.168.178.240"
@@ -236,6 +237,7 @@ data:
 
     # PTR Record
     local-data-ptr: "192.168.178.240 blog-test.${SECRET_DOMAIN_LOCAL_02}."
+    local-data-ptr: "192.168.178.240 blog2-test.${SECRET_DOMAIN_LOCAL_02}."
     local-data-ptr: "192.168.178.240 chronograf.${SECRET_DOMAIN_LOCAL_02}."
     local-data-ptr: "192.168.178.240 cloud.${SECRET_DOMAIN_LOCAL_02}."
     local-data-ptr: "192.168.178.240 docs.${SECRET_DOMAIN_LOCAL_02}."
