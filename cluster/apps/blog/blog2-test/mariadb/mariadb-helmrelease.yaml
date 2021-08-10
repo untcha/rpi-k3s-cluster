@@ -14,7 +14,7 @@ spec:
       version: 0.2.13
   install: {}
   interval: 1m0s
-  targetNamespace: nextcloud
+  targetNamespace: blog2-test
   values:
     affinity: {}
     customConfig: ""
