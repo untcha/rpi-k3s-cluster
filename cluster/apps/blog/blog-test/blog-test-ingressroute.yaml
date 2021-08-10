@@ -8,7 +8,7 @@ spec:
   entryPoints:
     - web
   routes:
-    - match: Host(`blog-test.${SECRET_DOMAIN_LOCAL}`)
+    - match: Host(`blog-test.${SECRET_DOMAIN_LOCAL_02}`)
       kind: Rule
       services:
         - name: wordpress
@@ -24,7 +24,7 @@ spec:
   entryPoints:
     - web
   routes:
-    - match: Host(`blog-test.${SECRET_DOMAIN_LOCAL}`) && PathPrefix(`/metrics`)
+    - match: Host(`blog-test.${SECRET_DOMAIN_LOCAL_02}`) && PathPrefix(`/metrics`)
       kind: Rule
       services:
         - name: mariadb
