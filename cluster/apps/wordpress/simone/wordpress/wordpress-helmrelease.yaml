@@ -1,0 +1,108 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: wordpress
+  namespace: flux-system
+spec:
+  chart:
+    spec:
+      chart: wordpress
+      sourceRef:
+        kind: HelmRepository
+        name: groundhog2k
+      version: 0.4.0
+  install: {}
+  interval: 1m0s
+  targetNamespace: wp-simone
+  values:
+    affinity: {}
+    apacheDefaultSiteConfig: ""
+    apachePortsConfig: ""
+    args: []
+    containerPort: 8000
+    customLivenessProbe: {}
+    customPhpConfig: ""
+    customReadinessProbe: {}
+    env: []
+    externalDatabase:
+      host: wp-simone-mariadb.wp-simone.svc.cluster.local
+      name: wordpress
+      password: ${SECRET_WORDPRESS_SIMONE_DB_PASSWORD}
+      user: wordpress
+    fullnameOverride: ""
+    image:
+      pullPolicy: IfNotPresent
+      repository: wordpress
+      tag: ""
+    imagePullSecrets: []
+    ingress:
+      annotations: {}
+      enabled: false
+      hosts:
+      - host: null
+        paths: []
+      maxBodySize: 64m
+      tls: []
+    livenessProbe:
+      enabled: true
+      failureThreshold: 5
+      initialDelaySeconds: 30
+      periodSeconds: 10
+      successThreshold: 1
+      timeoutSeconds: 5
+    mariadb:
+      enabled: false
+      settings:
+        rootPassword: null
+      storage:
+        className: null
+        persistentVolumeClaimName: null
+        requestedSize: null
+      userDatabase: {}
+    nameOverride: ""
+    nodeSelector: {}
+    podAnnotations: {}
+    podDisruptionBudget: {}
+    podSecurityContext:
+      fsGroup: 33
+      runAsNonRoot: true
+      runAsUser: 33
+    readinessProbe:
+      enabled: true
+      failureThreshold: 5
+      initialDelaySeconds: 30
+      periodSeconds: 10
+      successThreshold: 1
+      timeoutSeconds: 5
+    replicaCount: 1
+    resources: {}
+    revisionHistoryLimit: null
+    securityContext:
+      allowPrivilegeEscalation: false
+      privileged: false
+      readOnlyRootFilesystem: true
+    service:
+      clusterIP: null
+      loadBalancerIP: null
+      nodePort: null
+      port: 80
+      type: ClusterIP
+    serviceAccount:
+      annotations: {}
+      create: false
+      name: ""
+    settings:
+      maxFileUploadSize: 64M
+      memoryLimit: 128M
+      tablePrefix: null
+    storage:
+      accessModes:
+      - ReadWriteOnce
+      className: null
+      keepPvc: false
+      persistentVolumeClaimName: wordpress-data
+      requestedSize: null
+    strategy: {}
+    tolerations: []
+
