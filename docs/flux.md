@@ -280,6 +280,18 @@ flux create helmrelease longhorn \
   --export > longhorn-helmrelease.yaml
 ```
 
+### MariaDB
+
+```bash
+flux create helmrelease mariadb \
+  --source=HelmRepository/groundhog2k \
+  --chart=mariadb \
+  --chart-version="0.2.13" \
+  --target-namespace=<NAMESPACE> \
+  --values=mariadb-values.yaml \
+  --export > mariadb-helmrelease.yaml
+```
+
 ### MetalLB
 
 ```bash
@@ -364,19 +376,19 @@ flux create helmrelease traefik \
   --export > traefik-helmrelease.yaml
 ```
 
-### Not in use
-
-#### MariaDB
+### Wordpress
 
 ```bash
-flux create helmrelease mariadb \
+flux create helmrelease wordpress \
   --source=HelmRepository/groundhog2k \
-  --chart=mariadb \
-  --chart-version="0.2.13" \
-  --target-namespace=nextcloud \
-  --values=mariadb-values.yaml \
-  --export > mariadb-helmrelease.yaml
+  --chart=wordpress \
+  --chart-version="0.4.0" \
+  --target-namespace=<NAMESPACE> \
+  --values=wordpress-values.yaml \
+  --export > wordpress-helmrelease.yaml
 ```
+
+### Not in use
 
 #### Telegraf (check update!)
 
