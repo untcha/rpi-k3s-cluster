@@ -13,3 +13,55 @@ spec:
       services:
         - name: wp-simone-wordpress
           port: 80
+
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: wp-simone-http-ingressroute
+  namespace: wp-simone
+spec:
+  entryPoints:
+    - web
+  routes:
+    - match: Host(`simone.${SECRET_DIGITALOCEAN_DOMAIN_02}`)
+      kind: Rule
+      middlewares:
+        - name: wp-simone-middleware-redirect-scheme
+      services:
+        - name: wp-simone-wordpress
+          port: 80
+
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: wp-simone-https-ingressroute
+  namespace: wp-simone
+  annotations:
+    cert-manager.io/cluster-issuer: "letsencrypt-dns01-production-do"
+spec:
+  entryPoints:
+    - websecure
+  routes:
+    - match: Host(`simone.${SECRET_DIGITALOCEAN_DOMAIN_02}`)
+      kind: Rule
+      # middlewares:
+      #   - name: pihole-middleware-headers
+      services:
+        - name: wp-simone-wordpress
+          port: 80
+  tls:
+    secretName: wp-simone-letsencrypt-production-certificate
+
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: Middleware
+metadata:
+  name: wp-simone-middleware-redirect-scheme
+  namespace: wp-simone
+spec:
+  redirectScheme:
+    scheme: https
+    permanent: true
+    port: "443"
