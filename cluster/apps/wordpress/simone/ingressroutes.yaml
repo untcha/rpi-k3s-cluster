@@ -1,0 +1,15 @@
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: wp-simone-local-ingressroute
+  namespace: wp-simone
+spec:
+  entryPoints:
+    - web
+  routes:
+    - match: Host(`simone.${SECRET_DOMAIN_LOCAL_02}`)
+      kind: Rule
+      services:
+        - name: wp-simone-wordpress
+          port: 80
