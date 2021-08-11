@@ -5,5 +5,5 @@ resources:
   - namespace.yaml
   - mariadb
   - wordpress
-  #- ingressroutes.yaml
   - letsencrypt-certificate.yaml
+  - ingressroutes.yaml
