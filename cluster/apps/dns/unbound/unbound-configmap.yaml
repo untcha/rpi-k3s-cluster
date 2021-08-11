@@ -221,8 +221,6 @@ metadata:
 data:
   a-records.conf: |
     # A Record
-    local-data: "blog-test.${SECRET_DOMAIN_LOCAL_02}.                A 192.168.178.240"
-    local-data: "blog2-test.${SECRET_DOMAIN_LOCAL_02}.               A 192.168.178.240"
     local-data: "chronograf.${SECRET_DOMAIN_LOCAL_02}.               A 192.168.178.240"
     local-data: "cloud.${SECRET_DOMAIN_LOCAL_02}.                    A 192.168.178.240"
     local-data: "docs.${SECRET_DOMAIN_LOCAL_02}.                     A 192.168.178.240"
@@ -233,11 +231,10 @@ data:
     local-data: "portainer.${SECRET_DOMAIN_LOCAL_02}.                A 192.168.178.240"
     local-data: "prometheus-alertmanager.${SECRET_DOMAIN_LOCAL_02}.  A 192.168.178.240"
     local-data: "prometheus.${SECRET_DOMAIN_LOCAL_02}.               A 192.168.178.240"
+    local-data: "simone.${SECRET_DOMAIN_LOCAL_02}.                   A 192.168.178.240"
     local-data: "traefik.${SECRET_DOMAIN_LOCAL_02}.                  A 192.168.178.240"
 
     # PTR Record
-    local-data-ptr: "192.168.178.240 blog-test.${SECRET_DOMAIN_LOCAL_02}."
-    local-data-ptr: "192.168.178.240 blog2-test.${SECRET_DOMAIN_LOCAL_02}."
     local-data-ptr: "192.168.178.240 chronograf.${SECRET_DOMAIN_LOCAL_02}."
     local-data-ptr: "192.168.178.240 cloud.${SECRET_DOMAIN_LOCAL_02}."
     local-data-ptr: "192.168.178.240 docs.${SECRET_DOMAIN_LOCAL_02}."
@@ -248,4 +245,5 @@ data:
     local-data-ptr: "192.168.178.240 portainer.${SECRET_DOMAIN_LOCAL_02}."
     local-data-ptr: "192.168.178.240 prometheus-alertmanager.${SECRET_DOMAIN_LOCAL_02}."
     local-data-ptr: "192.168.178.240 prometheus.${SECRET_DOMAIN_LOCAL_02}."
+    local-data-ptr: "192.168.178.240 simone.${SECRET_DOMAIN_LOCAL_02}."
     local-data-ptr: "192.168.178.240 traefik.${SECRET_DOMAIN_LOCAL_02}."
