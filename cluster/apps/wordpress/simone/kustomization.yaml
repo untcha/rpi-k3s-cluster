@@ -6,4 +6,4 @@ resources:
   - mariadb
   - wordpress
   #- ingressroutes.yaml
-  #- letsencrypt-certificate.yaml
+  - letsencrypt-certificate.yaml
