@@ -12,3 +12,4 @@ resources:
   - portainer
   - nextcloud
   - wordpress
+  - development

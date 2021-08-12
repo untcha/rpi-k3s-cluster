@@ -1,0 +1,96 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: redis
+  namespace: flux-system
+spec:
+  chart:
+    spec:
+      chart: redis
+      sourceRef:
+        kind: HelmRepository
+        name: groundhog2k
+      version: 0.4.7
+  install: {}
+  interval: 1m0s
+  targetNamespace: dev-gitea
+  values:
+    affinity: {}
+    args: []
+    customLivenessProbe: {}
+    customReadinessProbe: {}
+    env:
+    - name: TZ
+      value: ${TIMEZONE}
+    fullnameOverride: ""
+    haMode:
+      downAfterMilliseconds: 5000
+      enabled: false
+      failoverTimeout: 180000
+      failoverWait: 5
+      masterAliveTestTimeout: 2
+      masterGroupName: redisha
+      parallelSyncs: 2
+      quorum: 2
+      replicas: 3
+    image:
+      pullPolicy: IfNotPresent
+      repository: redis
+      tag: 6.2.5
+    imagePullSecrets: []
+    livenessProbe:
+      enabled: true
+      failureThreshold: 3
+      initialDelaySeconds: 15
+      periodSeconds: 10
+      successThreshold: 1
+      timeoutSeconds: 5
+    nameOverride: ""
+    nodeSelector: {}
+    podAnnotations: {}
+    podDisruptionBudget: {}
+    podManagementPolicy: OrderedReady
+    podSecurityContext:
+      fsGroup: 999
+    readinessProbe:
+      enabled: true
+      failureThreshold: 3
+      initialDelaySeconds: 15
+      periodSeconds: 10
+      successThreshold: 1
+      timeoutSeconds: 5
+    redisConfig: |
+      requirepass ${SECRET_GITEA_REDIS_PASSWORD}
+    resources: {}
+    revisionHistoryLimit: null
+    securityContext:
+      allowPrivilegeEscalation: false
+      privileged: false
+      readOnlyRootFilesystem: true
+      runAsGroup: 999
+      runAsNonRoot: true
+      runAsUser: 999
+    sentinelArgs: []
+    sentinelConfig: ""
+    sentinelResources: {}
+    service:
+      clusterIP: null
+      loadBalancerIP: ${GITEA_REDIS_SVC_LB_IP}
+      nodePort: null
+      sentinelPort: 26379
+      serverPort: 6379
+      type: LoadBalancer
+    serviceAccount:
+      annotations: {}
+      create: false
+      name: ""
+    storage:
+      accessModes:
+      - ReadWriteOnce
+      className: null
+      persistentVolumeClaimName: redis-pvc
+      requestedSize: null
+    tolerations: []
+    updateStrategyType: RollingUpdate
+
