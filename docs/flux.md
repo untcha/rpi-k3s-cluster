@@ -328,6 +328,18 @@ flux create helmrelease portainer \
   --export > portainer-helmrelease.yaml
 ```
 
+### Postgres (gitea)
+
+```bash
+flux create helmrelease gitea-postgres \
+  --source=HelmRepository/groundhog2k \
+  --chart=postgres \
+  --chart-version="0.2.12" \
+  --target-namespace=dev-gitea \
+  --values=gitea-values.yaml \
+  --export > gitea-helmrelease.yaml
+```
+
 ### Postgres (Nextcloud)
 
 ```bash
@@ -350,6 +362,18 @@ flux create helmrelease prometheus \
   --target-namespace=prometheus \
   --values=prometheus-values.yaml \
   --export > prometheus-helmrelease.yaml
+```
+
+### Redis (gitea)
+
+```bash
+flux create helmrelease gitea-redis \
+  --source=HelmRepository/groundhog2k \
+  --chart=redis \
+  --chart-version="0.4.7" \
+  --target-namespace=dev-gitea \
+  --values=redis-values.yaml \
+  --export > redis-helmrelease.yaml
 ```
 
 ### Redis (Nextcloud)
