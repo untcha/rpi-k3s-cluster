@@ -84,7 +84,7 @@ spec:
     tolerations: []
     updateStrategyType: RollingUpdate
     userDatabase:
-      name: ${SECRET_GITEA_DB_NAME}
-      password: ${SECRET_GITEA_DB_PASSWORD}
-      user: ${SECRET_GITEA_DB_USER}
+      name: ${SECRET_GITEA_POSTGRES_DB_NAME}
+      password: ${SECRET_GITEA_POSTGRES_DB_PASSWORD}
+      user: ${SECRET_GITEA_POSTGRES_DB_USER}
 
