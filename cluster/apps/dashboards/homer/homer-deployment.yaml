@@ -32,7 +32,7 @@ spec:
         - name: UID
           value: "911"
         - name: GID
-          vlaue: "911"
+          value: "911"
         ports:
         - name: http
           containerPort: 8080
