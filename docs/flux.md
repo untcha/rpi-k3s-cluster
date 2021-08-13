@@ -328,10 +328,10 @@ flux create helmrelease portainer \
   --export > portainer-helmrelease.yaml
 ```
 
-### Postgres
+### Postgres (Nextcloud)
 
 ```bash
-flux create helmrelease postgres \
+flux create helmrelease nextcloud-postgres \
   --source=HelmRepository/groundhog2k \
   --chart=postgres \
   --chart-version="0.2.12" \
