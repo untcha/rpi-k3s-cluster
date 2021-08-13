@@ -1,0 +1,53 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: homer
+  namespace: dashboards
+  labels:
+    app: homer
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: homer
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 0
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        app: homer
+        name: homer
+    spec:
+      containers:
+      - name: homer
+        image: b4bz/homer:21.03.2
+        imagePullPolicy: IfNotPresent
+        env:
+        - name: TZ
+          value: ${TIMEZONE}
+        - name: UID
+          value: "911"
+        - name: GID
+          vlaue: "911"
+        ports:
+        - name: http
+          containerPort: 8080
+          protocol: TCP
+        volumeMounts:
+        - name: assets
+          mountPath: /www/assets
+        - name: config
+          mountPath: /www/assets/config.yml.dist
+          subPath: config.yml.dist
+      volumes:
+        - name: assets
+          persistentVolumeClaim:
+            claimName: homer-assets
+        - name: config
+          configMap:
+            name: homer-config
+
