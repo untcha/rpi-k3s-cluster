@@ -352,10 +352,10 @@ flux create helmrelease prometheus \
   --export > prometheus-helmrelease.yaml
 ```
 
-### Redis
+### Redis (Nextcloud)
 
 ```bash
-flux create helmrelease redis \
+flux create helmrelease nextcloud-redis \
   --source=HelmRepository/groundhog2k \
   --chart=redis \
   --chart-version="0.4.7" \
