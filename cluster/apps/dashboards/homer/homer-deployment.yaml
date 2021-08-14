@@ -49,5 +49,8 @@ spec:
             claimName: homer-assets
         - name: config
           configMap:
-            name: homer-config
+            name: config.yml
+            items:
+              - key: config.yml
+                path: config.yml
 

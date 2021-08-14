@@ -2,10 +2,10 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: homer-config
+  name: config.yml
   namespace: dashboards
 data:
-  config: |
+  config.yml: |
     ---
     # Homepage configuration
     # See https://fontawesome.com/icons for icons options
