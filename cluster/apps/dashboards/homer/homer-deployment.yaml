@@ -41,7 +41,7 @@ spec:
         - name: assets
           mountPath: /www/assets
         - name: config
-          mountPath: /www/assets/config.yml.dist
+          mountPath: /www/assets/
           subPath: config.yml.dist
       volumes:
         - name: assets
