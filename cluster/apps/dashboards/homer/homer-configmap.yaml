@@ -5,7 +5,7 @@ metadata:
   name: homer-config
   namespace: dashboards
 data:
-  config.yml: |
+  config: |
     ---
     # Homepage configuration
     # See https://fontawesome.com/icons for icons options
