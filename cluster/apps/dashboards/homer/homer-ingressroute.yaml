@@ -60,7 +60,7 @@ apiVersion: traefik.containo.us/v1alpha1
 kind: Middleware
 metadata:
   name: homer-middleware-redirect-scheme
-  namespace: dashboard
+  namespace: dashboards
 spec:
   redirectScheme:
     scheme: https
@@ -72,7 +72,7 @@ apiVersion: traefik.containo.us/v1alpha1
 kind: Middleware
 metadata:
   name: homer-middleware-basicauth
-  namespace: dashboard
+  namespace: dashboards
 spec:
   basicAuth:
     secret: homer-secret-basicauth
@@ -82,7 +82,7 @@ apiVersion: traefik.containo.us/v1alpha1
 kind: Middleware
 metadata:
   name: homer-middleware-headers
-  namespace: dashboard
+  namespace: dashboards
 spec:
   headers:
     browserXssFilter: true
