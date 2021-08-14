@@ -14,5 +14,4 @@ spec:
     port: 8080
     protocol: TCP
     targetPort: http
-  type: LoadBalancer
-  loadBalancerIP: "192.168.178.131"
+  type: ClusterIP

@@ -6,3 +6,5 @@ resources:
   - homer-configmap.yaml
   - homer-service.yaml
   - homer-deployment.yaml
+  - homer-letsencrypt-certificate.yaml
+  #- homer-ingressroute.yaml

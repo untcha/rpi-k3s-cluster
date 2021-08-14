@@ -1,0 +1,14 @@
+---
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: homer-letsencrypt-production-certificate
+  namespace: dashboards
+spec:
+  commonName: homer.${SECRET_DIGITALOCEAN_DOMAIN_02}
+  secretName: homer-letsencrypt-production-certificate
+  dnsNames:
+    - homer.${SECRET_DIGITALOCEAN_DOMAIN_02}
+  issuerRef:
+    name: letsencrypt-dns01-production-do
+    kind: ClusterIssuer

@@ -1,0 +1,111 @@
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: homer-local-ingressroute
+  namespace: dashboards
+spec:
+  entryPoints:
+    - web
+  routes:
+    - match: Host(`homer.${SECRET_DOMAIN_LOCAL_02}`)
+      kind: Rule
+      services:
+        - name: homer
+          port: 8080
+
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: homer-http-ingressroute
+  namespace: dashboards
+spec:
+  entryPoints:
+    - web
+  routes:
+    - match: Host(`homer.${SECRET_DIGITALOCEAN_DOMAIN_02}`)
+      kind: Rule
+      middlewares:
+        - name: homer-middleware-redirect-scheme
+      services:
+        - name: homer-tcp
+          port: 8080
+
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: homer-https-ingressroute
+  namespace: dashboards
+  annotations:
+    cert-manager.io/cluster-issuer: "letsencrypt-dns01-production-do"
+spec:
+  entryPoints:
+    - websecure
+  routes:
+    - match: Host(`homer.${SECRET_DIGITALOCEAN_DOMAIN_02}`)
+      kind: Rule
+      middlewares:
+        #- name: homer-middleware-basicauth
+        - name: homer-middleware-headers
+      services:
+        - name: homer
+          port: 8080
+  tls:
+    secretName: homer-letsencrypt-production-certificate
+
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: Middleware
+metadata:
+  name: homer-middleware-redirect-scheme
+  namespace: dashboard
+spec:
+  redirectScheme:
+    scheme: https
+    permanent: true
+    port: "443"
+
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: Middleware
+metadata:
+  name: homer-middleware-basicauth
+  namespace: dashboard
+spec:
+  basicAuth:
+    secret: homer-secret-basicauth
+
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: Middleware
+metadata:
+  name: homer-middleware-headers
+  namespace: dashboard
+spec:
+  headers:
+    browserXssFilter: true
+    contentTypeNosniff: true
+    frameDeny: true
+    sslRedirect: true
+    forceSTSHeader: true
+    stsIncludeSubdomains: true
+    stsPreload: true
+    stsSeconds: 63072000
+    #customRequestHeaders:
+      #X-Frame-Options: "SAMEORIGIN"
+    #customFrameOptionsValue: "SAMEORIGIN"
+    #contentSecurityPolicy: "frame-ancestors 'self' homer.${SECRET_DIGITALOCEAN_DOMAIN_02}"
+    #contentSecurityPolicy: "default-src 'self'; script-src https://homer.${SECRET_DIGITALOCEAN_DOMAIN_02}"
+    contentSecurityPolicy: |
+      default-src 'none';form-action 'none';frame-ancestors 'none';base-uri 'none'
+    accessControlAllowMethods:
+      - "GET"
+      - "POST"
+    accessControlAllowOriginList:
+      #- "https://*.${SECRET_DIGITALOCEAN_DOMAIN_02}"
+      - "https://homer.${SECRET_DIGITALOCEAN_DOMAIN_02}"
+    accessControlMaxAge: 100
+    addVaryHeader: true
+    referrerPolicy: "same-origin"
