@@ -24,7 +24,7 @@ spec:
     spec:
       containers:
       - name: homer
-        image: b4bz/homer:21.03.2
+        image: b4bz/homer:21.07.1
         imagePullPolicy: IfNotPresent
         env:
         - name: TZ
@@ -41,8 +41,8 @@ spec:
         - name: assets
           mountPath: /www/assets
         - name: config
-          mountPath: /www/assets/
-          subPath: config.yml.dist
+          mountPath: /www/assets/config.yml
+          subPath: config.yml
       volumes:
         - name: assets
           persistentVolumeClaim:
