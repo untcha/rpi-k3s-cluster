@@ -4,7 +4,7 @@ kind: Kustomization
 resources:
   - tools-namespace.yaml
   - network-multitool
-  - librespeed
+  # - librespeed
   - whoami
   - duckdns
   # - nginx
