@@ -26,8 +26,8 @@ spec:
   routes:
     - match: Host(`simone.${SECRET_DIGITALOCEAN_DOMAIN_02}`)
       kind: Rule
-      #middlewares:
-      #  - name: wp-simone-middleware-redirect-scheme
+      middlewares:
+        - name: wp-simone-middleware-redirect-scheme
       services:
         - name: wp-simone-wordpress
           port: 80
