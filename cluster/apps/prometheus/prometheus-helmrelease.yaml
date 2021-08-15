@@ -143,6 +143,13 @@ spec:
         static_configs:
           - targets:
             - pihole-metrics.${SECRET_DOMAIN_LOCAL_02}
+      - job_name: 'speedtest-metrics'
+        scrape_interval: 1h
+        scheme: http
+        metrics_path: /metrics
+        static_configs:
+          - targets:
+            - speedtest.${SECRET_DOMAIN_LOCAL_02}
       # - job_name: 'prometheus-blackbox-exporter'
       #   metrics_path: /probe
       #   params:
