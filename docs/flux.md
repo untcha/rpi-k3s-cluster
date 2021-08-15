@@ -358,7 +358,7 @@ flux create helmrelease nextcloud-postgres \
 flux create helmrelease prometheus \
   --source=HelmRepository/prometheus-community \
   --chart=prometheus \
-  --chart-version="14.5.0" \
+  --chart-version="14.6.0" \
   --target-namespace=prometheus \
   --values=prometheus-values.yaml \
   --export > prometheus-helmrelease.yaml
