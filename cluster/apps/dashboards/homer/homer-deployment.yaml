@@ -40,17 +40,17 @@ spec:
         volumeMounts:
         - name: assets
           mountPath: /www/assets
-        - name: config
-          mountPath: /www/assets/config.yml
-          subPath: config.yml
+        # - name: config
+        #   mountPath: /www/assets/config.yml
+        #   subPath: config.yml
       volumes:
         - name: assets
           persistentVolumeClaim:
             claimName: homer-assets
-        - name: config
-          configMap:
-            name: config.yml
-            items:
-              - key: config.yml
-                path: config.yml
+        # - name: config
+        #   configMap:
+        #     name: config.yml
+        #     items:
+        #       - key: config.yml
+        #         path: config.yml
 
