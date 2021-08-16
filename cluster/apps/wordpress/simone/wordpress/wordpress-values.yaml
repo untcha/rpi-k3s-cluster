@@ -148,7 +148,7 @@ externalDatabase:
   password: ${SECRET_WORDPRESS_SIMONE_DB_PASSWORD}
 
   ## Database host
-  host: wp-simone-mariadb.wp-simone.svc.cluster.local
+  host: wp-simone-mariadb-wp-simone.wp-simone.svc.cluster.local
 
 ## Wordpress specific settings
 settings:
