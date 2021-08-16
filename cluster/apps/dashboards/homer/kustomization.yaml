@@ -4,7 +4,7 @@ kind: Kustomization
 resources:
   - enc_homer-secret-basicauth.yaml
   - homer-pvc.yaml
-  #- homer-configmap.yaml
+  - homer-configmap.yaml
   - homer-service.yaml
   - homer-deployment.yaml
   - homer-letsencrypt-certificate.yaml

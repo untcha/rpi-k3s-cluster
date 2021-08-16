@@ -2,6 +2,16 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
+  name: test.yml
+  namespace: dashboards
+data:
+  test.yml: |
+    #testtest
+
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
   name: config.yml
   namespace: dashboards
 data:

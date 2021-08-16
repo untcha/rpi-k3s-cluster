@@ -40,6 +40,9 @@ spec:
         volumeMounts:
         - name: assets
           mountPath: /www/assets
+        - name: test
+          mountPath: /www/assets/test.yml
+          subPath: test.yml
         # - name: config
         #   mountPath: /www/assets/config.yml
         #   subPath: config.yml
@@ -47,6 +50,12 @@ spec:
         - name: assets
           persistentVolumeClaim:
             claimName: homer-assets
+        - name: test
+          configMap:
+            name: test.yml
+            items:
+              - key: test.yml
+                path: test.yml
         # - name: config
         #   configMap:
         #     name: config.yml
