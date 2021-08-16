@@ -106,7 +106,7 @@ customReadinessProbe: {}
 
 ## Default readiness probe
 readinessProbe:
-  enabled: false
+  enabled: true
   initialDelaySeconds: 30
   timeoutSeconds: 5
   failureThreshold: 5
