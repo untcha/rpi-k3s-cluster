@@ -53,6 +53,7 @@ spec:
         - name: test
           configMap:
             name: test.yml
+            defaultMode: 0777
             items:
               - key: test.yml
                 path: test.yml
