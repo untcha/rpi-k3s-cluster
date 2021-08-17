@@ -24,7 +24,7 @@ spec:
     spec:
       containers:
       - name: blocky
-        image: spx01/blocky:v0.14
+        image: spx01/blocky:v0.15
         imagePullPolicy: IfNotPresent
         env:
         - name: TZ
