@@ -3,7 +3,7 @@ apiVersion: traefik.containo.us/v1alpha1
 kind: IngressRoute
 metadata:
   name: blocky-metrics-local-ingressroute
-  namespace: dns
+  namespace: dns-test
 spec:
   entryPoints:
     - web
