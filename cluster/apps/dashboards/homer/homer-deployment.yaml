@@ -38,25 +38,15 @@ spec:
           containerPort: 8080
           protocol: TCP
         volumeMounts:
-        - name: assets
-          mountPath: /www/assets
-        # - name: test
-        #   mountPath: /www/assets/test.yml
-        #   subPath: test.yml
+        # - name: assets
+        #   mountPath: /www/assets
         - name: config
           mountPath: /www/assets/config.yml
           subPath: config.yml
       volumes:
-        - name: assets
-          persistentVolumeClaim:
-            claimName: homer-assets
-        # - name: test
-        #   configMap:
-        #     name: test.yml
-        #     defaultMode: 0644
-        #     items:
-        #       - key: test.yml
-        #         path: test.yml
+        # - name: assets
+        #   persistentVolumeClaim:
+        #     claimName: homer-assets
         - name: config
           configMap:
             name: config.yml
