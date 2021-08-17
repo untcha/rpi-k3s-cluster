@@ -75,7 +75,7 @@ spec:
     imageRenderer:
       enabled: false
       env:
-        GF_PANELS_DISABLE_SANITIZE_HTML: true
+        GF_PANELS_DISABLE_SANITIZE_HTML: "true"
         HTTP_HOST: 0.0.0.0
       grafanaSubPath: ""
       hostAliases: []
