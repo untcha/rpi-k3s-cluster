@@ -11,5 +11,5 @@ spec:
     - match: Host(`blocky-metrics.${SECRET_DOMAIN_LOCAL_02}`) && PathPrefix(`/metrics`)
       kind: Rule
       services:
-        - name: dns-blocky
+        - name: blocky-tcp
           port: 4000
