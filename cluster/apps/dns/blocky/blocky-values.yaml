@@ -59,7 +59,7 @@ service:
 # @default -- See values.yaml
 persistence:
   logs:
-    enabled: false
+    enabled: true
     mountPath: /logs
 
 prometheus:
