@@ -6,7 +6,7 @@ metadata:
   namespace: dashboards
 data:
   config: |
-    externalConfig: https://raw.githubusercontent.com/bastienwirtz/homer/main/public/assets/config.yml.dist
+    externalConfig: https://docs.${SECRET_DIGITALOCEAN_DOMAIN_02}/homer-config/config.yaml
 
 # ---
 # apiVersion: v1
