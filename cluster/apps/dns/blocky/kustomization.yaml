@@ -3,6 +3,8 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
   - blocky-namespace.yaml
+  - blocky-configmap.yaml
   - blocky-tcp-service.yaml
   - blocky-udp-service.yaml
+  - blocky-deployment.yaml
   - blocky-ingressroute.yaml
