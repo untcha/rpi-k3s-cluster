@@ -47,7 +47,5 @@ spec:
       volumes:
       - name: blocky-config
         configMap:
-          name: blocky-config.yml
-          items:
-            - key: config.yml
-              path: config.yml
+          name: blocky-config
+          defaultMode: 420
