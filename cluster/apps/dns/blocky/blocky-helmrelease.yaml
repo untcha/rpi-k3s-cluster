@@ -14,7 +14,7 @@ spec:
       version: 8.0.0
   install: {}
   interval: 1m0s
-  targetNamespace: dns
+  targetNamespace: dns-test
   values:
     config: |
       upstream:
