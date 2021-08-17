@@ -152,7 +152,7 @@ spec:
       tag: v0.14
     persistence:
       logs:
-        enabled: true
+        enabled: false
         mountPath: /logs
     prometheus:
       serviceMonitor:

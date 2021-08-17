@@ -7,5 +7,5 @@ resources:
   #- blocky-tcp-service.yaml
   #- blocky-udp-service.yaml
   #- blocky-deployment.yaml
-  - blocky-helmrelease.yaml
+  #- blocky-helmrelease.yaml
   - blocky-ingressroute.yaml
