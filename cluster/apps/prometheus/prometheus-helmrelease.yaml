@@ -151,7 +151,7 @@ spec:
         static_configs:
           - targets:
             - speedtest.${SECRET_DOMAIN_LOCAL_02}
-        - job_name: 'blocky-metrics'
+      - job_name: 'blocky-metrics'
         scrape_interval: 5s
         scheme: http
         metrics_path: /metrics
