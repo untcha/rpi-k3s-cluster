@@ -388,6 +388,17 @@ flux create helmrelease nextcloud-redis \
   --export > redis-helmrelease.yaml
 ```
 
+### Speedtest-Exporter
+```bash
+flux create helmrelease speedtest-exporter \
+  --source=HelmRepository/k8s-at-home \
+  --chart=speedtest-exporter \
+  --chart-version="3.0.0" \
+  --target-namespace=tools \
+  --values=speedtest-exporter-values.yaml \
+  --export > speedtest-exporter-helmrelease.yaml
+```
+
 ### Traefik (check update!)
 
 ```bash
