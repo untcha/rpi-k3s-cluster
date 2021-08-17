@@ -30,9 +30,9 @@ spec:
         - name: TZ
           value: ${TIMEZONE}
         - name: UID
-          value: "911"
+          value: "1000"
         - name: GID
-          value: "911"
+          value: "1000"
         ports:
         - name: http
           containerPort: 8080
