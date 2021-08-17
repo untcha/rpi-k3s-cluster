@@ -41,7 +41,8 @@ spec:
       sha: ""
       tag: 7.73.0
     enableServiceLinks: true
-    env: {}
+    env:
+      GF_PANELS_DISABLE_SANITIZE_HTML: true
     envFromSecret: ""
     envRenderSecret: {}
     envValueFrom: {}
