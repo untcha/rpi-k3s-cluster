@@ -112,7 +112,7 @@ data:
         # logo: "path/to/logo"
         items:
           - name: "Awesome app"
-            logo: "assets/tools/sample.png"
+            logo: "https://docs.${SECRET_DIGITALOCEAN_DOMAIN_02}/homer-config/grafana.png"
             # Alternatively a fa icon can be provided:
             # icon: "fab fa-jenkins"
             subtitle: "Bookmark example"
