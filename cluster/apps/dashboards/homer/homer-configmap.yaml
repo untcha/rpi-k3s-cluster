@@ -6,7 +6,7 @@ metadata:
   namespace: dashboards
 data:
   config: |
-    externalConfig: https://docs.${SECRET_DIGITALOCEAN_DOMAIN_02}/homer-config/config.yaml
+    externalConfig: https://docs.${SECRET_DIGITALOCEAN_DOMAIN_02}/homer-config/config.yml
 
 # ---
 # apiVersion: v1
