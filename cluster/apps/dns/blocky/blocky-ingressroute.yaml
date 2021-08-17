@@ -1,0 +1,15 @@
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: blocky-metrics-local-ingressroute
+  namespace: dns
+spec:
+  entryPoints:
+    - web
+  routes:
+    - match: Host(`blocky-metrics.${SECRET_DOMAIN_LOCAL_02}`) && PathPrefix(`/metrics`)
+      kind: Rule
+      services:
+        - name: dns-blocky
+          port: 4000

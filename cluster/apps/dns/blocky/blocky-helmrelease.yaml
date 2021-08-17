@@ -111,11 +111,11 @@ spec:
         #     - 192.168.178.29
 
       # optional: configuration for prometheus metrics endpoint
-      # prometheus:
-      #   # enabled if true
-      #   enable: true
-      #   # url path, optional (default '/metrics')
-      #   path: /metrics
+      prometheus:
+        # enabled if true
+        enable: true
+        # url path, optional (default '/metrics')
+        path: /metrics
 
       # optional: write query information (question, answer, client, duration etc) to daily csv file
       # queryLog:
