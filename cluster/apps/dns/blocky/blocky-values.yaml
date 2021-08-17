@@ -67,7 +67,7 @@ prometheus:
   # See also the notes under `additionalContainers`.
   # @default -- See values.yaml
   serviceMonitor:
-    enabled: false
+    enabled: true
     interval: 30s
     additionalLabels: {}
 

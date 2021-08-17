@@ -145,7 +145,7 @@ spec:
       replicas: 1
       strategy: RollingUpdate
     env:
-      TZ: UTC
+      TZ: ${TIMEZONE}
     image:
       pullPolicy: IfNotPresent
       repository: spx01/blocky
@@ -157,7 +157,7 @@ spec:
     prometheus:
       serviceMonitor:
         additionalLabels: {}
-        enabled: false
+        enabled: true
         interval: 30s
     service:
       dns-tcp:
