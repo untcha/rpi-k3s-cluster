@@ -33,7 +33,7 @@ service:
       http:
         port: 4000
   dns-tcp:
-    enabled: true
+    enabled: false
     type: LoadBalancer
     loadBalancerIP: 192.168.178.180
     externalTrafficPolicy: Local
@@ -67,7 +67,7 @@ prometheus:
   # See also the notes under `additionalContainers`.
   # @default -- See values.yaml
   serviceMonitor:
-    enabled: true
+    enabled: false
     interval: 30s
     additionalLabels: {}
 
