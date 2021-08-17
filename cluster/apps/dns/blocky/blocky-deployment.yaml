@@ -43,11 +43,11 @@ spec:
         - name: blocky-config
           mountPath: /app/config.yml
           subPath: config.yml
-    restartPolicy: Always
-    volumes:
-    - name: blocky-config
-      configMap:
-        name: blocky-config.yml
-        items:
-          - key: config.yml
-            path: config.yml
+      restartPolicy: Always
+      volumes:
+      - name: blocky-config
+        configMap:
+          name: blocky-config.yml
+          items:
+            - key: config.yml
+              path: config.yml
