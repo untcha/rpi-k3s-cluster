@@ -706,7 +706,6 @@ imageRenderer:
   # extra environment variables
   env:
     HTTP_HOST: "0.0.0.0"
-    GF_PANELS_DISABLE_SANITIZE_HTML: "true"
     # RENDERING_ARGS: --disable-gpu,--window-size=1280x758
     # RENDERING_MODE: clustered
   # image-renderer deployment serviceAccount
