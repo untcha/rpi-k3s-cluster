@@ -43,9 +43,9 @@ spec:
         - name: test
           mountPath: /www/assets/test.yml
           subPath: test.yml
-        # - name: config
-        #   mountPath: /www/assets/config.yml
-        #   subPath: config.yml
+        - name: config
+          mountPath: /www/assets/config.yml
+          subPath: config.yml
       volumes:
         - name: assets
           persistentVolumeClaim:
@@ -57,10 +57,11 @@ spec:
             items:
               - key: test.yml
                 path: test.yml
-        # - name: config
-        #   configMap:
-        #     name: config.yml
-        #     items:
-        #       - key: config.yml
-        #         path: config.yml
+        - name: config
+          configMap:
+            name: config.yml
+            defaultMode: 0644
+            items:
+              - key: config.yml
+                path: config.yml
 
