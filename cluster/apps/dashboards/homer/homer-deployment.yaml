@@ -30,9 +30,9 @@ spec:
         - name: TZ
           value: ${TIMEZONE}
         - name: UID
-          value: "1000"
+          value: "911"
         - name: GID
-          value: "1000"
+          value: "911"
         ports:
         - name: http
           containerPort: 8080
@@ -40,9 +40,9 @@ spec:
         volumeMounts:
         - name: assets
           mountPath: /www/assets
-        - name: test
-          mountPath: /www/assets/test.yml
-          subPath: test.yml
+        # - name: test
+        #   mountPath: /www/assets/test.yml
+        #   subPath: test.yml
         - name: config
           mountPath: /www/assets/config.yml
           subPath: config.yml
@@ -50,18 +50,18 @@ spec:
         - name: assets
           persistentVolumeClaim:
             claimName: homer-assets
-        - name: test
-          configMap:
-            name: test.yml
-            defaultMode: 0644
-            items:
-              - key: test.yml
-                path: test.yml
+        # - name: test
+        #   configMap:
+        #     name: test.yml
+        #     defaultMode: 0644
+        #     items:
+        #       - key: test.yml
+        #         path: test.yml
         - name: config
           configMap:
             name: config.yml
-            defaultMode: 0644
+            # defaultMode: 0644
             items:
-              - key: config.yml
+              - key: config
                 path: config.yml
 
