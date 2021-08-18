@@ -13,3 +13,4 @@ resources:
   - nextcloud
   - wordpress
   - development
+  - bitwarden
