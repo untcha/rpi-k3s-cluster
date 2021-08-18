@@ -19,7 +19,7 @@ rules:
     resources:
       - configmaps
     resourceNames:
-      - "bitwarden"
+      - "bitwarden-config"
     verbs:
       - get
   - apiGroups:
