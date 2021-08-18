@@ -20,4 +20,4 @@ spec:
   # sessionAffinity: None
   externalTrafficPolicy: Local
   type: LoadBalancer
-  loadBalancerIP: 192.168.178.180
+  loadBalancerIP: ${BLOCKY_SVC_LB_IP}
