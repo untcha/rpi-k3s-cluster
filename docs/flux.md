@@ -256,18 +256,6 @@ flux create helmrelease influxdb \
   --export > influxdb-helmrelease.yaml
 ```
 
-### LibreSpeed
-
-```bash
-flux create helmrelease librespeed \
-  --source=HelmRepository/k8s-at-home \
-  --chart=librespeed \
-  --chart-version="4.1.0" \
-  --target-namespace=tools \
-  --values=librespeed-values.yaml \
-  --export > librespeed-helmrelease.yaml
-```
-
 ### Longhorn
 
 ```bash
@@ -435,6 +423,18 @@ flux create helmrelease telegraf \
   --target-namespace=influxdata \
   --values=telegraf-values.yaml \
   --export > telegraf-helmrelease.yaml
+```
+
+### LibreSpeed
+
+```bash
+flux create helmrelease librespeed \
+  --source=HelmRepository/k8s-at-home \
+  --chart=librespeed \
+  --chart-version="4.1.0" \
+  --target-namespace=tools \
+  --values=librespeed-values.yaml \
+  --export > librespeed-helmrelease.yaml
 ```
 
 ## Useful commands
