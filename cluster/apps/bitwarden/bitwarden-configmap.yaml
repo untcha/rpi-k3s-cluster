@@ -14,6 +14,7 @@ data:
   SMTP_PASSWORD: ${SECRET_BITWARDEN_SMTP_PASSWORD}
   SMTP_PORT: "587"
   SMTP_SSL: "true"
+  TZ: ${TIMEZONE}
   # nginx-ingress-controller has built in support for Websockets
   # Project: https://github.com/kubernetes/ingress-nginx
   WEBSOCKET_ENABLED: "true"
