@@ -268,7 +268,7 @@ flux create helmrelease longhorn \
   --export > longhorn-helmrelease.yaml
 ```
 
-### MariaDB
+### MariaDB (check update!)
 
 ```bash
 flux create helmrelease mariadb \
@@ -292,7 +292,7 @@ flux create helmrelease metallb \
   --export > metallb-helmrelease.yaml
 ```
 
-### Nextcloud
+### Nextcloud (check update!)
 
 ```bash
 flux create helmrelease nextcloud \
@@ -316,7 +316,7 @@ flux create helmrelease portainer \
   --export > portainer-helmrelease.yaml
 ```
 
-### Postgres (gitea)
+### Postgres (gitea) (check update!)
 
 ```bash
 flux create helmrelease gitea-postgres \
@@ -328,7 +328,7 @@ flux create helmrelease gitea-postgres \
   --export > gitea-helmrelease.yaml
 ```
 
-### Postgres (Nextcloud)
+### Postgres (Nextcloud) (check update!)
 
 ```bash
 flux create helmrelease nextcloud-postgres \
@@ -399,7 +399,7 @@ flux create helmrelease traefik \
   --export > traefik-helmrelease.yaml
 ```
 
-### Wordpress
+### Wordpress (check update!)
 
 ```bash
 flux create helmrelease wordpress \
