@@ -7,10 +7,12 @@ metadata:
   labels:
     app: bitwarden
 data:
-  # SMTP_HOST: "smtp.domain.tld"
-  # SMTP_FROM: "user@smtp.domain.tld"
-  # SMTP_PORT: "587"
-  # SMTP_SSL: "true"
+  SMTP_HOST: "${SECRET_BITWARDEN_SMTP_HOST}"
+  SMTP_FROM: "${SECRET_BITWARDEN_SMTP_FROM}"
+  SMTP_USERNAME: "${SECRET_BITWARDEN_SMTP_USERNAME}"
+  SMTP_PASSWORD: "${SECRET_BITWARDEN_SMTP_PASSWORD}"
+  SMTP_PORT: "587"
+  SMTP_SSL: "true"
   # nginx-ingress-controller has built in support for Websockets
   # Project: https://github.com/kubernetes/ingress-nginx
   WEBSOCKET_ENABLED: "true"
