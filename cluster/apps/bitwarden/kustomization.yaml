@@ -4,3 +4,6 @@ kind: Kustomization
 resources:
   - bitwarden-namespace.yaml
   - bitwarden-pvc.yaml
+  # - enc_bitwarden-secrets.yaml
+  # - bitwarden-configmap.yaml
+  # - bitwarden-service.yaml
