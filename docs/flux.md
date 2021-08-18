@@ -399,13 +399,13 @@ flux create helmrelease traefik \
   --export > traefik-helmrelease.yaml
 ```
 
-### Wordpress (check update!)
+### Wordpress
 
 ```bash
 flux create helmrelease wordpress \
   --source=HelmRepository/groundhog2k \
   --chart=wordpress \
-  --chart-version="0.4.0" \
+  --chart-version="0.4.1" \
   --target-namespace=<NAMESPACE> \
   --values=wordpress-values.yaml \
   --export > wordpress-helmrelease.yaml
