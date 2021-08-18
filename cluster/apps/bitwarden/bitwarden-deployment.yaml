@@ -27,12 +27,12 @@ spec:
       - name: bitwarden
         image: vaultwarden/server:latest
         imagePullPolicy: IfNotPresent
-        env:
-        - name: ADMIN_TOKEN
-          valueFrom:
-            secretKeyRef:
-              name: bitwarden-admin-token
-              key: token
+        # env:
+        # - name: ADMIN_TOKEN
+        #   valueFrom:
+        #     secretKeyRef:
+        #       name: bitwarden-admin-token
+        #       key: token
         envFrom:
           - configMapRef:
               name: bitwarden-config

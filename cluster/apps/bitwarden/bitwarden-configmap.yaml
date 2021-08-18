@@ -7,6 +7,7 @@ metadata:
   labels:
     app: bitwarden
 data:
+  ADMIN_TOKEN: ${SECRET_BITWARDEN_ADMIN_TOKEN}
   SMTP_HOST: ${SECRET_BITWARDEN_SMTP_HOST}
   SMTP_FROM: ${SECRET_BITWARDEN_SMTP_FROM}
   SMTP_USERNAME: ${SECRET_BITWARDEN_SMTP_USERNAME}
@@ -24,5 +25,5 @@ data:
   ROCKET_PORT: "8080"
 
   # Bitwarden RS settings
-  SIGNUPS_ALLOWED: "true"
+  SIGNUPS_ALLOWED: "false"
   LOG_FILE: "/data/bitwarden.log"
