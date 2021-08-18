@@ -5,7 +5,6 @@ resources:
   - tools-namespace.yaml
   - network-multitool
   - speedtest-exporter
-  # - librespeed
   - whoami
   - duckdns
   # - nginx
