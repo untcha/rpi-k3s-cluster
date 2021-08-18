@@ -8,3 +8,4 @@ resources:
   # - enc_bitwarden-secrets.yaml
   # - bitwarden-configmap.yaml
   # - bitwarden-service.yaml
+  # - bitwarden-deployment.yaml
