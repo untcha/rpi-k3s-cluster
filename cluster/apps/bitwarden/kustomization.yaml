@@ -9,4 +9,5 @@ resources:
   - bitwarden-configmap.yaml
   - bitwarden-service.yaml
   - bitwarden-deployment.yaml
+  - bitwarden-letsencrypt-certificate.yaml
   - bitwarden-ingressroute.yaml
