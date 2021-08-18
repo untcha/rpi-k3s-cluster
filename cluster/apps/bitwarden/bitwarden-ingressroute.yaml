@@ -60,7 +60,7 @@ apiVersion: traefik.containo.us/v1alpha1
 kind: Middleware
 metadata:
   name: bitwarden-middleware-redirect-scheme
-  namespace: dns
+  namespace: bitwarden
 spec:
   redirectScheme:
     scheme: https
