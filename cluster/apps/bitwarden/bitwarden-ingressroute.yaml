@@ -1,0 +1,15 @@
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: bitwarden-local-ingressroute
+  namespace: bitwarden
+spec:
+  entryPoints:
+    - web
+  routes:
+    - match: Host(`bitwarden.${SECRET_DOMAIN_LOCAL_02}`)
+      kind: Rule
+      services:
+        - name: bitwarden
+          port: 80
