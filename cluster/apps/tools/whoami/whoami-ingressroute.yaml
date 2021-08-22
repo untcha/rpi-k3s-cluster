@@ -100,8 +100,8 @@ spec:
     forceSTSHeader: true
     stsIncludeSubdomains: true
     stsPreload: true
-    # stsSeconds: 315360000
-    stsSeconds: 63072000
+    stsSeconds: 315360000
+    # stsSeconds: 63072000
     contentSecurityPolicy: |
       default-src 'none';form-action 'none';frame-ancestors 'none';base-uri 'none'
     accessControlAllowMethods:
