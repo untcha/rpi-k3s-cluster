@@ -121,16 +121,15 @@ data:
             logo: "https://docs.${SECRET_DIGITALOCEAN_DOMAIN_02}/homer-config/traefik.io.svg"
             # Alternatively a fa icon can be provided:
             # icon: "fab fa-jenkins"
-            subtitle: "traefik.${SECRET_DOMAIN_LOCAL_02}"
             tag: "dashboard"
-            url: "http://traefik.${SECRET_DOMAIN_LOCAL_02}/dashboard/"
+            url: "https://traefik.${SECRET_DIGITALOCEAN_DOMAIN_02}/dashboard/"
             target: "_blank" # optional html tag target attribute
           - name: "Longhorn"
             logo: "https://docs.${SECRET_DIGITALOCEAN_DOMAIN_02}/homer-config/longhorn.png"
             tag: "dashboard"
             # Optional tagstyle
             # tagstyle: "is-success"
-            url: "http://longhorn.${SECRET_DIGITALOCEAN_DOMAIN_02}"
+            url: "https://longhorn.${SECRET_DIGITALOCEAN_DOMAIN_02}"
             target: "_blank"
       - name: "Cloud"
         icon: "fas fa-cloud"
