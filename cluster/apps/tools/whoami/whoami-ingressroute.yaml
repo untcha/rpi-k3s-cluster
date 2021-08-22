@@ -1,3 +1,9 @@
+# whoami-http-ingressroute
+# whoami-https-ingressroute
+# whoami-middleware-redirect-scheme
+# whoami-middleware-basicauth
+# whoami-middleware-headers
+
 ---
 apiVersion: traefik.containo.us/v1alpha1
 kind: IngressRoute
@@ -16,29 +22,6 @@ spec:
         - name: whoami
           port: 80
 
-# ---
-# apiVersion: traefik.containo.us/v1alpha1
-# kind: IngressRoute
-# metadata:
-#   name: whoami-https-ingressroute
-#   namespace: tools
-#   annotations:
-#     cert-manager.io/cluster-issuer: "letsencrypt-dns01-staging-do"
-# spec:
-#   entryPoints:
-#     - websecure
-#   routes:
-#     - match: Host(`whoami.${SECRET_DIGITALOCEAN_DOMAIN_02}`)
-#       kind: Rule
-#       middlewares:
-#         #- name: whoami-middleware-headers
-#         - name: whoami-middleware-basicauth
-#       services:
-#         - name: whoami
-#           port: 80
-#   tls:
-#     secretName: whoami-letsencrypt-staging-certificate
-
 ---
 apiVersion: traefik.containo.us/v1alpha1
 kind: IngressRoute
@@ -46,6 +29,7 @@ metadata:
   name: whoami-https-ingressroute
   namespace: tools
   annotations:
+    # cert-manager.io/cluster-issuer: "letsencrypt-dns01-staging-do"
     cert-manager.io/cluster-issuer: "letsencrypt-dns01-production-do"
 spec:
   entryPoints:
@@ -54,9 +38,8 @@ spec:
     - match: Host(`whoami.${SECRET_DIGITALOCEAN_DOMAIN_02}`)
       kind: Rule
       middlewares:
-        #- name: traefik-forward-auth
-        - name: whoami-middleware-headers
         - name: whoami-middleware-basicauth
+        - name: whoami-middleware-headers
       services:
         - name: whoami
           port: 80
@@ -79,6 +62,16 @@ spec:
 apiVersion: traefik.containo.us/v1alpha1
 kind: Middleware
 metadata:
+  name: whoami-middleware-basicauth
+  namespace: tools
+spec:
+  basicAuth:
+    secret: whoami-secret-basicauth
+
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: Middleware
+metadata:
   name: whoami-middleware-headers
   namespace: tools
 spec:
@@ -90,30 +83,16 @@ spec:
     forceSTSHeader: true
     stsIncludeSubdomains: true
     stsPreload: true
+    # stsSeconds: 315360000
     stsSeconds: 63072000
-    #customRequestHeaders:
-      #X-Frame-Options: "SAMEORIGIN"
-    #customFrameOptionsValue: "SAMEORIGIN"
-    #contentSecurityPolicy: "frame-ancestors 'self' whoami.${SECRET_DIGITALOCEAN_DOMAIN_02}"
-    #contentSecurityPolicy: "default-src 'self'; script-src https://whoami.${SECRET_DIGITALOCEAN_DOMAIN_02}"
     contentSecurityPolicy: |
       default-src 'none';form-action 'none';frame-ancestors 'none';base-uri 'none'
     accessControlAllowMethods:
       - "GET"
       - "POST"
     accessControlAllowOriginList:
-      #- "https://*.${SECRET_DIGITALOCEAN_DOMAIN_02}"
       - "https://whoami.${SECRET_DIGITALOCEAN_DOMAIN_02}"
     accessControlMaxAge: 100
     addVaryHeader: true
     referrerPolicy: "same-origin"
-
----
-apiVersion: traefik.containo.us/v1alpha1
-kind: Middleware
-metadata:
-  name: whoami-middleware-basicauth
-  namespace: tools
-spec:
-  basicAuth:
-    secret: whoami-secret-basicauth
+    customFrameOptionsValue: SAMEORIGIN
