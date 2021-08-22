@@ -237,6 +237,7 @@ data:
     local-data: "simone.${SECRET_DOMAIN_LOCAL_02}.                   A 192.168.178.240"
     local-data: "speedtest.${SECRET_DOMAIN_LOCAL_02}.                A 192.168.178.240"
     local-data: "traefik.${SECRET_DOMAIN_LOCAL_02}.                  A 192.168.178.240"
+    local-data: "whoami.${SECRET_DOMAIN_LOCAL_02}.                   A 192.168.178.240"
 
     # PTR Record
     local-data-ptr: "192.168.178.240 bitwarden.${SECRET_DOMAIN_LOCAL_02}."
@@ -255,3 +256,4 @@ data:
     local-data-ptr: "192.168.178.240 simone.${SECRET_DOMAIN_LOCAL_02}."
     local-data-ptr: "192.168.178.240 speedtest.${SECRET_DOMAIN_LOCAL_02}."
     local-data-ptr: "192.168.178.240 traefik.${SECRET_DOMAIN_LOCAL_02}."
+    local-data-ptr: "192.168.178.240 whoami.${SECRET_DOMAIN_LOCAL_02}."
