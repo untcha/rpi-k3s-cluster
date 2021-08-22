@@ -58,6 +58,11 @@ spec:
       services:
         - name: bitwarden
           port: 80
+    - match: Host(`bitwarden.${SECRET_DIGITALOCEAN_DOMAIN_02}`) && Path(`/notifications/hub`)
+      kind: Rule
+      services:
+        - name: bitwarden
+          port: 3012
   tls:
     secretName: bitwarden-letsencrypt-production-certificate
 
