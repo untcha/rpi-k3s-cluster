@@ -4,4 +4,5 @@ kind: Kustomization
 resources:
   - enc_chronograf-secret-basicauth.yaml
   - chronograf-helmrelease.yaml
+  - chronograf-letsencrypt-certificate.yaml
   - chronograf-ingressroute.yaml
