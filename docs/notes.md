@@ -80,3 +80,33 @@ https://github.com/cdwv/bitwarden-k8s/blob/master/chart/bitwarden-k8s/values.yam
 https://github.com/guerzon/bitwarden-kubernetes
 https://www.kylekaniecki.com/blog/running-bitwarden_rs-on-kubernetes/
 https://dev.to/sw360cab/scaling-websockets-in-the-cloud-part-2-introducing-traefik-the-all-in-one-solution-for-docker-stacks-and-kubernetes-clusters-3e1k
+
+
+### Old headers
+
+spec:
+  headers:
+    browserXssFilter: true
+    contentTypeNosniff: true
+    frameDeny: true
+    sslRedirect: true
+    forceSTSHeader: true
+    stsIncludeSubdomains: true
+    stsPreload: true
+    stsSeconds: 63072000
+    #customRequestHeaders:
+      #X-Frame-Options: "SAMEORIGIN"
+    #customFrameOptionsValue: "SAMEORIGIN"
+    #contentSecurityPolicy: "frame-ancestors 'self' whoami.${SECRET_DIGITALOCEAN_DOMAIN_02}"
+    #contentSecurityPolicy: "default-src 'self'; script-src https://whoami.${SECRET_DIGITALOCEAN_DOMAIN_02}"
+    contentSecurityPolicy: |
+      default-src 'none';form-action 'none';frame-ancestors 'none';base-uri 'none'
+    accessControlAllowMethods:
+      - "GET"
+      - "POST"
+    accessControlAllowOriginList:
+      #- "https://*.${SECRET_DIGITALOCEAN_DOMAIN_02}"
+      - "https://whoami.${SECRET_DIGITALOCEAN_DOMAIN_02}"
+    accessControlMaxAge: 100
+    addVaryHeader: true
+    referrerPolicy: "same-origin"
