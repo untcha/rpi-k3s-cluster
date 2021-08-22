@@ -72,3 +72,11 @@ https://runf11s.com/PiHole-and-Unbound-on-k8s
 
 ### Grafana getting started: Alerts!!!
 https://grafana.com/tutorials/grafana-fundamentals/?utm_source=grafana_gettingstarted
+
+
+### Bitwarden
+https://github.com/dani-garcia/vaultwarden
+https://github.com/cdwv/bitwarden-k8s/blob/master/chart/bitwarden-k8s/values.yaml
+https://github.com/guerzon/bitwarden-kubernetes
+https://www.kylekaniecki.com/blog/running-bitwarden_rs-on-kubernetes/
+https://dev.to/sw360cab/scaling-websockets-in-the-cloud-part-2-introducing-traefik-the-all-in-one-solution-for-docker-stacks-and-kubernetes-clusters-3e1k
