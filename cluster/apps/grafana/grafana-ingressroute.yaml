@@ -1,3 +1,10 @@
+# grafana-local-ingressroute
+# grafana-http-ingressroute
+# grafana-https-ingressroute
+# grafana-middleware-redirect-scheme
+
+# grafana-middleware-headers
+
 ---
 apiVersion: traefik.containo.us/v1alpha1
 kind: IngressRoute
@@ -72,7 +79,6 @@ kind: Middleware
 metadata:
   name: grafana-middleware-headers
   namespace: grafana
-
 spec:
   headers:
     browserXssFilter: true
@@ -82,20 +88,16 @@ spec:
     forceSTSHeader: true
     stsIncludeSubdomains: true
     stsPreload: true
-    stsSeconds: 63072000
-    #customRequestHeaders:
-      #X-Frame-Options: "SAMEORIGIN"
-    #customFrameOptionsValue: "SAMEORIGIN"
-    #contentSecurityPolicy: "frame-ancestors 'self' grafana.${SECRET_DIGITALOCEAN_DOMAIN_02}"
-    #contentSecurityPolicy: "default-src 'self'; script-src https://grafana.${SECRET_DIGITALOCEAN_DOMAIN_02}"
+    stsSeconds: 315360000
+    # stsSeconds: 63072000
     contentSecurityPolicy: |
       default-src 'none';form-action 'none';frame-ancestors 'none';base-uri 'none'
     accessControlAllowMethods:
       - "GET"
       - "POST"
     accessControlAllowOriginList:
-      #- "https://*.${SECRET_DIGITALOCEAN_DOMAIN_02}"
       - "https://grafana.${SECRET_DIGITALOCEAN_DOMAIN_02}"
     accessControlMaxAge: 100
     addVaryHeader: true
     referrerPolicy: "same-origin"
+    customFrameOptionsValue: SAMEORIGIN
