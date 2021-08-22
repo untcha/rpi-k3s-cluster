@@ -1,0 +1,14 @@
+#---
+#apiVersion: kustomize.config.k8s.io/v1beta1
+#kind: Kustomization
+# namespace: traefik
+#resources:
+  # - enc_traefik-secrets.yaml
+  #- traefik-helmrelease.yaml
+  #- traefik-dashboard-ingressroute.yaml
+  # - traefik-pvc.yaml
+
+# configMapGenerator:
+# - name: traefik-values
+#   files:
+#     - values.yaml=traefik-values.yaml
