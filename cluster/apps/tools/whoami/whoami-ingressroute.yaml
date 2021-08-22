@@ -1,8 +1,25 @@
+# whoami-local-ingressroute
 # whoami-http-ingressroute
 # whoami-https-ingressroute
 # whoami-middleware-redirect-scheme
 # whoami-middleware-basicauth
 # whoami-middleware-headers
+
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: whoami-local-ingressroute
+  namespace: whoami
+spec:
+  entryPoints:
+    - web
+  routes:
+    - match: Host(`whoami.${SECRET_DOMAIN_LOCAL_02}`)
+      kind: Rule
+      services:
+        - name: whoami
+          port: 80
 
 ---
 apiVersion: traefik.containo.us/v1alpha1
