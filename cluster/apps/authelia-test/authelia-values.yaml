@@ -883,7 +883,7 @@ configMap:
     ##   - validate the SMTP server x509 certificate during the TLS handshake against the hosts trusted certificates
     ##     (configure in tls section)
     smtp:
-      enabled: true
+      enabled: false
       enabledSecret: false
       host: smtp.mail.svc.cluster.local
       port: 25

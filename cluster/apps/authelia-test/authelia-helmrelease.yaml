@@ -95,7 +95,7 @@ spec:
         smtp:
           disable_html_emails: false
           disable_require_tls: false
-          enabled: true
+          enabled: false
           enabledSecret: false
           host: smtp.mail.svc.cluster.local
           identifier: localhost
