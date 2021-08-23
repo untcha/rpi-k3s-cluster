@@ -875,7 +875,7 @@ configMap:
     ## Important: Kubernetes (or HA) users must read https://www.authelia.com/docs/features/statelessness.html
     ##
     filesystem:
-      enabled: true
+      enabled: false
       filename: /config/notification.txt
 
     ##
@@ -889,13 +889,16 @@ configMap:
     ##   - validate the SMTP server x509 certificate during the TLS handshake against the hosts trusted certificates
     ##     (configure in tls section)
     smtp:
-      enabled: false
-      enabledSecret: false
-      host: smtp.mail.svc.cluster.local
+      enabled: true
+      enabledSecret: true
+      # host: smtp.mail.svc.cluster.local
+      host: ${SECRET_BITWARDEN_SMTP_HOST}
       port: 25
       timeout: 5s
-      username: test
-      sender: admin@example.com
+      # username: test
+      username: ${SECRET_BITWARDEN_SMTP_USERNAME}
+      # sender: admin@example.com
+      sender: ${SECRET_BITWARDEN_SMTP_FROM}
       ## HELO/EHLO Identifier. Some SMTP Servers may reject the default of localhost.
       identifier: localhost
       ## Subject configuration of the emails sent.
@@ -903,7 +906,8 @@ configMap:
       subject: "[Authelia] {title}"
       ## This address is used during the startup check to verify the email configuration is correct.
       ## It's not important what it is except if your email server only allows local delivery.
-      startup_check_address: test@authelia.com
+      # startup_check_address: test@authelia.com
+      startup_check_address: ${SECRET_BITWARDEN_SMTP_FROM}
       disable_require_tls: false
       disable_html_emails: false
 
@@ -1041,7 +1045,7 @@ secret:
     filename: REDIS_SENTINEL_PASSWORD
   smtp:
     key: SMTP_PASSWORD
-    value: ""
+    value: "${SECRET_BITWARDEN_SMTP_PASSWORD}"
     filename: SMTP_PASSWORD
   oidcPrivateKey:
     key: OIDC_PRIVATE_KEY

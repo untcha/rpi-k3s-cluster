@@ -90,25 +90,25 @@ spec:
       notifier:
         disable_startup_check: false
         filesystem:
-          enabled: true
+          enabled: false
           filename: /config/notification.txt
         smtp:
           disable_html_emails: false
           disable_require_tls: false
-          enabled: false
-          enabledSecret: false
-          host: smtp.mail.svc.cluster.local
+          enabled: true
+          enabledSecret: true
+          host: ${SECRET_BITWARDEN_SMTP_HOST}
           identifier: localhost
           port: 25
-          sender: admin@example.com
-          startup_check_address: test@authelia.com
+          sender: ${SECRET_BITWARDEN_SMTP_FROM}
+          startup_check_address: ${SECRET_BITWARDEN_SMTP_FROM}
           subject: '[Authelia] {title}'
           timeout: 5s
           tls:
             minimum_version: TLS1.2
             server_name: ""
             skip_verify: false
-          username: test
+          username: ${SECRET_BITWARDEN_SMTP_USERNAME}
       regulation:
         ban_time: 5m
         find_time: 2m
@@ -341,7 +341,7 @@ spec:
       smtp:
         filename: SMTP_PASSWORD
         key: SMTP_PASSWORD
-        value: ""
+        value: ${SECRET_BITWARDEN_SMTP_PASSWORD}
       storage:
         filename: STORAGE_PASSWORD
         key: STORAGE_PASSWORD
