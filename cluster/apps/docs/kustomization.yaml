@@ -4,6 +4,6 @@ kind: Kustomization
 resources:
   - docs-namespace.yaml
   - docs-pvc.yaml
-  - docs-deployment.yaml
-  - docs-ingressroute.yaml
-  - docs-letsencrypt-certificate.yaml
+  #- docs-deployment.yaml
+  #- docs-ingressroute.yaml
+  #- docs-letsencrypt-certificate.yaml
