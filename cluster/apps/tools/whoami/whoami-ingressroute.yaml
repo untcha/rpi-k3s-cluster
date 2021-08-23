@@ -57,7 +57,7 @@ spec:
       middlewares:
         # - name: whoami-middleware-basicauth
         - name: authelia
-          namespace: authelia-test
+          namespace: authentication-system
         # - name: whoami-middleware-headers
       services:
         - name: whoami
