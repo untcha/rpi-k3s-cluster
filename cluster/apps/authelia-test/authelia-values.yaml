@@ -893,7 +893,7 @@ configMap:
       enabledSecret: true
       # host: smtp.mail.svc.cluster.local
       host: ${SECRET_BITWARDEN_SMTP_HOST}
-      port: 25
+      port: 587
       timeout: 5s
       # username: test
       username: ${SECRET_BITWARDEN_SMTP_USERNAME}

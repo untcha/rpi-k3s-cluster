@@ -99,7 +99,7 @@ spec:
           enabledSecret: true
           host: ${SECRET_BITWARDEN_SMTP_HOST}
           identifier: localhost
-          port: 25
+          port: 587
           sender: ${SECRET_BITWARDEN_SMTP_FROM}
           startup_check_address: ${SECRET_BITWARDEN_SMTP_FROM}
           subject: '[Authelia] {title}'
