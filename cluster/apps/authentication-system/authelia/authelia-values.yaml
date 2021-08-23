@@ -58,7 +58,7 @@ rbac:
 ## For example if you have apps app1.example.com and app2.example.com it should be example.com
 ## This affects the ingress (partially sets the domain used) and configMap.
 ## Authelia must be served from the domain or a subdomain under it.
-domain: example.com
+domain: ${SECRET_DIGITALOCEAN_DOMAIN_02}
 
 service:
   annotations: {}
@@ -69,7 +69,7 @@ service:
   # labels:
   #   myLabel: myValue
 
-  port: 80
+  port: 9091
 
   # clusterIP:
 
@@ -189,7 +189,7 @@ ingress:
 
 pod:
   # Must be Deployment, DaemonSet, or StatefulSet.
-  kind: DaemonSet
+  kind: Deployment
 
   annotations: {}
   # annotations:
@@ -274,10 +274,10 @@ pod:
       #             - S2
       #         topologyKey: topology.kubernetes.io/zone
 
-  env: []
-  # env:
-  # - name: TZ
-  #   value: Australia/Melbourne
+  # env: []
+  env:
+  - name: TZ
+    value: ${TIMEZONE}
 
   resources:
     limits: {}
@@ -319,8 +319,16 @@ pod:
       successThreshold: 1
       failureThreshold: 6
 
-  extraVolumeMounts: []
-  extraVolumes: []
+  # extraVolumeMounts: []
+  # extraVolumes: []
+  extraVolumeMounts:
+    - name: users-database
+      mountPath: /config/users_database.yml
+      subPath: users_database.yml
+  extraVolumes:
+    - name: users-database
+      configMap:
+        name: users-database
 
 ##
 ## Kubernetes Pod Disruption Budget
@@ -411,7 +419,7 @@ configMap:
 
   log:
     ## Level of verbosity for logs: info, debug, trace.
-    level: info
+    level: debug
 
     ## Format the logs are written as: json, text.
     format: text
@@ -428,10 +436,10 @@ configMap:
   ##
   ## Note: this parameter is optional. If not provided, user won't be redirected upon successful authentication.
   ## Default is https://www.<domain> (value at the top of the values.yaml).
-  default_redirection_url: ""
+  default_redirection_url: "https://doc.${SECRET_DIGITALOCEAN_DOMAIN_02}"
   # default_redirection_url: https://example.com
 
-  theme: light
+  theme: dark
 
   ##
   ## TOTP Configuration
@@ -441,7 +449,7 @@ configMap:
     ## The issuer name displayed in the Authenticator application of your choice
     ## See: https://github.com/google/google-authenticator/wiki/Key-Uri-Format for more info on issuer names
     ## Defaults to <domain>.
-    issuer: ""
+    issuer: "${SECRET_DIGITALOCEAN_DOMAIN_02}"
     ## The period in seconds a one-time password is current for. Changing this will require all users to register
     ## their TOTP applications again. Warning: before changing period read the docs link below.
     period: 30
@@ -468,7 +476,7 @@ configMap:
   ## The available providers are: `file`, `ldap`. You must use one and only one of these providers.
   authentication_backend:
     ## Disable both the HTML element and the API for reset password functionality
-    disable_reset_password: false
+    disable_reset_password: true
 
     ## The amount of time to wait before we refresh data from the authentication backend. Uses duration notation.
     ## To disable this feature set it to 'disable', this will slightly reduce security because for Authelia, users will
@@ -487,7 +495,7 @@ configMap:
     ldap:
 
       ## Enable LDAP Backend.
-      enabled: true
+      enabled: false
 
       ## The LDAP implementation, this affects elements like the attribute utilised for resetting a password.
       ## Acceptable options are as follows:
@@ -600,7 +608,7 @@ configMap:
     ## Important: Kubernetes (or HA) users must read https://www.authelia.com/docs/features/statelessness.html
     ##
     file:
-      enabled: false
+      enabled: true
       path: /config/users_database.yml
       password:
         algorithm: argon2id
@@ -653,7 +661,12 @@ configMap:
     #   networks:
     #   - 10.9.0.0/16
 
-    rules: []
+    # rules: []
+    rules:
+    - domain: auth.${SECRET_DIGITALOCEAN_DOMAIN_02}
+      policy: bypass
+    - domain: "*.${SECRET_DIGITALOCEAN_DOMAIN_02}"
+      policy: two_factor
     # rules:
     # - domain: public.example.com
     #   policy: bypass
@@ -730,7 +743,7 @@ configMap:
     ##
     ## The redis connection details
     redis:
-      enabled: true
+      enabled: false
       enabledSecret: false
       host: redis.databases.svc.cluster.local
       port: 6379
@@ -829,8 +842,8 @@ configMap:
     ## Also supports MariaDB
     ##
     mysql:
-      enabled: false
-      host: mysql.databases.svc.cluster.local
+      enabled: true
+      host: authentication-system-authelia-mariadb.authentication-system.svc.cluster.local
       port: 3306
       database: authelia
       username: authelia
@@ -840,7 +853,7 @@ configMap:
     ## PostgreSQL (Storage Provider)
     ##
     postgres:
-      enabled: true
+      enabled: false
       host: 127.0.0.1
       port: 5432
       database: authelia
@@ -879,12 +892,12 @@ configMap:
     ##     (configure in tls section)
     smtp:
       enabled: true
-      enabledSecret: false
-      host: smtp.mail.svc.cluster.local
-      port: 25
+      enabledSecret: true
+      host: ${SECRET_GLOBAL_SMTP_HOST}
+      port: 587
       timeout: 5s
-      username: test
-      sender: admin@example.com
+      username: ${SECRET_GLOBAL_SMTP_USERNAME}
+      sender: ${SECRET_GLOBAL_SMTP_FROM}
       ## HELO/EHLO Identifier. Some SMTP Servers may reject the default of localhost.
       identifier: localhost
       ## Subject configuration of the emails sent.
@@ -892,7 +905,7 @@ configMap:
       subject: "[Authelia] {title}"
       ## This address is used during the startup check to verify the email configuration is correct.
       ## It's not important what it is except if your email server only allows local delivery.
-      startup_check_address: test@authelia.com
+      startup_check_address: ${SECRET_GLOBAL_SMTP_FROM}
       disable_require_tls: false
       disable_html_emails: false
 
@@ -1010,7 +1023,7 @@ secret:
     filename: LDAP_PASSWORD
   storage:
     key: STORAGE_PASSWORD
-    value: ""
+    value: "${SECRET_AUTHELIA_MARIADB_PASSWORD}"
     filename: STORAGE_PASSWORD
   session:
     key: SESSION_ENCRYPTION_KEY
@@ -1030,7 +1043,7 @@ secret:
     filename: REDIS_SENTINEL_PASSWORD
   smtp:
     key: SMTP_PASSWORD
-    value: ""
+    value: "${SECRET_GLOBAL_SMTP_PASSWORD}"
     filename: SMTP_PASSWORD
   oidcPrivateKey:
     key: OIDC_PRIVATE_KEY
