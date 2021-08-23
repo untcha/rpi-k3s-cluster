@@ -25,7 +25,7 @@ spec:
 apiVersion: traefik.containo.us/v1alpha1
 kind: Middleware
 metadata:
-  name: authelia-middleware-redirect-scheme
+  name: authelia
   namespace: authelia-test
 spec:
   forwardAuth:
