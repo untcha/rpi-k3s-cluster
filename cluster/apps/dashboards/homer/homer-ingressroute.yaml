@@ -36,7 +36,7 @@ spec:
       middlewares:
         - name: homer-middleware-redirect-scheme
       services:
-        - name: homer-tcp
+        - name: homer
           port: 8080
 
 ---
