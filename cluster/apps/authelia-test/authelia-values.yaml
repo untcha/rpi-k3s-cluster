@@ -58,7 +58,7 @@ rbac:
 ## For example if you have apps app1.example.com and app2.example.com it should be example.com
 ## This affects the ingress (partially sets the domain used) and configMap.
 ## Authelia must be served from the domain or a subdomain under it.
-domain: example.com
+domain: ${SECRET_DIGITALOCEAN_DOMAIN_02}
 
 service:
   annotations: {}
@@ -274,10 +274,10 @@ pod:
       #             - S2
       #         topologyKey: topology.kubernetes.io/zone
 
-  env: []
-  # env:
-  # - name: TZ
-  #   value: Australia/Melbourne
+  # env: []
+  env:
+  - name: TZ
+    value: ${TIMEZONE}
 
   resources:
     limits: {}
@@ -411,7 +411,7 @@ configMap:
 
   log:
     ## Level of verbosity for logs: info, debug, trace.
-    level: info
+    level: debug
 
     ## Format the logs are written as: json, text.
     format: text
@@ -428,10 +428,10 @@ configMap:
   ##
   ## Note: this parameter is optional. If not provided, user won't be redirected upon successful authentication.
   ## Default is https://www.<domain> (value at the top of the values.yaml).
-  default_redirection_url: ""
+  default_redirection_url: "https://auth.${SECRET_DIGITALOCEAN_DOMAIN_02}"
   # default_redirection_url: https://example.com
 
-  theme: light
+  theme: dark
 
   ##
   ## TOTP Configuration
@@ -441,7 +441,7 @@ configMap:
     ## The issuer name displayed in the Authenticator application of your choice
     ## See: https://github.com/google/google-authenticator/wiki/Key-Uri-Format for more info on issuer names
     ## Defaults to <domain>.
-    issuer: ""
+    issuer: "${SECRET_DIGITALOCEAN_DOMAIN_02}"
     ## The period in seconds a one-time password is current for. Changing this will require all users to register
     ## their TOTP applications again. Warning: before changing period read the docs link below.
     period: 30
@@ -468,7 +468,7 @@ configMap:
   ## The available providers are: `file`, `ldap`. You must use one and only one of these providers.
   authentication_backend:
     ## Disable both the HTML element and the API for reset password functionality
-    disable_reset_password: false
+    disable_reset_password: true
 
     ## The amount of time to wait before we refresh data from the authentication backend. Uses duration notation.
     ## To disable this feature set it to 'disable', this will slightly reduce security because for Authelia, users will
@@ -477,7 +477,7 @@ configMap:
     ## See the below documentation for more information.
     ## Duration Notation docs:  https://www.authelia.com/docs/configuration/index.html#duration-notation-format
     ## Refresh Interval docs: https://www.authelia.com/docs/configuration/authentication/ldap.html#refresh-interval
-    refresh_interval: 5m
+    refresh_interval: disable
 
     ## LDAP backend configuration.
     ##
@@ -487,7 +487,7 @@ configMap:
     ldap:
 
       ## Enable LDAP Backend.
-      enabled: true
+      enabled: false
 
       ## The LDAP implementation, this affects elements like the attribute utilised for resetting a password.
       ## Acceptable options are as follows:
@@ -600,7 +600,7 @@ configMap:
     ## Important: Kubernetes (or HA) users must read https://www.authelia.com/docs/features/statelessness.html
     ##
     file:
-      enabled: false
+      enabled: true
       path: /config/users_database.yml
       password:
         algorithm: argon2id
@@ -653,7 +653,12 @@ configMap:
     #   networks:
     #   - 10.9.0.0/16
 
-    rules: []
+    # rules: []
+    rules:
+    - domain: auth.${SECRET_DIGITALOCEAN_DOMAIN_02}
+      policy: bypass
+    - domain: "*.${SECRET_DIGITALOCEAN_DOMAIN_02}"
+      policy: two_factor
     # rules:
     # - domain: public.example.com
     #   policy: bypass
@@ -730,7 +735,7 @@ configMap:
     ##
     ## The redis connection details
     redis:
-      enabled: true
+      enabled: false
       enabledSecret: false
       host: redis.databases.svc.cluster.local
       port: 6379
@@ -864,7 +869,7 @@ configMap:
     ## Important: Kubernetes (or HA) users must read https://www.authelia.com/docs/features/statelessness.html
     ##
     filesystem:
-      enabled: false
+      enabled: true
       filename: /config/notification.txt
 
     ##
