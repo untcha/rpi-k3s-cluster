@@ -474,7 +474,7 @@ configMap:
   ## The available providers are: `file`, `ldap`. You must use one and only one of these providers.
   authentication_backend:
     ## Disable both the HTML element and the API for reset password functionality
-    disable_reset_password: false
+    disable_reset_password: true
 
     ## The amount of time to wait before we refresh data from the authentication backend. Uses duration notation.
     ## To disable this feature set it to 'disable', this will slightly reduce security because for Authelia, users will
@@ -664,7 +664,7 @@ configMap:
     - domain: auth.${SECRET_DIGITALOCEAN_DOMAIN_02}
       policy: bypass
     - domain: "*.${SECRET_DIGITALOCEAN_DOMAIN_02}"
-      policy: one_factor
+      policy: two_factor
     # rules:
     # - domain: public.example.com
     #   policy: bypass

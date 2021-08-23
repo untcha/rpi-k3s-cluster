@@ -30,10 +30,10 @@ spec:
         - domain: auth.${SECRET_DIGITALOCEAN_DOMAIN_02}
           policy: bypass
         - domain: '*.${SECRET_DIGITALOCEAN_DOMAIN_02}'
-          policy: one_factor
+          policy: two_factor
       annotations: {}
       authentication_backend:
-        disable_reset_password: false
+        disable_reset_password: true
         file:
           enabled: true
           password:
