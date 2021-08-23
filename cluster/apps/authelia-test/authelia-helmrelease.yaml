@@ -33,7 +33,7 @@ spec:
           policy: two_factor
       annotations: {}
       authentication_backend:
-        disable_reset_password: true
+        disable_reset_password: false
         file:
           enabled: true
           password:
@@ -242,14 +242,8 @@ spec:
       env:
       - name: TZ
         value: ${TIMEZONE}
-      extraVolumeMounts:
-      - mountPath: /config/users_database.yml
-        name: users-database
-        subPath: users_database.yml
-      extraVolumes:
-      - configMap:
-          name: users-database
-        name: users-database
+      extraVolumeMounts: {}
+      extraVolumes: {}
       kind: Deployment
       labels: {}
       probes:

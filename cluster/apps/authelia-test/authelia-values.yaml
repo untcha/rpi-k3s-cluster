@@ -319,14 +319,14 @@ pod:
       successThreshold: 1
       failureThreshold: 6
 
-  extraVolumeMounts:
-    - name: users-database
-      mountPath: /config/users_database.yml
-      subPath: users_database.yml
-  extraVolumes:
-    - name: users-database
-      configMap:
-        name: users-database
+  extraVolumeMounts: {}
+    # - name: users-database
+    #   mountPath: /config/users_database.yml
+    #   subPath: users_database.yml
+  extraVolumes: {}
+    # - name: users-database
+    #   configMap:
+    #     name: users-database
 
 ##
 ## Kubernetes Pod Disruption Budget
@@ -474,7 +474,7 @@ configMap:
   ## The available providers are: `file`, `ldap`. You must use one and only one of these providers.
   authentication_backend:
     ## Disable both the HTML element and the API for reset password functionality
-    disable_reset_password: true
+    disable_reset_password: false
 
     ## The amount of time to wait before we refresh data from the authentication backend. Uses duration notation.
     ## To disable this feature set it to 'disable', this will slightly reduce security because for Authelia, users will
