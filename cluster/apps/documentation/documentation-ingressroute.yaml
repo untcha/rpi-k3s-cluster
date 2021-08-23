@@ -1,0 +1,104 @@
+# documentation-local-ingressroute
+# documentation-http-ingressroute
+# documentation-https-ingressroute
+# documentation-middleware-redirect-scheme
+# documentation-middleware-basicauth
+# documentation-middleware-headers
+
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: documentation-local-ingressroute
+  namespace: documentation
+spec:
+  entryPoints:
+    - web
+  routes:
+    - match: Host(`doc.${SECRET_DOMAIN_LOCAL_02}`)
+      kind: Rule
+      services:
+        - name: documentation-static-nginx
+          port: 80
+
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: documentation-http-ingressroute
+  namespace: documentation
+spec:
+  entryPoints:
+    - web
+  routes:
+    - match: Host(`doc.${SECRET_DIGITALOCEAN_DOMAIN_02}`)
+      kind: Rule
+      middlewares:
+        - name: documentation-middleware-redirect-scheme
+      services:
+        - name: documentation-static-nginx
+          port: 80
+
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: documentation-https-ingressroute
+  namespace: documentation
+  annotations:
+    cert-manager.io/cluster-issuer: "letsencrypt-dns01-production-do"
+spec:
+  entryPoints:
+    - websecure
+  routes:
+    - match: Host(`doc.${SECRET_DIGITALOCEAN_DOMAIN_02}`)
+      kind: Rule
+      # middlewares:
+        # - name: docs-middleware-basicauth
+        # - name: docs-middleware-headers
+      services:
+        - name: documentation-static-nginx
+          port: 80
+  tls:
+    secretName: documentation-letsencrypt-production-certificate
+
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: Middleware
+metadata:
+  name: documentation-middleware-redirect-scheme
+  namespace: documentation
+spec:
+  redirectScheme:
+    scheme: https
+    permanent: true
+    port: "443"
+
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: Middleware
+metadata:
+  name: documentation-middleware-headers
+  namespace: documentation
+spec:
+  headers:
+    browserXssFilter: true
+    contentTypeNosniff: true
+    frameDeny: true
+    sslRedirect: true
+    forceSTSHeader: true
+    stsIncludeSubdomains: true
+    stsPreload: true
+    stsSeconds: 315360000
+    # stsSeconds: 63072000
+    contentSecurityPolicy: |
+      default-src 'none';form-action 'none';frame-ancestors 'none';base-uri 'none'
+    accessControlAllowMethods:
+      - "GET"
+      - "POST"
+    accessControlAllowOriginList:
+      - "https://doc.${SECRET_DIGITALOCEAN_DOMAIN_02}"
+    accessControlMaxAge: 100
+    addVaryHeader: true
+    referrerPolicy: "same-origin"
+    customFrameOptionsValue: SAMEORIGIN

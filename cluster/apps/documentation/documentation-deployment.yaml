@@ -1,0 +1,41 @@
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: documentation-static-nginx
+  namespace: documentation
+spec:
+  selector:
+    run: documentation-static-nginx
+  ports:
+  - name: http
+    port: 80
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    run: documentation-static-nginx
+  name: documentation-static-nginx
+  namespace: documentation
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      run: documentation-static-nginx
+  template:
+    metadata:
+      labels:
+        run: documentation-static-nginx
+    spec:
+      containers:
+      - image: nginx
+        name: nginx
+        volumeMounts:
+          - mountPath: /usr/share/nginx/html
+            name: static-content
+      volumes:
+        - name: static-content
+          persistentVolumeClaim:
+            claimName: documentation-static-nginx-pvc
