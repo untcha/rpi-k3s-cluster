@@ -33,7 +33,7 @@ spec:
           policy: one_factor
       annotations: {}
       authentication_backend:
-        disable_reset_password: true
+        disable_reset_password: false
         file:
           enabled: true
           password:
