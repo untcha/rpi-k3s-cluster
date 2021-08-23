@@ -4,3 +4,4 @@ kind: Kustomization
 resources:
   - authentication-system-namespace.yaml
   - mariadb
+  - authelia
