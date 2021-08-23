@@ -658,7 +658,7 @@ configMap:
     - domain: auth.${SECRET_DIGITALOCEAN_DOMAIN_02}
       policy: bypass
     - domain: "*.${SECRET_DIGITALOCEAN_DOMAIN_02}"
-      policy: two_factor
+      policy: one_factor
     # rules:
     # - domain: public.example.com
     #   policy: bypass
