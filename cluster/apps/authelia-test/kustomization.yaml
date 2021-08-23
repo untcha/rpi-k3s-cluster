@@ -5,6 +5,6 @@ resources:
   - authelia-namespace.yaml
   - authelia-pvc.yaml
   - authelia-configmap.yaml
-  - authelia-helmrelease.yaml
+  #- authelia-helmrelease.yaml
   - authelia-letsencrypt-certificate.yaml
   - authelia-ingressroute.yaml
