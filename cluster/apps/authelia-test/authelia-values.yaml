@@ -825,7 +825,7 @@ configMap:
     ## Important: Kubernetes (or HA) users must read https://www.authelia.com/docs/features/statelessness.html
     ##
     local:
-      enabled: false
+      enabled: true
       path: /config/db.sqlite3
 
     ##
@@ -845,7 +845,7 @@ configMap:
     ## PostgreSQL (Storage Provider)
     ##
     postgres:
-      enabled: true
+      enabled: false
       host: 127.0.0.1
       port: 5432
       database: authelia
@@ -1256,7 +1256,7 @@ certificates:
 ## Configuration Use Case: when you want to manually configure the configuration entirely (set configMap.enabled = false).
 ##
 persistence:
-  enabled: false
+  enabled: true
 
   annotations: {}
   # annotations:
@@ -1269,7 +1269,7 @@ persistence:
   readOnly: false
   subPath: ""
 
-  existingClaim: ""
+  existingClaim: "authelia-data"
   # existingClaim: my-claim-name
 
   storageClass: ""
