@@ -94,7 +94,7 @@ data:
         target: "_blank" # optional html tag target attribute
       - name: "Documentation"
         icon: "fas fa-book"
-        url: "https://docs.${SECRET_DIGITALOCEAN_DOMAIN_02}"
+        url: "https://doc.${SECRET_DIGITALOCEAN_DOMAIN_02}"
         target: "_blank"
       # this will link to a second homer page that will load config from page2.yml and keep default config values as in config.yml file
       # see url field and assets/page.yml used in this example:
@@ -112,20 +112,20 @@ data:
         # logo: "path/to/logo"
         items:
           - name: "Kubernetes Dashboard"
-            logo: "https://docs.${SECRET_DIGITALOCEAN_DOMAIN_02}/homer-config/kubernetes.svg"
+            logo: "https://doc.${SECRET_DIGITALOCEAN_DOMAIN_02}/homer-config/kubernetes.svg"
             subtitle: "kubectl proxy"
             tag: "dashboard"
             url: "http://localhost:8001/api/v1/namespaces/kubernetes-dashboard/services/https:kubernetes-dashboard:/proxy/#/login"
             target: "_blank" # optional html tag target attribute
           - name: "Traefik Dashboard"
-            logo: "https://docs.${SECRET_DIGITALOCEAN_DOMAIN_02}/homer-config/traefik.io.svg"
+            logo: "https://doc.${SECRET_DIGITALOCEAN_DOMAIN_02}/homer-config/traefik.io.svg"
             # Alternatively a fa icon can be provided:
             # icon: "fab fa-jenkins"
             tag: "dashboard"
             url: "https://traefik.${SECRET_DIGITALOCEAN_DOMAIN_02}/dashboard/"
             target: "_blank" # optional html tag target attribute
           - name: "Longhorn"
-            logo: "https://docs.${SECRET_DIGITALOCEAN_DOMAIN_02}/homer-config/longhorn.png"
+            logo: "https://doc.${SECRET_DIGITALOCEAN_DOMAIN_02}/homer-config/longhorn.png"
             tag: "dashboard"
             # Optional tagstyle
             # tagstyle: "is-success"
@@ -135,7 +135,7 @@ data:
         icon: "fas fa-cloud"
         items:
           - name: "Nextcloud"
-            logo: "https://docs.${SECRET_DIGITALOCEAN_DOMAIN_02}/homer-config/nextcloud2.png"
+            logo: "https://doc.${SECRET_DIGITALOCEAN_DOMAIN_02}/homer-config/nextcloud2.png"
             tag: "cloud"
             url: "https://cloud.${SECRET_DIGITALOCEAN_DOMAIN_02}"
             target: "_blank"
@@ -143,7 +143,7 @@ data:
         icon: "fas fa-shield-alt"
         items:
           - name: "Pi-hole"
-            logo: "https://docs.${SECRET_DIGITALOCEAN_DOMAIN_02}/homer-config/pihole.png"
+            logo: "https://doc.${SECRET_DIGITALOCEAN_DOMAIN_02}/homer-config/pihole.png"
             # subtitle: "Network-wide Ad Blocking" # optional, if no subtitle is defined, PiHole statistics will be shown
             tag: "app"
             url: "http://pihole.${SECRET_DIGITALOCEAN_DOMAIN_02}/admin/"
@@ -155,17 +155,17 @@ data:
         icon: "fas fa-chart-pie"
         items:
           - name: "Grafana"
-            logo: "https://docs.${SECRET_DIGITALOCEAN_DOMAIN_02}/homer-config/grafana.png"
+            logo: "https://doc.${SECRET_DIGITALOCEAN_DOMAIN_02}/homer-config/grafana.png"
             tag: "monitoring"
             url: "https://grafana.${SECRET_DIGITALOCEAN_DOMAIN_02}"
             target: "_blank"
           - name: "Chronograf"
-            logo: "https://docs.${SECRET_DIGITALOCEAN_DOMAIN_02}/homer-config/influxdata.svg"
+            logo: "https://doc.${SECRET_DIGITALOCEAN_DOMAIN_02}/homer-config/influxdata.svg"
             tag: "monitoring"
             url: "https://chronograf.${SECRET_DIGITALOCEAN_DOMAIN_02}"
             target: "_blank"
           - name: "Prometheus"
-            logo: "https://docs.${SECRET_DIGITALOCEAN_DOMAIN_02}/homer-config/prometheus.png"
+            logo: "https://doc.${SECRET_DIGITALOCEAN_DOMAIN_02}/homer-config/prometheus.png"
             subtitle: "prometheus.${SECRET_DOMAIN_LOCAL_02}"
             tag: "monitoring"
             url: "http://prometheus.${SECRET_DOMAIN_LOCAL_02}"
