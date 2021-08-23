@@ -5,3 +5,4 @@ resources:
   - authelia-namespace.yaml
   - authelia-pvc.yaml
   - authelia-helmrelease.yaml
+  - authelia-letsencrypt-certificate.yaml
