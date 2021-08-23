@@ -242,8 +242,14 @@ spec:
       env:
       - name: TZ
         value: ${TIMEZONE}
-      extraVolumeMounts: []
-      extraVolumes: []
+      extraVolumeMounts:
+      - mountPath: /config/users_database.yml
+        name: users-database
+        subPath: users_database.yml
+      extraVolumes:
+      - configMap:
+          name: users-database
+        name: users-database
       kind: Deployment
       labels: {}
       probes:
