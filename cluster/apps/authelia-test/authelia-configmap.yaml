@@ -2,7 +2,7 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: user-database
+  name: users-database
   namespace: authelia-test
 data:
   users_database.yml: |
