@@ -4,3 +4,4 @@ kind: Kustomization
 resources:
   - authelia-namespace.yaml
   - authelia-pvc.yaml
+  - authelia-helmrelease.yaml
