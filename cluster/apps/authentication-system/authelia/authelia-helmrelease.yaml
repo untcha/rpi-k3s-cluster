@@ -1,0 +1,404 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: authelia
+  namespace: flux-system
+spec:
+  chart:
+    spec:
+      chart: authelia
+      sourceRef:
+        kind: HelmRepository
+        name: authelia
+      version: 0.5.6
+  install: {}
+  interval: 1m0s
+  targetNamespace: authentication-system
+  values:
+    annotations: {}
+    certificates:
+      annotations: {}
+      existingSecret: ""
+      labels: {}
+      values: {}
+    configMap:
+      access_control:
+        default_policy: deny
+        networks: []
+        rules:
+        - domain: auth.${SECRET_DIGITALOCEAN_DOMAIN_02}
+          policy: bypass
+        - domain: '*.${SECRET_DIGITALOCEAN_DOMAIN_02}'
+          policy: two_factor
+      annotations: {}
+      authentication_backend:
+        disable_reset_password: true
+        file:
+          enabled: true
+          password:
+            algorithm: argon2id
+            iterations: 1
+            key_length: 32
+            memory: 1024
+            parallelism: 8
+            salt_length: 16
+          path: /config/users_database.yml
+        ldap:
+          additional_groups_dn: OU=Groups
+          additional_users_dn: OU=Users
+          base_dn: DC=example,DC=com
+          display_name_attribute: ""
+          enabled: false
+          group_name_attribute: ""
+          groups_filter: ""
+          implementation: activedirectory
+          mail_attribute: ""
+          start_tls: false
+          timeout: 5s
+          tls:
+            minimum_version: TLS1.2
+            server_name: ""
+            skip_verify: false
+          url: ldap://openldap.default.svc.cluster.local
+          user: CN=Authelia,DC=example,DC=com
+          username_attribute: ""
+          users_filter: ""
+        refresh_interval: 5m
+      default_redirection_url: https://doc.${SECRET_DIGITALOCEAN_DOMAIN_02}
+      duo_api:
+        enabled: false
+        hostname: api-123456789.example.com
+        integration_key: ABCDEF
+      enabled: true
+      existingConfigMap: ""
+      identity_providers:
+        oidc:
+          access_token_lifespan: 1h
+          authorize_code_lifespan: 1m
+          clients: []
+          enable_client_debug_messages: false
+          enabled: false
+          id_token_lifespan: 1h
+          minimum_parameter_entropy: 8
+          refresh_token_lifespan: 90m
+      key: configuration.yaml
+      labels: {}
+      log:
+        format: text
+        level: debug
+      notifier:
+        disable_startup_check: false
+        filesystem:
+          enabled: false
+          filename: /config/notification.txt
+        smtp:
+          disable_html_emails: false
+          disable_require_tls: false
+          enabled: true
+          enabledSecret: true
+          host: ${SECRET_GLOBAL_SMTP_HOST}
+          identifier: localhost
+          port: 587
+          sender: ${SECRET_GLOBAL_SMTP_FROM}
+          startup_check_address: ${SECRET_GLOBAL_SMTP_FROM}
+          subject: '[Authelia] {title}'
+          timeout: 5s
+          tls:
+            minimum_version: TLS1.2
+            server_name: ""
+            skip_verify: false
+          username: ${SECRET_GLOBAL_SMTP_USERNAME}
+      regulation:
+        ban_time: 5m
+        find_time: 2m
+        max_retries: 3
+      server:
+        path: ""
+        port: 9091
+        read_buffer_size: 4096
+        write_buffer_size: 4096
+      session:
+        expiration: 1h
+        inactivity: 5m
+        name: authelia_session
+        redis:
+          database_index: 0
+          enabled: false
+          enabledSecret: false
+          high_availability:
+            enabled: false
+            enabledSecret: false
+            nodes: []
+            route_by_latency: false
+            route_randomly: false
+            sentinel_name: mysentinel
+          host: redis.databases.svc.cluster.local
+          maximum_active_connections: 8
+          minimum_idle_connections: 0
+          port: 6379
+          tls:
+            enabled: false
+            minimum_version: TLS1.2
+            server_name: ""
+            skip_verify: false
+          username: ""
+        remember_me_duration: 1M
+        same_site: lax
+      storage:
+        local:
+          enabled: false
+          path: /config/db.sqlite3
+        mysql:
+          database: authelia
+          enabled: true
+          host: authentication-system-authelia-mariadb.authentication-system.svc.cluster.local
+          port: 3306
+          timeout: 5s
+          username: authelia
+        postgres:
+          database: authelia
+          enabled: false
+          host: 127.0.0.1
+          port: 5432
+          sslmode: disable
+          timeout: 5s
+          username: authelia
+      theme: dark
+      totp:
+        issuer: ${SECRET_DIGITALOCEAN_DOMAIN_02}
+        period: 30
+        skew: 1
+    domain: ${SECRET_DIGITALOCEAN_DOMAIN_02}
+    image:
+      pullPolicy: IfNotPresent
+      pullSecrets: []
+      registry: ghcr.io
+      repository: authelia/authelia
+      tag: 4.30.4
+    ingress:
+      annotations: {}
+      certManager: false
+      enabled: false
+      labels: {}
+      rewriteTarget: true
+      subdomain: auth
+      tls:
+        enabled: true
+        secret: authelia-tls
+      traefikCRD:
+        disableIngressRoute: false
+        enabled: false
+        entryPoints: []
+        middlewares:
+          auth:
+            authResponseHeaders:
+            - Remote-User
+            - Remote-Name
+            - Remote-Email
+            - Remote-Groups
+          chains:
+            auth:
+              after: []
+              before: []
+            ingressRoute:
+              after: []
+              before: []
+        sticky: false
+        tls:
+          options: {}
+    labels: {}
+    networkPolicy:
+      annotations: {}
+      enabled: false
+      ingress:
+      - from:
+        - namespaceSelector:
+            matchLabels:
+              authelia.com/network-policy: namespace
+        - podSelector:
+            matchLabels:
+              authelia.com/network-policy: pod
+        ports:
+        - port: 9091
+          protocol: TCP
+      labels: {}
+      policyTypes:
+      - Ingress
+    persistence:
+      accessModes:
+      - ReadWriteOnce
+      annotations: {}
+      enabled: false
+      existingClaim: ""
+      labels: {}
+      readOnly: false
+      selector: {}
+      size: 100Mi
+      storageClass: ""
+      subPath: ""
+    pod:
+      annotations: {}
+      env:
+      - name: TZ
+        value: ${TIMEZONE}
+      extraVolumeMounts:
+      - mountPath: /config/users_database.yml
+        name: users-database
+        subPath: users_database.yml
+      extraVolumes:
+      - configMap:
+          name: users-database
+        name: users-database
+      kind: Deployment
+      labels: {}
+      probes:
+        liveness:
+          failureThreshold: 5
+          initialDelaySeconds: 0
+          periodSeconds: 30
+          successThreshold: 1
+          timeoutSeconds: 5
+        method:
+          httpGet:
+            path: /api/health
+            port: http
+            scheme: HTTP
+        readiness:
+          failureThreshold: 5
+          initialDelaySeconds: 0
+          periodSeconds: 5
+          successThreshold: 1
+          timeoutSeconds: 5
+        startup:
+          failureThreshold: 6
+          initialDelaySeconds: 10
+          periodSeconds: 5
+          successThreshold: 1
+          timeoutSeconds: 5
+      replicas: 1
+      resources:
+        limits: {}
+        requests: {}
+      revisionHistoryLimit: 5
+      securityContext:
+        container: {}
+        pod: {}
+      selectors:
+        affinity:
+          nodeAffinity: {}
+          podAffinity: {}
+          podAntiAffinity: {}
+        nodeSelector: {}
+      tolerations: []
+      updateStrategy: RollingUpdate
+    podDisruptionBudget:
+      annotations: {}
+      enabled: false
+      labels: {}
+    rbac:
+      annotations: {}
+      enabled: false
+      labels: {}
+      serviceAccountName: authelia
+    secret:
+      annotations: {}
+      duo:
+        filename: DUO_API_KEY
+        key: DUO_API_KEY
+        value: ""
+      existingSecret: ""
+      jwt:
+        filename: JWT_TOKEN
+        key: JWT_TOKEN
+        value: ""
+      labels: {}
+      ldap:
+        filename: LDAP_PASSWORD
+        key: LDAP_PASSWORD
+        value: ""
+      mountPath: /secrets
+      oidcHMACSecret:
+        filename: OIDC_HMAC_SECRET
+        key: OIDC_HMAC_SECRET
+        value: ""
+      oidcPrivateKey:
+        filename: OIDC_PRIVATE_KEY
+        key: OIDC_PRIVATE_KEY
+        value: ""
+      redis:
+        filename: REDIS_PASSWORD
+        key: REDIS_PASSWORD
+        value: ""
+      redisSentinel:
+        filename: REDIS_SENTINEL_PASSWORD
+        key: REDIS_SENTINEL_PASSWORD
+        value: ""
+      session:
+        filename: SESSION_ENCRYPTION_KEY
+        key: SESSION_ENCRYPTION_KEY
+        value: ""
+      smtp:
+        filename: SMTP_PASSWORD
+        key: SMTP_PASSWORD
+        value: ${SECRET_GLOBAL_SMTP_PASSWORD}
+      storage:
+        filename: STORAGE_PASSWORD
+        key: STORAGE_PASSWORD
+        value: ${SECRET_AUTHELIA_MARIADB_PASSWORD}
+      vaultInjector:
+        agent:
+          command: sh -c 'kill HUP $(pidof authelia)'
+          configMap: ""
+          image: ""
+          initFirst: "false"
+          runAsSameUser: "true"
+          status: update
+        enabled: false
+        role: authelia
+        secrets:
+          duo:
+            command: ""
+            path: secrets/authelia/duo:api_key
+            templateValue: ""
+          jwt:
+            command: ""
+            path: secrets/authelia/jwt:token
+            templateValue: ""
+          ldap:
+            command: ""
+            path: secrets/authelia/ldap:password
+            templateValue: ""
+          oidcHMACSecret:
+            command: ""
+            path: secrets/authelia/oidc:hmac_secret
+            templateValue: ""
+          oidcPrivateKey:
+            command: ""
+            path: secrets/authelia/oidc:private_key
+            templateValue: ""
+          redis:
+            command: ""
+            path: secrets/authelia/redis:password
+            templateValue: ""
+          redisSentinel:
+            command: ""
+            path: secrets/authelia/redis_sentinel:password
+            templateValue: ""
+          session:
+            command: ""
+            path: secrets/authelia/session:encryption_key
+            templateValue: ""
+          smtp:
+            command: ""
+            path: secrets/authelia/smtp:password
+            templateValue: ""
+          storage:
+            command: ""
+            path: secrets/authelia/storage:password
+            templateValue: ""
+    service:
+      annotations: {}
+      labels: {}
+      port: 9091
+
