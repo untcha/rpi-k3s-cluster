@@ -14,3 +14,4 @@ resources:
   - wordpress
   - development
   - bitwarden
+  - authelia-test
