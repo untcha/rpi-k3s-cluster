@@ -58,7 +58,7 @@ spec:
         # - name: whoami-middleware-basicauth
         - name: authelia
           namespace: authelia-test
-        - name: whoami-middleware-headers
+        # - name: whoami-middleware-headers
       services:
         - name: whoami
           port: 80
