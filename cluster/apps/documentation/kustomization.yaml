@@ -6,4 +6,4 @@ resources:
   - documentation-pvc.yaml
   - documentation-deployment.yaml
   - documentation-letsencrypt-certificate.yaml
-  #- documentation-ingressroute.yaml
+  - documentation-ingressroute.yaml
