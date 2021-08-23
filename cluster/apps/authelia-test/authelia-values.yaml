@@ -189,7 +189,7 @@ ingress:
 
 pod:
   # Must be Deployment, DaemonSet, or StatefulSet.
-  kind: DaemonSet
+  kind: Deployment
 
   annotations: {}
   # annotations:
