@@ -169,7 +169,8 @@ gitea:
       ENABLED: "true"
       ADAPTER: "redis"
       INTERVAL: "60"
-      HOST: "dev-gitea-gitea-redis.dev-gitea.svc.cluster.local"
+      # HOST: "dev-gitea-gitea-redis.dev-gitea.svc.cluster.local"
+      HOST: redis://:macaron@dev-gitea-gitea-redis.dev-gitea.svc.cluster.local:6379/0?pool_size=100&idle_timeout=180s
 
     log:
       ROOT_PATH: "/data/log"
