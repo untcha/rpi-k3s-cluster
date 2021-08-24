@@ -139,6 +139,14 @@ data:
             tag: "cloud"
             url: "https://cloud.${SECRET_DIGITALOCEAN_DOMAIN_02}"
             target: "_blank"
+      - name: "Security"
+        icon: "fas fa-shield-alt"
+        items:
+          - name: "Bitwarden"
+            logo: "https://doc.${SECRET_DIGITALOCEAN_DOMAIN_02}/homer-config/bitwarden.png"
+            tag: "security"
+            url: "https://bitwarden.${SECRET_DIGITALOCEAN_DOMAIN_02}"
+            target: "_blank"
       - name: "AdBlocker"
         icon: "fas fa-shield-alt"
         items:
