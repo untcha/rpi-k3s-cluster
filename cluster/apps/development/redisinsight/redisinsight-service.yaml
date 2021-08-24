@@ -16,4 +16,4 @@ spec:
     port: 8001
     protocol: TCP
     targetPort: http
-  type: LoadBalancerIP
+  type: LoadBalancer
