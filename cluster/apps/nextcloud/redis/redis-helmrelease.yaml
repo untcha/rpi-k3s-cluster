@@ -61,7 +61,7 @@ spec:
       successThreshold: 1
       timeoutSeconds: 5
     redisConfig: |
-      requirepass ${SECRET_NEXTCLOUD_REDIS_PASSWORD}
+      requirepass ${SECRET_GLOBAL_REDIS_PASSWORD}
     resources: {}
     revisionHistoryLimit: null
     securityContext:

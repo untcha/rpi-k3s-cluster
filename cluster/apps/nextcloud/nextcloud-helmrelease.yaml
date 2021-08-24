@@ -14,7 +14,7 @@ spec:
       version: 0.6.2
   install: {}
   interval: 1m0s
-  timeout: 10m
+  timeout: 20m
   targetNamespace: nextcloud
   values:
     affinity: {}
@@ -45,7 +45,7 @@ spec:
     externalCache:
       enabled: true
       host: ${NEXTCLOUD_REDIS_SVC_LB_IP}
-      password: ${SECRET_NEXTCLOUD_REDIS_PASSWORD}
+      password: ${SECRET_GLOBAL_REDIS_PASSWORD}
       port: 6379
     externalDatabase:
       host: ${NEXTCLOUD_POSTGRES_SVC_LB_IP}

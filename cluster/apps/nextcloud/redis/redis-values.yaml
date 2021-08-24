@@ -131,7 +131,7 @@ sentinelArgs: []
 
 ## Additional redis.conf
 redisConfig: |
-  requirepass ${SECRET_NEXTCLOUD_REDIS_PASSWORD}
+  requirepass ${SECRET_GLOBAL_REDIS_PASSWORD}
 
 ## Additional sentinel.conf (only when haMode is enabled)
 sentinelConfig: |

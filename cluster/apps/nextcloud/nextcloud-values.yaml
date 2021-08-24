@@ -215,7 +215,7 @@ externalCache:
   port: 6379
 
   ## Redis password
-  password: ${SECRET_NEXTCLOUD_REDIS_PASSWORD}
+  password: ${SECRET_GLOBAL_REDIS_PASSWORD}
 
 ## Nextcloud specific configuration
 settings:
