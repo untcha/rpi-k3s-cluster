@@ -221,6 +221,7 @@ metadata:
 data:
   a-records.conf: |
     # A Record
+    local-data: "adminer.${SECRET_DOMAIN_LOCAL_02}.                  A 192.168.178.240"
     local-data: "bitwarden.${SECRET_DOMAIN_LOCAL_02}.                A 192.168.178.240"
     local-data: "blocky.${SECRET_DOMAIN_LOCAL_02}.                   A 192.168.178.240"
     local-data: "chronograf.${SECRET_DOMAIN_LOCAL_02}.               A 192.168.178.240"
@@ -240,6 +241,7 @@ data:
     local-data: "whoami.${SECRET_DOMAIN_LOCAL_02}.                   A 192.168.178.240"
 
     # PTR Record
+    local-data-ptr: "192.168.178.240 adminer.${SECRET_DOMAIN_LOCAL_02}."
     local-data-ptr: "192.168.178.240 bitwarden.${SECRET_DOMAIN_LOCAL_02}."
     local-data-ptr: "192.168.178.240 blocky.${SECRET_DOMAIN_LOCAL_02}."
     local-data-ptr: "192.168.178.240 chronograf.${SECRET_DOMAIN_LOCAL_02}."
