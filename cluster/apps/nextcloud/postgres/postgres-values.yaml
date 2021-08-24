@@ -5,7 +5,7 @@ image:
   repository: postgres
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
-  tag: "13.3"
+  tag: ""
 
 ## Pull secrets and name override options
 imagePullSecrets: []
@@ -110,7 +110,7 @@ args: []
 ## Database configuration
 settings:
   ## The superuser password (default: a 10 char. alpahnumerical random password will be generated)
-  superuserPassword: ${SECRET_NEXTCLOUD_POSTGRES_SUPERUSER_PASSWORD}
+  superuserPassword: ${SECRET_GLOBAL_POSTGRES_SUPERUSER_PASSWORD}
 
   ## Postgres database authentication method (default: md5)
   authMethod: "md5"

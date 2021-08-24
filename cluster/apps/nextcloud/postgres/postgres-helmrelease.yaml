@@ -11,7 +11,7 @@ spec:
       sourceRef:
         kind: HelmRepository
         name: groundhog2k
-      version: 0.2.12
+      version: 0.2.13
   install: {}
   interval: 1m0s
   targetNamespace: nextcloud
@@ -30,7 +30,7 @@ spec:
     image:
       pullPolicy: IfNotPresent
       repository: postgres
-      tag: "13.3"
+      tag: ""
     imagePullSecrets: []
     livenessProbe:
       enabled: true
@@ -74,7 +74,7 @@ spec:
     settings:
       authMethod: md5
       initDbArgs: null
-      superuserPassword: ${SECRET_NEXTCLOUD_POSTGRES_SUPERUSER_PASSWORD}
+      superuserPassword: ${SECRET_GLOBAL_POSTGRES_SUPERUSER_PASSWORD}
     storage:
       accessModes:
       - ReadWriteOnce
