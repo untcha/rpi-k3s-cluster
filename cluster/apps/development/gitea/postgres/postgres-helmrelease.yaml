@@ -11,7 +11,7 @@ spec:
       sourceRef:
         kind: HelmRepository
         name: groundhog2k
-      version: 0.2.12
+      version: 0.2.13
   install: {}
   interval: 1m0s
   targetNamespace: dev-gitea
@@ -30,7 +30,7 @@ spec:
     image:
       pullPolicy: IfNotPresent
       repository: postgres
-      tag: "13.3"
+      tag: ""
     imagePullSecrets: []
     livenessProbe:
       enabled: true
@@ -74,7 +74,7 @@ spec:
     settings:
       authMethod: md5
       initDbArgs: null
-      superuserPassword: ${SECRET_GITEA_POSTGRES_SUPERUSER_PASSWORD}
+      superuserPassword: ${SECRET_GLOBAL_POSTGRES_SUPERUSER_PASSWORD}
     storage:
       accessModes:
       - ReadWriteOnce
@@ -84,7 +84,7 @@ spec:
     tolerations: []
     updateStrategyType: RollingUpdate
     userDatabase:
-      name: ${SECRET_GITEA_POSTGRES_DB_NAME}
-      password: ${SECRET_GITEA_POSTGRES_DB_PASSWORD}
-      user: ${SECRET_GITEA_POSTGRES_DB_USER}
+      name: ${SECRET_GITEA_DB_NAME}
+      password: ${SECRET_GITEA_DB_PASSWORD}
+      user: ${SECRET_GITEA_DB_USER}
 

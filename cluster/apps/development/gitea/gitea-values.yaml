@@ -160,9 +160,9 @@ gitea:
     database:
       DB_TYPE: "postgres"
       HOST: "dev-gitea-gitea-postgres.dev-gitea.svc.cluster.local"
-      NAME: "${SECRET_GITEA_POSTGRES_DB_NAME}"
-      USER: "${SECRET_GITEA_POSTGRES_DB_USER}"
-      PASSWD: "${SECRET_GITEA_POSTGRES_DB_PASSWORD}"
+      NAME: "${SECRET_GITEA_DB_NAME}"
+      USER: "${SECRET_GITEA_DB_USER}"
+      PASSWD: "${SECRET_GITEA_DB_PASSWORD}"
       PATH: "/data/gitea/gitea.db"
     
     cache:
