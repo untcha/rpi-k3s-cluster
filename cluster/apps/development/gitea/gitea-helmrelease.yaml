@@ -11,7 +11,7 @@ spec:
       sourceRef:
         kind: HelmRepository
         name: groundhog2k
-      version: 0.3.24
+      version: 0.4.0
   install: {}
   interval: 1m0s
   targetNamespace: dev-gitea
@@ -36,10 +36,10 @@ spec:
         database:
           DB_TYPE: postgres
           HOST: dev-gitea-gitea-postgres.dev-gitea.svc.cluster.local
-          NAME: ${SECRET_GITEA_POSTGRES_DB_NAME}
-          PASSWD: ${SECRET_GITEA_POSTGRES_DB_PASSWORD}
+          NAME: ${SECRET_GITEA_DB_NAME}
+          PASSWD: ${SECRET_GITEA_DB_PASSWORD}
           PATH: /data/gitea/gitea.db
-          USER: ${SECRET_GITEA_POSTGRES_DB_USER}
+          USER: ${SECRET_GITEA_DB_USER}
         log:
           ACCESS: console
           ENABLE_ACCESS_LOG: "false"
