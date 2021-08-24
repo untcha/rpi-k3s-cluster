@@ -68,7 +68,7 @@ spec:
       name: ""
     settings:
       arguments: []
-      rootPassword: ${SECRET_MARIADB_ROOT_PASSWORD}
+      rootPassword: ${SECRET_GLOBAL_MARIADB_ROOT_PASSWORD}
     storage:
       accessModes:
       - ReadWriteOnce
@@ -79,6 +79,6 @@ spec:
     updateStrategyType: RollingUpdate
     userDatabase:
       name: wordpress
-      password: ${SECRET_WORDPRESS_SIMONE_DB_PASSWORD}
+      password: ${SECRET_WORDPRESS_SIMONE_MARIADB_PASSWORD}
       user: wordpress
 

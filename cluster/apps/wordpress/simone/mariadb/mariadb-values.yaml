@@ -109,7 +109,7 @@ settings:
   #  - --collation-server=utf8mb4_unicode_ci
 
   ## The root user password (default: a 10 char. alpahnumerical random password will be generated)
-  rootPassword: ${SECRET_MARIADB_ROOT_PASSWORD}
+  rootPassword: ${SECRET_GLOBAL_MARIADB_ROOT_PASSWORD}
 
 ## Optional user database which is created during first startup with user and password
 userDatabase:
@@ -120,7 +120,7 @@ userDatabase:
   user: wordpress
 
   ## Password of the database user (default: a 10 char. alpahnumerical random password will be generated)
-  password: ${SECRET_WORDPRESS_SIMONE_DB_PASSWORD}
+  password: ${SECRET_WORDPRESS_SIMONE_MARIADB_PASSWORD}
 
 ## Optional custom configuration block that will be mounted as file in /etc/mysql/conf.d/custom.cnf
 customConfig: |-
