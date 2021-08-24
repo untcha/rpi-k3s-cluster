@@ -135,7 +135,8 @@ customStartupProbe: {}
 startupProbe:
   enabled: true
   # initialDelaySeconds: 120
-  initialDelaySeconds: 360
+  # initialDelaySeconds: 360
+  initialDelaySeconds: 600
   timeoutSeconds: 5
   failureThreshold: 5
   successThreshold: 1

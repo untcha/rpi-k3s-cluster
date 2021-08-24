@@ -11,7 +11,7 @@ spec:
       sourceRef:
         kind: HelmRepository
         name: groundhog2k
-      version: 0.6.2
+      version: 0.7.0
   install: {}
   interval: 1m0s
   timeout: 20m
@@ -161,7 +161,7 @@ spec:
     startupProbe:
       enabled: true
       failureThreshold: 5
-      initialDelaySeconds: 360
+      initialDelaySeconds: 600
       periodSeconds: 30
       successThreshold: 1
       timeoutSeconds: 5
