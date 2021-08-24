@@ -65,11 +65,13 @@ spec:
         server:
           APP_DATA_PATH: /data/gitea
           DISABLE_SSH: "false"
+          DOMAIN: gitea.${SECRET_DIGITALOCEAN_DOMAIN_02}
+          HTTP_PORT: 3000
           LFS_CONTENT_PATH: /data/gitea/lfs
           LFS_JWT_SECRET: null
           LFS_START_SERVER: "true"
           OFFLINE_MODE: "false"
-          PROTOCOL: http
+          PROTOCOL: https
           SSH_ROOT_PATH: /data/ssh
           START_SSH_SERVER: "true"
         service:

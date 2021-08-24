@@ -179,7 +179,9 @@ gitea:
       ENABLE_ACCESS_LOG: "false"
 
     server:
-      PROTOCOL: http
+      PROTOCOL: "https"
+      DOMAIN: "gitea.${SECRET_DIGITALOCEAN_DOMAIN_02}"
+      HTTP_PORT: 3000
       DISABLE_SSH: "false"
       START_SSH_SERVER: "true"
       LFS_START_SERVER: "true"
