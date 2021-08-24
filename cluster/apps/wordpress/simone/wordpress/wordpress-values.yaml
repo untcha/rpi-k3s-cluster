@@ -145,7 +145,7 @@ externalDatabase:
   user: wordpress
 
   ## Database password
-  password: ${SECRET_WORDPRESS_SIMONE_DB_PASSWORD}
+  password: ${SECRET_WORDPRESS_SIMONE_MARIADB_PASSWORD}
 
   ## Database host
   host: wp-simone-wp-simone-mariadb.wp-simone.svc.cluster.local

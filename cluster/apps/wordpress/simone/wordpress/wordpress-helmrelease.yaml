@@ -28,7 +28,7 @@ spec:
     externalDatabase:
       host: wp-simone-wp-simone-mariadb.wp-simone.svc.cluster.local
       name: wordpress
-      password: ${SECRET_WORDPRESS_SIMONE_DB_PASSWORD}
+      password: ${SECRET_WORDPRESS_SIMONE_MARIADB_PASSWORD}
       user: wordpress
     fullnameOverride: ""
     image:
