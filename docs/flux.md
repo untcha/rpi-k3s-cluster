@@ -268,13 +268,13 @@ flux create helmrelease longhorn \
   --export > longhorn-helmrelease.yaml
 ```
 
-### MariaDB (check update!)
+### MariaDB
 
 ```bash
 flux create helmrelease mariadb \
   --source=HelmRepository/groundhog2k \
   --chart=mariadb \
-  --chart-version="0.2.13" \
+  --chart-version="0.2.14" \
   --target-namespace=<NAMESPACE> \
   --values=mariadb-values.yaml \
   --export > mariadb-helmrelease.yaml
