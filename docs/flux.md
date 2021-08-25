@@ -292,13 +292,13 @@ flux create helmrelease metallb \
   --export > metallb-helmrelease.yaml
 ```
 
-### Nextcloud (check update!)
+### Nextcloud
 
 ```bash
 flux create helmrelease nextcloud \
   --source=HelmRepository/groundhog2k \
   --chart=nextcloud \
-  --chart-version="0.6.2" \
+  --chart-version="0.7.0" \
   --target-namespace=nextcloud \
   --values=nextcloud-values.yaml \
   --export > nextcloud-helmrelease.yaml
@@ -316,25 +316,25 @@ flux create helmrelease portainer \
   --export > portainer-helmrelease.yaml
 ```
 
-### Postgres (gitea) (check update!)
+### Postgres (gitea)
 
 ```bash
 flux create helmrelease gitea-postgres \
   --source=HelmRepository/groundhog2k \
   --chart=postgres \
-  --chart-version="0.2.12" \
+  --chart-version="0.2.13" \
   --target-namespace=dev-gitea \
   --values=gitea-values.yaml \
   --export > gitea-helmrelease.yaml
 ```
 
-### Postgres (Nextcloud) (check update!)
+### Postgres (Nextcloud)
 
 ```bash
 flux create helmrelease nextcloud-postgres \
   --source=HelmRepository/groundhog2k \
   --chart=postgres \
-  --chart-version="0.2.12" \
+  --chart-version="0.2.13" \
   --target-namespace=nextcloud \
   --values=postgres-values.yaml \
   --export > postgres-helmrelease.yaml
