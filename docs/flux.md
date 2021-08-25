@@ -208,6 +208,18 @@ helm show values <repository/chart> <chart>-values.yaml
 
 ## Helm Release
 
+### Authelia
+
+```bash
+flux create helmrelease authelia \
+  --source=HelmRepository/authelia \
+  --chart=authelia \
+  --chart-version="0.5.6" \
+  --target-namespace=authentication-system \
+  --values=authelia-values.yaml \
+  --export > authelia-helmrelease.yaml
+```
+
 ### Cert-Manager (check update!)
 
 ```bash
