@@ -71,7 +71,7 @@ spec:
     - match: Host(`traefik.${SECRET_DIGITALOCEAN_DOMAIN_02}`) && (PathPrefix(`/dashboard`) || PathPrefix(`/api`))
       kind: Rule
       middlewares:
-        - name: traefik-middleware-basicauth
+        # - name: traefik-middleware-basicauth
         # - name: traefik-middleware-headers
         - name: authelia
           namespace: authentication-system
