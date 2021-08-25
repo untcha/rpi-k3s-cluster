@@ -73,6 +73,8 @@ spec:
       middlewares:
         - name: traefik-middleware-basicauth
         # - name: traefik-middleware-headers
+        - name: authelia
+          namespace: authentication-system
       services:
         - name: api@internal
           kind: TraefikService
