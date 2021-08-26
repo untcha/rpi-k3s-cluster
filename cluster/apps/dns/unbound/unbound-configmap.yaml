@@ -237,6 +237,7 @@ data:
     local-data: "prometheus.${SECRET_DOMAIN_LOCAL_02}.               A 192.168.178.240"
     local-data: "simone.${SECRET_DOMAIN_LOCAL_02}.                   A 192.168.178.240"
     local-data: "speedtest.${SECRET_DOMAIN_LOCAL_02}.                A 192.168.178.240"
+    local-data: "test.${SECRET_DOMAIN_LOCAL_02}.                     A 192.168.178.240"
     local-data: "traefik.${SECRET_DOMAIN_LOCAL_02}.                  A 192.168.178.240"
     local-data: "whoami.${SECRET_DOMAIN_LOCAL_02}.                   A 192.168.178.240"
 
@@ -257,5 +258,6 @@ data:
     local-data-ptr: "192.168.178.240 prometheus.${SECRET_DOMAIN_LOCAL_02}."
     local-data-ptr: "192.168.178.240 simone.${SECRET_DOMAIN_LOCAL_02}."
     local-data-ptr: "192.168.178.240 speedtest.${SECRET_DOMAIN_LOCAL_02}."
+    local-data-ptr: "192.168.178.240 test.${SECRET_DOMAIN_LOCAL_02}."
     local-data-ptr: "192.168.178.240 traefik.${SECRET_DOMAIN_LOCAL_02}."
     local-data-ptr: "192.168.178.240 whoami.${SECRET_DOMAIN_LOCAL_02}."
