@@ -312,6 +312,9 @@ data:
     https://urlhaus.abuse.ch/downloads/hostfile/
     https://zerodot1.gitlab.io/CoinBlockerLists/hosts_browser
 
+    https://raw.githubusercontent.com/anudeepND/blacklist/master/adservers.txt
+    https://raw.githubusercontent.com/anudeepND/blacklist/master/facebook.txt
+
     # https://raw.githubusercontent.com/StevenBlack/hosts/master/hosts
     # https://hosts.oisd.nl/
     # https://raw.githubusercontent.com/PolishFiltersTeam/KADhosts/master/KADhosts_without_controversies.txt
