@@ -281,6 +281,8 @@ metadata:
   namespace: dns
 data:
   adlists.list: |
+    https://dbl.oisd.nl/
+    
     # Lists from:
     # https://v.firebog.net/hosts/lists.php?type=tick
     https://raw.githubusercontent.com/PolishFiltersTeam/KADhosts/master/KADhosts.txt
