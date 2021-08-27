@@ -5,4 +5,3 @@ resources:
   - gitea
   - dev-tools-namespace.yaml
   - adminer
-  #- redisinsight
