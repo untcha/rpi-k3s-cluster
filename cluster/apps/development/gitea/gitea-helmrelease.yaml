@@ -38,7 +38,6 @@ spec:
           HOST: dev-gitea-gitea-postgres.dev-gitea.svc.cluster.local
           NAME: ${SECRET_GITEA_DB_NAME}
           PASSWD: ${SECRET_GITEA_DB_PASSWORD}
-          PATH: /data/gitea/gitea.db
           USER: ${SECRET_GITEA_DB_USER}
         log:
           ACCESS: console

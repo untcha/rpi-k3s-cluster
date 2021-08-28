@@ -163,7 +163,7 @@ gitea:
       NAME: "${SECRET_GITEA_DB_NAME}"
       USER: "${SECRET_GITEA_DB_USER}"
       PASSWD: "${SECRET_GITEA_DB_PASSWORD}"
-      PATH: "/data/gitea/gitea.db"
+      # PATH: "/data/gitea/gitea.db"
     
     cache:
       ENABLED: "true"
