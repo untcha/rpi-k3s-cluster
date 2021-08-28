@@ -179,17 +179,17 @@ gitea:
       ACCESS: "console"
       ENABLE_ACCESS_LOG: "false"
 
-    server:
-      PROTOCOL: "https"
-      DOMAIN: "gitea.${SECRET_DIGITALOCEAN_DOMAIN_02}"
-      # HTTP_PORT: 80
-      DISABLE_SSH: "false"
-      START_SSH_SERVER: "true"
-      LFS_START_SERVER: "true"
-      LFS_CONTENT_PATH: "/data/gitea/lfs"
-      OFFLINE_MODE: "false"
-      # LFS JWT secret
-      LFS_JWT_SECRET:
+    # server:
+    #   PROTOCOL: "https"
+    #   DOMAIN: "gitea.${SECRET_DIGITALOCEAN_DOMAIN_02}"
+    #   # HTTP_PORT: 80
+    #   DISABLE_SSH: "false"
+    #   START_SSH_SERVER: "true"
+    #   LFS_START_SERVER: "true"
+    #   LFS_CONTENT_PATH: "/data/gitea/lfs"
+    #   OFFLINE_MODE: "false"
+    #   # LFS JWT secret
+    #   LFS_JWT_SECRET:
 
       SSH_ROOT_PATH: "/data/ssh"
       APP_DATA_PATH: "/data/gitea"
