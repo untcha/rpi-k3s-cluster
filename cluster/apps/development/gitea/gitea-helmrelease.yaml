@@ -42,12 +42,10 @@ spec:
           USER: ${SECRET_GITEA_DB_USER}
         log:
           ACCESS: console
-          APP_DATA_PATH: /data/gitea
           ENABLE_ACCESS_LOG: "false"
           LEVEL: info
           MODE: console
           ROOT_PATH: /data/log
-          SSH_ROOT_PATH: /data/ssh
         mailer:
           ENABLED: "false"
         oauth2:
@@ -64,6 +62,17 @@ spec:
           INSTALL_LOCK: "true"
           INTERNAL_TOKEN: null
           SECRET_KEY: null
+        server:
+          APP_DATA_PATH: /data/gitea
+          DISABLE_SSH: "false"
+          DOMAIN: git.${SECRET_DOMAIN_LOCAL_02}
+          LFS_CONTENT_PATH: /data/gitea/lfs
+          LFS_JWT_SECRET: null
+          LFS_START_SERVER: "true"
+          OFFLINE_MODE: "false"
+          PROTOCOL: http
+          SSH_ROOT_PATH: /data/ssh
+          START_SSH_SERVER: "true"
         service:
           ALLOW_ONLY_EXTERNAL_REGISTRATION: "false"
           DEFAULT_ALLOW_CREATE_ORGANIZATION: "true"
