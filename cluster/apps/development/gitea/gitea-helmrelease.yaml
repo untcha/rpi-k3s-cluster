@@ -10,21 +10,24 @@ spec:
       chart: gitea
       sourceRef:
         kind: HelmRepository
-        name: groundhog2k
-      version: 0.4.0
+        name: gitea-charts
+      version: 4.0.3
   install: {}
   interval: 1m0s
   targetNamespace: dev-gitea
   values:
     affinity: {}
-    args: []
-    containerHttpPort: 8000
-    containerSshPort: 8022
-    customLivenessProbe: {}
-    customReadinessProbe: {}
-    env: []
-    fullnameOverride: ""
+    clusterDomain: cluster.local
+    extraVolumeMounts: null
+    extraVolumes: null
     gitea:
+      admin:
+        email: ${SECRET_EMAIL}
+        password: ${SECRET_GITEA_ADMIN_PASSWORD}
+        username: ${SECRET_GITEA_ADMIN_USER}
+      cache:
+        builtIn:
+          enabled: false
       config:
         APP_NAME: 'Gitea: Git with a cup of tea'
         RUN_MODE: prod
@@ -40,149 +43,125 @@ spec:
           PASSWD: ${SECRET_GITEA_DB_PASSWORD}
           PATH: /data/gitea/gitea.db
           USER: ${SECRET_GITEA_DB_USER}
-        log:
-          ACCESS: console
-          ENABLE_ACCESS_LOG: "false"
-          LEVEL: info
-          MODE: console
-          ROOT_PATH: /data/log
-        mailer:
-          ENABLED: "false"
-        oauth2:
-          JWT_SECRET: null
-        openid:
-          ENABLE_OPENID_SIGNIN: "false"
-          ENABLE_OPENID_SIGNUP: "false"
-        picture:
-          DISABLE_GRAVATAR: "false"
-          ENABLE_FEDERATED_AVATAR: "true"
-        repository:
-          ROOT: /data/git/gitea-repositories
-        security:
-          INSTALL_LOCK: "true"
-          INTERNAL_TOKEN: null
-          SECRET_KEY: null
-        server:
-          APP_DATA_PATH: /data/gitea
-          DISABLE_SSH: "false"
-          DOMAIN: gitea.${SECRET_DIGITALOCEAN_DOMAIN_02}
-          LFS_CONTENT_PATH: /data/gitea/lfs
-          LFS_JWT_SECRET: null
-          LFS_START_SERVER: "true"
-          OFFLINE_MODE: "false"
-          PROTOCOL: https
-          SSH_ROOT_PATH: /data/ssh
-          START_SSH_SERVER: "true"
-        service:
-          ALLOW_ONLY_EXTERNAL_REGISTRATION: "false"
-          DEFAULT_ALLOW_CREATE_ORGANIZATION: "true"
-          DEFAULT_ENABLE_TIMETRACKING: "true"
-          DEFAULT_KEEP_EMAIL_PRIVATE: "true"
-          DISABLE_REGISTRATION: "true"
-          ENABLE_CAPTCHA: "false"
-          ENABLE_NOTIFY_MAIL: "false"
-          NO_REPLY_ADDRESS: noreply.dev.k8.local
-          REGISTER_EMAIL_CONFIRM: "false"
-          REQUIRE_SIGNIN_VIEW: "false"
+      database:
+        builtIn:
+          mariadb:
+            enabled: false
+          mysql:
+            enabled: false
+          postgresql:
+            enabled: false
+      ldap:
+        enabled: false
+      livenessProbe:
+        enabled: true
+        failureThreshold: 10
+        initialDelaySeconds: 200
+        periodSeconds: 10
+        successThreshold: 1
+        timeoutSeconds: 1
+      metrics:
+        enabled: false
+        serviceMonitor:
+          enabled: false
+      oauth:
+        enabled: false
+      podAnnotations: {}
+      readinessProbe:
+        enabled: true
+        failureThreshold: 3
+        initialDelaySeconds: 5
+        periodSeconds: 10
+        successThreshold: 1
+        timeoutSeconds: 1
+      startupProbe:
+        enabled: false
+        failureThreshold: 10
+        initialDelaySeconds: 60
+        periodSeconds: 10
+        successThreshold: 1
+        timeoutSeconds: 1
     image:
-      pullPolicy: IfNotPresent
+      pullPolicy: Always
       repository: gitea/gitea
-      tag: ""
+      rootless: false
+      tag: 1.14.6
     imagePullSecrets: []
     ingress:
       annotations: {}
       enabled: false
       hosts:
-      - host: chart-example.local
-        paths: []
-      maxBodySize: 64m
+      - host: git.example.com
+        paths:
+        - path: /
+          pathType: Prefix
       tls: []
-    livenessProbe:
-      enabled: true
-      failureThreshold: 5
-      initialDelaySeconds: 10
-      periodSeconds: 30
-      successThreshold: 1
-      timeoutSeconds: 10
+    initPreScript: ""
     mariadb:
-      enabled: false
-      settings:
-        arguments:
-        - --character-set-server=utf8mb4
-        - --collation-server=utf8mb4_unicode_ci
-        rootPassword: null
-      storage:
-        className: null
-        persistentVolumeClaimName: null
-        requestedSize: null
-      userDatabase: {}
-    nameOverride: ""
+      auth:
+        database: gitea
+        password: gitea
+        rootPassword: gitea
+        username: gitea
+      primary:
+        persistence:
+          size: 10Gi
+        service:
+          port: 3306
+    memcached:
+      service:
+        port: 11211
+    mysql:
+      db:
+        name: gitea
+        password: gitea
+        user: gitea
+      persistence:
+        size: 10Gi
+      root:
+        password: gitea
+      service:
+        port: 3306
     nodeSelector: {}
-    podAnnotations: {}
-    podSecurityContext:
-      fsGroup: 1000
-    postgres:
-      enabled: false
-      settings:
-        superuserPassword: null
-      storage:
-        className: null
-        persistentVolumeClaimName: null
-        requestedSize: null
-      userDatabase: {}
-    readinessProbe:
-      enabled: true
-      failureThreshold: 5
-      initialDelaySeconds: 10
-      periodSeconds: 10
-      successThreshold: 1
-      timeoutSeconds: 10
-    redis:
-      enabled: false
-      storage:
-        className: null
-        persistentVolumeClaimName: null
-        requestedSize: null
-    resources: {}
-    revisionHistoryLimit: null
-    securityContext:
-      allowPrivilegeEscalation: false
-      privileged: false
-      readOnlyRootFilesystem: true
-      runAsGroup: 1000
-      runAsNonRoot: true
-      runAsUser: 1000
-    serviceAccount:
-      annotations: {}
-      create: false
-      name: ""
-    services:
-      http:
-        clusterIP: null
-        loadBalancerIP: null
-        nodePort: null
-        port: 80
-        type: ClusterIP
-      ssh:
-        clusterIP: null
-        loadBalancerIP: null
-        nodePort: null
-        port: 22
-        type: ClusterIP
-    settings:
-      defaultAdmin:
-        email: ${SECRET_EMAIL}
-        password: admin
-        user: root
-      postInstallDelay: 60
-    storage:
+    persistence:
       accessModes:
       - ReadWriteOnce
-      className: null
-      keepPvc: false
-      persistentVolumeClaimName: gitea-pvc
-      requestedSize: null
-    strategy:
-      type: Recreate
+      annotations: {}
+      enabled: true
+      existingClaim: gitea-pvc
+      labels: {}
+      size: 10Gi
+    postgresql:
+      global:
+        postgresql:
+          postgresqlDatabase: gitea
+          postgresqlPassword: gitea
+          postgresqlUsername: gitea
+          servicePort: 5432
+      persistence:
+        size: 10Gi
+    replicaCount: 1
+    resources: {}
+    securityContext: {}
+    service:
+      http:
+        annotations: null
+        clusterIP: None
+        loadBalancerSourceRanges: []
+        port: 3000
+        type: ClusterIP
+      ssh:
+        annotations: null
+        clusterIP: None
+        loadBalancerSourceRanges: []
+        port: 22
+        type: ClusterIP
+    signing:
+      enabled: false
+      gpgHome: /data/git/.gnupg
+    statefulset:
+      env: []
+      labels: {}
+      terminationGracePeriodSeconds: 60
     tolerations: []
 

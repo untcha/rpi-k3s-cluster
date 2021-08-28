@@ -183,8 +183,8 @@ gitea:
     #customEmailUrl:
 
   config:
-      RUN_MODE: "prod"
-      APP_NAME: "Gitea: Git with a cup of tea"
+    RUN_MODE: "prod"
+    APP_NAME: "Gitea: Git with a cup of tea"
 
     database:
       DB_TYPE: "postgres"
