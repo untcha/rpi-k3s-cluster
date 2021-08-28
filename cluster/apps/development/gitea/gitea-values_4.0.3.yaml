@@ -102,7 +102,7 @@ statefulset:
 
 persistence:
   enabled: true
-  # existingClaim:
+  existingClaim: gitea-pvc
   size: 10Gi
   accessModes:
     - ReadWriteOnce

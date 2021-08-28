@@ -5,7 +5,7 @@ metadata:
   name: gitea-pvc
   namespace: dev-gitea
   annotations:
-    nfs.io/storage-path: "gitea"
+    nfs.io/storage-path: "data"
 spec:
   accessModes:
     - ReadWriteOnce
