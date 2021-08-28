@@ -142,9 +142,9 @@ signing:
 gitea:
   admin:
     #existingSecret: gitea-admin-secret
-    username: gitea_admin
-    password: r8sA8CPHD9!bt6d
-    email: "gitea@local.domain"
+    username: ${SECRET_GITEA_ADMIN_USER}
+    password: ${SECRET_GITEA_ADMIN_PASSWORD}
+    email: ${SECRET_EMAIL}
 
   metrics:
     enabled: false
@@ -182,7 +182,25 @@ gitea:
     #customProfileUrl:
     #customEmailUrl:
 
-  config: {}
+  config:
+      RUN_MODE: "prod"
+      APP_NAME: "Gitea: Git with a cup of tea"
+
+    database:
+      DB_TYPE: "postgres"
+      HOST: "dev-gitea-gitea-postgres.dev-gitea.svc.cluster.local"
+      NAME: "${SECRET_GITEA_DB_NAME}"
+      USER: "${SECRET_GITEA_DB_USER}"
+      PASSWD: "${SECRET_GITEA_DB_PASSWORD}"
+      PATH: "/data/gitea/gitea.db"
+    
+    cache:
+      ENABLED: "true"
+      ADAPTER: "redis"
+      INTERVAL: "60"
+      HOST: "redis://:${SECRET_GLOBAL_REDIS_PASSWORD}@dev-gitea-gitea-redis.dev-gitea.svc.cluster.local:6379/0?pool_size=100&idle_timeout=180s"
+
+
   #  APP_NAME: "Gitea: Git with a cup of tea"
   #  RUN_MODE: dev
   #
@@ -197,7 +215,7 @@ gitea:
   database:
     builtIn:
       postgresql:
-        enabled: true
+        enabled: false
       mysql:
         enabled: false
       mariadb:
@@ -205,7 +223,7 @@ gitea:
 
   cache:
     builtIn:
-      enabled: true
+      enabled: false
 
   livenessProbe:
     enabled: true
