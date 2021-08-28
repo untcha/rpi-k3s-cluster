@@ -1,0 +1,17 @@
+# git-local-ingressroute
+
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: git-local-ingressroute
+  namespace: dns
+spec:
+  entryPoints:
+    - web
+  routes:
+    - match: Host(`git.${SECRET_DOMAIN_LOCAL_02}`)
+      kind: Rule
+      services:
+        - name: dev-gitea-gitea-http
+          port: 80
