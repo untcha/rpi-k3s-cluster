@@ -10,7 +10,7 @@ spec:
       chart: gitea
       sourceRef:
         kind: HelmRepository
-        name: gitea-charts
+        name: gitea
       version: 4.0.3
   install: {}
   interval: 1m0s
