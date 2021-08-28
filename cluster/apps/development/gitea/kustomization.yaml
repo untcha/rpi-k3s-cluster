@@ -6,5 +6,5 @@ resources:
   - postgres
   - redis
   - gitea-pvc.yaml
-  #- gitea-helmrelease.yaml
+  - gitea-helmrelease.yaml
   - gitea-letsencrypt-certificate.yaml
