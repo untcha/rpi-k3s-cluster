@@ -5,7 +5,7 @@ apiVersion: traefik.containo.us/v1alpha1
 kind: IngressRoute
 metadata:
   name: git-local-ingressroute
-  namespace: dns
+  namespace: dev-gitea
 spec:
   entryPoints:
     - web
