@@ -159,7 +159,7 @@ gitea:
 
     database:
       DB_TYPE: "postgres"
-      HOST: "dev-gitea-gitea-postgres.dev-gitea.svc.cluster.local"
+      HOST: "${GITEA_POSTGRES_SVC_LB_IP}:5432"
       NAME: "${SECRET_GITEA_DB_NAME}"
       USER: "${SECRET_GITEA_DB_USER}"
       PASSWD: "${SECRET_GITEA_DB_PASSWORD}"
@@ -170,7 +170,7 @@ gitea:
       ADAPTER: "redis"
       INTERVAL: "60"
       # HOST: "dev-gitea-gitea-redis.dev-gitea.svc.cluster.local"
-      HOST: "redis://:${SECRET_GLOBAL_REDIS_PASSWORD}@dev-gitea-gitea-redis.dev-gitea.svc.cluster.local:6379/0?pool_size=100&idle_timeout=180s"
+      HOST: "redis://:${SECRET_GLOBAL_REDIS_PASSWORD}@${GITEA_REDIS_SVC_LB_IP}:6379/0?pool_size=100&idle_timeout=180s"
 
     log:
       ROOT_PATH: "/data/log"
