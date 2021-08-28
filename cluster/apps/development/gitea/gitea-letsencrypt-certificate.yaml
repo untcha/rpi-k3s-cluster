@@ -12,3 +12,18 @@ spec:
   issuerRef:
     name: letsencrypt-dns01-production-do
     kind: ClusterIssuer
+
+---
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: git-letsencrypt-production-certificate
+  namespace: dev-gitea
+spec:
+  commonName: git.${SECRET_DIGITALOCEAN_DOMAIN_02}
+  secretName: git-letsencrypt-production-certificate
+  dnsNames:
+    - git.${SECRET_DIGITALOCEAN_DOMAIN_02}
+  issuerRef:
+    name: letsencrypt-dns01-production-do
+    kind: ClusterIssuer
