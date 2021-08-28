@@ -142,9 +142,9 @@ signing:
 gitea:
   admin:
     #existingSecret: gitea-admin-secret
-    username: ${SECRET_GITEA_ADMIN_USER}
-    password: ${SECRET_GITEA_ADMIN_PASSWORD}
-    email: ${SECRET_EMAIL}
+    username: "${SECRET_GITEA_ADMIN_USER}"
+    password: "${SECRET_GITEA_ADMIN_PASSWORD}"
+    email: "${SECRET_EMAIL}"
 
   metrics:
     enabled: false
