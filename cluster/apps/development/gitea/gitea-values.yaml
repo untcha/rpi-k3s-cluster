@@ -166,12 +166,12 @@ gitea:
     #   SSL_MODE: disable
     #   # PATH: "/data/gitea/gitea.db"
     
-    cache:
-      ENABLED: "true"
-      ADAPTER: "redis"
-      INTERVAL: "60"
-      HOST: "redis://:${SECRET_GLOBAL_REDIS_PASSWORD}@${GITEA_REDIS_SVC_LB_IP}:6379/0?pool_size=100&idle_timeout=180s"
-      ITEM_TTL: "16h"
+    # cache:
+    #   ENABLED: "true"
+    #   ADAPTER: "redis"
+    #   INTERVAL: "60"
+    #   HOST: "redis://:${SECRET_GLOBAL_REDIS_PASSWORD}@${GITEA_REDIS_SVC_LB_IP}:6379/0?pool_size=100&idle_timeout=180s"
+    #   ITEM_TTL: "16h"
 
     log:
       ROOT_PATH: "/data/log"
@@ -229,11 +229,11 @@ gitea:
       JWT_SECRET:
 
     mailer:
-      ENABLED: "false"
-      # HOST:
-      # FROM:
-      # USER:
-      # PASSWD:
+      ENABLED: "true"
+      HOST: "${SECRET_GLOBAL_SMTP_HOST}"
+      FROM: "${SECRET_GLOBAL_SMTP_FROM}"
+      USER: "${SECRET_GLOBAL_SMTP_USER}"
+      PASSWD: "${SECRET_GLOBAL_SMTP_PASSWORD}"
 
 ## Gitea storage parameters
 storage:
@@ -322,12 +322,12 @@ postgres:
 ## Redis configuration
 redis:
   ## Enable Redis helm chart for deployment (default: false)
-  enabled: false
+  enabled: true
 
   # Storage parameters
   storage:
     ## Set persistentVolumenClaimName to reference an existing PVC
-    persistentVolumeClaimName:
+    persistentVolumeClaimName: redis-pvc
 
     ## Alternative set requestedSize to define a size for a dynmaically created PVC
     requestedSize:

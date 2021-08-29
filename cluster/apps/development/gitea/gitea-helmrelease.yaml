@@ -28,12 +28,6 @@ spec:
       config:
         APP_NAME: 'Gitea: Git with a cup of tea'
         RUN_MODE: prod
-        cache:
-          ADAPTER: redis
-          ENABLED: "true"
-          HOST: redis://:${SECRET_GLOBAL_REDIS_PASSWORD}@${GITEA_REDIS_SVC_LB_IP}:6379/0?pool_size=100&idle_timeout=180s
-          INTERVAL: "60"
-          ITEM_TTL: 16h
         log:
           ACCESS: console
           ENABLE_ACCESS_LOG: "false"
@@ -41,7 +35,11 @@ spec:
           MODE: console
           ROOT_PATH: /data/log
         mailer:
-          ENABLED: "false"
+          ENABLED: "true"
+          FROM: ${SECRET_GLOBAL_SMTP_FROM}
+          HOST: ${SECRET_GLOBAL_SMTP_HOST}
+          PASSWD: ${SECRET_GLOBAL_SMTP_PASSWORD}
+          USER: ${SECRET_GLOBAL_SMTP_USER}
         oauth2:
           JWT_SECRET: null
         openid:
@@ -135,10 +133,10 @@ spec:
       successThreshold: 1
       timeoutSeconds: 10
     redis:
-      enabled: false
+      enabled: true
       storage:
         className: null
-        persistentVolumeClaimName: null
+        persistentVolumeClaimName: redis-pvc
         requestedSize: null
     resources: {}
     revisionHistoryLimit: null
