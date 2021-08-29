@@ -159,7 +159,7 @@ gitea:
 
     database:
       DB_TYPE: "postgres"
-      HOST: "${GITEA_POSTGRES_SVC_LB_IP}:5432"
+      HOST: "${GITEA_POSTGRES_SVC_LB_IP}"
       NAME: "${SECRET_GITEA_DB_NAME}"
       USER: "${SECRET_GITEA_DB_USER}"
       PASSWD: "${SECRET_GITEA_DB_PASSWORD}"
