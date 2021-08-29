@@ -146,9 +146,9 @@ settings:
   postInstallDelay: 60
   ## Defines the default administrator (first user) - Password must be changed after first login!
   defaultAdmin:
-    user: ${SECRET_GITEA_ADMIN_USER}
-    password: ${SECRET_GITEA_ADMIN_INITIAL_PASSWORD}
-    email: ${SECRET_EMAIL}
+    user: "${SECRET_GITEA_ADMIN_USER}"
+    password: "${SECRET_GITEA_ADMIN_INITIAL_PASSWORD}"
+    email: "${SECRET_EMAIL}"
 
 ## Gitea specific configuration as described in https://docs.gitea.io/en-us/config-cheat-sheet/
 ## More values and sections can be added
@@ -171,7 +171,7 @@ gitea:
       APP_DATA_PATH: "/data/gitea"
       LFS_START_SERVER: "true"
       LFS_CONTENT_PATH: "/data/gitea/lfs"
-      LFS_JWT_SECRET: ${SECRET_GITEA_LFS_JWT_SECRET}
+      LFS_JWT_SECRET: "${SECRET_GITEA_LFS_JWT_SECRET}"
       
     # database:
     #   DB_TYPE: "postgres"
@@ -184,8 +184,8 @@ gitea:
 
     security:
       INSTALL_LOCK: "true"
-      SECRET_KEY: ${SECRET_GITEA_SECRET_KEY}
-      INTERNAL_TOKEN: ${SECRET_GITEA_INTERNAL_TOKEN}
+      SECRET_KEY: "${SECRET_GITEA_SECRET_KEY}"
+      INTERNAL_TOKEN: "${SECRET_GITEA_INTERNAL_TOKEN}"
       MIN_PASSWORD_LENGTH: "16"
       PASSWORD_COMPLEXITY: "lower,upper,digit,spec"
       PASSWORD_CHECK_PWN: "true"
@@ -208,10 +208,10 @@ gitea:
 
     mailer:
       ENABLED: "true"
-      HOST: ${SECRET_GLOBAL_SMTP_HOST}:${GLOBAL_SMTP_PORT}
-      FROM: ${SECRET_GLOBAL_SMTP_FROM}
-      USER: ${SECRET_GLOBAL_SMTP_USERNAME}
-      PASSWD: ${SECRET_GLOBAL_SMTP_PASSWORD}
+      HOST: "${SECRET_GLOBAL_SMTP_HOST}:${GLOBAL_SMTP_PORT}"
+      FROM: "${SECRET_GLOBAL_SMTP_FROM}"
+      USER: "${SECRET_GLOBAL_SMTP_USERNAME}"
+      PASSWD: "${SECRET_GLOBAL_SMTP_PASSWORD}"
       MAILER_TYPE: "smtp"
 
     # cache:
