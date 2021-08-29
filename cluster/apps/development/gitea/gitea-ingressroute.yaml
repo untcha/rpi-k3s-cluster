@@ -1,4 +1,7 @@
 # git-local-ingressroute
+# git-http-ingressroute
+# git-https-ingressroute
+# git-middleware-redirect-scheme
 
 ---
 apiVersion: traefik.containo.us/v1alpha1
@@ -15,3 +18,56 @@ spec:
       services:
         - name: dev-gitea-gitea-http
           port: 80
+
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: git-http-ingressroute
+  namespace: dev-gitea
+spec:
+  entryPoints:
+    - web
+  routes:
+    - match: Host(`git.${SECRET_DIGITALOCEAN_DOMAIN_02}`)
+      kind: Rule
+      middlewares:
+        - name: git-middleware-redirect-scheme
+      services:
+        - name: dev-gitea-gitea-http
+          port: 80
+
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: git-https-ingressroute
+  namespace: dev-gitea
+  annotations:
+    cert-manager.io/cluster-issuer: "letsencrypt-dns01-production-do"
+spec:
+  entryPoints:
+    - websecure
+  routes:
+    - match: Host(`git.${SECRET_DIGITALOCEAN_DOMAIN_02}`)
+      kind: Rule
+      # middlewares:
+      #   - name: pihole-middleware-basicauth
+      #   - name: git-middleware-headers
+      services:
+        - name: dev-gitea-gitea-http
+          port: 80
+  tls:
+    secretName: git-letsencrypt-production-certificate
+
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: Middleware
+metadata:
+  name: git-middleware-redirect-scheme
+  namespace: dev-gitea
+spec:
+  redirectScheme:
+    scheme: https
+    permanent: true
+    port: "443"
