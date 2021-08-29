@@ -164,6 +164,7 @@ gitea:
       PROTOCOL: "http"
       # DOMAIN: "git.${SECRET_DOMAIN_LOCAL_02}"
       DOMAIN: "git.${SECRET_DIGITALOCEAN_DOMAIN_02}"
+      ROOT_URL: "https://%(DOMAIN)s/"
       DISABLE_SSH: "false"
       START_SSH_SERVER: "true"
       SSH_ROOT_PATH: "/data/ssh"

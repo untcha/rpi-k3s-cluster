@@ -64,6 +64,7 @@ spec:
           LFS_START_SERVER: "true"
           OFFLINE_MODE: "false"
           PROTOCOL: http
+          ROOT_URL: https://%(DOMAIN)s/
           SSH_ROOT_PATH: /data/ssh
           START_SSH_SERVER: "true"
         service:
