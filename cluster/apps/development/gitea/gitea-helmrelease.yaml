@@ -172,7 +172,7 @@ spec:
     settings:
       defaultAdmin:
         email: ${SECRET_EMAIL}
-        password: ${SECRET_GITEA_ADMIN_INITIAL_PASSWORD}
+        password: admin
         user: ${SECRET_GITEA_ADMIN_USER}
       postInstallDelay: 60
     storage:
