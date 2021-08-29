@@ -60,21 +60,21 @@ spec:
   tls:
     secretName: git-letsencrypt-production-certificate
 
----
-apiVersion: traefik.containo.us/v1alpha1
-kind: IngressRouteTCP
-metadata:
-  name: git-ssh-ingressroute
-  namespace: dev-gitea
-spec:
-  entryPoints:
-    - websecure
-  routes:
-    - match: HostSNI(`*`)
-      kind: Rule
-      services:
-        - name: dev-gitea-gitea-ssh
-          port: 22
+# ---
+# apiVersion: traefik.containo.us/v1alpha1
+# kind: IngressRouteTCP
+# metadata:
+#   name: git-ssh-ingressroute
+#   namespace: dev-gitea
+# spec:
+#   entryPoints:
+#     - websecure
+#   routes:
+#     - match: HostSNI(`*`)
+#       kind: Rule
+#       services:
+#         - name: dev-gitea-gitea-ssh
+#           port: 22
 
 ---
 apiVersion: traefik.containo.us/v1alpha1
