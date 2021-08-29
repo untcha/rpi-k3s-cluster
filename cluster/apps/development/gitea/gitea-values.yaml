@@ -170,7 +170,7 @@ gitea:
       APP_DATA_PATH: "/data/gitea"
       LFS_START_SERVER: "true"
       LFS_CONTENT_PATH: "/data/gitea/lfs"
-      LFS_JWT_SECRET:
+      LFS_JWT_SECRET: ${SECRET_GITEA_LFS_JWT_TOKEN}
       
     # database:
     #   DB_TYPE: "postgres"
