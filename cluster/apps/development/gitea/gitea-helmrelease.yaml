@@ -34,13 +34,6 @@ spec:
           HOST: redis://:${SECRET_GLOBAL_REDIS_PASSWORD}@${GITEA_REDIS_SVC_LB_IP}:6379/0?pool_size=100&idle_timeout=180s
           INTERVAL: "60"
           ITEM_TTL: 16h
-        database:
-          DB_TYPE: postgres
-          HOST: dev-gitea-gitea-postgres.dev-gitea.svc.cluster.local:5432
-          NAME: ${SECRET_GITEA_DB_NAME}
-          PASSWD: ${SECRET_GITEA_DB_PASSWORD}
-          SSL_MODE: disable
-          USER: ${SECRET_GITEA_DB_USER}
         log:
           ACCESS: console
           ENABLE_ACCESS_LOG: "false"
@@ -123,14 +116,17 @@ spec:
     podSecurityContext:
       fsGroup: 1000
     postgres:
-      enabled: false
+      enabled: true
       settings:
-        superuserPassword: null
+        superuserPassword: ${SECRET_GLOBAL_POSTGRES_SUPERUSER_PASSWORD}
       storage:
         className: null
-        persistentVolumeClaimName: null
+        persistentVolumeClaimName: postgres-pvc
         requestedSize: null
-      userDatabase: {}
+      userDatabase:
+        name: ${SECRET_GITEA_DB_NAME}
+        password: ${SECRET_GITEA_DB_PASSWORD}
+        user: ${SECRET_GITEA_DB_USER}
     readinessProbe:
       enabled: true
       failureThreshold: 5

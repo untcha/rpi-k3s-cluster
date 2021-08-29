@@ -291,27 +291,27 @@ mariadb:
 ## PostgreSQL configuration
 postgres:
   ## Enable PostgreSQL helm chart for deployment (default: false)
-  enabled: false
+  enabled: true
 
   ## Database configuration
   settings:
 
     ## The superuser password (default: a 10 char. alpahnumerical random password will be generated)
-    superuserPassword:
+    superuserPassword: ${SECRET_GLOBAL_POSTGRES_SUPERUSER_PASSWORD}
 
   ## User database which is created during first startup with user and password
-  userDatabase: {}
+  userDatabase:
     ## Database name
-    # name:
+    name: ${SECRET_GITEA_DB_NAME}
     ## Database user
-    # user:
+    user: ${SECRET_GITEA_DB_USER}
     ## Database password (default: 10 alphanum. random characters)
-    # password:
+    password: ${SECRET_GITEA_DB_PASSWORD}
 
   # Storage parameters
   storage:
     ## Set persistentVolumenClaimName to reference an existing PVC
-    persistentVolumeClaimName:
+    persistentVolumeClaimName: postgres-pvc
 
     ## Alternative set requestedSize to define a size for a dynmaically created PVC
     requestedSize:
