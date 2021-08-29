@@ -232,8 +232,9 @@ gitea:
       ENABLED: "true"
       HOST: "${SECRET_GLOBAL_SMTP_HOST}:${GLOBAL_SMTP_PORT}"
       FROM: "${SECRET_GLOBAL_SMTP_FROM}"
-      USER: "${SECRET_GLOBAL_SMTP_USER}"
+      USER: "${SECRET_GLOBAL_SMTP_USERNAME}"
       PASSWD: "${SECRET_GLOBAL_SMTP_PASSWORD}"
+      MAILER_TYPE: smtp
 
 ## Gitea storage parameters
 storage:
