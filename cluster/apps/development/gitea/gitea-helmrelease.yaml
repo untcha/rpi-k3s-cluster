@@ -58,12 +58,12 @@ spec:
         server:
           APP_DATA_PATH: /data/gitea
           DISABLE_SSH: "false"
-          DOMAIN: git.${SECRET_DOMAIN_LOCAL_02}
+          DOMAIN: git.${SECRET_DIGITALOCEAN_DOMAIN_02}
           LFS_CONTENT_PATH: /data/gitea/lfs
           LFS_JWT_SECRET: ${SECRET_GITEA_LFS_JWT_TOKEN}
           LFS_START_SERVER: "true"
           OFFLINE_MODE: "false"
-          PROTOCOL: http
+          PROTOCOL: https
           SSH_ROOT_PATH: /data/ssh
           START_SSH_SERVER: "true"
         service:
