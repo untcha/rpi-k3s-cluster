@@ -193,6 +193,7 @@ globalArguments:
 # All available options available on https://docs.traefik.io/reference/static-configuration/cli/
 ## Use curly braces to pass values: `helm install --set="additionalArguments={--providers.kubernetesingress.ingressclass=traefik-internal,--log.level=DEBUG}"`
 additionalArguments:
+  - "--entrypoints.ssh.Address=:22"
 # Prometheus Metrics
   - "--metrics.prometheus=true"
   #- "--metrics.prometheus.buckets=0.100000, 0.300000, 1.200000, 5.000000"
