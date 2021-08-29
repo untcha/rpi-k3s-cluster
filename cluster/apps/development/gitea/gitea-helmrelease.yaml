@@ -54,6 +54,9 @@ spec:
         security:
           INSTALL_LOCK: "true"
           INTERNAL_TOKEN: ${SECRET_GITEA_INTERNAL_TOKEN}
+          MIN_PASSWORD_LENGTH: "16"
+          PASSWORD_CHECK_PWN: "true"
+          PASSWORD_COMPLEXITY: lower,upper,digit,spec
           SECRET_KEY: ${SECRET_GITEA_SECRET_KEY}
         server:
           APP_DATA_PATH: /data/gitea

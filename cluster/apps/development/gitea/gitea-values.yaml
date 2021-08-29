@@ -171,7 +171,7 @@ gitea:
       APP_DATA_PATH: "/data/gitea"
       LFS_START_SERVER: "true"
       LFS_CONTENT_PATH: "/data/gitea/lfs"
-      LFS_JWT_SECRET: ${SECRET_GITEA_LFS_JWT_SECRET}
+      LFS_JWT_SECRET: "${SECRET_GITEA_LFS_JWT_SECRET}"
       
     # database:
     #   DB_TYPE: "postgres"
@@ -184,9 +184,11 @@ gitea:
 
     security:
       INSTALL_LOCK: "true"
-      # Internal secret and token
-      SECRET_KEY: ${SECRET_GITEA_SECRET_KEY}
-      INTERNAL_TOKEN: ${SECRET_GITEA_INTERNAL_TOKEN}
+      SECRET_KEY: "${SECRET_GITEA_SECRET_KEY}"
+      INTERNAL_TOKEN: "${SECRET_GITEA_INTERNAL_TOKEN}"
+      MIN_PASSWORD_LENGTH: "16"
+      PASSWORD_COMPLEXITY: "lower,upper,digit,spec"
+      PASSWORD_CHECK_PWN: "true"
 
     openid:
       ENABLE_OPENID_SIGNIN: "false"
@@ -210,7 +212,7 @@ gitea:
       FROM: "${SECRET_GLOBAL_SMTP_FROM}"
       USER: "${SECRET_GLOBAL_SMTP_USERNAME}"
       PASSWD: "${SECRET_GLOBAL_SMTP_PASSWORD}"
-      MAILER_TYPE: smtp
+      MAILER_TYPE: "smtp"
 
     # cache:
     #   ENABLED: "true"
