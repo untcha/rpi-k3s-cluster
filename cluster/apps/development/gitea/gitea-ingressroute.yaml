@@ -66,22 +66,15 @@ kind: IngressRouteTCP
 metadata:
   name: git-ssh-ingressroute
   namespace: dev-gitea
-  annotations:
-    cert-manager.io/cluster-issuer: "letsencrypt-dns01-production-do"
 spec:
   entryPoints:
     - websecure
   routes:
     - match: HostSNI(`*`)
       kind: Rule
-      # middlewares:
-      #   - name: pihole-middleware-basicauth
-      #   - name: git-middleware-headers
       services:
         - name: dev-gitea-gitea-ssh
           port: 22
-  tls:
-    secretName: git-letsencrypt-production-certificate
 
 ---
 apiVersion: traefik.containo.us/v1alpha1
