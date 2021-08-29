@@ -185,8 +185,8 @@ gitea:
     security:
       INSTALL_LOCK: "true"
       # Internal secret and token
-      SECRET_KEY:
-      INTERNAL_TOKEN:
+      SECRET_KEY: ${SECRET_GITEA_SECRET_KEY}
+      INTERNAL_TOKEN: ${SECRET_GITEA_INTERNAL_TOKEN}
 
     openid:
       ENABLE_OPENID_SIGNIN: "false"

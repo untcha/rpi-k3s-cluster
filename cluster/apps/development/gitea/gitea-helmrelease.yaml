@@ -53,8 +53,8 @@ spec:
           ROOT: /data/git/gitea-repositories
         security:
           INSTALL_LOCK: "true"
-          INTERNAL_TOKEN: null
-          SECRET_KEY: null
+          INTERNAL_TOKEN: ${SECRET_GITEA_INTERNAL_TOKEN}
+          SECRET_KEY: ${SECRET_GITEA_SECRET_KEY}
         server:
           APP_DATA_PATH: /data/gitea
           DISABLE_SSH: "false"
