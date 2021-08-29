@@ -157,14 +157,14 @@ gitea:
     RUN_MODE: "prod"
     APP_NAME: "Gitea: Git with a cup of tea"
 
-    database:
-      DB_TYPE: "postgres"
-      HOST: "dev-gitea-gitea-postgres.dev-gitea.svc.cluster.local:5432"
-      NAME: "${SECRET_GITEA_DB_NAME}"
-      USER: "${SECRET_GITEA_DB_USER}"
-      PASSWD: "${SECRET_GITEA_DB_PASSWORD}"
-      SSL_MODE: disable
-      # PATH: "/data/gitea/gitea.db"
+    # database:
+    #   DB_TYPE: "postgres"
+    #   HOST: "dev-gitea-gitea-postgres.dev-gitea.svc.cluster.local:5432"
+    #   NAME: "${SECRET_GITEA_DB_NAME}"
+    #   USER: "${SECRET_GITEA_DB_USER}"
+    #   PASSWD: "${SECRET_GITEA_DB_PASSWORD}"
+    #   SSL_MODE: disable
+    #   # PATH: "/data/gitea/gitea.db"
     
     cache:
       ENABLED: "true"
