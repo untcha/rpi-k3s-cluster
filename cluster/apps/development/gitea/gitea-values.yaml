@@ -194,15 +194,15 @@ gitea:
 
     service:
       REGISTER_EMAIL_CONFIRM: "false"
-      ENABLE_NOTIFY_MAIL: "false"
       DISABLE_REGISTRATION: "true"
-      ALLOW_ONLY_EXTERNAL_REGISTRATION: "false"
+      REQUIRE_SIGNIN_VIEW: "true"
+      ENABLE_NOTIFY_MAIL: "false"
       ENABLE_CAPTCHA: "false"
-      REQUIRE_SIGNIN_VIEW: "false"
       DEFAULT_KEEP_EMAIL_PRIVATE: "true"
       DEFAULT_ALLOW_CREATE_ORGANIZATION: "true"
       DEFAULT_ENABLE_TIMETRACKING: "true"
-      NO_REPLY_ADDRESS: "noreply.dev.k8.local"
+      ALLOW_ONLY_EXTERNAL_REGISTRATION: "false"
+      NO_REPLY_ADDRESS: "%(DOMAIN)s"
 
     mailer:
       ENABLED: "true"

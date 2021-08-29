@@ -75,9 +75,9 @@ spec:
           DISABLE_REGISTRATION: "true"
           ENABLE_CAPTCHA: "false"
           ENABLE_NOTIFY_MAIL: "false"
-          NO_REPLY_ADDRESS: noreply.dev.k8.local
+          NO_REPLY_ADDRESS: '%(DOMAIN)s'
           REGISTER_EMAIL_CONFIRM: "false"
-          REQUIRE_SIGNIN_VIEW: "false"
+          REQUIRE_SIGNIN_VIEW: "true"
     image:
       pullPolicy: IfNotPresent
       repository: gitea/gitea
