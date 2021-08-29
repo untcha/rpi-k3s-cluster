@@ -62,7 +62,7 @@ spec:
 
 ---
 apiVersion: traefik.containo.us/v1alpha1
-kind: IngressRoute
+kind: IngressRouteTCP
 metadata:
   name: git-ssh-ingressroute
   namespace: dev-gitea
