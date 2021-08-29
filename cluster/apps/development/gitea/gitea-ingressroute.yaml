@@ -68,7 +68,7 @@ metadata:
   namespace: dev-gitea
 spec:
   entryPoints:
-    - websecure
+    - ssh
   routes:
     - match: HostSNI(`*`)
       services:
