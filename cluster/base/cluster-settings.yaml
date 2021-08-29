@@ -17,5 +17,6 @@ data:
   GITEA_POSTGRES_SVC_LB_IP:       "192.168.178.130"
   TRAEFIK_SVC_LB_IP:              "192.168.178.240"
   TIMEZONE:                       "Europe/Berlin"
+  GLOBAL_SMTP_PORT:               "587"
   LONGHORN_DEFAULT_DATAPATH:      "/storage/"
   LONGHORN_BACKUPTARGET_PATH:     "/Backup/LonghornBackupstore"
