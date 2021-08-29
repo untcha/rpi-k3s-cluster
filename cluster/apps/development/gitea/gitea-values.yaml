@@ -157,6 +157,21 @@ gitea:
     RUN_MODE: "prod"
     APP_NAME: "Gitea: Git with a cup of tea"
 
+    repository:
+      ROOT: "/data/git/gitea-repositories"
+
+    server:
+      PROTOCOL: "http"
+      DOMAIN: "git.${SECRET_DOMAIN_LOCAL_02}"
+      DISABLE_SSH: "false"
+      START_SSH_SERVER: "true"
+      SSH_ROOT_PATH: "/data/ssh"
+      OFFLINE_MODE: "false"
+      APP_DATA_PATH: "/data/gitea"
+      LFS_START_SERVER: "true"
+      LFS_CONTENT_PATH: "/data/gitea/lfs"
+      LFS_JWT_SECRET:
+      
     # database:
     #   DB_TYPE: "postgres"
     #   HOST: "dev-gitea-gitea-postgres.dev-gitea.svc.cluster.local:5432"
@@ -165,35 +180,6 @@ gitea:
     #   PASSWD: "${SECRET_GITEA_DB_PASSWORD}"
     #   SSL_MODE: disable
     #   # PATH: "/data/gitea/gitea.db"
-    
-    # cache:
-    #   ENABLED: "true"
-    #   ADAPTER: "redis"
-    #   INTERVAL: "60"
-    #   HOST: "redis://:${SECRET_GLOBAL_REDIS_PASSWORD}@${GITEA_REDIS_SVC_LB_IP}:6379/0?pool_size=100&idle_timeout=180s"
-    #   ITEM_TTL: "16h"
-
-    log:
-      ROOT_PATH: "/data/log"
-      MODE: "console"
-      LEVEL: "info"
-      ACCESS: "console"
-      ENABLE_ACCESS_LOG: "false"
-
-    server:
-      PROTOCOL: "http"
-      DOMAIN: "git.${SECRET_DOMAIN_LOCAL_02}"
-      # HTTP_PORT: 80
-      DISABLE_SSH: "false"
-      START_SSH_SERVER: "true"
-      LFS_START_SERVER: "true"
-      LFS_CONTENT_PATH: "/data/gitea/lfs"
-      OFFLINE_MODE: "false"
-      # LFS JWT secret
-      LFS_JWT_SECRET:
-
-      SSH_ROOT_PATH: "/data/ssh"
-      APP_DATA_PATH: "/data/gitea"
 
     security:
       INSTALL_LOCK: "true"
@@ -201,8 +187,9 @@ gitea:
       SECRET_KEY:
       INTERNAL_TOKEN:
 
-    repository:
-      ROOT: "/data/git/gitea-repositories"
+    openid:
+      ENABLE_OPENID_SIGNIN: "false"
+      ENABLE_OPENID_SIGNUP: "false"
 
     service:
       REGISTER_EMAIL_CONFIRM: "false"
@@ -216,18 +203,6 @@ gitea:
       DEFAULT_ENABLE_TIMETRACKING: "true"
       NO_REPLY_ADDRESS: "noreply.dev.k8.local"
 
-    openid:
-      ENABLE_OPENID_SIGNIN: "false"
-      ENABLE_OPENID_SIGNUP: "false"
-
-    picture:
-      DISABLE_GRAVATAR: "false"
-      ENABLE_FEDERATED_AVATAR: "true"
-
-    # OAuth2 JWT secret
-    oauth2:
-      JWT_SECRET:
-
     mailer:
       ENABLED: "true"
       HOST: "${SECRET_GLOBAL_SMTP_HOST}:${GLOBAL_SMTP_PORT}"
@@ -235,6 +210,28 @@ gitea:
       USER: "${SECRET_GLOBAL_SMTP_USERNAME}"
       PASSWD: "${SECRET_GLOBAL_SMTP_PASSWORD}"
       MAILER_TYPE: smtp
+
+    # cache:
+    #   ENABLED: "true"
+    #   ADAPTER: "redis"
+    #   INTERVAL: "60"
+    #   HOST: "redis://:${SECRET_GLOBAL_REDIS_PASSWORD}@${GITEA_REDIS_SVC_LB_IP}:6379/0?pool_size=100&idle_timeout=180s"
+    #   ITEM_TTL: "16h"
+
+    picture:
+      DISABLE_GRAVATAR: "false"
+      ENABLE_FEDERATED_AVATAR: "true"
+
+    log:
+      ROOT_PATH: "/data/log"
+      MODE: "console"
+      LEVEL: "info"
+      ACCESS: "console"
+      ENABLE_ACCESS_LOG: "false"
+
+    # OAuth2 JWT secret
+    oauth2:
+      JWT_SECRET:
 
 ## Gitea storage parameters
 storage:
