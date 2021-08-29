@@ -305,6 +305,11 @@ ports:
       #   sans:
       #     - foo.example.com
       #     - bar.example.com
+  ssh:
+    port: 8022
+    expose: true
+    exposedPort: 8022
+    protocol: TCP
 
 # TLS Options are created as TLSOption CRDs
 # https://doc.traefik.io/traefik/https/tls/#tls-options

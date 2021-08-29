@@ -92,6 +92,11 @@ spec:
     podSecurityPolicy:
       enabled: false
     ports:
+      ssh:
+        expose: true
+        exposedPort: 8022
+        port: 8022
+        protocol: TCP
       traefik:
         expose: false
         exposedPort: 9000
