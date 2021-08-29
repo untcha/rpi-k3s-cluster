@@ -83,15 +83,13 @@ spec:
       tag: ""
     imagePullSecrets: []
     ingress:
-      annotations:
-        kubernetes.io/ingress.class: traefik
-      enabled: true
+      annotations: {}
+      enabled: false
       hosts:
-      - host: git.${SECRET_DIGITALOCEAN_DOMAIN_02}
+      - host: chart-example.local
         paths: []
       maxBodySize: 64m
-      tls:
-      - secretName: git-letsencrypt-production-certificate
+      tls: []
     livenessProbe:
       enabled: true
       failureThreshold: 5

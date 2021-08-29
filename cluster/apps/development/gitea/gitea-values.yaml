@@ -65,25 +65,23 @@ services:
 
 ## Ingress configuration
 ingress:
-  enabled: true
+  enabled: false
 
   ## Maximal body size (default: 64m - increase if uploads to gitea failing)
   maxBodySize: 64m
 
   ## Additional ingress annotations
-  annotations:
-    kubernetes.io/ingress.class: traefik
+  annotations: {}
 #   kubernetes.io/ingress.class: nginx
 #   kubernetes.io/tls-acme: "true"
 
   ## Hosts
   hosts:
-    - host: git.${SECRET_DIGITALOCEAN_DOMAIN_02}
+    - host: chart-example.local
       paths: []
 
   ## TLS settings for hosts
-  tls:
-    - secretName: git-letsencrypt-production-certificate
+  tls: []
   #  - secretName: chart-example-tls
   #    hosts:
   #      - chart-example.local
