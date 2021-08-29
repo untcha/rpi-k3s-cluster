@@ -17,6 +17,7 @@ spec:
   targetNamespace: traefik
   values:
     additionalArguments:
+    - --entrypoints.ssh.address=:8022/tcp
     - --metrics.prometheus=true
     additionalVolumeMounts: []
     affinity: {}
