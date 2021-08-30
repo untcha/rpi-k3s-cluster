@@ -18,6 +18,8 @@ spec:
         tier: node
         app: network-multitool
     spec:
+      nodeSelector:
+        node-type: worker
       hostNetwork: true
       tolerations:
       - operator: Exists
