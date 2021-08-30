@@ -64,7 +64,7 @@ ingressClass:
   enabled: false
   isDefaultClass: false
   # Use to force a networking.k8s.io API Version for certain CI/CD applications. E.g. "v1beta1"
-  fallbackApiVersion:
+  fallbackApiVersion: ""
 
 # Activate Pilot integration
 pilot:
@@ -84,6 +84,9 @@ experimental:
     # - group: "core"
     #   kind: "Secret"
     #   name: "mysecret"
+    # By default, Gateway would be created to the Namespace you are deploying Traefik to.
+    # You may create that Gateway in another namespace, setting its name below:
+    # namespace: default
 
 # Create an IngressRoute for the dashboard
 ingressRoute:
@@ -150,7 +153,7 @@ logs:
     # also ask for the json format in the format option
     # format: json
     # By default, the level is set to ERROR. Alternative logging levels are DEBUG, PANIC, FATAL, ERROR, WARN, and INFO.
-    level: INFO
+    level: ERROR
   access:
     # To enable access logs
     enabled: false
@@ -183,6 +186,17 @@ logs:
           # Authorization: drop
           # Content-Type: keep
 
+metrics:
+  # datadog:
+  #   address: 127.0.0.1:8125
+  # influxdb:
+  #   address: localhost:8089
+  #   protocol: udp
+  prometheus:
+    entryPoint: metrics
+  # statsd:
+  #   address: localhost:8125
+
 globalArguments:
   - "--global.checknewversion"
   - "--global.sendanonymoususage"
@@ -194,29 +208,14 @@ globalArguments:
 ## Use curly braces to pass values: `helm install --set="additionalArguments={--providers.kubernetesingress.ingressclass=traefik-internal,--log.level=DEBUG}"`
 additionalArguments:
   - "--entrypoints.ssh.address=:8022/tcp"
-# Prometheus Metrics
   - "--metrics.prometheus=true"
-  #- "--metrics.prometheus.buckets=0.100000, 0.300000, 1.200000, 5.000000"
-  #- "--metrics.prometheus.addEntryPointsLabels=true"
-  #- "--metrics.prometheus.addServicesLabels=true"
-  #- "--entryPoints.metrics.address=:8082"
-  #- "--metrics.prometheus.entryPoint=metrics"
+
 
 #  - "--providers.kubernetesingress.ingressclass=traefik-internal"
 #  - "--log.level=DEBUG"
 
-# Let's Encrypt Configurtion.
-  #- "--certificatesresolvers.letsencrypt.acme.email=mail@example.com"
-  #- "--certificatesresolvers.letsencrypt.acme.storage=/data/acme.json"
-  #- "--certificatesResolvers.letsencrypt.acme.dnschallenge.provider=duckdns"
-  #- "--certificatesresolvers.letsencrypt.acme.dnschallenge.delaybeforecheck=0"
-  # - "--certificatesresolvers.letsencrypt.acme.caserver=https://acme-v02.api.letsencrypt.org/directory"
-  # Use the staging ACME server. Uncomment this while testing to prevent
-  # hitting rate limits in production.
-  #- "--certificatesresolvers.letsencrypt.acme.caserver=https://acme-staging-v02.api.letsencrypt.org/directory"
-
 # Environment variables to be passed to Traefik's binary
-env:
+env: []
 # - name: SOME_VAR
 #   value: some-var-value
 # - name: SOME_VAR_FROM_CONFIG_MAP
@@ -229,11 +228,6 @@ env:
 #     secretKeyRef:
 #       name: secret-name
 #       key: secret-key
-  # - name: DUCKDNS_TOKEN
-  #   valueFrom:
-  #     secretKeyRef:
-  #       name: traefik-secrets
-  #       key: duckdns-token
 
 envFrom: []
 # - configMapRef:
@@ -305,6 +299,20 @@ ports:
       #   sans:
       #     - foo.example.com
       #     - bar.example.com
+  metrics:
+    port: 9100
+    # hostPort: 9100
+    # Defines whether the port is exposed if service.type is LoadBalancer or
+    # NodePort.
+    #
+    # You may not want to expose the metrics port on production deployments.
+    # If you want to access it from outside of your cluster,
+    # use `kubectl port-forward` or create a secure ingress
+    expose: false
+    # The exposed port for this service
+    exposedPort: 9100
+    # The port protocol (TCP/UDP)
+    protocol: TCP
   ssh:
     port: 8022
     expose: true
@@ -344,9 +352,13 @@ tlsOptions:
 service:
   enabled: true
   type: LoadBalancer
-  # Additional annotations (e.g. for cloud provider specific config)
+  # Additional annotations applied to both TCP and UDP services (e.g. for cloud provider specific config)
   annotations:
     metallb.universe.tf/address-pool: core
+  # Additional annotations for TCP service only
+  annotationsTCP: {}
+  # Additional annotations for UDP service only
+  annotationsUDP: {}
   # Additional service labels (e.g. for filtering Service by custom labels)
   labels: {}
   # Additional entries here will be added to the service spec. Cannot contains
@@ -453,7 +465,6 @@ priorityClassName: ""
 securityContext:
   capabilities:
     drop: [ALL]
-    add: [NET_BIND_SERVICE]
   readOnlyRootFilesystem: true
   runAsGroup: 65532
   runAsNonRoot: true
@@ -461,4 +472,4 @@ securityContext:
 
 podSecurityContext:
   fsGroup: 65532
-  
+

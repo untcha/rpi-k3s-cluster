@@ -11,7 +11,7 @@ spec:
       sourceRef:
         kind: HelmRepository
         name: traefik
-      version: 10.0.0
+      version: 10.3.2
   install: {}
   interval: 1m0s
   targetNamespace: traefik
@@ -35,7 +35,7 @@ spec:
       podAnnotations: {}
       podLabels: {}
       replicas: 1
-    env: null
+    env: []
     envFrom: []
     experimental:
       kubernetesGateway:
@@ -54,7 +54,7 @@ spec:
       tag: ""
     ingressClass:
       enabled: false
-      fallbackApiVersion: null
+      fallbackApiVersion: ""
       isDefaultClass: false
     ingressRoute:
       dashboard:
@@ -73,7 +73,10 @@ spec:
             names: {}
         filters: {}
       general:
-        level: INFO
+        level: ERROR
+    metrics:
+      prometheus:
+        entryPoint: metrics
     nodeSelector: {}
     persistence:
       accessMode: ReadWriteOnce
@@ -92,6 +95,11 @@ spec:
     podSecurityPolicy:
       enabled: false
     ports:
+      metrics:
+        expose: false
+        exposedPort: 9100
+        port: 9100
+        protocol: TCP
       ssh:
         expose: true
         exposedPort: 8022
@@ -136,8 +144,6 @@ spec:
       maxUnavailable: 1
     securityContext:
       capabilities:
-        add:
-        - NET_BIND_SERVICE
         drop:
         - ALL
       readOnlyRootFilesystem: true
@@ -147,6 +153,8 @@ spec:
     service:
       annotations:
         metallb.universe.tf/address-pool: core
+      annotationsTCP: {}
+      annotationsUDP: {}
       enabled: true
       externalIPs: []
       labels: {}
