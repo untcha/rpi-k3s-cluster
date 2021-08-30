@@ -250,7 +250,7 @@ flux create helmrelease chronograf \
 flux create helmrelease grafana \
   --source=HelmRepository/grafana \
   --chart=grafana \
-  --chart-version="6.15.0" \
+  --chart-version="6.16.2" \
   --target-namespace=grafana \
   --values=grafana-values.yaml \
   --export > grafana-helmrelease.yaml
