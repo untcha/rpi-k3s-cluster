@@ -399,13 +399,13 @@ flux create helmrelease speedtest-exporter \
   --export > speedtest-exporter-helmrelease.yaml
 ```
 
-### Traefik (check update!)
+### Traefik
 
 ```bash
 flux create helmrelease traefik \
   --source=HelmRepository/traefik \
   --chart=traefik \
-  --chart-version="10.0.0" \
+  --chart-version="10.3.2" \
   --target-namespace=traefik \
   --values=traefik-values.yaml \
   --export > traefik-helmrelease.yaml
