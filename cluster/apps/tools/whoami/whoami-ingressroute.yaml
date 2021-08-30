@@ -124,7 +124,8 @@ metadata:
   namespace: tools
 spec:
   forwardAuth:
-    address: http://authentication-system-authelia.authentication-system.svc.cluster.local:9091/api/verify?rd=https://auth.${SECRET_DIGITALOCEAN_DOMAIN_02}
+    # address: http://authentication-system-authelia.authentication-system.svc.cluster.local:9091/api/verify?rd=https://auth.${SECRET_DIGITALOCEAN_DOMAIN_02}
+    address: http://authentication-system-authelia:9091/api/verify?rd=https://auth.${SECRET_DIGITALOCEAN_DOMAIN_02}
     trustForwardHeader: true
     authResponseHeaders:
       - Remote-User
