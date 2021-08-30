@@ -204,7 +204,7 @@ gitea:
       DEFAULT_ALLOW_CREATE_ORGANIZATION: "true"
       DEFAULT_ENABLE_TIMETRACKING: "true"
       ALLOW_ONLY_EXTERNAL_REGISTRATION: "false"
-      NO_REPLY_ADDRESS: "%(DOMAIN)s"
+      NO_REPLY_ADDRESS: "noreply.%(DOMAIN)s"
 
     mailer:
       ENABLED: "true"
