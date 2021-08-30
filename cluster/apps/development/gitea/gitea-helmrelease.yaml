@@ -171,7 +171,7 @@ spec:
         type: ClusterIP
     settings:
       defaultAdmin:
-        email: ${SECRET_EMAIL}
+        email: ${SECRET_ADMIN_EMAIL}
         password: admin
         user: ${SECRET_GITEA_ADMIN_USER}
       postInstallDelay: 60

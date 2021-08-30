@@ -148,7 +148,7 @@ settings:
   defaultAdmin:
     user: "${SECRET_GITEA_ADMIN_USER}"
     password: "admin"
-    email: "${SECRET_EMAIL}"
+    email: "${SECRET_ADMIN_EMAIL}"
 
 ## Gitea specific configuration as described in https://docs.gitea.io/en-us/config-cheat-sheet/
 ## More values and sections can be added
