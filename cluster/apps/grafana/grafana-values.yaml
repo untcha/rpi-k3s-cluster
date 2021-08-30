@@ -70,7 +70,7 @@ livenessProbe:
 
 image:
   repository: grafana/grafana
-  tag: 8.1.0
+  tag: 8.1.2
   sha: ""
   pullPolicy: IfNotPresent
 
@@ -84,7 +84,7 @@ image:
 testFramework:
   enabled: true
   image: "bats/bats"
-  tag: "v1.4.1"
+  tag: "v1.1.0"
   imagePullPolicy: IfNotPresent
   securityContext: {}
 
@@ -241,7 +241,8 @@ affinity: {}
 extraInitContainers: []
 
 ## Enable an Specify container in extraContainers. This is meant to allow adding an authentication proxy to a grafana pod
-extraContainers: |
+extraContainers: ""
+# extraContainers: |
 # - name: proxy
 #   image: quay.io/gambol99/keycloak-proxy:latest
 #   args:
@@ -436,7 +437,7 @@ extraVolumeMounts: []
 ## Pass the plugins you want installed as a list.
 ##
 plugins:
-  - grafana-piechart-panel
+    - grafana-piechart-panel
   # - digrich-bubblechart-panel
   # - grafana-clock-panel
 
@@ -610,7 +611,7 @@ smtp:
 sidecar:
   image:
     repository: quay.io/kiwigrid/k8s-sidecar
-    tag: 1.12.2
+    tag: 1.12.3
     sha: ""
   imagePullPolicy: IfNotPresent
   resources: {}
