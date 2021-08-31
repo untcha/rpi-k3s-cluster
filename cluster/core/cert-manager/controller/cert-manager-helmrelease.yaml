@@ -11,7 +11,7 @@ spec:
       sourceRef:
         kind: HelmRepository
         name: jetstack
-      version: v1.4.0
+      version: v1.5.3
   install: {}
   interval: 1m0s
   targetNamespace: cert-manager
@@ -76,6 +76,37 @@ spec:
     serviceAccount:
       automountServiceAccountToken: true
       create: true
+    startupapicheck:
+      affinity: {}
+      backoffLimit: 4
+      enabled: true
+      extraArgs: []
+      image:
+        pullPolicy: IfNotPresent
+        repository: quay.io/jetstack/cert-manager-ctl
+      jobAnnotations:
+        helm.sh/hook: post-install
+        helm.sh/hook-delete-policy: hook-succeeded
+        helm.sh/hook-weight: "1"
+      nodeSelector: {}
+      podLabels: {}
+      rbac:
+        annotations:
+          helm.sh/hook: post-install
+          helm.sh/hook-delete-policy: hook-succeeded
+          helm.sh/hook-weight: "-5"
+      resources: {}
+      securityContext:
+        runAsNonRoot: true
+      serviceAccount:
+        annotations:
+          helm.sh/hook: post-install
+          helm.sh/hook-delete-policy: hook-succeeded
+          helm.sh/hook-weight: "-5"
+        automountServiceAccountToken: true
+        create: true
+      timeout: 1m
+      tolerations: []
     strategy: {}
     tolerations: []
     volumeMounts: []
@@ -110,6 +141,7 @@ spec:
       serviceAccount:
         automountServiceAccountToken: true
         create: true
+      serviceLabels: {}
       serviceType: ClusterIP
       strategy: {}
       timeoutSeconds: 10
