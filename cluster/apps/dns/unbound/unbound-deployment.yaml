@@ -22,7 +22,7 @@ spec:
         app: unbound
         name: unbound
       annotations:
-        configmap.reloader.stakater.com/reload: "unbound-a-records"
+        configmap.reloader.stakater.com/reload: "unbound-config, unbound-root-hints, unbound-a-records"
     spec:
       nodeSelector:
         node-type: worker
