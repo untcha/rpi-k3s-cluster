@@ -21,6 +21,8 @@ spec:
       labels:
         app: unbound
         name: unbound
+      annotations:
+        configmap.reloader.stakater.com/reload: "unbound-a-records"
     spec:
       containers:
       - name: unbound
