@@ -220,13 +220,13 @@ flux create helmrelease authelia \
   --export > authelia-helmrelease.yaml
 ```
 
-### Cert-Manager (check update!)
+### Cert-Manager
 
 ```bash
 flux create helmrelease cert-manager \
   --source=HelmRepository/jetstack \
   --chart=cert-manager \
-  --chart-version="v1.4.0" \
+  --chart-version="v1.5.3" \
   --target-namespace=cert-manager \
   --values=cert-manager-values.yaml \
   --export > cert-manager-helmrelease.yaml
