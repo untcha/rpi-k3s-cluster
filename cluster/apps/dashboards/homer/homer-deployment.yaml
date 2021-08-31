@@ -21,6 +21,8 @@ spec:
       labels:
         app: homer
         name: homer
+      annotations:
+        configmap.reloader.stakater.com/reload: "config.yml"
     spec:
       containers:
       - name: homer
