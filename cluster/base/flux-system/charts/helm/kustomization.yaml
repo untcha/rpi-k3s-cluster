@@ -14,3 +14,4 @@ resources:
   - k8s-at-home-charts.yaml
   - authelia-charts.yaml
   - gitea-charts.yaml
+  - stakater-charts.yaml
