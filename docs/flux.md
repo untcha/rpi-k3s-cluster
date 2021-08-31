@@ -244,6 +244,18 @@ flux create helmrelease chronograf \
   --export > chronograf-helmrelease.yaml
 ```
 
+### Gitea
+
+```bash
+flux create helmrelease gitea \
+  --source=HelmRepository/groundhog2k \
+  --chart=gitea \
+  --chart-version="0.4.0" \
+  --target-namespace=dev-gitea \
+  --values=gitea-values.yaml \
+  --export > gitea-helmrelease.yaml
+```
+
 ### Grafana
 
 ```bash
@@ -386,6 +398,18 @@ flux create helmrelease nextcloud-redis \
   --target-namespace=nextcloud \
   --values=redis-values.yaml \
   --export > redis-helmrelease.yaml
+```
+
+### Reloader
+
+```bash
+flux create helmrelease reloader \
+  --source=HelmRepository/stakater \
+  --chart=reloader \
+  --chart-version="v0.0.99" \
+  --target-namespace=tools \
+  --values=reloader-values.yaml \
+  --export > reloader-helmrelease.yaml
 ```
 
 ### Speedtest-Exporter
