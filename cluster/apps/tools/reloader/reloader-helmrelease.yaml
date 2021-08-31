@@ -1,0 +1,75 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: reloader
+  namespace: flux-system
+spec:
+  chart:
+    spec:
+      chart: reloader
+      sourceRef:
+        kind: HelmRepository
+        name: stakater
+      version: v0.0.99
+  install: {}
+  interval: 1m0s
+  targetNamespace: tools
+  values:
+    global:
+      imagePullSecrets: []
+    kubernetes:
+      host: https://kubernetes.default
+    reloader:
+      custom_annotations: {}
+      deployment:
+        affinity: {}
+        annotations: {}
+        env:
+          field: null
+          open: null
+          secret: null
+        image:
+          name: stakater/reloader
+          pullPolicy: IfNotPresent
+          tag: v0.0.99
+        labels:
+          group: com.stakater.platform
+          provider: stakater
+          version: v0.0.99
+        livenessProbe: {}
+        nodeSelector: null
+        pod:
+          annotations: {}
+        priorityClassName: ""
+        readinessProbe: {}
+        resources: {}
+        securityContext:
+          runAsNonRoot: true
+          runAsUser: 65534
+        tolerations: []
+      ignoreConfigMaps: false
+      ignoreNamespaces: ""
+      ignoreSecrets: false
+      isArgoRollouts: false
+      isOpenshift: false
+      legacy:
+        rbac: false
+      logFormat: ""
+      matchLabels: {}
+      podMonitor:
+        enabled: false
+      rbac:
+        enabled: true
+        labels: {}
+      readOnlyRootFileSystem: false
+      service: {}
+      serviceAccount:
+        annotations: {}
+        create: true
+        labels: {}
+        name: null
+      serviceMonitor:
+        enabled: false
+      watchGlobally: true
+
