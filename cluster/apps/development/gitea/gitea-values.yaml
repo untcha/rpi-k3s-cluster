@@ -300,7 +300,7 @@ storage:
     - ReadWriteOnce
 
   ## Keep a created Persistent volume claim when uninstalling the helm chart
-  keepPvc: true
+  keepPvc: false
 
 ## MariaDB configuration
 mariadb:
