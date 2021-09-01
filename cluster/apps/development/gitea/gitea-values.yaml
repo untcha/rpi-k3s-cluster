@@ -262,12 +262,12 @@ gitea:
       # HOST: "network=tcp,addr=dev-gitea-gitea-redis:6379,db=0,pool_size=100,idle_timeout=180"
       ITEM_TTL: "16h"
     
-    # session:
-    #   PROVIDER: "redis"
-    #   PROVIDER_CONFIG: "network=tcp,addr=dev-gitea-gitea-redis:6379,db=0,pool_size=100,idle_timeout=180"
-    #   COOKIE_NAME: "i_like_gitea"
-    #   GC_INTERVAL_TIME: "86400"
-    #   SESSION_LIFE_TIME: "86400"
+    session:
+      PROVIDER: "redis"
+      PROVIDER_CONFIG: "redis://:${SECRET_GLOBAL_REDIS_PASSWORD}@dev-gitea-gitea-redis:6379/0?pool_size=100&idle_timeout=180s"
+      COOKIE_NAME: "i_like_gitea"
+      GC_INTERVAL_TIME: "86400"
+      SESSION_LIFE_TIME: "86400"
 
     picture:
       DISABLE_GRAVATAR: "false"

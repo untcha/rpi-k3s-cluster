@@ -110,6 +110,12 @@ spec:
           NO_REPLY_ADDRESS: noreply.git.${SECRET_DIGITALOCEAN_DOMAIN_02}
           REGISTER_EMAIL_CONFIRM: "false"
           REQUIRE_SIGNIN_VIEW: "true"
+        session:
+          COOKIE_NAME: i_like_gitea
+          GC_INTERVAL_TIME: "86400"
+          PROVIDER: redis
+          PROVIDER_CONFIG: redis://:${SECRET_GLOBAL_REDIS_PASSWORD}@dev-gitea-gitea-redis:6379/0?pool_size=100&idle_timeout=180s
+          SESSION_LIFE_TIME: "86400"
     image:
       pullPolicy: IfNotPresent
       repository: gitea/gitea
