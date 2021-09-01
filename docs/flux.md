@@ -348,8 +348,8 @@ flux create helmrelease gitea-postgres \
   --chart=postgres \
   --chart-version="0.2.13" \
   --target-namespace=dev-gitea \
-  --values=gitea-values.yaml \
-  --export > gitea-helmrelease.yaml
+  --values=postgres-values.yaml \
+  --export > postgres-helmrelease.yaml
 ```
 
 ### Postgres (Nextcloud)
