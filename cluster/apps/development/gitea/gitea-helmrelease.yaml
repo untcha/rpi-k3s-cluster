@@ -212,7 +212,7 @@ spec:
       accessModes:
       - ReadWriteOnce
       className: null
-      keepPvc: true
+      keepPvc: false
       persistentVolumeClaimName: gitea-pvc
       requestedSize: null
     strategy:
