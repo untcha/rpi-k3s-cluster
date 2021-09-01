@@ -11,10 +11,9 @@ spec:
       sourceRef:
         kind: HelmRepository
         name: groundhog2k
-      version: 0.7.0
+      version: 0.7.1
   install: {}
   interval: 1m0s
-  timeout: 20m
   targetNamespace: nextcloud
   values:
     affinity: {}
@@ -91,7 +90,8 @@ spec:
       userDatabase: {}
     memoryLimitConfig: ""
     nameOverride: ""
-    nodeSelector: {}
+    nodeSelector:
+      node-type: worker
     podAnnotations: {}
     podDisruptionBudget: {}
     podSecurityContext:
@@ -161,7 +161,7 @@ spec:
     startupProbe:
       enabled: true
       failureThreshold: 5
-      initialDelaySeconds: 600
+      initialDelaySeconds: 900
       periodSeconds: 30
       successThreshold: 1
       timeoutSeconds: 5

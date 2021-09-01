@@ -56,7 +56,8 @@ serviceAccount:
   name: ""
 
 ## Additional node selector
-nodeSelector: {}
+nodeSelector:
+  node-type: worker
 
 ## Additional pod annotations
 podAnnotations: {}
@@ -134,9 +135,7 @@ customStartupProbe: {}
 ## Default startup probe
 startupProbe:
   enabled: true
-  # initialDelaySeconds: 120
-  # initialDelaySeconds: 360
-  initialDelaySeconds: 600
+  initialDelaySeconds: 900
   timeoutSeconds: 5
   failureThreshold: 5
   successThreshold: 1
@@ -201,7 +200,6 @@ externalDatabase:
 
   ## Database host (only for postgres or mysql)
   host: ${NEXTCLOUD_POSTGRES_SVC_LB_IP}
-  # host: nextcloud-postgres.nextcloud.svc.cluster.local
 
 ## External redis cache settings
 externalCache:
@@ -210,7 +208,6 @@ externalCache:
 
   ## Redis host
   host: ${NEXTCLOUD_REDIS_SVC_LB_IP}
-  # host: nextcloud-redis.nextcloud.svc.cluster.local
 
   ## Redis port (default: 6379)
   port: 6379
@@ -237,13 +234,9 @@ settings:
     password:
 
   ## Trusted domains as space separated list (should be identical to ingress hosts - default: "")
-  # trustedDomains: ""
-  # trustedDomains: "cloud.${SECRET_DOMAIN_LOCAL} cloud.${SECRET_DIGITALOCEAN_DOMAIN_02}"
   trustedDomains: "cloud.${SECRET_DIGITALOCEAN_DOMAIN_02}"
 
   ## Trusted proxies in your Kubernetes cluster as space separated list (Default: 10.0.0.0/8)
-  # trustedProxies: "10.0.0.0/8"
-  # trustedProxies: "${SECRET_NEXTCLOUD_TRUSTED_PROXY_IP}"
   trustedProxies: "traefik-traefik.traefik.svc.cluster.local"
 
   ## Disable rewriting the IP address (Default: false)
