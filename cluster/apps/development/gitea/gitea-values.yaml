@@ -120,7 +120,8 @@ readinessProbe:
   periodSeconds: 10
 
 ## Additional node selector
-nodeSelector: {}
+nodeSelector:
+  node-type: worker
 
 tolerations: []
 
@@ -139,6 +140,40 @@ env: []
 
 ## Arguments for the container entrypoint process
 args: []
+
+## Falls back to internal SQLite when no database is configured
+fallbackToSqlite: false
+
+## External database settings (is used when mariadb.enabled is false and postgres.enabled is false)
+externalDatabase:
+  ## Enable usage of external database (Default: disabled)
+  enabled: false
+
+  ## Type of database ("mysql", "postgres" are supported)
+  type:
+
+  ## Database charset to use (only relevant for mysql/mariadb)
+  charset: "utf8mb4"
+
+  ## Name of the database
+  name:
+
+  ## Database user
+  user:
+
+  ## Database password
+  password:
+
+  ## Database host (and optional port)
+  host:
+
+## External redis cache settings
+externalCache:
+  ## Enable usage of redis as session storage and cache (Default: disabled)
+  enabled: false
+
+  ## Redis host and port (host:port)
+  host:
 
 ## Additional Gitea settings defined in this chart
 settings:
@@ -164,8 +199,12 @@ gitea:
       PROTOCOL: "http"
       DOMAIN: "git.${SECRET_DIGITALOCEAN_DOMAIN_02}"
       ROOT_URL: "https://%(DOMAIN)s/"
+      HTTP_PORT: "8000"
       DISABLE_SSH: "false"
       START_SSH_SERVER: "true"
+      SSH_DOMAIN: "git.${SECRET_DIGITALOCEAN_DOMAIN_02}"
+      SSH_PORT: "22"
+      SSH_LISTEN_PORT: "8022"
       SSH_ROOT_PATH: "/data/ssh"
       OFFLINE_MODE: "false"
       APP_DATA_PATH: "/data/gitea"
@@ -173,14 +212,15 @@ gitea:
       LFS_CONTENT_PATH: "/data/gitea/lfs"
       LFS_JWT_SECRET: "${SECRET_GITEA_LFS_JWT_SECRET}"
       
-    # database:
-    #   DB_TYPE: "postgres"
-    #   HOST: "dev-gitea-gitea-postgres.dev-gitea.svc.cluster.local:5432"
-    #   NAME: "${SECRET_GITEA_DB_NAME}"
-    #   USER: "${SECRET_GITEA_DB_USER}"
-    #   PASSWD: "${SECRET_GITEA_DB_PASSWORD}"
-    #   SSL_MODE: disable
-    #   # PATH: "/data/gitea/gitea.db"
+    database:
+      DB_TYPE: "postgres"
+      # HOST: "dev-gitea-gitea-postgres.dev-gitea.svc.cluster.local:5432"
+      HOST: "dev-gitea-gitea-postgres"
+      NAME: "${SECRET_GITEA_DB_NAME}"
+      USER: "${SECRET_GITEA_DB_USER}"
+      PASSWD: "${SECRET_GITEA_DB_PASSWORD}"
+      SSL_MODE: disable
+      # PATH: "/data/gitea/gitea.db"
 
     security:
       INSTALL_LOCK: "true"
@@ -204,7 +244,7 @@ gitea:
       DEFAULT_ALLOW_CREATE_ORGANIZATION: "true"
       DEFAULT_ENABLE_TIMETRACKING: "true"
       ALLOW_ONLY_EXTERNAL_REGISTRATION: "false"
-      NO_REPLY_ADDRESS: "noreply.%(DOMAIN)s"
+      NO_REPLY_ADDRESS: "noreply.git.${SECRET_DIGITALOCEAN_DOMAIN_02}"
 
     mailer:
       ENABLED: "true"
@@ -214,12 +254,20 @@ gitea:
       PASSWD: "${SECRET_GLOBAL_SMTP_PASSWORD}"
       MAILER_TYPE: "smtp"
 
-    # cache:
-    #   ENABLED: "true"
-    #   ADAPTER: "redis"
-    #   INTERVAL: "60"
-    #   HOST: "redis://:${SECRET_GLOBAL_REDIS_PASSWORD}@${GITEA_REDIS_SVC_LB_IP}:6379/0?pool_size=100&idle_timeout=180s"
-    #   ITEM_TTL: "16h"
+    cache:
+      ENABLED: "true"
+      ADAPTER: "redis"
+      INTERVAL: "60"
+      # HOST: "redis://:${SECRET_GLOBAL_REDIS_PASSWORD}@${GITEA_REDIS_SVC_LB_IP}:6379/0?pool_size=100&idle_timeout=180s"
+      HOST: "network=tcp,addr=dev-gitea-gitea-redis:6379,db=0,pool_size=100,idle_timeout=180"
+      ITEM_TTL: "16h"
+    
+    session:
+      PROVIDER: "redis"
+      PROVIDER_CONFIG: "network=tcp,addr=dev-gitea-gitea-redis:6379,db=0,pool_size=100,idle_timeout=180"
+      COOKIE_NAME: "i_like_gitea"
+      GC_INTERVAL_TIME: "86400"
+      SESSION_LIFE_TIME: "86400"
 
     picture:
       DISABLE_GRAVATAR: "false"
@@ -252,7 +300,7 @@ storage:
     - ReadWriteOnce
 
   ## Keep a created Persistent volume claim when uninstalling the helm chart
-  keepPvc: false
+  keepPvc: true
 
 ## MariaDB configuration
 mariadb:
@@ -292,27 +340,27 @@ mariadb:
 ## PostgreSQL configuration
 postgres:
   ## Enable PostgreSQL helm chart for deployment (default: false)
-  enabled: true
+  enabled: false
 
   ## Database configuration
   settings:
 
     ## The superuser password (default: a 10 char. alpahnumerical random password will be generated)
-    superuserPassword: ${SECRET_GLOBAL_POSTGRES_SUPERUSER_PASSWORD}
+    superuserPassword:
 
   ## User database which is created during first startup with user and password
-  userDatabase:
+  userDatabase: {}
     ## Database name
-    name: ${SECRET_GITEA_DB_NAME}
+    # name:
     ## Database user
-    user: ${SECRET_GITEA_DB_USER}
+    # user:
     ## Database password (default: 10 alphanum. random characters)
-    password: ${SECRET_GITEA_DB_PASSWORD}
+    # password:
 
   # Storage parameters
   storage:
     ## Set persistentVolumenClaimName to reference an existing PVC
-    persistentVolumeClaimName: postgres-pvc
+    persistentVolumeClaimName:
 
     ## Alternative set requestedSize to define a size for a dynmaically created PVC
     requestedSize:
@@ -323,12 +371,12 @@ postgres:
 ## Redis configuration
 redis:
   ## Enable Redis helm chart for deployment (default: false)
-  enabled: true
+  enabled: false
 
   # Storage parameters
   storage:
     ## Set persistentVolumenClaimName to reference an existing PVC
-    persistentVolumeClaimName: redis-pvc
+    persistentVolumeClaimName:
 
     ## Alternative set requestedSize to define a size for a dynmaically created PVC
     requestedSize:

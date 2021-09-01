@@ -11,7 +11,7 @@ spec:
       sourceRef:
         kind: HelmRepository
         name: groundhog2k
-      version: 0.4.0
+      version: 0.4.1
   install: {}
   interval: 1m0s
   targetNamespace: dev-gitea
@@ -23,11 +23,36 @@ spec:
     customLivenessProbe: {}
     customReadinessProbe: {}
     env: []
+    externalCache:
+      enabled: false
+      host: null
+    externalDatabase:
+      charset: utf8mb4
+      enabled: false
+      host: null
+      name: null
+      password: null
+      type: null
+      user: null
+    fallbackToSqlite: false
     fullnameOverride: ""
     gitea:
       config:
         APP_NAME: 'Gitea: Git with a cup of tea'
         RUN_MODE: prod
+        cache:
+          ADAPTER: redis
+          ENABLED: "true"
+          HOST: network=tcp,addr=dev-gitea-gitea-redis:6379,db=0,pool_size=100,idle_timeout=180
+          INTERVAL: "60"
+          ITEM_TTL: 16h
+        database:
+          DB_TYPE: postgres
+          HOST: dev-gitea-gitea-postgres
+          NAME: ${SECRET_GITEA_DB_NAME}
+          PASSWD: ${SECRET_GITEA_DB_PASSWORD}
+          SSL_MODE: disable
+          USER: ${SECRET_GITEA_DB_USER}
         log:
           ACCESS: console
           ENABLE_ACCESS_LOG: "false"
@@ -62,12 +87,16 @@ spec:
           APP_DATA_PATH: /data/gitea
           DISABLE_SSH: "false"
           DOMAIN: git.${SECRET_DIGITALOCEAN_DOMAIN_02}
+          HTTP_PORT: "8000"
           LFS_CONTENT_PATH: /data/gitea/lfs
           LFS_JWT_SECRET: ${SECRET_GITEA_LFS_JWT_SECRET}
           LFS_START_SERVER: "true"
           OFFLINE_MODE: "false"
           PROTOCOL: http
           ROOT_URL: https://%(DOMAIN)s/
+          SSH_DOMAIN: git.${SECRET_DIGITALOCEAN_DOMAIN_02}
+          SSH_LISTEN_PORT: "8022"
+          SSH_PORT: "22"
           SSH_ROOT_PATH: /data/ssh
           START_SSH_SERVER: "true"
         service:
@@ -78,9 +107,15 @@ spec:
           DISABLE_REGISTRATION: "true"
           ENABLE_CAPTCHA: "false"
           ENABLE_NOTIFY_MAIL: "false"
-          NO_REPLY_ADDRESS: noreply.%(DOMAIN)s
+          NO_REPLY_ADDRESS: noreply.git.${SECRET_DIGITALOCEAN_DOMAIN_02}
           REGISTER_EMAIL_CONFIRM: "false"
           REQUIRE_SIGNIN_VIEW: "true"
+        session:
+          COOKIE_NAME: i_like_gitea
+          GC_INTERVAL_TIME: "86400"
+          PROVIDER: redis
+          PROVIDER_CONFIG: network=tcp,addr=dev-gitea-gitea-redis:6379,db=0,pool_size=100,idle_timeout=180
+          SESSION_LIFE_TIME: "86400"
     image:
       pullPolicy: IfNotPresent
       repository: gitea/gitea
@@ -114,22 +149,20 @@ spec:
         requestedSize: null
       userDatabase: {}
     nameOverride: ""
-    nodeSelector: {}
+    nodeSelector:
+      node-type: worker
     podAnnotations: {}
     podSecurityContext:
       fsGroup: 1000
     postgres:
-      enabled: true
+      enabled: false
       settings:
-        superuserPassword: ${SECRET_GLOBAL_POSTGRES_SUPERUSER_PASSWORD}
+        superuserPassword: null
       storage:
         className: null
-        persistentVolumeClaimName: postgres-pvc
+        persistentVolumeClaimName: null
         requestedSize: null
-      userDatabase:
-        name: ${SECRET_GITEA_DB_NAME}
-        password: ${SECRET_GITEA_DB_PASSWORD}
-        user: ${SECRET_GITEA_DB_USER}
+      userDatabase: {}
     readinessProbe:
       enabled: true
       failureThreshold: 5
@@ -138,10 +171,10 @@ spec:
       successThreshold: 1
       timeoutSeconds: 10
     redis:
-      enabled: true
+      enabled: false
       storage:
         className: null
-        persistentVolumeClaimName: redis-pvc
+        persistentVolumeClaimName: null
         requestedSize: null
     resources: {}
     revisionHistoryLimit: null
@@ -179,7 +212,7 @@ spec:
       accessModes:
       - ReadWriteOnce
       className: null
-      keepPvc: false
+      keepPvc: true
       persistentVolumeClaimName: gitea-pvc
       requestedSize: null
     strategy:
