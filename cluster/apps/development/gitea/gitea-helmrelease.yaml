@@ -43,7 +43,7 @@ spec:
         cache:
           ADAPTER: redis
           ENABLED: "true"
-          HOST: network=tcp,addr=dev-gitea-gitea-redis:6379,db=0,pool_size=100,idle_timeout=180
+          HOST: redis://:${SECRET_GLOBAL_REDIS_PASSWORD}@${GITEA_REDIS_SVC_LB_IP}:6379/0?pool_size=100&idle_timeout=180s
           INTERVAL: "60"
           ITEM_TTL: 16h
         database:
