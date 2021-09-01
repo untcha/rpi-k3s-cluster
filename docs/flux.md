@@ -250,7 +250,7 @@ flux create helmrelease chronograf \
 flux create helmrelease gitea \
   --source=HelmRepository/groundhog2k \
   --chart=gitea \
-  --chart-version="0.4.0" \
+  --chart-version="0.4.1" \
   --target-namespace=dev-gitea \
   --values=gitea-values.yaml \
   --export > gitea-helmrelease.yaml
@@ -322,7 +322,7 @@ flux create helmrelease metallb \
 flux create helmrelease nextcloud \
   --source=HelmRepository/groundhog2k \
   --chart=nextcloud \
-  --chart-version="0.7.0" \
+  --chart-version="0.7.1" \
   --target-namespace=nextcloud \
   --values=nextcloud-values.yaml \
   --export > nextcloud-helmrelease.yaml
