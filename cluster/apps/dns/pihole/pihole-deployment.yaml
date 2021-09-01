@@ -22,6 +22,8 @@ spec:
         app: pihole
         name: pihole
     spec:
+      nodeSelector:
+        node-type: worker
       containers:
       - name: pihole
         image: pihole/pihole:v5.8.1
