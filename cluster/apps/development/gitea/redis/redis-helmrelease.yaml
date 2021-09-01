@@ -2,7 +2,7 @@
 apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
-  name: gitea-redis
+  name: redis
   namespace: flux-system
 spec:
   chart:
@@ -37,7 +37,7 @@ spec:
     image:
       pullPolicy: IfNotPresent
       repository: redis
-      tag: 6.2.5
+      tag: ""
     imagePullSecrets: []
     livenessProbe:
       enabled: true
@@ -47,7 +47,8 @@ spec:
       successThreshold: 1
       timeoutSeconds: 5
     nameOverride: ""
-    nodeSelector: {}
+    nodeSelector:
+      node-type: worker
     podAnnotations: {}
     podDisruptionBudget: {}
     podManagementPolicy: OrderedReady

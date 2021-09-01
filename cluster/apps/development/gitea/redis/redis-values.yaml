@@ -5,7 +5,7 @@ image:
   repository: redis
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
-  tag: "6.2.5"
+  tag: ""
 
 ## Pull secrets and name override options
 imagePullSecrets: []
@@ -23,7 +23,8 @@ serviceAccount:
   name: ""
 
 ## Additional node selector
-nodeSelector: {}
+nodeSelector:
+  node-type: worker
 
 ## Additional pod annotations
 podAnnotations: {}
