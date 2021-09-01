@@ -40,7 +40,8 @@ spec:
       successThreshold: 1
       timeoutSeconds: 5
     nameOverride: ""
-    nodeSelector: {}
+    nodeSelector:
+      node-type: worker
     podAnnotations: {}
     podManagementPolicy: OrderedReady
     podSecurityContext:

@@ -37,7 +37,7 @@ spec:
     image:
       pullPolicy: IfNotPresent
       repository: redis
-      tag: 6.2.5
+      tag: ""
     imagePullSecrets: []
     livenessProbe:
       enabled: true
@@ -47,7 +47,8 @@ spec:
       successThreshold: 1
       timeoutSeconds: 5
     nameOverride: ""
-    nodeSelector: {}
+    nodeSelector:
+      node-type: worker
     podAnnotations: {}
     podDisruptionBudget: {}
     podManagementPolicy: OrderedReady
