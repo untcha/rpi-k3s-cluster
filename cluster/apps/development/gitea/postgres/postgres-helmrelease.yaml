@@ -64,10 +64,10 @@ spec:
       runAsUser: 999
     service:
       clusterIP: null
-      loadBalancerIP: ${GITEA_POSTGRES_SVC_LB_IP}
+      loadBalancerIP: null
       nodePort: null
       port: 5432
-      type: LoadBalancer
+      type: ClusterIP
     serviceAccount:
       annotations: {}
       create: false

@@ -46,14 +46,14 @@ securityContext:
 
 ## The postgres service configuration (Default is ClusterIP with port 5432)
 service:
-  type: LoadBalancer
+  type: ClusterIP
   port: 5432
   ## The node port (only relevant for type LoadBalancer or NodePort)
   nodePort:
   ## The cluster ip address (only relevant for type LoadBalancer or NodePort)
   clusterIP:
   ## The loadbalancer ip address (only relevant for type LoadBalancer)
-  loadBalancerIP: ${GITEA_POSTGRES_SVC_LB_IP}
+  loadBalancerIP:
 
 resources: {}
   # limits:

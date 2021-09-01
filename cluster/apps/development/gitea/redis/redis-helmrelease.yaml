@@ -77,11 +77,11 @@ spec:
     sentinelResources: {}
     service:
       clusterIP: null
-      loadBalancerIP: ${GITEA_REDIS_SVC_LB_IP}
+      loadBalancerIP: null
       nodePort: null
       sentinelPort: 26379
       serverPort: 6379
-      type: LoadBalancer
+      type: ClusterIP
     serviceAccount:
       annotations: {}
       create: false
