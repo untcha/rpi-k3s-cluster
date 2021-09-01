@@ -64,7 +64,8 @@ resources: {}
   #   memory: 128Mi
 
 ## Additional node selector
-nodeSelector: {}
+nodeSelector:
+  node-type: worker
 
 tolerations: []
 
