@@ -64,7 +64,7 @@ spec:
     podLabels: {}
     podSecurityPolicy:
       enabled: false
-    protocolHttp: true
+    protocolHttp: false
     rbac:
       clusterReadOnlyRole: false
       clusterRoleMetrics: true
