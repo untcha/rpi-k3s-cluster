@@ -218,7 +218,7 @@ pinnedCRDs:
 ## refs: https://github.com/kubernetes-sigs/dashboard-metrics-scraper
 metricsScraper:
   ## Wether to enable dashboard-metrics-scraper
-  enabled: false
+  enabled: true
   image:
     repository: kubernetesui/metrics-scraper
     tag: v1.0.6

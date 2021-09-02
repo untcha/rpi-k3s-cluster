@@ -48,7 +48,7 @@ spec:
         readOnlyRootFilesystem: true
         runAsGroup: 2001
         runAsUser: 1001
-      enabled: false
+      enabled: true
       image:
         repository: kubernetesui/metrics-scraper
         tag: v1.0.6
