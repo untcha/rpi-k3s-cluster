@@ -16,7 +16,7 @@ spec:
       #   - name: homer-middleware-basicauth
       #   - name: homer-middleware-headers
       services:
-        - name: kubernetes-dashboard
-          port: 8443
+        - name: kubernetes-dashboard.kubernetes-dashboard
+          port: 443
   tls:
     secretName: kubernetes-dashboard-letsencrypt-production-certificate
