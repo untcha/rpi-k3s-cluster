@@ -274,7 +274,7 @@ settings:
     password: ${SECRET_GLOBAL_SMTP_PASSWORD}
 
     ## SMTP from address
-    from: ${SECRET_GLOBAL_SMTP_FROM}
+    from: "no-reply"
 
     ## SMTP mail domain
     domain: ${SECRET_DIGITALOCEAN_DOMAIN_02}

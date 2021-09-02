@@ -14,6 +14,7 @@ spec:
       version: 0.7.1
   install: {}
   interval: 1m0s
+  timeout: 25m
   targetNamespace: nextcloud
   values:
     affinity: {}
@@ -149,7 +150,7 @@ spec:
         authType: LOGIN
         domain: ${SECRET_DIGITALOCEAN_DOMAIN_02}
         enabled: true
-        from: ${SECRET_GLOBAL_SMTP_FROM}
+        from: no-reply
         host: ${SECRET_GLOBAL_SMTP_HOST}
         name: ${SECRET_GLOBAL_SMTP_USERNAME}
         password: ${SECRET_GLOBAL_SMTP_PASSWORD}
