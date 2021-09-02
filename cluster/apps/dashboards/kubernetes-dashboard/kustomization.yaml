@@ -4,3 +4,4 @@ kind: Kustomization
 resources:
   - kubernetes-dashboard.yaml
   - kubernetes-dashboard-adminuser.yaml
+  - kubernetes-dashboard-letsencrypt-certificate.yaml
