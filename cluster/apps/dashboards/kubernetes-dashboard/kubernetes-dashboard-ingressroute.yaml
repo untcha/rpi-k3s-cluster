@@ -10,7 +10,7 @@ spec:
   entryPoints:
     - websecure
   routes:
-    - match: Host(`kubernetes.${SECRET_DIGITALOCEAN_DOMAIN_02}`)
+    - match: Host(`kubernetes.${SECRET_DIGITALOCEAN_DOMAIN_02}`) && PathPrefix(`/`)
       kind: Rule
       # middlewares:
       #   - name: homer-middleware-basicauth
