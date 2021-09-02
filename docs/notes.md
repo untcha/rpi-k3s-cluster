@@ -110,3 +110,6 @@ spec:
     accessControlMaxAge: 100
     addVaryHeader: true
     referrerPolicy: "same-origin"
+
+
+https://gitea.com/gitea/helm-chart/issues/213
