@@ -10,7 +10,7 @@ spec:
   entryPoints:
     - websecure
   routes:
-    - match: Host(`kubernetes.${SECRET_DIGITALOCEAN_DOMAIN_02}`) && PathPrefix(`/`)
+    - match: Host(`kubernetes.${SECRET_DIGITALOCEAN_DOMAIN_02}`)
       kind: Rule
       # middlewares:
       #   - name: homer-middleware-basicauth
@@ -19,4 +19,4 @@ spec:
         - name: kubernetes-dashboard
           port: 443
   tls:
-    secretName: kubernetes-dashboard-letsencrypt-production-certificate
+    secretName: kubernetes-dashboard-certs
