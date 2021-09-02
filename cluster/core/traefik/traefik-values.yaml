@@ -209,8 +209,6 @@ globalArguments:
 additionalArguments:
   - "--entrypoints.ssh.address=:8022/tcp"
   - "--metrics.prometheus=true"
-  - "--insecureskipverify"
-
 
 #  - "--providers.kubernetesingress.ingressclass=traefik-internal"
 #  - "--log.level=DEBUG"
