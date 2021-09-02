@@ -6,6 +6,7 @@ resources:
   - longhorn-charts.yaml
   - jetstack-charts.yaml
   - traefik-charts.yaml
+  - kubernetes-dashboard-charts.yaml
   - influxdata-charts.yaml
   - grafana-charts.yaml
   - prometheus-community-charts.yaml
