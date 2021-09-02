@@ -4,3 +4,4 @@ kind: Kustomization
 resources:
   - kubernetes-dashboard-namespace.yaml
   - kubernetes-dashboard-helmrelease.yaml
+  - kubernetes-dashboard-ingressroute.yaml
