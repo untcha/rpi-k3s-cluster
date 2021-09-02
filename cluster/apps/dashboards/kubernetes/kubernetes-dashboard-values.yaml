@@ -102,7 +102,7 @@ resources:
 ## Serve application over HTTP without TLS
 ##
 ## Note: If set to true, you may want to add --enable-insecure-login to extraArgs
-protocolHttp: false
+protocolHttp: true
 
 service:
   type: ClusterIP
