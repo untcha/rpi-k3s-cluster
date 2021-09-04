@@ -258,13 +258,13 @@ gitea:
       ENABLED: "true"
       ADAPTER: "redis"
       INTERVAL: "60"
-      # HOST: "redis://:${SECRET_GLOBAL_REDIS_PASSWORD}@${GITEA_REDIS_SVC_LB_IP}:6379/0?pool_size=100&idle_timeout=180s"
-      HOST: "network=tcp,addr=dev-gitea-gitea-redis:6379,db=0,pool_size=100,idle_timeout=180"
+      HOST: "redis://:${SECRET_GLOBAL_REDIS_PASSWORD}@dev-gitea-gitea-redis:6379/0?pool_size=100&idle_timeout=180s"
+      # HOST: "network=tcp,addr=dev-gitea-gitea-redis:6379,db=0,pool_size=100,idle_timeout=180"
       ITEM_TTL: "16h"
     
     session:
       PROVIDER: "redis"
-      PROVIDER_CONFIG: "network=tcp,addr=dev-gitea-gitea-redis:6379,db=0,pool_size=100,idle_timeout=180"
+      PROVIDER_CONFIG: "redis://:${SECRET_GLOBAL_REDIS_PASSWORD}@dev-gitea-gitea-redis:6379/0?pool_size=100&idle_timeout=180s"
       COOKIE_NAME: "i_like_gitea"
       GC_INTERVAL_TIME: "86400"
       SESSION_LIFE_TIME: "86400"
@@ -300,7 +300,7 @@ storage:
     - ReadWriteOnce
 
   ## Keep a created Persistent volume claim when uninstalling the helm chart
-  keepPvc: true
+  keepPvc: false
 
 ## MariaDB configuration
 mariadb:
