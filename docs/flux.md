@@ -340,7 +340,7 @@ flux create helmrelease portainer \
   --export > portainer-helmrelease.yaml
 ```
 
-### Postgres (gitea)
+### Postgres
 
 ```bash
 flux create helmrelease gitea-postgres \
@@ -351,8 +351,6 @@ flux create helmrelease gitea-postgres \
   --values=postgres-values.yaml \
   --export > postgres-helmrelease.yaml
 ```
-
-### Postgres (Nextcloud)
 
 ```bash
 flux create helmrelease nextcloud-postgres \
@@ -376,7 +374,7 @@ flux create helmrelease prometheus \
   --export > prometheus-helmrelease.yaml
 ```
 
-### Redis (gitea)
+### Redis
 
 ```bash
 flux create helmrelease gitea-redis \
@@ -387,8 +385,6 @@ flux create helmrelease gitea-redis \
   --values=redis-values.yaml \
   --export > redis-helmrelease.yaml
 ```
-
-### Redis (Nextcloud)
 
 ```bash
 flux create helmrelease nextcloud-redis \
@@ -445,32 +441,6 @@ flux create helmrelease wordpress \
   --target-namespace=<NAMESPACE> \
   --values=wordpress-values.yaml \
   --export > wordpress-helmrelease.yaml
-```
-
-### Not in use
-
-#### Telegraf (check update!)
-
-```bash
-flux create helmrelease telegraf \
-  --source=HelmRepository/influxdata \
-  --chart=telegraf \
-  --chart-version="1.8.2" \
-  --target-namespace=influxdata \
-  --values=telegraf-values.yaml \
-  --export > telegraf-helmrelease.yaml
-```
-
-### LibreSpeed
-
-```bash
-flux create helmrelease librespeed \
-  --source=HelmRepository/k8s-at-home \
-  --chart=librespeed \
-  --chart-version="4.1.0" \
-  --target-namespace=tools \
-  --values=librespeed-values.yaml \
-  --export > librespeed-helmrelease.yaml
 ```
 
 ## Useful commands
