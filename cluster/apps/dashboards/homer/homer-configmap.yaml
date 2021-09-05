@@ -171,6 +171,11 @@ data:
             target: "_blank" # optional html a tag target attribute
             # class: "green" # optional custom CSS class for card, useful with custom stylesheet
             # background: red # optional color for card to set color directly without custom stylesheet
+          - name: "QNAP TS-870Pro"
+            logo: "https://doc.${SECRET_DIGITALOCEAN_DOMAIN_02}/homer-config/qnap.png"
+            tag: "nas"
+            url: "http://192.168.178.110:8080"
+            target: "_blank"
       - name: "Monitoring"
         icon: "fas fa-chart-pie"
         items:
