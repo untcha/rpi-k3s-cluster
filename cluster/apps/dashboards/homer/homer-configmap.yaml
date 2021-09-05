@@ -124,7 +124,7 @@ data:
             tag: "dashboard"
             url: "https://traefik.${SECRET_DIGITALOCEAN_DOMAIN_02}/dashboard/"
             target: "_blank" # optional html tag target attribute
-          - name: "Longhorn"
+          - name: "Longhorn Dashboard"
             logo: "https://doc.${SECRET_DIGITALOCEAN_DOMAIN_02}/homer-config/longhorn.png"
             tag: "dashboard"
             # Optional tagstyle
@@ -141,7 +141,7 @@ data:
             target: "_blank"
           - name: "Gitea"
             logo: "https://doc.${SECRET_DIGITALOCEAN_DOMAIN_02}/homer-config/gitea.png"
-            tag: "security"
+            tag: "development"
             url: "https://git.${SECRET_DIGITALOCEAN_DOMAIN_02}"
             target: "_blank"
           - name: "Nextcloud"
@@ -149,13 +149,18 @@ data:
             tag: "cloud"
             url: "https://cloud.${SECRET_DIGITALOCEAN_DOMAIN_02}"
             target: "_blank"
-      - name: "AdBlocker"
-        icon: "fas fa-shield-alt"
+      - name: "Network"
+        icon: "fas fa-network-wired"
         items:
+          - name: "FRITZ!Box"
+            logo: "https://doc.${SECRET_DIGITALOCEAN_DOMAIN_02}/homer-config/avmfritzbox.png"
+            tag: "router"
+            url: "http://192.168.178.1"
+            target: "_blank"
           - name: "Pi-hole"
             logo: "https://doc.${SECRET_DIGITALOCEAN_DOMAIN_02}/homer-config/pihole.png"
             # subtitle: "Network-wide Ad Blocking" # optional, if no subtitle is defined, PiHole statistics will be shown
-            tag: "app"
+            tag: "adblock"
             url: "http://pihole.${SECRET_DIGITALOCEAN_DOMAIN_02}/admin/"
             # type: "PiHole" # optional, loads a specific component that provides extra features. MUST MATCH a file name (without file extension) available in `src/components/services`
             target: "_blank" # optional html a tag target attribute
