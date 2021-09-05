@@ -149,6 +149,11 @@ data:
             tag: "cloud"
             url: "https://cloud.${SECRET_DIGITALOCEAN_DOMAIN_02}"
             target: "_blank"
+          - name: "Wordpress Simone"
+            logo: "https://doc.${SECRET_DIGITALOCEAN_DOMAIN_02}/homer-config/wordpress.png"
+            tag: "blog"
+            url: "https://simone.${SECRET_DIGITALOCEAN_DOMAIN_02}"
+            target: "_blank"
       - name: "Network"
         icon: "fas fa-network-wired"
         items:
