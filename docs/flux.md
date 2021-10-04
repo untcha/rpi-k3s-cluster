@@ -437,7 +437,7 @@ flux create helmrelease traefik \
 flux create helmrelease wordpress \
   --source=HelmRepository/groundhog2k \
   --chart=wordpress \
-  --chart-version="0.4.1" \
+  --chart-version="0.4.2" \
   --target-namespace=<NAMESPACE> \
   --values=wordpress-values.yaml \
   --export > wordpress-helmrelease.yaml
