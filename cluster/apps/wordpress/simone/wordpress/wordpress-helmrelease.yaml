@@ -2,7 +2,7 @@
 apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
-  name: wp-simone-wordpress
+  name: wordpress
   namespace: flux-system
 spec:
   chart:
@@ -11,8 +11,7 @@ spec:
       sourceRef:
         kind: HelmRepository
         name: groundhog2k
-      version: 0.4.1
-  install: {}
+      version: 0.4.2
   interval: 1m0s
   targetNamespace: wp-simone
   values:
