@@ -129,7 +129,8 @@ spec:
       initialDelaySeconds: 60
       timeoutSeconds: 30
     namespaceOverride: ""
-    nodeSelector: {}
+    nodeSelector:
+      node-type: worker
     notifiers: {}
     persistence:
       accessModes:
