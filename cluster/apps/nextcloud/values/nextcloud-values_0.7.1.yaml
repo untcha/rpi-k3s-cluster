@@ -135,7 +135,7 @@ customStartupProbe: {}
 ## Default startup probe
 startupProbe:
   enabled: true
-  initialDelaySeconds: 900
+  initialDelaySeconds: 600
   timeoutSeconds: 5
   failureThreshold: 5
   successThreshold: 1
@@ -253,10 +253,10 @@ settings:
   ## SMTP configuration
   smtp:
     ## Enable SMTP (default: false)
-    enabled: false
+    enabled: true
 
     ## SMTP host
-    host:
+    host: ${SECRET_GLOBAL_SMTP_HOST}
 
     ## SMTP port (default: 465)
     port: 465
@@ -268,16 +268,16 @@ settings:
     authType: LOGIN
 
     ## SMTP user name
-    name:
+    name: ${SECRET_GLOBAL_SMTP_USERNAME}
 
     ## SMTP password
-    password:
+    password: ${SECRET_GLOBAL_SMTP_PASSWORD}
 
     ## SMTP from address
-    from:
+    from: "no-reply"
 
     ## SMTP mail domain
-    domain:
+    domain: ${SECRET_DIGITALOCEAN_DOMAIN_02}
 
 ## Additional PHP custom.ini
 customPhpConfig: |
