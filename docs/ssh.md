@@ -16,6 +16,20 @@ Usage:
 [-q] [-b bits] [-t dsa | ecdsa | ed25519 | rsa] [-N new_passphrase] [-C comment] [-f output_keyfile]
 ```
 
+### Change the passphrase of an ssh key
+
+To change the passphrase of the default key:
+
+``` bash
+ssh-keygen -p
+```
+
+To change the passphrase of a specific key `id_rsa`
+
+``` bash
+ssh-keygen -p -f ~/.ssh/id_dsa
+```
+
 ### :key: Show and copy the content of the public key `id_rsa.pub`
 
 ``` bash
