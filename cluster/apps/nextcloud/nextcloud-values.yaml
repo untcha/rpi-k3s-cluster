@@ -5,7 +5,7 @@ image:
   repository: nextcloud
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
-  tag: ""
+  tag: "22.1.1-apache"
 
 # Default Init container image
 initImage:
