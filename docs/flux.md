@@ -365,6 +365,16 @@ flux create helmrelease nextcloud-postgres \
   --export > postgres-helmrelease.yaml
 ```
 
+```bash
+flux create helmrelease bitwarden-postgres \
+  --source=HelmRepository/groundhog2k \
+  --chart=postgres \
+  --chart-version="0.3.0" \
+  --target-namespace=bitwarden \
+  --values=postgres-values.yaml \
+  --export > postgres-helmrelease.yaml
+```
+
 ### Prometheus
 
 ```bash
