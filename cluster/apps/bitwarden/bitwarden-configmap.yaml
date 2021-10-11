@@ -27,5 +27,5 @@ data:
   ROCKET_PORT: "8080"
 
   # Bitwarden RS settings
-  SIGNUPS_ALLOWED: "false"
+  SIGNUPS_ALLOWED: "true"
   LOG_FILE: "/data/bitwarden.log"
