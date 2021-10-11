@@ -24,6 +24,8 @@ spec:
       annotations:
         configmap.reloader.stakater.com/reload: "bitwarden-config"
     spec:
+      nodeSelector:
+        node-type: worker
       serviceAccountName: bitwarden
       containers:
       - name: bitwarden
