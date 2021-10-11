@@ -21,6 +21,8 @@ spec:
       labels:
         app: bitwarden
         name: bitwarden
+      annotations:
+        configmap.reloader.stakater.com/reload: "bitwarden-config"
     spec:
       serviceAccountName: bitwarden
       containers:
