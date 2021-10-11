@@ -29,7 +29,7 @@ spec:
       serviceAccountName: bitwarden
       containers:
       - name: bitwarden
-        image: vaultwarden/server:latest
+        image: vaultwarden/server:1.22.2
         imagePullPolicy: IfNotPresent
         # env:
         # - name: ADMIN_TOKEN
