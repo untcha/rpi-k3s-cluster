@@ -11,8 +11,7 @@ spec:
       sourceRef:
         kind: HelmRepository
         name: authelia
-      version: 0.5.6
-  install: {}
+      version: 0.6.3
   interval: 1m0s
   targetNamespace: authentication-system
   values:
@@ -21,7 +20,7 @@ spec:
       annotations: {}
       existingSecret: ""
       labels: {}
-      values: {}
+      values: []
     configMap:
       access_control:
         default_policy: deny
@@ -109,6 +108,12 @@ spec:
             server_name: ""
             skip_verify: false
           username: ${SECRET_GLOBAL_SMTP_USERNAME}
+      ntp:
+        address: time.cloudflare.com:123
+        disable_failure: false
+        disable_startup_check: false
+        max_desync: 3s
+        version: 4
       regulation:
         ban_time: 5m
         find_time: 2m
@@ -175,7 +180,7 @@ spec:
       pullSecrets: []
       registry: ghcr.io
       repository: authelia/authelia
-      tag: 4.30.4
+      tag: 4.31.0
     ingress:
       annotations: {}
       certManager: false
@@ -290,8 +295,9 @@ spec:
           podAffinity: {}
           podAntiAffinity: {}
         nodeSelector: {}
+      strategy:
+        type: RollingUpdate
       tolerations: []
-      updateStrategy: RollingUpdate
     podDisruptionBudget:
       annotations: {}
       enabled: false
