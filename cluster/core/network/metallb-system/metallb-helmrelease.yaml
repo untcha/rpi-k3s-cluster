@@ -11,8 +11,7 @@ spec:
       sourceRef:
         kind: HelmRepository
         name: metallb
-      version: 0.10.2
-  install: {}
+      version: 0.10.3
   interval: 1m0s
   targetNamespace: metallb-system
   values:
@@ -41,6 +40,10 @@ spec:
         successThreshold: 1
         timeoutSeconds: 1
       resources: {}
+      securityContext:
+        fsGroup: 65534
+        runAsNonRoot: true
+        runAsUser: 65534
       serviceAccount:
         annotations: {}
         create: true
