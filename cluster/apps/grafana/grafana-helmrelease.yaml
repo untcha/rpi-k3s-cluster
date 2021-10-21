@@ -11,7 +11,7 @@ spec:
       sourceRef:
         kind: HelmRepository
         name: grafana
-      version: 6.16.14
+      version: 6.17.1
   interval: 1m0s
   targetNamespace: grafana
   values:
@@ -216,7 +216,7 @@ spec:
       image:
         repository: quay.io/kiwigrid/k8s-sidecar
         sha: ""
-        tag: 1.12.3
+        tag: 1.14.2
       imagePullPolicy: IfNotPresent
       notifiers:
         enabled: false
@@ -233,6 +233,6 @@ spec:
       image: bats/bats
       imagePullPolicy: IfNotPresent
       securityContext: {}
-      tag: v1.1.0
+      tag: v1.4.1
     tolerations: []
 

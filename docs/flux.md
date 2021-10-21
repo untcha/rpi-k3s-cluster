@@ -263,7 +263,7 @@ flux create helmrelease gitea \
 flux create helmrelease grafana \
   --source=HelmRepository/grafana \
   --chart=grafana \
-  --chart-version="6.16.14" \
+  --chart-version="6.17.1" \
   --target-namespace=grafana \
   --values=grafana-values.yaml \
   --export > grafana-helmrelease.yaml
