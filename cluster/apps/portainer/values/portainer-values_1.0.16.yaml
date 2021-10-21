@@ -19,8 +19,7 @@ image:
 
 imagePullSecrets: []
 
-nodeSelector:
-  node-type: worker
+nodeSelector: {}
 
 serviceAccount:
   annotations: {}
@@ -32,21 +31,14 @@ service:
   # For Cloud Providers, set the type to be LoadBalancer
   type: ClusterIP
   httpPort: 9000
-  httpsPort: 9443
   httpNodePort: 30777
-  httpsNodePort: 30779
   edgePort: 8000
   edgeNodePort: 30776
   annotations: {}
 
-tls:
-  # If set, will mount the existing secret into the pod
-  existingSecret: ""
-
 ingress:
   enabled: false
   annotations: {}
-#    nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
   hosts:
     - host:
       paths: []

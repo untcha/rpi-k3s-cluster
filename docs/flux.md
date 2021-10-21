@@ -338,7 +338,7 @@ flux create helmrelease nextcloud \
 flux create helmrelease portainer \
   --source=HelmRepository/portainer \
   --chart=portainer \
-  --chart-version="1.0.16" \
+  --chart-version="1.0.18" \
   --target-namespace=portainer \
   --values=portainer-values.yaml \
   --export > portainer-helmrelease.yaml
