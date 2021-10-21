@@ -420,7 +420,7 @@ startupapicheck:
   jobAnnotations:
     helm.sh/hook: post-install
     helm.sh/hook-weight: "1"
-    helm.sh/hook-delete-policy: hook-succeeded
+    helm.sh/hook-delete-policy: before-hook-creation,hook-succeeded
 
   # Optional additional annotations to add to the startupapicheck Pods
   # podAnnotations: {}
@@ -433,7 +433,8 @@ startupapicheck:
     #   cpu: 10m
     #   memory: 32Mi
 
-  nodeSelector: {}
+  nodeSelector:
+    node-type: worker
 
   affinity: {}
 
@@ -458,10 +459,11 @@ startupapicheck:
     pullPolicy: IfNotPresent
 
   rbac:
+    # annotations for the startup API Check job RBAC and PSP resources
     annotations:
       helm.sh/hook: post-install
       helm.sh/hook-weight: "-5"
-      helm.sh/hook-delete-policy: hook-succeeded
+      helm.sh/hook-delete-policy: before-hook-creation,hook-succeeded
 
   serviceAccount:
     # Specifies whether a service account should be created
@@ -475,7 +477,7 @@ startupapicheck:
     annotations:
       helm.sh/hook: post-install
       helm.sh/hook-weight: "-5"
-      helm.sh/hook-delete-policy: hook-succeeded
+      helm.sh/hook-delete-policy: before-hook-creation,hook-succeeded
 
     # Automount API credentials for a Service Account.
     automountServiceAccountToken: true
