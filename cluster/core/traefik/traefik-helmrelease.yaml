@@ -11,8 +11,7 @@ spec:
       sourceRef:
         kind: HelmRepository
         name: traefik
-      version: 10.3.2
-  install: {}
+      version: 10.6.0
   interval: 1m0s
   targetNamespace: traefik
   values:
@@ -35,6 +34,7 @@ spec:
       podAnnotations: {}
       podLabels: {}
       replicas: 1
+      terminationGracePeriodSeconds: 60
     env: []
     envFrom: []
     experimental:
@@ -128,6 +128,8 @@ spec:
     priorityClassName: ""
     providers:
       kubernetesCRD:
+        allowCrossNamespace: false
+        allowExternalNameServices: false
         enabled: true
         namespaces: []
       kubernetesIngress:
