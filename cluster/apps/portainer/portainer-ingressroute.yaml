@@ -1,3 +1,8 @@
+# portainer-local-ingressroute
+# portainer-http-ingressroute
+# portainer-https-ingressroute
+# portainer-middleware-redirect-scheme
+
 ---
 apiVersion: traefik.containo.us/v1alpha1
 kind: IngressRoute
@@ -13,3 +18,55 @@ spec:
       services:
         - name: portainer-portainer
           port: 9000
+
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: portainer-http-ingressroute
+  namespace: portainer
+spec:
+  entryPoints:
+    - web
+  routes:
+    - match: Host(`portainer.${SECRET_DIGITALOCEAN_DOMAIN_02}`)
+      kind: Rule
+      middlewares:
+        - name: portainer-middleware-redirect-scheme
+      services:
+        - name: portainer-portainer
+          port: 9000
+
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: portainer-https-ingressroute
+  namespace: portainer
+  annotations:
+    cert-manager.io/cluster-issuer: "letsencrypt-dns01-production-do"
+spec:
+  entryPoints:
+    - websecure
+  routes:
+    - match: Host(`portainer.${SECRET_DIGITALOCEAN_DOMAIN_02}`)
+      kind: Rule
+      middlewares:
+        # - name: pihole-middleware-headers
+      services:
+        - name: portainer-portainer
+          port: 9000
+  tls:
+    secretName: portainer-letsencrypt-production-certificate
+
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: Middleware
+metadata:
+  name: portainer-middleware-redirect-scheme
+  namespace: portainer
+spec:
+  redirectScheme:
+    scheme: https
+    permanent: true
+    port: "443"
