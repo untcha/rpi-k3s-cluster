@@ -76,15 +76,15 @@ spec:
     permanent: true
     port: "443"
 
----
-apiVersion: traefik.containo.us/v1alpha1
-kind: Middleware
-metadata:
-  name: longhorn-middleware-basicauth
-  namespace: longhorn-system
-spec:
-  basicAuth:
-    secret: longhorn-secret-basicauth
+# ---
+# apiVersion: traefik.containo.us/v1alpha1
+# kind: Middleware
+# metadata:
+#   name: longhorn-middleware-basicauth
+#   namespace: longhorn-system
+# spec:
+#   basicAuth:
+#     secret: longhorn-secret-basicauth
 
 ---
 apiVersion: traefik.containo.us/v1alpha1
