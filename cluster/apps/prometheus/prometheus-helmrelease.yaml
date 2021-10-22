@@ -11,7 +11,7 @@ spec:
       sourceRef:
         kind: HelmRepository
         name: prometheus-community
-      version: 14.11.0
+      version: 14.6.0
   interval: 1m0s
   targetNamespace: prometheus
   values:
@@ -19,7 +19,6 @@ spec:
     alertmanager:
       affinity: {}
       baseURL: http://localhost:9093
-      clusterPeers: []
       configFileName: alertmanager.yml
       configFromSecret: ""
       configMapOverrideName: ""
@@ -278,8 +277,6 @@ spec:
         servicePort: 9091
         type: ClusterIP
       tolerations: []
-      verticalAutoscaler:
-        enabled: false
     rbac:
       create: true
     server:
@@ -349,8 +346,6 @@ spec:
         annotations: {}
       prefixURL: ""
       priorityClassName: ""
-      probeHeaders: []
-      probeScheme: HTTP
       readinessProbeFailureThreshold: 3
       readinessProbeInitialDelay: 30
       readinessProbePeriodSeconds: 5
@@ -382,13 +377,8 @@ spec:
           enabled: false
           replica: 0
         type: LoadBalancer
-      sidecarContainers: []
+      sidecarContainers: {}
       sidecarTemplateValues: {}
-      startupProbe:
-        enabled: false
-        failureThreshold: 30
-        periodSeconds: 5
-        timeoutSeconds: 10
       statefulSet:
         annotations: {}
         enabled: false
@@ -402,7 +392,6 @@ spec:
         labels: {}
         podManagementPolicy: OrderedReady
       storagePath: ""
-      tcpSocketProbeEnabled: false
       terminationGracePeriodSeconds: 300
       tolerations: []
       verticalAutoscaler:
@@ -498,9 +487,6 @@ spec:
             - __meta_kubernetes_service_annotation_prometheus_io_port
             target_label: __address__
           - action: labelmap
-            regex: __meta_kubernetes_service_annotation_prometheus_io_param_(.+)
-            replacement: __param_$1
-          - action: labelmap
             regex: __meta_kubernetes_service_label_(.+)
           - action: replace
             source_labels:
@@ -539,9 +525,6 @@ spec:
             - __address__
             - __meta_kubernetes_service_annotation_prometheus_io_port
             target_label: __address__
-          - action: labelmap
-            regex: __meta_kubernetes_service_annotation_prometheus_io_param_(.+)
-            replacement: __param_$1
           - action: labelmap
             regex: __meta_kubernetes_service_label_(.+)
           - action: replace
@@ -621,9 +604,6 @@ spec:
             - __meta_kubernetes_pod_annotation_prometheus_io_port
             target_label: __address__
           - action: labelmap
-            regex: __meta_kubernetes_pod_annotation_prometheus_io_param_(.+)
-            replacement: __param_$1
-          - action: labelmap
             regex: __meta_kubernetes_pod_label_(.+)
           - action: replace
             source_labels:
@@ -663,9 +643,6 @@ spec:
             - __meta_kubernetes_pod_annotation_prometheus_io_port
             target_label: __address__
           - action: labelmap
-            regex: __meta_kubernetes_pod_annotation_prometheus_io_param_(.+)
-            replacement: __param_$1
-          - action: labelmap
             regex: __meta_kubernetes_pod_label_(.+)
           - action: replace
             source_labels:
@@ -676,7 +653,7 @@ spec:
             - __meta_kubernetes_pod_name
             target_label: kubernetes_pod_name
           - action: drop
-            regex: Pending|Succeeded|Failed|Completed
+            regex: Pending|Succeeded|Failed
             source_labels:
             - __meta_kubernetes_pod_phase
           scrape_interval: 5m
