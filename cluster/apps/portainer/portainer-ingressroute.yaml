@@ -51,7 +51,7 @@ spec:
   routes:
     - match: Host(`portainer.${SECRET_DIGITALOCEAN_DOMAIN_02}`)
       kind: Rule
-      middlewares:
+      # middlewares:
         # - name: pihole-middleware-headers
       services:
         - name: portainer-portainer
