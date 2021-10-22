@@ -29,6 +29,8 @@ spec:
       labels:
         app: whoami
     spec:
+      nodeSelector:
+        node-type: worker
       containers:
         - name: whoami
           image: traefik/whoami
