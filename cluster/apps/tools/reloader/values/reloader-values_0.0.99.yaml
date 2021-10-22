@@ -23,7 +23,6 @@ reloader:
   matchLabels: {}
   deployment:
     nodeSelector:
-      node-type: worker
     # cloud.google.com/gke-nodepool: default-pool
 
     # An affinity stanza to be applied to the Deployment.
@@ -53,10 +52,10 @@ reloader:
     labels:
       provider: stakater
       group: com.stakater.platform
-      version: v0.0.102
+      version: v0.0.99
     image:
       name: stakater/reloader
-      tag: v0.0.102
+      tag: v0.0.99
       pullPolicy: IfNotPresent
     # Support for extra environment variables.
     env:

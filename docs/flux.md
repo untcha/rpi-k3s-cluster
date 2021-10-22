@@ -416,7 +416,7 @@ flux create helmrelease nextcloud-redis \
 flux create helmrelease reloader \
   --source=HelmRepository/stakater \
   --chart=reloader \
-  --chart-version="v0.0.99" \
+  --chart-version="v0.0.102" \
   --target-namespace=tools \
   --values=reloader-values.yaml \
   --export > reloader-helmrelease.yaml
