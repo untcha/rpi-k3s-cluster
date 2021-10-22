@@ -93,15 +93,15 @@ spec:
     permanent: true
     port: "443"
 
----
-apiVersion: traefik.containo.us/v1alpha1
-kind: Middleware
-metadata:
-  name: traefik-middleware-basicauth
-  namespace: traefik
-spec:
-  basicAuth:
-    secret: traefik-secret-basicauth
+# ---
+# apiVersion: traefik.containo.us/v1alpha1
+# kind: Middleware
+# metadata:
+#   name: traefik-middleware-basicauth
+#   namespace: traefik
+# spec:
+#   basicAuth:
+#     secret: traefik-secret-basicauth
 
 ---
 apiVersion: traefik.containo.us/v1alpha1
