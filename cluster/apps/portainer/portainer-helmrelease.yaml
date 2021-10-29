@@ -24,7 +24,7 @@ spec:
     image:
       pullPolicy: Always
       repository: portainer/portainer-ce
-      tag: latest
+      tag: 2.9.2
     imagePullSecrets: []
     ingress:
       annotations: {}
