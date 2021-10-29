@@ -11,7 +11,7 @@ spec:
       sourceRef:
         kind: HelmRepository
         name: groundhog2k
-      version: 0.3.0
+      version: 0.2.13
   interval: 1m0s
   targetNamespace: nextcloud
   values:
