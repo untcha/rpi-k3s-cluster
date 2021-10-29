@@ -22,6 +22,8 @@ spec:
         app: duckdns
     spec:
       terminationGracePeriodSeconds: 10
+      nodeSelector:
+        node-type: worker
       containers:
         - name: duckdns
           image: ghcr.io/linuxserver/duckdns:2021.10.27
