@@ -11,8 +11,7 @@ spec:
       sourceRef:
         kind: HelmRepository
         name: groundhog2k
-      version: 0.4.7
-  install: {}
+      version: 0.4.8
   interval: 1m0s
   targetNamespace: dev-gitea
   values:
