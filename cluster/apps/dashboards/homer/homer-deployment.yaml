@@ -24,6 +24,8 @@ spec:
       annotations:
         configmap.reloader.stakater.com/reload: "config.yml"
     spec:
+      nodeSelector:
+        node-type: worker
       containers:
       - name: homer
         image: b4bz/homer:21.09.2
