@@ -24,7 +24,7 @@ spec:
       terminationGracePeriodSeconds: 10
       containers:
         - name: duckdns
-          image: ghcr.io/linuxserver/duckdns
+          image: ghcr.io/linuxserver/duckdns:2021.10.27
           imagePullPolicy: IfNotPresent
           env:
             - name: TOKEN
