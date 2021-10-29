@@ -11,7 +11,7 @@ spec:
       sourceRef:
         kind: HelmRepository
         name: grafana
-      version: 6.17.1
+      version: 6.17.4
   interval: 1m0s
   targetNamespace: grafana
   values:
@@ -72,7 +72,7 @@ spec:
       pullPolicy: IfNotPresent
       repository: grafana/grafana
       sha: ""
-      tag: 8.2.1
+      tag: 8.2.2
     imageRenderer:
       enabled: false
       env:
