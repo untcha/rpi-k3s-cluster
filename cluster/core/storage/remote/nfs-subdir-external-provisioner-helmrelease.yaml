@@ -4,6 +4,8 @@ kind: HelmRelease
 metadata:
   name: nfs-subdir-external-provisioner
   namespace: flux-system
+  annotations:
+    kustomize.toolkit.fluxcd.io/substitute: disabled
 spec:
   chart:
     spec:
@@ -28,7 +30,7 @@ spec:
       mountOptions: null
       path: /KubeData
       reclaimPolicy: Retain
-      server: ${SECRET_NFS_SERVER_IP}
+      server: 192.168.178.110
       volumeName: nfs-subdir-external-provisioner-root
     nodeSelector: {}
     podAnnotations: {}
