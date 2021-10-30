@@ -4,7 +4,7 @@ kind: Kustomization
 resources:
   - metallb-system.yaml
   - nfs-provisioner.yaml
-  - nfs-client.yaml
+  - storage.yaml
   - longhorn-system.yaml
   - cron-jobs.yaml
   - cert-manager.yaml
