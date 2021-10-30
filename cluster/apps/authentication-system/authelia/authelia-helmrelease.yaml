@@ -294,7 +294,8 @@ spec:
           nodeAffinity: {}
           podAffinity: {}
           podAntiAffinity: {}
-        nodeSelector: {}
+        nodeSelector:
+          node-type: worker
       strategy:
         type: RollingUpdate
       tolerations: []

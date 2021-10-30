@@ -232,7 +232,8 @@ pod:
   selectors:
   #   nodeName: worker-1
 
-    nodeSelector: {}
+    nodeSelector:
+      node-type: worker
     # nodeSelector:
     #   disktype: ssd
     #   kubernetes.io/hostname: worker-1
