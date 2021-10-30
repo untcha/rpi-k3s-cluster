@@ -12,3 +12,19 @@ spec:
   resources:
     requests:
       storage: 128Mi
+
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: unbound-root-key-pvc-new
+  namespace: dns
+  annotations:
+    nfs.io/storage-path: "/unbound-root-key"
+spec:
+  storageClassName: storage-nfs-provisioner
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 128Mi
