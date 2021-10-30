@@ -31,7 +31,8 @@ spec:
       hostname: chronograf.foobar.com
       path: /
       tls: false
-    nodeSelector: {}
+    nodeSelector:
+      node-type: worker
     oauth:
       enabled: false
       generic:
