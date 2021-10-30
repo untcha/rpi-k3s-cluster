@@ -52,7 +52,7 @@ service:
     nodePort: ""
 
 persistence:
-  defaultClass: true
+  defaultClass: false
   defaultFsType: ext4
   defaultClassReplicaCount: 3
   reclaimPolicy: Delete
@@ -78,12 +78,12 @@ defaultSettings:
   backupTargetCredentialSecret: ~
   allowRecurringJobWhileVolumeDetached: ~
   createDefaultDiskLabeledNodes: ~
-  defaultDataPath: ~
+  defaultDataPath: ${LONGHORN_DEFAULT_DATAPATH}
   defaultDataLocality: ~
   replicaSoftAntiAffinity: ~
   replicaAutoBalance: ~
   storageOverProvisioningPercentage: ~
-  storageMinimalAvailablePercentage: ~
+  storageMinimalAvailablePercentage: 10
   upgradeChecker: ~
   defaultReplicaCount: ~
   defaultLonghornStaticStorageClass: ~

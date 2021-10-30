@@ -287,7 +287,7 @@ flux create helmrelease influxdb \
 flux create helmrelease longhorn \
   --source=HelmRepository/longhorn \
   --chart=longhorn \
-  --chart-version="1.1.2" \
+  --chart-version="1.2.2" \
   --target-namespace=longhorn-system \
   --values=longhorn-values.yaml \
   --export > longhorn-helmrelease.yaml

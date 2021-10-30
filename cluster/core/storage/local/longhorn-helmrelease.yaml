@@ -11,8 +11,7 @@ spec:
       sourceRef:
         kind: HelmRepository
         name: longhorn
-      version: 1.1.2
-  install: {}
+      version: 1.2.2
   interval: 1m0s
   targetNamespace: longhorn-system
   values:
@@ -31,10 +30,12 @@ spec:
       autoDeletePodWhenVolumeDetachedUnexpectedly: null
       autoSalvage: null
       backingImageCleanupWaitInterval: null
-      backupTarget: nfs://${SECRET_NFS_SERVER_IP}:${LONGHORN_BACKUPTARGET_PATH}
+      backingImageRecoveryWaitInterval: null
+      backupTarget: null
       backupTargetCredentialSecret: null
       backupstorePollInterval: null
       concurrentAutomaticEngineUpgradePerNodeLimit: null
+      concurrentReplicaRebuildPerNodeLimit: null
       createDefaultDiskLabeledNodes: null
       defaultDataLocality: null
       defaultDataPath: ${LONGHORN_DEFAULT_DATAPATH}
@@ -43,12 +44,12 @@ spec:
       disableReplicaRebuild: null
       disableRevisionCounter: null
       disableSchedulingOnCordonedNode: null
-      guaranteedEngineCPU: null
       guaranteedEngineManagerCPU: null
       guaranteedReplicaManagerCPU: null
       mkfsExt4Parameters: null
       nodeDownPodDeletionPolicy: null
       priorityClass: null
+      replicaAutoBalance: null
       replicaReplenishmentWaitInterval: null
       replicaSoftAntiAffinity: null
       replicaZoneSoftAntiAffinity: null
@@ -58,7 +59,6 @@ spec:
       systemManagedPodsImagePullPolicy: null
       taintToleration: null
       upgradeChecker: null
-      volumeAttachmentRecoveryPolicy: null
     enablePSP: true
     global:
       cattle:
@@ -66,39 +66,39 @@ spec:
     image:
       csi:
         attacher:
-          repository: longhornio/csi-attacher
-          tag: v2.2.1-lh2
+          repository: k8s.gcr.io/sig-storage/csi-attacher
+          tag: v3.2.1
         nodeDriverRegistrar:
-          repository: longhornio/csi-node-driver-registrar
-          tag: v1.2.0-lh1
+          repository: k8s.gcr.io/sig-storage/csi-node-driver-registrar
+          tag: v2.3.0
         provisioner:
-          repository: longhornio/csi-provisioner
-          tag: v1.6.0-lh2
+          repository: k8s.gcr.io/sig-storage/csi-provisioner
+          tag: v2.1.2
         resizer:
-          repository: longhornio/csi-resizer
-          tag: v0.5.1-lh2
+          repository: k8s.gcr.io/sig-storage/csi-resizer
+          tag: v1.2.0
         snapshotter:
-          repository: longhornio/csi-snapshotter
-          tag: v2.1.1-lh2
+          repository: k8s.gcr.io/sig-storage/csi-snapshotter
+          tag: v3.0.3
       longhorn:
         backingImageManager:
           repository: longhornio/backing-image-manager
-          tag: v1_20210422
+          tag: v2_20210820
         engine:
           repository: longhornio/longhorn-engine
-          tag: v1.1.2
+          tag: v1.2.2
         instanceManager:
           repository: longhornio/longhorn-instance-manager
-          tag: v1_20210621
+          tag: v1_20210731
         manager:
           repository: longhornio/longhorn-manager
-          tag: v1.1.2
+          tag: v1.2.2
         shareManager:
           repository: longhornio/longhorn-share-manager
-          tag: v1_20210416
+          tag: v1_20210914
         ui:
           repository: longhornio/longhorn-ui
-          tag: v1.1.2
+          tag: v1.2.2
       pullPolicy: IfNotPresent
     ingress:
       annotations: null
@@ -122,10 +122,17 @@ spec:
       tolerations: []
     namespaceOverride: ""
     persistence:
+      backingImage:
+        dataSourceParameters: null
+        dataSourceType: null
+        enable: false
+        expectedChecksum: null
+        name: null
       defaultClass: false
       defaultClassReplicaCount: 3
+      defaultFsType: ext4
       reclaimPolicy: Delete
-      recurringJobs:
+      recurringJobSelector:
         enable: false
         jobList: []
     privateRegistry:
