@@ -6,3 +6,4 @@ resources:
   - nfs-provisioner-deployment.yaml
   # - nfs-provisioner-test-pvc
   - nfs-provisioner-helmrelease.yaml
+  - nfs-provisioner-test-pvc
