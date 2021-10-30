@@ -9,9 +9,9 @@ metadata:
   annotations:
     nfs.io/storage-path: "/wordpress"
 spec:
+  storageClassName: storage-nfs-provisioner
   accessModes:
     - ReadWriteOnce
-  # storageClassName: storage-nfs-provisioner
   resources:
     requests:
       storage: 1Gi
