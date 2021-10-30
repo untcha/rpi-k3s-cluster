@@ -464,11 +464,11 @@ flux create helmrelease traefik \
 ### Wordpress
 
 ```bash
-flux create helmrelease wordpress \
+flux create helmrelease wp-simone-wordpress \
   --source=HelmRepository/groundhog2k \
   --chart=wordpress \
   --chart-version="0.4.2" \
-  --target-namespace=<NAMESPACE> \
+  --target-namespace=wp-simone \
   --values=wordpress-values.yaml \
   --export > wordpress-helmrelease.yaml
 ```
