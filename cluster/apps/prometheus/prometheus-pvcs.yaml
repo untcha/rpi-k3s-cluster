@@ -7,7 +7,7 @@ metadata:
 spec:
   accessModes:
     - ReadWriteOnce
-  storageClassName: longhorn
+  storageClassName: longhorn-low-capacity
   resources:
     requests:
       storage: 2Gi
@@ -21,7 +21,7 @@ metadata:
 spec:
   accessModes:
     - ReadWriteOnce
-  storageClassName: longhorn
+  storageClassName: longhorn-high-capacity
   resources:
     requests:
       storage: 20Gi
@@ -35,7 +35,7 @@ metadata:
 spec:
   accessModes:
     - ReadWriteOnce
-  storageClassName: longhorn
+  storageClassName: longhorn-low-capacity
   resources:
     requests:
       storage: 2Gi
