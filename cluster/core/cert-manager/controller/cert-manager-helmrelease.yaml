@@ -57,8 +57,7 @@ spec:
       repository: quay.io/jetstack/cert-manager-controller
     ingressShim: {}
     installCRDs: true
-    nodeSelector:
-      node-type: worker
+    nodeSelector: {}
     podLabels: {}
     prometheus:
       enabled: true
