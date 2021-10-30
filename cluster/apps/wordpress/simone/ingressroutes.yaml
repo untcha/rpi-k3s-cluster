@@ -11,7 +11,7 @@ spec:
     - match: Host(`simone.${SECRET_DOMAIN_LOCAL_02}`)
       kind: Rule
       services:
-        - name: wp-simone-wp-simone-wordpress
+        - name: wp-simone-wordpress
           port: 80
 
 ---
