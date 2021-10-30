@@ -136,7 +136,7 @@ spec:
       accessModes:
       - ReadWriteOnce
       enabled: true
-      existingClaim: grafana-pvc-new
+      existingClaim: grafana-pvc
       finalizers:
       - kubernetes.io/pvc-protection
       inMemory:

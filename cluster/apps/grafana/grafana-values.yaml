@@ -282,7 +282,7 @@ persistence:
     - kubernetes.io/pvc-protection
   # selectorLabels: {}
   # subPath: ""
-  existingClaim: grafana-pvc-new
+  existingClaim: grafana-pvc
 
   ## If persistence is not enabled, this allows to mount the
   ## local storage in-memory to improve performance
