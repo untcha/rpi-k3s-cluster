@@ -12,3 +12,19 @@ spec:
   resources:
     requests:
       storage: 128Mi
+
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: cron-job-pvc-new
+  namespace: cron-jobs
+  annotations:
+    nfs.io/storage-path: "/cron-jobs/data"
+spec:
+  storageClassName: storage-nfs-provisioner
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 128Mi
