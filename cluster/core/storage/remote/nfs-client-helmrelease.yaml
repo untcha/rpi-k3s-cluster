@@ -9,13 +9,13 @@ metadata:
 spec:
   chart:
     spec:
-      chart: nfs-subdir-external-provisioner
+      chart: nfs-client
       sourceRef:
         kind: HelmRepository
-        name: nfs-subdir-external-provisioner
+        name: nfs-client
       version: 4.0.14
   interval: 1m0s
-  targetNamespace: nfs-subdir-external-provisioner
+  targetNamespace: nfs-client
   values:
     affinity: {}
     image:

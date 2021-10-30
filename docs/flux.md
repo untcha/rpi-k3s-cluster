@@ -340,12 +340,12 @@ flux create helmrelease nextcloud \
     kustomize.toolkit.fluxcd.io/substitute: disabled (!!!)
 
 flux create helmrelease nfs-subdir-external-provisioner \
-  --source=HelmRepository/nfs-subdir-external-provisioner \
-  --chart=nfs-subdir-external-provisioner \
+  --source=HelmRepository/nfs-client \
+  --chart=nfs-client \
   --chart-version="4.0.14" \
-  --target-namespace=nfs-subdir-external-provisioner \
-  --values=nfs-subdir-external-provisioner-values.yaml \
-  --export > nfs-subdir-external-provisioner-helmrelease.yaml
+  --target-namespace=nfs-client \
+  --values=nfs-client-values.yaml \
+  --export > nfs-client-helmrelease.yaml
 ```
 
 ### Portainer
