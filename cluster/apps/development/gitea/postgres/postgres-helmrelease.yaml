@@ -11,8 +11,7 @@ spec:
       sourceRef:
         kind: HelmRepository
         name: groundhog2k
-      version: 0.2.13
-  install: {}
+      version: 0.3.0
   interval: 1m0s
   targetNamespace: dev-gitea
   values:
@@ -80,7 +79,7 @@ spec:
       accessModes:
       - ReadWriteOnce
       className: null
-      persistentVolumeClaimName: postgres-pvc
+      persistentVolumeClaimName: postgres-nfs-pvc
       requestedSize: null
     tolerations: []
     updateStrategyType: RollingUpdate
