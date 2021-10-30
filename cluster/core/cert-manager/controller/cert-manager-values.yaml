@@ -154,8 +154,8 @@ podLabels: {}
 #     - "1.1.1.1"
 #     - "8.8.8.8"
 
-nodeSelector: {}
-  #node-type: worker
+nodeSelector:
+  node-type: worker
 
 ingressShim: {}
   # defaultIssuerName: ""
