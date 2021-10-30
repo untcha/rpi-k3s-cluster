@@ -4,6 +4,5 @@ resources:
   - nfs-provisioner-rbac.yaml
   - nfs-provisioner-storageclass-default.yaml
   - nfs-provisioner-deployment.yaml
-  # - nfs-provisioner-test-pvc
   - nfs-provisioner-helmrelease.yaml
-  - nfs-provisioner-test-pvc.yaml
+  # - nfs-provisioner-test-pvc.yaml
