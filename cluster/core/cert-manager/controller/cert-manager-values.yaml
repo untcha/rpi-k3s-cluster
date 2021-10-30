@@ -143,6 +143,9 @@ podLabels: {}
 # Optional additional labels to add to the controller Service
 # serviceLabels: {}
 
+# Optional additional annotations to add to the controller service
+# serviceAnnotations: {}
+
 # Optional DNS settings, useful if you have a public and private DNS zone for
 # the same domain on Route 53. What follows is an example of ensuring
 # cert-manager can access an ingress or DNS TXT records at all times.
@@ -235,6 +238,9 @@ webhook:
 
   # Optional additional annotations to add to the webhook ValidatingWebhookConfiguration
   # validatingWebhookConfigurationAnnotations: {}
+
+  # Optional additional annotations to add to the webhook service
+  # serviceAnnotations: {}
 
   # Optional additional arguments for webhook
   extraArgs: []
@@ -405,6 +411,11 @@ cainjector:
 
 # This startupapicheck is a Helm post-install hook that waits for the webhook
 # endpoints to become available.
+# The check is implemented using a Kubernetes Job- if you are injecting mesh
+# sidecar proxies into cert-manager pods, you probably want to ensure that they
+# are not injected into this Job's pod. Otherwise the installation may time out
+# due to the Job never being completed because the sidecar proxy does not exit.
+# See https://github.com/jetstack/cert-manager/pull/4414 for context.
 startupapicheck:
   enabled: true
 
