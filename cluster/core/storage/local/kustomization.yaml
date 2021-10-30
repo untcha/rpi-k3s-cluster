@@ -4,5 +4,5 @@ kind: Kustomization
 resources:
   # - enc_longhorn-secret-basicauth.yaml
   - longhorn-helmrelease.yaml
-  - longhorn-letsencrypt-certificate.yaml
-  - longhorn-ingressroute.yaml
+  #- longhorn-letsencrypt-certificate.yaml
+  #- longhorn-ingressroute.yaml
