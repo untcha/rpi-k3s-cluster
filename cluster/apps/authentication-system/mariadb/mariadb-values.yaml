@@ -23,7 +23,8 @@ serviceAccount:
   name: ""
 
 ## Additional node selector
-nodeSelector: {}
+nodeSelector:
+  node-type: worker
 
 ## Additional pod annotations
 podAnnotations: {}
