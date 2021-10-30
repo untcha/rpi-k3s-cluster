@@ -4,8 +4,6 @@ kind: HelmRelease
 metadata:
   name: nfs-subdir-external-provisioner
   namespace: flux-system
-  annotations:
-    kustomize.toolkit.fluxcd.io/substitute: disabled
 spec:
   chart:
     spec:
@@ -52,7 +50,7 @@ spec:
       archiveOnDelete: true
       create: true
       defaultClass: false
-      name: nfs-client
+      name: nfs-client-test
       onDelete: null
       pathPattern: ${.PVC.namespace}/${.PVC.annotations.nfs.io/storage-path}
       reclaimPolicy: Delete
