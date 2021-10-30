@@ -296,11 +296,11 @@ flux create helmrelease longhorn \
 ### MariaDB
 
 ```bash
-flux create helmrelease mariadb \
+flux create helmrelease wp-simone-mariadb \
   --source=HelmRepository/groundhog2k \
   --chart=mariadb \
   --chart-version="0.2.14" \
-  --target-namespace=<NAMESPACE> \
+  --target-namespace=wp-simone \
   --values=mariadb-values.yaml \
   --export > mariadb-helmrelease.yaml
 ```

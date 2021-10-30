@@ -12,7 +12,6 @@ spec:
         kind: HelmRepository
         name: groundhog2k
       version: 0.2.14
-  install: {}
   interval: 1m0s
   targetNamespace: wp-simone
   values:
@@ -35,7 +34,8 @@ spec:
       successThreshold: 1
       timeoutSeconds: 5
     nameOverride: ""
-    nodeSelector: {}
+    nodeSelector:
+      node-type: worker
     podAnnotations: {}
     podManagementPolicy: OrderedReady
     podSecurityContext:
