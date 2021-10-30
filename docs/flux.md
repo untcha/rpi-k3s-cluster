@@ -335,6 +335,10 @@ flux create helmrelease nextcloud \
 ### nfs-subdir-external-provisioner
 
 ```bash
+  namespace: flux-system
+  annotations:
+    kustomize.toolkit.fluxcd.io/substitute: disabled (!!!)
+
 flux create helmrelease nfs-subdir-external-provisioner \
   --source=HelmRepository/nfs-subdir-external-provisioner \
   --chart=nfs-subdir-external-provisioner \
