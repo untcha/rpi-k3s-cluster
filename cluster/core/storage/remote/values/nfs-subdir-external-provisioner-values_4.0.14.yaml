@@ -8,7 +8,7 @@ image:
 imagePullSecrets: []
 
 nfs:
-  server: ${SECRET_NFS_SERVER_IP}
+  server: 192.168.178.110
   path: /KubeData
   mountOptions:
   volumeName: nfs-subdir-external-provisioner-root
@@ -28,7 +28,7 @@ storageClass:
 
   # Set a StorageClass name
   # Ignored if storageClass.create is false
-  name: nfs-client
+  name: storage-nfs-provisioner
 
   # Allow volume to be expanded dynamically
   allowVolumeExpansion: true

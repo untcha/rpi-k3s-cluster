@@ -342,7 +342,7 @@ flux create helmrelease nextcloud \
   --export > nextcloud-helmrelease.yaml
 ```
 
-### nfs-subdir-external-provisioner
+### nfs-provisioner
 
 ```bash
   namespace: flux-system
