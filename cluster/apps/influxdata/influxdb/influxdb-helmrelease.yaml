@@ -96,7 +96,7 @@ spec:
       accessMode: ReadWriteOnce
       annotations: null
       enabled: true
-      existingClaim: influxdb-pvc
+      existingClaim: influxdb-pvc-new
       size: 8Gi
     podAnnotations: {}
     podLabels: {}
