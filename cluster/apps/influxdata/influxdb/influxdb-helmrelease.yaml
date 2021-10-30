@@ -12,7 +12,6 @@ spec:
         kind: HelmRepository
         name: influxdata
       version: 4.10.0
-  install: {}
   interval: 1m0s
   targetNamespace: influxdata
   values:
@@ -91,12 +90,13 @@ spec:
           CREATE DATABASE "sysstats" WITH DURATION 365d REPLICATION 1 NAME "rp_365d"
 
     livenessProbe: {}
-    nodeSelector: {}
+    nodeSelector:
+      node-type: worker
     persistence:
       accessMode: ReadWriteOnce
       annotations: null
       enabled: true
-      existingClaim: influxdb-pvc
+      existingClaim: influxdb-pvc-new
       size: 8Gi
     podAnnotations: {}
     podLabels: {}
