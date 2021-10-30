@@ -11,6 +11,7 @@ metadata:
 spec:
   accessModes:
     - ReadWriteOnce
+  storageClassName: storage-nfs-provisioner
   resources:
     requests:
       storage: 1Gi
