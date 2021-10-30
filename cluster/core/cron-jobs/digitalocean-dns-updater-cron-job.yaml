@@ -10,6 +10,8 @@ spec:
     spec:
       template:
         spec:
+          nodeSelector:
+            node-type: worker
           containers:
           - name: digitalocean-dns-updater-tool
             image: praqma/network-multitool
