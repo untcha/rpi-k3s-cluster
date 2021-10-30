@@ -59,7 +59,7 @@ spec:
             name: unbound-root-hints
         - name: unbound-root-key
           persistentVolumeClaim:
-            claimName: unbound-root-key-pvc
+            claimName: unbound-root-key-pvc-new
         # - name: unbound-root-key
         #   configMap:
         #     name: unbound-root-key
