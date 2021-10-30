@@ -2,7 +2,7 @@
 apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
-  name: nfs-client
+  name: nfs-test
   namespace: flux-system
   annotations:
     kustomize.toolkit.fluxcd.io/substitute: disabled
