@@ -339,7 +339,7 @@ flux create helmrelease nextcloud \
   annotations:
     kustomize.toolkit.fluxcd.io/substitute: disabled (!!!)
 
-flux create helmrelease nfs-subdir-external-provisioner \
+flux create helmrelease nfs-client \
   --source=HelmRepository/nfs-client \
   --chart=nfs-client \
   --chart-version="4.0.14" \
