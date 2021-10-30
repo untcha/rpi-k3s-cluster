@@ -52,7 +52,7 @@ spec:
       archiveOnDelete: true
       create: true
       defaultClass: false
-      name: nfs-client-test
+      name: storage-nfs-provisioner
       onDelete: null
       pathPattern: ${.PVC.namespace}/${.PVC.annotations.nfs.io/storage-path}
       reclaimPolicy: Delete
