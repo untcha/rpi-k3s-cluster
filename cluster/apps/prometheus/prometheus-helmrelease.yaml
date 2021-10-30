@@ -11,7 +11,7 @@ spec:
       sourceRef:
         kind: HelmRepository
         name: prometheus-community
-      version: 14.6.0
+      version: 14.11.0
   interval: 1m0s
   targetNamespace: prometheus
   values:
@@ -19,6 +19,7 @@ spec:
     alertmanager:
       affinity: {}
       baseURL: http://localhost:9093
+      clusterPeers: []
       configFileName: alertmanager.yml
       configFromSecret: ""
       configMapOverrideName: ""
@@ -34,7 +35,7 @@ spec:
       image:
         pullPolicy: IfNotPresent
         repository: quay.io/prometheus/alertmanager
-        tag: v0.21.0
+        tag: v0.23.0
       ingress:
         annotations: {}
         enabled: false
@@ -128,35 +129,35 @@ spec:
         name: configmap-reload
         resources: {}
     extraScrapeConfigs: |
-      - job_name: 'traefik-metrics'
-        scrape_interval: 5s
-        scheme: http
-        metrics_path: /metrics
-        static_configs:
-          - targets:
-            - traefik.${SECRET_DOMAIN_LOCAL_02}
-      - job_name: 'pihole-metrics'
-        scrape_interval: 5s
-        scheme: http
-        metrics_path: /metrics
-        static_configs:
-          - targets:
-            - pihole-metrics.${SECRET_DOMAIN_LOCAL_02}
-      - job_name: 'speedtest-metrics'
-        scrape_interval: 1h
-        scrape_timeout: 5m
-        scheme: http
-        metrics_path: /metrics
-        static_configs:
-          - targets:
-            - speedtest.${SECRET_DOMAIN_LOCAL_02}
-      - job_name: 'z_blocky-metrics'
-        scrape_interval: 5s
-        scheme: http
-        metrics_path: /metrics
-        static_configs:
-          - targets:
-            - blocky.${SECRET_DOMAIN_LOCAL_02}
+      # - job_name: 'traefik-metrics'
+      #   scrape_interval: 5s
+      #   scheme: http
+      #   metrics_path: /metrics
+      #   static_configs:
+      #     - targets:
+      #       - traefik.${SECRET_DOMAIN_LOCAL_02}
+      # - job_name: 'pihole-metrics'
+      #   scrape_interval: 5s
+      #   scheme: http
+      #   metrics_path: /metrics
+      #   static_configs:
+      #     - targets:
+      #       - pihole-metrics.${SECRET_DOMAIN_LOCAL_02}
+      # - job_name: 'speedtest-metrics'
+      #   scrape_interval: 1h
+      #   scrape_timeout: 5m
+      #   scheme: http
+      #   metrics_path: /metrics
+      #   static_configs:
+      #     - targets:
+      #       - speedtest.${SECRET_DOMAIN_LOCAL_02}
+      # - job_name: 'z_blocky-metrics'
+      #   scrape_interval: 5s
+      #   scheme: http
+      #   metrics_path: /metrics
+      #   static_configs:
+      #     - targets:
+      #       - blocky.${SECRET_DOMAIN_LOCAL_02}
       # - job_name: 'prometheus-blackbox-exporter'
       #   metrics_path: /probe
       #   params:
@@ -190,7 +191,7 @@ spec:
       image:
         pullPolicy: IfNotPresent
         repository: quay.io/prometheus/node-exporter
-        tag: v1.1.2
+        tag: v1.2.2
       name: node-exporter
       nodeSelector: {}
       pod:
@@ -233,7 +234,7 @@ spec:
       image:
         pullPolicy: IfNotPresent
         repository: prom/pushgateway
-        tag: v1.3.1
+        tag: v1.4.2
       ingress:
         annotations: {}
         enabled: false
@@ -277,6 +278,8 @@ spec:
         servicePort: 9091
         type: ClusterIP
       tolerations: []
+      verticalAutoscaler:
+        enabled: false
     rbac:
       create: true
     server:
@@ -311,7 +314,7 @@ spec:
       image:
         pullPolicy: IfNotPresent
         repository: quay.io/prometheus/prometheus
-        tag: v2.26.0
+        tag: v2.30.3
       ingress:
         annotations: {}
         enabled: false
@@ -346,6 +349,8 @@ spec:
         annotations: {}
       prefixURL: ""
       priorityClassName: ""
+      probeHeaders: []
+      probeScheme: HTTP
       readinessProbeFailureThreshold: 3
       readinessProbeInitialDelay: 30
       readinessProbePeriodSeconds: 5
@@ -377,8 +382,13 @@ spec:
           enabled: false
           replica: 0
         type: LoadBalancer
-      sidecarContainers: {}
+      sidecarContainers: []
       sidecarTemplateValues: {}
+      startupProbe:
+        enabled: false
+        failureThreshold: 30
+        periodSeconds: 5
+        timeoutSeconds: 10
       statefulSet:
         annotations: {}
         enabled: false
@@ -392,6 +402,7 @@ spec:
         labels: {}
         podManagementPolicy: OrderedReady
       storagePath: ""
+      tcpSocketProbeEnabled: false
       terminationGracePeriodSeconds: 300
       tolerations: []
       verticalAutoscaler:
@@ -487,6 +498,9 @@ spec:
             - __meta_kubernetes_service_annotation_prometheus_io_port
             target_label: __address__
           - action: labelmap
+            regex: __meta_kubernetes_service_annotation_prometheus_io_param_(.+)
+            replacement: __param_$1
+          - action: labelmap
             regex: __meta_kubernetes_service_label_(.+)
           - action: replace
             source_labels:
@@ -525,6 +539,9 @@ spec:
             - __address__
             - __meta_kubernetes_service_annotation_prometheus_io_port
             target_label: __address__
+          - action: labelmap
+            regex: __meta_kubernetes_service_annotation_prometheus_io_param_(.+)
+            replacement: __param_$1
           - action: labelmap
             regex: __meta_kubernetes_service_label_(.+)
           - action: replace
@@ -604,6 +621,9 @@ spec:
             - __meta_kubernetes_pod_annotation_prometheus_io_port
             target_label: __address__
           - action: labelmap
+            regex: __meta_kubernetes_pod_annotation_prometheus_io_param_(.+)
+            replacement: __param_$1
+          - action: labelmap
             regex: __meta_kubernetes_pod_label_(.+)
           - action: replace
             source_labels:
@@ -643,6 +663,9 @@ spec:
             - __meta_kubernetes_pod_annotation_prometheus_io_port
             target_label: __address__
           - action: labelmap
+            regex: __meta_kubernetes_pod_annotation_prometheus_io_param_(.+)
+            replacement: __param_$1
+          - action: labelmap
             regex: __meta_kubernetes_pod_label_(.+)
           - action: replace
             source_labels:
@@ -653,7 +676,7 @@ spec:
             - __meta_kubernetes_pod_name
             target_label: kubernetes_pod_name
           - action: drop
-            regex: Pending|Succeeded|Failed
+            regex: Pending|Succeeded|Failed|Completed
             source_labels:
             - __meta_kubernetes_pod_phase
           scrape_interval: 5m
