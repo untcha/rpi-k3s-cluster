@@ -9,7 +9,7 @@ metadata:
 spec:
   chart:
     spec:
-      chart: nfs-client
+      chart: nfs-subdir-external-provisioner
       sourceRef:
         kind: HelmRepository
         name: nfs-client

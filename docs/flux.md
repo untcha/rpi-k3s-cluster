@@ -341,7 +341,7 @@ flux create helmrelease nextcloud \
 
 flux create helmrelease nfs-client \
   --source=HelmRepository/nfs-client \
-  --chart=nfs-client \
+  --chart=nfs-subdir-external-provisioner \
   --chart-version="4.0.14" \
   --target-namespace=nfs-client \
   --values=nfs-client-values.yaml \
