@@ -12,3 +12,19 @@ spec:
   resources:
     requests:
       storage: 8Gi
+
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: grafana-pvc-new
+  namespace: grafana
+  annotations:
+    nfs.io/storage-path: "data"
+spec:
+  storageClassName: storage-nfs-provisioner
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 8Gi
