@@ -7,6 +7,7 @@ metadata:
   annotations:
     nfs.io/storage-path: "html"
 spec:
+  storageClassName: storage-nfs-provisioner
   accessModes:
     - ReadWriteOnce
   resources:
