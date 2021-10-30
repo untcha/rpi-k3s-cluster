@@ -20,7 +20,7 @@ metadata:
   name: unbound-root-key-pvc-new
   namespace: dns
   annotations:
-    nfs.io/storage-path: "/unbound-root-key"
+    nfs.io/storage-path: "/unbound"
 spec:
   storageClassName: storage-nfs-provisioner
   accessModes:
