@@ -332,6 +332,18 @@ flux create helmrelease nextcloud \
   --export > nextcloud-helmrelease.yaml
 ```
 
+### nfs-subdir-external-provisioner
+
+```bash
+flux create helmrelease nfs-subdir-external-provisioner \
+  --source=HelmRepository/nfs-subdir-external-provisioner \
+  --chart=nfs-subdir-external-provisioner \
+  --chart-version="4.0.14" \
+  --target-namespace=nfs-subdir-external-provisioner \
+  --values=nfs-subdir-external-provisioner-values.yaml \
+  --export > nfs-subdir-external-provisioner-helmrelease.yaml
+```
+
 ### Portainer
 
 ```bash
