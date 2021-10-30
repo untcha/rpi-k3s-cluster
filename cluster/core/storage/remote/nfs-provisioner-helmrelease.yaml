@@ -51,7 +51,7 @@ spec:
         kustomize.toolkit.fluxcd.io/substitute: disabled
       archiveOnDelete: true
       create: true
-      defaultClass: false
+      defaultClass: true
       name: storage-nfs-provisioner
       onDelete: null
       pathPattern: ${.PVC.namespace}/${.PVC.annotations.nfs.io/storage-path}
