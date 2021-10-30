@@ -18,10 +18,12 @@ kind: PersistentVolumeClaim
 metadata:
   name: nfs-provisioner-test-pvc
   namespace: storage
+  annotations:
+    nfs.io/storage-path: "/test/test/test"
 spec:
+  storageClassName: storage-nfs-provisioner
   accessModes:
     - ReadWriteOnce
-  storageClassName: storage-nfs-provisioner
   resources:
     requests:
       storage: 1Gi
