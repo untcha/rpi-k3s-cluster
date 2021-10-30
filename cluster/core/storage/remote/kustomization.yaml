@@ -5,4 +5,4 @@ resources:
   - nfs-provisioner-storageclass-default.yaml
   - nfs-provisioner-deployment.yaml
   # - nfs-provisioner-test-pvc
-  - nfs-subdir-external-provisioner-helmrelease.yaml
+  # - nfs-subdir-external-provisioner-helmrelease.yaml
