@@ -2,7 +2,7 @@
 apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
-  name: nfs-test
+  name: nfs-provisioner
   namespace: flux-system
   annotations:
     kustomize.toolkit.fluxcd.io/substitute: disabled
@@ -12,10 +12,10 @@ spec:
       chart: nfs-subdir-external-provisioner
       sourceRef:
         kind: HelmRepository
-        name: nfs-client
+        name: nfs-provisioner
       version: 4.0.14
   interval: 1m0s
-  targetNamespace: nfs-client
+  targetNamespace: storage
   values:
     affinity: {}
     image:
