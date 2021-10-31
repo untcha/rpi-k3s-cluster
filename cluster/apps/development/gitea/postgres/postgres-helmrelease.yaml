@@ -79,7 +79,7 @@ spec:
       accessModes:
       - ReadWriteOnce
       className: null
-      persistentVolumeClaimName: postgres-nfs-pvc
+      persistentVolumeClaimName: postgres-pvc
       requestedSize: null
     tolerations: []
     updateStrategyType: RollingUpdate
