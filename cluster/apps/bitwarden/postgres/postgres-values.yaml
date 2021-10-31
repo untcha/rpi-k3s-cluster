@@ -136,7 +136,7 @@ customConfig: |-
 ## Storage parameters
 storage:
   ##  Set persistentVolumenClaimName to reference an existing PVC
-  persistentVolumeClaimName: postgres-pvc
+  persistentVolumeClaimName: pvc-3521a386-cf79-40e8-855a-cea0e37220f5
 
   ## Alternative set requestedSize to define a size for a dynmaically created PVC
   requestedSize:
