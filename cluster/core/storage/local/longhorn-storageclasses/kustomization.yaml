@@ -4,4 +4,4 @@ kind: Kustomization
 resources:
   - longhorn-low-capacity-storageclass.yaml           # for low capacity needs without backup (e.g. prometheus)
   - longhorn-high-capacity-storageclass.yaml          # for hight capacity needs without backup (e.g. prometheus)
-  - longhorn-low-capacity-backup-storageclass.yaml    # for low capacity needs with backup (e.g. bitwarden)
+  # - longhorn-low-capacity-backup-storageclass.yaml    # for low capacity needs with backup (e.g. bitwarden)
