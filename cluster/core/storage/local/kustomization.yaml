@@ -4,7 +4,8 @@ kind: Kustomization
 resources:
   # - enc_longhorn-secret-basicauth.yaml
   - longhorn-helmrelease.yaml
-  - longhorn-low-capacity-storageclass.yaml
-  - longhorn-high-capacity-storageclass.yaml
+  - longhorn-storageclasses
+  # - longhorn-low-capacity-storageclass.yaml
+  # - longhorn-high-capacity-storageclass.yaml
   - longhorn-letsencrypt-certificate.yaml
   - longhorn-ingressroute.yaml
