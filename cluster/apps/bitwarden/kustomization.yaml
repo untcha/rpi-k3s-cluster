@@ -5,10 +5,10 @@ resources:
   - bitwarden-namespace.yaml
   - postgres
   - bitwarden-pvc.yaml
-  # - bitwarden-rbac.yaml
-  # - enc_bitwarden-secrets.yaml
-  # - bitwarden-configmap.yaml
-  # - bitwarden-service.yaml
-  # - bitwarden-deployment.yaml
-  # - bitwarden-letsencrypt-certificate.yaml
-  # - bitwarden-ingressroute.yaml
+  - bitwarden-rbac.yaml
+  - enc_bitwarden-secrets.yaml
+  - bitwarden-configmap.yaml
+  - bitwarden-service.yaml
+  - bitwarden-deployment.yaml
+  - bitwarden-letsencrypt-certificate.yaml
+  - bitwarden-ingressroute.yaml
