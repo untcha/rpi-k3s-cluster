@@ -60,4 +60,4 @@ spec:
       volumes:
         - name: bitwarden-data
           persistentVolumeClaim:
-            claimName: bitwarden-data-pvc
+            claimName: pvc-96c92909-803e-4b73-9cb1-60785d099d78
