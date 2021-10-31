@@ -55,9 +55,7 @@ spec:
     - match: Host(`longhorn.${SECRET_DIGITALOCEAN_DOMAIN_02}`)
       kind: Rule
       middlewares:
-        # - name: longhorn-middleware-basicauth
-        # - name: longhorn-middleware-headers
-        - name: svc-longhorn-headers
+        - name: longhorn-middleware-headers
         - name: longhorn-middleware-authelia
       services:
         - name: longhorn-frontend
@@ -77,17 +75,6 @@ spec:
     permanent: true
     port: "443"
 
----
-apiVersion: traefik.containo.us/v1alpha1
-kind: Middleware
-metadata:
-  name: svc-longhorn-headers
-  namespace: longhorn-system
-spec:
-  headers:
-    customRequestHeaders:
-      X-Forwarded-Proto: "https"
-
 # ---
 # apiVersion: traefik.containo.us/v1alpha1
 # kind: Middleware
@@ -98,6 +85,8 @@ spec:
 #   basicAuth:
 #     secret: longhorn-secret-basicauth
 
+# https://longhorn.io/kb/troubleshooting-traefik-2.x-as-ingress-controller/
+# Avoid CORS problem
 ---
 apiVersion: traefik.containo.us/v1alpha1
 kind: Middleware
@@ -106,26 +95,37 @@ metadata:
   namespace: longhorn-system
 spec:
   headers:
-    browserXssFilter: true
-    contentTypeNosniff: true
-    frameDeny: true
-    sslRedirect: true
-    forceSTSHeader: true
-    stsIncludeSubdomains: true
-    stsPreload: true
-    stsSeconds: 315360000
-    # stsSeconds: 63072000
-    contentSecurityPolicy: |
-      default-src 'none';form-action 'none';frame-ancestors 'none';base-uri 'none'
-    accessControlAllowMethods:
-      - "GET"
-      - "POST"
-    accessControlAllowOriginList:
-      - "https://longhorn.${SECRET_DIGITALOCEAN_DOMAIN_02}"
-    accessControlMaxAge: 100
-    addVaryHeader: true
-    referrerPolicy: "same-origin"
-    customFrameOptionsValue: SAMEORIGIN
+    customRequestHeaders:
+      X-Forwarded-Proto: "https"
+
+# ---
+# apiVersion: traefik.containo.us/v1alpha1
+# kind: Middleware
+# metadata:
+#   name: longhorn-middleware-headers
+#   namespace: longhorn-system
+# spec:
+#   headers:
+#     browserXssFilter: true
+#     contentTypeNosniff: true
+#     frameDeny: true
+#     sslRedirect: true
+#     forceSTSHeader: true
+#     stsIncludeSubdomains: true
+#     stsPreload: true
+#     stsSeconds: 315360000
+#     # stsSeconds: 63072000
+#     contentSecurityPolicy: |
+#       default-src 'none';form-action 'none';frame-ancestors 'none';base-uri 'none'
+#     accessControlAllowMethods:
+#       - "GET"
+#       - "POST"
+#     accessControlAllowOriginList:
+#       - "https://longhorn.${SECRET_DIGITALOCEAN_DOMAIN_02}"
+#     accessControlMaxAge: 100
+#     addVaryHeader: true
+#     referrerPolicy: "same-origin"
+#     customFrameOptionsValue: SAMEORIGIN
 
 ---
 apiVersion: traefik.containo.us/v1alpha1
