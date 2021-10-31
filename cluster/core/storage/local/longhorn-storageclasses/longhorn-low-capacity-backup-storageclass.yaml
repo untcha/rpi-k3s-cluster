@@ -17,6 +17,10 @@ parameters:
   # diskSelector: "low-capacity"
   recurringJobSelector: '[
     {
+      "name":"backup-c-vz8lpj",
+      "isGroup":false,
+    },
+    {
       "name":"backup",
       "isGroup":true,
     }
