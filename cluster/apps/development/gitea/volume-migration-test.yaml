@@ -31,4 +31,4 @@ spec:
             claimName: postgres-pvc # change to data source pvc
         - name: new-vol
           persistentVolumeClaim:
-            claimName: postgres-nfs-pvc # change to data target pvc
+            claimName: postgres-pvc-new # change to data target pvc
