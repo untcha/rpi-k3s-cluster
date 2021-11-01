@@ -12,18 +12,18 @@ spec:
     requests:
       storage: 5Gi
 
----
-apiVersion: v1
-kind: PersistentVolumeClaim
-metadata:
-  name: postgres-nfs-pvc
-  namespace: dev-gitea
-  annotations:
-    nfs.io/storage-path: "/database"
-spec:
-  storageClassName: storage-nfs-provisioner
-  accessModes:
-    - ReadWriteOnce
-  resources:
-    requests:
-      storage: 5Gi
+# ---
+# apiVersion: v1
+# kind: PersistentVolumeClaim
+# metadata:
+#   name: postgres-nfs-pvc
+#   namespace: dev-gitea
+#   annotations:
+#     nfs.io/storage-path: "/database"
+# spec:
+#   storageClassName: storage-nfs-provisioner
+#   accessModes:
+#     - ReadWriteOnce
+#   resources:
+#     requests:
+#       storage: 5Gi
