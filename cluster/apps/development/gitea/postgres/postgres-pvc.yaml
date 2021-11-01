@@ -12,6 +12,20 @@ spec:
     requests:
       storage: 5Gi
 
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: postgres-pvc-new
+  namespace: dev-gitea
+spec:
+  storageClassName: longhorn
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 5Gi
+
 # ---
 # apiVersion: v1
 # kind: PersistentVolumeClaim
