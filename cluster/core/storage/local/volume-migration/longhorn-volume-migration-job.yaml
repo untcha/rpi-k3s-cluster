@@ -16,10 +16,11 @@ spec:
       restartPolicy: Never
       containers:
         - name: longhorn-volume-migration-job
-          image: praqma/network-multitool
+          image: praqma/network-multitool:extra
           tty: true
           command: [ "/bin/sh" ]
-          args: [ "-c", "cp -r -v /mnt/old /mnt/new" ]
+          args: [ "-c", "rsync -a --exclude 'lost+found' /mnt/old/ /mnt/new" ]
+          # args: [ "-c", "cp -r -v /mnt/old /mnt/new" ]
           volumeMounts:
             - name: old-vol
               mountPath: /mnt/old
