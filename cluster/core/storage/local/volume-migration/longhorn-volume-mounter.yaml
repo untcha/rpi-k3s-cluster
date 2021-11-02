@@ -20,7 +20,7 @@ spec:
         node-type: worker
       containers:
         - name: longhorn-volume-mounter
-          image: praqma/network-multitool
+          image: praqma/network-multitool:extra
           tty: true
           volumeMounts:
             - name: old-vol
