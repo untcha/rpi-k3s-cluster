@@ -33,50 +33,50 @@
 #           persistentVolumeClaim:
 #             claimName: postgres-pvc-new # change to data target pvc
 
----
-kind: Deployment
-apiVersion: apps/v1
-metadata:
-  name: volume-migration-test-deployment
-  namespace: dev-gitea
-  labels:
-    app: volume-migration-test-deployment
-spec:
-  replicas: 1
-  selector:
-    matchLabels:
-      app: volume-migration-test-deployment
-  template:
-    metadata:
-      labels:
-        app: volume-migration-test-deployment
-    spec:
-      nodeSelector:
-        node-type: worker
-      containers:
-        - name: volume-migration-test-deployment
-          image: praqma/network-multitool
-          tty: true
-          volumeMounts:
-            - name: old-vol
-              mountPath: /mnt/old
-            - name: new-vol
-              mountPath: /mnt/new
-          resources:
-            requests:
-              cpu: "1m"
-              memory: "20Mi"
-            limits:
-              cpu: "10m"
-              memory: "20Mi"
-          securityContext:
-            runAsUser: 0
-            capabilities:
-              add: ["NET_ADMIN"]
-      volumes:
-        - name: old-vol
-          persistentVolumeClaim:
-            claimName: postgres-pvc # change to data source pvc
-        - name: new-vol
-          persistentVolumeClaim:
-            claimName: postgres-pvc-new # change to data target pvc
+# ---
+# kind: Deployment
+# apiVersion: apps/v1
+# metadata:
+#   name: volume-migration-test-deployment
+#   namespace: dev-gitea
+#   labels:
+#     app: volume-migration-test-deployment
+# spec:
+#   replicas: 1
+#   selector:
+#     matchLabels:
+#       app: volume-migration-test-deployment
+#   template:
+#     metadata:
+#       labels:
+#         app: volume-migration-test-deployment
+#     spec:
+#       nodeSelector:
+#         node-type: worker
+#       containers:
+#         - name: volume-migration-test-deployment
+#           image: praqma/network-multitool
+#           tty: true
+#           volumeMounts:
+#             - name: old-vol
+#               mountPath: /mnt/old
+#             - name: new-vol
+#               mountPath: /mnt/new
+#           resources:
+#             requests:
+#               cpu: "1m"
+#               memory: "20Mi"
+#             limits:
+#               cpu: "10m"
+#               memory: "20Mi"
+#           securityContext:
+#             runAsUser: 0
+#             capabilities:
+#               add: ["NET_ADMIN"]
+#       volumes:
+#         - name: old-vol
+#           persistentVolumeClaim:
+#             claimName: postgres-pvc # change to data source pvc
+#         - name: new-vol
+#           persistentVolumeClaim:
+#             claimName: postgres-pvc-new # change to data target pvc
