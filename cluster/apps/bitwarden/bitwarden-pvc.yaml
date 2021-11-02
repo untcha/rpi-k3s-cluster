@@ -13,30 +13,30 @@
 #     requests:
 #       storage: 5Gi
 
----
-apiVersion: v1
-kind: PersistentVolumeClaim
-metadata:
-  name: bitwarden-data-pvc
-  namespace: bitwarden
-spec:
-  accessModes:
-    - ReadWriteOnce
-  storageClassName: longhorn
-  resources:
-    requests:
-      storage: 5Gi
+# ---
+# apiVersion: v1
+# kind: PersistentVolumeClaim
+# metadata:
+#   name: bitwarden-data-pvc
+#   namespace: bitwarden
+# spec:
+#   accessModes:
+#     - ReadWriteOnce
+#   storageClassName: longhorn
+#   resources:
+#     requests:
+#       storage: 5Gi
 
----
-apiVersion: v1
-kind: PersistentVolumeClaim
-metadata:
-  name: bitwarden-data-pvc-new
-  namespace: bitwarden
-spec:
-  accessModes:
-    - ReadWriteOnce
-  storageClassName: longhorn
-  resources:
-    requests:
-      storage: 5Gi
+# ---
+# apiVersion: v1
+# kind: PersistentVolumeClaim
+# metadata:
+#   name: bitwarden-data-pvc-new
+#   namespace: bitwarden
+# spec:
+#   accessModes:
+#     - ReadWriteOnce
+#   storageClassName: longhorn
+#   resources:
+#     requests:
+#       storage: 5Gi
