@@ -376,7 +376,7 @@ flux create helmrelease portainer \
 flux create helmrelease gitea-postgres \
   --source=HelmRepository/groundhog2k \
   --chart=postgres \
-  --chart-version="0.2.13" \
+  --chart-version="0.3.0" \
   --target-namespace=dev-gitea \
   --values=postgres-values.yaml \
   --export > postgres-helmrelease.yaml

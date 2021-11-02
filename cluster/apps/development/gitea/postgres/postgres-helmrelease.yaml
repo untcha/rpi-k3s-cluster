@@ -79,7 +79,7 @@ spec:
       accessModes:
       - ReadWriteOnce
       className: null
-      persistentVolumeClaimName: postgres-pvc
+      persistentVolumeClaimName: gitea-postgres-pvc
       requestedSize: null
     tolerations: []
     updateStrategyType: RollingUpdate
