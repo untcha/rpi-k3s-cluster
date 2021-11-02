@@ -5,7 +5,7 @@ resources:
   - gitea-namespace.yaml
   - postgres
   - redis
-  # - gitea-pvc.yaml
+  - gitea-pvc.yaml
   # - gitea-helmrelease.yaml
   - gitea-letsencrypt-certificate.yaml
   - gitea-ingressroute.yaml

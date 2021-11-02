@@ -212,7 +212,7 @@ spec:
       - ReadWriteOnce
       className: null
       keepPvc: false
-      persistentVolumeClaimName: gitea-pvc
+      persistentVolumeClaimName: gitea-data-pvc
       requestedSize: null
     strategy:
       type: Recreate
