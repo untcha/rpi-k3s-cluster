@@ -2,12 +2,12 @@
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: redis-pvc
+  name: nextcloud-redis-pvc
   namespace: nextcloud
 spec:
+  storageClassName: longhorn-high-capacity # use only high capacity nodes
   accessModes:
     - ReadWriteOnce
-  storageClassName: longhorn
   resources:
     requests:
       storage: 2Gi

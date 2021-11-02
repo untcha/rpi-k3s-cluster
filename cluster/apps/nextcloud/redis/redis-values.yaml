@@ -161,7 +161,7 @@ haMode:
 ## Storage parameters
 storage:
   ##  Set persistentVolumenClaimName to reference an existing PVC
-  persistentVolumeClaimName: redis-pvc
+  persistentVolumeClaimName: nextcloud-redis-pvc
 
   ## Alternative set requestedSize to define a size for a dynmaically created PVC
   requestedSize:

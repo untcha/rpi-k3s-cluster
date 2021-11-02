@@ -89,7 +89,7 @@ spec:
       accessModes:
       - ReadWriteOnce
       className: null
-      persistentVolumeClaimName: redis-pvc
+      persistentVolumeClaimName: nextcloud-redis-pvc
       requestedSize: null
     tolerations: []
     updateStrategyType: RollingUpdate
