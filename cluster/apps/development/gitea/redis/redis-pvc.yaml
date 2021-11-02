@@ -5,9 +5,9 @@ metadata:
   name: gitea-redis-pvc
   namespace: dev-gitea
 spec:
+  storageClassName: longhorn-high-capacity # use only high capacity nodes
   accessModes:
     - ReadWriteOnce
-  storageClassName: longhorn
   resources:
     requests:
       storage: 2Gi
