@@ -9,3 +9,4 @@ resources:
   # - longhorn-high-capacity-storageclass.yaml
   - longhorn-letsencrypt-certificate.yaml
   - longhorn-ingressroute.yaml
+  - volume-migration
