@@ -1,0 +1,34 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  namespace: dev-gitea  # namespace where the pvc's exist
+  name: longhorn-volume-migration-job
+spec:
+  completions: 1
+  parallelism: 1
+  backoffLimit: 3
+  template:
+    metadata:
+      name: longhorn-volume-migration-job
+      labels:
+        name: longhorn-volume-migration-job
+    spec:
+      restartPolicy: Never
+      containers:
+        - name: longhorn-volume-migration-job
+          image: praqma/network-multitool
+          tty: true
+          command: [ "/bin/sh" ]
+          args: [ "-c", "cp -r -v /mnt/old /mnt/new" ]
+          volumeMounts:
+            - name: old-vol
+              mountPath: /mnt/old
+            - name: new-vol
+              mountPath: /mnt/new
+      volumes:
+        - name: old-vol
+          persistentVolumeClaim:
+            claimName: postgres-pvc # change to data source pvc
+        - name: new-vol
+          persistentVolumeClaim:
+            claimName: postgres-pvc-new # change to data target pvc
