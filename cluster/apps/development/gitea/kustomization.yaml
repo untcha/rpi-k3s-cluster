@@ -4,7 +4,6 @@ kind: Kustomization
 resources:
   - gitea-namespace.yaml
   - postgres
-  - volume-migration-test.yaml
   # - redis
   # - gitea-pvc.yaml
   # - gitea-helmrelease.yaml
