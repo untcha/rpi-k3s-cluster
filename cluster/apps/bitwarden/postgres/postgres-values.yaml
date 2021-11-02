@@ -136,7 +136,7 @@ customConfig: |-
 ## Storage parameters
 storage:
   ##  Set persistentVolumenClaimName to reference an existing PVC
-  persistentVolumeClaimName: postgres-pvc-new
+  persistentVolumeClaimName: bitwarden-postgres-pvc
 
   ## Alternative set requestedSize to define a size for a dynmaically created PVC
   requestedSize:
