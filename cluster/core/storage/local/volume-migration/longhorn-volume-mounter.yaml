@@ -1,0 +1,47 @@
+---
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: longhorn-volume-mounter
+  namespace: dev-gitea
+  labels:
+    app: longhorn-volume-mounter
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: longhorn-volume-mounter
+  template:
+    metadata:
+      labels:
+        app: longhorn-volume-mounter
+    spec:
+      nodeSelector:
+        node-type: worker
+      containers:
+        - name: longhorn-volume-mounter
+          image: praqma/network-multitool
+          tty: true
+          volumeMounts:
+            - name: old-vol
+              mountPath: /mnt/old
+            - name: new-vol
+              mountPath: /mnt/new
+          # resources:
+          #   requests:
+          #     cpu: "1m"
+          #     memory: "20Mi"
+          #   limits:
+          #     cpu: "10m"
+          #     memory: "20Mi"
+          # securityContext:
+          #   runAsUser: 0
+          #   capabilities:
+          #     add: ["NET_ADMIN"]
+      volumes:
+        - name: old-vol
+          persistentVolumeClaim:
+            claimName: postgres-pvc # change to data source pvc
+        - name: new-vol
+          persistentVolumeClaim:
+            claimName: postgres-pvc-new # change to data target pvc
