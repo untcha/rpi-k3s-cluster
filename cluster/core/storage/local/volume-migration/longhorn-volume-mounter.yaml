@@ -41,7 +41,7 @@ spec:
       volumes:
         - name: old-vol
           persistentVolumeClaim:
-            claimName: postgres-pvc # change to data source pvc
+            claimName: bitwarden-data-pvc # change to data source pvc
         - name: new-vol
           persistentVolumeClaim:
-            claimName: postgres-pvc-new # change to data target pvc
+            claimName: bitwarden-data-pvc-new # change to data target pvc
