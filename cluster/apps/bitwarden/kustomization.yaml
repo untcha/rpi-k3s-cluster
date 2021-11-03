@@ -4,7 +4,7 @@ kind: Kustomization
 resources:
   - bitwarden-namespace.yaml
   - postgres
-  - bitwarden-pvc.yaml
+  # - bitwarden-pvc.yaml
   - bitwarden-rbac.yaml
   - enc_bitwarden-secrets.yaml
   - bitwarden-configmap.yaml
