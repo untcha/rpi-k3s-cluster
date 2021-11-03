@@ -7,6 +7,7 @@ metadata:
   annotations:
     nfs.io/storage-path: "/data"
 spec:
+  storageClassName: storage-nfs-provisioner
   accessModes:
     - ReadWriteOnce
   resources:
@@ -22,9 +23,9 @@ metadata:
   annotations:
     nfs.io/storage-path: "/user"
 spec:
+  storageClassName: storage-nfs-provisioner
   accessModes:
     - ReadWriteOnce
-  storageClassName: managed-nfs-storage
   resources:
     requests:
       storage: 6Ti
