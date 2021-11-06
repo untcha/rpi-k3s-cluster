@@ -3,6 +3,6 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
   - enc_slack-webhook-url-secret.yaml
-  # - flux-slack-notification-provider.yaml
-  # - flux-alert.yaml
+  - flux-slack-notification-provider.yaml
+  - flux-alert.yaml
   # - nextcloud-helmrelease-alert.yaml
