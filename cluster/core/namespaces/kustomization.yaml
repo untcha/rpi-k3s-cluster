@@ -12,4 +12,3 @@ resources:
   - influxdata.yaml
   - grafana.yaml
   - prometheus.yaml
-  - portainer.yaml
