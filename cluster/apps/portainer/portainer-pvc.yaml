@@ -14,16 +14,16 @@
 #     requests:
 #       storage: 8Gi
 
----
-apiVersion: v1
-kind: PersistentVolumeClaim
-metadata:
-  name: portainer-pvc
-  namespace: portainer
-spec:
-  accessModes:
-    - ReadWriteOnce
-  storageClassName: longhorn-high-capacity
-  resources:
-    requests:
-      storage: 8Gi
+# ---
+# apiVersion: v1
+# kind: PersistentVolumeClaim
+# metadata:
+#   name: portainer-pvc
+#   namespace: portainer
+# spec:
+#   accessModes:
+#     - ReadWriteOnce
+#   storageClassName: longhorn-high-capacity
+#   resources:
+#     requests:
+#       storage: 8Gi
