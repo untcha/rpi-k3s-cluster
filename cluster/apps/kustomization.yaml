@@ -8,7 +8,6 @@ resources:
   - dns
   - influxdata
   - grafana
-  - prometheus
   - monitoring
   - nextcloud
   - wordpress
