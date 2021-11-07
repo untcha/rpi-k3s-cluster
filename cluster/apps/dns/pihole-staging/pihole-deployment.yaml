@@ -25,6 +25,15 @@ spec:
       # nodeSelector:
       #   node-type: worker
       nodeName: rpi-k3s-worker-04
+      initContainers:
+      - name: copy-pihole-config
+        image: busybox:1.34.1
+        command: ["/bin/sh", "-c", "cp /tmp/pihole-FTL.conf /etc/pihole/"]
+        volumeMounts:
+        - name: etc-pihole
+          mountPath: /etc/pihole
+        - name: ftlconf
+          mountPath: /tmp/pihole-FTL.conf
       containers:
       - name: pihole
         # image: pihole/pihole:v5.8.1
