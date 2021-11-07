@@ -7,4 +7,4 @@ resources:
   - pihole-tcp-service.yaml
   - pihole-udp-service.yaml
   - pihole-pvc.yaml
-  # - pihole-deployment.yaml
+  - pihole-deployment.yaml
