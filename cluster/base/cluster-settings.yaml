@@ -13,7 +13,6 @@ data:
   PROMETHEUS_SVC_LB_IP:           "192.168.178.126"
   NEXTCLOUD_REDIS_SVC_LB_IP:      "192.168.178.127"
   NEXTCLOUD_POSTGRES_SVC_LB_IP:   "192.168.178.128"
-  GITEA_REDIS_SVC_LB_IP:          "192.168.178.129"
   TRAEFIK_SVC_LB_IP:              "192.168.178.240"
   TIMEZONE:                       "Europe/Berlin"
   GLOBAL_SMTP_PORT:               "587"
