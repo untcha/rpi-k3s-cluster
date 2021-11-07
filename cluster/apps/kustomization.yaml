@@ -12,6 +12,5 @@ resources:
   - influxdata
   - monitoring
   - nextcloud
-  - portainer
   - tools
   - wordpress
