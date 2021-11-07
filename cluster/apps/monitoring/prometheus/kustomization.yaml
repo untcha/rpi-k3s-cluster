@@ -4,4 +4,4 @@ kind: Kustomization
 resources:
   - prometheus-pvcs.yaml
   - prometheus-helmrelease.yaml
-  # - prometheus-ingressroute.yaml
+  - prometheus-ingressroute.yaml
