@@ -28,8 +28,11 @@ spec:
       initContainers:
       - name: copy-pihole-config
         image: busybox:1.34.1
-        command: ["/bin/sh", "-c", "echo 'MAXDBDAYS=14' > /etc/pihole/pihole-FTL.conf"]
-        command: ["/bin/sh", "-c", "echo -e '\nLOGFILE=/var/log/pihole/pihole-FTL.log' | tee -a /etc/pihole/pihole-FTL.conf"]
+        command: ["/bin/sh", "-c"]
+        args:
+          -
+            echo "MAXDBDAYS=14" > /etc/pihole/pihole-FTL.conf
+            echo -e "\nLOGFILE=/var/log/pihole/pihole-FTL.log" | tee -a /etc/pihole/pihole-FTL.conf
         volumeMounts:
         - name: etc-pihole
           mountPath: /etc/pihole
