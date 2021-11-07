@@ -4,3 +4,5 @@ kind: Kustomization
 resources:
   - enc_pihole-secrets.yaml
   - pihole-configmap.yaml
+  - pihole-tcp-service.yaml
+  - pihole-udp-service.yaml
