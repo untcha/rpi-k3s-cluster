@@ -1769,21 +1769,21 @@ extraScrapeConfigs: |
   #   static_configs:
   #     - targets:
   #       - traefik.${SECRET_DOMAIN_LOCAL_02}
-  # - job_name: 'pihole-metrics'
-  #   scrape_interval: 5s
-  #   scheme: http
-  #   metrics_path: /metrics
-  #   static_configs:
-  #     - targets:
-  #       - pihole-metrics.${SECRET_DOMAIN_LOCAL_02}
-  # - job_name: 'speedtest-metrics'
-  #   scrape_interval: 1h
-  #   scrape_timeout: 5m
-  #   scheme: http
-  #   metrics_path: /metrics
-  #   static_configs:
-  #     - targets:
-  #       - speedtest.${SECRET_DOMAIN_LOCAL_02}
+  - job_name: 'z-custom_pihole-metrics'
+    scrape_interval: 5s
+    scheme: http
+    metrics_path: /metrics
+    static_configs:
+      - targets:
+        - pihole-metrics.${SECRET_DOMAIN_LOCAL_02}
+  - job_name: 'z-custom_speedtest-metrics'
+    scrape_interval: 1h
+    scrape_timeout: 5m
+    scheme: http
+    metrics_path: /metrics
+    static_configs:
+      - targets:
+        - speedtest.${SECRET_DOMAIN_LOCAL_02}
   # - job_name: 'z_blocky-metrics'
   #   scrape_interval: 5s
   #   scheme: http
