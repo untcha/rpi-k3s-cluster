@@ -4,6 +4,6 @@ kind: Kustomization
 resources:
   - portainer-namespace.yaml
   - portainer-pvc.yaml
-  # - portainer-helmrelease.yaml
+  - portainer-helmrelease.yaml
   # - portainer-letsencrypt-certificate.yaml
   # - portainer-ingressroute.yaml
