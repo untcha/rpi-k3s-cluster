@@ -24,7 +24,7 @@ spec:
   storageClassName: longhorn-high-capacity
   resources:
     requests:
-      storage: 20Gi
+      storage: 30Gi
 
 ---
 apiVersion: v1
