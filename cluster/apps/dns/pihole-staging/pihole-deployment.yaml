@@ -85,7 +85,8 @@ spec:
         - name: var-log-lighttpd
           mountPath: /var/log/lighttpd
         - name: ftlconf
-          mountPath: /etc/pihole/pihole-FTL.conf
+          # mountPath: /etc/pihole/pihole-FTL.conf
+          mountPath: /tmp/pihole-FTL.conf
           subPath: pihole-FTL.conf
         - name: dns-records
           mountPath: /etc/pihole/custom.list
@@ -104,8 +105,8 @@ spec:
       restartPolicy: Always
       volumes:
       - name: etc-pihole
-        emptyDir:
-          medium: Memory
+        emptyDir: {}
+          # medium: Memory
       - name: etc-dnsmasq
         emptyDir:
           medium: Memory
