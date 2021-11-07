@@ -30,8 +30,8 @@ spec:
         # image: pihole/pihole:v5.8.1
         image: pihole/pihole:2021.10.1
         imagePullPolicy: IfNotPresent
-        command: [ "/bin/sh" ]
-        args: [ "-c", "cp -r -v /etc/pihole-custom/pihole-FTL.conf /etc/pihole/pihole-FTL.conf" ]
+        # command: [ "/bin/sh" ]
+        # args: [ "-c", "cp -r -v /etc/pihole-custom/pihole-FTL.conf /etc/pihole/pihole-FTL.conf" ]
         securityContext:
           capabilities:
             add:
