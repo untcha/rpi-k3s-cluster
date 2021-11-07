@@ -6,9 +6,9 @@ resources:
   - bitwarden
   - dashboards
   - development
-    # - adminer
-    # - gitea
-    # - portainer
+    # adminer
+    # gitea
+    # portainer
   - dns
   - documentation
   - grafana
