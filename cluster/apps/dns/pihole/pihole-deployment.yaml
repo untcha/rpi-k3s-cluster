@@ -27,7 +27,7 @@ spec:
       nodeName: rpi-k3s-worker-03
       containers:
       - name: pihole
-        image: pihole/pihole:2021.10.1
+        image: pihole/pihole:v5.8.1
         imagePullPolicy: IfNotPresent
         securityContext:
           capabilities:
@@ -88,25 +88,20 @@ spec:
         - name: var-log-lighttpd
           mountPath: /var/log/lighttpd
         - name: ftlconf
-          mountPath: /etc/pihole/
-          # mountPath: /etc/pihole/pihole-FTL.conf
-          # subPath: pihole-FTL.conf
+          mountPath: /etc/pihole/pihole-FTL.conf
+          subPath: pihole-FTL.conf
         - name: dns-records
-          mountPath: /etc/pihole/
-          # mountPath: /etc/pihole/custom.list
-          # subPath: custom.list
+          mountPath: /etc/pihole/custom.list
+          subPath: custom.list
         - name: regex
-          mountPath: /etc/pihole/
-          # mountPath: /etc/pihole/regex.list
-          # subPath: regex.list
+          mountPath: /etc/pihole/regex.list
+          subPath: regex.list
         - name: whitelist
-          mountPath: /etc/pihole/
-          # mountPath: /etc/pihole/whitelist.txt
-          # subPath: whitelist.txt
+          mountPath: /etc/pihole/whitelist.txt
+          subPath: whitelist.txt
         - name: adlists
-          mountPath: /etc/pihole/
-          # mountPath: /etc/pihole/adlists.list
-          # subPath: adlists.list
+          mountPath: /etc/pihole/adlists.list
+          subPath: adlists.list
       restartPolicy: Always
       volumes:
       - name: etc-pihole
