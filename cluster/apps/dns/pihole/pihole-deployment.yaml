@@ -92,17 +92,21 @@ spec:
           # mountPath: /etc/pihole/pihole-FTL.conf
           # subPath: pihole-FTL.conf
         - name: dns-records
-          mountPath: /etc/pihole/custom.list
-          subPath: custom.list
+          mountPath: /etc/pihole/
+          # mountPath: /etc/pihole/custom.list
+          # subPath: custom.list
         - name: regex
-          mountPath: /etc/pihole/regex.list
-          subPath: regex.list
+          mountPath: /etc/pihole/
+          # mountPath: /etc/pihole/regex.list
+          # subPath: regex.list
         - name: whitelist
-          mountPath: /etc/pihole/whitelist.txt
-          subPath: whitelist.txt
+          mountPath: /etc/pihole/
+          # mountPath: /etc/pihole/whitelist.txt
+          # subPath: whitelist.txt
         - name: adlists
-          mountPath: /etc/pihole/adlists.list
-          subPath: adlists.list
+          mountPath: /etc/pihole/
+          # mountPath: /etc/pihole/adlists.list
+          # subPath: adlists.list
       restartPolicy: Always
       volumes:
       - name: etc-pihole
