@@ -75,7 +75,7 @@ spec:
           periodSeconds: 5
         volumeMounts:
         - name: etc-pihole
-          mountPath: /etc/pihole
+          mountPath: /etc/pihole/
         - name: etc-dnsmasq
           mountPath: /etc/dnsmasq.d
         - name: var-log
@@ -98,7 +98,7 @@ spec:
         #   mountPath: /etc/pihole/adlists.list
         #   subPath: adlists.list
         - name: pihole-config
-          mountPath: /etc/pihole/
+          mountPath: /etc/pihole
       restartPolicy: Always
       volumes:
       - name: etc-pihole
