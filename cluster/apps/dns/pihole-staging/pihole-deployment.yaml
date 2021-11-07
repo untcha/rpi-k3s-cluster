@@ -26,7 +26,7 @@ spec:
       #   node-type: worker
       nodeName: rpi-k3s-worker-04
       initContainers:
-      - name: copy-pihole-config
+      - name: create-custom-pihole-FTL-config
         image: busybox:1.34.1
         command: ["/bin/sh", "-c"]
         args:
