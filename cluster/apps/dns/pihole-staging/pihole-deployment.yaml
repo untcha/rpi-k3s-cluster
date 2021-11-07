@@ -85,18 +85,18 @@ spec:
         # - name: ftlconf
         #   mountPath: /etc/pihole/pihole-FTL.conf
         #   subPath: pihole-FTL.conf
-        # - name: dns-records
-        #   mountPath: /etc/pihole/custom.list
-        #   subPath: custom.list
-        # - name: regex
-        #   mountPath: /etc/pihole/regex.list
-        #   subPath: regex.list
+        - name: dns-records
+          mountPath: /etc/pihole/custom.list
+          subPath: custom.list
+        - name: regex
+          mountPath: /etc/pihole/regex.list
+          subPath: regex.list
         - name: whitelist
           mountPath: /etc/pihole/whitelist.txt
           subPath: whitelist.txt
-        # - name: adlists
-        #   mountPath: /etc/pihole/adlists.list
-        #   subPath: adlists.list
+        - name: adlists
+          mountPath: /etc/pihole/adlists.list
+          subPath: adlists.list
         # - name: pihole-config
         #   mountPath: /etc/pihole-custom-config
       restartPolicy: Always
@@ -119,15 +119,15 @@ spec:
       #     items:
       #       - key: pihole-FTL.conf
       #         path: pihole-FTL.conf
-      # - name: dns-records
-      #   configMap:
-      #     name: custom.list
+      - name: dns-records
+        configMap:
+          name: custom.list
       #     items:
       #       - key: custom.list
       #         path: custom.list
-      # - name: regex
-      #   configMap:
-      #     name: regex.list
+      - name: regex
+        configMap:
+          name: regex.list
       #     items:
       #       - key: regex.list
       #         path: regex.list
@@ -137,9 +137,9 @@ spec:
       #     items:
       #       - key: whitelist.txt
       #         path: whitelist.txt
-      # - name: adlists
-      #   configMap:
-      #     name: adlists.list
+      - name: adlists
+        configMap:
+          name: adlists.list
       #     items:
       #       - key: adlists.list
       #         path: adlists.list
