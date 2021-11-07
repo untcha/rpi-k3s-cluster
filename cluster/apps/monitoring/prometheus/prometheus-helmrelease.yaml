@@ -11,9 +11,9 @@ spec:
       sourceRef:
         kind: HelmRepository
         name: prometheus-community
-      version: 14.11.0
+      version: 14.11.1
   interval: 1m0s
-  targetNamespace: prometheus
+  targetNamespace: monitoring
   values:
     alertRelabelConfigs: null
     alertmanager:
