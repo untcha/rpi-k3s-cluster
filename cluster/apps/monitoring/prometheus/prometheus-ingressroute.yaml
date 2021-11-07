@@ -11,7 +11,7 @@ spec:
     - match: Host(`prometheus.${SECRET_DOMAIN_LOCAL_02}`)
       kind: Rule
       services:
-        - name: prometheus-prometheus-server
+        - name: monitoring-prometheus-server
           port: 80
 
 ---
@@ -27,5 +27,5 @@ spec:
     - match: Host(`prometheus-alertmanager.${SECRET_DOMAIN_LOCAL_02}`)
       kind: Rule
       services:
-        - name: prometheus-prometheus-alertmanager
+        - name: monitoring-prometheus-alertmanager
           port: 80
