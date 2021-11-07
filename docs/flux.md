@@ -408,8 +408,8 @@ flux create helmrelease bitwarden-postgres \
 flux create helmrelease prometheus \
   --source=HelmRepository/prometheus-community \
   --chart=prometheus \
-  --chart-version="14.11.0" \
-  --target-namespace=prometheus \
+  --chart-version="14.11.1" \
+  --target-namespace=monitoring \
   --values=prometheus-values.yaml \
   --export > prometheus-helmrelease.yaml
 ```
