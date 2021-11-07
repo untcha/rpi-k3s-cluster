@@ -31,7 +31,8 @@ spec:
         command: ["/bin/sh", "-c"]
         args:
           -
-            echo "MAXDBDAYS=14" > /etc/pihole/pihole-FTL.conf;
+            touch /etc/pihole/pihole-FTL.conf;
+            echo -e "MAXDBDAYS=14" | tee -a /etc/pihole/pihole-FTL.conf;
             echo -e "LOGFILE=/var/log/pihole/pihole-FTL.log" | tee -a /etc/pihole/pihole-FTL.conf;
         volumeMounts:
         - name: etc-pihole
