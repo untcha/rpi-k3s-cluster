@@ -1,0 +1,15 @@
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: pihole-staging-ftlconf
+  namespace: dns-test
+  annotations:
+    nfs.io/storage-path: "/config"
+spec:
+  storageClassName: storage-nfs-provisioner
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 128Mi
