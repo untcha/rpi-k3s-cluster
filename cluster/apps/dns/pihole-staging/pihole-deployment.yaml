@@ -104,8 +104,8 @@ spec:
       restartPolicy: Always
       volumes:
       - name: etc-pihole
-        emptyDir: {}
-          # medium: Memory
+        emptyDir:
+          medium: Memory
       - name: etc-dnsmasq
         emptyDir:
           medium: Memory
