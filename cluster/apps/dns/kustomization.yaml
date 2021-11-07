@@ -5,4 +5,5 @@ resources:
   - dns-namespace.yaml
   - unbound
   - pihole
+  - dns-test-namespace.yaml
   - blocky
