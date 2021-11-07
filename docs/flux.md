@@ -365,7 +365,7 @@ flux create helmrelease portainer \
   --source=HelmRepository/portainer \
   --chart=portainer \
   --chart-version="1.0.18" \
-  --target-namespace=portainer \
+  --target-namespace=dev-portainer \
   --values=portainer-values.yaml \
   --export > portainer-helmrelease.yaml
 ```

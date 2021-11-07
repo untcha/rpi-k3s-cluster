@@ -13,7 +13,7 @@ spec:
         name: portainer
       version: 1.0.18
   interval: 1m0s
-  targetNamespace: portainer
+  targetNamespace: dev-portainer
   values:
     enterpriseEdition:
       enabled: false
