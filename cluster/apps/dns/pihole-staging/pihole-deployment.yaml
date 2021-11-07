@@ -118,15 +118,15 @@ spec:
       - name: var-log-lighttpd
         emptyDir:
           medium: Memory
-      - name: ftlconf
-        persistentVolumeClaim:
-          claimName: pihole-staging-ftlconf
       # - name: ftlconf
-      #   configMap:
-      #     name: pihole-ftl.conf
-      #     items:
-      #       - key: pihole-FTL.conf
-      #         path: pihole-FTL.conf
+      #   persistentVolumeClaim:
+      #     claimName: pihole-staging-ftlconf
+      - name: ftlconf
+        configMap:
+          name: pihole-ftl.conf
+          items:
+            - key: pihole-FTL.conf
+              path: pihole-FTL.conf
       - name: dns-records
         configMap:
           name: custom.list
