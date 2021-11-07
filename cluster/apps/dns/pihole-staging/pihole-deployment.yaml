@@ -26,7 +26,7 @@ spec:
         node-type: worker
       containers:
       - name: pihole
-        image: pihole/pihole:v5.8.1
+        image: pihole/pihole:2021.10.1
         imagePullPolicy: IfNotPresent
         securityContext:
           capabilities:
