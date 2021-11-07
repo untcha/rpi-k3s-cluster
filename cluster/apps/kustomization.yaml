@@ -5,6 +5,8 @@ resources:
   - authentication-system
   - bitwarden
   - dashboards
+    # homer
+    # kubernetes-dashboard
   - development
     # adminer
     # gitea
@@ -14,6 +16,7 @@ resources:
   - grafana
   - influxdata
   - monitoring
+    # prometheus
   - nextcloud
   - tools
   - wordpress
