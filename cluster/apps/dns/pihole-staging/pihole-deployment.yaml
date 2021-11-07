@@ -76,8 +76,8 @@ spec:
           initialDelaySeconds: 25
           periodSeconds: 5
         volumeMounts:
-        # - name: etc-pihole
-        #   mountPath: /etc/pihole
+        - name: etc-pihole
+          mountPath: /etc/pihole
         - name: etc-dnsmasq
           mountPath: /etc/dnsmasq.d
         - name: var-log
@@ -103,9 +103,9 @@ spec:
         #   mountPath: /etc/pihole-custom-config
       restartPolicy: Always
       volumes:
-      # - name: etc-pihole
-      #   emptyDir:
-      #     medium: Memory
+      - name: etc-pihole
+        emptyDir: {}
+          # medium: Memory
       - name: etc-dnsmasq
         emptyDir:
           medium: Memory
