@@ -98,7 +98,7 @@ spec:
         #   mountPath: /etc/pihole/adlists.list
         #   subPath: adlists.list
         - name: pihole-config
-          mountPath: /etc/pihole/
+          mountPath: /etc/pihole-custom-config
       restartPolicy: Always
       volumes:
       - name: etc-pihole
