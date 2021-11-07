@@ -36,7 +36,7 @@ spec:
         - name: WEBPASSWORD
           valueFrom:
             secretKeyRef:
-              name: pihole-secrets
+              name: pihole-staging-secrets
               key: PIHOLE_WEBPASSWORD
         envFrom:
         - configMapRef:
