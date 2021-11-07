@@ -91,7 +91,7 @@ spec:
         - name: ftlconf
           # mountPath: /etc/pihole/pihole-FTL.conf
           mountPath: /etc/pihole/
-          subPath: pihole-FTL.conf
+          # subPath: pihole-FTL.conf
         - name: dns-records
           mountPath: /etc/pihole/custom.list
           subPath: custom.list
