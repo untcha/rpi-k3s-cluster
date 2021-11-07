@@ -27,7 +27,8 @@ spec:
       nodeName: rpi-k3s-worker-04
       containers:
       - name: pihole
-        image: pihole/pihole:v5.8.1
+        # image: pihole/pihole:v5.8.1
+        image: pihole/pihole:2021.10.1
         imagePullPolicy: IfNotPresent
         securityContext:
           capabilities:
@@ -117,11 +118,14 @@ spec:
         emptyDir:
           medium: Memory
       - name: ftlconf
-        configMap:
-          name: pihole-ftl.conf
-          items:
-            - key: pihole-FTL.conf
-              path: pihole-FTL.conf
+        emptyDir:
+          medium: Memory
+      # - name: ftlconf
+      #   configMap:
+      #     name: pihole-ftl.conf
+      #     items:
+      #       - key: pihole-FTL.conf
+      #         path: pihole-FTL.conf
       - name: dns-records
         configMap:
           name: custom.list
