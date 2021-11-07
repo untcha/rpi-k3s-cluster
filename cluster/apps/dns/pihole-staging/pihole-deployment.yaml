@@ -118,8 +118,8 @@ spec:
         emptyDir:
           medium: Memory
       - name: ftlconf
-        emptyDir:
-          medium: Memory
+        persistentVolumeClaim:
+          claimName: pihole-staging-ftlconf
       # - name: ftlconf
       #   configMap:
       #     name: pihole-ftl.conf
