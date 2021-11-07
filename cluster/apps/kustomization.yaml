@@ -9,7 +9,7 @@ resources:
   - influxdata
   - grafana
   - prometheus
-  - portainer
+  - monitoring
   - nextcloud
   - wordpress
   - development
