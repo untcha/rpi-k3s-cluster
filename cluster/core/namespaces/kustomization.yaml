@@ -11,4 +11,3 @@ resources:
   - traefik.yaml
   - influxdata.yaml
   - grafana.yaml
-  - prometheus.yaml
