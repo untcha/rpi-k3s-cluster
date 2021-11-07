@@ -314,7 +314,7 @@ spec:
       image:
         pullPolicy: IfNotPresent
         repository: quay.io/prometheus/prometheus
-        tag: v2.30.3
+        tag: v2.31.1
       ingress:
         annotations: {}
         enabled: false
@@ -360,7 +360,7 @@ spec:
       remoteWrite: []
       replicaCount: 1
       resources: {}
-      retention: 15d
+      retention: 7d
       securityContext:
         fsGroup: 65534
         runAsGroup: 65534
