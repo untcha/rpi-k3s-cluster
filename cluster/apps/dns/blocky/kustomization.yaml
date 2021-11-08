@@ -5,5 +5,5 @@ resources:
   - blocky-configmap.yaml
   - blocky-tcp-service.yaml
   - blocky-udp-service.yaml
-  # - blocky-deployment.yaml
-  # - blocky-ingressroute.yaml
+  - blocky-deployment.yaml
+  - blocky-ingressroute.yaml
