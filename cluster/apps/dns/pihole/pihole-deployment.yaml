@@ -25,9 +25,22 @@ spec:
       # nodeSelector:
       #   node-type: worker
       nodeName: rpi-k3s-worker-03
+      initContainers:
+      - name: create-custom-pihole-ftl-config
+        image: busybox:1.34.1
+        command: ["/bin/sh", "-c"]
+        args:
+          -
+            touch /etc/pihole/pihole-FTL.conf;
+            echo -e "MAXDBDAYS=14" | tee -a /etc/pihole/pihole-FTL.conf;
+            echo -e "LOGFILE=/var/log/pihole/pihole-FTL.log" | tee -a /etc/pihole/pihole-FTL.conf;
+        volumeMounts:
+        - name: etc-pihole
+          mountPath: /etc/pihole
       containers:
       - name: pihole
-        image: pihole/pihole:v5.8.1
+        # image: pihole/pihole:v5.8.1
+        image: pihole/pihole:2021.10.1
         imagePullPolicy: IfNotPresent
         securityContext:
           capabilities:
@@ -87,9 +100,9 @@ spec:
           mountPath: /var/log
         - name: var-log-lighttpd
           mountPath: /var/log/lighttpd
-        - name: ftlconf
-          mountPath: /etc/pihole/pihole-FTL.conf
-          subPath: pihole-FTL.conf
+        # - name: ftlconf
+        #   mountPath: /etc/pihole/pihole-FTL.conf
+        #   subPath: pihole-FTL.conf
         - name: dns-records
           mountPath: /etc/pihole/custom.list
           subPath: custom.list
@@ -116,33 +129,33 @@ spec:
       - name: var-log-lighttpd
         emptyDir:
           medium: Memory
-      - name: ftlconf
-        configMap:
-          name: pihole-ftl.conf
-          items:
-            - key: pihole-FTL.conf
-              path: pihole-FTL.conf
+      # - name: ftlconf
+      #   configMap:
+      #     name: pihole-ftl.conf
+      #     items:
+      #       - key: pihole-FTL.conf
+      #         path: pihole-FTL.conf
       - name: dns-records
         configMap:
           name: custom.list
-          items:
-            - key: custom.list
-              path: custom.list
+          # items:
+          #   - key: custom.list
+          #     path: custom.list
       - name: regex
         configMap:
           name: regex.list
-          items:
-            - key: regex.list
-              path: regex.list
+          # items:
+          #   - key: regex.list
+          #     path: regex.list
       - name: whitelist
         configMap:
           name: whitelist.txt
-          items:
-            - key: whitelist.txt
-              path: whitelist.txt
+          # items:
+          #   - key: whitelist.txt
+          #     path: whitelist.txt
       - name: adlists
         configMap:
           name: adlists.list
-          items:
-            - key: adlists.list
-              path: adlists.list
+          # items:
+          #   - key: adlists.list
+          #     path: adlists.list
