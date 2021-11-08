@@ -89,7 +89,7 @@ spec:
         - name: var-log-lighttpd
           mountPath: /var/log/lighttpd
         - name: ftlconf
-          mountPath: /tmp/pihole/pihole-FTL.conf
+          mountPath: /tmp/pihole-test/pihole-FTL.conf
           subPath: pihole-FTL.conf
         - name: dns-records
           mountPath: /etc/pihole/custom.list
