@@ -46,12 +46,6 @@ spec:
           capabilities:
             add:
             - NET_ADMIN
-        # env:
-        # - name: WEBPASSWORD
-        #   valueFrom:
-        #     secretKeyRef:
-        #       name: pihole-secrets
-        #       key: PIHOLE_WEBPASSWORD
         envFrom:
         - configMapRef:
             name: pihole-env-vars
