@@ -5,8 +5,7 @@ metadata:
   name: pihole
   namespace: dns
   labels:
-    app: pihole
-    test: test
+    app: pihole-prod
 spec:
   replicas: 1
   revisionHistoryLimit: 0
