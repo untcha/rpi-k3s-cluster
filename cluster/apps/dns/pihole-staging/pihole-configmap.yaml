@@ -17,16 +17,17 @@ data:
   WEBUIBOXEDLAYOUT: boxed
   WEBTHEME: "default-dark"
 
-# ---
-# apiVersion: v1
-# kind: ConfigMap
-# metadata:
-#   name: pihole-ftl.conf
-#   namespace: dns-test
-# data:
-#   pihole-FTL.conf: |
-#     MAXDBDAYS=14
-#     LOGFILE=/var/log/pihole/pihole-FTL.log
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: pihole-ftl.conf
+  namespace: dns-test
+data:
+  pihole-FTL.conf: |
+    TEST
+    MAXDBDAYS=14
+    LOGFILE=/var/log/pihole/pihole-FTL.log
 
 ---
 apiVersion: v1
