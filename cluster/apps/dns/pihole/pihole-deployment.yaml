@@ -11,7 +11,7 @@ spec:
   revisionHistoryLimit: 0
   selector:
     matchLabels:
-      app: pihole
+      app: pihole-prod
   strategy:
     rollingUpdate:
       maxSurge: 1
@@ -20,8 +20,8 @@ spec:
   template:
     metadata:
       labels:
-        app: pihole
-        name: pihole
+        app: pihole-prod
+        name: pihole-prod
     spec:
       # nodeSelector:
       #   node-type: worker
