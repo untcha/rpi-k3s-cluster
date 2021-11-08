@@ -13,10 +13,11 @@ spec:
     matchLabels:
       app: pihole
   strategy:
-    rollingUpdate:
-      maxSurge: 1
-      maxUnavailable: 0
-    type: RollingUpdate
+    # rollingUpdate:
+    #   maxSurge: 1
+    #   maxUnavailable: 0
+    # type: RollingUpdate
+    type: Recreate
   template:
     metadata:
       labels:
@@ -88,9 +89,9 @@ spec:
           mountPath: /var/log
         - name: var-log-lighttpd
           mountPath: /var/log/lighttpd
-        - name: ftlconf
-          mountPath: /tmp/pihole-test/pihole-FTL.conf
-          subPath: pihole-FTL.conf
+        # - name: ftlconf
+        #   mountPath: /tmp/pihole-test/pihole-FTL.conf
+        #   subPath: pihole-FTL.conf
         - name: dns-records
           mountPath: /etc/pihole/custom.list
           subPath: custom.list
@@ -117,12 +118,12 @@ spec:
       - name: var-log-lighttpd
         emptyDir:
           medium: Memory
-      - name: ftlconf
-        configMap:
-          name: pihole-ftl.conf
-          items:
-            - key: pihole-FTL.conf
-              path: pihole-FTL.conf
+      # - name: ftlconf
+      #   configMap:
+      #     name: pihole-ftl.conf
+      #     items:
+      #       - key: pihole-FTL.conf
+      #         path: pihole-FTL.conf
       - name: dns-records
         configMap:
           name: custom.list
