@@ -2,16 +2,16 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: pihole-prod
+  name: pihole
   namespace: dns
   labels:
-    app: pihole-prod
+    app: pihole
 spec:
   replicas: 1
   revisionHistoryLimit: 0
   selector:
     matchLabels:
-      app: pihole-prod
+      app: pihole
   strategy:
     rollingUpdate:
       maxSurge: 1
@@ -20,14 +20,14 @@ spec:
   template:
     metadata:
       labels:
-        app: pihole-prod
-        name: pihole-prod
+        app: pihole
+        name: pihole
     spec:
       # nodeSelector:
       #   node-type: worker
       nodeName: rpi-k3s-worker-03
       containers:
-      - name: pihole-prod
+      - name: pihole
         image: pihole/pihole:v5.8.1
         imagePullPolicy: IfNotPresent
         securityContext:
