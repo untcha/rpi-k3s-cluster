@@ -32,9 +32,8 @@ spec:
         command: ["/bin/sh", "-c"]
         args:
           -
-           touch root.key;
-           ls -al;
-           echo "done";
+            touch /usr/local/etc/unbound/root.key;
+            ls -al /usr/local/etc/unbound;
         volumeMounts:
         - name: unbound-root-key
           mountPath: /usr/local/etc/unbound
