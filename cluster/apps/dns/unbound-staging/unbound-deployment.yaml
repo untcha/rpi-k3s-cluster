@@ -26,19 +26,19 @@ spec:
     spec:
       nodeSelector:
         node-type: worker
-      initContainers:
-      - name: create-initial-unbound-root-key
-        image: busybox:1.34.1
-        command: ["/bin/sh", "-c"]
-        args:
-          -
-           cp -r -v /tmp/root.key /usr/local/etc/unbound;
-        volumeMounts:
-        - name: unbound-root-key
-          mountPath: /usr/local/etc/unbound
-        - name: unbound-root-key-initial
-          mountPath: /tmp/root.key
-          subPath: root.key
+      # initContainers:
+      # - name: create-initial-unbound-root-key
+      #   image: busybox:1.34.1
+      #   command: ["/bin/sh", "-c"]
+      #   args:
+      #     -
+      #      cp -r -v /tmp/root.key /usr/local/etc/unbound;
+      #   volumeMounts:
+      #   - name: unbound-root-key
+      #     mountPath: /usr/local/etc/unbound
+      #   - name: unbound-root-key-initial
+      #     mountPath: /tmp/root.key
+      #     subPath: root.key
       containers:
       - name: unbound
         image: klutchell/unbound-dnscrypt:1.13.1
@@ -70,18 +70,9 @@ spec:
         - name: unbound-root-hints
           configMap:
             name: unbound-root-hints
-        - name: unbound-root-key-initial
-          configMap:
-            name: unbound-root-key-initial
         - name: unbound-root-key
-          emptyDir:
-            medium: Memory
-        # - name: unbound-root-key
-        #   persistentVolumeClaim:
-        #     claimName: unbound-root-key-pvc
-        # - name: unbound-root-key
-        #   configMap:
-        #     name: unbound-root-key
+          persistentVolumeClaim:
+            claimName: unbound-root-key-pvc
         - name: unbound-a-records
           configMap:
             name: unbound-a-records
