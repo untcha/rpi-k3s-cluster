@@ -37,7 +37,7 @@ spec:
         - name: unbound-root-key
           mountPath: /usr/local/etc/unbound
         - name: unbound-root-key-initial
-          mountPath: /tmp/
+          mountPath: /tmp
       containers:
       - name: unbound
         image: klutchell/unbound-dnscrypt:1.13.1
