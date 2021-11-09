@@ -32,12 +32,13 @@ spec:
         command: ["/bin/sh", "-c"]
         args:
           -
-           cp -r -v /tmp/ /usr/local/etc/unbound;
+           cp -r -v /tmp/root.key /usr/local/etc/unbound/root.key;
         volumeMounts:
         - name: unbound-root-key
           mountPath: /usr/local/etc/unbound
         - name: unbound-root-key-initial
           mountPath: /tmp
+          subPath: root.key
       containers:
       - name: unbound
         image: klutchell/unbound-dnscrypt:1.13.1
