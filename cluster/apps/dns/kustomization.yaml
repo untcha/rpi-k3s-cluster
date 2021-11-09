@@ -6,5 +6,6 @@ resources:
   - unbound
   - pihole
   - dns-test-namespace.yaml
+  - unbound-staging
   - pihole-staging
   - blocky
