@@ -1,0 +1,21 @@
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: unbound-tcp
+  namespace: dns-test
+  labels:
+    app: unbound
+  annotations:
+    metallb.universe.tf/address-pool: services
+    metallb.universe.tf/allow-shared-ip: unbound-svc
+spec:
+  selector:
+    app: unbound
+  ports:
+  - name: dns-tcp
+    port: 5335
+    protocol: TCP
+    targetPort: 5335
+  type: LoadBalancer
+  loadBalancerIP: ${UNBOUND_STAGING_SVC_LB_IP}

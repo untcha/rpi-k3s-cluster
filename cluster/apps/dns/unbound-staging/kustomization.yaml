@@ -4,6 +4,6 @@ kind: Kustomization
 resources:
   - unbound-configmap.yaml
   # - unbound-pvc.yaml
-  # - unbound-tcp-service.yaml
-  # - unbound-udp-service.yaml
+  - unbound-tcp-service.yaml
+  - unbound-udp-service.yaml
   # - unbound-deployment.yaml
