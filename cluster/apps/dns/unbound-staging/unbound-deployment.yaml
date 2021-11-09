@@ -32,12 +32,12 @@ spec:
         command: ["/bin/sh", "-c"]
         args:
           -
-           cp -r -v /tmp/root.key /usr/local/etc/unbound/root.key;
+           cp -r -v /tmp/root.key /usr/local/etc/unbound;
         volumeMounts:
         - name: unbound-root-key
           mountPath: /usr/local/etc/unbound
         - name: unbound-root-key-initial
-          mountPath: /tmp
+          mountPath: /tmp/root.key
           subPath: root.key
       containers:
       - name: unbound
