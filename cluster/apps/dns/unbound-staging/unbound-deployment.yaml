@@ -32,14 +32,15 @@ spec:
         command: ["/bin/sh", "-c"]
         args:
           -
-            touch /usr/local/etc/unbound/root.key;
+            cp -r -v /tmp/root.key /usr/local/etc/unbound;
             ls -al /usr/local/etc/unbound;
+            cat /usr/local/etc/unbound/root.key;
         volumeMounts:
         - name: unbound-root-key
           mountPath: /usr/local/etc/unbound
-        # - name: unbound-root-key-initial
-        #   mountPath: /tmp/root.key
-        #   subPath: root.key
+        - name: unbound-root-key-initial-load
+           mountPath: /tmp/root.key
+           subPath: root.key
       containers:
       - name: unbound
         image: klutchell/unbound-dnscrypt:1.13.1
@@ -71,6 +72,9 @@ spec:
         - name: unbound-root-hints
           configMap:
             name: unbound-root-hints
+        - name: unbound-root-key-initial-load
+          configMap:
+            name: unbound-root-key-initial-load
         - name: unbound-root-key
           persistentVolumeClaim:
             claimName: unbound-root-key-pvc
