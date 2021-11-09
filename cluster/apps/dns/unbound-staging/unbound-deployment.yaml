@@ -32,7 +32,7 @@ spec:
         command: ["/bin/sh", "-c"]
         args:
           -
-            wget -q -O /usr/local/etc/unbound/root.key https://raw.githubusercontent.com/klutchell/unbound-dnscrypt/main/rootfs_overlay/etc/unbound/root.key;
+            touch /usr/local/etc/unbound/root.key;
         volumeMounts:
         - name: unbound-root-key
           mountPath: /usr/local/etc/unbound
