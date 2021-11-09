@@ -32,7 +32,7 @@ spec:
                 defaultMode: 0744
             - name: digitalocean-dns-updater-log
               persistentVolumeClaim:
-                claimName: cron-job-pvc
+                claimName: cron-job-data-pvc
 
 
 ---
