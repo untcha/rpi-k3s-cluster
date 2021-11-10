@@ -303,7 +303,7 @@ data:
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: unbound-root-key-initial-configmap
+  name: unbound-root-key-initial
   namespace: dns-test
 data:
   root.key: |

@@ -5,4 +5,4 @@ resources:
   - unbound-configmap.yaml
   - unbound-tcp-service.yaml
   - unbound-udp-service.yaml
-  - unbound-deployment.yaml
+  # - unbound-deployment.yaml

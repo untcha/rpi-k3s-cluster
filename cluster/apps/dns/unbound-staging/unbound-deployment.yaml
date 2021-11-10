@@ -22,7 +22,7 @@ spec:
         app: unbound
         name: unbound
       annotations:
-        configmap.reloader.stakater.com/reload: "unbound-config, unbound-root-hints, unbound-a-records"
+        configmap.reloader.stakater.com/reload: "unbound-config, unbound-root-hints, unbound-root-key-initial, unbound-a-records"
     spec:
       nodeSelector:
         node-type: worker
@@ -33,8 +33,6 @@ spec:
         args:
           -
             cp -r -v /tmp/root.key /usr/local/etc/unbound;
-            ls -al /usr/local/etc/unbound;
-            cat /usr/local/etc/unbound/root.key;
         volumeMounts:
         - name: usr-local-etc-unbound
           mountPath: /usr/local/etc/unbound
@@ -76,7 +74,7 @@ spec:
             name: unbound-root-hints
         - name: unbound-root-key-initial-volume
           configMap:
-            name: unbound-root-key-initial-configmap
+            name: unbound-root-key-initial
             items:
             - key: root.key
               path: root.key
