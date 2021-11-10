@@ -201,6 +201,14 @@ flux create source helm traefik \
     --export > traefik-charts.yaml
 ```
 
+```bash
+# openldap
+
+flux create source helm openldap \
+    --url https://jp-gouin.github.io/helm-openldap/ \
+    --export > openldap-charts.yaml
+```
+
 ## Helm Chart Values
 
 ```bash
@@ -356,6 +364,18 @@ flux create helmrelease nfs-provisioner \
   --target-namespace=storage \
   --values=nfs-provisioner-values.yaml \
   --export > nfs-provisioner-helmrelease.yaml
+```
+
+### OpenLDAP
+
+```bash
+flux create helmrelease authelia-openldap \
+  --source=HelmRepository/openldap \
+  --chart=openldap-stack-ha \
+  --chart-version="2.1.6" \
+  --target-namespace=authentication \
+  --values=openldap-stack-ha-values.yaml \
+  --export > openldap-stack-ha-helmrelease.yaml
 ```
 
 ### Portainer
