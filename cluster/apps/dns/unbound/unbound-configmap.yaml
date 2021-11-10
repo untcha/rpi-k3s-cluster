@@ -304,7 +304,7 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: unbound-root-key-initial
-  namespace: dns-test
+  namespace: dns
 data:
   root.key: |
     ; autotrust trust anchor file
