@@ -15,3 +15,4 @@ resources:
   - k8s-at-home-charts.yaml
   - authelia-charts.yaml
   - stakater-charts.yaml
+  - openldap-charts.yaml
