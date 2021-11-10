@@ -26,21 +26,21 @@ spec:
     spec:
       nodeSelector:
         node-type: worker
-      # initContainers:
-      # - name: create-initial-unbound-root-key
-      #   image: busybox:1.34.1
-      #   command: ["/bin/sh", "-c"]
-      #   args:
-      #     -
-      #       cp -r -v /tmp/root.key /usr/local/etc/unbound;
-      #       ls -al /usr/local/etc/unbound;
-      #       cat /usr/local/etc/unbound/root.key;
-      #   volumeMounts:
-      #   - name: unbound-root-key
-      #     mountPath: /usr/local/etc/unbound
-      #   - name: unbound-root-key-initial-load
-      #     mountPath: /tmp/root.key
-      #     subPath: root.key
+      initContainers:
+      - name: create-initial-unbound-root-key
+        image: busybox:1.34.1
+        command: ["/bin/sh", "-c"]
+        args:
+          -
+            cp -r -v /tmp/root.key /usr/local/etc/unbound;
+            ls -al /usr/local/etc/unbound;
+            cat /usr/local/etc/unbound/root.key;
+        volumeMounts:
+        - name: usr-local-etc-unbound
+          mountPath: /usr/local/etc/unbound
+        - name: unbound-root-key-initial-volume
+          mountPath: /tmp/root.key
+          subPath: root.key
       containers:
       - name: unbound
         image: klutchell/unbound-dnscrypt:1.13.1
@@ -53,19 +53,24 @@ spec:
           containerPort: 5335
           protocol: UDP
         volumeMounts:
+          - name: usr-local-etc-unbound
+            mountPath: /usr/local/etc/unbound
           - name: unbound-config
             mountPath: /etc/unbound/unbound.conf
             subPath: unbound.conf
           - name: unbound-root-hints
             mountPath: /etc/unbound/root.hints
             subPath: root.hints
-          - name: unbound-root-key-initial-volume
-            mountPath: /usr/local/etc/unbound/root.key
-            subPath: root.key
+          # - name: unbound-root-key-initial-volume
+          #   mountPath: /usr/local/etc/unbound/root.key
+          #   subPath: root.key
           - name: unbound-a-records
             mountPath: /etc/unbound/a-records.conf
             subPath: a-records.conf
       volumes:
+        - name: usr-local-etc-unbound
+          emptyDir:
+            medium: Memory
         - name: unbound-config
           configMap:
             name: unbound-config
