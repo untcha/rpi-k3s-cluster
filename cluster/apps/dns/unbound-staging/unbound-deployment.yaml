@@ -26,21 +26,21 @@ spec:
     spec:
       nodeSelector:
         node-type: worker
-      initContainers:
-      - name: create-initial-unbound-root-key
-        image: busybox:1.34.1
-        command: ["/bin/sh", "-c"]
-        args:
-          -
-            cp -r -v /tmp/root.key /usr/local/etc/unbound;
-            ls -al /usr/local/etc/unbound;
-            cat /usr/local/etc/unbound/root.key;
-        volumeMounts:
-        - name: unbound-root-key
-          mountPath: /usr/local/etc/unbound
-        - name: unbound-root-key-initial-load
-          mountPath: /tmp/root.key
-          subPath: root.key
+      # initContainers:
+      # - name: create-initial-unbound-root-key
+      #   image: busybox:1.34.1
+      #   command: ["/bin/sh", "-c"]
+      #   args:
+      #     -
+      #       cp -r -v /tmp/root.key /usr/local/etc/unbound;
+      #       ls -al /usr/local/etc/unbound;
+      #       cat /usr/local/etc/unbound/root.key;
+      #   volumeMounts:
+      #   - name: unbound-root-key
+      #     mountPath: /usr/local/etc/unbound
+      #   - name: unbound-root-key-initial-load
+      #     mountPath: /tmp/root.key
+      #     subPath: root.key
       containers:
       - name: unbound
         image: klutchell/unbound-dnscrypt:1.13.1
@@ -59,9 +59,9 @@ spec:
           - name: unbound-root-hints
             mountPath: /etc/unbound/root.hints
             subPath: root.hints
-          - name: unbound-root-key
-            mountPath: /usr/local/etc/unbound
-            # subPath: root.key
+          - name: unbound-root-key-initial-volume
+            mountPath: /usr/local/etc/unbound/root.key
+            subPath: root.key
           - name: unbound-a-records
             mountPath: /etc/unbound/a-records.conf
             subPath: a-records.conf
@@ -72,12 +72,15 @@ spec:
         - name: unbound-root-hints
           configMap:
             name: unbound-root-hints
-        - name: unbound-root-key-initial-load
+        - name: unbound-root-key-initial-volume
           configMap:
-            name: unbound-root-key-initial-load
-        - name: unbound-root-key
-          persistentVolumeClaim:
-            claimName: unbound-root-key-pvc
+            name: unbound-root-key-initial-configmap
+            items:
+            - key: root.key
+              path: root.key
+        # - name: unbound-root-key
+        #   persistentVolumeClaim:
+        #     claimName: unbound-root-key-pvc
         - name: unbound-a-records
           configMap:
             name: unbound-a-records
