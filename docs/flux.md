@@ -373,6 +373,26 @@ flux create helmrelease portainer \
 ### Postgres
 
 ```bash
+flux create helmrelease authelia-postgres \
+  --source=HelmRepository/groundhog2k \
+  --chart=postgres \
+  --chart-version="0.3.0" \
+  --target-namespace=authentication-system \
+  --values=postgres-values.yaml \
+  --export > postgres-helmrelease.yaml
+```
+
+```bash
+flux create helmrelease bitwarden-postgres \
+  --source=HelmRepository/groundhog2k \
+  --chart=postgres \
+  --chart-version="0.3.0" \
+  --target-namespace=bitwarden \
+  --values=postgres-values.yaml \
+  --export > postgres-helmrelease.yaml
+```
+
+```bash
 flux create helmrelease gitea-postgres \
   --source=HelmRepository/groundhog2k \
   --chart=postgres \
@@ -388,16 +408,6 @@ flux create helmrelease nextcloud-postgres \
   --chart=postgres \
   --chart-version="0.3.0" \
   --target-namespace=nextcloud \
-  --values=postgres-values.yaml \
-  --export > postgres-helmrelease.yaml
-```
-
-```bash
-flux create helmrelease bitwarden-postgres \
-  --source=HelmRepository/groundhog2k \
-  --chart=postgres \
-  --chart-version="0.3.0" \
-  --target-namespace=bitwarden \
   --values=postgres-values.yaml \
   --export > postgres-helmrelease.yaml
 ```
