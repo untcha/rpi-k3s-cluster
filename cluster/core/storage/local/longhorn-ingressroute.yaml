@@ -2,7 +2,6 @@
 # longhorn-http-ingressroute
 # longhorn-https-ingressroute
 # longhorn-middleware-redirect-scheme
-# longhorn-middleware-basicauth
 # longhorn-middleware-headers
 # longhorn-middleware-authelia
 
@@ -76,16 +75,6 @@ spec:
     scheme: https
     permanent: true
     port: "443"
-
-# ---
-# apiVersion: traefik.containo.us/v1alpha1
-# kind: Middleware
-# metadata:
-#   name: longhorn-middleware-basicauth
-#   namespace: longhorn-system
-# spec:
-#   basicAuth:
-#     secret: longhorn-secret-basicauth
 
 # https://longhorn.io/kb/troubleshooting-traefik-2.x-as-ingress-controller/
 # Avoid CORS problem
