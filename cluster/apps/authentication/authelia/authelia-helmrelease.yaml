@@ -98,7 +98,7 @@ spec:
           enabledSecret: true
           host: ${SECRET_GLOBAL_SMTP_HOST}
           identifier: localhost
-          port: 587
+          port: ${GLOBAL_SMTP_PORT}
           sender: ${SECRET_GLOBAL_SMTP_FROM}
           startup_check_address: ${SECRET_GLOBAL_SMTP_FROM}
           subject: '[Authelia] {title}'
@@ -157,7 +157,7 @@ spec:
         mysql:
           database: authelia
           enabled: false
-          host: authentication-system-authelia-mariadb.authentication-system.svc.cluster.local
+          host: 127.0.0.1
           port: 3306
           timeout: 5s
           username: authelia

@@ -868,7 +868,7 @@ configMap:
     ##
     mysql:
       enabled: false
-      host: authentication-system-authelia-mariadb.authentication-system.svc.cluster.local
+      host: 127.0.0.1
       port: 3306
       database: authelia
       username: authelia
@@ -919,7 +919,7 @@ configMap:
       enabled: true
       enabledSecret: true
       host: ${SECRET_GLOBAL_SMTP_HOST}
-      port: 587
+      port: ${GLOBAL_SMTP_PORT}
       timeout: 5s
       username: ${SECRET_GLOBAL_SMTP_USERNAME}
       sender: ${SECRET_GLOBAL_SMTP_FROM}
