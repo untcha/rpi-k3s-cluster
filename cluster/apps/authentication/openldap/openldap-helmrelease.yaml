@@ -66,7 +66,7 @@ spec:
       enabled: true
       ingress:
         annotations: {}
-        enabled: true
+        enabled: false
         hosts:
         - ssl-ldap2.example
         path: /
@@ -89,7 +89,7 @@ spec:
         PHPLDAPADMIN_LDAP_HOSTS: openldap-openldap-stack-ha
       ingress:
         annotations: {}
-        enabled: true
+        enabled: false
         hosts:
         - phpldapadmin.example
         path: /

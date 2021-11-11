@@ -202,7 +202,7 @@ test:
 ltb-passwd:
   enabled : true
   ingress:
-    enabled: true
+    enabled: false
     annotations: {}
     path: /
     pathType: Prefix
@@ -219,7 +219,7 @@ ltb-passwd:
 phpldapadmin:
   enabled: true
   ingress:
-    enabled: true
+    enabled: false
     annotations: {}
     path: /
     pathType: Prefix
