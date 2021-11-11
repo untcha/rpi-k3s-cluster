@@ -1,8 +1,6 @@
 # bitwarden-local-ingressroute
 # bitwarden-http-ingressroute
 # bitwarden-https-ingressroute
-# bitwarden-middleware-redirect-scheme
-
 # bitwarden-middleware-headers
 
 ---
@@ -34,7 +32,8 @@ spec:
     - match: Host(`bitwarden.${SECRET_DIGITALOCEAN_DOMAIN_02}`)
       kind: Rule
       middlewares:
-        - name: bitwarden-middleware-redirect-scheme
+        - name: https-redirect-scheme-middleware
+          namespace: traefik
       services:
         - name: bitwarden
           port: 80
@@ -65,18 +64,6 @@ spec:
           port: 3012
   tls:
     secretName: bitwarden-letsencrypt-production-certificate
-
----
-apiVersion: traefik.containo.us/v1alpha1
-kind: Middleware
-metadata:
-  name: bitwarden-middleware-redirect-scheme
-  namespace: bitwarden
-spec:
-  redirectScheme:
-    scheme: https
-    permanent: true
-    port: "443"
 
 ---
 apiVersion: traefik.containo.us/v1alpha1
