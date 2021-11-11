@@ -3,7 +3,6 @@
 # traefik-http-ingressroute
 # traefik-https-ingressroute
 # traefik-middleware-redirect-scheme
-# traefik-middleware-basicauth
 # traefik-middleware-headers
 # traefik-middleware-authelia
 
@@ -72,9 +71,9 @@ spec:
     - match: Host(`traefik.${SECRET_DIGITALOCEAN_DOMAIN_02}`) && (PathPrefix(`/dashboard`) || PathPrefix(`/api`))
       kind: Rule
       middlewares:
-        # - name: traefik-middleware-basicauth
+        - name: basicauth-middleware
+          namespace: authentication
         # - name: traefik-middleware-headers
-        - name: traefik-middleware-authelia
       services:
         - name: api@internal
           kind: TraefikService
@@ -92,16 +91,6 @@ spec:
     scheme: https
     permanent: true
     port: "443"
-
-# ---
-# apiVersion: traefik.containo.us/v1alpha1
-# kind: Middleware
-# metadata:
-#   name: traefik-middleware-basicauth
-#   namespace: traefik
-# spec:
-#   basicAuth:
-#     secret: traefik-secret-basicauth
 
 ---
 apiVersion: traefik.containo.us/v1alpha1
@@ -132,18 +121,18 @@ spec:
     referrerPolicy: "same-origin"
     customFrameOptionsValue: SAMEORIGIN
 
----
-apiVersion: traefik.containo.us/v1alpha1
-kind: Middleware
-metadata:
-  name: traefik-middleware-authelia
-  namespace: traefik
-spec:
-  forwardAuth:
-    address: http://authentication-system-authelia.authentication-system.svc.cluster.local:9091/api/verify?rd=https://auth.${SECRET_DIGITALOCEAN_DOMAIN_02}
-    trustForwardHeader: true
-    authResponseHeaders:
-      - Remote-User
-      - Remote-Name
-      - Remote-Email
-      - Remote-Groups
+# ---
+# apiVersion: traefik.containo.us/v1alpha1
+# kind: Middleware
+# metadata:
+#   name: traefik-middleware-authelia
+#   namespace: traefik
+# spec:
+#   forwardAuth:
+#     address: http://authentication-system-authelia.authentication-system.svc.cluster.local:9091/api/verify?rd=https://auth.${SECRET_DIGITALOCEAN_DOMAIN_02}
+#     trustForwardHeader: true
+#     authResponseHeaders:
+#       - Remote-User
+#       - Remote-Name
+#       - Remote-Email
+#       - Remote-Groups
