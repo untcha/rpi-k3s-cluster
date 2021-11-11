@@ -2,9 +2,7 @@
 # traefik-metrics-local-ingressroute
 # traefik-http-ingressroute
 # traefik-https-ingressroute
-# traefik-middleware-redirect-scheme
 # traefik-middleware-headers
-# traefik-middleware-authelia
 
 ---
 apiVersion: traefik.containo.us/v1alpha1
@@ -51,7 +49,7 @@ spec:
     - match: Host(`traefik.${SECRET_DIGITALOCEAN_DOMAIN_02}`) && (PathPrefix(`/dashboard`) || PathPrefix(`/api`))
       kind: Rule
       middlewares:
-        - name: traefik-middleware-redirect-scheme
+        - name: https-redirect-scheme-middleware
       services:
         - name: api@internal
           kind: TraefikService
@@ -71,26 +69,13 @@ spec:
     - match: Host(`traefik.${SECRET_DIGITALOCEAN_DOMAIN_02}`) && (PathPrefix(`/dashboard`) || PathPrefix(`/api`))
       kind: Rule
       middlewares:
-        - name: basicauth-middleware
+        - name: authelia-middleware
           namespace: authentication
-        # - name: traefik-middleware-headers
       services:
         - name: api@internal
           kind: TraefikService
   tls:
     secretName: traefik-letsencrypt-production-certificate
-
----
-apiVersion: traefik.containo.us/v1alpha1
-kind: Middleware
-metadata:
-  name: traefik-middleware-redirect-scheme
-  namespace: traefik
-spec:
-  redirectScheme:
-    scheme: https
-    permanent: true
-    port: "443"
 
 ---
 apiVersion: traefik.containo.us/v1alpha1
@@ -120,19 +105,3 @@ spec:
     addVaryHeader: true
     referrerPolicy: "same-origin"
     customFrameOptionsValue: SAMEORIGIN
-
-# ---
-# apiVersion: traefik.containo.us/v1alpha1
-# kind: Middleware
-# metadata:
-#   name: traefik-middleware-authelia
-#   namespace: traefik
-# spec:
-#   forwardAuth:
-#     address: http://authentication-system-authelia.authentication-system.svc.cluster.local:9091/api/verify?rd=https://auth.${SECRET_DIGITALOCEAN_DOMAIN_02}
-#     trustForwardHeader: true
-#     authResponseHeaders:
-#       - Remote-User
-#       - Remote-Name
-#       - Remote-Email
-#       - Remote-Groups
