@@ -63,7 +63,7 @@ spec:
       timeoutSeconds: 1
     logLevel: info
     ltb-passwd:
-      enabled: true
+      enabled: false
       ingress:
         annotations: {}
         enabled: false
