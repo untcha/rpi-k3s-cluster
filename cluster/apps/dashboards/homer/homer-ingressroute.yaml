@@ -55,9 +55,11 @@ spec:
     - match: Host(`homer.${SECRET_DIGITALOCEAN_DOMAIN_02}`)
       kind: Rule
       middlewares:
+        - name: basicauth-middleware
+          namespace: authentication
         # - name: homer-middleware-basicauth
         - name: homer-middleware-headers
-        - name: homer-middleware-authelia
+        # - name: homer-middleware-authelia
       services:
         - name: homer
           port: 8080
@@ -76,15 +78,15 @@ spec:
     permanent: true
     port: "443"
 
----
-apiVersion: traefik.containo.us/v1alpha1
-kind: Middleware
-metadata:
-  name: homer-middleware-basicauth
-  namespace: dashboards
-spec:
-  basicAuth:
-    secret: homer-secret-basicauth
+# ---
+# apiVersion: traefik.containo.us/v1alpha1
+# kind: Middleware
+# metadata:
+#   name: homer-middleware-basicauth
+#   namespace: dashboards
+# spec:
+#   basicAuth:
+#     secret: homer-secret-basicauth
 
 ---
 apiVersion: traefik.containo.us/v1alpha1
@@ -115,18 +117,18 @@ spec:
     referrerPolicy: "same-origin"
     customFrameOptionsValue: SAMEORIGIN
 
----
-apiVersion: traefik.containo.us/v1alpha1
-kind: Middleware
-metadata:
-  name: homer-middleware-authelia
-  namespace: dashboards
-spec:
-  forwardAuth:
-    address: http://authentication-system-authelia.authentication-system.svc.cluster.local:9091/api/verify?rd=https://auth.${SECRET_DIGITALOCEAN_DOMAIN_02}
-    trustForwardHeader: true
-    authResponseHeaders:
-      - Remote-User
-      - Remote-Name
-      - Remote-Email
-      - Remote-Groups
+# ---
+# apiVersion: traefik.containo.us/v1alpha1
+# kind: Middleware
+# metadata:
+#   name: homer-middleware-authelia
+#   namespace: dashboards
+# spec:
+#   forwardAuth:
+#     address: http://authentication-system-authelia.authentication-system.svc.cluster.local:9091/api/verify?rd=https://auth.${SECRET_DIGITALOCEAN_DOMAIN_02}
+#     trustForwardHeader: true
+#     authResponseHeaders:
+#       - Remote-User
+#       - Remote-Name
+#       - Remote-Email
+#       - Remote-Groups
