@@ -224,7 +224,7 @@ flux create helmrelease authelia \
   --source=HelmRepository/authelia \
   --chart=authelia \
   --chart-version="0.6.3" \
-  --target-namespace=authentication-system \
+  --target-namespace=authentication \
   --values=authelia-values.yaml \
   --export > authelia-helmrelease.yaml
 ```

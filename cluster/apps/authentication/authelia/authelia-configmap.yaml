@@ -3,7 +3,7 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: users-database
-  namespace: authentication-system
+  namespace: authentication
 data:
   users_database.yml: |
     ---
