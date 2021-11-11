@@ -84,8 +84,8 @@ extraVolumeMounts:
 # Use the env variables from https://github.com/osixia/docker-openldap#beginner-guide
 env:
  LDAP_LOG_LEVEL: "256"
- LDAP_ORGANISATION: "Example Inc."
- LDAP_DOMAIN: "example.org"
+ LDAP_ORGANISATION: ${SECRET_GLOBAL_LDAP_ORGANISATION}
+ LDAP_DOMAIN: ${SECRET_GLOBAL_LDAP_DOMAIN}
  LDAP_READONLY_USER: "false"
  LDAP_READONLY_USER_USERNAME: "readonly"
  LDAP_READONLY_USER_PASSWORD: "readonly"
