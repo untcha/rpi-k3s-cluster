@@ -4,3 +4,4 @@ kind: Kustomization
 resources:
   - openldap-pvc.yaml
   - openldap-helmrelease.yaml
+  - openldap-ingressroute.yaml

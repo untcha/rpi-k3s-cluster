@@ -1,0 +1,15 @@
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: phpldapadmin-local-ingressroute
+  namespace: authentication
+spec:
+  entryPoints:
+    - web
+  routes:
+    - match: Host(`phpldapadmin.${SECRET_DOMAIN_LOCAL_02}`)
+      kind: Rule
+      services:
+        - name: authentication-openldap-phpldapadmin
+          port: 80
