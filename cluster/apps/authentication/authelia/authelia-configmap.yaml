@@ -1,0 +1,22 @@
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: users-database
+  namespace: authentication-system
+data:
+  users_database.yml: |
+    ---
+    ###############################################################
+    #                         Users Database                      #
+    ###############################################################
+
+    # This file can be used if you do not have an LDAP set up.
+
+    users:
+      ${SECRET_AUTHELIA_USER_01}:
+        displayname: "Alexander Untch"
+        password: "${SECRET_AUTHELIA_PASSWORD_01}"
+        email: ${SECRET_EMAIL}
+        groups:
+          - admins
