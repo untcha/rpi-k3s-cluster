@@ -1,0 +1,13 @@
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: authelia-openldap-pvc
+  namespace: authentication
+spec:
+  storageClassName: longhorn-low-capacity # use only low capacity nodes
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi
