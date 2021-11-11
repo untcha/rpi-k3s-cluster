@@ -2,8 +2,6 @@
 # pihole-metrics-local-ingressroute
 # pihole-http-ingressroute
 # pihole-https-ingressroute
-# pihole-middleware-redirect-scheme
-# pihole-middleware-basicauth
 # pihole-middleware-headers
 
 ---
@@ -51,7 +49,8 @@ spec:
     - match: Host(`pihole.${SECRET_DIGITALOCEAN_DOMAIN_02}`) && PathPrefix(`/admin`)
       kind: Rule
       middlewares:
-        - name: pihole-middleware-redirect-scheme
+        - name: https-redirect-scheme-middleware
+          namespace: traefik
       services:
         - name: pihole-tcp
           port: 80
@@ -78,28 +77,6 @@ spec:
           port: 80
   tls:
     secretName: pihole-letsencrypt-production-certificate
-
----
-apiVersion: traefik.containo.us/v1alpha1
-kind: Middleware
-metadata:
-  name: pihole-middleware-redirect-scheme
-  namespace: dns
-spec:
-  redirectScheme:
-    scheme: https
-    permanent: true
-    port: "443"
-
----
-apiVersion: traefik.containo.us/v1alpha1
-kind: Middleware
-metadata:
-  name: pihole-middleware-basicauth
-  namespace: dns
-spec:
-  basicAuth:
-    secret: pihole-secret-basicauth
 
 ---
 apiVersion: traefik.containo.us/v1alpha1
