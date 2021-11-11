@@ -2,7 +2,6 @@
 # git-http-ingressroute
 # git-https-ingressroute
 # git-ssh-ingressroute
-# git-middleware-redirect-scheme
 
 ---
 apiVersion: traefik.containo.us/v1alpha1
@@ -33,7 +32,8 @@ spec:
     - match: Host(`git.${SECRET_DIGITALOCEAN_DOMAIN_02}`)
       kind: Rule
       middlewares:
-        - name: git-middleware-redirect-scheme
+        - name: https-redirect-scheme-middleware
+          namespace: traefik
       services:
         - name: dev-gitea-gitea-http
           port: 80
@@ -52,9 +52,6 @@ spec:
   routes:
     - match: Host(`git.${SECRET_DIGITALOCEAN_DOMAIN_02}`)
       kind: Rule
-      # middlewares:
-      #   - name: pihole-middleware-basicauth
-      #   - name: git-middleware-headers
       services:
         - name: dev-gitea-gitea-http
           port: 80
@@ -75,15 +72,3 @@ spec:
       services:
         - name: dev-gitea-gitea-ssh
           port: 22
-
----
-apiVersion: traefik.containo.us/v1alpha1
-kind: Middleware
-metadata:
-  name: git-middleware-redirect-scheme
-  namespace: dev-gitea
-spec:
-  redirectScheme:
-    scheme: https
-    permanent: true
-    port: "443"
