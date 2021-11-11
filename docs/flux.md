@@ -375,7 +375,7 @@ flux create helmrelease authelia-openldap \
   --chart-version="2.1.6" \
   --target-namespace=authentication \
   --values=openldap-stack-ha-values.yaml \
-  --export > openldap-stack-ha-helmrelease.yaml
+  --export > openldap-helmrelease.yaml
 ```
 
 ### Portainer
