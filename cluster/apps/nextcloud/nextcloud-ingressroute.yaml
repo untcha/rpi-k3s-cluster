@@ -1,3 +1,9 @@
+# nextcloud-local-ingressroute
+# nextcloud-http-ingressroute
+# nextcloud-https-ingressroute
+# nextcloud-middleware-regex
+# nextcloud-middleware-headers
+
 ---
 apiVersion: traefik.containo.us/v1alpha1
 kind: IngressRoute
@@ -27,7 +33,8 @@ spec:
     - match: Host(`cloud.${SECRET_DIGITALOCEAN_DOMAIN_02}`)
       kind: Rule
       middlewares:
-        - name: nextcloud-middleware-redirect-scheme
+        - name: https-redirect-scheme-middleware
+          namespace: traefik
       services:
         - name: nextcloud-nextcloud
           port: 80
@@ -54,18 +61,6 @@ spec:
           port: 80
   tls:
     secretName: nextcloud-letsencrypt-production-certificate
-
----
-apiVersion: traefik.containo.us/v1alpha1
-kind: Middleware
-metadata:
-  name: nextcloud-middleware-redirect-scheme
-  namespace: nextcloud
-spec:
-  redirectScheme:
-    scheme: https
-    permanent: true
-    port: "443"
 
 ---
 apiVersion: traefik.containo.us/v1alpha1
