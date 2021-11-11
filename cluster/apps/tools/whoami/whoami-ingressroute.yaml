@@ -54,27 +54,15 @@ spec:
   routes:
     - match: Host(`whoami.${SECRET_DIGITALOCEAN_DOMAIN_02}`)
       kind: Rule
-      # middlewares:
-      #   - name: authelia-middleware
-      #     namespace: authentication
+      middlewares:
+        - name: authelia-middleware
+          namespace: authentication
         # - name: whoami-middleware-headers
       services:
         - name: whoami
           port: 80
   tls:
     secretName: whoami-letsencrypt-production-certificate
-
-# ---
-# apiVersion: traefik.containo.us/v1alpha1
-# kind: Middleware
-# metadata:
-#   name: whoami-middleware-redirect-scheme
-#   namespace: tools
-# spec:
-#   redirectScheme:
-#     scheme: https
-#     permanent: true
-#     port: "443"
 
 ---
 apiVersion: traefik.containo.us/v1alpha1
