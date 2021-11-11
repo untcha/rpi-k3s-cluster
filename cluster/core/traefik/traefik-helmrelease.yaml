@@ -128,7 +128,7 @@ spec:
     priorityClassName: ""
     providers:
       kubernetesCRD:
-        allowCrossNamespace: false
+        allowCrossNamespace: true
         allowExternalNameServices: false
         enabled: true
         namespaces: []
