@@ -1,9 +1,7 @@
 # longhorn-local-ingressroute
 # longhorn-http-ingressroute
 # longhorn-https-ingressroute
-# longhorn-middleware-redirect-scheme
 # longhorn-middleware-headers
-# longhorn-middleware-authelia
 
 ---
 apiVersion: traefik.containo.us/v1alpha1
