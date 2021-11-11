@@ -1,3 +1,8 @@
+# wp-simone-local-ingressroute
+# wp-simone-http-ingressroute
+# wp-simone-https-ingressroute
+# wp-simone-middleware-headers
+
 ---
 apiVersion: traefik.containo.us/v1alpha1
 kind: IngressRoute
@@ -27,7 +32,8 @@ spec:
     - match: Host(`simone.${SECRET_DIGITALOCEAN_DOMAIN_02}`)
       kind: Rule
       middlewares:
-        - name: wp-simone-middleware-redirect-scheme
+        - name: https-redirect-scheme-middleware
+          namespace: traefik
       services:
         - name: wp-simone-wp-simone-wordpress
           port: 80
@@ -46,8 +52,8 @@ spec:
   routes:
     - match: Host(`simone.${SECRET_DIGITALOCEAN_DOMAIN_02}`)
       kind: Rule
-      # middlewares:
-      #   - name: pihole-middleware-headers
+      middlewares:
+        - name: wp-simone-middleware-headers
       services:
         - name: wp-simone-wp-simone-wordpress
           port: 80
@@ -58,10 +64,27 @@ spec:
 apiVersion: traefik.containo.us/v1alpha1
 kind: Middleware
 metadata:
-  name: wp-simone-middleware-redirect-scheme
+  name: wp-simone-middleware-headers
   namespace: wp-simone
 spec:
-  redirectScheme:
-    scheme: https
-    permanent: true
-    port: "443"
+  headers:
+    browserXssFilter: true
+    contentTypeNosniff: true
+    frameDeny: true
+    sslRedirect: true
+    forceSTSHeader: true
+    stsIncludeSubdomains: true
+    stsPreload: true
+    stsSeconds: 315360000
+    # stsSeconds: 63072000
+    contentSecurityPolicy: |
+      default-src 'none';form-action 'none';frame-ancestors 'none';base-uri 'none'
+    accessControlAllowMethods:
+      - "GET"
+      - "POST"
+    accessControlAllowOriginList:
+      - "https://simone.${SECRET_DIGITALOCEAN_DOMAIN_02}"
+    accessControlMaxAge: 100
+    addVaryHeader: true
+    referrerPolicy: "same-origin"
+    customFrameOptionsValue: SAMEORIGIN
