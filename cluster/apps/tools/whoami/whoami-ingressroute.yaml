@@ -54,8 +54,8 @@ spec:
     - match: Host(`whoami.${SECRET_DIGITALOCEAN_DOMAIN_02}`)
       kind: Rule
       middlewares:
-        - name: basicauth-middleware
-          namespace: authentication
+        # - name: basicauth-middleware
+        #   namespace: authentication
         - name: authelia-middleware
           namespace: authentication
         # - name: whoami-middleware-headers
