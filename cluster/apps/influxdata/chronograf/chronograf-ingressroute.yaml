@@ -1,8 +1,6 @@
 # chronograf-local-ingressroute
 # chronograf-http-ingressroute
 # chronograf-https-ingressroute
-# chronograf-middleware-redirect-scheme
-# chronograf-middleware-basicauth
 # chronograf-middleware-headers
 
 ---
@@ -34,7 +32,8 @@ spec:
     - match: Host(`chronograf.${SECRET_DIGITALOCEAN_DOMAIN_02}`)
       kind: Rule
       middlewares:
-        - name: chronograf-middleware-redirect-scheme
+        - name: https-redirect-scheme-middleware
+          namespace: traefik
       services:
         - name: influxdata-chronograf-chronograf
           port: 80
@@ -54,35 +53,14 @@ spec:
     - match: Host(`chronograf.${SECRET_DIGITALOCEAN_DOMAIN_02}`)
       kind: Rule
       middlewares:
-        - name: chronograf-middleware-basicauth
+        - name: authelia-middleware
+          namespace: authentication
         - name: chronograf-middleware-headers
       services:
         - name: influxdata-chronograf-chronograf
           port: 80
   tls:
     secretName: chronograf-letsencrypt-production-certificate
-
----
-apiVersion: traefik.containo.us/v1alpha1
-kind: Middleware
-metadata:
-  name: chronograf-middleware-redirect-scheme
-  namespace: influxdata
-spec:
-  redirectScheme:
-    scheme: https
-    permanent: true
-    port: "443"
-
----
-apiVersion: traefik.containo.us/v1alpha1
-kind: Middleware
-metadata:
-  name: chronograf-middleware-basicauth
-  namespace: influxdata
-spec:
-  basicAuth:
-    secret: chronograf-secret-basicauth
 
 ---
 apiVersion: traefik.containo.us/v1alpha1
