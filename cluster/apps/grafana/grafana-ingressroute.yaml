@@ -1,8 +1,6 @@
 # grafana-local-ingressroute
 # grafana-http-ingressroute
 # grafana-https-ingressroute
-# grafana-middleware-redirect-scheme
-
 # grafana-middleware-headers
 
 ---
@@ -34,7 +32,8 @@ spec:
     - match: Host(`grafana.${SECRET_DIGITALOCEAN_DOMAIN_02}`)
       kind: Rule
       middlewares:
-        - name: grafana-middleware-redirect-scheme
+        - name: https-redirect-scheme-middleware
+          namespace: traefik
       services:
         - name: grafana-grafana
           port: 80
@@ -60,18 +59,6 @@ spec:
           port: 80
   tls:
     secretName: grafana-letsencrypt-production-certificate
-
----
-apiVersion: traefik.containo.us/v1alpha1
-kind: Middleware
-metadata:
-  name: grafana-middleware-redirect-scheme
-  namespace: grafana
-spec:
-  redirectScheme:
-    scheme: https
-    permanent: true
-    port: "443"
 
 ---
 apiVersion: traefik.containo.us/v1alpha1
