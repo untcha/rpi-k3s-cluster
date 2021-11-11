@@ -1,8 +1,6 @@
 # documentation-local-ingressroute
 # documentation-http-ingressroute
 # documentation-https-ingressroute
-# documentation-middleware-redirect-scheme
-# documentation-middleware-basicauth
 # documentation-middleware-headers
 
 ---
@@ -34,7 +32,8 @@ spec:
     - match: Host(`doc.${SECRET_DIGITALOCEAN_DOMAIN_02}`)
       kind: Rule
       middlewares:
-        - name: documentation-middleware-redirect-scheme
+        - name: https-redirect-scheme-middleware
+          namespace: traefik
       services:
         - name: documentation-static-nginx
           port: 80
@@ -53,26 +52,11 @@ spec:
   routes:
     - match: Host(`doc.${SECRET_DIGITALOCEAN_DOMAIN_02}`)
       kind: Rule
-      # middlewares:
-        # - name: docs-middleware-basicauth
-        # - name: docs-middleware-headers
       services:
         - name: documentation-static-nginx
           port: 80
   tls:
     secretName: documentation-letsencrypt-production-certificate
-
----
-apiVersion: traefik.containo.us/v1alpha1
-kind: Middleware
-metadata:
-  name: documentation-middleware-redirect-scheme
-  namespace: documentation
-spec:
-  redirectScheme:
-    scheme: https
-    permanent: true
-    port: "443"
 
 ---
 apiVersion: traefik.containo.us/v1alpha1
