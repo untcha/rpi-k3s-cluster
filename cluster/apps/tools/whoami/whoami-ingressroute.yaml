@@ -2,7 +2,6 @@
 # whoami-http-ingressroute
 # whoami-https-ingressroute
 # whoami-middleware-redirect-scheme
-# whoami-middleware-basicauth
 # whoami-middleware-headers
 # whoami-middleware-authelia
 
@@ -58,7 +57,6 @@ spec:
       middlewares:
         - name: basicauth-middleware
           namespace: authentication
-        # - name: whoami-middleware-basicauth
         # - name: whoami-middleware-headers
         # - name: whoami-middleware-authelia
       services:
@@ -78,16 +76,6 @@ spec:
     scheme: https
     permanent: true
     port: "443"
-
----
-apiVersion: traefik.containo.us/v1alpha1
-kind: Middleware
-metadata:
-  name: whoami-middleware-basicauth
-  namespace: tools
-spec:
-  basicAuth:
-    secret: whoami-secret-basicauth
 
 ---
 apiVersion: traefik.containo.us/v1alpha1
