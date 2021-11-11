@@ -77,7 +77,8 @@ spec:
     metrics:
       prometheus:
         entryPoint: metrics
-    nodeSelector: {}
+    nodeSelector:
+      node-type: worker
     persistence:
       accessMode: ReadWriteOnce
       annotations: {}
