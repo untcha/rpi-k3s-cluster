@@ -1,7 +1,6 @@
 # whoami-local-ingressroute
 # whoami-http-ingressroute
 # whoami-https-ingressroute
-# whoami-middleware-redirect-scheme
 # whoami-middleware-headers
 
 ---
