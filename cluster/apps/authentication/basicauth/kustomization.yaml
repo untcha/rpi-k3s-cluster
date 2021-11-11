@@ -2,7 +2,4 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
-  - authentication-namespace.yaml
-  - basicauth
-  - postgres
-  # - authelia
+  - enc_basicauth-secret.yaml
