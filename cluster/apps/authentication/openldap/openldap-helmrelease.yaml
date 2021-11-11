@@ -86,7 +86,7 @@ spec:
     phpldapadmin:
       enabled: true
       env:
-        PHPLDAPADMIN_LDAP_HOSTS: openldap-openldap-stack-ha
+        PHPLDAPADMIN_LDAP_HOSTS: authentication-openldap-openldap-stack-ha
       ingress:
         annotations: {}
         enabled: false
