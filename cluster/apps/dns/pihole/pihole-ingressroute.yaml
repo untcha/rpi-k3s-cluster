@@ -70,7 +70,6 @@ spec:
     - match: Host(`pihole.${SECRET_DIGITALOCEAN_DOMAIN_02}`) && PathPrefix(`/admin`)
       kind: Rule
       middlewares:
-        # - name: pihole-middleware-basicauth
         - name: pihole-middleware-headers
       services:
         - name: pihole-tcp
