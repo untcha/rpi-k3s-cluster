@@ -369,7 +369,7 @@ flux create helmrelease nfs-provisioner \
 ### OpenLDAP
 
 ```bash
-flux create helmrelease authelia-openldap \
+flux create helmrelease openldap \
   --source=HelmRepository/openldap \
   --chart=openldap-stack-ha \
   --chart-version="2.1.6" \

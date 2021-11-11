@@ -2,7 +2,7 @@
 apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
-  name: authelia-openldap
+  name: openldap
   namespace: flux-system
 spec:
   chart:
@@ -81,6 +81,7 @@ spec:
       accessModes:
       - ReadWriteOnce
       enabled: true
+      existingClaim: openldap-pvc
       size: 8Gi
     phpldapadmin:
       enabled: true
