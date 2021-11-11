@@ -106,18 +106,18 @@ spec:
     referrerPolicy: "same-origin"
     customFrameOptionsValue: SAMEORIGIN
 
----
-apiVersion: traefik.containo.us/v1alpha1
-kind: Middleware
-metadata:
-  name: whoami-middleware-authelia
-  namespace: tools
-spec:
-  forwardAuth:
-    address: http://authentication-system-authelia.authentication-system.svc.cluster.local:9091/api/verify?rd=https://auth.${SECRET_DIGITALOCEAN_DOMAIN_02}
-    trustForwardHeader: true
-    authResponseHeaders:
-      - Remote-User
-      - Remote-Name
-      - Remote-Email
-      - Remote-Groups
+# ---
+# apiVersion: traefik.containo.us/v1alpha1
+# kind: Middleware
+# metadata:
+#   name: whoami-middleware-authelia
+#   namespace: tools
+# spec:
+#   forwardAuth:
+#     address: http://authentication-system-authelia.authentication-system.svc.cluster.local:9091/api/verify?rd=https://auth.${SECRET_DIGITALOCEAN_DOMAIN_02}
+#     trustForwardHeader: true
+#     authResponseHeaders:
+#       - Remote-User
+#       - Remote-Name
+#       - Remote-Email
+#       - Remote-Groups
