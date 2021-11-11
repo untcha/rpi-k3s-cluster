@@ -2,7 +2,6 @@
 # homer-http-ingressroute
 # homer-https-ingressroute
 # homer-middleware-redirect-scheme
-# homer-middleware-basicauth
 # homer-middleware-headers
 # homer-middleware-authelia
 
@@ -57,7 +56,6 @@ spec:
       middlewares:
         - name: basicauth-middleware
           namespace: authentication
-        # - name: homer-middleware-basicauth
         - name: homer-middleware-headers
         # - name: homer-middleware-authelia
       services:
@@ -77,16 +75,6 @@ spec:
     scheme: https
     permanent: true
     port: "443"
-
-# ---
-# apiVersion: traefik.containo.us/v1alpha1
-# kind: Middleware
-# metadata:
-#   name: homer-middleware-basicauth
-#   namespace: dashboards
-# spec:
-#   basicAuth:
-#     secret: homer-secret-basicauth
 
 ---
 apiVersion: traefik.containo.us/v1alpha1
