@@ -56,9 +56,9 @@ spec:
     - match: Host(`whoami.${SECRET_DIGITALOCEAN_DOMAIN_02}`)
       kind: Rule
       middlewares:
-        # - name: whoami-middleware-basicauth
+        - name: whoami-middleware-basicauth
         # - name: whoami-middleware-headers
-        - name: whoami-middleware-authelia
+        # - name: whoami-middleware-authelia
       services:
         - name: whoami
           port: 80
