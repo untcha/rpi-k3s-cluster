@@ -14,16 +14,16 @@
 #     requests:
 #       storage: 128Mi
 
-# ---
-# apiVersion: v1
-# kind: PersistentVolumeClaim
-# metadata:
-#   name: cron-job-data-pvc
-#   namespace: cron-jobs
-# spec:
-#   storageClassName: longhorn-low-capacity
-#   accessModes:
-#     - ReadWriteOnce
-#   resources:
-#     requests:
-#       storage: 128Mi
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: cron-job-data-pvc
+  namespace: cron-jobs
+spec:
+  storageClassName: longhorn-low-capacity
+  accessModes:
+    - ReadWriteMany
+  resources:
+    requests:
+      storage: 512Mi
