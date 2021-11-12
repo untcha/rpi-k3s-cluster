@@ -23,7 +23,7 @@ metadata:
 spec:
   storageClassName: longhorn-low-capacity
   accessModes:
-    - ReadWriteOnce
+    - ReadWriteMany
   resources:
     requests:
       storage: 128Mi
