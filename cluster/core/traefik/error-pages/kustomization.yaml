@@ -5,4 +5,4 @@ resources:
   - wildcard-letsencrypt-certificate.yaml
   - error-pages-service.yaml
   - error-pages-deployment.yaml
-  - error-pages-ingressroute.yaml
+  # - error-pages-ingressroute.yaml
