@@ -1,0 +1,13 @@
+---
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: wildcard-letsencrypt-production-certificate
+  namespace: traefik
+spec:
+  secretName: wildcard-letsencrypt-production-certificate
+  dnsNames:
+    - '*.${SECRET_DIGITALOCEAN_DOMAIN_02}'
+  issuerRef:
+    name: letsencrypt-dns01-production-do
+    kind: ClusterIssuer
