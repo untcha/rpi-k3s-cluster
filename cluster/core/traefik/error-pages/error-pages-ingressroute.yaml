@@ -10,12 +10,11 @@ spec:
   entryPoints:
     - websecure
   routes:
-    - kind: Rule
-      match: HostRegexp(`{host:.+}`)
-      priority: 1
+    - match: HostRegexp(`{host:.+}`)
+      kind: Rule
+      # priority: 1
       services:
-        - kind: Service
-          name: traefik-error-pages
-          port: 80
+        - name: traefik-error-pages
+          portt: 80
   tls:
     secretName: wildcard-letsencrypt-production-certificate
