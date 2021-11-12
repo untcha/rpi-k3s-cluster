@@ -4,6 +4,8 @@ kind: IngressRoute
 metadata:
   name: traefik-error-pages
   namespace: traefik
+  annotations:
+    cert-manager.io/cluster-issuer: "letsencrypt-dns01-production-do"
 spec:
   entryPoints:
     - websecure
