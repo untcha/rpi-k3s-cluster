@@ -15,6 +15,6 @@ spec:
       # priority: 1
       services:
         - name: traefik-error-pages
-          portt: 80
+          port: 80
   tls:
     secretName: wildcard-letsencrypt-production-certificate
