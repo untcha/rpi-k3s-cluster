@@ -1,0 +1,70 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: traefik-error-pages
+  namespace: traefik
+  labels:
+    app.kubernetes.io/name: traefik-error-pages
+spec:
+  replicas: 2
+  strategy:
+    rollingUpdate:
+      maxSurge: 0
+      maxUnavailable: 1
+    type: RollingUpdate
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: traefik-error-pages
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: traefik-error-pages
+    spec:
+      affinity:
+        podAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+            - weight: 100
+              podAffinityTerm:
+                labelSelector:
+                  matchExpressions:
+                    - key: app.kubernetes.io/name
+                      operator: In
+                      values:
+                        - traefik
+                topologyKey: kubernetes.io/hostname
+        podAntiAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+          - labelSelector:
+              matchExpressions:
+              - key: app.kubernetes.io/name
+                operator: In
+                values:
+                - traefik-error-pages
+            topologyKey: kubernetes.io/hostname
+      containers:
+      - name: traefik-error-pages
+        image: ghcr.io/tarampampam/error-pages:2.2.0
+        imagePullPolicy: IfNotPresent
+        env:
+        - name: TEMPLATE_NAME
+          value: "shuffle"
+        ports:
+        - containerPort: 8080
+          protocol: TCP
+        securityContext:
+          readOnlyRootFilesystem: true
+          runAsNonRoot: true
+          allowPrivilegeEscalation: false
+          # Run the container as nobody:nogroup
+          runAsUser: 65534
+          runAsGroup: 65534
+          capabilities:
+            drop:
+            - NET_RAW
+        resources:
+          requests:
+            cpu: 50m
+            memory: 16Mi
+          limits:
+            memory: 32Mi
