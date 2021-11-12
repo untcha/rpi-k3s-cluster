@@ -50,7 +50,8 @@ spec:
         - name: TEMPLATE_NAME
           value: "shuffle"
         ports:
-        - containerPort: 8080
+        - name: web
+          containerPort: 8080
           protocol: TCP
         securityContext:
           readOnlyRootFilesystem: true
