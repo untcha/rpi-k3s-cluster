@@ -75,7 +75,7 @@ spec:
         - name: api@internal
           kind: TraefikService
   tls:
-    secretName: traefik-letsencrypt-production-certificate
+    secretName: "${SECRET_DOMAIN/./-}-tls"
 
 ---
 apiVersion: traefik.containo.us/v1alpha1
