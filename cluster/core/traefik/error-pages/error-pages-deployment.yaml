@@ -21,27 +21,27 @@ spec:
       labels:
         app.kubernetes.io/name: traefik-error-pages
     spec:
-      affinity:
-        podAffinity:
-          preferredDuringSchedulingIgnoredDuringExecution:
-            - weight: 100
-              podAffinityTerm:
-                labelSelector:
-                  matchExpressions:
-                    - key: app.kubernetes.io/name
-                      operator: In
-                      values:
-                        - traefik
-                topologyKey: kubernetes.io/hostname
-        podAntiAffinity:
-          requiredDuringSchedulingIgnoredDuringExecution:
-          - labelSelector:
-              matchExpressions:
-              - key: app.kubernetes.io/name
-                operator: In
-                values:
-                - traefik-error-pages
-            topologyKey: kubernetes.io/hostname
+      # affinity:
+      #   podAffinity:
+      #     preferredDuringSchedulingIgnoredDuringExecution:
+      #       - weight: 100
+      #         podAffinityTerm:
+      #           labelSelector:
+      #             matchExpressions:
+      #               - key: app.kubernetes.io/name
+      #                 operator: In
+      #                 values:
+      #                   - traefik
+      #           topologyKey: kubernetes.io/hostname
+      #   podAntiAffinity:
+      #     requiredDuringSchedulingIgnoredDuringExecution:
+      #     - labelSelector:
+      #         matchExpressions:
+      #         - key: app.kubernetes.io/name
+      #           operator: In
+      #           values:
+      #           - traefik-error-pages
+      #       topologyKey: kubernetes.io/hostname
       containers:
       - name: traefik-error-pages
         image: ghcr.io/tarampampam/error-pages:2.2.0
