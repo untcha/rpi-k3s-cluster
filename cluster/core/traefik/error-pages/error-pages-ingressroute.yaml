@@ -4,17 +4,16 @@ kind: IngressRoute
 metadata:
   name: traefik-error-pages
   namespace: traefik
-  annotations:
-    cert-manager.io/cluster-issuer: "letsencrypt-dns01-production-do"
 spec:
   entryPoints:
     - websecure
   routes:
-    - match: HostRegexp(`{host:.+}`)
-      kind: Rule
-      # priority: 1
+    - kind: Rule
+      match: HostRegexp(`{host:.+}`)
+      priority: 1
       services:
-        - name: traefik-error-pages
+        - kind: Service
+          name: traefik-error-pages
           port: 80
   tls:
-    secretName: wildcard-letsencrypt-production-certificate
+    secretName: "${SECRET_DOMAIN/./-}-tls"
