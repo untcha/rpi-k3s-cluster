@@ -6,4 +6,4 @@ resources:
   - traefik-letsencrypt-certificate.yaml
   - traefik-ingressroute.yaml
   - error-pages
-  - middleware
+  - middlewares
