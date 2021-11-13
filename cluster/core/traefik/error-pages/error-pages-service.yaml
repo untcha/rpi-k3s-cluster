@@ -9,6 +9,6 @@ spec:
     name: traefik-error-pages
   ports:
   - name: web
-    port: 80
+    port: 8088
     protocol: TCP
     targetPort: 8080
