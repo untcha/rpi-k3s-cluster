@@ -16,7 +16,7 @@ spec:
 apiVersion: traefik.containo.us/v1alpha1
 kind: Middleware
 metadata:
-  name: error-pages-middleware
+  name: traefik-error-pages-middleware
   namespace: traefik
 spec:
   errors:
