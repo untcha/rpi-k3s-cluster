@@ -8,7 +8,7 @@
 # core-ingress-controller
 
 ---
-apiVersion: kustomize.toolkit.fluxcd.io/v1beta1
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
 kind: Kustomization
 metadata:
   name: core-namespaces
@@ -33,7 +33,7 @@ spec:
         name: cluster-secrets
 
 ---
-apiVersion: kustomize.toolkit.fluxcd.io/v1beta1
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
 kind: Kustomization
 metadata:
   name: core-network
@@ -65,7 +65,7 @@ spec:
         name: cluster-secrets
 
 ---
-apiVersion: kustomize.toolkit.fluxcd.io/v1beta1
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
 kind: Kustomization
 metadata:
   name: core-storage-remote
@@ -92,7 +92,7 @@ spec:
         name: cluster-secrets
 
 ---
-apiVersion: kustomize.toolkit.fluxcd.io/v1beta1
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
 kind: Kustomization
 metadata:
   name: core-storage-local
@@ -107,7 +107,7 @@ spec:
     kind: GitRepository
     name: flux-system
   healthChecks:
-    - apiVersion: helm.toolkit.fluxcd.io/v1beta1
+    - apiVersion: helm.toolkit.fluxcd.io/v1beta2
       kind: HelmRelease
       name: longhorn
       namespace: flux-system
@@ -124,7 +124,7 @@ spec:
         name: cluster-secrets
 
 ---
-apiVersion: kustomize.toolkit.fluxcd.io/v1beta1
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
 kind: Kustomization
 metadata:
   name: core-cron-jobs
@@ -152,7 +152,7 @@ spec:
         name: cluster-secrets
 
 ---
-apiVersion: kustomize.toolkit.fluxcd.io/v1beta1
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
 kind: Kustomization
 metadata:
   name: core-cert-manager-controller
@@ -196,7 +196,7 @@ spec:
         name: cluster-secrets
 
 ---
-apiVersion: kustomize.toolkit.fluxcd.io/v1beta1
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
 kind: Kustomization
 metadata:
   name: core-cert-manager-issuer
@@ -223,7 +223,7 @@ spec:
         name: cluster-secrets
 
 ---
-apiVersion: kustomize.toolkit.fluxcd.io/v1beta1
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
 kind: Kustomization
 metadata:
   name: core-ingress-controller
@@ -259,7 +259,7 @@ spec:
         name: cluster-secrets
 
 # ---
-# apiVersion: kustomize.toolkit.fluxcd.io/v1beta1
+# apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
 # kind: Kustomization
 # metadata:
 #   name: core
