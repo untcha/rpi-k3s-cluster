@@ -5,3 +5,4 @@ resources:
   - error-pages-service.yaml
   - error-pages-deployment.yaml
   - error-pages-ingressroute.yaml
+  - error-pages-middleware.yaml
