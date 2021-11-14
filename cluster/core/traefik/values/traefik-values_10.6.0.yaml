@@ -110,7 +110,7 @@ rollingUpdate:
 providers:
   kubernetesCRD:
     enabled: true
-    allowCrossNamespace: false
+    allowCrossNamespace: true
     allowExternalNameServices: false
     # ingressClass: traefik-internal
     # labelSelector: environment=production,method=traefik
@@ -460,7 +460,8 @@ affinity: {}
 #           values:
 #           - {{ template "traefik.name" . }}
 #       topologyKey: failure-domain.beta.kubernetes.io/zone
-nodeSelector: {}
+nodeSelector:
+  node-type: worker
 tolerations: []
 
 # Pods can have priority.
