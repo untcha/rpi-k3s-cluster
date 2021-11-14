@@ -48,7 +48,7 @@ spec:
     kind: GitRepository
     name: flux-system
   healthChecks:
-    - apiVersion: helm.toolkit.fluxcd.io/v1beta1
+    - apiVersion: helm.toolkit.fluxcd.io/v2beta1
       kind: HelmRelease
       name: metallb
       namespace: flux-system
