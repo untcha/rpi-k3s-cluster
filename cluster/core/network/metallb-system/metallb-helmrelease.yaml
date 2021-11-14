@@ -11,7 +11,7 @@ spec:
       sourceRef:
         kind: HelmRepository
         name: metallb
-      version: 0.10.3
+      version: 0.11.0
   interval: 1m0s
   targetNamespace: metallb-system
   values:
@@ -30,6 +30,7 @@ spec:
         periodSeconds: 10
         successThreshold: 1
         timeoutSeconds: 1
+      logLevel: info
       nodeSelector: {}
       podAnnotations: {}
       readinessProbe:
@@ -55,13 +56,16 @@ spec:
     nameOverride: ""
     prometheus:
       metricsPort: 7472
+      namespace: monitoring
       podMonitor:
+        additionalLabels: {}
         enabled: false
         interval: null
         jobLabel: app.kubernetes.io/name
         metricRelabelings: []
         relabelings: []
       prometheusRule:
+        additionalLabels: {}
         addressPoolExhausted:
           enabled: true
           labels:
@@ -93,6 +97,7 @@ spec:
           labels:
             severity: warning
       scrapeAnnotations: false
+      serviceAccount: prometheus-k8s
     psp:
       create: true
     rbac:
@@ -111,6 +116,7 @@ spec:
         periodSeconds: 10
         successThreshold: 1
         timeoutSeconds: 1
+      logLevel: info
       memberlist:
         enabled: true
         mlBindPort: 7946
