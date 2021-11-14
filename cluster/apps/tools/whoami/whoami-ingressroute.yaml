@@ -57,7 +57,7 @@ spec:
         - name: authelia-middleware
           namespace: authentication
       services:
-        - name: whoami
+        - name: whoami-bla-kaputt
           port: 80
   tls:
     secretName: whoami-letsencrypt-production-certificate
