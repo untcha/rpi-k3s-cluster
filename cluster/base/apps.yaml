@@ -15,15 +15,15 @@ spec:
     kind: GitRepository
     name: flux-system
   # healthChecks:
-    # - apiVersion: helm.toolkit.fluxcd.io/v1beta1
+    # - apiVersion: helm.toolkit.fluxcd.io/v2beta1
     #   kind: HelmRelease
     #   name: influxdb
     #   namespace: flux-system
-    # - apiVersion: helm.toolkit.fluxcd.io/v1beta1
+    # - apiVersion: helm.toolkit.fluxcd.io/v2beta1
     #   kind: HelmRelease
     #   name: grafana
     #   namespace: flux-system
-    # - apiVersion: helm.toolkit.fluxcd.io/v1beta1
+    # - apiVersion: helm.toolkit.fluxcd.io/v2beta1
     #   kind: HelmRelease
     #   name: prometheus
     #   namespace: flux-system

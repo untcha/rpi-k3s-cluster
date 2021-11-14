@@ -107,7 +107,7 @@ spec:
     kind: GitRepository
     name: flux-system
   healthChecks:
-    - apiVersion: helm.toolkit.fluxcd.io/v1beta2
+    - apiVersion: helm.toolkit.fluxcd.io/v2beta1
       kind: HelmRelease
       name: longhorn
       namespace: flux-system
@@ -167,7 +167,7 @@ spec:
     kind: GitRepository
     name: flux-system
   healthChecks:
-    - apiVersion: helm.toolkit.fluxcd.io/v1beta1
+    - apiVersion: helm.toolkit.fluxcd.io/v2beta1
       kind: HelmRelease
       name: cert-manager
       namespace: flux-system
@@ -238,7 +238,7 @@ spec:
     kind: GitRepository
     name: flux-system
   healthChecks:
-    - apiVersion: helm.toolkit.fluxcd.io/v1beta1
+    - apiVersion: helm.toolkit.fluxcd.io/v2beta1
       kind: HelmRelease
       name: traefik
       namespace: flux-system
