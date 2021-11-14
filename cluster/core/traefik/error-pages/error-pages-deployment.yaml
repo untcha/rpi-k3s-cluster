@@ -2,10 +2,10 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: traefik-error-pages
+  name: error-pages
   namespace: traefik
   labels:
-    app: traefik-error-pages
+    app: error-pages
 spec:
   replicas: 1
   strategy:
@@ -15,11 +15,11 @@ spec:
     type: RollingUpdate
   selector:
     matchLabels:
-      app: traefik-error-pages
+      app: error-pages
   template:
     metadata:
       labels:
-        app: traefik-error-pages
+        app: error-pages
     spec:
       nodeSelector:
         node-type: worker
@@ -42,10 +42,10 @@ spec:
       #         - key: app.kubernetes.io/name
       #           operator: In
       #           values:
-      #           - traefik-error-pages
+      #           - error-pages
       #       topologyKey: kubernetes.io/hostname
       containers:
-      - name: traefik-error-pages
+      - name: error-pages
         image: ghcr.io/tarampampam/error-pages:2.2.0
         imagePullPolicy: IfNotPresent
         env:
