@@ -2,7 +2,7 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
-  - error-pages-service.yaml
-  - error-pages-deployment.yaml
-  - error-pages-ingressroute.yaml
-  - error-pages-middleware.yaml
+  # - error-pages-service.yaml
+  # - error-pages-deployment.yaml
+  # - error-pages-ingressroute.yaml
+  # - error-pages-middleware.yaml
