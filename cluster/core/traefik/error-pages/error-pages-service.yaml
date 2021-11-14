@@ -6,7 +6,7 @@ metadata:
   namespace: traefik
 spec:
   selector:
-    name: traefik-error-pages
+    app: traefik-error-pages
   ports:
   - name: http
     port: 8080

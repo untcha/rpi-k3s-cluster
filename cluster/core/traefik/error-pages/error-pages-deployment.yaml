@@ -5,7 +5,7 @@ metadata:
   name: traefik-error-pages
   namespace: traefik
   labels:
-    app.kubernetes.io/name: traefik-error-pages
+    app: traefik-error-pages
 spec:
   replicas: 1
   strategy:
@@ -15,11 +15,11 @@ spec:
     type: RollingUpdate
   selector:
     matchLabels:
-      app.kubernetes.io/name: traefik-error-pages
+      app: traefik-error-pages
   template:
     metadata:
       labels:
-        app.kubernetes.io/name: traefik-error-pages
+        app: traefik-error-pages
     spec:
       nodeSelector:
         node-type: worker
