@@ -132,7 +132,6 @@ spec:
         allowCrossNamespace: true
         allowExternalNameServices: false
         enabled: true
-        ingressClass: traefik
         namespaces: []
       kubernetesIngress:
         enabled: true

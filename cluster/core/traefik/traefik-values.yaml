@@ -112,7 +112,6 @@ providers:
     enabled: true
     allowCrossNamespace: true
     allowExternalNameServices: false
-    ingressClass: traefik
     # ingressClass: traefik-internal
     # labelSelector: environment=production,method=traefik
     namespaces: []
