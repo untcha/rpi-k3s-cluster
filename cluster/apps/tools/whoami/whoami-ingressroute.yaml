@@ -98,10 +98,11 @@ metadata:
   name: whoami
   namespace: tools
   annotations:
+    kubernetes.io/ingress.class: traefik
     traefik.ingress.kubernetes.io/router.entrypoints: websecure
     traefik.ingress.kubernetes.io/router.tls: "true"
 spec:
-  ingressClassName: "traefik"
+  # ingressClassName: "traefik"
   rules:
   - host: "whoami.${SECRET_DOMAIN}"
     http:
