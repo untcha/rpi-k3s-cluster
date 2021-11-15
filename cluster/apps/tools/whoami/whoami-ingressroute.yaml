@@ -90,3 +90,26 @@
 #     addVaryHeader: true
 #     referrerPolicy: "same-origin"
 #     customFrameOptionsValue: SAMEORIGIN
+
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: whoami
+  namespace: tools
+  annotations:
+    traefik.ingress.kubernetes.io/router.entrypoints: websecure
+    traefik.ingress.kubernetes.io/router.tls: "true"
+spec:
+  ingressClassName: "traefik"
+  rules:
+  - host: "whoami.${SECRET_DOMAIN}"
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: whoami
+            port:
+              number: 80
