@@ -60,7 +60,8 @@ spec:
         - name: whoami
           port: 80
   tls:
-    secretName: whoami-letsencrypt-production-certificate
+    secretName: "${SECRET_DOMAIN/./-}-tls"
+    # secretName: whoami-letsencrypt-production-certificate
 
 ---
 apiVersion: traefik.containo.us/v1alpha1
