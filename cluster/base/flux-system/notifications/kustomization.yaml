@@ -6,3 +6,4 @@ resources:
   # - flux-slack-notification-provider.yaml
   # - flux-alert.yaml
   # - nextcloud-helmrelease-alert.yaml
+  # test
