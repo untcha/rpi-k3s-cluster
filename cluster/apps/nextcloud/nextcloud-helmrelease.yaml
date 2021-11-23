@@ -11,7 +11,7 @@ spec:
       sourceRef:
         kind: HelmRepository
         name: groundhog2k
-      version: 0.8.1
+      version: 0.8.4
   interval: 1m0s
   timeout: 25m
   targetNamespace: nextcloud
