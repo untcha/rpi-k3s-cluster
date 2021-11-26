@@ -6,7 +6,7 @@ metadata:
   name: cluster-settings
 data:
   UNBOUND_SVC_LB_IP:              "192.168.178.122"
-  PIHOLE_SVC_LB_IP:               "192.168.178.123"
+  PIHOLE_SVC_LB_IP:               "192.168.178.120"
   PIHOLE_STAGING_SVC_LB_IP:       "192.168.178.181"
   UNBOUND_STAGING_SVC_LB_IP:      "192.168.178.182"
   BLOCKY_SVC_LB_IP:               "192.168.178.180"
