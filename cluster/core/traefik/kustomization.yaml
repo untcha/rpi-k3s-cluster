@@ -4,7 +4,7 @@ kind: Kustomization
 resources:
   - traefik-helmrelease.yaml
   # - traefik-letsencrypt-certificate.yaml
-  - traefik-ingressroute.yaml
+  # - traefik-ingressroute.yaml
   # - wildcard-certificate
   # - error-pages
   # test
