@@ -1,11 +1,10 @@
 # core-namespaces
 # core-network
-# core-storage-remote
-# core-storage-local
-# core-cron-jobs
 # core-cert-manager-controller
 # core-cert-manager-issuer
 # core-ingress-controller
+# core-storage-remote
+# core-storage-local
 
 ---
 apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
@@ -68,99 +67,12 @@ spec:
 apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
 kind: Kustomization
 metadata:
-  name: core-storage-remote
-  namespace: flux-system
-spec:
-  interval: 10m0s
-  dependsOn:
-  - name: core-network
-  path: ./cluster/core/storage/remote
-  prune: true
-  sourceRef:
-    kind: GitRepository
-    name: flux-system
-  decryption:
-    provider: sops
-    secretRef:
-      name: sops-gpg
-  postBuild:
-    substitute: {}
-    substituteFrom:
-      - kind: ConfigMap
-        name: cluster-settings
-      - kind: Secret
-        name: cluster-secrets
-
----
-apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
-kind: Kustomization
-metadata:
-  name: core-storage-local
-  namespace: flux-system
-spec:
-  interval: 10m0s
-  dependsOn:
-  - name: core-storage-remote
-  path: ./cluster/core/storage/local
-  prune: true
-  sourceRef:
-    kind: GitRepository
-    name: flux-system
-  healthChecks:
-    - apiVersion: helm.toolkit.fluxcd.io/v2beta1
-      kind: HelmRelease
-      name: longhorn
-      namespace: flux-system
-  decryption:
-    provider: sops
-    secretRef:
-      name: sops-gpg
-  postBuild:
-    substitute: {}
-    substituteFrom:
-      - kind: ConfigMap
-        name: cluster-settings
-      - kind: Secret
-        name: cluster-secrets
-
----
-apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
-kind: Kustomization
-metadata:
-  name: core-cron-jobs
-  namespace: flux-system
-spec:
-  interval: 10m0s
-  dependsOn:
-  - name: core-storage-local
-  #- name: core-storage-remote
-  path: ./cluster/core/cron-jobs
-  prune: true
-  sourceRef:
-    kind: GitRepository
-    name: flux-system
-  decryption:
-    provider: sops
-    secretRef:
-      name: sops-gpg
-  postBuild:
-    substitute: {}
-    substituteFrom:
-      - kind: ConfigMap
-        name: cluster-settings
-      - kind: Secret
-        name: cluster-secrets
-
----
-apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
-kind: Kustomization
-metadata:
   name: core-cert-manager-controller
   namespace: flux-system
 spec:
   interval: 10m0s
   dependsOn:
-  - name: core-cron-jobs
+  - name: core-network
   path: ./cluster/core/cert-manager/controller
   prune: true
   sourceRef:
@@ -258,29 +170,61 @@ spec:
       - kind: Secret
         name: cluster-secrets
 
-# ---
-# apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
-# kind: Kustomization
-# metadata:
-#   name: core
-#   namespace: flux-system
-# spec:
-#   interval: 10m0s
-#   #dependsOn:
-#   #- name: crds
-#   path: ./cluster/core
-#   prune: true
-#   sourceRef:
-#     kind: GitRepository
-#     name: flux-system
-#   decryption:
-#     provider: sops
-#     secretRef:
-#       name: sops-gpg
-#   postBuild:
-#     substitute: {}
-#     substituteFrom:
-#       - kind: ConfigMap
-#         name: cluster-settings
-#       - kind: Secret
-#         name: cluster-secrets
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+kind: Kustomization
+metadata:
+  name: core-storage-remote
+  namespace: flux-system
+spec:
+  interval: 10m0s
+  dependsOn:
+  - name: core-ingress-controller
+  path: ./cluster/core/storage/remote
+  prune: true
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+  decryption:
+    provider: sops
+    secretRef:
+      name: sops-gpg
+  postBuild:
+    substitute: {}
+    substituteFrom:
+      - kind: ConfigMap
+        name: cluster-settings
+      - kind: Secret
+        name: cluster-secrets
+
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+kind: Kustomization
+metadata:
+  name: core-storage-local
+  namespace: flux-system
+spec:
+  interval: 10m0s
+  dependsOn:
+  - name: core-storage-remote
+  path: ./cluster/core/storage/local
+  prune: true
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+  healthChecks:
+    - apiVersion: helm.toolkit.fluxcd.io/v2beta1
+      kind: HelmRelease
+      name: longhorn
+      namespace: flux-system
+  decryption:
+    provider: sops
+    secretRef:
+      name: sops-gpg
+  postBuild:
+    substitute: {}
+    substituteFrom:
+      - kind: ConfigMap
+        name: cluster-settings
+      - kind: Secret
+        name: cluster-secrets
