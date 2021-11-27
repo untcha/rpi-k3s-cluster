@@ -53,14 +53,14 @@ spec:
     - match: Host(`longhorn.${SECRET_DIGITALOCEAN_DOMAIN_02}`)
       kind: Rule
       middlewares:
-        - name: authelia-middleware
-          namespace: authentication
+        # - name: authelia-middleware
+        #   namespace: authentication
         - name: longhorn-middleware-headers
       services:
         - name: longhorn-frontend
           port: 80
   tls:
-    secretName: longhorn-letsencrypt-production-certificate
+    secretName: "${SECRET_DOMAIN/./-}-tls"
 
 # https://longhorn.io/kb/troubleshooting-traefik-2.x-as-ingress-controller/
 # Avoid CORS problem
