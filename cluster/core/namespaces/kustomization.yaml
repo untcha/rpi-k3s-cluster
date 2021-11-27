@@ -9,5 +9,3 @@ resources:
   - cron-jobs.yaml
   - cert-manager.yaml
   - traefik.yaml
-  - influxdata.yaml
-  - grafana.yaml
