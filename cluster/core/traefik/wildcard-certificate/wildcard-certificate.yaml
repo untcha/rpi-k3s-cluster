@@ -3,7 +3,7 @@ apiVersion: cert-manager.io/v1
 kind: Certificate
 metadata:
   name: "${SECRET_DOMAIN/./-}"
-  namespace: cert-manager
+  namespace: traefik
 spec:
   secretName: "${SECRET_DOMAIN/./-}-tls"
   issuerRef:
