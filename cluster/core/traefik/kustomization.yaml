@@ -3,8 +3,8 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
   - traefik-helmrelease.yaml
-  - traefik-letsencrypt-certificate.yaml
+  # - traefik-letsencrypt-certificate.yaml
   - traefik-ingressroute.yaml
-  - wildcard-certificate
+  # - wildcard-certificate
   - error-pages
   - middlewares
