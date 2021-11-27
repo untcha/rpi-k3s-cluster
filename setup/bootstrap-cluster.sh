@@ -58,6 +58,13 @@ k3sup join \
     --server-ip $K3S_CLUSTER_IP_M01 \
     --k3s-version $K3S_CLUSTER_VERSION
 
+echo Installing Worker 5
+k3sup join \
+    --ip $K3S_CLUSTER_IP_W05 \
+    --user $K3S_CLUSTER_USER \
+    --server-ip $K3S_CLUSTER_IP_M01 \
+    --k3s-version $K3S_CLUSTER_VERSION
+
 # This label is to have nice name when running kubectl get nodes.
 # kubectl label nodes rpi-k3s-worker-01 kubernetes.io/role=worker
 # kubectl label nodes rpi-k3s-worker-02 kubernetes.io/role=worker
