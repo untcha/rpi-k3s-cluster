@@ -63,12 +63,14 @@ k3sup join \
 # kubectl label nodes rpi-k3s-worker-02 kubernetes.io/role=worker
 # kubectl label nodes rpi-k3s-worker-03 kubernetes.io/role=worker
 # kubectl label nodes rpi-k3s-worker-04 kubernetes.io/role=worker
+# kubectl label nodes rpi-k3s-worker-05 kubernetes.io/role=worker
 
 # Another label/tag. This one I will use to tell deployments to prefer nodes with node-type worker. The node-type is our chosen name for value, you can call it whatever.
 # kubectl label nodes rpi-k3s-worker-01 node-type=worker
 # kubectl label nodes rpi-k3s-worker-02 node-type=worker
 # kubectl label nodes rpi-k3s-worker-03 node-type=worker
 # kubectl label nodes rpi-k3s-worker-04 node-type=worker
+# kubectl label nodes rpi-k3s-worker-05 node-type=monitoring
 
 # Install 'kubernetes-dashboard'
 # echo Installing kubernetes-dashboard
