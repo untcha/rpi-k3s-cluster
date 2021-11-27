@@ -7,5 +7,4 @@ resources:
   # - traefik-ingressroute.yaml
   # - wildcard-certificate
   # - error-pages
-  # test
-  # - middlewares
+  - middlewares
