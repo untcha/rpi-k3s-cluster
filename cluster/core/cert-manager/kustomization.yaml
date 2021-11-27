@@ -4,3 +4,4 @@ kind: Kustomization
 resources:
   - controller
   - issuer
+  - wildcard-certificate
