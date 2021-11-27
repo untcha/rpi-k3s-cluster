@@ -4,7 +4,6 @@ kind: Kustomization
 resources:
   - namespaces
   - network
-  - storage
-  - cron-jobs
   - cert-manager
   - traefik
+  - storage
