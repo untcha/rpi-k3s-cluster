@@ -4,6 +4,7 @@ kind: Kustomization
 resources:
   # - authentication
   # - bitwarden
+  # - cron-jobs
   # - dashboards
     # homer
     # kubernetes-dashboard

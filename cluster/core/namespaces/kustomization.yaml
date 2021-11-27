@@ -6,6 +6,5 @@ resources:
   - nfs-provisioner.yaml
   - storage.yaml
   - longhorn-system.yaml
-  - cron-jobs.yaml
   - cert-manager.yaml
   - traefik.yaml
