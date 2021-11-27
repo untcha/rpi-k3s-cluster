@@ -4,6 +4,6 @@ kind: Kustomization
 resources:
   - longhorn-helmrelease.yaml
   - longhorn-storageclasses 
-  - longhorn-letsencrypt-certificate.yaml
-  - longhorn-ingressroute.yaml
+  # - longhorn-letsencrypt-certificate.yaml
+  # - longhorn-ingressroute.yaml
   - volume-migration
