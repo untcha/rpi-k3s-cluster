@@ -1,0 +1,77 @@
+# traefik-local-ingressroute
+# traefik-metrics-local-ingressroute
+# traefik-http-ingressroute
+# traefik-https-ingressroute
+
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: traefik-local-ingressroute
+  namespace: traefik
+spec:
+  entryPoints:
+    - web
+  routes:
+    - match: Host(`traefik.${SECRET_DOMAIN_LOCAL_02}`) && (PathPrefix(`/dashboard`) || PathPrefix(`/api`))
+      kind: Rule
+      services:
+        - name: api@internal
+          kind: TraefikService
+
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: traefik-metrics-local-ingressroute
+  namespace: traefik
+spec:
+  entryPoints:
+    - web
+  routes:
+    - match: Host(`traefik.${SECRET_DOMAIN_LOCAL_02}`) && PathPrefix(`/metrics`)
+      kind: Rule
+      services:
+        - name: prometheus@internal
+          kind: TraefikService
+
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: traefik-http-ingressroute
+  namespace: traefik
+spec:
+  entryPoints:
+    - web
+  routes:
+    - match: Host(`traefik.${SECRET_DIGITALOCEAN_DOMAIN_02}`) && (PathPrefix(`/dashboard`) || PathPrefix(`/api`))
+      kind: Rule
+      middlewares:
+        - name: https-redirect-scheme-middleware
+      services:
+        - name: api@internal
+          kind: TraefikService
+
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: traefik-https-ingressroute
+  namespace: traefik
+  annotations:
+    cert-manager.io/cluster-issuer: "letsencrypt-dns01-production-do"
+spec:
+  entryPoints:
+    - websecure
+  routes:
+    - match: Host(`traefik.${SECRET_DIGITALOCEAN_DOMAIN_02}`) && (PathPrefix(`/dashboard`) || PathPrefix(`/api`))
+      kind: Rule
+      # middlewares:
+      #   - name: authelia-middleware
+      #     namespace: authentication
+      services:
+        - name: api@internal
+          kind: TraefikService
+  tls:
+    secretName: "${SECRET_DOMAIN/./-}-tls"

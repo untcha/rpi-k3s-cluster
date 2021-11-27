@@ -6,4 +6,5 @@ resources:
   - network
   - cert-manager
   - traefik
+  - traefik-crds
   - storage
