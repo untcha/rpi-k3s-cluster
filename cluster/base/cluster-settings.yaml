@@ -20,3 +20,5 @@ data:
   LONGHORN_DEFAULT_DATAPATH:      "/storage/"
   GOOGLE_DNS1:                    "8.8.8.8"
   GOOGLE_DNS2:                    "8.8.4.4"
+  NFS_SERVER_IP:                  "192.168.178.110"
+  NFS_SERVER_PATH:                "/KubeData"
