@@ -16,7 +16,7 @@ resources:
   # - documentation
   # - grafana
   # - influxdata
-  # - monitoring
+  - monitoring
     # prometheus
   # - nextcloud
   # - tools
