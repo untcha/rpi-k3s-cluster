@@ -378,14 +378,14 @@ spec:
           enabled: false
           servicePort: 10901
         labels: {}
-        loadBalancerIP: ${PROMETHEUS_SVC_LB_IP}
+        loadBalancerIP: ""
         loadBalancerSourceRanges: []
         servicePort: 80
         sessionAffinity: None
         statefulsetReplica:
           enabled: false
           replica: 0
-        type: LoadBalancer
+        type: ClusterIP
       sidecarContainers: []
       sidecarTemplateValues: {}
       startupProbe:
