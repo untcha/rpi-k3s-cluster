@@ -4,5 +4,5 @@ kind: Kustomization
 resources:
   - authentication-namespace.yaml
   - basicauth
-  - postgres
-  - authelia
+  # - postgres
+  # - authelia
