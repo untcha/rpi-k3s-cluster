@@ -19,6 +19,8 @@ spec:
         app: adminer
         name: adminer
     spec:
+      nodeSelector:
+        node-type: worker
       containers:
         - name: adminer
           image: adminer:4.8.1
