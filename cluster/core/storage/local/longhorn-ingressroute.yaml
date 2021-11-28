@@ -53,8 +53,8 @@ spec:
     - match: Host(`longhorn.${SECRET_DIGITALOCEAN_DOMAIN_02}`)
       kind: Rule
       middlewares:
-        # - name: authelia-middleware
-        #   namespace: authentication
+        - name: basicauth-middleware
+          namespace: authentication
         - name: longhorn-middleware-headers
       services:
         - name: longhorn-frontend
