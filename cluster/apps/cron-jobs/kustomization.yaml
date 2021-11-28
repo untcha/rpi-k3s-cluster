@@ -4,4 +4,4 @@ kind: Kustomization
 resources:
   - namespace.yaml
   - cron-job-pvc.yaml
-  # - digitalocean-dns-updater-cron-job.yaml
+  - digitalocean-dns-updater-cron-job.yaml
