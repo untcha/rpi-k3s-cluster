@@ -48,7 +48,7 @@ alertmanager:
   ##
   image:
     repository: quay.io/prometheus/alertmanager
-    tag: v0.23.0 #v0.21.0
+    tag: v0.23.0
     pullPolicy: IfNotPresent
 
   ## alertmanager priorityClassName
@@ -164,7 +164,8 @@ alertmanager:
   ## Node labels for alertmanager pod assignment
   ## Ref: https://kubernetes.io/docs/user-guide/node-selection/
   ##
-  nodeSelector: {}
+  nodeSelector:
+    node-type: monitoring
 
   ## Pod affinity
   ##
@@ -477,7 +478,7 @@ nodeExporter:
   ##
   image:
     repository: quay.io/prometheus/node-exporter
-    tag: v1.2.2 #v1.1.2
+    tag: v1.3.0
     pullPolicy: IfNotPresent
 
   ## Specify if a Pod Security Policy for node-exporter must be created
@@ -538,7 +539,8 @@ nodeExporter:
   ## Node labels for node-exporter pod assignment
   ## Ref: https://kubernetes.io/docs/user-guide/node-selection/
   ##
-  nodeSelector: {}
+  nodeSelector:
+    node-type: monitoring
 
   ## Annotations to be added to node-exporter pods
   ##
@@ -652,7 +654,7 @@ server:
   ##
   image:
     repository: quay.io/prometheus/prometheus
-    tag: v2.31.1 #v2.30.3 #v2.26.0
+    tag: v2.31.1
     pullPolicy: IfNotPresent
 
   ## prometheus server priorityClassName
@@ -847,7 +849,8 @@ server:
   ## Node labels for Prometheus server pod assignment
   ## Ref: https://kubernetes.io/docs/user-guide/node-selection/
   ##
-  nodeSelector: {}
+  nodeSelector:
+    node-type: monitoring
 
   ## Pod affinity
   ##
@@ -1111,7 +1114,7 @@ pushgateway:
   ##
   image:
     repository: prom/pushgateway
-    tag: v1.4.2 #v1.3.1
+    tag: v1.4.2
     pullPolicy: IfNotPresent
 
   ## pushgateway priorityClassName
@@ -1181,7 +1184,8 @@ pushgateway:
   ## Node labels for pushgateway pod assignment
   ## Ref: https://kubernetes.io/docs/user-guide/node-selection/
   ##
-  nodeSelector: {}
+  nodeSelector:
+    node-type: monitoring
 
   ## Annotations to be added to pushgateway pods
   ##
@@ -1555,13 +1559,13 @@ serverFiles:
             regex: __meta_kubernetes_service_label_(.+)
           - source_labels: [__meta_kubernetes_namespace]
             action: replace
-            target_label: kubernetes_namespace
+            target_label: namespace
           - source_labels: [__meta_kubernetes_service_name]
             action: replace
-            target_label: kubernetes_name
+            target_label: service
           - source_labels: [__meta_kubernetes_pod_node_name]
             action: replace
-            target_label: kubernetes_node
+            target_label: node
 
       # Scrape config for slow service endpoints; same as above, but with a larger
       # timeout and a larger interval
@@ -1609,13 +1613,13 @@ serverFiles:
             regex: __meta_kubernetes_service_label_(.+)
           - source_labels: [__meta_kubernetes_namespace]
             action: replace
-            target_label: kubernetes_namespace
+            target_label: namespace
           - source_labels: [__meta_kubernetes_service_name]
             action: replace
-            target_label: kubernetes_name
+            target_label: service
           - source_labels: [__meta_kubernetes_pod_node_name]
             action: replace
-            target_label: kubernetes_node
+            target_label: node
 
       - job_name: 'prometheus-pushgateway'
         honor_labels: true
@@ -1656,9 +1660,9 @@ serverFiles:
           - action: labelmap
             regex: __meta_kubernetes_service_label_(.+)
           - source_labels: [__meta_kubernetes_namespace]
-            target_label: kubernetes_namespace
+            target_label: namespace
           - source_labels: [__meta_kubernetes_service_name]
-            target_label: kubernetes_name
+            target_label: service
 
       # Example scrape config for pods
       #
@@ -1699,10 +1703,10 @@ serverFiles:
             regex: __meta_kubernetes_pod_label_(.+)
           - source_labels: [__meta_kubernetes_namespace]
             action: replace
-            target_label: kubernetes_namespace
+            target_label: namespace
           - source_labels: [__meta_kubernetes_pod_name]
             action: replace
-            target_label: kubernetes_pod_name
+            target_label: pod
           - source_labels: [__meta_kubernetes_pod_phase]
             regex: Pending|Succeeded|Failed|Completed
             action: drop
@@ -1750,10 +1754,10 @@ serverFiles:
             regex: __meta_kubernetes_pod_label_(.+)
           - source_labels: [__meta_kubernetes_namespace]
             action: replace
-            target_label: kubernetes_namespace
+            target_label: namespace
           - source_labels: [__meta_kubernetes_pod_name]
             action: replace
-            target_label: kubernetes_pod_name
+            target_label: pod
           - source_labels: [__meta_kubernetes_pod_phase]
             regex: Pending|Succeeded|Failed|Completed
             action: drop
@@ -1769,21 +1773,21 @@ extraScrapeConfigs: |
   #   static_configs:
   #     - targets:
   #       - traefik.${SECRET_DOMAIN_LOCAL_02}
-  - job_name: 'z-custom_pihole-metrics'
-    scrape_interval: 5s
-    scheme: http
-    metrics_path: /metrics
-    static_configs:
-      - targets:
-        - pihole-metrics.${SECRET_DOMAIN_LOCAL_02}
-  - job_name: 'z-custom_speedtest-metrics'
-    scrape_interval: 1h
-    scrape_timeout: 5m
-    scheme: http
-    metrics_path: /metrics
-    static_configs:
-      - targets:
-        - speedtest.${SECRET_DOMAIN_LOCAL_02}
+  # - job_name: 'z-custom_pihole-metrics'
+  #   scrape_interval: 5s
+  #   scheme: http
+  #   metrics_path: /metrics
+  #   static_configs:
+  #     - targets:
+  #       - pihole-metrics.${SECRET_DOMAIN_LOCAL_02}
+  # - job_name: 'z-custom_speedtest-metrics'
+  #   scrape_interval: 1h
+  #   scrape_timeout: 5m
+  #   scheme: http
+  #   metrics_path: /metrics
+  #   static_configs:
+  #     - targets:
+  #       - speedtest.${SECRET_DOMAIN_LOCAL_02}
   # - job_name: 'z_blocky-metrics'
   #   scrape_interval: 5s
   #   scheme: http
