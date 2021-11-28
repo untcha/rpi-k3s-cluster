@@ -5,6 +5,7 @@ metadata:
   name: digitalocean-dns-updater-cron-job
   namespace: cron-jobs
 spec:
+  automountServiceAccountToken: false
   schedule: "*/15 * * * *"
   jobTemplate:
     spec:
