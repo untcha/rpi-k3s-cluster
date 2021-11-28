@@ -29,7 +29,8 @@ spec:
             - name: digitalocean-dns-updater-volume
               configMap:
                 name: digitalocean-dns-updater-configmap
-                defaultMode: 0744
+                defaultMode: 0777
+                # defaultMode: 0744
             - name: digitalocean-dns-updater-log
               persistentVolumeClaim:
                 claimName: cron-job-data-pvc
