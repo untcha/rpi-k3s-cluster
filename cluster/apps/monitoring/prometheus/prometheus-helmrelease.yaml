@@ -194,8 +194,7 @@ spec:
         repository: quay.io/prometheus/node-exporter
         tag: v1.3.0
       name: node-exporter
-      nodeSelector:
-        node-type: monitoring
+      nodeSelector: {}
       pod:
         labels: {}
       podAnnotations: {}

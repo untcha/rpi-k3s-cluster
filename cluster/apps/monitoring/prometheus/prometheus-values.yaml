@@ -539,8 +539,7 @@ nodeExporter:
   ## Node labels for node-exporter pod assignment
   ## Ref: https://kubernetes.io/docs/user-guide/node-selection/
   ##
-  nodeSelector:
-    node-type: monitoring
+  nodeSelector: {}
 
   ## Annotations to be added to node-exporter pods
   ##
