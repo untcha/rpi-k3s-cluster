@@ -4,7 +4,6 @@ kind: Kustomization
 resources:
   - traefik-helmrelease.yaml
   - wildcard-certificate
-  # - error-pages
 
 # configMapGenerator:
 # - name: traefik-values
