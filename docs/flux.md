@@ -27,6 +27,10 @@ gpg --list-keys "$FLUX_KEY_NAME" | grep pub -A 1 | grep -v pub
 TODO: place encrypted sops-gpg.yaml in the repository
 
 ```bash
+kubectl create namespace flux-system
+```
+
+```bash
 gpg --export-secret-keys --armor "${FLUX_KEY_FP}" |
 kubectl create secret generic sops-gpg \
     --namespace=flux-system \
@@ -70,13 +74,13 @@ flux bootstrap github \
   --repository=$GITHUB_REPOSITORY \
   --branch=main \
   --path=./cluster/base \
-  --version="v0.18.1" \
-  --network-policy=false \
-  --personal
+  --version="v0.24.0" \
+  --network-policy=false
 
 # Latest stable: v0.16.1
 # Testing latest stable: v0.15.2
 # --network-policy=false \
+# --personal
 ```
 
 ## Clone the git repository
