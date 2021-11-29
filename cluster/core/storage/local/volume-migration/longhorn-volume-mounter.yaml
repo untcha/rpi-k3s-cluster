@@ -21,8 +21,7 @@ spec:
       containers:
         - name: longhorn-volume-mounter
           # image: praqma/network-multitool:extra
-          # image: busybox:1.34.1
-          image: postgres:14.0
+          image: busybox:1.34.1
           tty: true
           volumeMounts:
             - name: old-vol
