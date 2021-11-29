@@ -4,5 +4,5 @@ kind: Kustomization
 resources:
   - enc_grafana-auth-secret.yaml
   - grafana-pvc.yaml
-  # - grafana-helmrelease.yaml
-  # - grafana-ingressroute.yaml
+  - grafana-helmrelease.yaml
+  - grafana-ingressroute.yaml
