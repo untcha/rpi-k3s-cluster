@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="https://github.com/kubernetes/kubernetes/blob/master/logo/logo_with_border.png" align="left" width="144px" height="144px"/>
+<img src="https://github.com/kubernetes/kubernetes/blob/master/logo/logo_with_border.png" align="left" width="256px" height="256px"/>
 
 </div>
 
