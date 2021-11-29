@@ -16,7 +16,7 @@ spec:
     - match: Host(`grafana.${SECRET_DOMAIN_LOCAL_02}`)
       kind: Rule
       services:
-        - name: grafana-grafana
+        - name: monitoring-grafana
           port: 80
 
 ---
@@ -35,7 +35,7 @@ spec:
         - name: https-redirect-scheme-middleware
           namespace: traefik
       services:
-        - name: grafana-grafana
+        - name: monitoring-grafana
           port: 80
 
 ---
@@ -55,7 +55,7 @@ spec:
       middlewares:
         - name: grafana-middleware-headers
       services:
-        - name: grafana-grafana
+        - name: monitoring-grafana
           port: 80
   tls:
     secretName: "${SECRET_DOMAIN/./-}-tls"
