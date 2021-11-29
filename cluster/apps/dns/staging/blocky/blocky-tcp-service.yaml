@@ -3,7 +3,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: blocky-tcp
-  namespace: dns-test
+  namespace: dns-staging
   labels:
     app: blocky
   annotations:

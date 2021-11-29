@@ -3,7 +3,7 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: pihole-env-vars
-  namespace: dns-test
+  namespace: dns-staging
 data:
   WEBPASSWORD: ${SECRET_PIHOLE_WEBPASSWORD}
   ADMIN_EMAIL: ${SECRET_EMAIL}
@@ -22,7 +22,7 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: pihole-ftl.conf
-  namespace: dns-test
+  namespace: dns-staging
 data:
   pihole-FTL.conf: |
     TEST
@@ -34,7 +34,7 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: custom.list
-  namespace: dns-test
+  namespace: dns-staging
 data:
   custom.list: |
     ${SECRET_PIHOLE_DNS_RECORD_01}
@@ -51,7 +51,7 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: regex.list
-  namespace: dns-test
+  namespace: dns-staging
 data:
   regex.list: |
     (\.|^)trbo\.com$
@@ -76,7 +76,7 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: whitelist.txt
-  namespace: dns-test
+  namespace: dns-staging
 data:
   whitelist.txt: |
     # (\.|^)instagram\.com$
@@ -280,7 +280,7 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: adlists.list
-  namespace: dns-test
+  namespace: dns-staging
 data:
   adlists.list: |
     https://dbl.oisd.nl/

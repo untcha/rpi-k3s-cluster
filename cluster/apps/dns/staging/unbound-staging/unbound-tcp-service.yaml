@@ -2,8 +2,8 @@
 kind: Service
 apiVersion: v1
 metadata:
-  name: unbound-udp
-  namespace: dns-test
+  name: unbound-tcp
+  namespace: dns-staging
   labels:
     app: unbound
   annotations:
@@ -13,9 +13,9 @@ spec:
   selector:
     app: unbound
   ports:
-  - name: dns-udp
+  - name: dns-tcp
     port: 5335
-    protocol: UDP
+    protocol: TCP
     targetPort: 5335
   type: LoadBalancer
   loadBalancerIP: ${UNBOUND_STAGING_SVC_LB_IP}

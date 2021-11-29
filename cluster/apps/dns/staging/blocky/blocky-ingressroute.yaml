@@ -3,7 +3,7 @@ apiVersion: traefik.containo.us/v1alpha1
 kind: IngressRoute
 metadata:
   name: blocky-local-ingressroute
-  namespace: dns-test
+  namespace: dns-staging
 spec:
   entryPoints:
     - web

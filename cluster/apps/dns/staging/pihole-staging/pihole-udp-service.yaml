@@ -2,8 +2,8 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: pihole-tcp
-  namespace: dns-test
+  name: pihole-udp
+  namespace: dns-staging
   labels:
     app: pihole
   annotations:
@@ -13,18 +13,14 @@ spec:
   selector:
     app: pihole
   ports:
-  - name: http
-    port: 80
-    protocol: TCP
-    targetPort: http
-  - name: https
-    port: 443
-    protocol: TCP
-    targetPort: https
-  - name: dns-tcp
+  - name: dns-udp
     port: 53
-    protocol: TCP
-    targetPort: dns-tcp
+    protocol: UDP
+    targetPort: dns-udp
+  - name: client-udp
+    port: 67
+    protocol: UDP
+    targetPort: client-udp
   sessionAffinity: None
   externalTrafficPolicy: Local
   type: LoadBalancer

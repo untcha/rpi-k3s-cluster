@@ -3,7 +3,7 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: unbound-config
-  namespace: dns-test
+  namespace: dns-staging
 data:
   unbound.conf: |
     # https://linux.die.net/man/5/unbound.conf
@@ -203,7 +203,7 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: unbound-root-hints
-  namespace: dns-test
+  namespace: dns-staging
 data:
   root.hints: |
     ;       This file holds the information on root name servers needed to 
@@ -304,7 +304,7 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: unbound-root-key-initial
-  namespace: dns-test
+  namespace: dns-staging
 data:
   root.key: |
     ; autotrust trust anchor file
@@ -322,7 +322,7 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: unbound-a-records
-  namespace: dns-test
+  namespace: dns-staging
 data:
   a-records.conf: |
     # A Record

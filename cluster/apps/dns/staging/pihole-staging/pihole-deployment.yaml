@@ -3,7 +3,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: pihole
-  namespace: dns-test
+  namespace: dns-staging
   labels:
     app: pihole
 spec:
