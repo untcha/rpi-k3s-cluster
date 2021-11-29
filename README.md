@@ -1,3 +1,4 @@
+<img src="https://github.com/kubernetes/kubernetes/blob/master/logo/logo_with_border.png" align="left" width="144px" height="144px"/>
 
 ### My home Kubernetes cluster :sailboat:
 _... managed by Flux_
