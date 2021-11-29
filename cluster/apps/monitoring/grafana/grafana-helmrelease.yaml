@@ -1,0 +1,242 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: grafana
+  namespace: flux-system
+spec:
+  chart:
+    spec:
+      chart: grafana
+      sourceRef:
+        kind: HelmRepository
+        name: grafana
+      version: 6.17.9
+  interval: 1m0s
+  targetNamespace: monitoring
+  values:
+    admin:
+      existingSecret: grafana-auth
+      passwordKey: admin-password
+      userKey: admin-user
+    adminUser: admin
+    affinity: {}
+    autoscaling:
+      enabled: false
+    containerSecurityContext: {}
+    dashboardProviders: {}
+    dashboards: {}
+    dashboardsConfigMaps: {}
+    datasources: {}
+    deploymentStrategy:
+      type: RollingUpdate
+    downloadDashboards:
+      env: {}
+      envFromSecret: ""
+      resources: {}
+    downloadDashboardsImage:
+      pullPolicy: IfNotPresent
+      repository: curlimages/curl
+      sha: ""
+      tag: 7.73.0
+    enableServiceLinks: true
+    env:
+      GF_PANELS_DISABLE_SANITIZE_HTML: true
+    envFromSecret: ""
+    envFromSecrets: []
+    envRenderSecret: {}
+    envValueFrom: {}
+    extraConfigmapMounts: []
+    extraContainerVolumes: []
+    extraContainers: ""
+    extraEmptyDirMounts: []
+    extraExposePorts: []
+    extraInitContainers: []
+    extraLabels: {}
+    extraSecretMounts: []
+    extraVolumeMounts: []
+    grafana.ini:
+      analytics:
+        check_for_updates: true
+      grafana_net:
+        url: https://grafana.net
+      log:
+        mode: console
+      paths:
+        data: /var/lib/grafana/
+        logs: /var/log/grafana
+        plugins: /var/lib/grafana/plugins
+        provisioning: /etc/grafana/provisioning
+    hostAliases: []
+    image:
+      pullPolicy: IfNotPresent
+      repository: grafana/grafana
+      sha: ""
+      tag: 8.2.5
+    imageRenderer:
+      enabled: false
+      env:
+        HTTP_HOST: 0.0.0.0
+      grafanaSubPath: ""
+      hostAliases: []
+      image:
+        pullPolicy: Always
+        repository: grafana/grafana-image-renderer
+        sha: ""
+        tag: latest
+      networkPolicy:
+        limitEgress: false
+        limitIngress: true
+      podPortName: http
+      priorityClassName: ""
+      replicas: 1
+      resources: {}
+      revisionHistoryLimit: 10
+      securityContext: {}
+      service:
+        enabled: true
+        port: 8081
+        portName: http
+        targetPort: 8081
+      serviceAccountName: ""
+    ingress:
+      annotations: {}
+      enabled: false
+      extraPaths: []
+      hosts:
+      - chart-example.local
+      labels: {}
+      path: /
+      pathType: Prefix
+      tls: []
+    initChownData:
+      enabled: true
+      image:
+        pullPolicy: IfNotPresent
+        repository: busybox
+        sha: ""
+        tag: 1.31.1
+      resources: {}
+    ldap:
+      config: ""
+      enabled: false
+      existingSecret: ""
+    livenessProbe:
+      failureThreshold: 10
+      httpGet:
+        path: /api/health
+        port: 3000
+      initialDelaySeconds: 60
+      timeoutSeconds: 30
+    namespaceOverride: ""
+    nodeSelector:
+      node-type: worker
+    notifiers: {}
+    persistence:
+      accessModes:
+      - ReadWriteOnce
+      enabled: true
+      existingClaim: grafana-data-pvc
+      finalizers:
+      - kubernetes.io/pvc-protection
+      inMemory:
+        enabled: false
+      size: 10Gi
+      type: pvc
+    plugins:
+    - grafana-piechart-panel
+    podDisruptionBudget: {}
+    podPortName: grafana
+    rbac:
+      create: true
+      extraClusterRoleRules: []
+      extraRoleRules: []
+      namespaced: false
+      pspEnabled: true
+      pspUseAppArmor: true
+    readinessProbe:
+      httpGet:
+        path: /api/health
+        port: 3000
+    replicas: 1
+    resources: {}
+    revisionHistoryLimit: 10
+    securityContext:
+      fsGroup: 472
+      runAsGroup: 472
+      runAsUser: 472
+    service:
+      annotations: {}
+      enabled: true
+      labels: {}
+      port: 80
+      portName: service
+      targetPort: 3000
+      type: ClusterIP
+    serviceAccount:
+      autoMount: true
+      create: true
+      name: null
+      nameTest: null
+    serviceMonitor:
+      enabled: false
+      interval: 1m
+      labels: {}
+      path: /metrics
+      relabelings: []
+      scheme: http
+      scrapeTimeout: 30s
+      tlsConfig: {}
+    sidecar:
+      dashboards:
+        SCProvider: true
+        defaultFolderName: null
+        enabled: false
+        folder: /tmp/dashboards
+        folderAnnotation: null
+        label: grafana_dashboard
+        labelValue: null
+        provider:
+          allowUiUpdates: false
+          disableDelete: false
+          folder: ""
+          foldersFromFilesStructure: false
+          name: sidecarProvider
+          orgid: 1
+          type: file
+        resource: both
+        script: null
+        searchNamespace: null
+        watchMethod: WATCH
+      datasources:
+        enabled: false
+        label: grafana_datasource
+        labelValue: null
+        resource: both
+        searchNamespace: null
+        watchMethod: LIST
+      enableUniqueFilenames: false
+      image:
+        repository: quay.io/kiwigrid/k8s-sidecar
+        sha: ""
+        tag: 1.14.2
+      imagePullPolicy: IfNotPresent
+      notifiers:
+        enabled: false
+        label: grafana_notifier
+        resource: both
+        searchNamespace: null
+      resources: {}
+      securityContext: {}
+    smtp:
+      existingSecret: ""
+      passwordKey: password
+      userKey: user
+    testFramework:
+      enabled: true
+      image: bats/bats
+      imagePullPolicy: IfNotPresent
+      securityContext: {}
+      tag: v1.4.1
+    tolerations: []
+
