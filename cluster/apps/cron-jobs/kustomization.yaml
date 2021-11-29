@@ -2,6 +2,6 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
-  - namespace.yaml
-  - cron-job-pvc.yaml
-  - digitalocean-dns-updater-cron-job.yaml
+  # - namespace.yaml
+  # - cron-job-pvc.yaml
+  # - digitalocean-dns-updater-cron-job.yaml
