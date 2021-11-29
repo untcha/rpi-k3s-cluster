@@ -25,6 +25,7 @@ spec:
               - name: digitalocean-dns-updater-log
                 mountPath: /data
           restartPolicy: Never
+          automountServiceAccountToken: false
           volumes:
             - name: digitalocean-dns-updater-volume
               configMap:
