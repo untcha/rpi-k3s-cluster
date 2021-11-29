@@ -4,4 +4,5 @@ kind: Kustomization
 resources:
   - traefik-middlewares.yaml
   - traefik-ingressroutes.yaml
+  - grafana-ingressroutes.yaml
   - error-pages
