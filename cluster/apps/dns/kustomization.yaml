@@ -4,6 +4,6 @@ kind: Kustomization
 resources:
   - namespace.yaml
   - do-dns-updater
-  - unbound
-  - pihole
-  - staging
+  # - unbound
+  # - pihole
+  # - staging

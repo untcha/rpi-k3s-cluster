@@ -4,4 +4,4 @@ kind: Kustomization
 resources:
   - do-dns-updater-pvc.yaml
   - do-dns-updater-configmap.yaml
-  - do-dns-updater-cron-job.yaml
+  # - do-dns-updater-cron-job.yaml

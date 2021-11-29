@@ -3,7 +3,7 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: do-dns-updater-script-configmap
-  namespace: cronjobs
+  namespace: dns
 data:
   digitalocean-dns-updater.sh: |
     #!/bin/sh
