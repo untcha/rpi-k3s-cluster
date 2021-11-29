@@ -1,10 +1,8 @@
 <div align="center">
 
-<img src="https://github.com/kubernetes/kubernetes/blob/master/logo/logo_with_border.png" align="left" width="200px" height="200px"/>
+<img src="https://github.com/kubernetes/kubernetes/blob/master/logo/logo_with_border.png" align="left" width="160px" height="160px"/>
 
 </div>
-
-<br/>
 
 <div align="center">
 
