@@ -1,46 +1,8 @@
 ---
-apiVersion: batch/v1
-kind: CronJob
-metadata:
-  name: digitalocean-dns-updater-cron-job
-  namespace: cronjobs
-spec:
-  schedule: "*/15 * * * *"
-  jobTemplate:
-    spec:
-      template:
-        spec:
-          nodeSelector:
-            node-type: worker
-          containers:
-          - name: digitalocean-dns-updater-tool
-            image: praqma/network-multitool
-            command: 
-            - /bin/sh
-            - -c
-            - "/script/digitalocean-dns-updater.sh"
-            volumeMounts:
-              - name: digitalocean-dns-updater-volume
-                mountPath: /script
-              - name: digitalocean-dns-updater-log
-                mountPath: /data
-          restartPolicy: Never
-          automountServiceAccountToken: false
-          volumes:
-            - name: digitalocean-dns-updater-volume
-              configMap:
-                name: digitalocean-dns-updater-configmap
-                defaultMode: 0777
-                # defaultMode: 0744
-            - name: digitalocean-dns-updater-log
-              persistentVolumeClaim:
-                claimName: cron-job-data-pvc
-
----
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: digitalocean-dns-updater-configmap
+  name: do-dns-updater-script-configmap
   namespace: cronjobs
 data:
   digitalocean-dns-updater.sh: |

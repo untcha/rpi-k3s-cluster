@@ -2,12 +2,12 @@
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: cron-job-data-pvc
-  namespace: cronjobs
+  name: do-dns-updater-log-pvc
+  namespace: dns
 spec:
   storageClassName: longhorn-low-capacity
   accessModes:
     - ReadWriteMany
   resources:
     requests:
-      storage: 512Mi
+      storage: 256Mi
