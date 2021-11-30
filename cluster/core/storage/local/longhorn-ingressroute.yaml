@@ -7,7 +7,7 @@ apiVersion: traefik.containo.us/v1alpha1
 kind: IngressRoute
 metadata:
   name: longhorn-local-ingressroute
-  namespace: traefik
+  namespace: longhorn-system
 spec:
   entryPoints:
     - web
@@ -16,7 +16,6 @@ spec:
       kind: Rule
       services:
         - name: longhorn-frontend
-          namespace: longhorn-system
           port: 80
 
 ---
@@ -24,7 +23,7 @@ apiVersion: traefik.containo.us/v1alpha1
 kind: IngressRoute
 metadata:
   name: longhorn-http-ingressroute
-  namespace: traefik
+  namespace: longhorn-system
 spec:
   entryPoints:
     - web
@@ -36,7 +35,6 @@ spec:
           namespace: traefik
       services:
         - name: longhorn-frontend
-          namespace: longhorn-system
           port: 80
 
 ---
@@ -58,7 +56,7 @@ spec:
         - name: authelia-middleware
           namespace: authentication
         - name: longhorn-middleware-headers
-          namespace: traefik
+          namespace: longhorn-system
       services:
         - name: longhorn-frontend
           namespace: longhorn-system
