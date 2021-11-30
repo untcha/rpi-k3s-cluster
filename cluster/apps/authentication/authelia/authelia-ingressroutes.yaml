@@ -6,7 +6,7 @@ apiVersion: traefik.containo.us/v1alpha1
 kind: IngressRoute
 metadata:
   name: authelia-https-ingressroute
-  namespace: authentication
+  namespace: traefik
   annotations:
     cert-manager.io/cluster-issuer: "letsencrypt-dns01-production-do"
 spec:
@@ -17,6 +17,7 @@ spec:
       kind: Rule
       services:
         - name: authentication-authelia
+          namespace: authentication
           port: 9091
   tls:
     secretName: "${SECRET_DOMAIN/./-}-tls"

@@ -4,4 +4,4 @@ kind: Kustomization
 resources:
   - authelia-configmap.yaml
   - authelia-helmrelease.yaml
-  - authelia-ingressroute.yaml
+  - authelia-ingressroutes.yaml
