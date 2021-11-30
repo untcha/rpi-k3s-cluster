@@ -1,0 +1,14 @@
+# longhorn-middleware-headers
+
+# https://longhorn.io/kb/troubleshooting-traefik-2.x-as-ingress-controller/
+# Avoid CORS problem
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: Middleware
+metadata:
+  name: longhorn-middleware-headers
+  namespace: traefik
+spec:
+  headers:
+    customRequestHeaders:
+      X-Forwarded-Proto: "https"

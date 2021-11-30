@@ -5,4 +5,5 @@ resources:
   - longhorn-helmrelease.yaml
   - longhorn-storageclasses
   - longhorn-ingressroute.yaml
+  - longhorn-middleware.yaml
   - volume-migration
