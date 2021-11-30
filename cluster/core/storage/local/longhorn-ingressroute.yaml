@@ -8,7 +8,7 @@ apiVersion: traefik.containo.us/v1alpha1
 kind: IngressRoute
 metadata:
   name: longhorn-local-ingressroute
-  namespace: longhorn-system
+  namespace: traefik
 spec:
   entryPoints:
     - web
@@ -17,6 +17,7 @@ spec:
       kind: Rule
       services:
         - name: longhorn-frontend
+          namespace: longhorn-system
           port: 80
 
 ---
@@ -24,7 +25,7 @@ apiVersion: traefik.containo.us/v1alpha1
 kind: IngressRoute
 metadata:
   name: longhorn-http-ingressroute
-  namespace: longhorn-system
+  namespace: traefik
 spec:
   entryPoints:
     - web
@@ -36,6 +37,7 @@ spec:
           namespace: traefik
       services:
         - name: longhorn-frontend
+          namespace: longhorn-system
           port: 80
 
 ---
@@ -71,7 +73,7 @@ apiVersion: traefik.containo.us/v1alpha1
 kind: Middleware
 metadata:
   name: longhorn-middleware-headers
-  namespace: longhorn-system
+  namespace: traefik
 spec:
   headers:
     customRequestHeaders:
@@ -82,7 +84,7 @@ spec:
 # kind: Middleware
 # metadata:
 #   name: longhorn-middleware-headers
-#   namespace: longhorn-system
+#   namespace: traefik
 # spec:
 #   headers:
 #     browserXssFilter: true
