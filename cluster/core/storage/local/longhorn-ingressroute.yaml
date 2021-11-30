@@ -43,7 +43,7 @@ apiVersion: traefik.containo.us/v1alpha1
 kind: IngressRoute
 metadata:
   name: longhorn-https-ingressroute
-  namespace: longhorn-system
+  namespace: traefik
   annotations:
     cert-manager.io/cluster-issuer: "letsencrypt-dns01-production-do"
 spec:
@@ -59,6 +59,7 @@ spec:
         - name: longhorn-middleware-headers
       services:
         - name: longhorn-frontend
+          namespace: longhorn-system
           port: 80
   tls:
     secretName: "${SECRET_DOMAIN/./-}-tls"
