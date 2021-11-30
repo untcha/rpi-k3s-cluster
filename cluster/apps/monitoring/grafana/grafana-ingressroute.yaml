@@ -1,7 +1,6 @@
 # grafana-local-ingressroute
 # grafana-http-ingressroute
 # grafana-https-ingressroute
-# grafana-middleware-headers
 
 ---
 apiVersion: traefik.containo.us/v1alpha1
@@ -43,7 +42,7 @@ apiVersion: traefik.containo.us/v1alpha1
 kind: IngressRoute
 metadata:
   name: grafana-https-ingressroute
-  namespace: monitoring
+  namespace: traefik
   annotations:
     cert-manager.io/cluster-issuer: "letsencrypt-dns01-production-do"
 spec:
@@ -54,37 +53,12 @@ spec:
       kind: Rule
       middlewares:
         - name: grafana-middleware-headers
+          namespace: monitoring
       services:
         - name: monitoring-grafana
+          namespace: monitoring
           port: 80
   tls:
     secretName: "${SECRET_DOMAIN/./-}-tls"
 
----
-apiVersion: traefik.containo.us/v1alpha1
-kind: Middleware
-metadata:
-  name: grafana-middleware-headers
-  namespace: monitoring
-spec:
-  headers:
-    browserXssFilter: true
-    contentTypeNosniff: true
-    frameDeny: true
-    sslRedirect: true
-    forceSTSHeader: true
-    stsIncludeSubdomains: true
-    stsPreload: true
-    stsSeconds: 315360000
-    # stsSeconds: 63072000
-    contentSecurityPolicy: |
-      default-src 'none';form-action 'none';frame-ancestors 'none';base-uri 'none'
-    accessControlAllowMethods:
-      - "GET"
-      - "POST"
-    accessControlAllowOriginList:
-      - "https://grafana.${SECRET_DIGITALOCEAN_DOMAIN_02}"
-    accessControlMaxAge: 100
-    addVaryHeader: true
-    referrerPolicy: "same-origin"
-    customFrameOptionsValue: SAMEORIGIN
+
