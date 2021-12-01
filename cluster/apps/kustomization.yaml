@@ -17,10 +17,10 @@ resources:
     # pihole
     # staging
   # - documentation
-  # - grafana
   # - influxdata
   - monitoring
     # prometheus
+    # grafana
   # - nextcloud
   # - tools
   # - wordpress
