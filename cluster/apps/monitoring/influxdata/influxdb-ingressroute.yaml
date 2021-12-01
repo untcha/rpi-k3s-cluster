@@ -11,7 +11,6 @@ spec:
     - web
   routes:
     - match: HostSNI(`*`)
-      kind: Rule
       services:
         - name: monitoring-influxdb
           port: 8086
