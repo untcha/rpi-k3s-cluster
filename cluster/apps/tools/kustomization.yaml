@@ -4,7 +4,6 @@ kind: Kustomization
 resources:
   - tools-namespace.yaml
   - network-multitool
-  - speedtest-exporter
   - whoami
   - duckdns
   - reloader
