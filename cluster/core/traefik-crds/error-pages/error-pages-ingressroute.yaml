@@ -1,3 +1,6 @@
+# error-pages-http-ingressroute
+# error-pages-https-ingressroute
+
 ---
 apiVersion: traefik.containo.us/v1alpha1
 kind: IngressRoute
@@ -20,7 +23,7 @@ spec:
 apiVersion: traefik.containo.us/v1alpha1
 kind: IngressRoute
 metadata:
-  name: error-pages-ingressroute
+  name: error-pages-https-ingressroute
   namespace: traefik
 spec:
   entryPoints:
