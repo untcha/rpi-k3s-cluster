@@ -4,5 +4,6 @@ kind: Kustomization
 resources:
   - namespace.yaml
   - prometheus
+  - prometheus-exporter
   - influxdata
   - grafana

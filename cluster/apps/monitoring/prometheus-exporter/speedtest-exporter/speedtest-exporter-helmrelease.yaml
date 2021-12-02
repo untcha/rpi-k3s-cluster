@@ -1,0 +1,47 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: speedtest-exporter
+  namespace: flux-system
+spec:
+  chart:
+    spec:
+      chart: speedtest-exporter
+      sourceRef:
+        kind: HelmRepository
+        name: k8s-at-home
+      version: 5.1.0
+  interval: 1m0s
+  targetNamespace: monitoring
+  values:
+    env:
+      TZ: ${TIMEZONE}
+    image:
+      pullPolicy: IfNotPresent
+      repository: ghcr.io/miguelndecarvalho/speedtest-exporter
+      tag: v3.2.2
+    metrics:
+      enabled: false
+      prometheusRule:
+        downloadLimit: 400
+        enabled: false
+        jitterLimit: 30
+        labels: {}
+        pingLimit: 10
+        rules: []
+        uploadLimit: 400
+      serviceMonitor:
+        interval: 60m
+        labels: {}
+        scrapeTimeout: 1m
+    service:
+      main:
+        ports:
+          http:
+            enabled: false
+          metrics:
+            enabled: true
+            port: 9798
+            protocol: TCP
+
