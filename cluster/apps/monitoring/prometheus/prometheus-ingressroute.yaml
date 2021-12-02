@@ -12,7 +12,7 @@ spec:
       kind: Rule
       services:
         - name: monitoring-prometheus-server
-          port: 9090
+          port: 80
 
 ---
 apiVersion: traefik.containo.us/v1alpha1
