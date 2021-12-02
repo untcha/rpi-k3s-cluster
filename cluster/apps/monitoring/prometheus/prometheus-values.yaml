@@ -1068,11 +1068,11 @@ server:
     ##
     externalIPs: []
 
-    loadBalancerIP: ""
+    loadBalancerIP: ${PROMETHEUS_SVC_LB_IP}
     loadBalancerSourceRanges: []
     servicePort: 80
     sessionAffinity: None
-    type: ClusterIP
+    type: LoadBalancer
 
     ## Enable gRPC port on service to allow auto discovery with thanos-querier
     gRPC:
@@ -1765,6 +1765,14 @@ serverFiles:
 # must be a string so you have to add a | after extraScrapeConfigs:
 # example adds prometheus-blackbox-exporter scrape config
 extraScrapeConfigs: |
+  - job_name: 'z-custom_speedtest-metrics'
+    scrape_interval: 1h
+    scrape_timeout: 5m
+    scheme: http
+    metrics_path: /metrics
+    static_configs:
+      - targets:
+        - speedtest.${SECRET_DOMAIN_LOCAL_02}
   # - job_name: 'traefik-metrics'
   #   scrape_interval: 5s
   #   scheme: http
@@ -1779,14 +1787,6 @@ extraScrapeConfigs: |
   #   static_configs:
   #     - targets:
   #       - pihole-metrics.${SECRET_DOMAIN_LOCAL_02}
-  # - job_name: 'z-custom_speedtest-metrics'
-  #   scrape_interval: 1h
-  #   scrape_timeout: 5m
-  #   scheme: http
-  #   metrics_path: /metrics
-  #   static_configs:
-  #     - targets:
-  #       - speedtest.${SECRET_DOMAIN_LOCAL_02}
   # - job_name: 'z_blocky-metrics'
   #   scrape_interval: 5s
   #   scheme: http
