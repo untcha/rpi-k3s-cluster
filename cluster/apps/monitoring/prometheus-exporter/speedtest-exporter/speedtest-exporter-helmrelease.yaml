@@ -11,7 +11,7 @@ spec:
       sourceRef:
         kind: HelmRepository
         name: k8s-at-home
-      version: 5.1.0
+      version: 3.0.0
   interval: 1m0s
   targetNamespace: monitoring
   values:
@@ -21,29 +21,17 @@ spec:
       pullPolicy: IfNotPresent
       repository: ghcr.io/miguelndecarvalho/speedtest-exporter
       tag: v3.2.2
-    metrics:
-      enabled: false
-      prometheusRule:
-        downloadLimit: 400
-        enabled: false
-        jitterLimit: 30
-        labels: {}
-        pingLimit: 10
-        rules: []
-        uploadLimit: 400
-      serviceMonitor:
-        interval: 60m
-        labels: {}
-        scrapeTimeout: 1m
     nodeSelector:
       node-type: worker
+    prometheus:
+      podMonitor:
+        additionalLabels: {}
+        enabled: false
+        interval: 1h
+        scrapeTimeout: 1m
     service:
       main:
         ports:
           http:
-            enabled: false
-          metrics:
-            enabled: true
             port: 9798
-            protocol: TCP
 
