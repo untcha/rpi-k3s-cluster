@@ -5,7 +5,7 @@ apiVersion: traefik.containo.us/v1alpha1
 kind: IngressRoute
 metadata:
   name: adminer-local-ingressroute
-  namespace: dev-tools
+  namespace: traefik
 spec:
   entryPoints:
     - web
@@ -14,4 +14,5 @@ spec:
       kind: Rule
       services:
         - name: adminer-svc
+          namespace: dev-tools
           port: 8080
