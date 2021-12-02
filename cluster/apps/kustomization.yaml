@@ -18,9 +18,10 @@ resources:
     # staging
   # - documentation
   - monitoring
-    # prometheus
-    # influxdata
     # grafana
+    # influxdata
+    # prometheus
+    # prometheus-exporter
   # - nextcloud
   # - tools
   # - wordpress
