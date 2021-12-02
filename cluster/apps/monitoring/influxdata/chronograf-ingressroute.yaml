@@ -58,6 +58,7 @@ spec:
           namespace: monitoring
       services:
         - name: monitoring-chronograf-chronograf
+          namespace: monitoring
           port: 80
   tls:
     secretName: "${SECRET_DOMAIN/./-}-tls"
