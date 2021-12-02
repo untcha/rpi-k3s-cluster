@@ -17,9 +17,9 @@ resources:
     # pihole
     # staging
   # - documentation
-  # - influxdata
   - monitoring
     # prometheus
+    # influxdata
     # grafana
   # - nextcloud
   # - tools
