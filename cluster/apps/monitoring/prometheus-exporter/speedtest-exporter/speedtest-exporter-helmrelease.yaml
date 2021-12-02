@@ -35,6 +35,8 @@ spec:
         interval: 60m
         labels: {}
         scrapeTimeout: 1m
+    nodeSelector:
+      node-type: worker
     service:
       main:
         ports:
