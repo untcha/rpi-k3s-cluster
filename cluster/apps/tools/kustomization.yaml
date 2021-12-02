@@ -6,5 +6,5 @@ resources:
   # - network-multitool
   # - whoami
   # - duckdns
-  # - reloader
+  - reloader
   # - nginx

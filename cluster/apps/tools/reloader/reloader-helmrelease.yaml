@@ -11,7 +11,7 @@ spec:
       sourceRef:
         kind: HelmRepository
         name: stakater
-      version: v0.0.102
+      version: v0.0.103
   interval: 1m0s
   targetNamespace: tools
   values:
@@ -31,11 +31,11 @@ spec:
         image:
           name: stakater/reloader
           pullPolicy: IfNotPresent
-          tag: v0.0.102
+          tag: v0.0.103
         labels:
           group: com.stakater.platform
           provider: stakater
-          version: v0.0.102
+          version: v0.0.103
         livenessProbe: {}
         nodeSelector:
           node-type: worker
@@ -63,6 +63,7 @@ spec:
         enabled: true
         labels: {}
       readOnlyRootFileSystem: false
+      reloadStrategy: default
       service: {}
       serviceAccount:
         annotations: {}
