@@ -41,7 +41,7 @@ data:
         interface: 0.0.0.0
 
         # The port number, default 53, on which the server responds to queries.
-        port: 5335
+        port: 53
 
         do-ip4: yes
         do-udp: yes
