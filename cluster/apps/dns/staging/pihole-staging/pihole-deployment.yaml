@@ -91,8 +91,8 @@ spec:
           mountPath: /etc/dnsmasq.d
         - name: var-log
           mountPath: /var/log
-        - name: var-log-lighttpd
-          mountPath: /var/log/lighttpd
+        # - name: var-log-lighttpd
+        #   mountPath: /var/log/lighttpd
         - name: dns-records
           mountPath: /etc/pihole/custom.list
           subPath: custom.list
@@ -116,9 +116,9 @@ spec:
       - name: var-log
         emptyDir:
           medium: Memory
-      - name: var-log-lighttpd
-        emptyDir:
-          medium: Memory
+      # - name: var-log-lighttpd
+      #   emptyDir:
+      #     medium: Memory
       - name: dns-records
         configMap:
           name: custom.list
