@@ -5,13 +5,13 @@ metadata:
   name: pihole-udp
   namespace: dns-staging
   labels:
-    app: pihole
+    app: pihole-staging
   annotations:
-    metallb.universe.tf/address-pool: services
-    metallb.universe.tf/allow-shared-ip: pihole-svc
+    metallb.universe.tf/address-pool: dns
+    metallb.universe.tf/allow-shared-ip: pihole-staging-svc
 spec:
   selector:
-    app: pihole
+    app: pihole-staging
   ports:
   - name: dns-udp
     port: 53
