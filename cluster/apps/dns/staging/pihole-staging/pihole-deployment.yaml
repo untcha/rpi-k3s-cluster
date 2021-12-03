@@ -22,6 +22,8 @@ spec:
       labels:
         app: pihole-staging
         name: pihole-staging
+      annotations:
+        configmap.reloader.stakater.com/reload: "pihole-env-vars, adlists.list"
     spec:
       nodeSelector:
         node-type: worker
