@@ -89,8 +89,8 @@ spec:
           mountPath: /etc/pihole
         - name: etc-dnsmasq
           mountPath: /etc/dnsmasq.d
-        - name: var-log
-          mountPath: /var/log
+        # - name: var-log
+        #   mountPath: /var/log
         # - name: var-log-lighttpd
         #   mountPath: /var/log/lighttpd
         - name: dns-records
@@ -113,9 +113,9 @@ spec:
       - name: etc-dnsmasq
         emptyDir:
           medium: Memory
-      - name: var-log
-        emptyDir:
-          medium: Memory
+      # - name: var-log
+      #   emptyDir:
+      #     medium: Memory
       # - name: var-log-lighttpd
       #   emptyDir:
       #     medium: Memory
