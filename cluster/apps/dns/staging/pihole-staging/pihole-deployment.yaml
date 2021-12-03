@@ -38,8 +38,8 @@ spec:
       #   - name: etc-pihole
       #     mountPath: /etc/pihole
       containers:
-      - name: pihole-staging
-        image: pihole/pihole:2021.10.1
+      - name: pihole
+        image: pihole/pihole:2021.11
         imagePullPolicy: IfNotPresent
         securityContext:
           capabilities:
