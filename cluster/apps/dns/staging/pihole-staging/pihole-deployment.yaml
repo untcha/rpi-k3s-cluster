@@ -2,16 +2,16 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: pihole
+  name: pihole-staging
   namespace: dns-staging
   labels:
-    app: pihole
+    app: pihole-staging
 spec:
   replicas: 1
   revisionHistoryLimit: 0
   selector:
     matchLabels:
-      app: pihole
+      app: pihole-staging
   strategy:
     rollingUpdate:
       maxSurge: 1
@@ -20,12 +20,11 @@ spec:
   template:
     metadata:
       labels:
-        app: pihole
-        name: pihole
+        app: pihole-staging
+        name: pihole-staging
     spec:
-      # nodeSelector:
-      #   node-type: worker
-      nodeName: rpi-k3s-worker-04
+      nodeSelector:
+        node-type: worker
       initContainers:
       - name: create-custom-pihole-ftl-config
         image: busybox:1.34.1
@@ -39,7 +38,7 @@ spec:
         - name: etc-pihole
           mountPath: /etc/pihole
       containers:
-      - name: pihole
+      - name: pihole-staging
         image: pihole/pihole:2021.10.1
         imagePullPolicy: IfNotPresent
         securityContext:
