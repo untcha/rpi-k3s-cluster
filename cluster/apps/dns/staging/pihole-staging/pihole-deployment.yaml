@@ -25,18 +25,18 @@ spec:
     spec:
       nodeSelector:
         node-type: worker
-      initContainers:
-      - name: create-custom-pihole-ftl-config
-        image: busybox:1.34.1
-        command: ["/bin/sh", "-c"]
-        args:
-          -
-            touch /etc/pihole/pihole-FTL.conf;
-            echo -e "MAXDBDAYS=14" | tee -a /etc/pihole/pihole-FTL.conf;
-            echo -e "LOGFILE=/var/log/pihole/pihole-FTL.log" | tee -a /etc/pihole/pihole-FTL.conf;
-        volumeMounts:
-        - name: etc-pihole
-          mountPath: /etc/pihole
+      # initContainers:
+      # - name: create-custom-pihole-ftl-config
+      #   image: busybox:1.34.1
+      #   command: ["/bin/sh", "-c"]
+      #   args:
+      #     -
+      #       touch /etc/pihole/pihole-FTL.conf;
+      #       echo -e "MAXDBDAYS=14" | tee -a /etc/pihole/pihole-FTL.conf;
+      #       echo -e "LOGFILE=/var/log/pihole/pihole-FTL.log" | tee -a /etc/pihole/pihole-FTL.conf;
+      #   volumeMounts:
+      #   - name: etc-pihole
+      #     mountPath: /etc/pihole
       containers:
       - name: pihole-staging
         image: pihole/pihole:2021.10.1
