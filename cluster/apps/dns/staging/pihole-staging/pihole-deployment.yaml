@@ -25,18 +25,6 @@ spec:
     spec:
       nodeSelector:
         node-type: worker
-      # initContainers:
-      # - name: create-custom-pihole-ftl-config
-      #   image: busybox:1.34.1
-      #   command: ["/bin/sh", "-c"]
-      #   args:
-      #     -
-      #       touch /etc/pihole/pihole-FTL.conf;
-      #       echo -e "MAXDBDAYS=14" | tee -a /etc/pihole/pihole-FTL.conf;
-      #       echo -e "LOGFILE=/var/log/pihole/pihole-FTL.log" | tee -a /etc/pihole/pihole-FTL.conf;
-      #   volumeMounts:
-      #   - name: etc-pihole
-      #     mountPath: /etc/pihole
       containers:
       - name: pihole
         image: pihole/pihole:2021.11
@@ -89,10 +77,6 @@ spec:
           mountPath: /etc/pihole
         - name: etc-dnsmasq
           mountPath: /etc/dnsmasq.d
-        # - name: var-log
-        #   mountPath: /var/log
-        # - name: var-log-lighttpd
-        #   mountPath: /var/log/lighttpd
         - name: dns-records
           mountPath: /etc/pihole/custom.list
           subPath: custom.list
@@ -113,12 +97,6 @@ spec:
       - name: etc-dnsmasq
         emptyDir:
           medium: Memory
-      # - name: var-log
-      #   emptyDir:
-      #     medium: Memory
-      # - name: var-log-lighttpd
-      #   emptyDir:
-      #     medium: Memory
       - name: dns-records
         configMap:
           name: custom.list
