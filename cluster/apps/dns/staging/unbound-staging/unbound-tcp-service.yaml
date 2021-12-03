@@ -5,13 +5,13 @@ metadata:
   name: unbound-tcp
   namespace: dns-staging
   labels:
-    app: unbound
+    app: unbound-staging
   annotations:
-    metallb.universe.tf/address-pool: services
-    metallb.universe.tf/allow-shared-ip: unbound-svc
+    metallb.universe.tf/address-pool: dns
+    metallb.universe.tf/allow-shared-ip: unbound-staging-svc
 spec:
   selector:
-    app: unbound
+    app: unbound-staging
   ports:
   - name: dns-tcp
     port: 5335

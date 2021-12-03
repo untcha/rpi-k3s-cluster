@@ -2,10 +2,10 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: unbound
+  name: unbound-staging
   namespace: dns-staging
   labels:
-    app: unbound
+    app: unbound-staging
 spec:
   replicas: 1
   strategy:
@@ -15,12 +15,12 @@ spec:
     type: RollingUpdate
   selector:
     matchLabels:
-      app: unbound
+      app: unbound-staging
   template:
     metadata:
       labels:
-        app: unbound
-        name: unbound
+        app: unbound-staging
+        name: unbound-staging
       annotations:
         configmap.reloader.stakater.com/reload: "unbound-config, unbound-root-hints, unbound-root-key-initial, unbound-a-records"
     spec:
@@ -40,7 +40,7 @@ spec:
           mountPath: /tmp/root.key
           subPath: root.key
       containers:
-      - name: unbound
+      - name: unbound-staging
         image: klutchell/unbound-dnscrypt:1.13.1
         imagePullPolicy: IfNotPresent
         ports:
