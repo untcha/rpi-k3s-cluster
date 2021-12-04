@@ -43,7 +43,7 @@ apiVersion: traefik.containo.us/v1alpha1
 kind: IngressRoute
 metadata:
   name: homer-https-ingressroute
-  namespace: dashboards
+  namespace: traefik
   annotations:
     cert-manager.io/cluster-issuer: "letsencrypt-dns01-production-do"
 spec:
@@ -56,11 +56,13 @@ spec:
         - name: authelia-middleware
           namespace: authentication
         - name: homer-middleware-headers
+          namespace: dashboards
       services:
         - name: homer
+          namespace: dashboards
           port: 8080
   tls:
-    secretName: homer-letsencrypt-production-certificate
+    secretName: "${SECRET_DOMAIN/./-}-tls"
 
 ---
 apiVersion: traefik.containo.us/v1alpha1

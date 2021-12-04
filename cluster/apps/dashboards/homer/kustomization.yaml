@@ -7,4 +7,4 @@ resources:
   - homer-service.yaml
   - homer-deployment.yaml
   # - homer-letsencrypt-certificate.yaml
-  # - homer-ingressroute.yaml
+  - homer-ingressroute.yaml
