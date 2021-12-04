@@ -53,9 +53,9 @@ spec:
         #     claimName: homer-assets
         - name: config
           configMap:
-            name: config.yml
+            name: homer-config
             # defaultMode: 0644
             items:
-              - key: config
+              - key: homer-config.yaml
                 path: config.yml
 
