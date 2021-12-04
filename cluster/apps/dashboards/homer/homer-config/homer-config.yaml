@@ -1,0 +1,61 @@
+---
+title: Raspberry Pi K3S Cluster
+subtitle: Home
+documentTitle: Home Dashboard
+icon: fas fa-laptop-house
+
+header: true
+footer: false
+
+columns: "auto"
+connectivityCheck: true
+
+# Theme customization
+# Nord theme inspired from - https://github.com/thermatico/homer-nord
+theme: default
+colors:
+  light:
+    highlight-primary: "#2E3440"
+    highlight-secondary: "#4C566A"
+    highlight-hover: "#81A1C1"
+    background: "#3B4252"
+    card-background: "#2E3440"
+    text: "#D8DEE9"
+    text-header: "#D8DEE9"
+    text-title: "#81A1C1"
+    text-subtitle: "#81A1C1"
+    card-shadow: rgba(0, 0, 0, 0.4)
+    link-hover: "#BF616A"
+  dark:
+    highlight-primary: "#2E3440"
+    highlight-secondary: "#4C566A"
+    highlight-hover: "#81A1C1"
+    background: "#3B4252"
+    card-background: "#2E3440"
+    text: "#D8DEE9"
+    text-header: "#D8DEE9"
+    text-title: "#81A1C1"
+    text-subtitle: "#81A1C1"
+    card-shadow: rgba(0, 0, 0, 0.4)
+    link-hover: "#BF616A"
+    # colors from Nord theme: https://github.com/arcticicestudio/nord
+
+links:
+  - name: github.com/untcha
+    icon: fab fa-github
+    url: https://github.com/untcha
+    target: _blank
+  - name: Documentation
+    icon: fas fa-book
+    url: https://doc.${SECRET_DIGITALOCEAN_DOMAIN_02}
+    target: _blank
+
+services:
+  - name: Dashboards
+    icon: fas fa-tachometer-alt
+    items:
+      - name: Kubernetes Dashboard
+        logo: https://simpleicons.org/icons/kubernetes.svg
+        subtitle: kubectl proxy
+        tag: dashboard
+        url: http://localhost:8001/api/v1/namespaces/kubernetes-dashboard/services/https:kubernetes-dashboard:/proxy/#/login
