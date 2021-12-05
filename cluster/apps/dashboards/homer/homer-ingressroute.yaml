@@ -1,7 +1,6 @@
 # homer-local-ingressroute
 # homer-http-ingressroute
 # homer-https-ingressroute
-# homer-middleware-headers
 
 ---
 apiVersion: traefik.containo.us/v1alpha1
