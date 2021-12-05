@@ -23,5 +23,6 @@ resources:
     # prometheus
     # prometheus-exporter
   # - nextcloud
+  - system-upgrade
   - tools
   # - wordpress
