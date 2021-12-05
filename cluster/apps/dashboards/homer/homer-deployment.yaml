@@ -22,7 +22,7 @@ spec:
         app: homer
         name: homer
       annotations:
-        configmap.reloader.stakater.com/reload: "config.yml"
+        configmap.reloader.stakater.com/reload: "homer-config.yml"
     spec:
       nodeSelector:
         node-type: worker
