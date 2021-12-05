@@ -84,18 +84,18 @@ services:
     icon: fas fa-tachometer-alt
     items:
       - name: Kubernetes Dashboard
-        logo: https://simpleicons.org/icons/kubernetes.svg
+        logo: https://doc.${SECRET_DIGITALOCEAN_DOMAIN_02}/homer-config/kubernetes.svg
         subtitle: kubectl proxy
         tag: dashboard
         url: http://localhost:8001/api/v1/namespaces/kubernetes-dashboard/services/https:kubernetes-dashboard:/proxy/#/login
         target: _blank
       - name: Traefik Dashboard
-        logo: https://simpleicons.org/icons/gnubash.svg
+        logo: https://doc.${SECRET_DIGITALOCEAN_DOMAIN_02}/homer-config/traefik.io.svg
         tag: dashboard
         url: https://traefik.${SECRET_DIGITALOCEAN_DOMAIN_02}/dashboard/
         target: _blank
       - name: Longhorn Dashboard
-        logo: https://simpleicons.org/icons/gnubash.svg
+        logo: https://doc.${SECRET_DIGITALOCEAN_DOMAIN_02}/homer-config/longhorn.png
         tag: dashboard
         url: https://longhorn.${SECRET_DIGITALOCEAN_DOMAIN_02}
         target: _blank
@@ -103,22 +103,22 @@ services:
     icon: fas fa-cloud
     items:
       - name: Bitwarden
-        logo: https://simpleicons.org/icons/bitwarden.svg
+        logo: https://doc.${SECRET_DIGITALOCEAN_DOMAIN_02}/homer-config/bitwarden2.png
         tag: security
         url: https://bitwarden.${SECRET_DIGITALOCEAN_DOMAIN_02}
         target: _blank
       - name: Gitea
-        logo: https://simpleicons.org/icons/gitea.svg
+        logo: https://doc.${SECRET_DIGITALOCEAN_DOMAIN_02}/homer-config/gitea.png
         tag: development
         url: https://git.${SECRET_DIGITALOCEAN_DOMAIN_02}
         target: _blank
       - name: Nextcloud
-        logo: https://simpleicons.org/icons/nextcloud.svg
+        logo: https://doc.${SECRET_DIGITALOCEAN_DOMAIN_02}/homer-config/nextcloud.png
         tag: cloud
         url: https://cloud.${SECRET_DIGITALOCEAN_DOMAIN_02}
         target: _blank
       - name: Wordpress Simone
-        logo: https://simpleicons.org/icons/wordpress.svg
+        logo: https://doc.${SECRET_DIGITALOCEAN_DOMAIN_02}/homer-config/wordpress.png
         tag: blog
         url: https://simone.${SECRET_DIGITALOCEAN_DOMAIN_02}
         target: _blank
@@ -126,18 +126,18 @@ services:
     icon: fas fa-network-wired
     items:
       - name: FRITZ!Box
-        logo: https://simpleicons.org/icons/gnubash.svg
+        logo: https://doc.${SECRET_DIGITALOCEAN_DOMAIN_02}/homer-config/avmfritzbox.png
         tag: router
         url: http://192.168.178.1
         target: _blank
       - name: Pi-hole
-        logo: https://simpleicons.org/icons/pihole.svg
+        logo: https://doc.${SECRET_DIGITALOCEAN_DOMAIN_02}/homer-config/pihole.png
         tag: adblock
         url: http://pihole.${SECRET_DIGITALOCEAN_DOMAIN_02}/admin/
         target: _blank
-        background: "#96060C"
+        #background: "#96060C"
       - name: QNAP TS-870Pro
-        logo: https://simpleicons.org/icons/gnubash.svg
+        logo: https://doc.${SECRET_DIGITALOCEAN_DOMAIN_02}/homer-config/qnap.png
         tag: nas
         url: http://192.168.178.110:8080
         target: _blank
@@ -145,17 +145,17 @@ services:
     icon: fas fa-chart-pie
     items:
       - name: Grafana
-        logo: https://simpleicons.org/icons/grafana.svg
+        logo: https://doc.${SECRET_DIGITALOCEAN_DOMAIN_02}/homer-config/grafana.png
         tag: monitoring
         url: https://grafana.${SECRET_DIGITALOCEAN_DOMAIN_02}
         target: _blank
       - name: Chronograf
-        logo: https://simpleicons.org/icons/influxdb.svg
+        logo: https://doc.${SECRET_DIGITALOCEAN_DOMAIN_02}/homer-config/influxdata.svg
         tag: monitoring
         url: https://chronograf.${SECRET_DIGITALOCEAN_DOMAIN_02}
         target: _blank
       - name: Prometheus
-        logo: https://simpleicons.org/icons/prometheus.svg
+        logo: https://doc.${SECRET_DIGITALOCEAN_DOMAIN_02}/homer-config/prometheus.png
         subtitle: prometheus.${SECRET_DOMAIN_LOCAL_02}
         tag: monitoring
         url: http://prometheus.${SECRET_DOMAIN_LOCAL_02}
@@ -164,7 +164,7 @@ services:
     icon: fas fa-tools
     items:
       - name: Adminer
-        logo: https://simpleicons.org/icons/postgresql.svg
+        logo: https://doc.${SECRET_DIGITALOCEAN_DOMAIN_02}/homer-config/adminer.png
         tag: tool
         url: http://adminer.${SECRET_DOMAIN_LOCAL_02}
         target: _blank
