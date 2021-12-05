@@ -106,6 +106,7 @@ services:
         tag: adblock
         url: http://pihole.${SECRET_DIGITALOCEAN_DOMAIN_02}/admin/
         target: _blank
+        background: "#96060C"
       - name: QNAP TS-870Pro
         logo: https://simpleicons.org/icons/gnubash.svg
         tag: nas
