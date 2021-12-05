@@ -16,7 +16,7 @@ resources:
     # unbound
     # pihole
     # staging
-  # - documentation
+  - documentation
   - monitoring
     # grafana
     # influxdata
