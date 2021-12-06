@@ -1,0 +1,30 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: fritzinfluxdb
+  namespace: monitoring
+  labels:
+    app: fritzinfluxdb
+spec:
+  replicas: 1
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 0
+    type: RollingUpdate
+  selector:
+    matchLabels:
+      app: fritzinfluxdb
+  template:
+    metadata:
+      labels:
+        app: fritzinfluxdb
+        name: fritzinfluxdb
+    spec:
+      nodeSelector:
+        node-type: worker
+      containers:
+      - name: fritzinfluxdb
+        image: volschin/fritzinfluxdb:latest
+        imagePullPolicy: IfNotPresent

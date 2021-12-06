@@ -7,3 +7,4 @@ resources:
   - prometheus-exporter
   - influxdata
   - grafana
+  - fritzinfluxdb
