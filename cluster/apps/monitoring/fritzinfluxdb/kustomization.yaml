@@ -5,7 +5,7 @@ resources:
   - fritzinfluxdb-deployment.yaml
 
 configMapGenerator:
-  - name: fritzinfluxdb.ini
+  - name: fritzinfluxdb-ini
     namespace: monitoring
     files:
       - fritzinfluxdb-ini.yaml
