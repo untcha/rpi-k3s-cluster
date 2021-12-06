@@ -25,22 +25,21 @@ spec:
       nodeSelector:
         node-type: worker
       initContainers:
-      - name: init-fritzinfluxdb-configuration
-        image: busybox:1.34.1
-        command: ["/bin/sh", "-c"]
-        args:
-          -
-            cp -r -v /tmp/fritzinfluxdb.ini /app/fritzinfluxdb.ini;
-            cp -r -v /tmp/fritzinfluxdb.py /app/fritzinfluxdb.py;
+      - name: download-fritzinfluxdb-py
+        image: k8s.gcr.io/git-sync/git-sync:v3.3.5
+        imagePullPolicy: IfNotPresent
         volumeMounts:
         - name: app-path
           mountPath: /app
-        - name: fritzinfluxdb-ini
-          mountPath: /tmp/fritzinfluxdb.ini
-          subPath: fritzinfluxdb.ini
-        - name: fritzinfluxdb-py
-          mountPath: /tmp/fritzinfluxdb.py
-          subPath: fritzinfluxdb.py
+        env:
+        - name: GIT_SYNC_REPO
+          value: https://github.com/karrot-dev/fritzinfluxdb
+        - name: GIT_SYNC_ROOT
+          value: /app
+        - name: GIT_SYNC_PERMISSIONS
+          value: "0777"
+        - name: GIT_SYNC_ONE_TIME
+          value: "true"
       containers:
       - name: fritzinfluxdb
         image: volschin/fritzinfluxdb:latest
@@ -48,6 +47,9 @@ spec:
         volumeMounts:
           - name: app-path
             mountPath: /app
+          - name: fritzinfluxdb-ini
+            mountPath: /app/fritzinfluxdb.ini
+            subPath: fritzinfluxdb.ini
       volumes:
         - name: app-path
           emptyDir:
@@ -55,6 +57,3 @@ spec:
         - name: fritzinfluxdb-ini
           configMap:
             name: fritzinfluxdb-ini
-        - name: fritzinfluxdb-py
-          configMap:
-            name: fritzinfluxdb-py
