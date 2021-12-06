@@ -3,3 +3,11 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
   - fritzinfluxdb-deployment.yaml
+
+configMapGenerator:
+  - name: fritzinfluxdb.ini
+    namespace: monitoring
+    files:
+      - fritzinfluxdb-ini.yaml
+generatorOptions:
+  disableNameSuffixHash: true
