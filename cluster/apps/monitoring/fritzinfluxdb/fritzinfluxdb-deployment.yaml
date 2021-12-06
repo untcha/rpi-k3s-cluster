@@ -28,3 +28,11 @@ spec:
       - name: fritzinfluxdb
         image: volschin/fritzinfluxdb:latest
         imagePullPolicy: IfNotPresent
+        volumeMounts:
+          - name: fritzinfluxdb.ini
+            mountPath: /app/fritzinfluxdb.ini
+            subPath: fritzinfluxdb.ini
+      volumes:
+        - name: fritzinfluxdb.ini
+          configMap:
+            name: fritzinfluxdb.ini
