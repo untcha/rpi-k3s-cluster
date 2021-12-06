@@ -41,8 +41,8 @@ spec:
       - name: fritzbox-exporter
         image: alexxanddr/fritzbox-exporter:latest
         env:
-        - name: GATEWAY-URL
-          value: "http://192.168.178.1:49000"
+        - name: GWURL
+          value: 'http://192.168.178.1:49000'
         - name: USERNAME
           value: ${SECRET_FRITZBOX_USERNAME}
         - name: PASSWORD
