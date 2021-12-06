@@ -30,7 +30,7 @@ spec:
         imagePullPolicy: IfNotPresent
         volumeMounts:
           - name: fritzinfluxdb-ini
-            mountPath: /app/fritzinfluxdb.ini
+            mountPath: /app/./fritzinfluxdb.ini
             subPath: fritzinfluxdb.ini
       volumes:
         - name: fritzinfluxdb-ini
