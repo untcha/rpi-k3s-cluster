@@ -50,11 +50,3 @@ spec:
         - name: http-exporter
           containerPort: 9042
           protocol: TCP
-        livenessProbe:
-          httpGet:
-            path: /liveness
-            port: http-exporter
-        readinessProbe:
-          httpGet:
-            path: /readiness
-            port: http-exporter
