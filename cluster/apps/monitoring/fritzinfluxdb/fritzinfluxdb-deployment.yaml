@@ -24,18 +24,34 @@ spec:
     spec:
       nodeSelector:
         node-type: worker
+      initContainers:
+      - name: init-fritzinfluxdb-configuration
+        image: busybox:1.34.1
+        command: ["/bin/sh", "-c"]
+        args:
+          -
+            cp -r -v /tmp/fritzinfluxdb.ini /app/fritzinfluxdb.ini;
+            cp -r -v /tmp/fritzinfluxdb.py /app/fritzinfluxdb.py;
+        volumeMounts:
+        - name: app-path
+          mountPath: /app
+        - name: fritzinfluxdb-ini
+          mountPath: /tmp/fritzinfluxdb.ini
+          subPath: fritzinfluxdb.ini
+        - name: fritzinfluxdb-py
+          mountPath: /tmp/fritzinfluxdb.py
+          subPath: fritzinfluxdb.py
       containers:
       - name: fritzinfluxdb
         image: volschin/fritzinfluxdb:latest
         imagePullPolicy: IfNotPresent
         volumeMounts:
-          - name: fritzinfluxdb-ini
-            mountPath: /app/fritzinfluxdb.ini
-            subPath: fritzinfluxdb.ini
-          - name: fritzinfluxdb-py
-            mountPath: /app/fritzinfluxdb.py
-            subPath: fritzinfluxdb.py
+          - name: app-path
+            mountPath: /app
       volumes:
+        - name: app-path
+          emptyDir:
+            medium: Memory
         - name: fritzinfluxdb-ini
           configMap:
             name: fritzinfluxdb-ini
