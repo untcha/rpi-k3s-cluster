@@ -215,7 +215,7 @@ gitea:
     database:
       DB_TYPE: "postgres"
       # HOST: "dev-gitea-gitea-postgres.dev-gitea.svc.cluster.local:5432"
-      HOST: "dev-gitea-gitea-postgres"
+      HOST: "gitea-gitea-postgres"
       NAME: "${SECRET_GITEA_DB_NAME}"
       USER: "${SECRET_GITEA_DB_USER}"
       PASSWD: "${SECRET_GITEA_DB_PASSWORD}"
@@ -258,13 +258,13 @@ gitea:
       ENABLED: "true"
       ADAPTER: "redis"
       INTERVAL: "60"
-      HOST: "redis://:${SECRET_GLOBAL_REDIS_PASSWORD}@dev-gitea-gitea-redis:6379/0?pool_size=100&idle_timeout=180s"
+      HOST: "redis://:${SECRET_GLOBAL_REDIS_PASSWORD}@gitea-gitea-redis:6379/0?pool_size=100&idle_timeout=180s"
       # HOST: "network=tcp,addr=dev-gitea-gitea-redis:6379,db=0,pool_size=100,idle_timeout=180"
       ITEM_TTL: "16h"
     
     session:
       PROVIDER: "redis"
-      PROVIDER_CONFIG: "redis://:${SECRET_GLOBAL_REDIS_PASSWORD}@dev-gitea-gitea-redis:6379/0?pool_size=100&idle_timeout=180s"
+      PROVIDER_CONFIG: "redis://:${SECRET_GLOBAL_REDIS_PASSWORD}@gitea-gitea-redis:6379/0?pool_size=100&idle_timeout=180s"
       COOKIE_NAME: "i_like_gitea"
       GC_INTERVAL_TIME: "86400"
       SESSION_LIFE_TIME: "86400"
@@ -278,7 +278,7 @@ gitea:
       MODE: "console"
       LEVEL: "info"
       ACCESS: "console"
-      ENABLE_ACCESS_LOG: "false"
+      ENABLE_ACCESS_LOG: "true"
 
     # OAuth2 JWT secret
     oauth2:

@@ -11,9 +11,9 @@ spec:
       sourceRef:
         kind: HelmRepository
         name: groundhog2k
-      version: 0.4.8
+      version: 0.4.10
   interval: 1m0s
-  targetNamespace: dev-gitea
+  targetNamespace: gitea
   values:
     affinity: {}
     args: []
@@ -42,19 +42,19 @@ spec:
         cache:
           ADAPTER: redis
           ENABLED: "true"
-          HOST: redis://:${SECRET_GLOBAL_REDIS_PASSWORD}@dev-gitea-gitea-redis:6379/0?pool_size=100&idle_timeout=180s
+          HOST: redis://:${SECRET_GLOBAL_REDIS_PASSWORD}@gitea-gitea-redis:6379/0?pool_size=100&idle_timeout=180s
           INTERVAL: "60"
           ITEM_TTL: 16h
         database:
           DB_TYPE: postgres
-          HOST: dev-gitea-gitea-postgres
+          HOST: gitea-gitea-postgres
           NAME: ${SECRET_GITEA_DB_NAME}
           PASSWD: ${SECRET_GITEA_DB_PASSWORD}
           SSL_MODE: disable
           USER: ${SECRET_GITEA_DB_USER}
         log:
           ACCESS: console
-          ENABLE_ACCESS_LOG: "false"
+          ENABLE_ACCESS_LOG: "true"
           LEVEL: info
           MODE: console
           ROOT_PATH: /data/log
@@ -113,7 +113,7 @@ spec:
           COOKIE_NAME: i_like_gitea
           GC_INTERVAL_TIME: "86400"
           PROVIDER: redis
-          PROVIDER_CONFIG: redis://:${SECRET_GLOBAL_REDIS_PASSWORD}@dev-gitea-gitea-redis:6379/0?pool_size=100&idle_timeout=180s
+          PROVIDER_CONFIG: redis://:${SECRET_GLOBAL_REDIS_PASSWORD}@gitea-gitea-redis:6379/0?pool_size=100&idle_timeout=180s
           SESSION_LIFE_TIME: "86400"
     image:
       pullPolicy: IfNotPresent
