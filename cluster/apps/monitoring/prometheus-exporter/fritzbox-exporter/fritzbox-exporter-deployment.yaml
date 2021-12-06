@@ -9,8 +9,9 @@ metadata:
 spec:
   selector:
     app: fritzbox-exporter
-  type: LoadBalancer
-  loadBalancerIP: 192.168.178.180
+  type: ClusterIP
+  # type: LoadBalancer
+  # loadBalancerIP: 192.168.178.180
   ports:
   - name: http-exporter
     port: 9042
