@@ -1,0 +1,60 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: fritzbox-exporter
+  namespace: monitoring
+  labels:
+    app: fritzbox-exporter
+spec:
+  selector:
+    app: fritzbox-exporter
+  type: ClusterIP
+  ports:
+  - name: http-exporter
+    port: 9042
+    protocol: TCP
+    targetPort: http-exporter
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: fritzbox-exporter
+  namespace: monitoring
+  labels:
+    app: fritzbox-exporter
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: fritzbox-exporter
+  template:
+    metadata:
+      labels:
+        app: fritzbox-exporter
+    spec:
+      nodeSelector:
+        node-type: worker
+      containers:
+      - name: fritzbox-exporter
+        image: alexxanddr/fritzbox-exporter:latest
+        env:
+        - name: GATEWAY-URL
+          value: "http://192.168.178.1:49000"
+        - name: USERNAME
+          value: ${SECRET_FRITZBOX_USERNAME}
+        - name: PASSWORD
+          value: ${SECRET_FRITZBOX_PASSWORD}
+        ports:
+        - name: http-exporter
+          containerPort: 9042
+          protocol: TCP
+        livenessProbe:
+          httpGet:
+            path: /liveness
+            port: http-exporter
+        readinessProbe:
+          httpGet:
+            path: /readiness
+            port: http-exporter
