@@ -11,9 +11,9 @@ spec:
       sourceRef:
         kind: HelmRepository
         name: groundhog2k
-      version: 0.3.0
+      version: 0.3.1
   interval: 1m0s
-  targetNamespace: dev-gitea
+  targetNamespace: gitea
   values:
     affinity: {}
     args: []
