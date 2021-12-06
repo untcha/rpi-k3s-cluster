@@ -31,8 +31,10 @@ spec:
         volumeMounts:
           - name: fritzinfluxdb-ini
             mountPath: /app/fritzinfluxdb.ini
+            subPath: fritzinfluxdb.ini
           - name: fritzinfluxdb-py
             mountPath: /app/fritzinfluxdb.py
+            subPath: fritzinfluxdb.py
       volumes:
         - name: fritzinfluxdb-ini
           configMap:
