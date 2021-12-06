@@ -455,7 +455,7 @@ flux create helmrelease gitea-redis \
   --source=HelmRepository/groundhog2k \
   --chart=redis \
   --chart-version="0.4.8" \
-  --target-namespace=dev-gitea \
+  --target-namespace=gitea \
   --values=redis-values.yaml \
   --export > redis-helmrelease.yaml
 ```
