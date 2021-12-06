@@ -7,5 +7,4 @@ resources:
   - redis
   - gitea-pvc.yaml
   - gitea-helmrelease.yaml
-  # - gitea-letsencrypt-certificate.yaml
-  # - gitea-ingressroute.yaml
+  - gitea-ingressroute.yaml
