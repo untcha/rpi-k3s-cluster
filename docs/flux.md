@@ -430,7 +430,7 @@ flux create helmrelease gitea-postgres \
 flux create helmrelease nextcloud-postgres \
   --source=HelmRepository/groundhog2k \
   --chart=postgres \
-  --chart-version="0.3.0" \
+  --chart-version="0.3.1" \
   --target-namespace=nextcloud \
   --values=postgres-values.yaml \
   --export > postgres-helmrelease.yaml
