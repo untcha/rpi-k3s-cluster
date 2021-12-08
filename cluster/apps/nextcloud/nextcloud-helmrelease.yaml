@@ -11,7 +11,7 @@ spec:
       sourceRef:
         kind: HelmRepository
         name: groundhog2k
-      version: 0.8.4
+      version: 0.9.0
   interval: 1m0s
   timeout: 25m
   targetNamespace: nextcloud
@@ -43,11 +43,11 @@ spec:
       value: de
     externalCache:
       enabled: true
-      host: ${NEXTCLOUD_REDIS_SVC_LB_IP}
+      host: nextcloud-nextcloud-redis.nextcloud.svc.cluster.local
       password: ${SECRET_GLOBAL_REDIS_PASSWORD}
       port: 6379
     externalDatabase:
-      host: ${NEXTCLOUD_POSTGRES_SVC_LB_IP}
+      host: nextcloud-nextcloud-postgres.nextcloud.svc.cluster.local
       name: ${SECRET_NEXTCLOUD_DB_NAME}
       password: ${SECRET_NEXTCLOUD_DB_PASSWORD}
       type: postgres
