@@ -7,3 +7,4 @@ resources:
   - portainer-helmrelease.yaml
   # - portainer-letsencrypt-certificate.yaml
   - portainer-ingressroute.yaml
+  - portainer-middleware.yaml
