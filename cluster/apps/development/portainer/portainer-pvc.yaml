@@ -1,25 +1,9 @@
-# ---
-# apiVersion: v1
-# kind: PersistentVolumeClaim
-# metadata:
-#   name: portainer-pvc
-#   namespace: dev-portainer
-#   annotations:
-#     nfs.io/storage-path: "data"
-# spec:
-#   storageClassName: storage-nfs-provisioner
-#   accessModes:
-#     - ReadWriteOnce
-#   resources:
-#     requests:
-#       storage: 8Gi
-
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: portainer-pvc
-  namespace: dev-portainer
+  name: portainer-data-pvc
+  namespace: portainer
 spec:
   accessModes:
     - ReadWriteOnce
