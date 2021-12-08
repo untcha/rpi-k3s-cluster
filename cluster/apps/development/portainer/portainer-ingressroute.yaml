@@ -1,14 +1,13 @@
 # portainer-local-ingressroute
 # portainer-http-ingressroute
 # portainer-https-ingressroute
-# portainer-middleware-headers
 
 ---
 apiVersion: traefik.containo.us/v1alpha1
 kind: IngressRoute
 metadata:
   name: portainer-local-ingressroute
-  namespace: dev-portainer
+  namespace: portainer
 spec:
   entryPoints:
     - web
@@ -16,7 +15,7 @@ spec:
     - match: Host(`portainer.${SECRET_DOMAIN_LOCAL_02}`)
       kind: Rule
       services:
-        - name: dev-portainer-portainer
+        - name: portainer-portainer
           port: 9000
 
 ---
@@ -24,7 +23,7 @@ apiVersion: traefik.containo.us/v1alpha1
 kind: IngressRoute
 metadata:
   name: portainer-http-ingressroute
-  namespace: dev-portainer
+  namespace: portainer
 spec:
   entryPoints:
     - web
@@ -35,7 +34,7 @@ spec:
         - name: https-redirect-scheme-middleware
           namespace: traefik
       services:
-        - name: dev-portainer-portainer
+        - name: portainer-portainer
           port: 9000
 
 ---
@@ -43,7 +42,7 @@ apiVersion: traefik.containo.us/v1alpha1
 kind: IngressRoute
 metadata:
   name: portainer-https-ingressroute
-  namespace: dev-portainer
+  namespace: traefik
   annotations:
     cert-manager.io/cluster-issuer: "letsencrypt-dns01-production-do"
 spec:
@@ -55,36 +54,8 @@ spec:
       middlewares:
         - name: portainer-middleware-headers
       services:
-        - name: dev-portainer-portainer
+        - name: portainer-portainer
+          namespace: portainer
           port: 9000
   tls:
-    secretName: portainer-letsencrypt-production-certificate
-
----
-apiVersion: traefik.containo.us/v1alpha1
-kind: Middleware
-metadata:
-  name: portainer-middleware-headers
-  namespace: dev-portainer
-spec:
-  headers:
-    browserXssFilter: true
-    contentTypeNosniff: true
-    frameDeny: true
-    sslRedirect: true
-    forceSTSHeader: true
-    stsIncludeSubdomains: true
-    stsPreload: true
-    stsSeconds: 315360000
-    # stsSeconds: 63072000
-    contentSecurityPolicy: |
-      default-src 'none';form-action 'none';frame-ancestors 'none';base-uri 'none'
-    accessControlAllowMethods:
-      - "GET"
-      - "POST"
-    accessControlAllowOriginList:
-      - "https://portainer.${SECRET_DIGITALOCEAN_DOMAIN_02}"
-    accessControlMaxAge: 100
-    addVaryHeader: true
-    referrerPolicy: "same-origin"
-    customFrameOptionsValue: SAMEORIGIN
+    secretName: "${SECRET_DOMAIN/./-}-tls"

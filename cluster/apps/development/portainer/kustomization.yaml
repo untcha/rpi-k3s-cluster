@@ -6,4 +6,4 @@ resources:
   - portainer-pvc.yaml
   - portainer-helmrelease.yaml
   # - portainer-letsencrypt-certificate.yaml
-  # - portainer-ingressroute.yaml
+  - portainer-ingressroute.yaml
