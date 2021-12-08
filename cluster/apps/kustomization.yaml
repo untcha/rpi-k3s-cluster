@@ -22,7 +22,7 @@ resources:
     # influxdata
     # prometheus
     # prometheus-exporter
-  # - nextcloud
+  - nextcloud
   - system-upgrade
   - tools
   # - wordpress
