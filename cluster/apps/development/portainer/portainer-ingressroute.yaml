@@ -53,6 +53,7 @@ spec:
       kind: Rule
       middlewares:
         - name: portainer-middleware-headers
+          namespace: portainer
       services:
         - name: portainer-portainer
           namespace: portainer
