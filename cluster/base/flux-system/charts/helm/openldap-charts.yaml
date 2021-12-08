@@ -1,9 +1,0 @@
----
-apiVersion: source.toolkit.fluxcd.io/v1beta1
-kind: HelmRepository
-metadata:
-  name: openldap
-  namespace: flux-system
-spec:
-  interval: 1m0s
-  url: https://jp-gouin.github.io/helm-openldap/
