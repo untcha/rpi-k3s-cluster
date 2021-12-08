@@ -1,0 +1,64 @@
+# Default values for portainer.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+replicaCount: 1
+
+# If enterpriseEdition is enabled, then use the values below _instead_ of those in .image
+enterpriseEdition: 
+  enabled: false
+  image:
+    repository: portainer/portainer-ee
+    tag: 2.10.0
+    pullPolicy: Always
+
+image:
+  repository: portainer/portainer-ce
+  tag: latest
+  pullPolicy: Always
+
+imagePullSecrets: []
+
+nodeSelector:
+  node-type: worker
+
+serviceAccount:
+  annotations: {}
+  name: portainer-sa-clusteradmin
+
+service:
+  # Set the httpNodePort and edgeNodePort only if the type is NodePort
+  # For Ingress, set the type to be ClusterIP and set ingress.enabled to true
+  # For Cloud Providers, set the type to be LoadBalancer
+  type: ClusterIP
+  httpPort: 9000
+  httpsPort: 9443
+  httpNodePort: 30777
+  httpsNodePort: 30779
+  edgePort: 8000
+  edgeNodePort: 30776
+  annotations: {}
+
+tls:
+  # If set, Portainer will be configured to use TLS only
+  force: false
+  # If set, will mount the existing secret into the pod
+  existingSecret: ""
+
+ingress:
+  enabled: false
+  annotations: {}
+#    nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
+  hosts:
+    - host:
+      paths: []
+  tls: []
+
+resources: {}
+
+persistence:
+  existingClaim: portainer-data-pvc
+  size: "10Gi"
+  annotations: {}
+  storageClass:
+
