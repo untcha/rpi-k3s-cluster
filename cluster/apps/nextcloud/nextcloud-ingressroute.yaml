@@ -1,8 +1,6 @@
 # nextcloud-local-ingressroute
 # nextcloud-http-ingressroute
 # nextcloud-https-ingressroute
-# nextcloud-middleware-regex
-# nextcloud-middleware-headers
 
 ---
 apiVersion: traefik.containo.us/v1alpha1
@@ -64,76 +62,4 @@ spec:
           port: 80
   tls:
     secretName: "${SECRET_DOMAIN/./-}-tls"
-
----
-apiVersion: traefik.containo.us/v1alpha1
-kind: Middleware
-metadata:
-  name: nextcloud-middleware-regex
-  namespace: nextcloud
-spec:
-  redirectRegex:
-    permanent: true
-    regex: "https://(.*)/.well-known/(card|cal)dav"
-    replacement: "https://$1/remote.php/dav/"
-
----
-apiVersion: traefik.containo.us/v1alpha1
-kind: Middleware
-metadata:
-  name: nextcloud-middleware-headers
-  namespace: nextcloud
-spec:
-  headers:
-    browserXssFilter: true
-    contentTypeNosniff: true
-    frameDeny: true
-    sslRedirect: true # added
-    forceSTSHeader: true
-    stsIncludeSubdomains: true
-    stsPreload: true
-    stsSeconds: 63072000 # 315360000
-    contentSecurityPolicy: |
-      default-src 'none';form-action 'none';frame-ancestors 'none';base-uri 'none'
-    accessControlAllowMethods:
-      - "GET"
-      - "POST"
-    accessControlAllowOriginList:
-      - "https://cloud.${SECRET_DIGITALOCEAN_DOMAIN_02}"
-    accessControlMaxAge: 100
-    addVaryHeader: true
-    referrerPolicy: "same-origin"
-    customFrameOptionsValue: SAMEORIGIN
-
-# ---
-# apiVersion: traefik.containo.us/v1alpha1
-# kind: Middleware
-# metadata:
-#   name: nextcloud-middleware-headers
-#   namespace: nextcloud
-# spec:
-#   headers:
-#     browserXssFilter: true
-#     contentTypeNosniff: true
-#     frameDeny: true
-#     sslRedirect: true
-#     forceSTSHeader: true
-#     stsIncludeSubdomains: true
-#     stsPreload: true
-#     stsSeconds: 63072000
-#     #customRequestHeaders:
-#       #X-Frame-Options: "SAMEORIGIN"
-#     #customFrameOptionsValue: "SAMEORIGIN"
-#     #contentSecurityPolicy: "frame-ancestors 'self' nextcloud.${SECRET_DIGITALOCEAN_DOMAIN_02}"
-#     #contentSecurityPolicy: "default-src 'self'; script-src https://nextcloud.${SECRET_DIGITALOCEAN_DOMAIN_02}"
-#     contentSecurityPolicy: |
-#       default-src 'none';form-action 'none';frame-ancestors 'none';base-uri 'none'
-#     accessControlAllowMethods:
-#       - "GET"
-#       - "POST"
-#     accessControlAllowOriginList:
-#       #- "https://*.${SECRET_DIGITALOCEAN_DOMAIN_02}"
-#       - "https://nextcloud.${SECRET_DIGITALOCEAN_DOMAIN_02}"
-#     accessControlMaxAge: 100
-#     addVaryHeader: true
-#     referrerPolicy: "same-origin"
+    
