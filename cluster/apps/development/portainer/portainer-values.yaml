@@ -9,12 +9,12 @@ enterpriseEdition:
   enabled: false
   image:
     repository: portainer/portainer-ee
-    tag: 2.7.0
+    tag: 2.10.0
     pullPolicy: Always
 
 image:
   repository: portainer/portainer-ce
-  tag: 2.9.2
+  tag: latest
   pullPolicy: Always
 
 imagePullSecrets: []
@@ -40,6 +40,8 @@ service:
   annotations: {}
 
 tls:
+  # If set, Portainer will be configured to use TLS only
+  force: false
   # If set, will mount the existing secret into the pod
   existingSecret: ""
 
@@ -55,7 +57,7 @@ ingress:
 resources: {}
 
 persistence:
-  existingClaim: portainer-pvc
+  existingClaim: portainer-data-pvc
   size: "10Gi"
   annotations: {}
   storageClass:

@@ -388,8 +388,8 @@ flux create helmrelease openldap \
 flux create helmrelease portainer \
   --source=HelmRepository/portainer \
   --chart=portainer \
-  --chart-version="1.0.18" \
-  --target-namespace=dev-portainer \
+  --chart-version="1.0.20" \
+  --target-namespace=portainer \
   --values=portainer-values.yaml \
   --export > portainer-helmrelease.yaml
 ```

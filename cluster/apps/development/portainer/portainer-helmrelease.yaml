@@ -11,20 +11,20 @@ spec:
       sourceRef:
         kind: HelmRepository
         name: portainer
-      version: 1.0.18
+      version: 1.0.20
   interval: 1m0s
-  targetNamespace: dev-portainer
+  targetNamespace: portainer
   values:
     enterpriseEdition:
       enabled: false
       image:
         pullPolicy: Always
         repository: portainer/portainer-ee
-        tag: 2.7.0
+        tag: 2.10.0
     image:
       pullPolicy: Always
       repository: portainer/portainer-ce
-      tag: 2.9.2
+      tag: latest
     imagePullSecrets: []
     ingress:
       annotations: {}
@@ -37,7 +37,7 @@ spec:
       node-type: worker
     persistence:
       annotations: {}
-      existingClaim: portainer-pvc
+      existingClaim: portainer-data-pvc
       size: 10Gi
       storageClass: null
     replicaCount: 1
@@ -56,4 +56,5 @@ spec:
       name: portainer-sa-clusteradmin
     tls:
       existingSecret: ""
+      force: false
 
