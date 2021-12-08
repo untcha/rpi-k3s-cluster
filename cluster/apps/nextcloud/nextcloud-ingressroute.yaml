@@ -44,7 +44,7 @@ apiVersion: traefik.containo.us/v1alpha1
 kind: IngressRoute
 metadata:
   name: nextcloud-https-ingressroute
-  namespace: nextcloud
+  namespace: traefik
   annotations:
     cert-manager.io/cluster-issuer: "letsencrypt-dns01-production-do"
 spec:
@@ -55,12 +55,15 @@ spec:
       kind: Rule
       middlewares:
         - name: nextcloud-middleware-regex
+          namespace: nextcloud
         - name: nextcloud-middleware-headers
+          namespace: nextcloud
       services:
         - name: nextcloud-nextcloud
+          namespace: nextcloud
           port: 80
   tls:
-    secretName: nextcloud-letsencrypt-production-certificate
+    secretName: "${SECRET_DOMAIN/./-}-tls"
 
 ---
 apiVersion: traefik.containo.us/v1alpha1
