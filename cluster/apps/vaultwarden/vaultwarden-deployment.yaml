@@ -31,12 +31,6 @@ spec:
       - name: vaultwarden
         image: vaultwarden/server:1.23.0
         imagePullPolicy: IfNotPresent
-        # env:
-        # - name: ADMIN_TOKEN
-        #   valueFrom:
-        #     secretKeyRef:
-        #       name: vaultwarden-admin-token
-        #       key: token
         envFrom:
           - configMapRef:
               name: vaultwarden-config
