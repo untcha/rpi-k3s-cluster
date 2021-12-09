@@ -1,0 +1,98 @@
+# vaultwarden-local-ingressroute
+# vaultwarden-http-ingressroute
+# vaultwarden-https-ingressroute
+# vaultwarden-middleware-headers
+
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: vaultwarden-local-ingressroute
+  namespace: vaultwarden
+spec:
+  entryPoints:
+    - web
+  routes:
+    - match: Host(`vault.${SECRET_DOMAIN_LOCAL_02}`)
+      kind: Rule
+      services:
+        - name: vaultwarden
+          port: 80
+
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: vaultwarden-http-ingressroute
+  namespace: vaultwarden
+spec:
+  entryPoints:
+    - web
+  routes:
+    - match: Host(`vault.${SECRET_DIGITALOCEAN_DOMAIN_02}`)
+      kind: Rule
+      middlewares:
+        - name: https-redirect-scheme-middleware
+          namespace: traefik
+      services:
+        - name: vaultwarden
+          port: 80
+
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: vaultwarden-https-ingressroute
+  namespace: traefik
+  annotations:
+    cert-manager.io/cluster-issuer: "letsencrypt-dns01-production-do"
+spec:
+  entryPoints:
+    - websecure
+  routes:
+    - match: Host(`vault.${SECRET_DIGITALOCEAN_DOMAIN_02}`)
+      kind: Rule
+      middlewares:
+        - name: vaultwarden-middleware-headers
+          namespace: vaultwarden
+      services:
+        - name: vaultwarden
+          namespace: vaultwarden
+          port: 80
+    - match: Host(`vault.${SECRET_DIGITALOCEAN_DOMAIN_02}`) && Path(`/notifications/hub`)
+      kind: Rule
+      services:
+        - name: vaultwarden
+          namespace: vaultwarden
+          port: 3012
+  tls:
+    secretName: "${SECRET_DOMAIN/./-}-tls"
+
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: Middleware
+metadata:
+  name: vaultwarden-middleware-headers
+  namespace: vaultwarden
+spec:
+  headers:
+    browserXssFilter: true
+    contentTypeNosniff: true
+    frameDeny: true
+    sslRedirect: true
+    forceSTSHeader: true
+    stsIncludeSubdomains: true
+    stsPreload: true
+    stsSeconds: 315360000
+    # stsSeconds: 63072000
+    contentSecurityPolicy: |
+      default-src 'none';form-action 'none';frame-ancestors 'none';base-uri 'none'
+    accessControlAllowMethods:
+      - "GET"
+      - "POST"
+    accessControlAllowOriginList:
+      - "https://vault.${SECRET_DIGITALOCEAN_DOMAIN_02}"
+    accessControlMaxAge: 100
+    addVaryHeader: true
+    referrerPolicy: "same-origin"
+    customFrameOptionsValue: SAMEORIGIN

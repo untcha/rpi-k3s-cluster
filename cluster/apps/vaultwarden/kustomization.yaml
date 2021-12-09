@@ -9,3 +9,4 @@ resources:
   - vaultwarden-configmap.yaml
   - vaultwarden-service.yaml
   - vaultwarden-deployment.yaml
+  - vaultwarden-ingressroute.yaml
