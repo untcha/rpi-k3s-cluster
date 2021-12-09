@@ -5,3 +5,4 @@ resources:
   - namespace.yaml
   - postgres
   - vaultwarden-pvc.yaml
+  - vaultwarden-rbac.yaml
