@@ -25,4 +25,5 @@ resources:
   - nextcloud
   - system-upgrade
   - tools
+  - vaultwarden
   # - wordpress
