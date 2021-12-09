@@ -8,6 +8,7 @@ metadata:
     app: vaultwarden
 data:
   DATABASE_URL: postgresql://${SECRET_VAULTWARDEN_DB_USER}:${SECRET_VAULTWARDEN_DB_PASSWORD}@vaultwarden-vaultwarden-postgres:5432/${SECRET_VAULTWARDEN_DB_NAME}
+  # openssl rand -base64 48
   ADMIN_TOKEN: ${SECRET_VAULTWARDEN_ADMIN_TOKEN}
   SMTP_HOST: ${SECRET_GLOBAL_SMTP_HOST}
   SMTP_FROM: ${SECRET_GLOBAL_SMTP_FROM}
