@@ -407,11 +407,11 @@ flux create helmrelease authelia-postgres \
 ```
 
 ```bash
-flux create helmrelease bitwarden-postgres \
+flux create helmrelease vaultwarden-postgres \
   --source=HelmRepository/groundhog2k \
   --chart=postgres \
-  --chart-version="0.3.0" \
-  --target-namespace=bitwarden \
+  --chart-version="0.3.1" \
+  --target-namespace=vaultwarden \
   --values=postgres-values.yaml \
   --export > postgres-helmrelease.yaml
 ```
