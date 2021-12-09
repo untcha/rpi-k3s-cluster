@@ -13,7 +13,7 @@ data:
   SMTP_FROM: ${SECRET_GLOBAL_SMTP_FROM}
   SMTP_USERNAME: ${SECRET_GLOBAL_SMTP_USERNAME}
   SMTP_PASSWORD: ${SECRET_GLOBAL_SMTP_PASSWORD}
-  SMTP_PORT: "${GLOBAL_SMTP_PORT}"
+  SMTP_PORT: "587"
   SMTP_SSL: "true"
   TZ: ${TIMEZONE}
   # nginx-ingress-controller has built in support for Websockets
