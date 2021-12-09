@@ -7,3 +7,4 @@ resources:
   - vaultwarden-pvc.yaml
   - vaultwarden-rbac.yaml
   - vaultwarden-configmap.yaml
+  - vaultwarden-service.yaml

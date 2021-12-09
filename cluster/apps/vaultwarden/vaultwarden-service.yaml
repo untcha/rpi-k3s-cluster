@@ -1,0 +1,22 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: vaultwarden
+  namespace: vaultwarden
+  labels:
+    app: vaultwarden
+spec:
+  selector:
+    app: vaultwarden
+  ports:
+  - name: http
+    port: 80
+    protocol: TCP
+    targetPort: 8080
+  - name: websocket
+    port: 3012
+    protocol: TCP
+    targetPort: 3012
+  sessionAffinity: None
+  type: ClusterIP
