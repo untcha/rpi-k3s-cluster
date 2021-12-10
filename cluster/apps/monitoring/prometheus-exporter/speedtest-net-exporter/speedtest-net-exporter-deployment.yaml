@@ -39,7 +39,6 @@ spec:
       containers:
       - name: speedtest-net-exporter
         image: danopstech/speedtest_exporter:latest
-        env: {}
         ports:
         - name: http-exporter
           containerPort: 9090
