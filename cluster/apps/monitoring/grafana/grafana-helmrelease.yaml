@@ -11,7 +11,7 @@ spec:
       sourceRef:
         kind: HelmRepository
         name: grafana
-      version: 6.17.9
+      version: 6.19.0
   interval: 1m0s
   targetNamespace: monitoring
   values:
@@ -67,12 +67,13 @@ spec:
         logs: /var/log/grafana
         plugins: /var/lib/grafana/plugins
         provisioning: /etc/grafana/provisioning
+    headlessService: false
     hostAliases: []
     image:
       pullPolicy: IfNotPresent
       repository: grafana/grafana
       sha: ""
-      tag: 8.2.5
+      tag: 8.3.1
     imageRenderer:
       enabled: false
       env:
@@ -129,6 +130,10 @@ spec:
       initialDelaySeconds: 60
       timeoutSeconds: 30
     namespaceOverride: ""
+    networkPolicy:
+      allowExternal: true
+      enabled: false
+      explicitNamespacesSelector: {}
     nodeSelector:
       node-type: worker
     notifiers: {}
@@ -192,6 +197,7 @@ spec:
         SCProvider: true
         defaultFolderName: null
         enabled: false
+        extraMounts: []
         folder: /tmp/dashboards
         folderAnnotation: null
         label: grafana_dashboard
@@ -212,9 +218,10 @@ spec:
         enabled: false
         label: grafana_datasource
         labelValue: null
+        reloadURL: http://localhost:3000/api/admin/provisioning/datasources/reload
         resource: both
         searchNamespace: null
-        watchMethod: LIST
+        watchMethod: WATCH
       enableUniqueFilenames: false
       image:
         repository: quay.io/kiwigrid/k8s-sidecar
