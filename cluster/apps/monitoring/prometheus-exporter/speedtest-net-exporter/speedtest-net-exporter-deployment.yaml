@@ -1,0 +1,46 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: speedtest-net-exporter
+  namespace: monitoring
+  labels:
+    app: speedtest-net-exporter
+spec:
+  selector:
+    app: speedtest-net-exporter
+  type: ClusterIP
+  ports:
+  - name: http-exporter
+    port: 9090
+    protocol: TCP
+    targetPort: http-exporter
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: speedtest-net-exporter
+  namespace: monitoring
+  labels:
+    app: speedtest-net-exporter
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: speedtest-net-exporter
+  template:
+    metadata:
+      labels:
+        app: speedtest-net-exporter
+    spec:
+      nodeSelector:
+        node-type: worker
+      containers:
+      - name: speedtest-net-exporter
+        image: danopstech/speedtest_exporter:latest
+        env: {}
+        ports:
+        - name: http-exporter
+          containerPort: 9090
+          protocol: TCP
