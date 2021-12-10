@@ -1765,14 +1765,14 @@ serverFiles:
 # must be a string so you have to add a | after extraScrapeConfigs:
 # example adds prometheus-blackbox-exporter scrape config
 extraScrapeConfigs: |
-  - job_name: 'z-custom_speedtest-metrics'
-    scrape_interval: 1h
-    scrape_timeout: 5m
-    scheme: http
-    metrics_path: /metrics
-    static_configs:
-      - targets:
-        - speedtest.${SECRET_DOMAIN_LOCAL_02}
+  # - job_name: 'z-custom_speedtest-metrics'
+  #   scrape_interval: 1h
+  #   scrape_timeout: 5m
+  #   scheme: http
+  #   metrics_path: /metrics
+  #   static_configs:
+  #     - targets:
+  #       - speedtest.${SECRET_DOMAIN_LOCAL_02}
   - job_name: 'z-custom_speedtest-net-metrics'
     scrape_interval: 1h
     scrape_timeout: 5m
