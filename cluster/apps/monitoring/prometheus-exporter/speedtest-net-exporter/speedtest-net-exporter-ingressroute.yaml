@@ -13,5 +13,5 @@ spec:
     - match: Host(`speedtest-net.${SECRET_DOMAIN_LOCAL_02}`) && PathPrefix(`/metrics`)
       kind: Rule
       services:
-        - name: monitoring-speedtest-net-exporter
+        - name: speedtest-net-exporter
           port: 9090
