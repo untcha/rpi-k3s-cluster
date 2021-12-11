@@ -4,4 +4,4 @@ kind: Kustomization
 resources:
   # - speedtest-exporter
   - speedtest-net-exporter
-  - fritzbox-exporter
+  # - fritzbox-exporter
