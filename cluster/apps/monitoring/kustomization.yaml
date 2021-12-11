@@ -5,6 +5,6 @@ resources:
   - namespace.yaml
   - prometheus
   - prometheus-exporter
-  - prometheus-podmonitor
+  # - prometheus-podmonitor
   - influxdata
   - grafana
