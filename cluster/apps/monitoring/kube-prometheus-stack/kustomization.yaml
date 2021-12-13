@@ -4,3 +4,4 @@ kind: Kustomization
 resources:
   - grafana-pvc.yaml
   - kube-prometheus-stack-helmrelease.yaml
+  - ingressroute.yaml
