@@ -58,7 +58,6 @@ spec:
         topologySpreadConstraints: []
         useExistingSecret: false
         volumeClaimTemplate:
-          selector: {}
           spec:
             accessModes:
             - ReadWriteOnce
@@ -533,7 +532,6 @@ spec:
         shards: 1
         storageSpec:
           volumeClaimTemplate:
-            selector: {}
             spec:
               accessModes:
               - ReadWriteOnce

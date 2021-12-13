@@ -485,7 +485,7 @@ alertmanager:
         resources:
           requests:
             storage: 2Gi
-      selector: {}
+      # selector: {}
 
 
     ## The external URL the Alertmanager instances will be available under. This is necessary to generate correct URLs. This is necessary if Alertmanager is not served from root of a DNS name. string  false
@@ -2373,14 +2373,16 @@ prometheus:
     ## ref: https://github.com/prometheus-operator/prometheus-operator/blob/master/Documentation/user-guides/storage.md
     ##
     storageSpec:
-     volumeClaimTemplate:
-       spec:
-         storageClassName: longhorn-prometheus
-         accessModes: ["ReadWriteOnce"]
-         resources:
-           requests:
-             storage: 20Gi
-       selector: {}
+    ## Using PersistentVolumeClaim
+    ##
+      volumeClaimTemplate:
+        spec:
+          storageClassName: longhorn-prometheus
+          accessModes: ["ReadWriteOnce"]
+          resources:
+            requests:
+              storage: 20Gi
+        # selector: {}
 
     ## Using tmpfs volume
     ##
