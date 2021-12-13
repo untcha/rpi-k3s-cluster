@@ -1138,7 +1138,7 @@ kubeDns:
 ## Component scraping etcd
 ##
 kubeEtcd:
-  enabled: false
+  enabled: true
 
   ## If your etcd is not deployed as a pod, specify IPs it can be found on
   ##
