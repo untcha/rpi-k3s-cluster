@@ -309,7 +309,7 @@ spec:
         proxyUrl: ""
         relabelings: []
     kubeEtcd:
-      enabled: true
+      enabled: false
       endpoints:
       - 192.168.178.210
       service:
