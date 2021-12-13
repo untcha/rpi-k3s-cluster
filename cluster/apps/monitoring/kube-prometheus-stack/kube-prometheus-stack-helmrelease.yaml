@@ -310,7 +310,8 @@ spec:
         relabelings: []
     kubeEtcd:
       enabled: true
-      endpoints: []
+      endpoints:
+      - 192.168.178.210
       service:
         enabled: true
         port: 2379
