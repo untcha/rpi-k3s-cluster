@@ -345,8 +345,9 @@ spec:
         proxyUrl: ""
         relabelings: []
     kubeScheduler:
-      enabled: false
-      endpoints: []
+      enabled: true
+      endpoints:
+      - 192.168.178.210
       service:
         enabled: true
         port: 10251
