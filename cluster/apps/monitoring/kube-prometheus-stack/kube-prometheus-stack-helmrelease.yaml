@@ -351,7 +351,7 @@ spec:
         proxyUrl: ""
         relabelings: []
     kubeScheduler:
-      enabled: false
+      enabled: true
       endpoints:
       - 192.168.178.210
       - 192.168.178.211

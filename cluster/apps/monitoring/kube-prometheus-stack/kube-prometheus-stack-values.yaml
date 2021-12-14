@@ -1213,7 +1213,7 @@ kubeEtcd:
 ## Component scraping kube scheduler
 ##
 kubeScheduler:
-  enabled: false
+  enabled: true
 
   ## If your kube scheduler is not deployed as a pod, specify IPs it can be found on
   ##
