@@ -358,12 +358,12 @@ spec:
       - 192.168.178.212
       service:
         enabled: true
-        port: 10251
-        targetPort: 10251
+        port: 10259
+        targetPort: 10259
       serviceMonitor:
         enabled: true
-        https: false
-        insecureSkipVerify: null
+        https: true
+        insecureSkipVerify: true
         interval: ""
         metricRelabelings: []
         proxyUrl: ""
