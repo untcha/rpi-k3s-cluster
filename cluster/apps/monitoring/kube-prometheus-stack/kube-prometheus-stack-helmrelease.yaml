@@ -312,15 +312,15 @@ spec:
         proxyUrl: ""
         relabelings: []
     kubeEtcd:
-      enabled: false
+      enabled: true
       endpoints:
       - 192.168.178.210
       - 192.168.178.211
       - 192.168.178.212
       service:
         enabled: true
-        port: 2379
-        targetPort: 2379
+        port: 2381
+        targetPort: 2381
       serviceMonitor:
         caFile: ""
         certFile: ""
