@@ -980,11 +980,14 @@ kubelet:
 ## Component scraping the kube controller manager
 ##
 kubeControllerManager:
-  enabled: false
+  enabled: true
 
   ## If your kube controller manager is not deployed as a pod, specify IPs it can be found on
   ##
-  endpoints: []
+  endpoints:
+    - 192.168.178.210
+    - 192.168.178.211
+    - 192.168.178.212
   # - 10.141.4.22
   # - 10.141.4.23
   # - 10.141.4.24
@@ -1208,7 +1211,7 @@ kubeEtcd:
 ## Component scraping kube scheduler
 ##
 kubeScheduler:
-  enabled: false
+  enabled: true
 
   ## If your kube scheduler is not deployed as a pod, specify IPs it can be found on
   ##
@@ -1271,11 +1274,14 @@ kubeScheduler:
 ## Component scraping kube proxy
 ##
 kubeProxy:
-  enabled: false
+  enabled: true
 
   ## If your kube proxy is not deployed as a pod, specify IPs it can be found on
   ##
-  endpoints: []
+  endpoints:
+    - 192.168.178.210
+    - 192.168.178.211
+    - 192.168.178.212
   # - 10.141.4.22
   # - 10.141.4.23
   # - 10.141.4.24

@@ -277,8 +277,11 @@ spec:
         insecureSkipVerify: false
         serverName: kubernetes
     kubeControllerManager:
-      enabled: false
-      endpoints: []
+      enabled: true
+      endpoints:
+      - 192.168.178.210
+      - 192.168.178.211
+      - 192.168.178.212
       service:
         enabled: true
         port: 10252
@@ -331,8 +334,11 @@ spec:
         scheme: http
         serverName: ""
     kubeProxy:
-      enabled: false
-      endpoints: []
+      enabled: true
+      endpoints:
+      - 192.168.178.210
+      - 192.168.178.211
+      - 192.168.178.212
       service:
         enabled: true
         port: 10249
@@ -345,7 +351,7 @@ spec:
         proxyUrl: ""
         relabelings: []
     kubeScheduler:
-      enabled: false
+      enabled: true
       endpoints:
       - 192.168.178.210
       - 192.168.178.211
