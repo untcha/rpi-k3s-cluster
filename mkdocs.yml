@@ -15,6 +15,7 @@ nav:
   - Flux: flux.md
   - Netboot (PXE + iSCSI): netboot.md
   - Encryption with GPG and Mozilla SOPS: gpg-sops.md
+  - System Maintenance: system-maintenance.md
   - Misc Guides:
     - Raspberry Setup: rpi-setup.md
     - SSH Guide: ssh.md
