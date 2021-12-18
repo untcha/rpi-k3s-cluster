@@ -277,7 +277,7 @@ spec:
         insecureSkipVerify: false
         serverName: kubernetes
     kubeControllerManager:
-      enabled: true
+      enabled: false
       endpoints:
       - 192.168.178.210
       - 192.168.178.211
