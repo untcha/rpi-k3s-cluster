@@ -31,6 +31,10 @@ kubectl drain <node-ip> --delete-local-data=false --force=false --grace-period=-
 ### Perform the necessary maintenance
 
 ```bash
+sudo apt update && sudo apt upgrade && sudo apt -y autoremove
+```
+
+```bash
 sudo apt update && sudo apt -y full-upgrade && sudo apt -y autoremove
 ```
 
