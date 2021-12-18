@@ -14,12 +14,20 @@ kubectl cordon rpi-k3s-worker-0
 ### Drain the node
 
 ```bash
-kubectl drain --ignore-daemonsets --pod-selector='app!=csi-attacher,app!=csi-provisioner' <node name>
+kubectl drain \
+    --ignore-daemonsets \
+    --pod-selector='app!=csi-attacher,app!=csi-provisioner' \
+    <node name>
 ```
 
 ```bash
 # Necessary on nodes running flux components
-kubectl drain --ignore-daemonsets --pod-selector='app!=csi-attacher,app!=csi-provisioner' --delete-emptydir-data <node name>
+
+kubectl drain \
+    --ignore-daemonsets \
+    --pod-selector='app!=csi-attacher,app!=csi-provisioner' \
+    --delete-emptydir-data \
+    <node name>
 ```
 
 The `--ignore-daemonsets` is needed because Longhorn deployed some daemonsets such as Longhorn manager, Longhorn CSI plugin, engine image. The `--pod-selector='app!=csi-attacher,app!=csi-provisioner'` is needed so CSI Attacher can properly detaches Longhorn volumes
