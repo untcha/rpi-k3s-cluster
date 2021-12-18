@@ -24,6 +24,10 @@ Additional flags:
 --delete-emptydir-data
 ```
 
+```bash
+kubectl drain <node-ip> --delete-local-data=false --force=false --grace-period=-1 --ignore-daemonsets=true --timeout=120s
+```
+
 ### Perform the necessary maintenance
 
 ```bash
