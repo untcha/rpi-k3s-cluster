@@ -21,6 +21,7 @@ Additional flags:
 ```
 
 ```bash
+# Necessary on nodes running flux components
 --delete-emptydir-data
 ```
 
