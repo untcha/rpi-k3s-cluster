@@ -38,7 +38,7 @@ Additional flags:
 --force
 ```
 
-TODO:
+### TODO:
 
 ```bash
 kubectl drain <node-ip> --delete-local-data=false --force=false --grace-period=-1 --ignore-daemonsets=true --timeout=120s
@@ -47,7 +47,7 @@ kubectl drain <node-ip> --delete-local-data=false --force=false --grace-period=-
 ### Perform the necessary maintenance
 
 ```bash
-sudo apt update && sudo apt upgrade && sudo apt -y autoremove
+sudo apt update && sudo apt -y upgrade && sudo apt -y autoremove
 ```
 
 ```bash
@@ -68,3 +68,70 @@ kubectl uncordon <node name>
 kubectl uncordon rpi-k3s-master-0
 kubectl uncordon rpi-k3s-worker-0
 ```
+
+### Reference
+- [Longhorn Node Maintenance Guide](https://longhorn.io/docs/1.2.3/volumes-and-nodes/maintenance/)
+
+## Updating K3S with system-upgrade-controller
+
+### Check for correct node labeling
+
+```bash
+kubectl get node -o wide
+```
+
+```bash
+kubectl get node --selector='node-role.kubernetes.io/master'
+```
+
+### Label master node if necessary
+
+```bash
+kubectl label node <node name> node-role.kubernetes.io/master=true
+```
+
+### Label nodes for upgrade
+
+```bash
+# first time
+kubectl label node --all k3s-upgrade=true
+
+# k3s-upgrade=enabled
+```
+
+```bash
+kubectl label node --all --overwrite k3s-upgrade=true
+```
+
+After the upgrade lable the nodes again:
+
+```bash
+kubectl label node --all --overwrite k3s-upgrade=false
+```
+
+### Watch the upgrade
+
+```bash
+watch kubectl get pods -n system-upgrade
+```
+
+```bash
+kubectl get pods -n system-upgrade -w
+```
+
+### TODO:
+
+```bash
+NODES=""
+LABELS="k3s-upgrade=true"
+for NODE in ${NODE_NAMES[*]}; do
+    echo ${NODE} ${LABEL}
+    kubectl label nodes ${NODE} ${LABEL}
+done
+```
+
+### Reference
+- [gdha/k3s-upgrade-controller](https://github.com/gdha/k3s-upgrade-controller)
+- [K3S Upgrade](https://rancher.com/docs/k3s/latest/en/upgrades/)
+- [system-upgrade-controller](https://github.com/rancher/system-upgrade-controller)
+- [k3s-upgrade](https://github.com/k3s-io/k3s-upgrade)
