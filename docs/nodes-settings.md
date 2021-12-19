@@ -69,5 +69,28 @@ ansible_connection=ssh
 ansible_user=ubuntu
 ```
 
-!!! note
+!!! info
     The variables `var_disk` and `var_uuid` will be explained in the OS Settings chapter when it comes to preparing the USB Disks for `longhorn`
+
+## Prepare login with ssh key
+
+Log into each node and run
+
+``` bash
+nano ~/.ssh/authorized_keys
+```
+
+On your own machine (my MacBook) run
+
+``` bash
+pbcopy < ~/.ssh/id_rsa.pub
+```
+
+to copy your public ssh key and paste it in the `authorized_keys` file on each node.
+
+!!! note
+    TODO: try to copy the keys with this command
+
+    ``` bash
+    ssh-copy-id -i ~/.ssh/id_rsa.pub ubuntu@<node name>
+    ```

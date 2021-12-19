@@ -38,11 +38,12 @@ Additional flags:
 --force
 ```
 
-### TODO:
+!!! note
+    TODO:
 
-``` bash
-kubectl drain <node-ip> --delete-local-data=false --force=false --grace-period=-1 --ignore-daemonsets=true --timeout=120s
-```
+    ``` bash
+    kubectl drain <node-ip> --delete-local-data=false --force=false --grace-period=-1 --ignore-daemonsets=true --timeout=120s
+    ```
 
 ### Perform the necessary maintenance
 
@@ -119,16 +120,17 @@ watch kubectl get pods -n system-upgrade
 kubectl get pods -n system-upgrade -w
 ```
 
-### TODO:
+!!! note
+    TODO:
 
-``` bash
-NODES=""
-LABELS="k3s-upgrade=true"
-for NODE in ${NODE_NAMES[*]}; do
-    echo ${NODE} ${LABEL}
-    kubectl label nodes ${NODE} ${LABEL}
-done
-```
+    ``` bash
+    NODES=""
+    LABELS="k3s-upgrade=true"
+    for NODE in ${NODE_NAMES[*]}; do
+        echo ${NODE} ${LABEL}
+        kubectl label nodes ${NODE} ${LABEL}
+    done
+    ```
 
 ### Reference
 - [gdha/k3s-upgrade-controller](https://github.com/gdha/k3s-upgrade-controller)
