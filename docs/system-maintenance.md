@@ -2,25 +2,25 @@
 
 ### Cordon the node
 
-```bash
+``` bash
 kubectl cordon <node name>
 ```
 
-```bash
+``` bash
 kubectl cordon rpi-k3s-master-0
 kubectl cordon rpi-k3s-worker-0
 ```
 
 ### Drain the node
 
-```bash
+``` bash
 kubectl drain \
     --ignore-daemonsets \
     --pod-selector='app!=csi-attacher,app!=csi-provisioner' \
     <node name>
 ```
 
-```bash
+``` bash
 # Necessary on nodes running flux components
 
 kubectl drain \
@@ -34,37 +34,37 @@ The `--ignore-daemonsets` is needed because Longhorn deployed some daemonsets su
 
 Additional flags:
 
-```bash
+``` bash
 --force
 ```
 
 ### TODO:
 
-```bash
+``` bash
 kubectl drain <node-ip> --delete-local-data=false --force=false --grace-period=-1 --ignore-daemonsets=true --timeout=120s
 ```
 
 ### Perform the necessary maintenance
 
-```bash
+``` bash
 sudo apt update && sudo apt -y upgrade && sudo apt -y autoremove
 ```
 
-```bash
+``` bash
 sudo apt update && sudo apt -y full-upgrade && sudo apt -y autoremove
 ```
 
-```bash
+``` bash
 sudo reboot
 ```
 
 ### Uncordon the node
 
-```bash
+``` bash
 kubectl uncordon <node name>
 ```
 
-```bash
+``` bash
 kubectl uncordon rpi-k3s-master-0
 kubectl uncordon rpi-k3s-worker-0
 ```
@@ -76,52 +76,52 @@ kubectl uncordon rpi-k3s-worker-0
 
 ### Check for correct node labeling
 
-```bash
+``` bash
 kubectl get node -o wide
 ```
 
-```bash
+``` bash
 kubectl get node --selector='node-role.kubernetes.io/master'
 ```
 
 ### Label master node if necessary
 
-```bash
+``` bash
 kubectl label node <node name> node-role.kubernetes.io/master=true
 ```
 
 ### Label nodes for upgrade
 
-```bash
+``` bash
 # first time
 kubectl label node --all k3s-upgrade=true
 
 # k3s-upgrade=enabled
 ```
 
-```bash
+``` bash
 kubectl label node --all --overwrite k3s-upgrade=true
 ```
 
 After the upgrade lable the nodes again:
 
-```bash
+``` bash
 kubectl label node --all --overwrite k3s-upgrade=false
 ```
 
 ### Watch the upgrade
 
-```bash
+``` ash
 watch kubectl get pods -n system-upgrade
 ```
 
-```bash
+``` bash
 kubectl get pods -n system-upgrade -w
 ```
 
 ### TODO:
 
-```bash
+``` bash
 NODES=""
 LABELS="k3s-upgrade=true"
 for NODE in ${NODE_NAMES[*]}; do
