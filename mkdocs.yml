@@ -13,6 +13,8 @@ nav:
   - Home: index.md
   - Nodes Settings: nodes-settings.md
   - OS Settings: os-settings.md
+  - Storage Settings: storage-settings.md
+  - Install K3S: k3s-install.md
   - Helm Charts: helm-charts.md
   - Flux: flux.md
   - Netboot (PXE + iSCSI): netboot.md

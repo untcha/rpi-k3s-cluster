@@ -163,3 +163,9 @@ ansible all -b -m shell -a "cat /etc/hosts"
 192.168.178.216 rpi-k3s-worker-04
 192.168.178.217 rpi-k3s-worker-05
 ```
+
+Finally reboot all nodes:
+
+``` bash
+ansible all -b -m reboot
+```

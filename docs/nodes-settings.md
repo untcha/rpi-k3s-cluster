@@ -51,16 +51,16 @@ This is my ansible hosts config:
 
 ``` yaml
 [masters]
-rpi-k3s-master-01 var_hostname=rpi-k3s-master-01 var_disk=sdb var_uuid=7db5fe78-1d19-41a8-a969-853a1ea81594
-rpi-k3s-master-02 var_hostname=rpi-k3s-master-02 var_disk=sdb var_uuid=8de0bb09-b81c-439d-98a1-5c9ddd8ed901
-rpi-k3s-master-03 var_hostname=rpi-k3s-master-03 var_disk=sda var_uuid=68ac6bf5-1063-41d7-a5c3-d6811304318f
+rpi-k3s-master-01 var_hostname=rpi-k3s-master-01 var_disk= var_uuid=
+rpi-k3s-master-02 var_hostname=rpi-k3s-master-02 var_disk= var_uuid=
+rpi-k3s-master-03 var_hostname=rpi-k3s-master-03 var_disk= var_uuid=
 
 [workers]
-rpi-k3s-worker-01 var_hostname=rpi-k3s-worker-01 var_disk=sda var_uuid=3cc5af8f-8b8e-4867-a9cb-60649585d7b0
-rpi-k3s-worker-02 var_hostname=rpi-k3s-worker-02 var_disk=sdb var_uuid=60657532-c469-4acc-ba53-df7328d1818d
-rpi-k3s-worker-03 var_hostname=rpi-k3s-worker-03 var_disk=sdb var_uuid=47820b98-28e2-485b-ad63-ee5b5796ffe1
-rpi-k3s-worker-04 var_hostname=rpi-k3s-worker-04 var_disk=sdb var_uuid=824c3003-cd42-45a4-868e-9bfcfc1f1bbd
-rpi-k3s-worker-05 var_hostname=rpi-k3s-worker-05 var_disk=sdb var_uuid=58212edb-b909-4d2f-876d-4e40c596777a
+rpi-k3s-worker-01 var_hostname=rpi-k3s-worker-01 var_disk= var_uuid=
+rpi-k3s-worker-02 var_hostname=rpi-k3s-worker-02 var_disk= var_uuid=
+rpi-k3s-worker-03 var_hostname=rpi-k3s-worker-03 var_disk= var_uuid=
+rpi-k3s-worker-04 var_hostname=rpi-k3s-worker-04 var_disk= var_uuid=
+rpi-k3s-worker-05 var_hostname=rpi-k3s-worker-05 var_disk= var_uuid=
 
 [cluster:children]
 masters
@@ -72,7 +72,7 @@ ansible_user=ubuntu
 ```
 
 !!! info
-    The variables `var_disk` and `var_uuid` will be explained in the OS Settings chapter when it comes to preparing the USB Disks for `longhorn`
+    The variables `var_disk` and `var_uuid` will be explained in the `Storage Settings` chapter when it comes to preparing the USB Disks for `longhorn`
 
 ## Prepare login with ssh key
 
