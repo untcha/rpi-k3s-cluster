@@ -19,6 +19,8 @@ sudo nano /etc/hosts
 
 ## Install Ansible
 
+I'm going to use ansible to make life easier configuring Ubuntu on all the nodes. I'm not (yet) an ansible experts so no playbooks just firing plain ansible commands against all nodes!
+
 ``` bash
 brew install ansible
 ```
