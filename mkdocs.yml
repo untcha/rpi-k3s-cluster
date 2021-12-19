@@ -11,6 +11,7 @@ copyright: Copyright &copy; 2021 Alexander Untch
 # Page tree
 nav:
   - Home: index.md
+  - Nodes Settings: nodes-settings.md
   - OS Settings: os-settings.md
   - Helm Charts: helm-charts.md
   - Flux: flux.md
