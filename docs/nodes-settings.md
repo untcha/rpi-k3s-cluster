@@ -1,3 +1,5 @@
+In this chapter I'm going to prepare some basic setting like the `hosts` files and installing ansible incl. verifing ansible with a simple `ping` command.
+
 ## Prepare `hosts` file
 
 First, prepare the `hosts` file on your machine. In my case my MacBook:
