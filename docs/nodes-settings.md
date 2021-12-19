@@ -37,7 +37,7 @@ Edit the `[defaults]` section and configure the `inventory`:
 inventory = ~/.ansible/hosts
 ```
 
-## Prepare ansible `hosts`file
+## Prepare ansible `hosts` file
 
 ``` bash
 nano ~/.ansible/hosts
@@ -45,7 +45,7 @@ nano ~/.ansible/hosts
 
 This is my ansible hosts config:
 
-``` bash
+``` yaml
 [masters]
 rpi-k3s-master-01 var_hostname=rpi-k3s-master-01 var_disk=sdb var_uuid=7db5fe78-1d19-41a8-a969-853a1ea81594
 rpi-k3s-master-02 var_hostname=rpi-k3s-master-02 var_disk=sdb var_uuid=8de0bb09-b81c-439d-98a1-5c9ddd8ed901
@@ -66,3 +66,6 @@ workers
 ansible_connection=ssh
 ansible_user=ubuntu
 ```
+
+!!! note
+    The variables `var_disk` and `var_uuid` will be explained in the OS Settings chapter when it comes to preparing the USB Disks for `longhorn`
