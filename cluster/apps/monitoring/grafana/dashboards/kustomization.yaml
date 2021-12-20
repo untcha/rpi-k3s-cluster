@@ -4,9 +4,9 @@ kind: Kustomization
 configMapGenerator:
   - name: grafana-simple-cluster-dashboard
     namespace: monitoring
-    labels:
-      grafana_dashboard: 1
     files:
       - simple-cluster-dashboard.json
+commonLabels:
+  grafana_dashboard: "1"
 generatorOptions:
   disableNameSuffixHash: true
