@@ -4,6 +4,8 @@ kind: PersistentVolumeClaim
 metadata:
   name: kps-prometheus-alertmanager-pvc
   namespace: monitoring
+  labels:
+    app: prometheus-alertmanager-data
 spec:
   accessModes:
     - ReadWriteOnce
@@ -32,6 +34,8 @@ kind: PersistentVolumeClaim
 metadata:
   name: kps-prometheus-server-pvc
   namespace: monitoring
+  labels:
+    app: prometheus-server-data
 spec:
   accessModes:
     - ReadWriteOnce
