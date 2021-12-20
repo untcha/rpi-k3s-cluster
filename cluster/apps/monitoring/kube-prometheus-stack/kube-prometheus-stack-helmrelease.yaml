@@ -207,10 +207,10 @@ spec:
       defaultDashboardsEnabled: true
       defaultDashboardsTimezone: ${TIMEZONE}
       deleteDatasources: []
-      enabled: true
+      enabled: false
       extraConfigmapMounts: []
-      forceDeployDashboards: false
-      forceDeployDatasources: false
+      forceDeployDashboards: true
+      forceDeployDatasources: true
       ingress:
         annotations: {}
         enabled: false
