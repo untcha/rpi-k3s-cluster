@@ -61,9 +61,7 @@ spec:
               resources:
                 requests:
                   storage: 2Gi
-              selector:
-                matchLabels:
-                  app.kubernetes.io/name: prometheus-alertmanager-data
+              selector: {}
               storageClassName: longhorn
         tolerations: []
         topologySpreadConstraints: []
@@ -552,10 +550,8 @@ spec:
               - ReadWriteOnce
               resources:
                 requests:
-                  storage: 20Gi
-              selector:
-                matchLabels:
-                  app.kubernetes.io/name: prometheus-server-data
+                  storage: 60Gi
+              selector: {}
               storageClassName: longhorn-prometheus
         thanos: {}
         tolerations: []
