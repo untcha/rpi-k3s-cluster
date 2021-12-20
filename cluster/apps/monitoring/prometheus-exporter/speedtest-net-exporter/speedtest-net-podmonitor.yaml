@@ -1,8 +1,7 @@
 apiVersion: monitoring.coreos.com/v1
 kind: PodMonitor
 metadata:
-  name: speedtest-net-podmonitor
-  namespace: monitoring
+  name: speedtest-net-exporter
 spec:
   selector:
     matchLabels:
