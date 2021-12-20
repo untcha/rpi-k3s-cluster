@@ -636,7 +636,7 @@ sidecar:
   # skipTlsVerify: true
   enableUniqueFilenames: false
   dashboards:
-    enabled: false
+    enabled: true
     SCProvider: true
     # label that the configmaps with dashboards are marked with
     label: grafana_dashboard
