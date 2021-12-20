@@ -2,6 +2,6 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
-  - grafana-pvc.yaml
+  # - grafana-pvc.yaml
   # - kube-prometheus-stack-helmrelease.yaml
   - ingressroute.yaml
