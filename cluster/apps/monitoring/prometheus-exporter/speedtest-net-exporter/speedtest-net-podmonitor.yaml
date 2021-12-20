@@ -16,8 +16,12 @@ metadata:
   name: speedtest-net-exporter
   namespace: monitoring
 spec:
+  endpoints:
+    - path: /metrics
+      port: http-exporter
+  namespaceSelector:
+    matchNames:
+      - monitoring
   selector:
     matchLabels:
       app: speedtest-net-exporter
-  endpoints:
-  - port: http-exporter
