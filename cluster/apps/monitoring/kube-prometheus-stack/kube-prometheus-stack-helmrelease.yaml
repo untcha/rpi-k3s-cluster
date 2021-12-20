@@ -61,7 +61,6 @@ spec:
               resources:
                 requests:
                   storage: 2Gi
-              selector: {}
               storageClassName: longhorn
         tolerations: []
         topologySpreadConstraints: []
@@ -551,7 +550,6 @@ spec:
               resources:
                 requests:
                   storage: 60Gi
-              selector: {}
               storageClassName: longhorn-prometheus
         thanos: {}
         tolerations: []
