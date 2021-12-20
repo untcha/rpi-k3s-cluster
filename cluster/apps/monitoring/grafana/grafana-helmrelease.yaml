@@ -217,7 +217,7 @@ spec:
         searchNamespace: null
         watchMethod: WATCH
       datasources:
-        enabled: false
+        enabled: true
         label: grafana_datasource
         labelValue: null
         reloadURL: http://localhost:3000/api/admin/provisioning/datasources/reload
