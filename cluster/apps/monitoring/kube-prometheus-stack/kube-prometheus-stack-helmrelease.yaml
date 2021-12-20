@@ -38,6 +38,10 @@ spec:
         nodeSelector:
           node-type: worker
         paused: false
+        persistence:
+          enabled: true
+          existingClaim: kps-prometheus-alertmanager-pvc
+          type: pvc
         podAntiAffinity: ""
         podAntiAffinityTopologyKey: kubernetes.io/hostname
         podMetadata: {}
@@ -53,18 +57,10 @@ spec:
           runAsGroup: 2000
           runAsNonRoot: true
           runAsUser: 1000
-        storage: null
+        storage: {}
         tolerations: []
         topologySpreadConstraints: []
         useExistingSecret: false
-        volumeClaimTemplate:
-          spec:
-            accessModes:
-            - ReadWriteOnce
-            resources:
-              requests:
-                storage: 2Gi
-            storageClassName: longhorn
         volumeMounts: []
         volumes: []
       annotations: {}
@@ -501,6 +497,10 @@ spec:
         overrideHonorLabels: false
         overrideHonorTimestamps: false
         paused: false
+        persistence:
+          enabled: true
+          existingClaim: kps-prometheus-server-pvc
+          type: pvc
         podAntiAffinity: ""
         podAntiAffinityTopologyKey: kubernetes.io/hostname
         podMetadata: {}
@@ -542,15 +542,7 @@ spec:
         serviceMonitorSelector: {}
         serviceMonitorSelectorNilUsesHelmValues: true
         shards: 1
-        storageSpec:
-          volumeClaimTemplate:
-            spec:
-              accessModes:
-              - ReadWriteOnce
-              resources:
-                requests:
-                  storage: 20Gi
-              storageClassName: longhorn-prometheus
+        storageSpec: {}
         thanos: {}
         tolerations: []
         topologySpreadConstraints: []
