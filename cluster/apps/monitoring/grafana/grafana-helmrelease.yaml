@@ -11,7 +11,7 @@ spec:
       sourceRef:
         kind: HelmRepository
         name: grafana
-      version: 6.19.0
+      version: 6.20.3
   interval: 1m0s
   targetNamespace: monitoring
   values:
@@ -39,6 +39,7 @@ spec:
       repository: curlimages/curl
       sha: ""
       tag: 7.73.0
+    enableKubeBackwardCompatibility: false
     enableServiceLinks: true
     env:
       GF_PANELS_DISABLE_SANITIZE_HTML: true
@@ -73,11 +74,12 @@ spec:
       pullPolicy: IfNotPresent
       repository: grafana/grafana
       sha: ""
-      tag: 8.3.1
+      tag: 8.3.4
     imageRenderer:
       enabled: false
       env:
         HTTP_HOST: 0.0.0.0
+      grafanaProtocol: http
       grafanaSubPath: ""
       hostAliases: []
       image:
