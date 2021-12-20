@@ -1,5 +1,17 @@
+# apiVersion: monitoring.coreos.com/v1
+# kind: PodMonitor
+# metadata:
+#   name: speedtest-net-exporter
+#   namespace: monitoring
+# spec:
+#   selector:
+#     matchLabels:
+#       app: speedtest-net-exporter
+#   podMetricsEndpoints:
+#   - port: http-exporter
+
 apiVersion: monitoring.coreos.com/v1
-kind: PodMonitor
+kind: ServiceMonitor
 metadata:
   name: speedtest-net-exporter
   namespace: monitoring
@@ -7,5 +19,5 @@ spec:
   selector:
     matchLabels:
       app: speedtest-net-exporter
-  podMetricsEndpoints:
+  endpoints:
   - port: http-exporter
