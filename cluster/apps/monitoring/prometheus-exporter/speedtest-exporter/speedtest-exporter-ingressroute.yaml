@@ -1,10 +1,10 @@
-# speedtest-net-metrics-local-ingressroute
+# speedtest-metrics-local-ingressroute
 
 ---
 apiVersion: traefik.containo.us/v1alpha1
 kind: IngressRoute
 metadata:
-  name: speedtest-net-metrics-local-ingressroute
+  name: speedtest-metrics-local-ingressroute
   namespace: monitoring
 spec:
   entryPoints:
@@ -13,5 +13,5 @@ spec:
     - match: Host(`speedtest.${SECRET_DOMAIN_LOCAL_02}`) && PathPrefix(`/metrics`)
       kind: Rule
       services:
-        - name: speedtest-net-exporter
+        - name: PROMETHEUS_SVC_LB_IP
           port: 9090
