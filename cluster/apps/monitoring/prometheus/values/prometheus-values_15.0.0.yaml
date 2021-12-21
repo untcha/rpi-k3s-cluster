@@ -165,7 +165,7 @@ alertmanager:
   ## Ref: https://kubernetes.io/docs/user-guide/node-selection/
   ##
   nodeSelector:
-    node-type: monitoring
+    node-type: worker
 
   ## Pod affinity
   ##
@@ -539,8 +539,7 @@ nodeExporter:
   ## Node labels for node-exporter pod assignment
   ## Ref: https://kubernetes.io/docs/user-guide/node-selection/
   ##
-  nodeSelector:
-    node-type: monitoring
+  nodeSelector: {}
 
   ## Annotations to be added to node-exporter pods
   ##
@@ -1185,7 +1184,7 @@ pushgateway:
   ## Ref: https://kubernetes.io/docs/user-guide/node-selection/
   ##
   nodeSelector:
-    node-type: monitoring
+    node-type: worker
 
   ## Annotations to be added to pushgateway pods
   ##
@@ -1283,7 +1282,7 @@ pushgateway:
   persistentVolume:
     ## If true, pushgateway will create/use a Persistent Volume Claim
     ##
-    enabled: false
+    enabled: true
 
     ## pushgateway data Persistent Volume access modes
     ## Must match those of existing PV or dynamic provisioner
@@ -1766,20 +1765,6 @@ serverFiles:
 # must be a string so you have to add a | after extraScrapeConfigs:
 # example adds prometheus-blackbox-exporter scrape config
 extraScrapeConfigs: |
-  # - job_name: 'traefik-metrics'
-  #   scrape_interval: 5s
-  #   scheme: http
-  #   metrics_path: /metrics
-  #   static_configs:
-  #     - targets:
-  #       - traefik.${SECRET_DOMAIN_LOCAL_02}
-  # - job_name: 'z-custom_pihole-metrics'
-  #   scrape_interval: 5s
-  #   scheme: http
-  #   metrics_path: /metrics
-  #   static_configs:
-  #     - targets:
-  #       - pihole-metrics.${SECRET_DOMAIN_LOCAL_02}
   # - job_name: 'z-custom_speedtest-metrics'
   #   scrape_interval: 1h
   #   scrape_timeout: 5m
@@ -1788,13 +1773,23 @@ extraScrapeConfigs: |
   #   static_configs:
   #     - targets:
   #       - speedtest.${SECRET_DOMAIN_LOCAL_02}
-  # - job_name: 'z_blocky-metrics'
+  #
+  # - job_name: 'traefik-metrics'
   #   scrape_interval: 5s
   #   scheme: http
   #   metrics_path: /metrics
   #   static_configs:
   #     - targets:
-  #       - blocky.${SECRET_DOMAIN_LOCAL_02}
+  #       - traefik.${SECRET_DOMAIN_LOCAL_02}
+  #
+  # - job_name: 'z-custom_pihole-metrics'
+  #   scrape_interval: 5s
+  #   scheme: http
+  #   metrics_path: /metrics
+  #   static_configs:
+  #     - targets:
+  #       - pihole-metrics.${SECRET_DOMAIN_LOCAL_02}
+  #
   # - job_name: 'prometheus-blackbox-exporter'
   #   metrics_path: /probe
   #   params:
