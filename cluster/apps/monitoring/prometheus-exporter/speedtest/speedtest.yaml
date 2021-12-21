@@ -11,7 +11,7 @@ spec:
     app: speedtest-net-app
   type: ClusterIP
   ports:
-  - name: http-web
+  - name: http-speedtest
     port: 9090
     targetPort: 9090
     protocol: TCP
@@ -40,7 +40,7 @@ spec:
       - name: speedtest-net-container
         image: danopstech/speedtest_exporter:latest
         ports:
-        - name: http-web
+        - name: http-speedtest
           containerPort: 9090
           protocol: TCP
 
@@ -56,18 +56,18 @@ spec:
     matchLabels:
       app: speedtest-net-app
   endpoints:
-  - port: http-web
+  - port: http-speedtest
 
----
-apiVersion: monitoring.coreos.com/v1
-kind: Prometheus
-  metadata:
-    name: prometheus
-spec:
-  serviceAccountName: prometheus
-  serviceMonitorSelector:
-    matchLabels:
-      env: production
-  resources:
-    requests:
-      memory: 400Mi
+# ---
+# apiVersion: monitoring.coreos.com/v1
+# kind: Prometheus
+#   metadata:
+#     name: prometheus
+# spec:
+#   serviceAccountName: prometheus
+#   serviceMonitorSelector:
+#     matchLabels:
+#       env: production
+#   resources:
+#     requests:
+#       memory: 400Mi
