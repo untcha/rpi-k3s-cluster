@@ -49,7 +49,6 @@ apiVersion: monitoring.coreos.com/v1
 kind: ServiceMonitor
 metadata:
   name: speedtest-net-app
-  namespace: monitoring
   labels:
     prometheus: somelabel
 spec:
