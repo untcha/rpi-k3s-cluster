@@ -21,7 +21,7 @@
       "type": "grafana",
       "id": "grafana",
       "name": "Grafana",
-      "version": "8.3.1"
+      "version": "8.3.3"
     },
     {
       "type": "panel",
@@ -71,9 +71,9 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "gnetId": 13043,
-  "graphTooltip": 1,
+  "graphTooltip": 2,
   "id": null,
-  "iteration": 1639235047783,
+  "iteration": 1640096594999,
   "links": [
     {
       "asDropdown": false,
@@ -136,7 +136,7 @@
         "text": {},
         "textMode": "auto"
       },
-      "pluginVersion": "8.3.1",
+      "pluginVersion": "8.3.3",
       "targets": [
         {
           "expr": "sum(count(node_cpu_seconds_total{mode=\"idle\"}) without (cpu,mode))",
@@ -195,7 +195,7 @@
         "text": {},
         "textMode": "auto"
       },
-      "pluginVersion": "8.3.1",
+      "pluginVersion": "8.3.3",
       "targets": [
         {
           "expr": "sum(node_memory_MemTotal_bytes)",
@@ -341,7 +341,7 @@
         },
         "showUnfilled": true
       },
-      "pluginVersion": "8.3.1",
+      "pluginVersion": "8.3.3",
       "targets": [
         {
           "datasource": {
@@ -456,7 +456,7 @@
         "text": {},
         "textMode": "auto"
       },
-      "pluginVersion": "8.3.1",
+      "pluginVersion": "8.3.3",
       "targets": [
         {
           "exemplar": true,
@@ -530,7 +530,7 @@
         "text": {},
         "textMode": "value"
       },
-      "pluginVersion": "8.3.1",
+      "pluginVersion": "8.3.3",
       "targets": [
         {
           "exemplar": true,
@@ -808,7 +808,7 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "8.3.1",
+      "pluginVersion": "8.3.3",
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
@@ -896,7 +896,7 @@
     }
   ],
   "refresh": "",
-  "schemaVersion": 33,
+  "schemaVersion": 34,
   "style": "dark",
   "tags": [
     "prometheus",
@@ -952,6 +952,6 @@
   "timezone": "Europe/Berlin",
   "title": "Simple Cluster Dashboard",
   "uid": "ZgUDkKigk",
-  "version": 35,
+  "version": 2,
   "weekStart": "monday"
 }
