@@ -11,7 +11,7 @@ spec:
       sourceRef:
         kind: HelmRepository
         name: prometheus-community
-      version: 15.0.0
+      version: 15.0.2
   interval: 1m0s
   targetNamespace: monitoring
   values:
@@ -47,7 +47,7 @@ spec:
         tls: []
       name: alertmanager
       nodeSelector:
-        node-type: monitoring
+        node-type: worker
       persistentVolume:
         accessModes:
         - ReadWriteOnce
@@ -138,21 +138,7 @@ spec:
       #   static_configs:
       #     - targets:
       #       - speedtest.${SECRET_DOMAIN_LOCAL_02}
-      - job_name: 'z-custom_speedtest-net-metrics'
-        scrape_interval: 1h
-        scrape_timeout: 5m
-        scheme: http
-        metrics_path: /metrics
-        static_configs:
-          - targets:
-            - speedtest-net.${SECRET_DOMAIN_LOCAL_02}
-      # - job_name: 'z-custom_fritzbox-metrics'
-      #   scrape_interval: 5s
-      #   scheme: http
-      #   metrics_path: /metrics
-      #   static_configs:
-      #     - targets:
-      #       - fritzbox-metrics.${SECRET_DOMAIN_LOCAL_02}
+      #
       # - job_name: 'traefik-metrics'
       #   scrape_interval: 5s
       #   scheme: http
@@ -160,6 +146,7 @@ spec:
       #   static_configs:
       #     - targets:
       #       - traefik.${SECRET_DOMAIN_LOCAL_02}
+      #
       # - job_name: 'z-custom_pihole-metrics'
       #   scrape_interval: 5s
       #   scheme: http
@@ -167,13 +154,7 @@ spec:
       #   static_configs:
       #     - targets:
       #       - pihole-metrics.${SECRET_DOMAIN_LOCAL_02}
-      # - job_name: 'z_blocky-metrics'
-      #   scrape_interval: 5s
-      #   scheme: http
-      #   metrics_path: /metrics
-      #   static_configs:
-      #     - targets:
-      #       - blocky.${SECRET_DOMAIN_LOCAL_02}
+      #
       # - job_name: 'prometheus-blackbox-exporter'
       #   metrics_path: /probe
       #   params:
@@ -261,12 +242,12 @@ spec:
         tls: []
       name: pushgateway
       nodeSelector:
-        node-type: monitoring
+        node-type: worker
       persistentVolume:
         accessModes:
         - ReadWriteOnce
         annotations: {}
-        enabled: false
+        enabled: true
         existingClaim: prometheus-pushgateway-pvc
         mountPath: /data
         size: 2Gi
@@ -392,14 +373,14 @@ spec:
           enabled: false
           servicePort: 10901
         labels: {}
-        loadBalancerIP: ${PROMETHEUS_SVC_LB_IP}
+        loadBalancerIP: ""
         loadBalancerSourceRanges: []
         servicePort: 80
         sessionAffinity: None
         statefulsetReplica:
           enabled: false
           replica: 0
-        type: LoadBalancer
+        type: ClusterIP
       sidecarContainers: []
       sidecarTemplateValues: {}
       startupProbe:
@@ -498,6 +479,10 @@ spec:
             regex: true
             source_labels:
             - __meta_kubernetes_service_annotation_prometheus_io_scrape
+          - action: drop
+            regex: true
+            source_labels:
+            - __meta_kubernetes_service_annotation_prometheus_io_scrape_slow
           - action: replace
             regex: (https?)
             source_labels:
@@ -621,6 +606,10 @@ spec:
             regex: true
             source_labels:
             - __meta_kubernetes_pod_annotation_prometheus_io_scrape
+          - action: drop
+            regex: true
+            source_labels:
+            - __meta_kubernetes_pod_annotation_prometheus_io_scrape_slow
           - action: replace
             regex: (https?)
             source_labels:
