@@ -7,4 +7,3 @@ resources:
   # - prometheus-exporter
   - influxdata
   - grafana
-  # - kube-prometheus-stack

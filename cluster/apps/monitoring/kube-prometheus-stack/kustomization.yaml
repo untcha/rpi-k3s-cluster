@@ -4,4 +4,4 @@ kind: Kustomization
 resources:
   # - kube-prometheus-stack-pvc.yaml
   # - kube-prometheus-stack-helmrelease.yaml
-  - kube-prometheus-stack-ingressroute.yaml
+  # - kube-prometheus-stack-ingressroute.yaml
