@@ -1068,11 +1068,11 @@ server:
     ##
     externalIPs: []
 
-    loadBalancerIP: ""
+    loadBalancerIP: "${PROMETHEUS_SVC_LB_IP}"
     loadBalancerSourceRanges: []
     servicePort: 80
     sessionAffinity: None
-    type: ClusterIP
+    type: LoadBalancer
 
     ## Enable gRPC port on service to allow auto discovery with thanos-querier
     gRPC:
