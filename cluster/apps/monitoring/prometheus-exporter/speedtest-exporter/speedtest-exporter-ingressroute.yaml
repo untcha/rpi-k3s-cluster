@@ -13,5 +13,5 @@ spec:
     - match: Host(`speedtest.${SECRET_DOMAIN_LOCAL_02}`) && PathPrefix(`/metrics`)
       kind: Rule
       services:
-        - name: PROMETHEUS_SVC_LB_IP
+        - name: speedtest-exporter-service
           port: 9090
