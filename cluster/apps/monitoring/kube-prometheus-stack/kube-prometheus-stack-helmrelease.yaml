@@ -538,7 +538,9 @@ spec:
           runAsGroup: 2000
           runAsNonRoot: true
           runAsUser: 1000
-        serviceMonitorNamespaceSelector: {}
+        serviceMonitorNamespaceSelector:
+          matchLabels:
+            prometheus: somelabel
         serviceMonitorSelector: {}
         serviceMonitorSelectorNilUsesHelmValues: true
         shards: 1
