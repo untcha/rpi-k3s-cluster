@@ -130,14 +130,14 @@ spec:
         name: configmap-reload
         resources: {}
     extraScrapeConfigs: |
-      # - job_name: 'z-custom_speedtest-metrics'
-      #   scrape_interval: 1h
-      #   scrape_timeout: 5m
-      #   scheme: http
-      #   metrics_path: /metrics
-      #   static_configs:
-      #     - targets:
-      #       - speedtest.${SECRET_DOMAIN_LOCAL_02}
+      - job_name: 'z-custom_speedtest-metrics'
+        scrape_interval: 1h
+        scrape_timeout: 5m
+        scheme: http
+        metrics_path: /metrics
+        static_configs:
+          - targets:
+            - speedtest.${SECRET_DOMAIN_LOCAL_02}
       #
       # - job_name: 'traefik-metrics'
       #   scrape_interval: 5s
