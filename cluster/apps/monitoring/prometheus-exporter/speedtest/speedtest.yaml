@@ -44,19 +44,19 @@ spec:
           containerPort: 9090
           protocol: TCP
 
----
-apiVersion: monitoring.coreos.com/v1
-kind: ServiceMonitor
-metadata:
-  name: speedtest-net-app
-  labels:
-    prometheus: somelabel
-spec:
-  selector:
-    matchLabels:
-      app: speedtest-net-app
-  endpoints:
-  - port: http-speedtest
+# ---
+# apiVersion: monitoring.coreos.com/v1
+# kind: ServiceMonitor
+# metadata:
+#   name: speedtest-net-app
+#   labels:
+#     prometheus: somelabel
+# spec:
+#   selector:
+#     matchLabels:
+#       app: speedtest-net-app
+#   endpoints:
+#   - port: http-speedtest
 
 # ---
 # apiVersion: monitoring.coreos.com/v1
