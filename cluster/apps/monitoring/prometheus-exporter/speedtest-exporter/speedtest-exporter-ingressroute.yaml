@@ -1,10 +1,10 @@
-# speedtest-metrics-local-ingressroute
+# speedtest-exporter-metrics-local-ingressroute
 
 ---
 apiVersion: traefik.containo.us/v1alpha1
 kind: IngressRoute
 metadata:
-  name: speedtest-metrics-local-ingressroute
+  name: speedtest-exporter-metrics-local-ingressroute
   namespace: monitoring
 spec:
   entryPoints:
