@@ -51,7 +51,7 @@ metadata:
   name: speedtest-net-app
   namespace: monitoring
   labels:
-    env: production
+    prometheus: somelabel
 spec:
   selector:
     matchLabels:
