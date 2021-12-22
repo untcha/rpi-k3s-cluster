@@ -39,7 +39,7 @@ spec:
       containers:
       - name: speedtest-exporter-container
         image: danopstech/speedtest_exporter:latest
-        command: ["/speedtest_exporter", "-server_id", "27345"]
+        command: ["/speedtest_exporter", "-server_id", "27345", "-server_fallback"]
         # env:
         # - name: SERVER_ID
         #   value: "27345"
