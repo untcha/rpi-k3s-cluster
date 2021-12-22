@@ -41,7 +41,7 @@ spec:
         image: danopstech/speedtest_exporter:latest
         env:
         - name: SERVER_ID
-          value: 27345
+          value: "27345"
         ports:
         - name: http-exporter
           containerPort: 9090
