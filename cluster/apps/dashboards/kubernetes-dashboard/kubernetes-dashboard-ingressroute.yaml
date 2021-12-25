@@ -19,5 +19,16 @@ spec:
         - name: kubernetes-dashboard
           namespace: kubernetes-dashboard
           port: 443
+          serversTransport: mytransport
   tls:
     secretName: "${SECRET_DOMAIN/./-}-tls"
+
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: ServersTransport
+metadata:
+  name: mytransport
+  namespace: kubernetes-dashboard
+spec:
+  serverName: "kube.${SECRET_DIGITALOCEAN_DOMAIN_02}"
+  insecureSkipVerify: true
