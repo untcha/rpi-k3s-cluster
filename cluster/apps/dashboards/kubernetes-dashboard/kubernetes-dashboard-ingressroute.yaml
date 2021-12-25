@@ -1,0 +1,23 @@
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: kubernetes-dashboard-https-ingressroute
+  namespace: traefik
+  annotations:
+    cert-manager.io/cluster-issuer: "letsencrypt-dns01-production-do"
+spec:
+  entryPoints:
+    - websecure
+  routes:
+    - match: Host(`kube.${SECRET_DIGITALOCEAN_DOMAIN_02}`)
+      kind: Rule
+      middlewares:
+        - name: authelia-middleware
+          namespace: authentication
+      services:
+        - name: kubernetes-dashboard
+          namespace: kubernetes-dashboard
+          port: 443
+  tls:
+    secretName: "${SECRET_DOMAIN/./-}-tls"
