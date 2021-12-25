@@ -40,7 +40,7 @@ metadata:
   name: kubernetes-dashboard-tcp-ingressroute
   namespace: kubernetes-dashboard
 spec:
-  entryPoint:
+  entryPoints:
     - websecure
   routes:
     - match: HostSNI(`kube.${SECRET_DIGITALOCEAN_DOMAIN_02}`)
