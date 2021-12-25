@@ -44,6 +44,9 @@ spec:
     - websecure
   routes:
     - match: HostSNI(`kube.${SECRET_DIGITALOCEAN_DOMAIN_02}`)
+      middlewares:
+        - name: authelia-middleware
+          namespace: authentication
       services:
         - name: kubernetes-dashboard
           namespace: kubernetes-dashboard
