@@ -33,23 +33,23 @@
 #   serverName: "kube.${SECRET_DIGITALOCEAN_DOMAIN_02}"
 #   insecureSkipVerify: true
 
----
-apiVersion: traefik.containo.us/v1alpha1
-kind: IngressRouteTCP
-metadata:
-  name: kubernetes-dashboard-tcp-ingressroute
-  namespace: kubernetes-dashboard
-spec:
-  entryPoints:
-    - websecure
-  routes:
-    - match: HostSNI(`kube.${SECRET_DIGITALOCEAN_DOMAIN_02}`)
-      middlewares:
-        - name: authelia-middleware
-          namespace: authentication
-      services:
-        - name: kubernetes-dashboard
-          namespace: kubernetes-dashboard
-          port: 443
-  tls:
-    passthrough: true
+# ---
+# apiVersion: traefik.containo.us/v1alpha1
+# kind: IngressRouteTCP
+# metadata:
+#   name: kubernetes-dashboard-tcp-ingressroute
+#   namespace: kubernetes-dashboard
+# spec:
+#   entryPoints:
+#     - websecure
+#   routes:
+#     - match: HostSNI(`kube.${SECRET_DIGITALOCEAN_DOMAIN_02}`)
+#       middlewares:
+#         - name: authelia-middleware
+#           namespace: authentication
+#       services:
+#         - name: kubernetes-dashboard
+#           namespace: kubernetes-dashboard
+#           port: 443
+#   tls:
+#     passthrough: true
