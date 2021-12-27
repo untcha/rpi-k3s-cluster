@@ -12,9 +12,9 @@ spec:
   routes:
     - match: Host(`kube.${SECRET_DIGITALOCEAN_DOMAIN_02}`)
       kind: Rule
-      # middlewares:
-      #   - name: authelia-middleware
-      #     namespace: authentication
+      middlewares:
+        - name: authelia-middleware
+          namespace: authentication
       services:
         - name: kubernetes-dashboard
           namespace: kubernetes-dashboard
