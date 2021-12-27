@@ -121,8 +121,8 @@ spec:
       server:
         path: ""
         port: 9091
-        read_buffer_size: 4096
-        write_buffer_size: 4096
+        read_buffer_size: 8192
+        write_buffer_size: 8192
       session:
         expiration: 1h
         inactivity: 5m
