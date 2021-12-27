@@ -43,7 +43,7 @@ apiVersion: traefik.containo.us/v1alpha1
 kind: IngressRoute
 metadata:
   name: whoami-https-ingressroute
-  namespace: tools
+  namespace: traefik
   annotations:
     # cert-manager.io/cluster-issuer: "letsencrypt-dns01-staging-do"
     cert-manager.io/cluster-issuer: "letsencrypt-dns01-production-do"
@@ -58,6 +58,7 @@ spec:
           namespace: authentication
       services:
         - name: whoami
+          namespace: tools
           port: 80
   tls:
     secretName: "${SECRET_DOMAIN/./-}-tls"
