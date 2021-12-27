@@ -1,0 +1,87 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: kured
+  namespace: flux-system
+spec:
+  chart:
+    spec:
+      chart: kured
+      sourceRef:
+        kind: HelmRepository
+        name: kured
+      version: 2.11.0
+  interval: 1m0s
+  targetNamespace: kube-system
+  values:
+    affinity: {}
+    configuration:
+      alertFilterRegexp: ""
+      alertFiringOnly: false
+      annotateNodes: false
+      blockingPodSelector: []
+      drainGracePeriod: ""
+      drainTimeout: ""
+      endTime: ""
+      forceReboot: false
+      lockAnnotation: ""
+      lockReleaseDelay: 0
+      lockTtl: 0
+      logFormat: text
+      messageTemplateDrain: ""
+      messageTemplateReboot: ""
+      notifyUrl: ""
+      period: ""
+      preferNoScheduleTaint: ""
+      prometheusUrl: ""
+      rebootCommand: /bin/systemctl reboot
+      rebootDays: []
+      rebootDelay: ""
+      rebootSentinel: ""
+      rebootSentinelCommand: ""
+      skipWaitForDeleteTimeout: ""
+      slackChannel: ""
+      slackHookUrl: ""
+      slackUsername: ""
+      startTime: ""
+      timeZone: ""
+    extraArgs: {}
+    extraEnvVars: null
+    image:
+      pullPolicy: IfNotPresent
+      pullSecrets: []
+      repository: raspbernetes/kured
+      tag: 1.9.0
+    maxUnavailable: 1
+    metrics:
+      create: false
+      interval: 60s
+      labels: {}
+      namespace: ""
+      scrapeTimeout: ""
+    nodeSelector: {}
+    podAnnotations: {}
+    podLabels: {}
+    podSecurityPolicy:
+      create: false
+    priorityClassName: ""
+    rbac:
+      create: true
+    resources: {}
+    service:
+      annotations: {}
+      create: false
+      name: ""
+      port: 8080
+      type: ClusterIP
+    serviceAccount:
+      create: true
+      name: null
+    tolerations:
+    - effect: NoSchedule
+      key: node-role.kubernetes.io/master
+    updateStrategy: RollingUpdate
+    volumeMounts: []
+    volumes: []
+

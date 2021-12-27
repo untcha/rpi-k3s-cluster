@@ -293,6 +293,18 @@ flux create helmrelease influxdb \
   --export > influxdb-helmrelease.yaml
 ```
 
+### Kured
+
+```bash
+flux create helmrelease kured \
+  --source=HelmRepository/kured \
+  --chart=kured \
+  --chart-version="2.11.0" \
+  --target-namespace=kube-system \
+  --values=kured-values.yaml \
+  --export > kured-helmrelease.yaml
+```
+
 ### Longhorn
 
 ```bash
