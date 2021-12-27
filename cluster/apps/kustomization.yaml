@@ -16,13 +16,13 @@ resources:
     # pihole
     # staging
   - documentation
+  - kube-system
   - monitoring
     # grafana
     # influxdata
     # prometheus
     # prometheus-exporter
   - nextcloud
-  - system-upgrade
   - tools
   - vaultwarden
   # - wordpress
