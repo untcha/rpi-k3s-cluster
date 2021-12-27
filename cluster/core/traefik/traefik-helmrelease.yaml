@@ -11,7 +11,7 @@ spec:
       sourceRef:
         kind: HelmRepository
         name: traefik
-      version: 10.6.2
+      version: 10.9.1
   interval: 1m0s
   targetNamespace: traefik
   values:
@@ -31,6 +31,7 @@ spec:
       initContainers: []
       kind: Deployment
       labels: {}
+      minReadySeconds: 0
       podAnnotations: {}
       podLabels: {}
       replicas: 1
@@ -134,6 +135,7 @@ spec:
         enabled: true
         namespaces: []
       kubernetesIngress:
+        allowExternalNameServices: false
         enabled: true
         namespaces: []
         publishedService:
