@@ -12,7 +12,7 @@ data:
   DNS2: ${UNBOUND_STAGING_SVC_LB_IP}
   ServerIP: ${PIHOLE_STAGING_SVC_LB_IP}
   IPv6: "false"
-  ServerIPv6: "::"
+  # ServerIPv6: "::"
   TEMPERATUREUNIT: c
   WEBUIBOXEDLAYOUT: boxed
   WEBTHEME: "default-dark"
