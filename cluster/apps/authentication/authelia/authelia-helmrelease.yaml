@@ -11,7 +11,7 @@ spec:
       sourceRef:
         kind: HelmRepository
         name: authelia
-      version: 0.6.3
+      version: 0.7.6
   interval: 1m0s
   targetNamespace: authentication
   values:
@@ -157,7 +157,7 @@ spec:
         mysql:
           database: authelia
           enabled: false
-          host: 127.0.0.1
+          host: mysql.databases.svc.cluster.local
           port: 3306
           timeout: 5s
           username: authelia
@@ -166,11 +166,18 @@ spec:
           enabled: true
           host: authentication-authelia-postgres.authentication.svc.cluster.local
           port: 5432
-          sslmode: disable
+          schema: public
+          ssl:
+            certificate: ""
+            key: ""
+            mode: disable
+            root_certificate: ""
           timeout: 5s
           username: authelia
       theme: dark
       totp:
+        algorithm: sha1
+        digits: 6
         issuer: ${SECRET_DIGITALOCEAN_DOMAIN_02}
         period: 30
         skew: 1
@@ -180,7 +187,7 @@ spec:
       pullSecrets: []
       registry: ghcr.io
       repository: authelia/authelia
-      tag: 4.31.0
+      tag: 4.33.1
     ingress:
       annotations: {}
       certManager: false
@@ -353,6 +360,10 @@ spec:
         filename: STORAGE_PASSWORD
         key: STORAGE_PASSWORD
         value: ${SECRET_AUTHELIA_DB_PASSWORD}
+      storageEncryptionKey:
+        filename: STORAGE_ENCRYPTION_KEY
+        key: STORAGE_ENCRYPTION_KEY
+        value: ""
       vaultInjector:
         agent:
           command: sh -c 'kill HUP $(pidof authelia)'
@@ -407,5 +418,5 @@ spec:
     service:
       annotations: {}
       labels: {}
-      port: 9091
+      port: 80
 

@@ -18,7 +18,7 @@ image:
   # registry: docker.io
   registry: ghcr.io
   repository: authelia/authelia
-  tag: 4.31.0
+  tag: 4.33.1
   pullPolicy: IfNotPresent
   pullSecrets: []
   # pullSecrets:
@@ -69,7 +69,7 @@ service:
   # labels:
   #   myLabel: myValue
 
-  port: 9091
+  port: 80
 
   # clusterIP:
 
@@ -455,9 +455,22 @@ configMap:
     ## See: https://github.com/google/google-authenticator/wiki/Key-Uri-Format for more info on issuer names
     ## Defaults to <domain>.
     issuer: "${SECRET_DIGITALOCEAN_DOMAIN_02}"
-    ## The period in seconds a one-time password is current for. Changing this will require all users to register
-    ## their TOTP applications again. Warning: before changing period read the docs link below.
+
+    ## The TOTP algorithm to use.
+    ## It is CRITICAL you read the documentation before changing this option:
+    ## https://www.authelia.com/docs/configuration/one-time-password.html#algorithm
+    algorithm: "sha1"
+
+    ## The number of digits a user has to input. Must either be 6 or 8.
+    ## Changing this option only affects newly generated TOTP configurations.
+    ## It is CRITICAL you read the documentation before changing this option:
+    ## https://www.authelia.com/docs/configuration/one-time-password.html#digits
+    digits: 6
+
+    ## The period in seconds a one-time password is valid for.
+    ## Changing this option only affects newly generated TOTP configurations.
     period: 30
+
     ## The skew controls number of one-time passwords either side of the current one that are valid.
     ## Warning: before changing skew read the docs link below.
     ## See: https://www.authelia.com/docs/configuration/one-time-password.html#period-and-skew to read the documentation.
@@ -870,7 +883,7 @@ configMap:
     ##
     mysql:
       enabled: false
-      host: 127.0.0.1
+      host: mysql.databases.svc.cluster.local
       port: 3306
       database: authelia
       username: authelia
@@ -884,8 +897,13 @@ configMap:
       host: authentication-authelia-postgres.authentication.svc.cluster.local
       port: 5432
       database: authelia
+      schema: public
       username: authelia
-      sslmode: disable
+      ssl:
+        mode: disable
+        root_certificate: ""
+        certificate: ""
+        key: ""
       timeout: 5s
 
   ##
@@ -1052,6 +1070,10 @@ secret:
     key: STORAGE_PASSWORD
     value: "${SECRET_AUTHELIA_DB_PASSWORD}"
     filename: STORAGE_PASSWORD
+  storageEncryptionKey:
+    key: STORAGE_ENCRYPTION_KEY
+    value: ""
+    filename: STORAGE_ENCRYPTION_KEY
   session:
     key: SESSION_ENCRYPTION_KEY
     value: ""
