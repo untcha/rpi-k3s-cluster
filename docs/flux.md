@@ -447,7 +447,7 @@ flux create helmrelease postgres-test \
   --chart-version="0.3.1" \
   --target-namespace=test \
   --values=postgres-values_0.3.1.yaml \
-  --export > postgres-helmrelease.yaml
+  --export > postgres-test-helmrelease.yaml
 ```
 
 ```bash
