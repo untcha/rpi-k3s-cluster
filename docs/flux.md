@@ -438,6 +438,18 @@ flux create helmrelease gitea-postgres \
   --export > postgres-helmrelease.yaml
 ```
 
+### Postgres Test
+
+```bash
+flux create helmrelease postgres-test \
+  --source=HelmRepository/groundhog2k \
+  --chart=postgres \
+  --chart-version="0.3.1" \
+  --target-namespace=test \
+  --values=postgres-values_0.3.1.yaml \
+  --export > postgres-helmrelease.yaml
+```
+
 ```bash
 flux create helmrelease nextcloud-postgres \
   --source=HelmRepository/groundhog2k \
