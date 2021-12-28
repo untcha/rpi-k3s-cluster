@@ -4,4 +4,4 @@ kind: Kustomization
 
 resources:
   - postgres-test-pvc.yaml
-  # - postgres-test-helmrelease.yaml
+  - postgres-test-helmrelease.yaml
