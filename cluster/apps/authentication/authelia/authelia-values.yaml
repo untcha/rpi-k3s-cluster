@@ -1060,7 +1060,7 @@ secret:
   ## Secrets.
   jwt:
     key: JWT_TOKEN
-    value: ""
+    value: "${SECRET_AUTHELIA_JWT_TOKEN}"
     filename: JWT_TOKEN
   ldap:
     key: LDAP_PASSWORD
@@ -1072,7 +1072,7 @@ secret:
     filename: STORAGE_PASSWORD
   storageEncryptionKey:
     key: STORAGE_ENCRYPTION_KEY
-    value: ""
+    value: "${SECRET_AUTHELIA_STORAGE_ENCRYPTION_KEY}"
     filename: STORAGE_ENCRYPTION_KEY
   session:
     key: SESSION_ENCRYPTION_KEY

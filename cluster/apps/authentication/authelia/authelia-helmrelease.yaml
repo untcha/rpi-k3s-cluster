@@ -325,7 +325,7 @@ spec:
       jwt:
         filename: JWT_TOKEN
         key: JWT_TOKEN
-        value: ""
+        value: ${SECRET_AUTHELIA_JWT_TOKEN}
       labels: {}
       ldap:
         filename: LDAP_PASSWORD
@@ -363,7 +363,7 @@ spec:
       storageEncryptionKey:
         filename: STORAGE_ENCRYPTION_KEY
         key: STORAGE_ENCRYPTION_KEY
-        value: ""
+        value: ${SECRET_AUTHELIA_STORAGE_ENCRYPTION_KEY}
       vaultInjector:
         agent:
           command: sh -c 'kill HUP $(pidof authelia)'
