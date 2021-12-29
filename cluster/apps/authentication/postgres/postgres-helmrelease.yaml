@@ -18,8 +18,20 @@ spec:
     affinity: {}
     args: []
     customConfig: ""
-    customLivenessProbe: {}
-    customReadinessProbe: {}
+    customLivenessProbe:
+      enabled: true
+      failureThreshold: 3
+      initialDelaySeconds: 20
+      periodSeconds: 10
+      successThreshold: 1
+      timeoutSeconds: 5
+    customReadinessProbe:
+      enabled: true
+      failureThreshold: 3
+      initialDelaySeconds: 20
+      periodSeconds: 10
+      successThreshold: 1
+      timeoutSeconds: 5
     env:
     - name: PGTZ
       value: ${TIMEZONE}
