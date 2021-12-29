@@ -3,7 +3,7 @@ kind: Deployment
 apiVersion: apps/v1
 metadata:
   name: longhorn-volume-mounter
-  namespace: dev-gitea
+  namespace: test
   labels:
     app: longhorn-volume-mounter
 spec:
@@ -42,7 +42,7 @@ spec:
       volumes:
         - name: old-vol
           persistentVolumeClaim:
-            claimName: gitea-postgres-pvc-old # change to data source pvc
+            claimName: postgres-test-pvc # change to data source pvc
         - name: new-vol
           persistentVolumeClaim:
-            claimName: gitea-postgres-pvc # change to data target pvc
+            claimName: postgres-test-2-pvc # change to data target pvc
