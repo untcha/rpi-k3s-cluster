@@ -75,36 +75,24 @@ affinity: {}
 revisionHistoryLimit:
 
 ## Custom liveness probe (overwrites default liveness probe)
-customLivenessProbe:
-  enabled: true
-  initialDelaySeconds: 20
-  timeoutSeconds: 5
-  failureThreshold: 3
-  successThreshold: 1
-  periodSeconds: 10
+customLivenessProbe: {}
 
 ## Default health check
 livenessProbe:
   enabled: true
-  initialDelaySeconds: 10
+  initialDelaySeconds: 20
   timeoutSeconds: 5
   failureThreshold: 3
   successThreshold: 1
   periodSeconds: 10
 
 ## Custom readiness probe (overwrites default readiness probe)
-customReadinessProbe:
-  enabled: true
-  initialDelaySeconds: 20
-  timeoutSeconds: 5
-  failureThreshold: 3
-  successThreshold: 1
-  periodSeconds: 10
+customReadinessProbe: {}
 
 ## Default readiness probe
 readinessProbe:
   enabled: true
-  initialDelaySeconds: 10
+  initialDelaySeconds: 20
   timeoutSeconds: 5
   failureThreshold: 3
   successThreshold: 1
