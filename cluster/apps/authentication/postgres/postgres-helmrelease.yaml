@@ -29,12 +29,12 @@ spec:
     image:
       pullPolicy: IfNotPresent
       repository: postgres
-      tag: "14.0"
+      tag: ""
     imagePullSecrets: []
     livenessProbe:
       enabled: true
       failureThreshold: 3
-      initialDelaySeconds: 20
+      initialDelaySeconds: 10
       periodSeconds: 10
       successThreshold: 1
       timeoutSeconds: 5
@@ -48,7 +48,7 @@ spec:
     readinessProbe:
       enabled: true
       failureThreshold: 3
-      initialDelaySeconds: 20
+      initialDelaySeconds: 10
       periodSeconds: 10
       successThreshold: 1
       timeoutSeconds: 5
@@ -75,6 +75,14 @@ spec:
       authMethod: md5
       initDbArgs: null
       superuserPassword: ${SECRET_GLOBAL_POSTGRES_SUPERUSER_PASSWORD}
+    startupProbe:
+      exec:
+        command:
+        - sh
+        - -c
+        - pg_isready -h localhost
+      failureThreshold: 30
+      periodSeconds: 10
     storage:
       accessModes:
       - ReadWriteOnce

@@ -5,7 +5,7 @@ image:
   repository: postgres
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
-  tag: "14.0"
+  tag: ""
 
 ## Pull secrets and name override options
 imagePullSecrets: []
@@ -80,7 +80,7 @@ customLivenessProbe: {}
 ## Default health check
 livenessProbe:
   enabled: true
-  initialDelaySeconds: 20
+  initialDelaySeconds: 10
   timeoutSeconds: 5
   failureThreshold: 3
   successThreshold: 1
@@ -92,10 +92,20 @@ customReadinessProbe: {}
 ## Default readiness probe
 readinessProbe:
   enabled: true
-  initialDelaySeconds: 20
+  initialDelaySeconds: 10
   timeoutSeconds: 5
   failureThreshold: 3
   successThreshold: 1
+  periodSeconds: 10
+
+## Custom startup probe
+startupProbe:
+  exec:
+    command:
+      - sh
+      - -c
+      - pg_isready -h localhost
+  failureThreshold: 30
   periodSeconds: 10
 
 ## Additional environment variables
