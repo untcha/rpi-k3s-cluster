@@ -29,12 +29,12 @@ spec:
     image:
       pullPolicy: IfNotPresent
       repository: postgres
-      tag: ""
+      tag: "14"
     imagePullSecrets: []
     livenessProbe:
       enabled: true
       failureThreshold: 3
-      initialDelaySeconds: 20
+      initialDelaySeconds: 10
       periodSeconds: 10
       successThreshold: 1
       timeoutSeconds: 5
@@ -48,7 +48,7 @@ spec:
     readinessProbe:
       enabled: true
       failureThreshold: 3
-      initialDelaySeconds: 20
+      initialDelaySeconds: 10
       periodSeconds: 10
       successThreshold: 1
       timeoutSeconds: 5
