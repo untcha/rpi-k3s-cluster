@@ -1,10 +1,10 @@
-# speedtest-tracker-metrics-local-ingressroute
+# speedtest-tracker-local-ingressroute
 
 ---
 apiVersion: traefik.containo.us/v1alpha1
 kind: IngressRoute
 metadata:
-  name: speedtest-tracker-metrics-local-ingressroute
+  name: speedtest-tracker-local-ingressroute
   namespace: monitoring
 spec:
   entryPoints:
@@ -15,3 +15,46 @@ spec:
       services:
         - name: speedtest-tracker-service
           port: 80
+
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: speedtest-tracker-http-ingressroute
+  namespace: monitoring
+spec:
+  entryPoints:
+    - web
+  routes:
+    - match: Host(`speedtest-tracker.${SECRET_DIGITALOCEAN_DOMAIN_02}`)
+      kind: Rule
+      middlewares:
+        - name: https-redirect-scheme-middleware
+          namespace: traefik
+      services:
+        - name: speedtest-tracker-service
+          port: 80
+
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: speedtest-tracker-https-ingressroute
+  namespace: traefik
+  annotations:
+    cert-manager.io/cluster-issuer: "letsencrypt-dns01-production-do"
+spec:
+  entryPoints:
+    - websecure
+  routes:
+    - match: Host(`speedtest-tracker.${SECRET_DIGITALOCEAN_DOMAIN_02}`)
+      kind: Rule
+      middlewares:
+        - name: authelia-middleware
+          namespace: authentication
+      services:
+        - name: speedtest-tracker-service
+          namespace: monitoring
+          port: 80
+  tls:
+    secretName: "${SECRET_DOMAIN/./-}-tls"
