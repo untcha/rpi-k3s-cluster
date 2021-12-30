@@ -1,0 +1,57 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: speedtest-tracker-service
+  namespace: monitoring
+  labels:
+    app: speedtest-tracker
+spec:
+  selector:
+    app: speedtest-tracker
+  type: ClusterIP
+  ports:
+  - name: http-web
+    port: 80
+    targetPort: 80
+    protocol: TCP
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: speedtest-tracker-deployment
+  namespace: monitoring
+  labels:
+    app: speedtest-tracker
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: speedtest-tracker
+  template:
+    metadata:
+      labels:
+        app: speedtest-tracker
+    spec:
+      nodeSelector:
+        node-type: worker
+      containers:
+      - name: speedtest-tracker-container
+        image: henrywhitaker3/speedtest-tracker:dev
+        env:
+        - name: TZ
+          value: ${TIMEZONE}
+        - name: OOKLA_EULA_GDPR
+          value: "true"
+        ports:
+        - name: http-web
+          containerPort: 80
+          protocol: TCP
+        volumeMounts:
+        - name: config
+          mountPath: /config
+      volumes:
+      - name: config
+        emptyDir:
+          medium: Memory
