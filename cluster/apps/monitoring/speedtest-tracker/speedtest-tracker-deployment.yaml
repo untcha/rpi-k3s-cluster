@@ -45,13 +45,16 @@ spec:
       - name: speedtest-tracker-container
         image: henrywhitaker3/speedtest-tracker:dev
         imagePullPolicy: IfNotPresent
-        env:
-        - name: TZ
-          value: ${TIMEZONE}
-        - name: OOKLA_EULA_GDPR
-          value: "true"
-        - name: SLACK_WEBHOOK
-          value: ${SECRET_SPEEDTEST_TRACKER_SLACK_WEBHOOK}
+        envFrom:
+        - configMapRef:
+            name: speedtest-tracker-env-vars
+        # env:
+        # - name: TZ
+        #   value: ${TIMEZONE}
+        # - name: OOKLA_EULA_GDPR
+        #   value: "true"
+        # - name: SLACK_WEBHOOK
+        #   value: ${SECRET_SPEEDTEST_TRACKER_SLACK_WEBHOOK}
         ports:
         - name: http-web
           containerPort: 80
@@ -62,5 +65,7 @@ spec:
       restartPolicy: Always
       volumes:
       - name: config
-        emptyDir:
-          medium: Memory
+        persistentVolumeClaim:
+          claimName: speedtest-tracker-config-pvc
+        # emptyDir:
+        #   medium: Memory
