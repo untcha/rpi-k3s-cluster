@@ -1,0 +1,10 @@
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: speedtest-tracker-env-vars
+  namespace: monitoring
+data:
+  TZ: ${TIMEZONE}
+  OOKLA_EULA_GDPR: "true"
+  SLACK_WEBHOOK: ${SECRET_SPEEDTEST_TRACKER_SLACK_WEBHOOK}
