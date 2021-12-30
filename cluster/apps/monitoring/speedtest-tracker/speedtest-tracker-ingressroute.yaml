@@ -1,4 +1,6 @@
 # speedtest-tracker-local-ingressroute
+# speedtest-tracker-http-ingressroute
+# speedtest-tracker-https-ingressroute
 
 ---
 apiVersion: traefik.containo.us/v1alpha1
