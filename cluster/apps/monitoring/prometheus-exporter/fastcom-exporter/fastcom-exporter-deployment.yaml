@@ -1,0 +1,45 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: fastcom-exporter-service
+  namespace: monitoring
+  labels:
+    app: fastcom-exporter
+spec:
+  selector:
+    app: fastcom-exporter
+  type: ClusterIP
+  ports:
+  - name: http-exporter
+    port: 9877
+    targetPort: http-exporter
+    protocol: TCP
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: fastcom-exporter-deployment
+  namespace: monitoring
+  labels:
+    app: fastcom-exporter
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: fastcom-exporter
+  template:
+    metadata:
+      labels:
+        app: fastcom-exporter
+    spec:
+      nodeSelector:
+        node-type: worker
+      containers:
+      - name: fastcom-exporter-container
+        image: caarlos0/fastcom-exporter:v1.3.3-arm64
+        ports:
+        - name: http-exporter
+          containerPort: 9877
+          protocol: TCP
