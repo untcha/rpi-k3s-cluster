@@ -1,7 +1,16 @@
 ---
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
+
 resources:
   # - do-dns-updater-pvc.yaml
   # - do-dns-updater-configmap.yaml
   # - do-dns-updater-cron-job.yaml
+
+configMapGenerator:
+  - name: do-dns-updater-script-configmap
+    namespace: dns
+    files:
+      - digitalocean-dns-updater.sh
+generatorOptions:
+  disableNameSuffixHash: true
