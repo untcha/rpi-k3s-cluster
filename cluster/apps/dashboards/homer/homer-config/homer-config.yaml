@@ -160,6 +160,10 @@ services:
         tag: monitoring
         url: http://prometheus.${SECRET_DOMAIN_LOCAL_02}
         target: _blank
+      - name: Speedtest Tracker
+        tag: monitoring
+        url: https://speedtest-tracker.${SECRET_DIGITALOCEAN_DOMAIN_02}
+        target: _blank
   - name: Tools
     icon: fas fa-tools
     items:
