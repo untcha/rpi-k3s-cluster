@@ -8,3 +8,4 @@ resources:
   - influxdata
   - grafana
   - speedtest-tracker
+  - fritzinfluxdb
