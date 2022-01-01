@@ -27,7 +27,8 @@ defaultCronJobs:
   - name: cronphp
     schedule: "*/5 * * * *"
     command: "php -f /var/www/html/cron.php"
-    nodeSelector: {}
+    nodeSelector:
+      node-type: worker
     tolerations: []
     affinity: {}
     resources: {}

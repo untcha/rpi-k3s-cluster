@@ -13,6 +13,7 @@ spec:
         name: groundhog2k
       version: 0.10.0
   interval: 1m0s
+  timeout: 25m
   targetNamespace: nextcloud
   values:
     affinity: {}
@@ -34,7 +35,8 @@ spec:
     - affinity: {}
       command: php -f /var/www/html/cron.php
       name: cronphp
-      nodeSelector: {}
+      nodeSelector:
+        node-type: worker
       resources: {}
       schedule: '*/5 * * * *'
       tolerations: []
