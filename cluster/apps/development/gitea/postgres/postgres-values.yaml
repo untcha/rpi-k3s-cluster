@@ -92,7 +92,7 @@ customLivenessProbe: {}
 ## Default health check
 livenessProbe:
   enabled: true
-  initialDelaySeconds: 20
+  initialDelaySeconds: 10
   timeoutSeconds: 5
   failureThreshold: 3
   successThreshold: 1
@@ -104,7 +104,7 @@ customReadinessProbe: {}
 ## Default readiness probe
 readinessProbe:
   enabled: true
-  initialDelaySeconds: 20
+  initialDelaySeconds: 10
   timeoutSeconds: 5
   failureThreshold: 3
   successThreshold: 1
