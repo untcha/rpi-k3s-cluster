@@ -7,5 +7,5 @@ resources:
   - redis
   - nextcloud-pvcs.yaml
   - nextcloud-helmrelease.yaml
-  # - nextcloud-ingressroute.yaml
-  # - nextcloud-middleware.yaml
+  - nextcloud-ingressroute.yaml
+  - nextcloud-middleware.yaml
