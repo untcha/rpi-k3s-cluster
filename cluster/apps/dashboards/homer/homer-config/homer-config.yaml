@@ -161,7 +161,7 @@ services:
         url: http://prometheus.${SECRET_DOMAIN_LOCAL_02}
         target: _blank
       - name: Speedtest Tracker
-        logo: https://github.com/henrywhitaker3/Speedtest-Tracker/blob/master/public/icons/fav/ms-icon-310x310.png
+        logo: https://doc.${SECRET_DIGITALOCEAN_DOMAIN_02}/homer-config/speedtest-tracker.png
         tag: monitoring
         url: https://speedtest-tracker.${SECRET_DIGITALOCEAN_DOMAIN_02}
         target: _blank
