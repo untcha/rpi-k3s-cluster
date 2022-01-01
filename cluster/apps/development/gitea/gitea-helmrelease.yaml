@@ -11,7 +11,7 @@ spec:
       sourceRef:
         kind: HelmRepository
         name: groundhog2k
-      version: 0.4.11
+      version: 0.4.12
   interval: 1m0s
   targetNamespace: gitea
   values:
@@ -21,6 +21,7 @@ spec:
     containerSshPort: 8022
     customLivenessProbe: {}
     customReadinessProbe: {}
+    customStartupProbe: {}
     env: []
     externalCache:
       enabled: false
@@ -204,9 +205,16 @@ spec:
     settings:
       defaultAdmin:
         email: ${SECRET_ADMIN_EMAIL}
-        password: admin
+        password: ${SECRET_GITEA_ADMIN_INITIAL_PASSWORD}
         user: ${SECRET_GITEA_ADMIN_USER}
       postInstallDelay: 60
+    startupProbe:
+      enabled: true
+      failureThreshold: 30
+      initialDelaySeconds: 10
+      periodSeconds: 10
+      successThreshold: 1
+      timeoutSeconds: 5
     storage:
       accessModes:
       - ReadWriteOnce
