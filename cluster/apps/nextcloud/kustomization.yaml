@@ -6,6 +6,6 @@ resources:
   - postgres
   - redis
   - nextcloud-pvcs.yaml
-  # - nextcloud-helmrelease.yaml
+  - nextcloud-helmrelease.yaml
   # - nextcloud-ingressroute.yaml
   # - nextcloud-middleware.yaml

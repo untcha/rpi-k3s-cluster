@@ -358,7 +358,7 @@ timeout: 25m (!!!)
 flux create helmrelease nextcloud \
   --source=HelmRepository/groundhog2k \
   --chart=nextcloud \
-  --chart-version="0.8.4" \
+  --chart-version="0.10.0" \
   --target-namespace=nextcloud \
   --values=nextcloud-values.yaml \
   --export > nextcloud-helmrelease.yaml

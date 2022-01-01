@@ -11,9 +11,8 @@ spec:
       sourceRef:
         kind: HelmRepository
         name: groundhog2k
-      version: 0.8.4
+      version: 0.10.0
   interval: 1m0s
-  timeout: 25m
   targetNamespace: nextcloud
   values:
     affinity: {}
@@ -22,8 +21,14 @@ spec:
     args: []
     containerPort: 8000
     cronJobs: {}
+    customConfigs: null
+    customConfigsHook:
+      enabled: true
+      retries: 10
+      waitBeforeRetry: 10
     customLivenessProbe: {}
     customPhpConfig: ""
+    customReadinessProbe: {}
     customStartupProbe: {}
     defaultCronJobs:
     - affinity: {}
@@ -33,7 +38,6 @@ spec:
       resources: {}
       schedule: '*/5 * * * *'
       tolerations: []
-    enablePostUpgradeHook: false
     env:
     - name: NC_default_language
       value: de
@@ -63,7 +67,7 @@ spec:
       enabled: false
       hosts:
       - host: null
-      maxBodySize: 64m
+      maxBodySize: 512m
       tls: []
     initImage:
       pullPolicy: IfNotPresent
@@ -72,7 +76,7 @@ spec:
     livenessProbe:
       enabled: true
       failureThreshold: 5
-      initialDelaySeconds: 120
+      initialDelaySeconds: 10
       periodSeconds: 10
       successThreshold: 1
       timeoutSeconds: 5
@@ -88,7 +92,6 @@ spec:
         persistentVolumeClaimName: null
         requestedSize: null
       userDatabase: {}
-    memoryLimitConfig: ""
     nameOverride: ""
     nodeSelector:
       node-type: worker
@@ -98,7 +101,9 @@ spec:
       fsGroup: 33
       runAsNonRoot: true
       runAsUser: 33
-    postUpgradeHookDelay: 10
+    postUpgradeHook:
+      delay: 30
+      enabled: true
     postUpgradeSteps:
     - php -f /var/www/html/occ db:add-missing-indices -n
     - php -f /var/www/html/occ db:add-missing-columns -n
@@ -113,6 +118,13 @@ spec:
         persistentVolumeClaimName: null
         requestedSize: null
       userDatabase: {}
+    readinessProbe:
+      enabled: true
+      failureThreshold: 3
+      initialDelaySeconds: 10
+      periodSeconds: 10
+      successThreshold: 1
+      timeoutSeconds: 5
     redis:
       enabled: false
       storage:
@@ -141,7 +153,7 @@ spec:
         name: null
         password: null
       disableRewriteIP: false
-      maxFileUploadSize: 64M
+      maxFileUploadSize: 512M
       memoryLimit: 512M
       overwriteHost: cloud.${SECRET_DIGITALOCEAN_DOMAIN_02}
       overwriteProtocol: https
@@ -160,9 +172,9 @@ spec:
       update: false
     startupProbe:
       enabled: true
-      failureThreshold: 5
-      initialDelaySeconds: 600
-      periodSeconds: 30
+      failureThreshold: 30
+      initialDelaySeconds: 10
+      periodSeconds: 10
       successThreshold: 1
       timeoutSeconds: 5
     storage:
