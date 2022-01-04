@@ -27,4 +27,4 @@ resources:
   - test
   - tools
   - vaultwarden
-  # - wordpress
+  - wordpress
