@@ -2,14 +2,13 @@
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: mariadb-data
+  name: mariadb-data-pvc
   namespace: wp-simone
   labels:
     app: mariadb
   annotations:
     nfs.io/storage-path: "/mariadb"
 spec:
-  storageClassName: storage-nfs-provisioner
   accessModes:
     - ReadWriteOnce
   resources:
