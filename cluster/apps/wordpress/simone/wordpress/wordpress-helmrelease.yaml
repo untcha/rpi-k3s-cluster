@@ -11,7 +11,7 @@ spec:
       sourceRef:
         kind: HelmRepository
         name: groundhog2k
-      version: 0.4.2
+      version: 0.4.5
   interval: 1m0s
   targetNamespace: wp-simone
   values:
@@ -40,7 +40,9 @@ spec:
       enabled: false
       hosts:
       - host: null
-        paths: []
+        paths:
+        - path: /
+          pathType: ImplementationSpecific
       maxBodySize: 64m
       tls: []
     livenessProbe:
@@ -101,7 +103,7 @@ spec:
       - ReadWriteOnce
       className: null
       keepPvc: false
-      persistentVolumeClaimName: wordpress-data
+      persistentVolumeClaimName: wordpress-data-pvc
       requestedSize: null
     strategy: {}
     tolerations: []

@@ -73,7 +73,9 @@ ingress:
   ## Hosts
   hosts:
     - host:
-      paths: []
+      paths:
+        - path: /
+          pathType: ImplementationSpecific
 
   ## TLS settings for hosts
   tls: []
@@ -172,7 +174,7 @@ apacheDefaultSiteConfig: |
 ## Storage parameters
 storage:
   ## Set persistentVolumenClaimName to reference an existing PVC
-  persistentVolumeClaimName: wordpress-data
+  persistentVolumeClaimName: wordpress-data-pvc
 
   ## Alternative set requestedSize to define a size for a dynmaically created PVC
   requestedSize:
