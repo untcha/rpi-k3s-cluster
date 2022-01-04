@@ -118,9 +118,9 @@ spec:
       image: curlimages/curl:latest
       restartPolicy: OnFailure
       user:
-        existingSecret: influxdb-auth
+        password: ${SECRET_INFLUXDB_ADMIN_PASSWORD}
         privileges: WITH ALL PRIVILEGES
-        username: admin
+        username: ${SECRET_INFLUXDB_ADMIN_USER}
     startupProbe:
       enabled: false
     tolerations: []

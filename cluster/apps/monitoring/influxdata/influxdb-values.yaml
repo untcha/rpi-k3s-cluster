@@ -133,17 +133,18 @@ setDefaultUser:
 
     ## The user name
     ## Default: "admin"
-    username: "admin"
+    username: ${SECRET_INFLUXDB_ADMIN_USER}
 
     ## User password
     ## single quotes must be escaped (\')
     ## Default: (Randomly generated 10 characters of AlphaNum)
     # password:
+    password: ${SECRET_INFLUXDB_ADMIN_PASSWORD}
 
     ## The user name and password are obtained from an existing secret. The expected
     ## keys are `influxdb-user` and `influxdb-password`.
     ## If set, the username and password values above are ignored.
-    existingSecret: influxdb-auth
+    # existingSecret: influxdb-auth
 
     ## User privileges
     ## Default: "WITH ALL PRIVILEGES"
