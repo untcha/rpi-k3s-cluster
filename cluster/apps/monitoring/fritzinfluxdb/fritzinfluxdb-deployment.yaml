@@ -29,8 +29,8 @@ spec:
         imagePullPolicy: IfNotPresent
         volumeMounts:
         - name: fritzinfluxdb-ini
-          mountPath: /app/idefault.ini
-          subPath: idefault.ini
+          mountPath: /app/./fritzinfluxdb.ini
+          subPath: fritzinfluxdb.ini
       restartPolicy: Always
       volumes:
       - name: fritzinfluxdb-ini
