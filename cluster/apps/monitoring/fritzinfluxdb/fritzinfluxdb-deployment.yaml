@@ -20,6 +20,8 @@ spec:
     metadata:
       labels:
         app: fritzinfluxdb
+      annotations:
+        configmap.reloader.stakater.com/reload: "fritzinfluxdb-ini"
     spec:
       nodeSelector:
         node-type: worker
