@@ -318,20 +318,10 @@ flux create helmrelease longhorn \
 ### MariaDB
 
 ```bash
-flux create helmrelease authelia-mariadb \
-  --source=HelmRepository/groundhog2k \
-  --chart=mariadb \
-  --chart-version="0.2.14" \
-  --target-namespace=authentication-system \
-  --values=mariadb-values.yaml \
-  --export > mariadb-helmrelease.yaml
-```
-
-```bash
 flux create helmrelease wp-simone-mariadb \
   --source=HelmRepository/groundhog2k \
   --chart=mariadb \
-  --chart-version="0.2.14" \
+  --chart-version="0.2.15" \
   --target-namespace=wp-simone \
   --values=mariadb-values.yaml \
   --export > mariadb-helmrelease.yaml
