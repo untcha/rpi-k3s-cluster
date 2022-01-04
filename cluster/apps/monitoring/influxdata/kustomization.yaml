@@ -6,7 +6,7 @@ resources:
   - influxdb-pvc.yaml
   - influxdb-helmrelease.yaml
   # - influxdb-ingressroute.yaml
-  # - chronograf-helmrelease.yaml
-  # - chronograf-ingressroute.yaml
-  # - chronograf-middleware.yaml
+  - chronograf-helmrelease.yaml
+  - chronograf-ingressroute.yaml
+  - chronograf-middleware.yaml
 

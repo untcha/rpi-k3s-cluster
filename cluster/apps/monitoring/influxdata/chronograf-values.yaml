@@ -27,7 +27,7 @@ persistence:
   storageClass: longhorn-low-capacity
   ## If keepPvc is true, pvc will not be deleted after running helm uninstall
   # keepPvc:
-  accessMode: ReadWriteMany
+  accessMode: ReadWriteOnce
   size: 2Gi
 
 ## Configure resource requests and limits
@@ -138,10 +138,10 @@ envFromSecret: ""
 updateStrategy:
   type: RollingUpdate
 
-influxdb:
+influxdb: {}
   ## Name of an existing Secrect used to set the environment variables for the
   ## InfluxDB user and password. The expected keys in the secret are
   ## `influxdb-user` and `influxdb-password`.
   ##
-  existingSecret: influxdb-auth
+  # existingSecret: influxdb-auth
 
