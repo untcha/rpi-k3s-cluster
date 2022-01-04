@@ -129,7 +129,7 @@ customConfig: |-
 ## Storage parameters
 storage:
   ##  Set persistentVolumenClaimName to reference an existing PVC
-  persistentVolumeClaimName: mariadb-data
+  persistentVolumeClaimName: mariadb-data-pvc
 
   ## Alternative set requestedSize to define a size for a dynmaically created PVC
   requestedSize:
