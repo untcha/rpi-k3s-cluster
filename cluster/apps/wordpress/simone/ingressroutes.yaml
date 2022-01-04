@@ -43,7 +43,7 @@ apiVersion: traefik.containo.us/v1alpha1
 kind: IngressRoute
 metadata:
   name: wp-simone-https-ingressroute
-  namespace: wp-simone
+  namespace: traefik
   annotations:
     cert-manager.io/cluster-issuer: "letsencrypt-dns01-production-do"
 spec:
@@ -53,12 +53,16 @@ spec:
     - match: Host(`simone.${SECRET_DIGITALOCEAN_DOMAIN_02}`)
       kind: Rule
       middlewares:
+        - name: authelia-middleware
+          namespace: authentication
         - name: wp-simone-middleware-headers
+          namespace: wp-simone
       services:
         - name: wp-simone-wp-simone-wordpress
+          namespace: wp-simone
           port: 80
   tls:
-    secretName: wp-simone-letsencrypt-production-certificate
+    secretName: "${SECRET_DOMAIN/./-}-tls"
 
 ---
 apiVersion: traefik.containo.us/v1alpha1
