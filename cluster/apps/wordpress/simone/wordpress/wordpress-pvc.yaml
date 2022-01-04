@@ -2,14 +2,13 @@
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: wordpress-data
+  name: wordpress-data-pvc
   namespace: wp-simone
   labels:
     app: wordpress
   annotations:
     nfs.io/storage-path: "/wordpress"
 spec:
-  storageClassName: storage-nfs-provisioner
   accessModes:
     - ReadWriteOnce
   resources:
