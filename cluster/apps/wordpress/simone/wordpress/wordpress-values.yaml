@@ -93,11 +93,26 @@ resources: {}
   #   memory: 128Mi
 
 ## Custom liveness probe (overwrites default liveness probe)
-customLivenessProbe: {}
+customLivenessProbe:
+  httpGet:
+    path: /wp-admin/install.php
+    port: http
+    httpHeaders:
+    - name: X-Forwarded-Proto
+      value: https
+    - name: X-Forwarded-Host
+      value: simone.${SECRET_DIGITALOCEAN_DOMAIN_02}
+    - name: Host
+      value: simone.${SECRET_DIGITALOCEAN_DOMAIN_02}
+  initialDelaySeconds: 30
+  timeoutSeconds: 5
+  failureThreshold: 5
+  successThreshold: 1
+  periodSeconds: 10
 
 ## Default liveness probe
 livenessProbe:
-  enabled: true
+  enabled: false
   initialDelaySeconds: 30
   timeoutSeconds: 5
   failureThreshold: 5
@@ -105,11 +120,26 @@ livenessProbe:
   periodSeconds: 10
 
 ## Custom readiness probe (overwrites default readiness probe)
-customReadinessProbe: {}
+customReadinessProbe:
+  httpGet:
+    path: /wp-login.php
+    port: http
+    httpHeaders:
+    - name: X-Forwarded-Proto
+      value: https
+    - name: X-Forwarded-Host
+      value: simone.${SECRET_DIGITALOCEAN_DOMAIN_02}
+    - name: Host
+      value: simone.${SECRET_DIGITALOCEAN_DOMAIN_02}
+  initialDelaySeconds: 30
+  timeoutSeconds: 5
+  failureThreshold: 5
+  successThreshold: 1
+  periodSeconds: 10
 
 ## Default readiness probe
 readinessProbe:
-  enabled: true
+  enabled: false
   initialDelaySeconds: 30
   timeoutSeconds: 5
   failureThreshold: 5
