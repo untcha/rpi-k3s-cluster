@@ -19,24 +19,24 @@ spec:
         - name: wp-simone-wp-simone-wordpress
           port: 80
 
----
-apiVersion: traefik.containo.us/v1alpha1
-kind: IngressRoute
-metadata:
-  name: wp-simone-http-ingressroute
-  namespace: wp-simone
-spec:
-  entryPoints:
-    - web
-  routes:
-    - match: Host(`simone.${SECRET_DIGITALOCEAN_DOMAIN_02}`)
-      kind: Rule
-      middlewares:
-        - name: https-redirect-scheme-middleware
-          namespace: traefik
-      services:
-        - name: wp-simone-wp-simone-wordpress
-          port: 80
+# ---
+# apiVersion: traefik.containo.us/v1alpha1
+# kind: IngressRoute
+# metadata:
+#   name: wp-simone-http-ingressroute
+#   namespace: wp-simone
+# spec:
+#   entryPoints:
+#     - web
+#   routes:
+#     - match: Host(`simone.${SECRET_DIGITALOCEAN_DOMAIN_02}`)
+#       kind: Rule
+#       middlewares:
+#         - name: https-redirect-scheme-middleware
+#           namespace: traefik
+#       services:
+#         - name: wp-simone-wp-simone-wordpress
+#           port: 80
 
 ---
 apiVersion: traefik.containo.us/v1alpha1
