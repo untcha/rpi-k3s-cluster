@@ -11,7 +11,7 @@ spec:
       sourceRef:
         kind: HelmRepository
         name: longhorn
-      version: 1.2.2
+      version: 1.2.3
   interval: 1m0s
   targetNamespace: longhorn-system
   values:
@@ -66,19 +66,19 @@ spec:
     image:
       csi:
         attacher:
-          repository: k8s.gcr.io/sig-storage/csi-attacher
+          repository: longhornio/csi-attacher
           tag: v3.2.1
         nodeDriverRegistrar:
-          repository: k8s.gcr.io/sig-storage/csi-node-driver-registrar
+          repository: longhornio/csi-node-driver-registrar
           tag: v2.3.0
         provisioner:
-          repository: k8s.gcr.io/sig-storage/csi-provisioner
+          repository: longhornio/csi-provisioner
           tag: v2.1.2
         resizer:
-          repository: k8s.gcr.io/sig-storage/csi-resizer
+          repository: longhornio/csi-resizer
           tag: v1.2.0
         snapshotter:
-          repository: k8s.gcr.io/sig-storage/csi-snapshotter
+          repository: longhornio/csi-snapshotter
           tag: v3.0.3
       longhorn:
         backingImageManager:
@@ -86,19 +86,19 @@ spec:
           tag: v2_20210820
         engine:
           repository: longhornio/longhorn-engine
-          tag: v1.2.2
+          tag: v1.2.3
         instanceManager:
           repository: longhornio/longhorn-instance-manager
-          tag: v1_20210731
+          tag: v1_20211210
         manager:
           repository: longhornio/longhorn-manager
-          tag: v1.2.2
+          tag: v1.2.3
         shareManager:
           repository: longhornio/longhorn-share-manager
-          tag: v1_20210914
+          tag: v1_20211020
         ui:
           repository: longhornio/longhorn-ui
-          tag: v1.2.2
+          tag: v1.2.3
       pullPolicy: IfNotPresent
     ingress:
       annotations: null

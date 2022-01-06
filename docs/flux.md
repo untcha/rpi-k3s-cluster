@@ -309,7 +309,7 @@ flux create helmrelease kured \
 flux create helmrelease longhorn \
   --source=HelmRepository/longhorn \
   --chart=longhorn \
-  --chart-version="1.2.2" \
+  --chart-version="1.2.3" \
   --target-namespace=longhorn-system \
   --values=longhorn-values.yaml \
   --export > longhorn-helmrelease.yaml
