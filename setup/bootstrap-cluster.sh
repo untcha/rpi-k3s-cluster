@@ -77,21 +77,4 @@ k3sup join \
 # kubectl label nodes rpi-k3s-worker-02 node-type=worker
 # kubectl label nodes rpi-k3s-worker-03 node-type=worker
 # kubectl label nodes rpi-k3s-worker-04 node-type=worker
-# kubectl label nodes rpi-k3s-worker-05 node-type=monitoring
-
-# Install 'kubernetes-dashboard'
-# echo Installing kubernetes-dashboard
-# arkade install kubernetes-dashboard
-
-# Create 'flux-system' namespace
-# echo Creating flux-system namespace
-# kubectl create namespace flux-system
-
-# Create 
-
-# Add the Flux GPG key in-order for Flux to decrypt SOPS secrets
-# TODO: place encrypted sops-gpg.yaml in the repository
-# gpg --export-secret-keys --armor "${FLUX_KEY_FP}" |
-# kubectl create secret generic sops-gpg \
-#     --namespace=flux-system \
-#     --from-file=sops.asc=/dev/stdin
+# kubectl label nodes rpi-k3s-worker-05 node-type=worker
