@@ -42,10 +42,10 @@ spec:
       rebootSentinelCommand: ""
       skipWaitForDeleteTimeout: ""
       slackChannel: ""
-      slackHookUrl: ""
+      slackHookUrl: ${SECRET_SPEEDTEST_TRACKER_SLACK_WEBHOOK}
       slackUsername: ""
       startTime: ""
-      timeZone: ""
+      timeZone: ${TIMEZONE}
     extraArgs: {}
     extraEnvVars: null
     image:
