@@ -22,7 +22,7 @@ data:
   NFS_SERVER_IP:                  "192.168.178.110"
   NFS_SERVER_PATH:                "/KubeData"
   FRITZBOX_IP:                    "192.168.178.1"
-  NEXT_K3S_VERSION:               "v1.22.5+k3s1"
+  NEXT_K3S_VERSION:               "v1.23.1+k3s1"
   NODE_MASTER_01_IP:              "192.168.178.210"
   NODE_MASTER_02_IP:              "192.168.178.211"
   NODE_MASTER_03_IP:              "192.168.178.212"
