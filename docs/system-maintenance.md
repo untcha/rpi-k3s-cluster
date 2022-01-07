@@ -1,5 +1,11 @@
 ## Updating the Node OS
 
+### Useful commands
+
+``` bash
+ansible all -b -m shell -a "apt list --upgradable"
+```
+
 ### Cordon the node
 
 ``` bash
