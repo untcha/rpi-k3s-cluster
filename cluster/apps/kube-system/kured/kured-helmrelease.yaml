@@ -11,7 +11,7 @@ spec:
       sourceRef:
         kind: HelmRepository
         name: kured
-      version: 2.11.0
+      version: 2.11.1
   interval: 1m0s
   targetNamespace: kube-system
   values:
@@ -52,7 +52,7 @@ spec:
       pullPolicy: IfNotPresent
       pullSecrets: []
       repository: raspbernetes/kured
-      tag: 1.9.0
+      tag: 1.9.1
     maxUnavailable: 1
     metrics:
       create: false
