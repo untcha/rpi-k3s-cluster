@@ -31,7 +31,7 @@ spec:
       logFormat: text
       messageTemplateDrain: ""
       messageTemplateReboot: ""
-      notifyUrl: ""
+      notifyUrl: ${SECRET_SLACK_SHOUTRRR_URL_KURED}
       period: ""
       preferNoScheduleTaint: ""
       prometheusUrl: ""
@@ -42,7 +42,7 @@ spec:
       rebootSentinelCommand: ""
       skipWaitForDeleteTimeout: ""
       slackChannel: ""
-      slackHookUrl: ${SECRET_SPEEDTEST_TRACKER_SLACK_WEBHOOK}
+      slackHookUrl: ""
       slackUsername: ""
       startTime: ""
       timeZone: ${TIMEZONE}
