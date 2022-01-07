@@ -53,8 +53,8 @@ spec:
     - match: Host(`simone.${SECRET_DIGITALOCEAN_DOMAIN_02}`)
       kind: Rule
       middlewares:
-        # - name: authelia-middleware
-        #   namespace: authentication
+        - name: authelia-middleware
+          namespace: authentication
         - name: wp-simone-middleware-headers
           namespace: wp-simone
       services:
