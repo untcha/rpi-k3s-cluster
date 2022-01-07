@@ -4,6 +4,6 @@ kind: Kustomization
 
 resources:
   - speedtest-tracker-configmap.yaml
-  - speedtest-tracker-pvc.yaml
+  # - speedtest-tracker-pvc.yaml
   # - speedtest-tracker-deployment.yaml
   - speedtest-tracker-ingressroute.yaml
