@@ -7,5 +7,17 @@ configMapGenerator:
     namespace: dns-staging
     files:
       - unbound.conf
+  - name: unbound-root-hints
+    namespace: dns-staging
+    files:
+      - root.hints
+  - name: unbound-root-key-initial
+    namespace: dns-staging
+    files:
+      - root.key
+  - name: unbound-a-records
+    namespace: dns-staging
+    files:
+      - a-records.conf
 generatorOptions:
   disableNameSuffixHash: true
