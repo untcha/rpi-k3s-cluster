@@ -74,6 +74,27 @@ ansible_user=ubuntu
 !!! info
     The variables `var_disk` and `var_uuid` will be explained in the `Storage Settings` chapter when it comes to preparing the USB Disks for `longhorn`
 
+## Write OS to the boot disks
+
+``` bash
+diskutil list
+```
+
+``` bash
+diskutil unmountDisk /dev/disk2
+```
+
+``` bash
+sudo diskutil eraseDisk FAT32 EMPTY MBRFormat /dev/disk2
+```
+
+``` bash
+diskutil unmountDisk /dev/disk2
+```
+
+!!! note
+    TODO: Raspberry Pi Imager
+
 ## Prepare login with ssh key
 
 Log into each node and run
