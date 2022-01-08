@@ -6,7 +6,7 @@ namespace: kube-system
 
 resources:
   - github.com/rancher/system-upgrade-controller?ref=v0.8.1
-  # - k3s-upgrade-plan.yaml
+  - k3s-upgrade-plan.yaml
 
 images:
   - name: rancher/system-upgrade-controller
