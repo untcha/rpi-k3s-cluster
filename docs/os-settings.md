@@ -83,7 +83,7 @@ ansible workers -b -m reboot
 
 ## Install `linux-modules-extra-raspi`
 
-Because of [k3s-issue-4234](https://github.com/k3s-io/k3s/issues/4234)
+Because of [k3s issue #4234](https://github.com/k3s-io/k3s/issues/4234)
 
 ``` bash
 ansible all -b -m shell -a "apt -y install linux-modules-extra-raspi"
@@ -164,7 +164,45 @@ ansible all -b -m shell -a "cat /etc/hosts"
 192.168.178.217 rpi-k3s-worker-05
 ```
 
-Finally reboot all nodes:
+## Additional fixes
+
+longhorn multipath
+
+[Troubleshooting: `MountVolume.SetUp failed for volume` due to multipathd on the node](https://longhorn.io/kb/troubleshooting-volume-with-multipath/)
+
+``` bash
+ansible all -b -m shell -a "cat /etc/multipath.conf"
+```
+
+``` bash
+ansible all -b -m shell -a "echo '\nblacklist {\n    devnode \"^sd[a-z0-9]+\"\n}' | sudo tee -a /etc/multipath.conf"
+```
+
+``` bash
+ansible all -b -m shell -a "systemctl restart multipathd.service"
+```
+
+``` bash
+ansible all -b -m shell -a "multipath -t"
+```
+
+Expose kube-scheduler, kube-proxy and kube-controller metrics endpoints
+
+[k3s issue #3619](https://github.com/k3s-io/k3s/issues/3619)
+
+``` bash
+ansible masters -b -m shell -a "nano /etc/rancher/k3s/config.yaml"
+```
+
+``` bash
+ansible masters -b -m shell -a "echo 'kube-controller-manager-arg:\n- \"bind-address=0.0.0.0\"\nkube-proxy-arg:\n- \"metrics-bind-address=0.0.0.0\"\nkube-scheduler-arg:\n- \"bind-address=0.0.0.0\"\netcd-expose-metrics: true' | sudo tee -a /etc/rancher/k3s/config.yaml"
+```
+
+``` bash
+ansible masters -b -m shell -a "cat /etc/rancher/k3s/config.yaml"
+```
+
+## Finally reboot all nodes:
 
 ``` bash
 ansible all -b -m reboot
