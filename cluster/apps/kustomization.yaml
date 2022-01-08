@@ -27,6 +27,7 @@ resources:
     # prometheus-exporter
   # - nextcloud
   # - test
-  # - tools
+  - tools
+    # reloader
   # - vaultwarden
   # - wordpress
