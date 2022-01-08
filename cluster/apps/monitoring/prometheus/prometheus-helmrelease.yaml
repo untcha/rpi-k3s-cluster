@@ -329,7 +329,7 @@ spec:
       livenessProbeTimeout: 10
       name: server
       nodeSelector:
-        node-type: monitoring
+        node-type: worker
       persistentVolume:
         accessModes:
         - ReadWriteOnce
