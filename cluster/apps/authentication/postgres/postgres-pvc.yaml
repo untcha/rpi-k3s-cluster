@@ -5,7 +5,7 @@ metadata:
   name: authelia-postgres-pvc
   namespace: authentication
 spec:
-  storageClassName: longhorn-worker-node-storageclass
+  storageClassName: longhorn-all-node-storageclass
   accessModes:
     - ReadWriteOnce
   resources:
