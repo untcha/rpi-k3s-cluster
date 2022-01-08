@@ -46,7 +46,7 @@ spec:
       #       topologyKey: kubernetes.io/hostname
       containers:
       - name: error-pages
-        image: ghcr.io/tarampampam/error-pages:2.2.0
+        image: ghcr.io/tarampampam/error-pages:2.3.0
         imagePullPolicy: IfNotPresent
         env:
         - name: TEMPLATE_NAME
