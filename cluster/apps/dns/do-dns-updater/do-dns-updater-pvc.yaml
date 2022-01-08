@@ -5,9 +5,9 @@ metadata:
   name: do-dns-updater-log-pvc
   namespace: dns
 spec:
-  storageClassName: longhorn-low-capacity
+  storageClassName: longhorn-all-node-storageclass
   accessModes:
     - ReadWriteOnce
   resources:
     requests:
-      storage: 256Mi
+      storage: 512Mi
