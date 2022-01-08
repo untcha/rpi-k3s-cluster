@@ -4,4 +4,4 @@ kind: Kustomization
 resources:
   - traefik-ingressroute.yaml
   - traefik-middleware.yaml
-  # - error-pages
+  - error-pages
