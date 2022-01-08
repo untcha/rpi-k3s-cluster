@@ -11,7 +11,7 @@ spec:
       sourceRef:
         kind: HelmRepository
         name: groundhog2k
-      version: 0.3.1
+      version: 0.3.3
   interval: 1m0s
   targetNamespace: authentication
   values:
@@ -20,6 +20,7 @@ spec:
     customConfig: ""
     customLivenessProbe: {}
     customReadinessProbe: {}
+    customStartupProbe: {}
     env:
     - name: PGTZ
       value: ${TIMEZONE}
@@ -34,7 +35,7 @@ spec:
     livenessProbe:
       enabled: true
       failureThreshold: 3
-      initialDelaySeconds: 20
+      initialDelaySeconds: 10
       periodSeconds: 10
       successThreshold: 1
       timeoutSeconds: 5
@@ -48,7 +49,7 @@ spec:
     readinessProbe:
       enabled: true
       failureThreshold: 3
-      initialDelaySeconds: 20
+      initialDelaySeconds: 10
       periodSeconds: 10
       successThreshold: 1
       timeoutSeconds: 5
@@ -62,6 +63,7 @@ spec:
       runAsNonRoot: true
       runAsUser: 999
     service:
+      annotations: {}
       clusterIP: null
       loadBalancerIP: null
       nodePort: null
@@ -75,6 +77,13 @@ spec:
       authMethod: md5
       initDbArgs: null
       superuserPassword: ${SECRET_GLOBAL_POSTGRES_SUPERUSER_PASSWORD}
+    startupProbe:
+      enabled: true
+      failureThreshold: 30
+      initialDelaySeconds: 10
+      periodSeconds: 10
+      successThreshold: 1
+      timeoutSeconds: 5
     storage:
       accessModes:
       - ReadWriteOnce
