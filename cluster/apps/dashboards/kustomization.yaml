@@ -4,4 +4,4 @@ kind: Kustomization
 resources:
   - namespace.yaml
   - kubernetes-dashboard
-  # - homer
+  - homer
