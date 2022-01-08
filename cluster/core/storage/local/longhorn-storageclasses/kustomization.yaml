@@ -4,4 +4,3 @@ kind: Kustomization
 resources:
   - longhorn-low-capacity-storageclass.yaml     # for low capacity needs
   - longhorn-high-capacity-storageclass.yaml    # for high capacity needs
-  # - longhorn-prometheus-storageclass.yaml       # for prometheus volumes
