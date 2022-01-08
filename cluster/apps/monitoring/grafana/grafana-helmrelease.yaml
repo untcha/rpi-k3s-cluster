@@ -11,7 +11,7 @@ spec:
       sourceRef:
         kind: HelmRepository
         name: grafana
-      version: 6.20.3
+      version: 6.20.5
   interval: 1m0s
   targetNamespace: monitoring
   values:
@@ -54,6 +54,7 @@ spec:
     extraExposePorts: []
     extraInitContainers: []
     extraLabels: {}
+    extraObjects: []
     extraSecretMounts: []
     extraVolumeMounts: []
     grafana.ini:
