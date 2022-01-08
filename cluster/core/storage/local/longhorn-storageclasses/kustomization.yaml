@@ -1,6 +1,8 @@
 ---
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
+
 resources:
-  - longhorn-low-capacity-storageclass.yaml     # for low capacity needs
-  - longhorn-high-capacity-storageclass.yaml    # for high capacity needs
+  - longhorn-all-node-storageclass.yaml     # storage class for volumes that can be created on all nodes (master or worker)
+  - longhorn-master-node-storageclass.yaml  # storage class for volumes that can be created ONLY on low-capacity master nodes
+  - longhorn-worker-node-storageclass.yaml  # storage class for volumes that can be created ONLY on high-capacity worker nodes
