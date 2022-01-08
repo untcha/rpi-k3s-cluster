@@ -5,4 +5,4 @@ resources:
   - namespace.yaml
   - basicauth
   - postgres
-  # - authelia
+  - authelia
