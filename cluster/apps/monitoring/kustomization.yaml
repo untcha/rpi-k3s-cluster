@@ -6,7 +6,7 @@ resources:
   - namespace.yaml
   - prometheus
   # - prometheus-exporter
+  - grafana
   # - influxdata
-  # - grafana
   # - speedtest-tracker
   # - fritzinfluxdb
