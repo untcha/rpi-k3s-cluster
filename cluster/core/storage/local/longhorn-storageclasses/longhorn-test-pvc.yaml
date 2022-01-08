@@ -11,3 +11,31 @@ spec:
   resources:
     requests:
       storage: 1Gi
+
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: longhorn-test-master-pvc
+  namespace: longhorn-system
+spec:
+  storageClassName: longhorn-master-node-storageclass
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi
+
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: longhorn-test-worker-pvc
+  namespace: longhorn-system
+spec:
+  storageClassName: longhorn-worker-node-storageclass
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi
