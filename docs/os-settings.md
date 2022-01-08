@@ -191,7 +191,7 @@ Expose kube-scheduler, kube-proxy and kube-controller metrics endpoints
 [k3s issue #3619](https://github.com/k3s-io/k3s/issues/3619)
 
 ``` bash
-ansible masters -b -m shell -a "nano /etc/rancher/k3s/config.yaml"
+ansible masters -b -m shell -a "touch /etc/rancher/k3s/config.yaml"
 ```
 
 ``` bash
