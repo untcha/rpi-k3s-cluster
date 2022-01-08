@@ -4,6 +4,7 @@ kind: Kustomization
 
 resources:
   - authentication
+  # - blogs
   - dashboards
     # homer
     # kubernetes-dashboard
@@ -30,4 +31,3 @@ resources:
   - tools
     # reloader
   # - vaultwarden
-  # - wordpress
