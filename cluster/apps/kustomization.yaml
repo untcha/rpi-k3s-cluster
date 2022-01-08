@@ -20,10 +20,10 @@ resources:
   - kube-system
     # kured
     # system-upgrade-controller
-  # - monitoring
+  - monitoring
+    # prometheus
     # grafana
     # influxdata
-    # prometheus
     # prometheus-exporter
   # - nextcloud
   # - test

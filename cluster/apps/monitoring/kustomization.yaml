@@ -1,11 +1,12 @@
 ---
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
+
 resources:
   - namespace.yaml
   - prometheus
-  - prometheus-exporter
-  - influxdata
-  - grafana
-  - speedtest-tracker
-  - fritzinfluxdb
+  # - prometheus-exporter
+  # - influxdata
+  # - grafana
+  # - speedtest-tracker
+  # - fritzinfluxdb

@@ -849,7 +849,7 @@ server:
   ## Ref: https://kubernetes.io/docs/user-guide/node-selection/
   ##
   nodeSelector:
-    node-type: monitoring
+    node-type: worker
 
   ## Pod affinity
   ##
