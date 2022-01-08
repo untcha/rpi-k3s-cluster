@@ -4,7 +4,7 @@ kind: Kustomization
 
 resources:
   # - authentication
-  # - dashboards
+  - dashboards
     # homer
     # kubernetes-dashboard
   # - development
