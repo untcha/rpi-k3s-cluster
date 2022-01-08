@@ -53,8 +53,8 @@ spec:
       kind: Rule
       middlewares:
         # - name: basicauth-middleware
-        - name: authelia-middleware
-          namespace: authentication
+        # - name: authelia-middleware
+        #   namespace: authentication
         - name: longhorn-middleware-headers
           namespace: longhorn-system
       services:
