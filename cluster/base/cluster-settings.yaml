@@ -5,25 +5,32 @@ metadata:
   namespace: flux-system
   name: cluster-settings
 data:
+  #
   UNBOUND_SVC_LB_IP:              "192.168.178.122"
   PIHOLE_SVC_LB_IP:               "192.168.178.123"
   BLOCKY_SVC_LB_IP:               "192.168.178.124"
+  #
   UNBOUND_STAGING_SVC_LB_IP:      "192.168.178.126"
   PIHOLE_STAGING_SVC_LB_IP:       "192.168.178.127"
   BLOCKY_STAGING_SVC_LB_IP:       "192.168.178.128"
+  #
   INFLUXDB_SVC_LB_IP:             "192.168.178.131"
   PROMETHEUS_SVC_LB_IP:           "192.168.178.132"
   TRAEFIK_SVC_LB_IP:              "192.168.178.240"
-  TIMEZONE:                       "Europe/Berlin"
-  GLOBAL_SMTP_PORT:               "587"
-  LONGHORN_DEFAULT_DATAPATH:      "/storage/"
-  LONGHORN_BACKUP_TARGET:         "nfs://192.168.178.110:/Longhorn"
-  GOOGLE_DNS1:                    "8.8.8.8"
-  GOOGLE_DNS2:                    "8.8.4.4"
-  NFS_SERVER_IP:                  "192.168.178.110"
-  NFS_SERVER_PATH:                "/KubeData"
-  FRITZBOX_IP:                    "192.168.178.1"
+  #
   NEXT_K3S_VERSION:               "v1.23.1+k3s1"
   NODE_MASTER_01_IP:              "192.168.178.210"
   NODE_MASTER_02_IP:              "192.168.178.211"
   NODE_MASTER_03_IP:              "192.168.178.212"
+  TIMEZONE:                       "Europe/Berlin"
+  GLOBAL_SMTP_PORT:               "587"
+  #
+  LONGHORN_DEFAULT_DATAPATH:      "/storage/"
+  LONGHORN_BACKUP_TARGET:         "nfs://192.168.178.110:/Longhorn"
+  #
+  GOOGLE_DNS1:                    "8.8.8.8"
+  GOOGLE_DNS2:                    "8.8.4.4"
+  #
+  NFS_SERVER_IP:                  "192.168.178.110"
+  NFS_SERVER_PATH:                "/KubeData"
+  FRITZBOX_IP:                    "192.168.178.1"
