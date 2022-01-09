@@ -1,6 +1,7 @@
 ---
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
+
 resources:
   - metallb-charts.yaml
   - nfs-provisioner-charts.yaml
@@ -16,3 +17,4 @@ resources:
   - authelia-charts.yaml
   - stakater-charts.yaml
   - kured-charts.yaml
+  - runix-charts.yaml
