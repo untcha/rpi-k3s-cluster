@@ -174,3 +174,8 @@ services:
         tag: tool
         url: http://adminer.${SECRET_DOMAIN_LOCAL_02}
         target: _blank
+      - name: pgAdmin
+        logo: https://doc.${SECRET_DIGITALOCEAN_DOMAIN_02}/homer-config/postgres.png
+        tag: tool
+        url: http://pgadmin.${SECRET_DOMAIN_LOCAL_02}
+        target: _blank
