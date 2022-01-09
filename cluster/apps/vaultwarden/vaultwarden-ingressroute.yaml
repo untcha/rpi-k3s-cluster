@@ -1,7 +1,6 @@
 # vaultwarden-local-ingressroute
 # vaultwarden-http-ingressroute
 # vaultwarden-https-ingressroute
-# vaultwarden-middleware-headers
 
 ---
 apiVersion: traefik.containo.us/v1alpha1
