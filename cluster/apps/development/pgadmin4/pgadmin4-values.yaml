@@ -46,8 +46,8 @@ serviceAccount:
 ## Strategy used to replace old Pods by new ones
 ## Ref: https://kubernetes.io/docs/concepts/workloads/controllers/deployment/#strategy
 ##
-strategy: {}
-  # type: RollingUpdate
+strategy:
+  type: Recreate
   # rollingUpdate:
   #   maxSurge: 0
   #   maxUnavailable: 1
@@ -135,8 +135,8 @@ existingSecret: ""
 ## Needed chart reinstall for apply changes
 env:
   # can be email or nickname
-  email: chart@example.local
-  password: SuperSecret
+  email: ${SECRET_PGADMIN4_ADMIN_USER}
+  password: ${SECRET_PGADMIN4_ADMIN_PASSWORD}
   # pgpassfile: /var/lib/pgadmin/storage/pgadmin/file.pgpass
 
   # set context path for application (e.g. /pgadmin4/*)

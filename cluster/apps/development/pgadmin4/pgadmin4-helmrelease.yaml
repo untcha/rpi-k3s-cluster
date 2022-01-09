@@ -27,9 +27,9 @@ spec:
     containerPorts:
       http: 80
     env:
-      email: chart@example.local
+      email: ${SECRET_PGADMIN4_ADMIN_USER}
       enhanced_cookie_protection: "False"
-      password: SuperSecret
+      password: ${SECRET_PGADMIN4_ADMIN_PASSWORD}
       variables: []
     existingSecret: ""
     extraConfigmapMounts: []
@@ -96,7 +96,8 @@ spec:
       annotations: {}
       create: false
       name: ""
-    strategy: {}
+    strategy:
+      type: Recreate
     test:
       image:
         registry: docker.io
