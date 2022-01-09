@@ -4,7 +4,10 @@ kind: Kustomization
 
 resources:
   - authentication
-  # - blogs
+    # authelia
+    # basicauth
+  - blogs
+    # simone
   - dashboards
     # homer
     # kubernetes-dashboard
