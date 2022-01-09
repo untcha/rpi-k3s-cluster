@@ -1,0 +1,17 @@
+# pgadmin4-local-ingressroute
+
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: pgadmin4-local-ingressroute
+  namespace: dev-tools
+spec:
+  entryPoints:
+    - web
+  routes:
+    - match: Host(`pgadmin.${SECRET_DOMAIN_LOCAL_02}`)
+      kind: Rule
+      services:
+        - name: dev-tools-pgadmin4
+          port: 80

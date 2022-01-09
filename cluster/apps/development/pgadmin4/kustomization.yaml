@@ -5,3 +5,4 @@ kind: Kustomization
 resources:
   - pgadmin4-pvc.yaml
   - pgadmin4-helmrelease.yaml
+  - pgadmin4-ingressroute.yaml
