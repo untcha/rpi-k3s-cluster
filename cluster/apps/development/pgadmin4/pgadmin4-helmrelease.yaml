@@ -1,0 +1,111 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: pgadmin4
+  namespace: flux-system
+spec:
+  chart:
+    spec:
+      chart: pgadmin4
+      sourceRef:
+        kind: HelmRepository
+        name: runix
+      version: 1.8.2
+  interval: 1m0s
+  targetNamespace: dev-tools
+  values:
+    VolumePermissions:
+      enabled: false
+    affinity: {}
+    annotations: {}
+    autoscaling:
+      enabled: false
+      maxReplicas: 100
+      minReplicas: 1
+      targetCPUUtilizationPercentage: 80
+    containerPorts:
+      http: 80
+    env:
+      email: chart@example.local
+      enhanced_cookie_protection: "False"
+      password: SuperSecret
+      variables: []
+    existingSecret: ""
+    extraConfigmapMounts: []
+    extraContainers: ""
+    extraInitContainers: ""
+    extraSecretMounts: []
+    image:
+      pullPolicy: IfNotPresent
+      registry: docker.io
+      repository: dpage/pgadmin4
+      tag: ""
+    ingress:
+      annotations: {}
+      enabled: false
+      hosts:
+      - host: chart-example.local
+        paths:
+        - path: /
+          pathType: Prefix
+      tls: []
+    init:
+      resources: {}
+    livenessProbe:
+      failureThreshold: 3
+      initialDelaySeconds: 30
+      periodSeconds: 60
+      successThreshold: 1
+      timeoutSeconds: 15
+    networkPolicy:
+      enabled: false
+    nodeSelector:
+      node-type: worker
+    persistentVolume:
+      accessModes:
+      - ReadWriteOnce
+      annotations: {}
+      enabled: true
+      existingClaim: pgadmin4-data-pvc
+      size: 10Gi
+    podAnnotations: {}
+    podLabels: {}
+    readinessProbe:
+      failureThreshold: 3
+      initialDelaySeconds: 30
+      periodSeconds: 60
+      successThreshold: 1
+      timeoutSeconds: 15
+    replicaCount: 1
+    resources: {}
+    securityContext:
+      fsGroup: 5050
+      runAsGroup: 5050
+      runAsUser: 5050
+    serverDefinitions:
+      enabled: false
+      servers: ""
+    service:
+      annotations: {}
+      port: 80
+      portName: http
+      targetPort: 80
+      type: ClusterIP
+    serviceAccount:
+      annotations: {}
+      create: false
+      name: ""
+    strategy: {}
+    test:
+      image:
+        registry: docker.io
+        repository: busybox
+        tag: latest
+      resources: {}
+      securityContext:
+        fsGroup: 5051
+        runAsGroup: 5051
+        runAsUser: 5051
+    tolerations: []
+

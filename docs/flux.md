@@ -382,6 +382,18 @@ flux create helmrelease openldap \
   --export > openldap-helmrelease.yaml
 ```
 
+### pgadmin4
+
+```bash
+flux create helmrelease pgadmin4 \
+  --source=HelmRepository/runix \
+  --chart=pgadmin4 \
+  --chart-version="1.8.2" \
+  --target-namespace=dev-tools \
+  --values=pgadmin4-values.yaml \
+  --export > pgadmin4-helmrelease.yaml
+```
+
 ### Portainer
 
 ```bash
