@@ -422,7 +422,7 @@ flux create helmrelease authelia-postgres \
 flux create helmrelease vaultwarden-postgres \
   --source=HelmRepository/groundhog2k \
   --chart=postgres \
-  --chart-version="0.3.2" \
+  --chart-version="0.3.3" \
   --target-namespace=vaultwarden \
   --values=postgres-values.yaml \
   --export > postgres-helmrelease.yaml
