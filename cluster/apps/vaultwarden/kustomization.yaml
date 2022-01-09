@@ -3,11 +3,12 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
   - namespace.yaml
-  - postgres
+  # - postgres
+  - vaultwarden-config
   # - vaultwarden-pvc.yaml
-  - vaultwarden-rbac.yaml
-  - vaultwarden-configmap.yaml
-  - vaultwarden-service.yaml
+  # - vaultwarden-rbac.yaml
+  # - vaultwarden-configmap.yaml
+  # - vaultwarden-service.yaml
   # - vaultwarden-deployment.yaml
-  - vaultwarden-ingressroute.yaml
-  - vaultwarden-middleware.yaml
+  # - vaultwarden-ingressroute.yaml
+  # - vaultwarden-middleware.yaml

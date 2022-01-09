@@ -33,4 +33,4 @@ resources:
   # - test
   - tools
     # reloader
-  # - vaultwarden
+  - vaultwarden

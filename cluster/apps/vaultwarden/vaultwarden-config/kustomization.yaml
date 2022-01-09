@@ -7,5 +7,8 @@ configMapGenerator:
     namespace: vaultwarden
     files:
       - vaultwarden.conf
+
 generatorOptions:
   disableNameSuffixHash: true
+  labels:
+    app: vaultwarden
