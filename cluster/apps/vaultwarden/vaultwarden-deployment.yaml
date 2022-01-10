@@ -44,7 +44,7 @@ spec:
           protocol: TCP
         startupProbe:
           tcpSocket:
-            port: 80
+            port: 8080
           initialDelaySeconds: 10
           timeoutSeconds: 5
           failureThreshold: 30
@@ -52,7 +52,7 @@ spec:
           periodSeconds: 10
         livenessProbe:
           tcpSocket:
-            port: 80
+            port: 8080
           initialDelaySeconds: 10
           timeoutSeconds: 5
           failureThreshold: 3
@@ -60,7 +60,7 @@ spec:
           periodSeconds: 10
         readinessProbe:
           tcpSocket:
-            port: 80
+            port: 8080
           initialDelaySeconds: 10
           timeoutSeconds: 5
           failureThreshold: 3
