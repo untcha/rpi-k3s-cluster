@@ -30,7 +30,7 @@ resources:
     # grafana
     # influxdata
     # prometheus-exporter
-  # - nextcloud
+  - nextcloud
   # - test
   - tools
     # reloader
