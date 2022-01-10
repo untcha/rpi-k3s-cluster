@@ -41,13 +41,29 @@ spec:
         - name: websocket
           containerPort: 3012
           protocol: TCP
-        resources:
-          limits:
-            cpu: 200m
-            memory: 512Mi
-          requests:
-            cpu: 50m
-            memory: 256Mi
+        livenessProbe:
+          tcpSocket:
+            port: 80
+          initialDelaySeconds: 10
+          timeoutSeconds: 5
+          failureThreshold: 3
+          successThreshold: 1
+          periodSeconds: 10
+        readinessProbe:
+          tcpSocket:
+            port: 80
+          initialDelaySeconds: 10
+          timeoutSeconds: 5
+          failureThreshold: 3
+          successThreshold: 1
+          periodSeconds: 10
+        # resources:
+        #   limits:
+        #     cpu: 200m
+        #     memory: 512Mi
+        #   requests:
+        #     cpu: 50m
+        #     memory: 256Mi
         volumeMounts:
           - name: vaultwarden-data
             mountPath: /data
