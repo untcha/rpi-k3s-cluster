@@ -6,5 +6,5 @@ resources:
   - namespace.yaml
   - adminer
   # - gitea
-  # - portainer
+  - portainer
   - pgadmin4
