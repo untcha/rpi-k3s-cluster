@@ -2,7 +2,7 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: vaultwarden-config
+  name: vaultwarden-config-test
   namespace: vaultwarden
   labels:
     app: vaultwarden
