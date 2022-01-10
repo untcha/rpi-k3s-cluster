@@ -24,7 +24,7 @@ spec:
     cronJobs: {}
     customConfigs: null
     customConfigsHook:
-      enabled: true
+      enabled: false
       retries: 10
       waitBeforeRetry: 10
     customLivenessProbe: {}
@@ -105,7 +105,7 @@ spec:
       runAsUser: 33
     postUpgradeHook:
       delay: 30
-      enabled: true
+      enabled: false
     postUpgradeSteps:
     - php -f /var/www/html/occ db:add-missing-indices -n
     - php -f /var/www/html/occ db:add-missing-columns -n

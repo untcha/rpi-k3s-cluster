@@ -190,7 +190,7 @@ args: []
 ## Post upgrade hook configuration
 postUpgradeHook:
   ## Enable post upgrade hook
-  enabled: true
+  enabled: false
   ## Delay before post upgrade steps are initiated (default: 30 seconds)
   delay: 30
 
@@ -204,7 +204,7 @@ postUpgradeSteps:
 ## Custom configuration hook
 customConfigsHook:
   ## Enable custom configuration copy hook
-  enabled: true
+  enabled: false
   ## Delay before retrying to copy *.config.php files
   waitBeforeRetry: 10
   ## Max. number of retries before job fails
