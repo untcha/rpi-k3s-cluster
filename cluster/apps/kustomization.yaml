@@ -14,6 +14,7 @@ resources:
   - development
     # adminer
     # gitea
+    # pgadmin4
     # portainer
   - dns
     # do-dns-updater
