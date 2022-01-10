@@ -5,8 +5,8 @@ kind: Kustomization
 configMapGenerator:
   - name: vaultwarden-config
     namespace: vaultwarden
-    files:
-      - vaultwarden-env-vars.yaml
+    envs:
+      - vaultwarden.env
 
 generatorOptions:
   disableNameSuffixHash: true
