@@ -11,7 +11,7 @@ spec:
       sourceRef:
         kind: HelmRepository
         name: groundhog2k
-      version: 0.10.0
+      version: 0.10.1
   interval: 1m0s
   timeout: 25m
   targetNamespace: nextcloud
@@ -141,6 +141,7 @@ spec:
       privileged: false
       readOnlyRootFilesystem: true
     service:
+      annotations: {}
       clusterIP: null
       loadBalancerIP: null
       nodePort: null
