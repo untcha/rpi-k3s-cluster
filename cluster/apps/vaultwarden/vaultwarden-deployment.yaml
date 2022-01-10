@@ -42,6 +42,14 @@ spec:
         - name: websocket
           containerPort: 3012
           protocol: TCP
+        startupProbe:
+          tcpSocket:
+            port: 80
+          initialDelaySeconds: 10
+          timeoutSeconds: 5
+          failureThreshold: 30
+          successThreshold: 1
+          periodSeconds: 10
         livenessProbe:
           tcpSocket:
             port: 80
