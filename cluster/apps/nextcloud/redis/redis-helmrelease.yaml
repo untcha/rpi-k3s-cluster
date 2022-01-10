@@ -93,5 +93,5 @@ spec:
       persistentVolumeClaimName: nextcloud-redis-pvc
       requestedSize: null
     tolerations: []
-    updateStrategyType: Recreate
+    updateStrategyType: RollingUpdate
 

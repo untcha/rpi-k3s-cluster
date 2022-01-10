@@ -82,7 +82,7 @@ customStartupProbe: {}
 ## Default startup check
 startupProbe:
   enabled: true
-  initialDelaySeconds: 20
+  initialDelaySeconds: 10
   timeoutSeconds: 5
   failureThreshold: 30
   successThreshold: 1
