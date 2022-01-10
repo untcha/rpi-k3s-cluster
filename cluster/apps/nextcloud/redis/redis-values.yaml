@@ -33,7 +33,8 @@ podAnnotations: {}
 podManagementPolicy: OrderedReady
 
 ## Pod update strategy
-updateStrategyType: RollingUpdate
+# Recreate because of: https://forums.rancher.com/t/how-to-update-workloads-with-with-attached-longhorn-storage/19461
+updateStrategyType: Recreate
 
 ## Pod security options
 podSecurityContext:
