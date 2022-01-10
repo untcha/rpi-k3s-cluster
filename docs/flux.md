@@ -488,7 +488,7 @@ flux create helmrelease gitea-redis \
 flux create helmrelease nextcloud-redis \
   --source=HelmRepository/groundhog2k \
   --chart=redis \
-  --chart-version="0.4.8" \
+  --chart-version="0.4.9" \
   --target-namespace=nextcloud \
   --values=redis-values.yaml \
   --export > redis-helmrelease.yaml
