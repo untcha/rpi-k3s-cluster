@@ -10,6 +10,6 @@ resources:
   - vaultwarden-rbac.yaml
   # - vaultwarden-configmap.yaml
   - vaultwarden-service.yaml
-  # - vaultwarden-deployment.yaml
+  - vaultwarden-deployment.yaml
   - vaultwarden-ingressroute.yaml
   - vaultwarden-middleware.yaml
