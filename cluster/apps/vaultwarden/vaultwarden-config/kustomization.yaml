@@ -6,7 +6,7 @@ configMapGenerator:
   - name: vaultwarden-config
     namespace: vaultwarden
     files:
-      - vaultwarden.conf
+      - vaultwarden-env-vars.yaml
 
 generatorOptions:
   disableNameSuffixHash: true
