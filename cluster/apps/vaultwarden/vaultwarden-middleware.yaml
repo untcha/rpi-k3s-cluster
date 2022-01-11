@@ -21,7 +21,7 @@ spec:
     #   default-src 'none';form-action 'none';frame-ancestors 'none';base-uri 'none'
     # script-src 'strict-dynamic' 'nonce-rAnd0m123' 'unsafe-inline' http: https:;
     contentSecurityPolicy: |
-      default-src 'none';
+      default-src 'self';
       form-action 'none';
       frame-ancestors 'none';
       object-src 'none';
