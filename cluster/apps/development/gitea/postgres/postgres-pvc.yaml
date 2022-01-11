@@ -5,7 +5,7 @@ metadata:
   name: gitea-postgres-pvc
   namespace: gitea
 spec:
-  storageClassName: longhorn-high-capacity
+  storageClassName: longhorn-worker-node-storageclass
   accessModes:
     - ReadWriteOnce
   resources:

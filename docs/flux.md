@@ -432,7 +432,7 @@ flux create helmrelease vaultwarden-postgres \
 flux create helmrelease gitea-postgres \
   --source=HelmRepository/groundhog2k \
   --chart=postgres \
-  --chart-version="0.3.2" \
+  --chart-version="0.3.3" \
   --target-namespace=gitea \
   --values=postgres-values.yaml \
   --export > postgres-helmrelease.yaml

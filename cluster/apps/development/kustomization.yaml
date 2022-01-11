@@ -5,6 +5,6 @@ kind: Kustomization
 resources:
   - namespace.yaml
   - adminer
-  # - gitea
+  - gitea
   - portainer
   - pgadmin4
