@@ -51,9 +51,9 @@ spec:
   routes:
     - match: Host(`vault.${SECRET_DIGITALOCEAN_DOMAIN_02}`)
       kind: Rule
-      middlewares:
-        - name: vaultwarden-middleware-headers
-          namespace: vaultwarden
+      # middlewares:
+      #   - name: vaultwarden-middleware-headers
+      #     namespace: vaultwarden
       services:
         - name: vaultwarden
           namespace: vaultwarden
