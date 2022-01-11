@@ -25,7 +25,7 @@ spec:
       style-src 'none';
       form-action 'none';
       frame-ancestors 'none';
-      script-src 'strict-dynamic' 'nonce-rAnd0m123' 'unsafe-inline';
+      script-src 'strict-dynamic' 'nonce-rAnd0m123' 'unsafe-inline' http: https:;
       object-src 'none';
       base-uri 'none';
       require-trusted-types-for 'script';
