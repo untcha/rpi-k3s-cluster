@@ -1,4 +1,24 @@
+# authelia-http-ingressroute
 # authelia-https-ingressroute
+
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: authelia-http-ingressroute
+  namespace: authentication
+spec:
+  entryPoints:
+    - web
+  routes:
+    - match: Host(`auth.${SECRET_DIGITALOCEAN_DOMAIN_02}`)
+      kind: Rule
+      middlewares:
+        - name: https-redirect-scheme-middleware
+          namespace: traefik
+      services:
+        - name: authentication-authelia
+          port: 9091
 
 ---
 apiVersion: traefik.containo.us/v1alpha1
