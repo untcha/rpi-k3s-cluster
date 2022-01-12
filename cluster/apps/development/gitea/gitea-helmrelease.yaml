@@ -57,7 +57,7 @@ spec:
           ENABLE_ACCESS_LOG: "true"
           LEVEL: debug
           MODE: console, file
-          ROOT_PATH: /data/log
+          ROOT_PATH: /data/gitea/log
         mailer:
           ENABLED: "true"
           FROM: ${SECRET_GLOBAL_SMTP_FROM}

@@ -290,7 +290,7 @@ gitea:
       ENABLE_FEDERATED_AVATAR: "true"
 
     log:
-      ROOT_PATH: "/data/log"
+      ROOT_PATH: "/data/gitea/log"
       MODE: "console, file"
       LEVEL: "debug"
       ENABLE_ACCESS_LOG: "true"
