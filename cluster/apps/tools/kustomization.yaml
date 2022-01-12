@@ -6,6 +6,6 @@ resources:
   - namespace.yaml
   - reloader
   # - network-multitool
-  # - whoami
+  - whoami
   # - duckdns
   # - nginx
