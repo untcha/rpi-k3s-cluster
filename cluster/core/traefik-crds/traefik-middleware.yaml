@@ -42,8 +42,8 @@ spec:
     accessControlAllowMethods:
       - "GET"
       - "POST"
-    # accessControlAllowOriginList:
-    #   - "https://vault.${SECRET_DIGITALOCEAN_DOMAIN_02}"
+    accessControlAllowOriginList:
+      - "https://${SECRET_DIGITALOCEAN_DOMAIN_02}"
     accessControlMaxAge: 100
     addVaryHeader: true
     referrerPolicy: "same-origin"
