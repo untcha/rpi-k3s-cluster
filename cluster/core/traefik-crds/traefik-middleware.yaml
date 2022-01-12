@@ -1,4 +1,5 @@
 # https-redirect-scheme-middleware
+# secure-headers-middleware
 # traefik-middleware-headers
 
 ---
@@ -12,6 +13,41 @@ spec:
     scheme: https
     permanent: true
     port: "443"
+
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: Middleware
+metadata:
+  name: secure-headers-middleware
+  namespace: traefik
+spec:
+  headers:
+    browserXssFilter: true
+    contentTypeNosniff: true
+    frameDeny: true
+    sslRedirect: true
+    forceSTSHeader: true
+    stsIncludeSubdomains: true
+    stsPreload: true
+    stsSeconds: 315360000
+    contentSecurityPolicy: |
+      default-src 'none';
+      style-src 'none';
+      form-action 'none';
+      frame-ancestors 'none';
+      script-src 'strict-dynamic' 'nonce-rAnd0m123' 'unsafe-inline' http: https:;
+      object-src 'none';
+      base-uri 'none';
+      require-trusted-types-for 'script';
+    accessControlAllowMethods:
+      - "GET"
+      - "POST"
+    # accessControlAllowOriginList:
+    #   - "https://vault.${SECRET_DIGITALOCEAN_DOMAIN_02}"
+    accessControlMaxAge: 100
+    addVaryHeader: true
+    referrerPolicy: "same-origin"
+    customFrameOptionsValue: SAMEORIGIN
 
 ---
 apiVersion: traefik.containo.us/v1alpha1
