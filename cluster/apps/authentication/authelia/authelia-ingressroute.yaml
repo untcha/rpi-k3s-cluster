@@ -34,6 +34,9 @@ spec:
   routes:
     - match: Host(`auth.${SECRET_DIGITALOCEAN_DOMAIN_02}`)
       kind: Rule
+      middlewares:
+        - name: secure-headers-middleware
+          namespace: traefik
       services:
         - name: authentication-authelia
           namespace: authentication
