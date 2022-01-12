@@ -11,7 +11,7 @@ spec:
       sourceRef:
         kind: HelmRepository
         name: groundhog2k
-      version: 0.4.12
+      version: 0.4.13
   interval: 1m0s
   targetNamespace: gitea
   values:
@@ -44,7 +44,6 @@ spec:
           ADAPTER: redis
           ENABLED: "true"
           HOST: redis://:${SECRET_GLOBAL_REDIS_PASSWORD}@gitea-gitea-redis:6379/0?pool_size=100&idle_timeout=180s
-          INTERVAL: "60"
           ITEM_TTL: 16h
         database:
           DB_TYPE: postgres
@@ -54,10 +53,10 @@ spec:
           SSL_MODE: disable
           USER: ${SECRET_GITEA_DB_USER}
         log:
-          ACCESS: console
+          ACCESS: file
           ENABLE_ACCESS_LOG: "true"
-          LEVEL: info
-          MODE: console
+          LEVEL: debug
+          MODE: console, file
           ROOT_PATH: /data/log
         mailer:
           ENABLED: "true"
@@ -65,6 +64,7 @@ spec:
           HOST: ${SECRET_GLOBAL_SMTP_HOST}:${GLOBAL_SMTP_PORT}
           MAILER_TYPE: smtp
           PASSWD: ${SECRET_GLOBAL_SMTP_PASSWORD}
+          SUBJECT_PREFIX: '[git.untch.io]'
           USER: ${SECRET_GLOBAL_SMTP_USERNAME}
         oauth2:
           JWT_SECRET: null
@@ -191,12 +191,14 @@ spec:
       name: ""
     services:
       http:
+        annotations: {}
         clusterIP: null
         loadBalancerIP: null
         nodePort: null
         port: 80
         type: ClusterIP
       ssh:
+        annotations: {}
         clusterIP: null
         loadBalancerIP: null
         nodePort: null

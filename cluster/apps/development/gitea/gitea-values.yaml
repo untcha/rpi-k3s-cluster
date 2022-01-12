@@ -292,9 +292,9 @@ gitea:
     log:
       ROOT_PATH: "/data/log"
       MODE: "console, file"
-      LEVEL: "info"
-      ACCESS: "console"
+      LEVEL: "debug"
       ENABLE_ACCESS_LOG: "true"
+      ACCESS: "file"
 
     # OAuth2 JWT secret
     oauth2:
