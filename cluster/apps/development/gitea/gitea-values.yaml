@@ -209,7 +209,8 @@ gitea:
     APP_NAME: "Gitea: Git with a cup of tea"
 
     repository:
-      ROOT: "/data/git/gitea-repositories"
+      # ROOT: "/data/git/gitea-repositories"
+      ROOT: "data/git/gitea-repositories"
 
     server:
       PROTOCOL: "http"
@@ -221,11 +222,13 @@ gitea:
       SSH_DOMAIN: "git.${SECRET_DIGITALOCEAN_DOMAIN_02}"
       SSH_PORT: "22"
       SSH_LISTEN_PORT: "8022"
-      SSH_ROOT_PATH: "/data/ssh"
+      # SSH_ROOT_PATH: "/data/ssh"
+      SSH_ROOT_PATH: "data/ssh"
       OFFLINE_MODE: "false"
-      APP_DATA_PATH: "/data"
+      # APP_DATA_PATH: "/data"
+      APP_DATA_PATH: "data"
       LFS_START_SERVER: "true"
-      LFS_CONTENT_PATH: "/data/lfs"
+      # LFS_CONTENT_PATH: "/data/lfs"
       LFS_JWT_SECRET: "${SECRET_GITEA_LFS_JWT_SECRET}"
       
     database:
@@ -290,7 +293,7 @@ gitea:
       ENABLE_FEDERATED_AVATAR: "true"
 
     log:
-      ROOT_PATH: "/data/log"
+      # ROOT_PATH: "/data/log"
       MODE: "console, file"
       LEVEL: "info"
       ENABLE_ACCESS_LOG: "true"
