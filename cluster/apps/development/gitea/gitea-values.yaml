@@ -225,7 +225,7 @@ gitea:
       OFFLINE_MODE: "false"
       APP_DATA_PATH: "/data"
       LFS_START_SERVER: "true"
-      # LFS_CONTENT_PATH: "/data/lfs"
+      LFS_CONTENT_PATH: "/data/lfs"
       LFS_JWT_SECRET: "${SECRET_GITEA_LFS_JWT_SECRET}"
       
     database:

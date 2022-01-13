@@ -87,6 +87,7 @@ spec:
           DISABLE_SSH: "false"
           DOMAIN: git.${SECRET_DIGITALOCEAN_DOMAIN_02}
           HTTP_PORT: "8000"
+          LFS_CONTENT_PATH: /data/lfs
           LFS_JWT_SECRET: ${SECRET_GITEA_LFS_JWT_SECRET}
           LFS_START_SERVER: "true"
           OFFLINE_MODE: "false"
