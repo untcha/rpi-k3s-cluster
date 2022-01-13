@@ -52,7 +52,7 @@ spec:
   routes:
     - match: Host(`git.${SECRET_DIGITALOCEAN_DOMAIN_02}`)
       kind: Rule
-      middleware:
+      middlewares:
         - name: secure-header-middleware
           namespace: traefik
       services:
