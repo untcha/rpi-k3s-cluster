@@ -22,7 +22,9 @@ spec:
     customLivenessProbe: {}
     customReadinessProbe: {}
     customStartupProbe: {}
-    env: []
+    env:
+    - name: TZ
+      value: ${TIMEZONE}
     externalCache:
       enabled: false
       host: null
@@ -116,6 +118,8 @@ spec:
           PROVIDER: redis
           PROVIDER_CONFIG: redis://:${SECRET_GLOBAL_REDIS_PASSWORD}@gitea-gitea-redis:6379/0?pool_size=100&idle_timeout=180s
           SESSION_LIFE_TIME: "86400"
+        time:
+          DEFAULT_UI_LOCATION: ${TZ}
     image:
       pullPolicy: IfNotPresent
       repository: gitea/gitea

@@ -152,7 +152,9 @@ containerHttpPort: 8000
 containerSshPort: 8022
 
 ## Additional environment variables
-env: []
+env:
+- name: TZ
+  value: ${TIMEZONE}
 
 ## Arguments for the container entrypoint process
 args: []
@@ -297,6 +299,9 @@ gitea:
     # OAuth2 JWT secret
     oauth2:
       JWT_SECRET:
+    
+    time:
+      DEFAULT_UI_LOCATION: ${TZ}
 
 ## Gitea storage parameters
 storage:
