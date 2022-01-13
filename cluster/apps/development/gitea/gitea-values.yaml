@@ -223,9 +223,9 @@ gitea:
       SSH_LISTEN_PORT: "8022"
       SSH_ROOT_PATH: "/data/ssh"
       OFFLINE_MODE: "false"
-      APP_DATA_PATH: "/data/gitea"
+      APP_DATA_PATH: "/data"
       LFS_START_SERVER: "true"
-      LFS_CONTENT_PATH: "/data/gitea/lfs"
+      LFS_CONTENT_PATH: "/data/lfs"
       LFS_JWT_SECRET: "${SECRET_GITEA_LFS_JWT_SECRET}"
       
     database:
@@ -290,9 +290,9 @@ gitea:
       ENABLE_FEDERATED_AVATAR: "true"
 
     log:
-      ROOT_PATH: "/data/gitea/log"
+      ROOT_PATH: "/data/log"
       MODE: "console, file"
-      LEVEL: "debug"
+      LEVEL: "info"
       ENABLE_ACCESS_LOG: "true"
       ACCESS: "file"
 
