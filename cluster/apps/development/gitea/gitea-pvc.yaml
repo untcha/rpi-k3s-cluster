@@ -4,8 +4,8 @@ kind: PersistentVolumeClaim
 metadata:
   name: gitea-data-pvc
   namespace: gitea
-  annotations:
-    nfs.io/storage-path: "test"
+  # annotations:
+  #   nfs.io/storage-path: "data"
 spec:
   accessModes:
     - ReadWriteOnce
