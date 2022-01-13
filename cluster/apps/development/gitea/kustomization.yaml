@@ -6,6 +6,6 @@ resources:
   - namespace.yaml
   - postgres
   - redis
-  - gitea-pvc.yaml
-  - gitea-helmrelease.yaml
+  # - gitea-pvc.yaml
+  # - gitea-helmrelease.yaml
   - gitea-ingressroute.yaml

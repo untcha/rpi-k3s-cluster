@@ -57,6 +57,7 @@ spec:
           ENABLE_ACCESS_LOG: "true"
           LEVEL: info
           MODE: console, file
+          ROOT_PATH: /data/log
         mailer:
           ENABLED: "true"
           FROM: ${SECRET_GLOBAL_SMTP_FROM}
@@ -83,11 +84,11 @@ spec:
           PASSWORD_COMPLEXITY: lower,upper,digit,spec
           SECRET_KEY: ${SECRET_GITEA_SECRET_KEY}
         server:
-          APP_DATA_PATH: /data
+          APP_DATA_PATH: /data/gitea
           DISABLE_SSH: "false"
           DOMAIN: git.${SECRET_DIGITALOCEAN_DOMAIN_02}
           HTTP_PORT: "8000"
-          LFS_CONTENT_PATH: /data/lfs
+          LFS_CONTENT_PATH: /data/gitea/lfs
           LFS_JWT_SECRET: ${SECRET_GITEA_LFS_JWT_SECRET}
           LFS_START_SERVER: "true"
           OFFLINE_MODE: "false"
