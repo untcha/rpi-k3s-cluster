@@ -53,7 +53,7 @@ spec:
     - match: Host(`git.${SECRET_DIGITALOCEAN_DOMAIN_02}`)
       kind: Rule
       middlewares:
-        - name: secure-header-middleware
+        - name: secure-headers-middleware
           namespace: traefik
       services:
         - name: gitea-gitea-http
