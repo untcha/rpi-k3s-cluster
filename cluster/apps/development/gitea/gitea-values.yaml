@@ -230,13 +230,11 @@ gitea:
       
     database:
       DB_TYPE: "postgres"
-      # HOST: "dev-gitea-gitea-postgres.dev-gitea.svc.cluster.local:5432"
       HOST: "gitea-gitea-postgres"
       NAME: "${SECRET_GITEA_DB_NAME}"
       USER: "${SECRET_GITEA_DB_USER}"
       PASSWD: "${SECRET_GITEA_DB_PASSWORD}"
       SSL_MODE: disable
-      # PATH: "/data/gitea/gitea.db"
 
     security:
       INSTALL_LOCK: "true"
