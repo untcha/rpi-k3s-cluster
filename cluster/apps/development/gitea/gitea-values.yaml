@@ -212,6 +212,7 @@ gitea:
 
     repository:
       ROOT: "/data/git/gitea-repositories"
+      DEFAULT_BRANCH: "main"
 
     server:
       PROTOCOL: "http"
