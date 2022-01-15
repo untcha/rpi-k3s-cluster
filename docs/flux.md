@@ -419,16 +419,6 @@ flux create helmrelease authelia-postgres \
 ```
 
 ```bash
-flux create helmrelease vaultwarden-postgres \
-  --source=HelmRepository/groundhog2k \
-  --chart=postgres \
-  --chart-version="0.3.3" \
-  --target-namespace=vaultwarden \
-  --values=postgres-values.yaml \
-  --export > postgres-helmrelease.yaml
-```
-
-```bash
 flux create helmrelease gitea-postgres \
   --source=HelmRepository/groundhog2k \
   --chart=postgres \
@@ -444,6 +434,26 @@ flux create helmrelease nextcloud-postgres \
   --chart=postgres \
   --chart-version="0.3.3" \
   --target-namespace=nextcloud \
+  --values=postgres-values.yaml \
+  --export > postgres-helmrelease.yaml
+```
+
+```bash
+flux create helmrelease recipes-postgres \
+  --source=HelmRepository/groundhog2k \
+  --chart=postgres \
+  --chart-version="0.3.3" \
+  --target-namespace=recipes \
+  --values=postgres-values.yaml \
+  --export > postgres-helmrelease.yaml
+```
+
+```bash
+flux create helmrelease vaultwarden-postgres \
+  --source=HelmRepository/groundhog2k \
+  --chart=postgres \
+  --chart-version="0.3.3" \
+  --target-namespace=vaultwarden \
   --values=postgres-values.yaml \
   --export > postgres-helmrelease.yaml
 ```
