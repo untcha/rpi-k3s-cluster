@@ -8,3 +8,4 @@ resources:
   - recipes-configmap.yaml
   - recipes-serviceaccount.yaml
   - recipes-pvc.yaml
+  - recipes-service.yaml
