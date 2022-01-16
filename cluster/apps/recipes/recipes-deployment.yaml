@@ -91,12 +91,18 @@ spec:
         image: nginx:latest
         imagePullPolicy: IfNotPresent
         ports:
-          - containerPort: 80
+          - name: http
+            containerPort: 80
             protocol: TCP
-            name: http
-          - containerPort: 8080
+          - name: gunicorn
+            containerPort: 8080
             protocol: TCP
-            name: gunicorn
+          # - containerPort: 80
+          #   protocol: TCP
+          #   name: http
+          # - containerPort: 8080
+          #   protocol: TCP
+          #   name: gunicorn
         resources:
           requests:
             cpu: 250m
