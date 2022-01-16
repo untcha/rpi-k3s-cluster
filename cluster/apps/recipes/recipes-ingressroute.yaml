@@ -8,7 +8,17 @@ spec:
   entryPoints:
     - web
   routes:
-    - match: Host(`test.${SECRET_DOMAIN_LOCAL_02}`)
+    - match: Host(`test.${SECRET_DOMAIN_LOCAL_02}`) && Path(`/`)
+      kind: Rule
+      services:
+        - name: recipes
+          port: 8080
+    - match: Host(`test.${SECRET_DOMAIN_LOCAL_02}`) && Path(`/media`)
+      kind: Rule
+      services:
+        - name: recipes
+          port: 80
+    - match: Host(`test.${SECRET_DOMAIN_LOCAL_02}`) && Path(`/static`)
       kind: Rule
       services:
         - name: recipes
