@@ -22,46 +22,33 @@ spec:
       services:
         - name: recipes
           port: 80
-    # - match: Host(`recipes.${SECRET_DOMAIN_LOCAL_02}`) && Path(`/static`)
-    #   kind: Rule
-    #   services:
-    #     - name: recipes
-    #       port: 80
 
-# ---
-# apiVersion: traefik.containo.us/v1alpha1
-# kind: IngressRoute
-# metadata:
-#   name: recipes-http-ingressroute
-#   namespace: recipes
-# spec:
-#   entryPoints:
-#     - web
-#   routes:
-#     - match: Host(`recipes.${SECRET_DIGITALOCEAN_DOMAIN_02}`)
-#       kind: Rule
-#       middlewares:
-#         - name: https-redirect-scheme-middleware
-#           namespace: traefik
-#       services:
-#         - name: recipes
-#           port: 8080
-#     - match: Host(`recipes.${SECRET_DIGITALOCEAN_DOMAIN_02}`) && (PathPrefix(`/media`) || PathPrefix(`/static`))
-#       kind: Rule
-#       middlewares:
-#         - name: https-redirect-scheme-middleware
-#           namespace: traefik
-#       services:
-#         - name: recipes
-#           port: 80
-    # - match: Host(`recipes.${SECRET_DIGITALOCEAN_DOMAIN_02}`) && Path(`/static`)
-    #   kind: Rule
-    #   middlewares:
-    #     - name: https-redirect-scheme-middleware
-    #       namespace: traefik
-    #   services:
-    #     - name: recipes
-    #       port: 80
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: recipes-http-ingressroute
+  namespace: recipes
+spec:
+  entryPoints:
+    - web
+  routes:
+    - match: Host(`recipes.${SECRET_DIGITALOCEAN_DOMAIN_02}`)
+      kind: Rule
+      middlewares:
+        - name: https-redirect-scheme-middleware
+          namespace: traefik
+      services:
+        - name: recipes
+          port: 8080
+    - match: Host(`recipes.${SECRET_DIGITALOCEAN_DOMAIN_02}`) && (PathPrefix(`/media`) || PathPrefix(`/static`))
+      kind: Rule
+      middlewares:
+        - name: https-redirect-scheme-middleware
+          namespace: traefik
+      services:
+        - name: recipes
+          port: 80
 
 ---
 apiVersion: traefik.containo.us/v1alpha1
@@ -87,11 +74,5 @@ spec:
         - name: recipes
           namespace: recipes
           port: 80
-    # - match: Host(`recipes.${SECRET_DIGITALOCEAN_DOMAIN_02}`) && Path(`/static`)
-    #   kind: Rule
-    #   services:
-    #     - name: recipes
-    #       namespace: recipes
-    #       port: 80
   tls:
     secretName: "${SECRET_DOMAIN/./-}-tls"
