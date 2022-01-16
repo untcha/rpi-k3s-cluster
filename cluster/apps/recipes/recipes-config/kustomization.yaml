@@ -7,10 +7,10 @@ configMapGenerator:
     namespace: recipes
     envs:
       - recipes.env
-  # - name: recipes-nginx-config
-  #   namespace: recipes
-  #   files:
-  #     - nginx.conf
+  - name: recipes-nginx-config2
+    namespace: recipes
+    files:
+      - nginx.conf
 
 generatorOptions:
   disableNameSuffixHash: true
