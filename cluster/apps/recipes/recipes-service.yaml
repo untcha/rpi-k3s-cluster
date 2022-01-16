@@ -20,3 +20,5 @@ spec:
     port: 8080
     protocol: TCP
     targetPort: gunicorn
+type: LoadBalancer
+loadBalancerIP: ${RECIPES_SVC_LB_IP}
