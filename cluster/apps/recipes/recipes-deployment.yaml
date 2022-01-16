@@ -18,7 +18,7 @@ spec:
   template:
     metadata:
       annotations:
-        configmap.reloader.stakater.com/reload: "recipes-config"
+        configmap.reloader.stakater.com/reload: "recipes-config, recipes-nginx-config"
       #   backup.velero.io/backup-volumes: media,static    
       labels:
         app: recipes
@@ -111,7 +111,8 @@ spec:
             # mount as subPath due to lost+found on ext4 pvc
             subPath: files
           - name: nginx-config
-            mountPath: /etc/nginx/nginx.conf
+            # mountPath: /etc/nginx/nginx.conf
+            mountPath: /etc/nginx/conf.d/recipes.conf
             subPath: nginx-config
             readOnly: true
       - name: recipes
