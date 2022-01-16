@@ -201,4 +201,4 @@ spec:
             claimName: recipes-static-pvc
         - name: nginx-config
           configMap:
-            name: recipes-nginx-config
+            name: recipes-nginx-config2
