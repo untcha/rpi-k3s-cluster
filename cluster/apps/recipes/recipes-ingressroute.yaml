@@ -1,3 +1,7 @@
+# recipes-local-ingressroute
+# recipes-http-ingressroute
+# recipes-https-ingressroute
+
 ---
 apiVersion: traefik.containo.us/v1alpha1
 kind: IngressRoute
@@ -8,18 +12,51 @@ spec:
   entryPoints:
     - web
   routes:
-    - match: Host(`test.${SECRET_DOMAIN_LOCAL_02}`)
+    - match: Host(`recipes.${SECRET_DOMAIN_LOCAL_02}`)
       kind: Rule
       services:
         - name: recipes
           port: 8080
-    - match: Host(`test.${SECRET_DOMAIN_LOCAL_02}`) && Path(`/media`)
+    - match: Host(`recipes.${SECRET_DOMAIN_LOCAL_02}`) && Path(`/media`)
       kind: Rule
       services:
         - name: recipes
           port: 80
-    - match: Host(`test.${SECRET_DOMAIN_LOCAL_02}`) && Path(`/static`)
+    - match: Host(`recipes.${SECRET_DOMAIN_LOCAL_02}`) && Path(`/static`)
       kind: Rule
       services:
         - name: recipes
           port: 80
+
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: recipes-https-ingressroute
+  namespace: traefik
+  annotations:
+    cert-manager.io/cluster-issuer: "letsencrypt-dns01-production-do"
+spec:
+  entryPoints:
+    - websecure
+  routes:
+    - match: Host(`recipes.${SECRET_DIGITALOCEAN_DOMAIN_02}`)
+      kind: Rule
+      services:
+        - name: recipes
+          namespace: recipes
+          port: 8080
+    - match: Host(`recipes.${SECRET_DIGITALOCEAN_DOMAIN_02}`) && Path(`/media`)
+      kind: Rule
+      services:
+        - name: recipes
+          namespace: recipes
+          port: 80
+    - match: Host(`recipes.${SECRET_DIGITALOCEAN_DOMAIN_02}`) && Path(`/static`)
+      kind: Rule
+      services:
+        - name: recipes
+          namespace: recipes
+          port: 80
+  tls:
+    secretName: "${SECRET_DOMAIN/./-}-tls"
