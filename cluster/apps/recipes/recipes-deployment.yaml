@@ -111,10 +111,10 @@ spec:
             # mount as subPath due to lost+found on ext4 pvc
             subPath: files
           - name: nginx-config
-            # mountPath: /etc/nginx/nginx.conf
-            # subPath: nginx-config
-            mountPath: /etc/nginx/conf.d/recipes.conf
-            subPath: recipes.conf
+            mountPath: /etc/nginx/nginx.conf
+            subPath: nginx-config
+            # mountPath: /etc/nginx/conf.d/recipes.conf
+            # subPath: recipes.conf
             readOnly: true
       - name: recipes
         image: vabene1111/recipes:1.0.4
