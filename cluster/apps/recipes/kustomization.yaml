@@ -10,5 +10,5 @@ resources:
   - recipes-serviceaccount.yaml
   - recipes-pvc.yaml
   - recipes-service.yaml
-  - recipes-deployment.yaml
+  # - recipes-deployment.yaml
   - recipes-ingressroute.yaml
