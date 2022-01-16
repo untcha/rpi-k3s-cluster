@@ -1,0 +1,14 @@
+---
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+configMapGenerator:
+  - name: recipes-config
+    namespace: recipes
+    envs:
+      - recipes.env
+
+generatorOptions:
+  disableNameSuffixHash: true
+  labels:
+    app: recipes
