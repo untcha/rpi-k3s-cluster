@@ -8,7 +8,7 @@ resources:
   - recipes-config
   - recipes-configmap.yaml
   - recipes-serviceaccount.yaml
-  - recipes-pvc.yaml
+  # - recipes-pvc.yaml
   - recipes-service.yaml
   # - recipes-deployment.yaml
   - recipes-ingressroute.yaml
