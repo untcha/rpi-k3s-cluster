@@ -112,8 +112,9 @@ spec:
             subPath: files
           - name: nginx-config
             # mountPath: /etc/nginx/nginx.conf
+            # subPath: nginx-config
             mountPath: /etc/nginx/conf.d/recipes.conf
-            subPath: nginx-config
+            subPath: recipes.conf
             readOnly: true
       - name: recipes
         image: vabene1111/recipes:1.0.4
