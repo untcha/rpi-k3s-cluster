@@ -1,0 +1,15 @@
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: recipes-local-ingressroute
+  namespace: recipes
+spec:
+  entryPoints:
+    - web
+  routes:
+    - match: Host(`test.${SECRET_DOMAIN_LOCAL_02}`)
+      kind: Rule
+      services:
+        - name: recipes
+          port: 80
