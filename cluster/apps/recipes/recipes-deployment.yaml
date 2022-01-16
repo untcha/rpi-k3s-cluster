@@ -17,7 +17,8 @@ spec:
       environment: production
   template:
     metadata:
-      # annotations:
+      annotations:
+        configmap.reloader.stakater.com/reload: "recipes-config"
       #   backup.velero.io/backup-volumes: media,static    
       labels:
         app: recipes
