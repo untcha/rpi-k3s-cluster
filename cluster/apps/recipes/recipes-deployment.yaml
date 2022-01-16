@@ -19,7 +19,6 @@ spec:
     metadata:
       annotations:
         configmap.reloader.stakater.com/reload: "recipes-config, recipes-nginx-config"
-      #   backup.velero.io/backup-volumes: media,static    
       labels:
         app: recipes
         tier: frontend
@@ -30,27 +29,6 @@ spec:
       serviceAccountName: recipes
       initContainers:
       - name: init-chmod-data
-        # env:
-        #   - name: SECRET_KEY
-        #     valueFrom:
-        #       secretKeyRef:
-        #         name: recipes
-        #         key: secret-key
-        #   - name: DB_ENGINE
-        #     value: django.db.backends.postgresql_psycopg2
-        #   - name: POSTGRES_HOST
-        #     value: recipes-postgresql
-        #   - name: POSTGRES_PORT
-        #     value: "5432"
-        #   - name: POSTGRES_USER
-        #     value: postgres
-        #   - name: POSTGRES_DB
-        #     value: recipes
-        #   - name: POSTGRES_PASSWORD
-        #     valueFrom:
-        #       secretKeyRef:
-        #         name: recipes
-        #         key: postgresql-postgres-password
         image: vabene1111/recipes:1.0.4
         imagePullPolicy: Always
         envFrom:
@@ -97,12 +75,6 @@ spec:
           - name: gunicorn
             containerPort: 8080
             protocol: TCP
-          # - containerPort: 80
-          #   protocol: TCP
-          #   name: http
-          # - containerPort: 8080
-          #   protocol: TCP
-          #   name: gunicorn
         resources:
           requests:
             cpu: 250m
@@ -119,8 +91,6 @@ spec:
           - name: nginx-config
             mountPath: /etc/nginx/nginx.conf
             subPath: nginx-config
-            # mountPath: /etc/nginx/conf.d/recipes.conf
-            # subPath: recipes.conf
             readOnly: true
       - name: recipes
         image: vabene1111/recipes:1.0.4
@@ -165,31 +135,6 @@ spec:
         envFrom:
           - configMapRef:
               name: recipes-config
-        # env:
-        #   - name: DEBUG
-        #     value: "0"
-        #   - name: ALLOWED_HOSTS
-        #     value: '*'
-        #   - name: SECRET_KEY
-        #     valueFrom:
-        #       secretKeyRef:
-        #         name: recipes
-        #         key: secret-key
-        #   - name: DB_ENGINE
-        #     value: django.db.backends.postgresql_psycopg2
-        #   - name: POSTGRES_HOST
-        #     value: recipes-postgresql
-        #   - name: POSTGRES_PORT
-        #     value: "5432"
-        #   - name: POSTGRES_USER
-        #     value: postgres
-        #   - name: POSTGRES_DB
-        #     value: recipes
-        #   - name: POSTGRES_PASSWORD
-        #     valueFrom:
-        #       secretKeyRef:
-        #         name: recipes
-        #         key: postgresql-postgres-password
         securityContext:
           runAsUser: 65534
       volumes:
