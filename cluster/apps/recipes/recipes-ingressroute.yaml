@@ -81,7 +81,7 @@ spec:
         - name: recipes
           namespace: recipes
           port: 8080
-    - match: Host(`recipes.${SECRET_DIGITALOCEAN_DOMAIN_02}`) && Path(`/media/recipes`)
+    - match: Host(`recipes.${SECRET_DIGITALOCEAN_DOMAIN_02}`) && Path(`/media)
       kind: Rule
       services:
         - name: recipes
