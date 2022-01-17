@@ -4,5 +4,5 @@ kind: Kustomization
 resources:
   - namespace.yaml
   - unbound-staging
-  # - pihole-staging
+  - pihole-staging
   # - blocky-staging

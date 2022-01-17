@@ -6,24 +6,27 @@ metadata:
   namespace: dns-staging
   labels:
     app: pihole-staging
+    environment: staging
 spec:
   replicas: 1
-  revisionHistoryLimit: 0
-  selector:
-    matchLabels:
-      app: pihole-staging
+  revisionHistoryLimit: 1
   strategy:
     rollingUpdate:
       maxSurge: 1
       maxUnavailable: 0
     type: RollingUpdate
+  selector:
+    matchLabels:
+      app: pihole-staging
+      environment: staging
   template:
     metadata:
       labels:
         app: pihole-staging
+        environment: staging
         name: pihole-staging
       annotations:
-        configmap.reloader.stakater.com/reload: "pihole-env-vars, adlists.list"
+        configmap.reloader.stakater.com/reload: "pihole-env-vars, custom.list, regex.list, whitelist.txt, adlists.list"
     spec:
       nodeSelector:
         node-type: worker
@@ -54,26 +57,6 @@ spec:
         - name: client-upd
           containerPort: 67
           protocol: UDP
-        # livenessProbe:
-        #   httpGet:
-        #     path: /
-        #     port: http
-        # readinessProbe:
-        #   httpGet:
-        #     path: /
-        #     port: http
-        # livenessProbe:
-        #   httpGet:
-        #     path: /admin.index.php
-        #     port: 80
-        #   initialDelaySeconds: 60
-        #   periodSeconds: 5
-        # readinessProbe:
-        #   httpGet:
-        #     path: /admin.index.php
-        #     port: 80
-        #   initialDelaySeconds: 25
-        #   periodSeconds: 5
         startupProbe:
           httpGet:
             path: /admin.index.php
