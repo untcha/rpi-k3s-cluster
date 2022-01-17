@@ -11,5 +11,17 @@ configMapGenerator:
     namespace: dns-staging
     files:
       - custom.list
+  - name: regex.list
+    namespace: dns-staging
+    files:
+      - regex.list
+  - name: whitelist.txt
+    namespace: dns-staging
+    files:
+      - whitelist.txt
+  - name: adlists.list
+    namespace: dns-staging
+    files:
+      - adlists.list
 generatorOptions:
   disableNameSuffixHash: true
