@@ -5,8 +5,8 @@ metadata:
   namespace: recipes
   labels:
     app: recipes
-    environment: production
     tier: frontend
+    environment: production
 spec:
   replicas: 1
   strategy:
@@ -31,13 +31,11 @@ spec:
       - name: init-chmod-data
         image: vabene1111/recipes:1.0.4
         imagePullPolicy: Always
+        securityContext:
+          runAsUser: 0
         envFrom:
           - configMapRef:
               name: recipes-config
-        resources:
-          requests:
-            cpu: 250m
-            memory: 64Mi
         command:
         - sh
         - -c
@@ -53,17 +51,17 @@ spec:
           find /opt/recipes/mediafiles -type d | xargs -r chmod 755
           find /opt/recipes/mediafiles -type f | xargs -r chmod 644
           echo "Done"
-        securityContext:
-          runAsUser: 0
+        resources:
+          requests:
+            cpu: 250m
+            memory: 64Mi
         volumeMounts:
         - mountPath: /opt/recipes/mediafiles
           name: media
-          # mount as subPath due to lost+found on ext4 pvc
-          subPath: files
+          subPath: files  # mount as subPath due to lost+found on ext4 pvc
         - mountPath: /opt/recipes/staticfiles
           name: static
-          # mount as subPath due to lost+found on ext4 pvc
-          subPath: files
+          subPath: files  # mount as subPath due to lost+found on ext4 pvc
       containers:
       - name: recipes-nginx
         image: nginx:latest
@@ -82,12 +80,10 @@ spec:
         volumeMounts:
           - mountPath: /media
             name: media
-            # mount as subPath due to lost+found on ext4 pvc
-            subPath: files
+            subPath: files  # mount as subPath due to lost+found on ext4 pvc
           - mountPath: /static
             name: static
-            # mount as subPath due to lost+found on ext4 pvc
-            subPath: files
+            subPath: files  # mount as subPath due to lost+found on ext4 pvc
           - name: nginx-config
             mountPath: /etc/nginx/nginx.conf
             subPath: nginx-config
@@ -95,6 +91,11 @@ spec:
       - name: recipes
         image: vabene1111/recipes:1.0.4
         imagePullPolicy: IfNotPresent
+        securityContext:
+          runAsUser: 65534
+        envFrom:
+          - configMapRef:
+              name: recipes-config
         command:
           - /opt/recipes/venv/bin/gunicorn
           - -b
@@ -106,19 +107,36 @@ spec:
           - --log-level
           - INFO
           - recipes.wsgi
-        livenessProbe:
-          failureThreshold: 3
+        startupProbe:
           httpGet:
             path: /
             port: 8080
             scheme: HTTP
-          periodSeconds: 30
+          initialDelaySeconds: 10
+          timeoutSeconds: 5
+          failureThreshold: 30
+          successThreshold: 1
+          periodSeconds: 10
+        livenessProbe:
+          httpGet:
+            path: /
+            port: 8080
+            scheme: HTTP
+          initialDelaySeconds: 10
+          timeoutSeconds: 5
+          failureThreshold: 3
+          successThreshold: 1
+          periodSeconds: 10 #30
         readinessProbe:
           httpGet:
             path: /
             port: 8080
             scheme: HTTP
-          periodSeconds: 30
+          initialDelaySeconds: 10
+          timeoutSeconds: 5
+          failureThreshold: 3
+          successThreshold: 1
+          periodSeconds: 10 #30
         resources:
           requests:
             cpu: 250m
@@ -126,17 +144,10 @@ spec:
         volumeMounts:
           - mountPath: /opt/recipes/mediafiles
             name: media
-            # mount as subPath due to lost+found on ext4 pvc
-            subPath: files
+            subPath: files  # mount as subPath due to lost+found on ext4 pvc
           - mountPath: /opt/recipes/staticfiles
             name: static
-            # mount as subPath due to lost+found on ext4 pvc
-            subPath: files
-        envFrom:
-          - configMapRef:
-              name: recipes-config
-        securityContext:
-          runAsUser: 65534
+            subPath: files # mount as subPath due to lost+found on ext4 pvc
       volumes:
         - name: media
           persistentVolumeClaim:
