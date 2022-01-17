@@ -5,7 +5,7 @@ kind: Kustomization
 configMapGenerator:
   - name: pihole-env-vars2
     namespace: dns-staging
-    files:
+    envs:
       - pihole-env-vars.yaml
 generatorOptions:
   disableNameSuffixHash: true
