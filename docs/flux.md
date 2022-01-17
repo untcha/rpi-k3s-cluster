@@ -297,7 +297,7 @@ flux create helmrelease influxdb \
 flux create helmrelease kured \
   --source=HelmRepository/kured \
   --chart=kured \
-  --chart-version="2.11.1" \
+  --chart-version="2.11.2" \
   --target-namespace=kube-system \
   --values=kured-values.yaml \
   --export > kured-helmrelease.yaml

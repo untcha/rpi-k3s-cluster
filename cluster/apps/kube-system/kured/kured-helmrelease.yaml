@@ -11,7 +11,7 @@ spec:
       sourceRef:
         kind: HelmRepository
         name: kured
-      version: 2.11.1
+      version: 2.11.2
   interval: 1m0s
   targetNamespace: kube-system
   values:
@@ -46,6 +46,7 @@ spec:
       slackUsername: ""
       startTime: ""
       timeZone: ${TIMEZONE}
+    dsAnnotations: {}
     extraArgs: {}
     extraEnvVars: null
     image:
