@@ -62,7 +62,7 @@ spec:
   entryPoints:
     - websecure
   routes:
-    - match: Host(`recipes.${SECRET_DIGITALOCEAN_DOMAIN_02}`)
+    - match: Host(`recipes.${SECRET_DIGITALOCEAN_DOMAIN_02}`) || Host(`rezepte.${SECRET_DIGITALOCEAN_DOMAIN_02}`)
       kind: Rule
       services:
         - name: recipes
@@ -74,12 +74,12 @@ spec:
         - name: recipes
           namespace: recipes
           port: 80
-    - match: Host(`rezepte.${SECRET_DIGITALOCEAN_DOMAIN_02}`)
-      kind: Rule
-      services:
-        - name: recipes
-          namespace: recipes
-          port: 8080
+    # - match: Host(`rezepte.${SECRET_DIGITALOCEAN_DOMAIN_02}`)
+    #   kind: Rule
+    #   services:
+    #     - name: recipes
+    #       namespace: recipes
+    #       port: 8080
     - match: Host(`rezepte.${SECRET_DIGITALOCEAN_DOMAIN_02}`) && (PathPrefix(`/media`) || PathPrefix(`/static`))
       kind: Rule
       services:
