@@ -55,7 +55,7 @@ spec:
           protocol: UDP
         startupProbe:
           tcpSocket:
-            port: 5335
+            port: 53
           initialDelaySeconds: 10
           timeoutSeconds: 5
           failureThreshold: 30
@@ -63,7 +63,7 @@ spec:
           periodSeconds: 10
         livenessProbe:
           tcpSocket:
-            port: 5335
+            port: 53
           initialDelaySeconds: 10
           timeoutSeconds: 5
           failureThreshold: 3
@@ -71,7 +71,7 @@ spec:
           periodSeconds: 10
         readinessProbe:
           tcpSocket:
-            port: 5335
+            port: 53
           initialDelaySeconds: 10
           timeoutSeconds: 5
           failureThreshold: 3
