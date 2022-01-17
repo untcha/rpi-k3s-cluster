@@ -6,6 +6,6 @@ configMapGenerator:
   - name: pihole-env-vars2
     namespace: dns-staging
     envs:
-      - pihole-env-vars.yaml
+      - pihole-env-vars.env
 generatorOptions:
   disableNameSuffixHash: true
