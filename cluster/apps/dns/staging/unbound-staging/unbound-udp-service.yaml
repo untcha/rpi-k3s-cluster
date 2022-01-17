@@ -2,16 +2,18 @@
 kind: Service
 apiVersion: v1
 metadata:
-  name: unbound-udp
+  name: unbound-staging-udp-service
   namespace: dns-staging
   labels:
     app: unbound-staging
+    environment: staging
   annotations:
     metallb.universe.tf/address-pool: dns
     metallb.universe.tf/allow-shared-ip: unbound-staging-svc
 spec:
   selector:
     app: unbound-staging
+    environment: staging
   ports:
   - name: dns-udp
     port: 53

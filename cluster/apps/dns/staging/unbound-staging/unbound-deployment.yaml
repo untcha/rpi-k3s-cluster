@@ -6,8 +6,9 @@ metadata:
   namespace: dns-staging
   labels:
     app: unbound-staging
+    environment: staging
 spec:
-  replicas: 4
+  replicas: 1
   strategy:
     rollingUpdate:
       maxSurge: 1
@@ -16,10 +17,12 @@ spec:
   selector:
     matchLabels:
       app: unbound-staging
+      environment: staging
   template:
     metadata:
       labels:
         app: unbound-staging
+        environment: staging
         name: unbound-staging
       annotations:
         configmap.reloader.stakater.com/reload: "unbound-config, unbound-root-hints, unbound-root-key-initial, unbound-a-records"
@@ -50,6 +53,30 @@ spec:
         - name: dns-udp
           containerPort: 5335
           protocol: UDP
+        startupProbe:
+          tcpSocket:
+            port: 5335
+          initialDelaySeconds: 10
+          timeoutSeconds: 5
+          failureThreshold: 30
+          successThreshold: 1
+          periodSeconds: 10
+        livenessProbe:
+          tcpSocket:
+            port: 5335
+          initialDelaySeconds: 10
+          timeoutSeconds: 5
+          failureThreshold: 3
+          successThreshold: 1
+          periodSeconds: 10
+        readinessProbe:
+          tcpSocket:
+            port: 5335
+          initialDelaySeconds: 10
+          timeoutSeconds: 5
+          failureThreshold: 3
+          successThreshold: 1
+          periodSeconds: 10       
         volumeMounts:
           - name: usr-local-etc-unbound
             mountPath: /usr/local/etc/unbound
