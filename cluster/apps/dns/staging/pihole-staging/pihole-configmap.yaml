@@ -1,23 +1,23 @@
----
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: pihole-env-vars
-  namespace: dns-staging
-data:
-  WEBPASSWORD: ${SECRET_PIHOLE_WEBPASSWORD}
-  ADMIN_EMAIL: ${SECRET_EMAIL}
-  TZ: ${TIMEZONE}
-  DNS1: ${UNBOUND_STAGING_SVC_LB_IP}
-  DNS2: ${UNBOUND_STAGING_SVC_LB_IP}
-  ServerIP: ${PIHOLE_STAGING_SVC_LB_IP}
-  IPv6: "false"
-  # ServerIPv6: "::"
-  TEMPERATUREUNIT: c
-  WEBUIBOXEDLAYOUT: boxed
-  WEBTHEME: "default-dark"
-  FTLCONF_REPLY_ADDR4: ${PIHOLE_STAGING_SVC_LB_IP}
-  FTLCONF_MAXDBDAYS: "14"
+# ---
+# apiVersion: v1
+# kind: ConfigMap
+# metadata:
+#   name: pihole-env-vars
+#   namespace: dns-staging
+# data:
+#   WEBPASSWORD: ${SECRET_PIHOLE_WEBPASSWORD}
+#   ADMIN_EMAIL: ${SECRET_EMAIL}
+#   TZ: ${TIMEZONE}
+#   DNS1: ${UNBOUND_STAGING_SVC_LB_IP}
+#   DNS2: ${UNBOUND_STAGING_SVC_LB_IP}
+#   ServerIP: ${PIHOLE_STAGING_SVC_LB_IP}
+#   IPv6: "false"
+#   # ServerIPv6: "::"
+#   TEMPERATUREUNIT: c
+#   WEBUIBOXEDLAYOUT: boxed
+#   WEBTHEME: "default-dark"
+#   FTLCONF_REPLY_ADDR4: ${PIHOLE_STAGING_SVC_LB_IP}
+#   FTLCONF_MAXDBDAYS: "14"
 
 ---
 apiVersion: v1
