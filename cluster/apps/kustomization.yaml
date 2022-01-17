@@ -32,7 +32,6 @@ resources:
     # prometheus-exporter
   - nextcloud
   - recipes
-  # - test
   - tools
     # reloader
   - vaultwarden
