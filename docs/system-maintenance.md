@@ -76,6 +76,14 @@ kubectl uncordon rpi-k3s-master-0
 kubectl uncordon rpi-k3s-worker-0
 ```
 
+### Automatically reboot with kured (kured - Kubernetes Reboot Daemon)
+
+Watch only the logs of kured PODs:
+
+``` bash
+kubetail -l app=kured -n kube-system
+```
+
 ### Reference
 - [Longhorn Node Maintenance Guide](https://longhorn.io/docs/1.2.3/volumes-and-nodes/maintenance/)
 
