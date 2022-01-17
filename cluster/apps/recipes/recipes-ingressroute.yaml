@@ -68,7 +68,7 @@ spec:
         - name: recipes
           namespace: recipes
           port: 8080
-    - match: Host(`recipes.${SECRET_DIGITALOCEAN_DOMAIN_02}`) && (PathPrefix(`/media`) || PathPrefix(`/static`))
+    - match: Host(`recipes.${SECRET_DIGITALOCEAN_DOMAIN_02}`) && (PathPrefix(`/media`) || PathPrefix(`/static`)) || Host(`rezepte.${SECRET_DIGITALOCEAN_DOMAIN_02}`) && (PathPrefix(`/media`) || PathPrefix(`/static`))
       kind: Rule
       services:
         - name: recipes
@@ -80,11 +80,11 @@ spec:
     #     - name: recipes
     #       namespace: recipes
     #       port: 8080
-    - match: Host(`rezepte.${SECRET_DIGITALOCEAN_DOMAIN_02}`) && (PathPrefix(`/media`) || PathPrefix(`/static`))
-      kind: Rule
-      services:
-        - name: recipes
-          namespace: recipes
-          port: 80
+    # - match: Host(`rezepte.${SECRET_DIGITALOCEAN_DOMAIN_02}`) && (PathPrefix(`/media`) || PathPrefix(`/static`))
+    #   kind: Rule
+    #   services:
+    #     - name: recipes
+    #       namespace: recipes
+    #       port: 80
   tls:
     secretName: "${SECRET_DOMAIN/./-}-tls"
