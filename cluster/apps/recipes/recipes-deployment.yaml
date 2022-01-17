@@ -24,6 +24,8 @@ spec:
         tier: frontend
         environment: production
     spec:
+      nodeSelector:
+        node-type: worker
       restartPolicy: Always
       serviceAccount: recipes
       serviceAccountName: recipes
