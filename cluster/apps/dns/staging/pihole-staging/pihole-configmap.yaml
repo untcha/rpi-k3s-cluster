@@ -19,22 +19,22 @@
 #   FTLCONF_REPLY_ADDR4: ${PIHOLE_STAGING_SVC_LB_IP}
 #   FTLCONF_MAXDBDAYS: "14"
 
----
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: custom.list
-  namespace: dns-staging
-data:
-  custom.list: |
-    ${SECRET_PIHOLE_DNS_RECORD_01}
-    ${SECRET_PIHOLE_DNS_RECORD_02}
-    ${SECRET_PIHOLE_DNS_RECORD_03}
-    ${SECRET_PIHOLE_DNS_RECORD_04}
-    ${SECRET_PIHOLE_DNS_RECORD_05}
-    ${SECRET_PIHOLE_DNS_RECORD_06}
-    ${SECRET_PIHOLE_DNS_RECORD_07}
-    ${SECRET_PIHOLE_DNS_RECORD_08}
+# ---
+# apiVersion: v1
+# kind: ConfigMap
+# metadata:
+#   name: custom.list
+#   namespace: dns-staging
+# data:
+#   custom.list: |
+#     ${SECRET_PIHOLE_DNS_RECORD_01}
+#     ${SECRET_PIHOLE_DNS_RECORD_02}
+#     ${SECRET_PIHOLE_DNS_RECORD_03}
+#     ${SECRET_PIHOLE_DNS_RECORD_04}
+#     ${SECRET_PIHOLE_DNS_RECORD_05}
+#     ${SECRET_PIHOLE_DNS_RECORD_06}
+#     ${SECRET_PIHOLE_DNS_RECORD_07}
+#     ${SECRET_PIHOLE_DNS_RECORD_08}
 
 ---
 apiVersion: v1
