@@ -476,7 +476,7 @@ flux create helmrelease postgres-test \
 flux create helmrelease prometheus \
   --source=HelmRepository/prometheus-community \
   --chart=prometheus \
-  --chart-version="15.0.2" \
+  --chart-version="15.0.4" \
   --target-namespace=monitoring \
   --values=prometheus-values.yaml \
   --export > prometheus-helmrelease.yaml
