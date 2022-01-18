@@ -7,9 +7,8 @@ configMapGenerator:
     namespace: monitoring
     files:
       - datasources.yaml
-    options:
-      annotations:
-        grafana_datasource: "1"
 
 generatorOptions:
   disableNameSuffixHash: true
+  labels:
+    grafana_datasource: 1
