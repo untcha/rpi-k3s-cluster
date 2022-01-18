@@ -325,14 +325,14 @@ initChownData:
 
 
 # Administrator credentials when not using an existing secret (see below)
-adminUser: admin
-# adminPassword: strongpassword
+adminUser: ${SECRET_GRAFANA_ADMIN_USER}
+adminPassword: ${SECRET_GRAFANA_ADMIN_PASSWORD}
 
 # Use an existing secret for the admin user.
-admin:
-  existingSecret: "grafana-auth"
-  userKey: admin-user
-  passwordKey: admin-password
+# admin:
+#   existingSecret: ""
+#   userKey: admin-user
+#   passwordKey: admin-password
 
 ## Define command to be executed at startup by grafana container
 ## Needed if using `vault-env` to manage secrets (ref: https://banzaicloud.com/blog/inject-secrets-into-pods-vault/)
