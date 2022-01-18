@@ -11,10 +11,10 @@ configMapGenerator:
       labels:
         grafana_datasource: "1"
 
-  - name: grafana-simple-cluster-dashboard
+  - name: grafana-node-exporter-full-dashboard
     namespace: monitoring
     files:
-      - simple-cluster-dashboard.json
+      - node-exporter-full.json
     options:
       labels:
         grafana_dashboard: "1" 
