@@ -164,7 +164,8 @@ alertmanager:
   ## Node labels for alertmanager pod assignment
   ## Ref: https://kubernetes.io/docs/user-guide/node-selection/
   ##
-  nodeSelector: {}
+  nodeSelector:
+    node-type: worker
 
   ## Pod affinity
   ##
@@ -202,7 +203,7 @@ alertmanager:
     ## alertmanager data Persistent Volume existing claim name
     ## Requires alertmanager.persistentVolume.enabled: true
     ## If defined, PVC must be created manually before volume will be bound
-    existingClaim: ""
+    existingClaim: "prometheus-alertmanager-pvc"
 
     ## alertmanager data Persistent Volume mount root path
     ##
@@ -847,7 +848,8 @@ server:
   ## Node labels for Prometheus server pod assignment
   ## Ref: https://kubernetes.io/docs/user-guide/node-selection/
   ##
-  nodeSelector: {}
+  nodeSelector:
+    node-type: worker
 
   ## Pod affinity
   ##
@@ -885,7 +887,7 @@ server:
     ## Prometheus server data Persistent Volume existing claim name
     ## Requires server.persistentVolume.enabled: true
     ## If defined, PVC must be created manually before volume will be bound
-    existingClaim: ""
+    existingClaim: "prometheus-server-pvc"
 
     ## Prometheus server data Persistent Volume mount root path
     ##
@@ -1066,11 +1068,11 @@ server:
     ##
     externalIPs: []
 
-    loadBalancerIP: ""
+    loadBalancerIP: "${PROMETHEUS_SVC_LB_IP}"
     loadBalancerSourceRanges: []
     servicePort: 80
     sessionAffinity: None
-    type: ClusterIP
+    type: LoadBalancer
 
     ## Enable gRPC port on service to allow auto discovery with thanos-querier
     gRPC:
@@ -1091,7 +1093,7 @@ server:
 
   ## Prometheus data retention period (default if not specified is 15 days)
   ##
-  retention: "15d"
+  retention: "7d"
 
 pushgateway:
   ## If false, pushgateway will not be installed
@@ -1181,7 +1183,8 @@ pushgateway:
   ## Node labels for pushgateway pod assignment
   ## Ref: https://kubernetes.io/docs/user-guide/node-selection/
   ##
-  nodeSelector: {}
+  nodeSelector:
+    node-type: worker
 
   ## Annotations to be added to pushgateway pods
   ##
@@ -1279,7 +1282,7 @@ pushgateway:
   persistentVolume:
     ## If true, pushgateway will create/use a Persistent Volume Claim
     ##
-    enabled: false
+    enabled: true
 
     ## pushgateway data Persistent Volume access modes
     ## Must match those of existing PV or dynamic provisioner
@@ -1295,7 +1298,7 @@ pushgateway:
     ## pushgateway data Persistent Volume existing claim name
     ## Requires pushgateway.persistentVolume.enabled: true
     ## If defined, PVC must be created manually before volume will be bound
-    existingClaim: ""
+    existingClaim: "prometheus-pushgateway-pvc"
 
     ## pushgateway data Persistent Volume mount root path
     ##
@@ -1769,7 +1772,32 @@ serverFiles:
 # adds additional scrape configs to prometheus.yml
 # must be a string so you have to add a | after extraScrapeConfigs:
 # example adds prometheus-blackbox-exporter scrape config
-extraScrapeConfigs:
+extraScrapeConfigs: |
+  # - job_name: 'z-custom_speedtest-metrics'
+  #   scrape_interval: 1h
+  #   scrape_timeout: 5m
+  #   scheme: http
+  #   metrics_path: /metrics
+  #   static_configs:
+  #     - targets:
+  #       - speedtest.${SECRET_DOMAIN_LOCAL_02}
+  #
+  # - job_name: 'traefik-metrics'
+  #   scrape_interval: 5s
+  #   scheme: http
+  #   metrics_path: /metrics
+  #   static_configs:
+  #     - targets:
+  #       - traefik.${SECRET_DOMAIN_LOCAL_02}
+  #
+  # - job_name: 'z-custom_pihole-metrics'
+  #   scrape_interval: 5s
+  #   scheme: http
+  #   metrics_path: /metrics
+  #   static_configs:
+  #     - targets:
+  #       - pihole-metrics.${SECRET_DOMAIN_LOCAL_02}
+  #
   # - job_name: 'prometheus-blackbox-exporter'
   #   metrics_path: /probe
   #   params:
