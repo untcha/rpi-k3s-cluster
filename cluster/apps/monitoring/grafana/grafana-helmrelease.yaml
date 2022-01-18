@@ -15,11 +15,8 @@ spec:
   interval: 1m0s
   targetNamespace: monitoring
   values:
-    admin:
-      existingSecret: grafana-auth
-      passwordKey: admin-password
-      userKey: admin-user
-    adminUser: admin
+    adminPassword: ${SECRET_GRAFANA_ADMIN_PASSWORD}
+    adminUser: ${SECRET_GRAFANA_ADMIN_USER}
     affinity: {}
     autoscaling:
       enabled: false
