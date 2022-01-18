@@ -7,5 +7,5 @@ resources:
   - grafana-helmrelease.yaml
   - grafana-ingressroute.yaml
   - grafana-middleware.yaml
-  # - grafana-datasources
+  - grafana-datasources
   # - grafana-dashboards
