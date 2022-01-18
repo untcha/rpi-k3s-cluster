@@ -6,10 +6,10 @@ configMapGenerator:
     namespace: monitoring
     files:
       - simple-cluster-dashboard.json
-  - name: grafana-speedtest-dashboard
-    namespace: monitoring
-    files:
-      - speedtest.json
+  # - name: grafana-speedtest-dashboard
+  #   namespace: monitoring
+  #   files:
+  #     - speedtest.json
 commonLabels:
   grafana_dashboard: "1"
 generatorOptions:

@@ -10,12 +10,12 @@ configMapGenerator:
     options:
       labels:
         grafana_datasource: "1"
-  - name: grafana-node-exporter-full-dashboard
-    namespace: monitoring
-    files:
-      - node-exporter-full.json
-    options:
-      labels:
-        grafana_dashboard: "1" 
+  # - name: grafana-node-exporter-full-dashboard
+  #   namespace: monitoring
+  #   files:
+  #     - node-exporter-full.json
+  #   options:
+  #     labels:
+  #       grafana_dashboard: "1" 
 generatorOptions:
   disableNameSuffixHash: true
