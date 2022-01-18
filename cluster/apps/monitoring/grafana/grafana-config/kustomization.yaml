@@ -9,7 +9,7 @@ configMapGenerator:
       - datasources.yaml
     options:
       annotations:
-        dashboard: "1"
+        datasource: "1"
 
 generatorOptions:
   disableNameSuffixHash: true
