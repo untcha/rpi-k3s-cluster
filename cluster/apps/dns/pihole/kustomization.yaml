@@ -8,4 +8,3 @@ resources:
   - pihole-deployment.yaml
   - pihole-letsencrypt-certificate.yaml
   - pihole-ingressroute.yaml
-  - pihole-exporter
