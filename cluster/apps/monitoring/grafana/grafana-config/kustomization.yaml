@@ -9,7 +9,7 @@ configMapGenerator:
       - datasources.yaml
     options:
       annotations:
-        datasource: "1"
+        grafana_datasource: "1"
 
 generatorOptions:
   disableNameSuffixHash: true
