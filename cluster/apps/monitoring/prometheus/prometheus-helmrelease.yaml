@@ -11,7 +11,7 @@ spec:
       sourceRef:
         kind: HelmRepository
         name: prometheus-community
-      version: 15.0.2
+      version: 15.0.4
   interval: 1m0s
   targetNamespace: monitoring
   values:
@@ -381,7 +381,7 @@ spec:
           enabled: false
           replica: 0
         type: LoadBalancer
-      sidecarContainers: []
+      sidecarContainers: {}
       sidecarTemplateValues: {}
       startupProbe:
         enabled: false
