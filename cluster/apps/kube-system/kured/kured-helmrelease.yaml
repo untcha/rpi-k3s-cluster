@@ -23,7 +23,7 @@ spec:
       blockingPodSelector: []
       drainGracePeriod: ""
       drainTimeout: ""
-      endTime: "04:00"
+      endTime: "08:00"
       forceReboot: false
       lockAnnotation: ""
       lockReleaseDelay: 0
@@ -44,7 +44,7 @@ spec:
       slackChannel: ""
       slackHookUrl: ""
       slackUsername: ""
-      startTime: "0:15"
+      startTime: "03:00"
       timeZone: ${TIMEZONE}
     dsAnnotations: {}
     extraArgs: {}
