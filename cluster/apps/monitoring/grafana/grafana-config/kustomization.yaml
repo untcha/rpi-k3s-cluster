@@ -10,7 +10,6 @@ configMapGenerator:
     options:
       labels:
         grafana_datasource: "1"
-
   - name: grafana-node-exporter-full-dashboard
     namespace: monitoring
     files:
@@ -18,6 +17,5 @@ configMapGenerator:
     options:
       labels:
         grafana_dashboard: "1" 
-
 generatorOptions:
   disableNameSuffixHash: true
