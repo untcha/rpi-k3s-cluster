@@ -8,4 +8,4 @@ resources:
   - grafana-ingressroute.yaml
   - grafana-middleware.yaml
   - grafana-datasources
-  - grafana-dashboards
+  # - grafana-dashboards
