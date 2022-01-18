@@ -7,8 +7,14 @@ configMapGenerator:
     namespace: monitoring
     files:
       - datasources.yaml
+    options:
+      labels:
+        grafana_datasource: "1"
 
-generatorOptions:
-  disableNameSuffixHash: true
-  labels:
-    grafana_datasource: "1"
+  - name: grafana-simple-cluster-dashboard
+    namespace: monitoring
+    files:
+      - simple-cluster-dashboard.json
+    options:
+      labels:
+        grafana_dashboard: "1" 
