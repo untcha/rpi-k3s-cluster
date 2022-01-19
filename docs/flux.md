@@ -439,6 +439,16 @@ flux create helmrelease nextcloud-postgres \
 ```
 
 ```bash
+flux create helmrelease paperless-postgres \
+  --source=HelmRepository/groundhog2k \
+  --chart=postgres \
+  --chart-version="0.3.3" \
+  --target-namespace=paperless \
+  --values=postgres-values.yaml \
+  --export > postgres-helmrelease.yaml
+```
+
+```bash
 flux create helmrelease recipes-postgres \
   --source=HelmRepository/groundhog2k \
   --chart=postgres \
