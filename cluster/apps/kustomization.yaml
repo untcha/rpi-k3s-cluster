@@ -31,7 +31,7 @@ resources:
     # influxdata
     # prometheus-exporter
   - nextcloud
-  - paperless
+  - paperless-ng
   - recipes
   - tools
     # reloader
