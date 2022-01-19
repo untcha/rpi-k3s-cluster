@@ -6,8 +6,7 @@ resources:
   - namespace.yaml
   - postgres
   - redis
-  # - paperless-config
-  # - paperless-configmap.yaml
+  - paperless-config
   - paperless-serviceaccount.yaml
   - paperless-pvcs.yaml
   - paperless-service.yaml
