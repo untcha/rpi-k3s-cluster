@@ -514,6 +514,16 @@ flux create helmrelease nextcloud-redis \
   --export > redis-helmrelease.yaml
 ```
 
+```bash
+flux create helmrelease paperless-redis \
+  --source=HelmRepository/groundhog2k \
+  --chart=redis \
+  --chart-version="0.4.9" \
+  --target-namespace=paperless \
+  --values=redis-values.yaml \
+  --export > redis-helmrelease.yaml
+```
+
 ### Reloader
 
 ```bash

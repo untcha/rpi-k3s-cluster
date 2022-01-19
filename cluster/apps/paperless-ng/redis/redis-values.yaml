@@ -1,0 +1,176 @@
+## Default values for Redis deployment
+
+## Redis docker image
+image:
+  repository: redis
+  pullPolicy: IfNotPresent
+  # Overrides the image tag whose default is the chart appVersion.
+  tag: ""
+
+## Pull secrets and name override options
+imagePullSecrets: []
+nameOverride: ""
+fullnameOverride: ""
+
+## Optional service account
+serviceAccount:
+  # Specifies whether a service account should be created
+  create: false
+  # Annotations to add to the service account
+  annotations: {}
+  # The name of the service account to use.
+  # If not set and create is true, a name is generated using the fullname template
+  name: ""
+
+## Additional node selector
+nodeSelector:
+  node-type: worker
+
+## Additional pod annotations
+podAnnotations: {}
+
+## Pod management policy
+podManagementPolicy: OrderedReady
+
+## Pod update strategy
+updateStrategyType: RollingUpdate
+
+## Pod security options
+podSecurityContext:
+  fsGroup: 999
+
+## Default security options to run Redis as non-root, read only container without privilege escalation
+securityContext:
+  allowPrivilegeEscalation: false
+  privileged: false
+  readOnlyRootFilesystem: true
+  runAsNonRoot: true
+  runAsUser: 999
+  runAsGroup: 999
+
+## Default redis service port (default Redis server port 6379, defaul Redis sentinel port 26379)
+service:
+  ## Type of service (not available when haMode is enabled)
+  type: ClusterIP
+  ## Redis server port
+  serverPort: 6379
+  ## Redis sentinel mode (only when haMode is enabled)
+  sentinelPort: 26379
+  ## The node port (only relevant for type LoadBalancer or NodePort - not available when haMode is enabled)
+  nodePort:
+  ## The cluster ip address (only relevant for type LoadBalancer or NodePort)
+  clusterIP:
+  ## The loadbalancer ip address (only relevant for type LoadBalancer - not available when haMode is enabled)
+  loadBalancerIP:
+  # Annotations to add to the service
+  annotations: {}
+
+## Resource limits and requests (for Redis)
+resources: {}
+  # limits:
+  #   cpu: 100m
+  #   memory: 128Mi
+  # requests:
+  #   cpu: 100m
+  #   memory: 128Mi
+
+## Resource limits and requests (for Redis Sentinel - only when haMode is enabled)
+sentinelResources: {}
+  # limits:
+  #   cpu: 100m
+  #   memory: 128Mi
+  # requests:
+  #   cpu: 100m
+  #   memory: 128Mi
+
+tolerations: []
+
+affinity: {}
+
+## Maximum number of revisions maintained in revision history
+revisionHistoryLimit:
+
+## Pod disruption budget
+podDisruptionBudget: {}
+  ## Minimum number of pods that must be available after eviction
+  # minAvailable:
+  ## Maximum number of pods that can be unavailable after eviction
+  # maxUnavailable:
+
+## Custom liveness probe (overwrites default liveness probe)
+customLivenessProbe: {}
+
+## Default liveness probe
+livenessProbe:
+  enabled: true
+  initialDelaySeconds: 15
+  timeoutSeconds: 5
+  failureThreshold: 3
+  successThreshold: 1
+  periodSeconds: 10
+
+## Custom readiness probe (overwrites default readiness probe)
+customReadinessProbe: {}
+
+## Default readiness probe
+readinessProbe:
+  enabled: true
+  initialDelaySeconds: 15
+  timeoutSeconds: 5
+  failureThreshold: 3
+  successThreshold: 1
+  periodSeconds: 10
+
+## Additional environment variables (Redis server and Sentinel)
+env:
+- name: TZ
+  value: ${TIMEZONE}
+
+## Arguments for the container entrypoint process (Redis server)
+args: []
+
+## Arguments for the container entrypoint process (Sentinel)
+sentinelArgs: []
+
+## Additional redis.conf
+redisConfig: |
+  requirepass ${SECRET_GLOBAL_REDIS_PASSWORD}
+
+## Additional sentinel.conf (only when haMode is enabled)
+sentinelConfig: |
+
+## High availability mode (with master-slave replication and sentinel)
+haMode:
+  ## Enable high availibility deployment mode
+  enabled: false
+  ## Mandatory redis HA-master group name (default "redisha")
+  masterGroupName: "redisha"
+  ## Number of replicas (minimum should be 3)
+  replicas: 3
+  ## Quorum of sentinels that need to agree that a master node is not available
+  quorum: 2
+  ## Number of milliseconds after the master should be declared as unavailable
+  downAfterMilliseconds: 5000
+  ## Timeout for a failover
+  failoverTimeout: 180000
+  ## Number of parallel reconfigurations
+  parallelSyncs: 2
+  ## Timeout in seconds to detect if Redis master is alive
+  masterAliveTestTimeout: 2
+  ## Assumed wait time in seconds until failover should be finished
+  failoverWait: 5
+
+## Storage parameters
+storage:
+  ##  Set persistentVolumenClaimName to reference an existing PVC
+  persistentVolumeClaimName: paperless-redis-pvc
+
+  ## Alternative set requestedSize to define a size for a dynmaically created PVC
+  requestedSize:
+
+  ## the storage class name
+  className:
+
+  ## Default access mode (ReadWriteOnce)
+  accessModes:
+    - ReadWriteOnce
