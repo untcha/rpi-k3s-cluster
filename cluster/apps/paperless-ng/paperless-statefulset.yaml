@@ -40,7 +40,7 @@ spec:
         startupProbe:
           httpGet:
             path: /
-            port: 8080
+            port: 8000
             scheme: HTTP
           initialDelaySeconds: 10
           timeoutSeconds: 5
