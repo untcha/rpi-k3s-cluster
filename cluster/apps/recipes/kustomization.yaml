@@ -5,8 +5,7 @@ kind: Kustomization
 resources:
   - namespace.yaml
   - postgres
-  # - recipes-config
-  # - recipes-configmap.yaml
+  - recipes-config
   # - recipes-serviceaccount.yaml
   # - recipes-pvcs.yaml
   # - recipes-service.yaml
