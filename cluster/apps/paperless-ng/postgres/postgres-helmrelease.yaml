@@ -17,7 +17,7 @@ spec:
   values:
     affinity: {}
     args: []
-    customConfig: ""
+    customConfig: password_encryption = "md5"
     customLivenessProbe: {}
     customReadinessProbe: {}
     customStartupProbe: {}

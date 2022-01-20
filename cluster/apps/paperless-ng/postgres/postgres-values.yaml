@@ -146,6 +146,7 @@ userDatabase:
 
 ## Optional custom configuration block that will be mounted as file in /etc/postgresql/postgresql.conf
 customConfig: |-
+  password_encryption = "md5"
 
 ## Storage parameters
 storage:
