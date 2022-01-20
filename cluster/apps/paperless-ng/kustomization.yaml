@@ -10,5 +10,5 @@ resources:
   - paperless-serviceaccount.yaml
   - paperless-pvcs.yaml
   - paperless-service.yaml
-  # - paperless-statefulset.yaml
+  - paperless-statefulset.yaml
   # - paperless-ingressroute.yaml

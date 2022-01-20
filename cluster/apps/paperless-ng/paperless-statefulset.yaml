@@ -1,0 +1,87 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: paperless
+  namespace: paperless
+  labels:
+    app: paperless
+spec:
+  replicas: 1
+  revisionHistoryLimit: 1
+  updateStrategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      app: paperless
+  serviceName: paperless
+  template:
+    metadata:
+      annotations:
+        configmap.reloader.stakater.com/reload: "paperless-config"
+      labels:
+        app: paperless
+    spec:
+      nodeSelector:
+        node-type: worker
+      restartPolicy: Always
+      serviceAccount: paperless
+      serviceAccountName: paperless
+      containers:
+      - name: paperless
+        image: jonaswinkler/paperless-ng:1.5.0
+        imagePullPolicy: IfNotPresent
+        envFrom:
+          - configMapRef:
+              name: paperless-config
+        ports:
+          - name: http
+            containerPort: 8000
+            protocol: TCP
+        startupProbe:
+          httpGet:
+            path: /
+            port: 8080
+            scheme: HTTP
+          initialDelaySeconds: 10
+          timeoutSeconds: 5
+          failureThreshold: 30
+          successThreshold: 1
+          periodSeconds: 10
+        livenessProbe:
+          httpGet:
+            path: /
+            port: 8000
+            scheme: HTTP
+          initialDelaySeconds: 10
+          timeoutSeconds: 5
+          failureThreshold: 3
+          successThreshold: 1
+          periodSeconds: 10 #30
+        readinessProbe:
+          httpGet:
+            path: /
+            port: 8000
+            scheme: HTTP
+          initialDelaySeconds: 10
+          timeoutSeconds: 5
+          failureThreshold: 3
+          successThreshold: 1
+          periodSeconds: 10 #30
+        volumeMounts:
+          - name: media
+            mountPath: /usr/src/paperless/media
+          - name: data
+            mountPath: /usr/src/paperless/data
+          - name: consume
+            mountPath: /usr/src/paperless/consume
+      restartPolicy: Always
+      volumes:
+        - name: media
+          persistentVolumeClaim:
+            claimName: paperless-media-pvc
+        - name: data
+          persistentVolumeClaim:
+            claimName: paperless-data-pvc
+        - name: consume
+          persistentVolumeClaim:
+            claimName: paperless-consume-pvc
