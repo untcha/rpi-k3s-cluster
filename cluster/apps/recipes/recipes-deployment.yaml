@@ -92,7 +92,7 @@ spec:
             subPath: nginx-config
             readOnly: true
       - name: recipes
-        image: vabene1111/recipes:1.0.4
+        image: vabene1111/recipes:1.0.4.1
         imagePullPolicy: IfNotPresent
         securityContext:
           runAsUser: 65534
