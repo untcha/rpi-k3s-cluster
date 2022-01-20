@@ -30,7 +30,7 @@ spec:
     image:
       pullPolicy: IfNotPresent
       repository: postgres
-      tag: "13.5"
+      tag: ""
     imagePullSecrets: []
     livenessProbe:
       enabled: true
