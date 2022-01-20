@@ -17,7 +17,7 @@ spec:
   values:
     affinity: {}
     args: []
-    customConfig: password_encryption = md5
+    customConfig: ""
     customLivenessProbe: {}
     customReadinessProbe: {}
     customStartupProbe: {}
@@ -30,7 +30,7 @@ spec:
     image:
       pullPolicy: IfNotPresent
       repository: postgres
-      tag: ""
+      tag: "13.5"
     imagePullSecrets: []
     livenessProbe:
       enabled: true
