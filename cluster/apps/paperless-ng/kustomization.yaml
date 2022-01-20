@@ -5,7 +5,7 @@ kind: Kustomization
 resources:
   - namespace.yaml
   # - mariadb
-  - postgres
+  # - postgres
   - redis
   - paperless-config
   - paperless-serviceaccount.yaml
