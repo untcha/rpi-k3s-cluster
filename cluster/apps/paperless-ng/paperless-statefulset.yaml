@@ -74,7 +74,6 @@ spec:
             mountPath: /usr/src/paperless/data
           - name: consume
             mountPath: /usr/src/paperless/consume
-      restartPolicy: Always
       volumes:
         - name: media
           persistentVolumeClaim:
