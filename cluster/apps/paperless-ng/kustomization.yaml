@@ -4,11 +4,11 @@ kind: Kustomization
 
 resources:
   - namespace.yaml
-  - postgres
+  # - postgres
   - redis
   - paperless-config
-  - paperless-serviceaccount.yaml
   - paperless-pvcs.yaml
+  - paperless-serviceaccount.yaml
   - paperless-service.yaml
   # - paperless-deployment.yaml
   - paperless-ingressroute.yaml
