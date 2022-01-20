@@ -6,8 +6,8 @@ resources:
   - namespace.yaml
   - postgres
   - recipes-config
-  # - recipes-serviceaccount.yaml
-  # - recipes-pvcs.yaml
-  # - recipes-service.yaml
-  # - recipes-deployment.yaml
-  # - recipes-ingressroute.yaml
+  - recipes-pvcs.yaml
+  - recipes-serviceaccount.yaml
+  - recipes-service.yaml
+  - recipes-deployment.yaml
+  - recipes-ingressroute.yaml

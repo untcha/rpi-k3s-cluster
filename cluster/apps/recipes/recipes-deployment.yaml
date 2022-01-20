@@ -32,7 +32,7 @@ spec:
       serviceAccountName: recipes
       initContainers:
       - name: init-chmod-data
-        image: vabene1111/recipes:1.0.4
+        image: vabene1111/recipes:1.0.4.1
         imagePullPolicy: Always
         securityContext:
           runAsUser: 0
@@ -59,12 +59,12 @@ spec:
             cpu: 250m
             memory: 64Mi
         volumeMounts:
-        - mountPath: /opt/recipes/mediafiles
-          name: media
-          subPath: files  # mount as subPath due to lost+found on ext4 pvc
-        - mountPath: /opt/recipes/staticfiles
-          name: static
-          subPath: files  # mount as subPath due to lost+found on ext4 pvc
+          - name: media
+            mountPath: /opt/recipes/mediafiles
+            subPath: files  # mount as subPath due to lost+found on ext4 pvc
+          - name: static
+            mountPath: /opt/recipes/staticfiles
+            subPath: files  # mount as subPath due to lost+found on ext4 pvc
       containers:
       - name: recipes-nginx
         image: nginx:latest
@@ -81,11 +81,11 @@ spec:
             cpu: 250m
             memory: 64Mi
         volumeMounts:
-          - mountPath: /media
-            name: media
+          - name: media
+            mountPath: /media
             subPath: files  # mount as subPath due to lost+found on ext4 pvc
-          - mountPath: /static
-            name: static
+          - name: static
+            mountPath: /static
             subPath: files  # mount as subPath due to lost+found on ext4 pvc
           - name: nginx-config
             mountPath: /etc/nginx/nginx.conf
@@ -145,12 +145,12 @@ spec:
             cpu: 250m
             memory: 64Mi
         volumeMounts:
-          - mountPath: /opt/recipes/mediafiles
-            name: media
+          - name: media
+            mountPath: /opt/recipes/mediafiles
             subPath: files  # mount as subPath due to lost+found on ext4 pvc
-          - mountPath: /opt/recipes/staticfiles
-            name: static
-            subPath: files # mount as subPath due to lost+found on ext4 pvc
+          - name: static
+            mountPath: /opt/recipes/staticfiles
+            subPath: files  # mount as subPath due to lost+found on ext4 pvc
       volumes:
         - name: media
           persistentVolumeClaim:
