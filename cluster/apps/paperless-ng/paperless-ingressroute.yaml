@@ -1,0 +1,59 @@
+# paperless-local-ingressroute
+# paperless-http-ingressroute
+# paperless-https-ingressroute
+
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: paperless-local-ingressroute
+  namespace: paperless
+spec:
+  entryPoints:
+    - web
+  routes:
+    - match: Host(`paperless.${SECRET_DOMAIN_LOCAL_02}`)
+      kind: Rule
+      services:
+        - name: paperless
+          port: 8000
+
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: paperless-http-ingressroute
+  namespace: paperless
+spec:
+  entryPoints:
+    - web
+  routes:
+    - match: Host(`paperless.${SECRET_DIGITALOCEAN_DOMAIN_02}`)
+      kind: Rule
+      middlewares:
+        - name: https-redirect-scheme-middleware
+          namespace: traefik
+      services:
+        - name: paperless
+          port: 8000
+
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: recipes-https-ingressroute
+  namespace: traefik
+  annotations:
+    cert-manager.io/cluster-issuer: "letsencrypt-dns01-production-do"
+spec:
+  entryPoints:
+    - websecure
+  routes:
+    - match: Host(`paperless.${SECRET_DIGITALOCEAN_DOMAIN_02}`)
+      kind: Rule
+      services:
+        - name: paperless
+          namespace: paperless
+          port: 8000
+  tls:
+    secretName: "${SECRET_DOMAIN/./-}-tls"
