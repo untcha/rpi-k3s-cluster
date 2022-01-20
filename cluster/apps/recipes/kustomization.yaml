@@ -4,11 +4,11 @@ kind: Kustomization
 
 resources:
   - namespace.yaml
-  - postgres
-  - recipes-config
-  - recipes-configmap.yaml
-  - recipes-serviceaccount.yaml
-  - recipes-pvcs.yaml
-  - recipes-service.yaml
-  - recipes-deployment.yaml
-  - recipes-ingressroute.yaml
+  # - postgres
+  # - recipes-config
+  # - recipes-configmap.yaml
+  # - recipes-serviceaccount.yaml
+  # - recipes-pvcs.yaml
+  # - recipes-service.yaml
+  # - recipes-deployment.yaml
+  # - recipes-ingressroute.yaml
