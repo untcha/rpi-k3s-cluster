@@ -17,7 +17,7 @@ spec:
   values:
     affinity: {}
     args: []
-    customConfig: password_encryption = "md5"
+    customConfig: ""
     customLivenessProbe: {}
     customReadinessProbe: {}
     customStartupProbe: {}
@@ -75,7 +75,7 @@ spec:
       name: ""
     settings:
       authMethod: md5
-      initDbArgs: null
+      initDbArgs: --auth-host=md5
       superuserPassword: ${SECRET_GLOBAL_POSTGRES_SUPERUSER_PASSWORD}
     startupProbe:
       enabled: true

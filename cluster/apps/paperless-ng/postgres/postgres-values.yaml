@@ -131,7 +131,7 @@ settings:
   authMethod: "md5"
 
   ## Optional init database arguments
-  initDbArgs:
+  initDbArgs: "--auth-host=md5"
 
 ## Optional user database which is created during first startup with user and password
 userDatabase:
@@ -146,7 +146,6 @@ userDatabase:
 
 ## Optional custom configuration block that will be mounted as file in /etc/postgresql/postgresql.conf
 customConfig: |-
-  password_encryption = "md5"
 
 ## Storage parameters
 storage:
