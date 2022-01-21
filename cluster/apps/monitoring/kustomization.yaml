@@ -6,6 +6,6 @@ resources:
   - namespace.yaml
   - prometheus
   # - prometheus-exporter
+  - influxdata
   - grafana
-  # - influxdata
   - tools
