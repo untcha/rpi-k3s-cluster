@@ -54,8 +54,8 @@ spec:
       middlewares:
         - name: nextcloud-middleware-regex
           namespace: nextcloud
-        - name: nextcloud-middleware-headers
-          namespace: nextcloud
+        - name: secure-headers-middleware
+          namespace: traefik
       services:
         - name: nextcloud-nextcloud
           namespace: nextcloud
