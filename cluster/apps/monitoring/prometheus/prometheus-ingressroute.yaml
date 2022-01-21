@@ -38,7 +38,7 @@ apiVersion: traefik.containo.us/v1alpha1
 kind: IngressRoute
 metadata:
   name: prometheus-http-ingressroute
-  namespace: prometheus
+  namespace: monitoring
 spec:
   entryPoints:
     - web
@@ -57,7 +57,7 @@ apiVersion: traefik.containo.us/v1alpha1
 kind: IngressRoute
 metadata:
   name: prometheus-alertmanager-http-ingressroute
-  namespace: prometheus
+  namespace: monitoring
 spec:
   entryPoints:
     - web
@@ -92,7 +92,7 @@ spec:
           namespace: traefik
       services:
         - name: monitoring-prometheus-server
-          namespace: prometheus
+          namespace: monitoring
           port: 80
   tls:
     secretName: "${SECRET_DOMAIN/./-}-tls"
@@ -118,7 +118,7 @@ spec:
           namespace: traefik
       services:
         - name: monitoring-prometheus-alertmanager
-          namespace: prometheus
+          namespace: monitoring
           port: 80
   tls:
     secretName: "${SECRET_DOMAIN/./-}-tls"
