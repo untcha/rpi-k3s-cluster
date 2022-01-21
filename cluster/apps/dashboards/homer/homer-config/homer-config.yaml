@@ -185,7 +185,7 @@ services:
         url: http://portainer.${SECRET_DOMAIN_LOCAL_02}
         target: _blank
   - name: Apps
-    icon: fas app-store
+    icon: fas fa-archive
     items:
       - name: Paperless
         logo: https://doc.${SECRET_DIGITALOCEAN_DOMAIN_02}/homer-config/paperless-ng.png
