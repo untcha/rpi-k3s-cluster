@@ -7,4 +7,3 @@ resources:
   - homer-service.yaml
   - homer-deployment.yaml
   - homer-ingressroute.yaml
-  - homer-middleware.yaml

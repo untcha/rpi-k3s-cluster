@@ -54,8 +54,8 @@ spec:
       middlewares:
         - name: authelia-middleware
           namespace: authentication
-        - name: homer-middleware-headers
-          namespace: dashboards
+        - name: secure-headers-middleware
+          namespace: traefik
       services:
         - name: homer
           namespace: dashboards
