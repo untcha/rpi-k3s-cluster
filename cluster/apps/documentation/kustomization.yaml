@@ -7,4 +7,3 @@ resources:
   - documentation-pvc.yaml
   - documentation-deployment.yaml
   - documentation-ingressroute.yaml
-  - documentation-middleware.yaml

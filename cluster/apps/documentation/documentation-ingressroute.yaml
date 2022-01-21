@@ -51,6 +51,9 @@ spec:
   routes:
     - match: Host(`doc.${SECRET_DIGITALOCEAN_DOMAIN_02}`)
       kind: Rule
+      middlewares:
+        - name: secure-headers-middleware
+          namespace: traefik
       services:
         - name: documentation-static-nginx
           namespace: documentation
