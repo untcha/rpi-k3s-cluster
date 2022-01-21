@@ -185,15 +185,15 @@ services:
         url: http://portainer.${SECRET_DOMAIN_LOCAL_02}
         target: _blank
   - name: Apps
-    icon: fas fa-app-store-ios
+    icon: fas fa-app-store
     items:
       - name: Paperless
         logo: https://doc.${SECRET_DIGITALOCEAN_DOMAIN_02}/homer-config/paperless-ng.png
         tag: tool
-        url: http://paperless.${SECRET_DOMAIN_LOCAL_02}
+        url: http://paperless.${SECRET_DIGITALOCEAN_DOMAIN_02}
         target: _blank
       - name: Recipes
         logo: https://doc.${SECRET_DIGITALOCEAN_DOMAIN_02}/homer-config/recipes.png
         tag: tool
-        url: http://recipes.${SECRET_DOMAIN_LOCAL_02}
+        url: http://recipes.${SECRET_DIGITALOCEAN_DOMAIN_02}
         target: _blank
