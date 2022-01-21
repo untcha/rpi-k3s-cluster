@@ -56,8 +56,8 @@ spec:
         #   namespace: authentication
         - name: authelia-middleware
           namespace: authentication
-        - name: longhorn-middleware-headers
-          namespace: longhorn-system
+        - name: secure-headers-middleware
+          namespace: traefik
       services:
         - name: longhorn-frontend
           namespace: longhorn-system
