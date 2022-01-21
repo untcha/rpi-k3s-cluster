@@ -58,6 +58,8 @@ spec:
           namespace: authentication
         - name: secure-headers-middleware
           namespace: traefik
+        - name: longhorn-headers-middleware # avoid CORS problem
+          namespace: longhorn-system
       services:
         - name: longhorn-frontend
           namespace: longhorn-system

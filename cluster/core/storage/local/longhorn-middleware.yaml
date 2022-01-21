@@ -6,7 +6,7 @@
 apiVersion: traefik.containo.us/v1alpha1
 kind: Middleware
 metadata:
-  name: longhorn-middleware-headers
+  name: longhorn-headers-middleware
   namespace: longhorn-system
 spec:
   headers:
