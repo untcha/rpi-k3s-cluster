@@ -32,3 +32,93 @@ spec:
       services:
         - name: monitoring-prometheus-alertmanager
           port: 80
+
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: prometheus-http-ingressroute
+  namespace: prometheus
+spec:
+  entryPoints:
+    - web
+  routes:
+    - match: Host(`prometheus.${SECRET_DIGITALOCEAN_DOMAIN_02}`)
+      kind: Rule
+      middlewares:
+        - name: https-redirect-scheme-middleware
+          namespace: traefik
+      services:
+        - name: monitoring-prometheus-server
+          port: 80
+
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: prometheus-alertmanager-http-ingressroute
+  namespace: prometheus
+spec:
+  entryPoints:
+    - web
+  routes:
+    - match: Host(`prometheus-alertmanager.${SECRET_DIGITALOCEAN_DOMAIN_02}`)
+      kind: Rule
+      middlewares:
+        - name: https-redirect-scheme-middleware
+          namespace: traefik
+      services:
+        - name: monitoring-prometheus-alertmanager
+          port: 80
+
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: prometheus-https-ingressroute
+  namespace: traefik
+  annotations:
+    cert-manager.io/cluster-issuer: "letsencrypt-dns01-production-do"
+spec:
+  entryPoints:
+    - websecure
+  routes:
+    - match: Host(`prometheus.${SECRET_DIGITALOCEAN_DOMAIN_02}`)
+      kind: Rule
+      middlewares:
+        - name: authelia-middleware
+          namespace: authentication
+        - name: secure-headers-middleware
+          namespace: traefik
+      services:
+        - name: monitoring-prometheus-server
+          namespace: prometheus
+          port: 80
+  tls:
+    secretName: "${SECRET_DOMAIN/./-}-tls"
+
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: prometheus-alertmanager-https-ingressroute
+  namespace: traefik
+  annotations:
+    cert-manager.io/cluster-issuer: "letsencrypt-dns01-production-do"
+spec:
+  entryPoints:
+    - websecure
+  routes:
+    - match: Host(`prometheus-alertmanager.${SECRET_DIGITALOCEAN_DOMAIN_02}`)
+      kind: Rule
+      middlewares:
+        - name: authelia-middleware
+          namespace: authentication
+        - name: secure-headers-middleware
+          namespace: traefik
+      services:
+        - name: monitoring-prometheus-alertmanager
+          namespace: prometheus
+          port: 80
+  tls:
+    secretName: "${SECRET_DOMAIN/./-}-tls"
