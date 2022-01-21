@@ -8,3 +8,4 @@ resources:
   - nextcloud-pvcs.yaml
   - nextcloud-helmrelease.yaml
   - nextcloud-ingressroute.yaml
+  - nextcloud-middleware.yaml
