@@ -179,3 +179,21 @@ services:
         tag: tool
         url: http://pgadmin.${SECRET_DOMAIN_LOCAL_02}
         target: _blank
+      - name: Portainer
+        logo: https://doc.${SECRET_DIGITALOCEAN_DOMAIN_02}/homer-config/portainer.io.png
+        tag: tool
+        url: http://portainer.${SECRET_DOMAIN_LOCAL_02}
+        target: _blank
+  - name: Apps
+    icon: fas fa-app-store-ios
+    items:
+      - name: Paperless
+        logo: https://doc.${SECRET_DIGITALOCEAN_DOMAIN_02}/homer-config/paperless-ng.png
+        tag: tool
+        url: http://paperless.${SECRET_DOMAIN_LOCAL_02}
+        target: _blank
+      - name: Recipes
+        logo: https://doc.${SECRET_DIGITALOCEAN_DOMAIN_02}/homer-config/recipes.png
+        tag: tool
+        url: http://recipes.${SECRET_DOMAIN_LOCAL_02}
+        target: _blank
