@@ -11,7 +11,7 @@ spec:
       sourceRef:
         kind: HelmRepository
         name: authelia
-      version: 0.7.7
+      version: 0.8.1
   interval: 1m0s
   targetNamespace: authentication
   values:
@@ -30,6 +30,10 @@ spec:
           policy: bypass
         - domain: '*.${SECRET_DIGITALOCEAN_DOMAIN_02}'
           policy: two_factor
+        secret:
+          enabled: false
+          existingSecret: ""
+          key: configuration.acl.yaml
       annotations: {}
       authentication_backend:
         disable_reset_password: true
