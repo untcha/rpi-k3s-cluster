@@ -10,4 +10,4 @@ spec:
   storageClassName: longhorn-worker-node-storageclass
   resources:
     requests:
-      storage: 8Gi
+      storage: 5Gi
