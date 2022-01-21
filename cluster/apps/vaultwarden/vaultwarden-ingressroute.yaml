@@ -52,8 +52,8 @@ spec:
     - match: Host(`vault.${SECRET_DIGITALOCEAN_DOMAIN_02}`)
       kind: Rule
       middlewares:
-        - name: vaultwarden-middleware-headers
-          namespace: vaultwarden
+        - name: secure-headers-middleware
+          namespace: traefik
       services:
         - name: vaultwarden
           namespace: vaultwarden
