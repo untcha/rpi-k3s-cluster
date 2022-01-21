@@ -18,6 +18,8 @@ spec:
       middlewares:
         - name: authelia-middleware
           namespace: authentication
+        - name: secure-headers-middleware
+          namespace: traefik
       services:
         - name: kubernetes-dashboard
           namespace: kubernetes-dashboard
