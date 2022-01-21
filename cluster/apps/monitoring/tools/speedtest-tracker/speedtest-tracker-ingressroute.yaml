@@ -12,7 +12,7 @@ spec:
   entryPoints:
     - web
   routes:
-    - match: Host(`test.${SECRET_DOMAIN_LOCAL_02}`)
+    - match: Host(`speedtest-tracker.${SECRET_DOMAIN_LOCAL_02}`)
       kind: Rule
       services:
         - name: speedtest-tracker-service
@@ -54,6 +54,8 @@ spec:
       middlewares:
         - name: authelia-middleware
           namespace: authentication
+        - name: secure-headers-middleware
+          namespace: traefik
       services:
         - name: speedtest-tracker-service
           namespace: monitoring

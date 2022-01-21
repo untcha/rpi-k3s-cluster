@@ -5,7 +5,7 @@ metadata:
   name: speedtest-tracker-config-pvc
   namespace: monitoring
 spec:
-  storageClassName: longhorn-low-capacity
+  storageClassName: longhorn-worker-node-storageclass
   accessModes:
     - ReadWriteOnce
   resources:
