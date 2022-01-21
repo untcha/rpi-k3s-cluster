@@ -5,4 +5,4 @@ resources:
   - namespace.yaml
   - unbound-staging
   - pihole-staging
-  # - blocky-staging
+  - blocky-staging
