@@ -51,6 +51,11 @@ spec:
   routes:
     - match: Host(`paperless.${SECRET_DIGITALOCEAN_DOMAIN_02}`)
       kind: Rule
+      middlewares:
+        - name: authelia-middleware
+          namespace: authentication
+        - name: secure-headers-middleware
+          namespace: traefik
       services:
         - name: paperless
           namespace: paperless
