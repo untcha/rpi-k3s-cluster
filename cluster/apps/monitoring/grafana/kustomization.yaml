@@ -6,6 +6,5 @@ resources:
   - grafana-pvc.yaml
   - grafana-helmrelease.yaml
   - grafana-ingressroute.yaml
-  - grafana-middleware.yaml
   - grafana-datasources
   # - grafana-dashboards
