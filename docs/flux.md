@@ -285,7 +285,7 @@ flux create helmrelease grafana \
 flux create helmrelease influxdb \
   --source=HelmRepository/influxdata \
   --chart=influxdb \
-  --chart-version="4.10.2" \
+  --chart-version="4.10.3" \
   --target-namespace=monitoring \
   --values=influxdb-values.yaml \
   --export > influxdb-helmrelease.yaml
