@@ -11,7 +11,7 @@ spec:
       sourceRef:
         kind: HelmRepository
         name: influxdata
-      version: 1.2.0
+      version: 1.2.1
   interval: 1m0s
   targetNamespace: monitoring
   values:
@@ -26,6 +26,7 @@ spec:
     influxdb: {}
     ingress:
       annotations: {}
+      className: null
       enabled: false
       hostname: chronograf.foobar.com
       path: /
