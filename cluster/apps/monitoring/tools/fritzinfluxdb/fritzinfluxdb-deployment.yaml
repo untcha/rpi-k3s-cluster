@@ -27,8 +27,8 @@ spec:
         node-type: worker
       containers:
       - name: fritzinfluxdb-container
-        # image: banafo/fritzinfluxdb:1.5.0
-        image: volschin/fritzinfluxdb:latest
+        image: banafo/fritzinfluxdb:1.5.0
+        # image: volschin/fritzinfluxdb:latest
         imagePullPolicy: IfNotPresent
         volumeMounts:
         - name: fritzinfluxdb-ini
