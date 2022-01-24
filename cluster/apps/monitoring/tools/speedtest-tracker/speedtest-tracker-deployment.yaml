@@ -43,7 +43,7 @@ spec:
         node-type: worker
       containers:
       - name: speedtest-tracker-container
-        image: henrywhitaker3/speedtest-tracker:dev
+        image: henrywhitaker3/speedtest-tracker:latest-arm
         imagePullPolicy: IfNotPresent
         envFrom:
         - configMapRef:
