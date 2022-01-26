@@ -14,3 +14,8 @@
 ^mads\.
 ^pixels?[-.]
 ^stat(s|istics)?[0-9]*[_.-]
+# block crappy speedtest.net server
+(\.|^)contabo\.net$
+(\.|^)net-d-sign\.de$
+(\.|^)sitnetworks\.de$
+(\.|^)goingnet\.at$
