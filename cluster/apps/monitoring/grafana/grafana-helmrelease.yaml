@@ -66,6 +66,14 @@ spec:
         logs: /var/log/grafana
         plugins: /var/lib/grafana/plugins
         provisioning: /etc/grafana/provisioning
+      smtp:
+        enabled: true
+        from_address: ${SECRET_GLOBAL_SMTP_FROM}
+        from_name: Grafana-test
+        host: ${SECRET_GLOBAL_SMTP_HOST}:587
+        password: ${SECRET_GLOBAL_SMTP_PASSWORD}
+        skip_verify: false
+        user: ${SECRET_GLOBAL_SMTP_USERNAME}
     headlessService: false
     hostAliases: []
     image:

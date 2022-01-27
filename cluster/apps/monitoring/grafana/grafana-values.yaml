@@ -556,6 +556,14 @@ grafana.ini:
     provisioning: /etc/grafana/provisioning
   analytics:
     check_for_updates: true
+  smtp:
+    enabled: true
+    host: ${SECRET_GLOBAL_SMTP_HOST}:587
+    user: ${SECRET_GLOBAL_SMTP_USERNAME}
+    password: ${SECRET_GLOBAL_SMTP_PASSWORD}
+    skip_verify: false
+    from_address: ${SECRET_GLOBAL_SMTP_FROM}
+    from_name: Grafana-test
   log:
     mode: console
   grafana_net:
