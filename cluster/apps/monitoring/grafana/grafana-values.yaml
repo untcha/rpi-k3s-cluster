@@ -555,7 +555,8 @@ grafana.ini:
     plugins: /var/lib/grafana/plugins
     provisioning: /etc/grafana/provisioning
   server:
-    domain: ${SECRET_DIGITALOCEAN_DOMAIN_02}
+    protocol: https
+    domain: grafana.${SECRET_DIGITALOCEAN_DOMAIN_02}
   analytics:
     check_for_updates: true
   smtp:
