@@ -555,7 +555,7 @@ grafana.ini:
     plugins: /var/lib/grafana/plugins
     provisioning: /etc/grafana/provisioning
   server:
-    protocol: https
+    http_port: 80
     domain: grafana.${SECRET_DIGITALOCEAN_DOMAIN_02}
   analytics:
     check_for_updates: true
