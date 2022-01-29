@@ -9,5 +9,5 @@ resources:
   - recipes-pvcs.yaml
   - recipes-serviceaccount.yaml
   - recipes-service.yaml
-  - recipes-deployment.yaml
+  # - recipes-deployment.yaml
   - recipes-ingressroute.yaml
