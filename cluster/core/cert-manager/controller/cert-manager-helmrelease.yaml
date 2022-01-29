@@ -11,7 +11,7 @@ spec:
       sourceRef:
         kind: HelmRepository
         name: jetstack
-      version: v1.6.1
+      version: v1.7.0
   interval: 1m0s
   targetNamespace: cert-manager
   values:
@@ -24,8 +24,7 @@ spec:
       image:
         pullPolicy: IfNotPresent
         repository: quay.io/jetstack/cert-manager-cainjector
-      nodeSelector:
-        node-type: worker
+      nodeSelector: {}
       podLabels: {}
       replicaCount: 1
       resources: {}
@@ -57,13 +56,13 @@ spec:
       repository: quay.io/jetstack/cert-manager-controller
     ingressShim: {}
     installCRDs: true
-    nodeSelector:
-      node-type: worker
+    nodeSelector: {}
     podLabels: {}
     prometheus:
       enabled: true
       servicemonitor:
         enabled: false
+        honorLabels: false
         interval: 60s
         labels: {}
         path: /metrics
@@ -89,8 +88,7 @@ spec:
         helm.sh/hook: post-install
         helm.sh/hook-delete-policy: before-hook-creation,hook-succeeded
         helm.sh/hook-weight: "1"
-      nodeSelector:
-        node-type: worker
+      nodeSelector: {}
       podLabels: {}
       rbac:
         annotations:
@@ -115,6 +113,7 @@ spec:
     volumes: []
     webhook:
       affinity: {}
+      config: null
       containerSecurityContext: {}
       extraArgs: []
       hostNetwork: false
@@ -127,8 +126,7 @@ spec:
         periodSeconds: 10
         successThreshold: 1
         timeoutSeconds: 1
-      nodeSelector:
-        node-type: worker
+      nodeSelector: {}
       podLabels: {}
       readinessProbe:
         failureThreshold: 3
