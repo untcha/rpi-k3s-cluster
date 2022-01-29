@@ -9,6 +9,6 @@ resources:
   - vaultwarden-pvc.yaml
   - vaultwarden-rbac.yaml
   - vaultwarden-service.yaml
-  # - vaultwarden-deployment.yaml
+  - vaultwarden-deployment.yaml
   - vaultwarden-ingressroute.yaml
   - vaultwarden-middleware.yaml
