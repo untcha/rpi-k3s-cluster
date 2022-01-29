@@ -4,7 +4,7 @@ kind: Kustomization
 
 resources:
   - grafana-pvc.yaml
-  # - grafana-helmrelease.yaml
+  - grafana-helmrelease.yaml
   - grafana-ingressroute.yaml
   - grafana-datasources
   # - grafana-dashboards
