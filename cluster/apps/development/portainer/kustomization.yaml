@@ -4,5 +4,5 @@ kind: Kustomization
 resources:
   - namespace.yaml
   - portainer-pvc.yaml
-  - portainer-helmrelease.yaml
+  # - portainer-helmrelease.yaml
   - portainer-ingressroute.yaml
