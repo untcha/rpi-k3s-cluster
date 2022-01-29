@@ -5,5 +5,5 @@ resources:
   # - enc_influxdb-auth-secret.yaml
   - influxdb-pvc.yaml
   # - influxdb-helmrelease.yaml
-  - chronograf-helmrelease.yaml
+  # - chronograf-helmrelease.yaml
   # - chronograf-ingressroute.yaml
