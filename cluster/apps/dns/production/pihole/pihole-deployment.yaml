@@ -1,0 +1,123 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pihole-production
+  namespace: dns
+  labels:
+    app: pihole-production
+    environment: production
+spec:
+  replicas: 1
+  revisionHistoryLimit: 1
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 0
+    type: RollingUpdate
+  selector:
+    matchLabels:
+      app: pihole-production
+      environment: production
+  template:
+    metadata:
+      labels:
+        app: pihole-production
+        environment: production
+        name: pihole-production
+      annotations:
+        configmap.reloader.stakater.com/reload: "pihole-env-vars, custom.list, regex.list, whitelist.txt, adlists.list"
+    spec:
+      nodeSelector:
+        node-type: worker
+      containers:
+      - name: pihole
+        image: pihole/pihole:2022.01.1
+        imagePullPolicy: IfNotPresent
+        securityContext:
+          capabilities:
+            add:
+            - NET_ADMIN
+        envFrom:
+        - configMapRef:
+            name: pihole-env-vars
+        ports:
+        - name: http
+          containerPort: 80
+          protocol: TCP
+        - name: https
+          containerPort: 443
+          protocol: TCP
+        - name: dns-tcp
+          containerPort: 53
+          protocol: TCP
+        - name: dns-udp
+          containerPort: 53
+          protocol: UDP
+        - name: client-upd
+          containerPort: 67
+          protocol: UDP
+        startupProbe:
+          httpGet:
+            path: /admin.index.php
+            port: 80
+          initialDelaySeconds: 10
+          timeoutSeconds: 5
+          failureThreshold: 30
+          successThreshold: 1
+          periodSeconds: 10
+        livenessProbe:
+          httpGet:
+            path: /admin.index.php
+            port: 80
+          initialDelaySeconds: 10
+          timeoutSeconds: 5
+          failureThreshold: 3
+          successThreshold: 1
+          periodSeconds: 10
+        readinessProbe:
+          httpGet:
+            path: /admin.index.php
+            port: 80
+          initialDelaySeconds: 10
+          timeoutSeconds: 5
+          failureThreshold: 3
+          successThreshold: 1
+          periodSeconds: 10
+        volumeMounts:
+        - name: etc-pihole
+          mountPath: /etc/pihole
+        - name: etc-dnsmasq
+          mountPath: /etc/dnsmasq.d
+        - name: dns-records
+          mountPath: /etc/pihole/custom.list
+          subPath: custom.list
+        - name: regex
+          mountPath: /etc/pihole/regex.list
+          subPath: regex.list
+        - name: whitelist
+          mountPath: /etc/pihole/whitelist.txt
+          subPath: whitelist.txt
+        - name: adlists
+          mountPath: /etc/pihole/adlists.list
+          subPath: adlists.list
+      restartPolicy: Always
+      volumes:
+      - name: etc-pihole
+        emptyDir:
+          medium: Memory
+      - name: etc-dnsmasq
+        emptyDir:
+          medium: Memory
+      - name: dns-records
+        configMap:
+          name: custom.list
+      - name: regex
+        configMap:
+          name: regex.list
+      - name: whitelist
+        configMap:
+          name: whitelist.txt
+      - name: adlists
+        configMap:
+          name: adlists.list
