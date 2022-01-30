@@ -1,0 +1,27 @@
+---
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+configMapGenerator:
+  - name: pihole-env-vars
+    namespace: dns
+    envs:
+      - pihole-env-vars.env
+  - name: custom.list
+    namespace: dns
+    files:
+      - custom.list
+  - name: regex.list
+    namespace: dns
+    files:
+      - regex.list
+  - name: whitelist.txt
+    namespace: dns
+    files:
+      - whitelist.txt
+  - name: adlists.list
+    namespace: dns
+    files:
+      - adlists.list
+generatorOptions:
+  disableNameSuffixHash: true
