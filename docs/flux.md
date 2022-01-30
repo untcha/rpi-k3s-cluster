@@ -565,7 +565,7 @@ flux create helmrelease traefik \
 flux create helmrelease wp-simone-wordpress \
   --source=HelmRepository/groundhog2k \
   --chart=wordpress \
-  --chart-version="0.4.7" \
+  --chart-version="0.5.0" \
   --target-namespace=wp-simone \
   --values=wordpress-values.yaml \
   --export > wordpress-helmrelease.yaml

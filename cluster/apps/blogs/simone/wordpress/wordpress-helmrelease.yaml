@@ -11,7 +11,7 @@ spec:
       sourceRef:
         kind: HelmRepository
         name: groundhog2k
-      version: 0.4.7
+      version: 0.5.0
   interval: 1m0s
   targetNamespace: wp-simone
   values:
@@ -50,6 +50,23 @@ spec:
         path: /wp-login.php
         port: http
       initialDelaySeconds: 30
+      periodSeconds: 10
+      successThreshold: 1
+      timeoutSeconds: 5
+    customStartupProbe:
+      enabled: false
+      failureThreshold: 30
+      httpGet:
+        httpHeaders:
+        - name: X-Forwarded-Proto
+          value: https
+        - name: X-Forwarded-Host
+          value: simone.${SECRET_DIGITALOCEAN_DOMAIN_02}
+        - name: Host
+          value: simone.${SECRET_DIGITALOCEAN_DOMAIN_02}
+        path: /wp-admin/install.php
+        port: http
+      initialDelaySeconds: 10
       periodSeconds: 10
       successThreshold: 1
       timeoutSeconds: 5
@@ -129,6 +146,13 @@ spec:
       maxFileUploadSize: 64M
       memoryLimit: 128M
       tablePrefix: null
+    startupProbe:
+      enabled: false
+      failureThreshold: 30
+      initialDelaySeconds: 10
+      periodSeconds: 10
+      successThreshold: 1
+      timeoutSeconds: 5
     storage:
       accessModes:
       - ReadWriteOnce
