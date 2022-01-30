@@ -4,10 +4,7 @@
 <img src="./assets/images/logo.svg" align="left" width="144px" height="144px"/>
 
 <!-- markdownlint-disable no-trailing-punctuation -->
-### My home Kubernetes cluster :sailboat:
-
-<!-- markdownlint-disable no-trailing-punctuation -->
-_... managed by Flux_
+### My Kubernetes Cluster (k3s) managed by GitOps (Flux2)
 
 <br/>
 <br/>
