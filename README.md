@@ -6,8 +6,7 @@
 
 <div align="center">
 
-### My home Kubernetes cluster :sailboat:
-_... managed by Flux_
+### My Kubernetes Cluster (k3s) managed by GitOps (Flux2)
 
 </div>
 
