@@ -106,7 +106,6 @@ customStartupProbe:
       value: simone.${SECRET_DIGITALOCEAN_DOMAIN_02}
     - name: Host
       value: simone.${SECRET_DIGITALOCEAN_DOMAIN_02}
-  enabled: false
   initialDelaySeconds: 10
   timeoutSeconds: 5
   failureThreshold: 30

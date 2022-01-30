@@ -54,7 +54,6 @@ spec:
       successThreshold: 1
       timeoutSeconds: 5
     customStartupProbe:
-      enabled: false
       failureThreshold: 30
       httpGet:
         httpHeaders:
