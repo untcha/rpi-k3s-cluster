@@ -2,16 +2,18 @@
 kind: Service
 apiVersion: v1
 metadata:
-  name: unbound-tcp
+  name: unbound-production-tcp-service
   namespace: dns
   labels:
-    app: unbound
+    app: unbound-production
+    environment: production
   annotations:
     metallb.universe.tf/address-pool: dns
-    metallb.universe.tf/allow-shared-ip: unbound-svc
+    metallb.universe.tf/allow-shared-ip: unbound-production-svc
 spec:
   selector:
-    app: unbound
+    app: unbound-production
+    environment: production
   ports:
   - name: dns-tcp
     port: 53

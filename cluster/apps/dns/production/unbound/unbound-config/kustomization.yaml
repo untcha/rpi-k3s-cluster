@@ -1,0 +1,23 @@
+---
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+configMapGenerator:
+  - name: unbound-config
+    namespace: dns
+    files:
+      - unbound.conf
+  - name: unbound-root-hints
+    namespace: dns
+    files:
+      - root.hints
+  - name: unbound-root-key-initial
+    namespace: dns
+    files:
+      - root.key
+  - name: unbound-a-records
+    namespace: dns
+    files:
+      - a-records.conf
+generatorOptions:
+  disableNameSuffixHash: true

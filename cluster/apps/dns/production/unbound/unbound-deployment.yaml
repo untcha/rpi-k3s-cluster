@@ -2,12 +2,14 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: unbound
+  name: unbound-production
   namespace: dns
   labels:
-    app: unbound
+    app: unbound-production
+    environment: production
 spec:
-  replicas: 4
+  replicas: 2
+  revisionHistoryLimit: 1
   strategy:
     rollingUpdate:
       maxSurge: 1
@@ -15,12 +17,14 @@ spec:
     type: RollingUpdate
   selector:
     matchLabels:
-      app: unbound
+      app: unbound-production
+      environment: production
   template:
     metadata:
       labels:
-        app: unbound
-        name: unbound
+        app: unbound-production
+        environment: production
+        name: unbound-production
       annotations:
         configmap.reloader.stakater.com/reload: "unbound-config, unbound-root-hints, unbound-root-key-initial, unbound-a-records"
     spec:
@@ -28,7 +32,7 @@ spec:
         node-type: worker
       initContainers:
       - name: create-initial-unbound-root-key
-        image: busybox:1.34.1
+        image: busybox:1.35.0
         command: ["/bin/sh", "-c"]
         args:
           -
@@ -40,16 +44,40 @@ spec:
           mountPath: /tmp/root.key
           subPath: root.key
       containers:
-      - name: unbound
+      - name: unbound-production
         image: klutchell/unbound-dnscrypt:1.13.1
         imagePullPolicy: IfNotPresent
         ports:
         - name: dns-tcp
-          containerPort: 53
+          containerPort: 5335
           protocol: TCP
         - name: dns-udp
-          containerPort: 53
+          containerPort: 5335
           protocol: UDP
+        startupProbe:
+          tcpSocket:
+            port: 53
+          initialDelaySeconds: 5
+          timeoutSeconds: 5
+          failureThreshold: 30
+          successThreshold: 1
+          periodSeconds: 10
+        livenessProbe:
+          tcpSocket:
+            port: 53
+          initialDelaySeconds: 5
+          timeoutSeconds: 5
+          failureThreshold: 3
+          successThreshold: 1
+          periodSeconds: 10
+        readinessProbe:
+          tcpSocket:
+            port: 53
+          initialDelaySeconds: 5
+          timeoutSeconds: 5
+          failureThreshold: 3
+          successThreshold: 1
+          periodSeconds: 10
         volumeMounts:
           - name: usr-local-etc-unbound
             mountPath: /usr/local/etc/unbound
