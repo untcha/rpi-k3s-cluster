@@ -43,7 +43,7 @@ spec:
             algorithm: argon2id
             iterations: 1
             key_length: 32
-            memory: 1024
+            memory: 64
             parallelism: 8
             salt_length: 16
           path: /config/users_database.yml

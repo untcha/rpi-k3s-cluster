@@ -656,7 +656,7 @@ configMap:
         iterations: 1
         key_length: 32
         salt_length: 16
-        memory: 1024
+        memory: 64
         parallelism: 8
 
   ##
