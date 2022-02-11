@@ -237,7 +237,7 @@ flux create helmrelease authelia \
 flux create helmrelease cert-manager \
   --source=HelmRepository/jetstack \
   --chart=cert-manager \
-  --chart-version="v1.7.0" \
+  --chart-version="v1.7.1" \
   --target-namespace=cert-manager \
   --values=cert-manager-values.yaml \
   --export > cert-manager-helmrelease.yaml
