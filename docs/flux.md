@@ -261,7 +261,7 @@ flux create helmrelease chronograf \
 flux create helmrelease gitea \
   --source=HelmRepository/groundhog2k \
   --chart=gitea \
-  --chart-version="0.5.0" \
+  --chart-version="0.5.2" \
   --target-namespace=gitea \
   --values=gitea-values.yaml \
   --export > gitea-helmrelease.yaml
