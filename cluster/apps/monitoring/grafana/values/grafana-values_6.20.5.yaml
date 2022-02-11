@@ -51,7 +51,7 @@ podDisruptionBudget: {}
 ## See `kubectl explain deployment.spec.strategy` for more
 ## ref: https://kubernetes.io/docs/concepts/workloads/controllers/deployment/#strategy
 deploymentStrategy:
-  type: RollingUpdate
+  type: Recreate
 
 readinessProbe:
   httpGet:
@@ -73,7 +73,7 @@ livenessProbe:
 
 image:
   repository: grafana/grafana
-  tag: 8.3.3
+  tag: 8.3.4
   sha: ""
   pullPolicy: IfNotPresent
 
@@ -325,14 +325,14 @@ initChownData:
 
 
 # Administrator credentials when not using an existing secret (see below)
-adminUser: admin
-# adminPassword: strongpassword
+adminUser: ${SECRET_GRAFANA_ADMIN_USER}
+adminPassword: ${SECRET_GRAFANA_ADMIN_PASSWORD}
 
 # Use an existing secret for the admin user.
-admin:
-  existingSecret: "grafana-auth"
-  userKey: admin-user
-  passwordKey: admin-password
+# admin:
+#   existingSecret: ""
+#   userKey: admin-user
+#   passwordKey: admin-password
 
 ## Define command to be executed at startup by grafana container
 ## Needed if using `vault-env` to manage secrets (ref: https://banzaicloud.com/blog/inject-secrets-into-pods-vault/)
@@ -554,8 +554,18 @@ grafana.ini:
     logs: /var/log/grafana
     plugins: /var/lib/grafana/plugins
     provisioning: /etc/grafana/provisioning
+  server:
+    domain: grafana.${SECRET_DIGITALOCEAN_DOMAIN_02}
   analytics:
     check_for_updates: true
+  smtp:
+    enabled: true
+    host: ${SECRET_GLOBAL_SMTP_HOST}:587
+    user: ${SECRET_GLOBAL_SMTP_USERNAME}
+    password: ${SECRET_GLOBAL_SMTP_PASSWORD}
+    skip_verify: false
+    from_address: ${SECRET_GLOBAL_SMTP_FROM}
+    from_name: Grafana-test
   log:
     mode: console
   grafana_net:

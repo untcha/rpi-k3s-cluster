@@ -11,7 +11,7 @@ spec:
       sourceRef:
         kind: HelmRepository
         name: grafana
-      version: 6.20.5
+      version: 6.21.5
   interval: 1m0s
   targetNamespace: monitoring
   values:
@@ -82,7 +82,7 @@ spec:
       pullPolicy: IfNotPresent
       repository: grafana/grafana
       sha: ""
-      tag: 8.3.4
+      tag: 8.3.5
     imageRenderer:
       enabled: false
       env:
@@ -231,12 +231,13 @@ spec:
         reloadURL: http://localhost:3000/api/admin/provisioning/datasources/reload
         resource: both
         searchNamespace: null
+        skipReload: false
         watchMethod: WATCH
       enableUniqueFilenames: false
       image:
         repository: quay.io/kiwigrid/k8s-sidecar
         sha: ""
-        tag: 1.14.2
+        tag: 1.15.1
       imagePullPolicy: IfNotPresent
       notifiers:
         enabled: false
