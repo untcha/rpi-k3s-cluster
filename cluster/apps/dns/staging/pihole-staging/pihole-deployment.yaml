@@ -70,6 +70,7 @@ spec:
           successThreshold: 1
           timeoutSeconds: 5
         securityContext:
+          allowPrivilegeEscalation: false
           privileged: false
           # capabilities:
           #   add:
