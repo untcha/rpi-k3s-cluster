@@ -71,7 +71,7 @@ spec:
           timeoutSeconds: 5
         securityContext:
           allowPrivilegeEscalation: false
-          privileged: false
+          privileged: true
           readOnlyRootFilesystem: false
           # capabilities:
           #   add:
