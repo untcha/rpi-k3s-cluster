@@ -72,6 +72,9 @@ spec:
         securityContext:
           allowPrivilegeEscalation: true
           privileged: false
+          capabilities:
+            drop:
+            - ALL
           # capabilities:
           #   add:
           #   - NET_ADMIN
