@@ -70,12 +70,9 @@ spec:
           successThreshold: 1
           timeoutSeconds: 5
         securityContext:
-          allowPrivilegeEscalation: false
-          privileged: true
-          readOnlyRootFilesystem: false
-          # capabilities:
-          #   add:
-          #   - NET_ADMIN
+          capabilities:
+            add:
+            - NET_ADMIN
         startupProbe:
           failureThreshold: 30
           httpGet:
