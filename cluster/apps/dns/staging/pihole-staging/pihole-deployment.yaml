@@ -70,9 +70,10 @@ spec:
           successThreshold: 1
           timeoutSeconds: 5
         securityContext:
-          capabilities:
-            add:
-            - NET_ADMIN
+          privileged: false
+          # capabilities:
+          #   add:
+          #   - NET_ADMIN
         startupProbe:
           failureThreshold: 30
           httpGet:
