@@ -11,7 +11,7 @@ spec:
       sourceRef:
         kind: HelmRepository
         name: groundhog2k
-      version: 0.4.9
+      version: 0.4.11
   interval: 1m0s
   targetNamespace: gitea
   values:
@@ -19,9 +19,18 @@ spec:
     args: []
     customLivenessProbe: {}
     customReadinessProbe: {}
+    customStartupProbe: {}
     env:
     - name: TZ
       value: ${TIMEZONE}
+    extraContainers: []
+    extraInitContainers: []
+    extraRedisEnvSecrets: []
+    extraRedisSecrets: []
+    extraSecretRedisConfigs: null
+    extraSecretSentinelConfigs: null
+    extraSentinelEnvSecrets: []
+    extraSentinelSecrets: []
     fullnameOverride: ""
     haMode:
       downAfterMilliseconds: 5000
@@ -86,6 +95,13 @@ spec:
       annotations: {}
       create: false
       name: ""
+    startupProbe:
+      enabled: true
+      failureThreshold: 30
+      initialDelaySeconds: 10
+      periodSeconds: 10
+      successThreshold: 1
+      timeoutSeconds: 5
     storage:
       accessModes:
       - ReadWriteOnce
