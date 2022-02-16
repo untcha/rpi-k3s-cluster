@@ -196,4 +196,3 @@ storage:
   ## Default access mode (ReadWriteOnce)
   accessModes:
     - ReadWriteOnce
-
