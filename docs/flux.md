@@ -498,7 +498,7 @@ flux create helmrelease prometheus \
 flux create helmrelease gitea-redis \
   --source=HelmRepository/groundhog2k \
   --chart=redis \
-  --chart-version="0.4.9" \
+  --chart-version="0.4.11" \
   --target-namespace=gitea \
   --values=redis-values.yaml \
   --export > redis-helmrelease.yaml
