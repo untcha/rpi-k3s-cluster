@@ -11,7 +11,7 @@ spec:
       sourceRef:
         kind: HelmRepository
         name: groundhog2k
-      version: 0.3.3
+      version: 0.3.8
   interval: 1m0s
   targetNamespace: authentication
   values:
@@ -26,6 +26,12 @@ spec:
       value: ${TIMEZONE}
     - name: TZ
       value: ${TIMEZONE}
+    extraContainers: []
+    extraEnvSecrets: []
+    extraInitContainers: []
+    extraScripts: null
+    extraSecretConfigs: null
+    extraSecrets: []
     fullnameOverride: ""
     image:
       pullPolicy: IfNotPresent
@@ -76,6 +82,7 @@ spec:
     settings:
       authMethod: md5
       initDbArgs: null
+      superuser: postgres
       superuserPassword: ${SECRET_GLOBAL_POSTGRES_SUPERUSER_PASSWORD}
     startupProbe:
       enabled: true
@@ -90,6 +97,7 @@ spec:
       className: null
       persistentVolumeClaimName: authelia-postgres-pvc
       requestedSize: null
+      volumeName: postgres-data
     tolerations: []
     updateStrategyType: RollingUpdate
     userDatabase:

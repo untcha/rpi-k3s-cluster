@@ -131,7 +131,7 @@ args: []
 ## Database configuration
 settings:
   ## The default postgres superuser (default when nothing is set: "postgres")
-  superuser:
+  superuser: postgres
 
   ## The superuser password
   superuserPassword: ${SECRET_GLOBAL_POSTGRES_SUPERUSER_PASSWORD}
