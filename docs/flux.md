@@ -376,7 +376,7 @@ flux create helmrelease nfs-provisioner \
 flux create helmrelease portainer \
   --source=HelmRepository/portainer \
   --chart=portainer \
-  --chart-version="1.0.21" \
+  --chart-version="1.0.22" \
   --target-namespace=portainer \
   --values=portainer-values.yaml \
   --export > portainer-helmrelease.yaml

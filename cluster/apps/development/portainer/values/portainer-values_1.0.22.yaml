@@ -19,8 +19,7 @@ image:
 
 imagePullSecrets: []
 
-nodeSelector:
-  node-type: worker
+nodeSelector: {}
 
 serviceAccount:
   annotations: {}
@@ -30,7 +29,7 @@ service:
   # Set the httpNodePort and edgeNodePort only if the type is NodePort
   # For Ingress, set the type to be ClusterIP and set ingress.enabled to true
   # For Cloud Providers, set the type to be LoadBalancer
-  type: ClusterIP
+  type: NodePort
   httpPort: 9000
   httpsPort: 9443
   httpNodePort: 30777
@@ -65,7 +64,6 @@ ingress:
 resources: {}
 
 persistence:
-  existingClaim: portainer-data-pvc
   size: "10Gi"
   annotations: {}
   storageClass:

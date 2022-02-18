@@ -11,7 +11,7 @@ spec:
       sourceRef:
         kind: HelmRepository
         name: portainer
-      version: 1.0.21
+      version: 1.0.22
   interval: 1m0s
   targetNamespace: portainer
   values:
@@ -34,6 +34,7 @@ spec:
       hosts:
       - host: null
         paths: []
+      ingressClassName: ""
       tls: []
     nodeSelector:
       node-type: worker
