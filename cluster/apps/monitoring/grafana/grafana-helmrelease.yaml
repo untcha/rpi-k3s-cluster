@@ -11,7 +11,7 @@ spec:
       sourceRef:
         kind: HelmRepository
         name: grafana
-      version: 6.21.5
+      version: 6.21.8
   interval: 1m0s
   targetNamespace: monitoring
   values:
@@ -226,6 +226,7 @@ spec:
         watchMethod: WATCH
       datasources:
         enabled: true
+        initDatasources: false
         label: grafana_datasource
         labelValue: null
         reloadURL: http://localhost:3000/api/admin/provisioning/datasources/reload
