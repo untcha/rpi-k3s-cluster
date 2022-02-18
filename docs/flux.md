@@ -249,7 +249,7 @@ flux create helmrelease cert-manager \
 flux create helmrelease chronograf \
   --source=HelmRepository/influxdata \
   --chart=chronograf \
-  --chart-version="1.2.1" \
+  --chart-version="1.2.3" \
   --target-namespace=monitoring \
   --values=chronograf-values.yaml \
   --export > chronograf-helmrelease.yaml
