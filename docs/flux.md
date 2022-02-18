@@ -370,30 +370,6 @@ flux create helmrelease nfs-provisioner \
   --export > nfs-provisioner-helmrelease.yaml
 ```
 
-### OpenLDAP
-
-```bash
-flux create helmrelease openldap \
-  --source=HelmRepository/openldap \
-  --chart=openldap-stack-ha \
-  --chart-version="2.1.6" \
-  --target-namespace=authentication \
-  --values=openldap-stack-ha-values.yaml \
-  --export > openldap-helmrelease.yaml
-```
-
-### pgadmin4
-
-```bash
-flux create helmrelease pgadmin4 \
-  --source=HelmRepository/runix \
-  --chart=pgadmin4 \
-  --chart-version="1.8.2" \
-  --target-namespace=dev-tools \
-  --values=pgadmin4-values.yaml \
-  --export > pgadmin4-helmrelease.yaml
-```
-
 ### Portainer
 
 ```bash
