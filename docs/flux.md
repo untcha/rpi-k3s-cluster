@@ -333,7 +333,7 @@ flux create helmrelease wp-simone-mariadb \
 flux create helmrelease metallb \
   --source=HelmRepository/metallb \
   --chart=metallb \
-  --chart-version="0.11.0" \
+  --chart-version="0.12.1" \
   --target-namespace=metallb-system \
   --values=metallb-values.yaml \
   --export > metallb-helmrelease.yaml

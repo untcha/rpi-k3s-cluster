@@ -11,7 +11,7 @@ spec:
       sourceRef:
         kind: HelmRepository
         name: metallb
-      version: 0.11.0
+      version: 0.12.1
   interval: 1m0s
   targetNamespace: metallb-system
   values:
@@ -33,6 +33,7 @@ spec:
       logLevel: info
       nodeSelector: {}
       podAnnotations: {}
+      priorityClassName: ""
       readinessProbe:
         enabled: true
         failureThreshold: 3
@@ -56,7 +57,7 @@ spec:
     nameOverride: ""
     prometheus:
       metricsPort: 7472
-      namespace: monitoring
+      namespace: ""
       podMonitor:
         additionalLabels: {}
         enabled: false
@@ -97,7 +98,7 @@ spec:
           labels:
             severity: warning
       scrapeAnnotations: false
-      serviceAccount: prometheus-k8s
+      serviceAccount: ""
     psp:
       create: true
     rbac:
@@ -105,6 +106,13 @@ spec:
     speaker:
       affinity: {}
       enabled: true
+      frr:
+        enabled: false
+        image:
+          pullPolicy: null
+          repository: quay.io/frrouting/frr
+          tag: stable_7.5
+        logLevel: informational
       image:
         pullPolicy: null
         repository: quay.io/metallb/speaker
@@ -122,6 +130,7 @@ spec:
         mlBindPort: 7946
       nodeSelector: {}
       podAnnotations: {}
+      priorityClassName: ""
       readinessProbe:
         enabled: true
         failureThreshold: 3
