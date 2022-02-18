@@ -11,7 +11,7 @@ spec:
       sourceRef:
         kind: HelmRepository
         name: prometheus-community
-      version: 15.0.4
+      version: 15.3.0
   interval: 1m0s
   targetNamespace: monitoring
   values:
@@ -29,6 +29,7 @@ spec:
         sizeLimit: ""
       enabled: true
       extraArgs: {}
+      extraConfigmapMounts: []
       extraEnv: {}
       extraInitContainers: []
       extraSecretMounts: []
@@ -66,6 +67,7 @@ spec:
         annotations: {}
       prefixURL: ""
       priorityClassName: ""
+      probeHeaders: []
       replicaCount: 1
       resources: {}
       securityContext:
@@ -286,6 +288,7 @@ spec:
       baseURL: ""
       configMapOverrideName: ""
       configPath: /etc/config/prometheus.yml
+      defaultFlagsOverride: []
       deploymentAnnotations: {}
       dnsConfig: {}
       dnsPolicy: ClusterFirst
