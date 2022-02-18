@@ -74,7 +74,7 @@ flux bootstrap github \
   --repository=$GITHUB_REPOSITORY \
   --branch=main \
   --path=./cluster/base \
-  --version="v0.26.3" \
+  --version="v0.27.0" \
   --network-policy=false
 
 # --network-policy=false \
