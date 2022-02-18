@@ -225,7 +225,7 @@ helm show values <repository/chart> <chart>-values.yaml
 flux create helmrelease authelia \
   --source=HelmRepository/authelia \
   --chart=authelia \
-  --chart-version="0.8.1" \
+  --chart-version="0.8.2" \
   --target-namespace=authentication \
   --values=authelia-values.yaml \
   --export > authelia-helmrelease.yaml

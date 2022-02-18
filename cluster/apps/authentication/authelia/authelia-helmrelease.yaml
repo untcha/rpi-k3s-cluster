@@ -11,7 +11,7 @@ spec:
       sourceRef:
         kind: HelmRepository
         name: authelia
-      version: 0.8.1
+      version: 0.8.2
   interval: 1m0s
   targetNamespace: authentication
   values:
@@ -142,6 +142,7 @@ spec:
             route_by_latency: false
             route_randomly: false
             sentinel_name: mysentinel
+            username: ""
           host: redis.databases.svc.cluster.local
           maximum_active_connections: 8
           minimum_idle_connections: 0
