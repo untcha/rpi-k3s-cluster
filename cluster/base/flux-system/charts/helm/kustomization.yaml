@@ -17,4 +17,3 @@ resources:
   - authelia-charts.yaml
   - stakater-charts.yaml
   - kured-charts.yaml
-  - runix-charts.yaml
