@@ -364,7 +364,7 @@ flux create helmrelease nextcloud \
 flux create helmrelease nfs-provisioner \
   --source=HelmRepository/nfs-provisioner \
   --chart=nfs-subdir-external-provisioner \
-  --chart-version="4.0.14" \
+  --chart-version="4.0.16" \
   --target-namespace=storage \
   --values=nfs-provisioner-values.yaml \
   --export > nfs-provisioner-helmrelease.yaml

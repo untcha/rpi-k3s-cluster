@@ -13,7 +13,7 @@ spec:
       sourceRef:
         kind: HelmRepository
         name: nfs-provisioner
-      version: 4.0.14
+      version: 4.0.16
   interval: 1m0s
   targetNamespace: storage
   values:
@@ -34,12 +34,14 @@ spec:
       volumeName: nfs-subdir-external-provisioner-root
     nodeSelector: {}
     podAnnotations: {}
+    podSecurityContext: {}
     podSecurityPolicy:
       enabled: false
     rbac:
       create: true
     replicaCount: 1
     resources: {}
+    securityContext: {}
     serviceAccount:
       annotations: {}
       create: true
