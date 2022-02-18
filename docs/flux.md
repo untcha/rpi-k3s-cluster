@@ -553,7 +553,7 @@ flux create helmrelease speedtest-exporter \
 flux create helmrelease traefik \
   --source=HelmRepository/traefik \
   --chart=traefik \
-  --chart-version="10.9.1" \
+  --chart-version="10.14.1" \
   --target-namespace=traefik \
   --values=traefik-values.yaml \
   --export > traefik-helmrelease.yaml

@@ -11,7 +11,7 @@ spec:
       sourceRef:
         kind: HelmRepository
         name: traefik
-      version: 10.9.1
+      version: 10.14.1
   interval: 1m0s
   targetNamespace: traefik
   values:
@@ -35,13 +35,14 @@ spec:
       podAnnotations: {}
       podLabels: {}
       replicas: 1
+      shareProcessNamespace: false
       terminationGracePeriodSeconds: 60
     env: []
     envFrom: []
     experimental:
+      http3:
+        enabled: false
       kubernetesGateway:
-        appLabelSelector: traefik
-        certificates: []
         enabled: false
       plugins:
         enabled: false
@@ -52,7 +53,7 @@ spec:
     image:
       name: traefik
       pullPolicy: IfNotPresent
-      tag: ""
+      tag: 2.6.1
     ingressClass:
       enabled: false
       fallbackApiVersion: ""
@@ -78,8 +79,7 @@ spec:
     metrics:
       prometheus:
         entryPoint: metrics
-    nodeSelector:
-      node-type: worker
+    nodeSelector: {}
     persistence:
       accessMode: ReadWriteOnce
       annotations: {}
@@ -187,5 +187,6 @@ spec:
         preferServerCipherSuites: true
         sniStrict: true
     tolerations: []
+    tracing: {}
     volumes: []
 

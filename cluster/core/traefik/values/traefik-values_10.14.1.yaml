@@ -2,7 +2,7 @@
 image:
   name: traefik
   # defaults to appVersion
-  tag: ""
+  tag: "2.6.1"
   pullPolicy: IfNotPresent
 
 #
@@ -351,7 +351,22 @@ ports:
 #     curvePreferences:
 #       - CurveP521
 #       - CurveP384
-tlsOptions: {}
+tlsOptions:
+  default:
+    minVersion: VersionTLS12
+    maxVersion: VersionTLS13
+    cipherSuites:
+      - TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
+      - TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+      - TLS_ECDHE_RSA_WITH_CHACHA20_POLY1305
+      - TLS_ECDHE_ECDSA_WITH_CHACHA20_POLY1305
+      - TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256
+      - TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384
+    curvePreferences:
+      - CurveP521
+      - CurveP384
+    sniStrict: true
+    preferServerCipherSuites: true
 
 # Options for the main traefik service, where the entrypoints traffic comes
 # from.
@@ -466,8 +481,7 @@ affinity: {}
 #               values:
 #                 - {{ template "traefik.name" . }}
 #         topologyKey: kubernetes.io/hostname
-nodeSelector:
-  node-type: worker
+nodeSelector: {}
 tolerations: []
 
 # Pods can have priority.
