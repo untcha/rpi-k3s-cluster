@@ -103,6 +103,13 @@ spec:
           subPath: adlists.list
       nodeSelector:
         node-type: worker
+      resources:
+        limits:
+          cpu: 200m
+          memory: 512Mi
+        requests:
+          cpu: 100m
+          memory: 256Mi
       restartPolicy: Always
       volumes:
       - emptyDir:
