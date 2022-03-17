@@ -1,6 +1,6 @@
 # (\.|^)instagram\.com$
 # (\.|^)slack\.com$
-(\.|^)statuspage\.io$
+# (\.|^)statuspage\.io$
 # https://raw.githubusercontent.com/anudeepND/whitelist/master/domains/whitelist.txt
 0.client-channel.google.com
 1drv.com
@@ -193,4 +193,4 @@ continuum.dds.microsoft.com
 connectivitycheck.gstatic.com
 connectivitycheck.android.com
 www.msftconnecttest.com
-(\.|^)philips\.com$
+dcp.dc1.philips.com
