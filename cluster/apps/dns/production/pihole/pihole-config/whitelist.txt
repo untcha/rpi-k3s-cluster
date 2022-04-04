@@ -194,3 +194,4 @@ connectivitycheck.gstatic.com
 connectivitycheck.android.com
 www.msftconnecttest.com
 dcp.dc1.philips.com
+edge.activity.windows.com
