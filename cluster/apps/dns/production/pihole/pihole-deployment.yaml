@@ -32,7 +32,7 @@ spec:
       - envFrom:
         - configMapRef:
             name: pihole-env-vars
-        image: pihole/pihole:2022.02.1
+        image: pihole/pihole:2022.04.3
         imagePullPolicy: IfNotPresent
         livenessProbe:
           failureThreshold: 3
@@ -72,9 +72,9 @@ spec:
         securityContext:
           allowPrivilegeEscalation: true
           privileged: false
-          capabilities:
-            add:
-            - NET_ADMIN
+          # capabilities:
+          #   add:
+          #   - NET_ADMIN
         startupProbe:
           failureThreshold: 30
           httpGet:
