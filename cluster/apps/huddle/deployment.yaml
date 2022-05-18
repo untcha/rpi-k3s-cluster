@@ -1,0 +1,39 @@
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: huddle-demo
+  namespace: huddle
+spec:
+  selector:
+    app: huddle-demo
+  ports:
+  - name: http
+    port: 80
+
+---
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: huddle-demo
+  namespace: huddle
+  labels:
+    app: huddle-demo
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: huddle-demo
+  template:
+    metadata:
+      labels:
+        app: huddle-demo
+    spec:
+      nodeSelector:
+        node-type: worker
+      containers:
+        - name: huddle-demo
+          image: traefik/whoami
+          ports:
+            - name: web
+              containerPort: 80
