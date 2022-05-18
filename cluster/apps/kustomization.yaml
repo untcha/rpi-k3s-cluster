@@ -36,3 +36,4 @@ resources:
     # reloader
     # whoami
   - vaultwarden
+  - huddle
