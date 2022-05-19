@@ -8,23 +8,26 @@ spec:
   chart:
     spec:
       chart: cert-manager
+      reconcileStrategy: ChartVersion
       sourceRef:
         kind: HelmRepository
         name: jetstack
-      version: v1.7.1
+      version: v1.8.0
   interval: 1m0s
   targetNamespace: cert-manager
   values:
     affinity: {}
     cainjector:
       affinity: {}
-      containerSecurityContext: {}
+      containerSecurityContext:
+        allowPrivilegeEscalation: false
       enabled: true
       extraArgs: []
       image:
         pullPolicy: IfNotPresent
         repository: quay.io/jetstack/cert-manager-cainjector
-      nodeSelector: {}
+      nodeSelector:
+        kubernetes.io/os: linux
       podLabels: {}
       replicaCount: 1
       resources: {}
@@ -36,7 +39,8 @@ spec:
       strategy: {}
       tolerations: []
     clusterResourceNamespace: ""
-    containerSecurityContext: {}
+    containerSecurityContext:
+      allowPrivilegeEscalation: false
     extraArgs: []
     extraEnv: []
     featureGates: ""
@@ -50,13 +54,15 @@ spec:
         useAppArmor: true
       priorityClassName: ""
       rbac:
+        aggregateClusterRoles: true
         create: true
     image:
       pullPolicy: IfNotPresent
       repository: quay.io/jetstack/cert-manager-controller
     ingressShim: {}
     installCRDs: true
-    nodeSelector: {}
+    nodeSelector:
+      kubernetes.io/os: linux
     podLabels: {}
     prometheus:
       enabled: true
@@ -79,6 +85,8 @@ spec:
     startupapicheck:
       affinity: {}
       backoffLimit: 4
+      containerSecurityContext:
+        allowPrivilegeEscalation: false
       enabled: true
       extraArgs: []
       image:
@@ -114,7 +122,8 @@ spec:
     webhook:
       affinity: {}
       config: null
-      containerSecurityContext: {}
+      containerSecurityContext:
+        allowPrivilegeEscalation: false
       extraArgs: []
       hostNetwork: false
       image:
@@ -126,7 +135,8 @@ spec:
         periodSeconds: 10
         successThreshold: 1
         timeoutSeconds: 1
-      nodeSelector: {}
+      nodeSelector:
+        kubernetes.io/os: linux
       podLabels: {}
       readinessProbe:
         failureThreshold: 3
