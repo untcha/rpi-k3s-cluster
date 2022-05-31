@@ -197,3 +197,8 @@ dcp.dc1.philips.com
 edge.activity.windows.com
 device-metrics-us.amazon.com
 device-metrics-us-2.amazon.com
+mads-eu.amazon.com
+mads.amazon-adsystem.com
+aax-eu-retail-direct.amazon-adsystem.com
+c.amazon-adsystem.com
+aax-eu.amazon-adsystem.com
