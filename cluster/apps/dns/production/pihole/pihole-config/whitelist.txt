@@ -195,3 +195,5 @@ connectivitycheck.android.com
 www.msftconnecttest.com
 dcp.dc1.philips.com
 edge.activity.windows.com
+device-metrics-us.amazon.com
+device-metrics-us-2.amazon.com
