@@ -30,7 +30,7 @@ spec:
       serviceAccountName: vaultwarden
       containers:
       - name: vaultwarden
-        image: vaultwarden/server:1.24.0
+        image: vaultwarden/server:1.25.0
         imagePullPolicy: IfNotPresent
         envFrom:
           - configMapRef:
