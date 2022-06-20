@@ -8,10 +8,11 @@ spec:
   chart:
     spec:
       chart: traefik
+      reconcileStrategy: ChartVersion
       sourceRef:
         kind: HelmRepository
         name: traefik
-      version: 10.14.1
+      version: 10.21.1
   interval: 1m0s
   targetNamespace: traefik
   values:
@@ -22,6 +23,7 @@ spec:
     affinity: {}
     autoscaling:
       enabled: false
+    certResolvers: {}
     deployment:
       additionalContainers: []
       additionalVolumes: []
@@ -53,7 +55,7 @@ spec:
     image:
       name: traefik
       pullPolicy: IfNotPresent
-      tag: 2.6.1
+      tag: ""
     ingressClass:
       enabled: false
       fallbackApiVersion: ""
@@ -63,6 +65,12 @@ spec:
         annotations: {}
         enabled: false
         labels: {}
+    livenessProbe:
+      failureThreshold: 3
+      initialDelaySeconds: 10
+      periodSeconds: 10
+      successThreshold: 1
+      timeoutSeconds: 2
     logs:
       access:
         enabled: false
@@ -131,10 +139,12 @@ spec:
     providers:
       kubernetesCRD:
         allowCrossNamespace: true
+        allowEmptyServices: false
         allowExternalNameServices: false
         enabled: true
         namespaces: []
       kubernetesIngress:
+        allowEmptyServices: false
         allowExternalNameServices: false
         enabled: true
         namespaces: []
@@ -143,6 +153,12 @@ spec:
     rbac:
       enabled: true
       namespaced: false
+    readinessProbe:
+      failureThreshold: 1
+      initialDelaySeconds: 10
+      periodSeconds: 10
+      successThreshold: 1
+      timeoutSeconds: 2
     resources: {}
     rollingUpdate:
       maxSurge: 1
