@@ -20,3 +20,9 @@ else
     curl -X PUT -H "Content-Type: application/json" -H "Authorization: Bearer $TOKEN" -d '{"data":"'"$CURRENT_IPV4"'"}' "https://api.digitalocean.com/v2/domains/$DOMAIN/records/$RECORD_ID"
     curl -X PUT -H "Content-Type: application/json" -H "Authorization: Bearer $TOKEN" -d '{"data":"'"$CURRENT_IPV4"'"}' "https://api.digitalocean.com/v2/domains/$DOMAIN2/records/$RECORD_ID2"
 fi
+
+# https://salvatorelab.com/2020/10/how-to-point-a-domain-to-your-dynamic-home-ip-address/
+
+# curl GET -H "Content-Type: application/json" \
+#     -H "Authorization: Bearer <TOKEN>" \
+#     https://api.digitalocean.com/v2/domains/<DOMAIN>/records | json_pp
