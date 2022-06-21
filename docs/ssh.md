@@ -1,6 +1,6 @@
-## :one: SSH Basics
+## 1. SSH Basics
 
-### Generate a new ssh keypair :material-key-chain-variant: (`id_rsa` and `id_rsa.pub`):
+### 1.1 Generate a new ssh keypair (`id_rsa` and `id_rsa.pub`):
 
 ``` bash
 cd ~/.ssh
@@ -16,7 +16,7 @@ Usage:
 [-q] [-b bits] [-t dsa | ecdsa | ed25519 | rsa] [-N new_passphrase] [-C comment] [-f output_keyfile]
 ```
 
-### Change the passphrase of an ssh key
+### 1.2 Change the passphrase of an ssh key
 
 To change the passphrase of the default key:
 
@@ -30,7 +30,7 @@ To change the passphrase of a specific key `id_rsa`
 ssh-keygen -p -f ~/.ssh/id_dsa
 ```
 
-### :key: Show and copy the content of the public key `id_rsa.pub`
+### 1.3 Show and copy the content of the public key `id_rsa.pub`
 
 ``` bash
 cat id_rsa.pub
@@ -44,7 +44,7 @@ pbcopy < id_rsa.pub
 cat ~/.ssh/id_rsa.pub | pbcopy
 ```
 
-### Use the keychain :material-key-chain-variant: in macOS :material-apple:
+### 1.4 Use the keychain in macOS
 
 ``` bash
 touch ~/.ssh/config
@@ -56,7 +56,7 @@ Host *
     IdentityFile  ~/.ssh/id_rsa
 ```
 
-### Start the ssh-agent in the background and add your (private) ssh key
+### 1.5 Start the ssh-agent in the background and add your (private) ssh key
 
 ``` bash
 eval "$(ssh-agent -s)"
@@ -66,21 +66,21 @@ eval "$(ssh-agent -s)"
 ssh-add ~/.ssh/id_rsa
 ```
 
-### :mag: Show ssh fingerprint (SHA256)
+### 1.6 Show ssh fingerprint (SHA256)
 
 ``` bash
 ssh-keygen -lf id_rsa.pub
 ```
 
-###  :mag: Show ssh fingerprint (MD5)
+###  1.7 Show ssh fingerprint (MD5)
 
 ``` bash
 ssh-keygen -E md5 -lf id_rsa.pub
 ```
 
-## :two: :lock: Logging in with a ssh private key
+## 2. Logging in with a ssh private key
 
-### Deloy public key
+### 2.1 Deloy public key
 
 ``` bash
 ssh pi@<ip-address|domain>
@@ -100,7 +100,7 @@ Copy the content of the public key (`id_rsa.pub`) exactly as it is - no whitespa
 pbcopy < ~/.ssh/id_rsa.pub
 ```
 
-### :gear: Enable ssh key authentication
+### 2.2 Enable ssh key authentication
 
 ``` bash
 sudo nano /etc/ssh/sshd_config
@@ -113,7 +113,7 @@ RSAAuthentification yes
 PubkeyAuthentification yes
 ```
 
-### :gear: (Optional) Disable password authentication
+### 2.3 (Optional) Disable password authentication
 
 ``` bash
 sudo nano /etc/ssh/sshd_config
@@ -125,39 +125,39 @@ Change the following value:
 PasswordAuthentification no
 ```
 
-### :gear: Restart ssh daemon
+### 2.4 Restart ssh daemon
 
 ``` bash
 sudo /etc/init.d/ssh restart
 ```
 
-### :lock: (Optional) Login with ssh key
+### 2.5 (Optional) Login with ssh key
 
 ``` bash
 ssh -i .ssh/id_rsa pi<ip-address|domain>
 ```
 
-### :wrench: (Optional if necessary) Change permissions of the private ssh key
+### 2.6 (Optional if necessary) Change permissions of the private ssh key
 
 ``` bash
 chmod 600 id_rsa
 ```
 
-## :three: :ghost: Enable ssh daemon on macOS :material-apple:
+## 3. Enable ssh daemon on macOS
 
-### How to check if ssh remote login is enabled in macOS
+### 3.1 How to check if ssh remote login is enabled in macOS
 
 ``` bash
 sudo systemsetup -getremotelogin
 ```
 
-### :gear: Enable ssh remote login
+### 3.2 Enable ssh remote login
 
 ``` bash
 sudo systemsetup -setremotelogin on
 ```
 
-### :gear: Disable ssh remote login
+### 3.3 Disable ssh remote login
 
 ``` bash
 sudo systemsetup -setremotelogin off
