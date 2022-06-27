@@ -145,7 +145,7 @@ spec:
   interval: 10m0s
   dependsOn:
   - name: core-cert-manager-issuer
-  path: ./cluster/core/traefik
+  path: ./cluster/core/ingress/traefik
   prune: true
   sourceRef:
     kind: GitRepository
@@ -175,13 +175,13 @@ spec:
 apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
 kind: Kustomization
 metadata:
-  name: core-ingress-controller-crds
+  name: core-ingress-controller-additions
   namespace: flux-system
 spec:
   interval: 10m0s
   dependsOn:
   - name: core-ingress-controller
-  path: ./cluster/core/traefik-crds
+  path: ./cluster/core/ingress/traefik-additions
   prune: true
   sourceRef:
     kind: GitRepository
@@ -207,7 +207,7 @@ metadata:
 spec:
   interval: 10m0s
   dependsOn:
-  - name: core-ingress-controller-crds
+  - name: core-ingress-controller-additions
   path: ./cluster/core/storage/remote
   prune: true
   sourceRef:
