@@ -1,6 +1,8 @@
 #!/bin/bash
 
-echo Installing Server 1
+# https://github.com/alexellis/k3sup
+
+echo "Installing Master 1"
 k3sup install \
     --ip $K3S_CLUSTER_IP_M01 \
     --user $K3S_CLUSTER_USER \
@@ -11,7 +13,7 @@ k3sup install \
     --k3s-version $K3S_CLUSTER_VERSION \
     --ssh-key $K3S_CLUSTER_SSH_KEY_PATH
 
-echo Installing Server 2
+echo "Installing Master 2"
 k3sup join \
     --ip $K3S_CLUSTER_IP_M02 \
     --user $K3S_CLUSTER_USER \
@@ -22,7 +24,7 @@ k3sup join \
     --k3s-version $K3S_CLUSTER_VERSION \
     --ssh-key $K3S_CLUSTER_SSH_KEY_PATH
 
-echo Installing Server 3
+echo "Installing Master 3"
 k3sup join \
     --ip $K3S_CLUSTER_IP_M03 \
     --user $K3S_CLUSTER_USER \
@@ -33,7 +35,7 @@ k3sup join \
     --k3s-version $K3S_CLUSTER_VERSION \
     --ssh-key $K3S_CLUSTER_SSH_KEY_PATH
 
-echo Installing Worker 1
+echo "Installing Worker 1"
 k3sup join \
     --ip $K3S_CLUSTER_IP_W01 \
     --user $K3S_CLUSTER_USER \
@@ -41,7 +43,7 @@ k3sup join \
     --k3s-version $K3S_CLUSTER_VERSION \
     --ssh-key $K3S_CLUSTER_SSH_KEY_PATH
 
-echo Installing Worker 2
+echo "Installing Worker 2"
 k3sup join \
     --ip $K3S_CLUSTER_IP_W02 \
     --user $K3S_CLUSTER_USER \
@@ -49,7 +51,7 @@ k3sup join \
     --k3s-version $K3S_CLUSTER_VERSION \
     --ssh-key $K3S_CLUSTER_SSH_KEY_PATH
 
-echo Installing Worker 3
+echo "Installing Worker 3"
 k3sup join \
     --ip $K3S_CLUSTER_IP_W03 \
     --user $K3S_CLUSTER_USER \
@@ -57,7 +59,7 @@ k3sup join \
     --k3s-version $K3S_CLUSTER_VERSION \
     --ssh-key $K3S_CLUSTER_SSH_KEY_PATH
 
-echo Installing Worker 4
+echo "Installing Worker 4"
 k3sup join \
     --ip $K3S_CLUSTER_IP_W04 \
     --user $K3S_CLUSTER_USER \
@@ -65,24 +67,10 @@ k3sup join \
     --k3s-version $K3S_CLUSTER_VERSION \
     --ssh-key $K3S_CLUSTER_SSH_KEY_PATH
 
-echo Installing Worker 5
+echo "Installing Worker 5"
 k3sup join \
     --ip $K3S_CLUSTER_IP_W05 \
     --user $K3S_CLUSTER_USER \
     --server-ip $K3S_CLUSTER_IP_M01 \
     --k3s-version $K3S_CLUSTER_VERSION \
     --ssh-key $K3S_CLUSTER_SSH_KEY_PATH
-
-# This label is to have nice name when running kubectl get nodes.
-kubectl label nodes rpi-k3s-worker-01 kubernetes.io/role=worker
-kubectl label nodes rpi-k3s-worker-02 kubernetes.io/role=worker
-kubectl label nodes rpi-k3s-worker-03 kubernetes.io/role=worker
-kubectl label nodes rpi-k3s-worker-04 kubernetes.io/role=worker
-kubectl label nodes rpi-k3s-worker-05 kubernetes.io/role=worker
-
-# Another label/tag. This one I will use to tell deployments to prefer nodes with node-type worker. The node-type is our chosen name for value, you can call it whatever.
-kubectl label nodes rpi-k3s-worker-01 node-type=worker
-kubectl label nodes rpi-k3s-worker-02 node-type=worker
-kubectl label nodes rpi-k3s-worker-03 node-type=worker
-kubectl label nodes rpi-k3s-worker-04 node-type=worker
-kubectl label nodes rpi-k3s-worker-05 node-type=worker
