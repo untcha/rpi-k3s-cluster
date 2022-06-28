@@ -3,36 +3,36 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 
 resources:
-  - authentication
+  # - authentication
     # authelia
     # basicauth
-  - blogs
+  # - blogs
     # simone
-  - dashboards
+  # - dashboards
     # homer
     # kubernetes-dashboard
-  - development
+  # - development
     # adminer
     # gitea
     # portainer
-  - dns
+  # - dns
     # do-dns-updater
     # unbound
     # pihole
     # staging
-  - documentation
-  - kube-system
+  # - documentation
+  # - kube-system
     # kured
     # system-upgrade-controller
-  - monitoring
+  # - monitoring
     # prometheus
     # grafana
     # influxdata
     # prometheus-exporter
-  - nextcloud
-  - paperless-ng
-  - recipes
-  - tools
+  # - nextcloud
+  # - paperless-ng
+  # - recipes
+  # - tools
     # reloader
     # whoami
-  - vaultwarden
+  # - vaultwarden
