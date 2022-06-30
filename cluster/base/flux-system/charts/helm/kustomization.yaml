@@ -4,16 +4,16 @@ kind: Kustomization
 
 resources:
   - metallb-charts.yaml
-  - nfs-provisioner-charts.yaml
-  - longhorn-charts.yaml
-  - jetstack-charts.yaml
-  - traefik-charts.yaml
-  - influxdata-charts.yaml
-  - grafana-charts.yaml
-  - prometheus-community-charts.yaml
-  - groundhog2k-charts.yaml
-  - portainer-charts.yaml
-  - k8s-at-home-charts.yaml
-  - authelia-charts.yaml
-  - stakater-charts.yaml
-  - kured-charts.yaml
+  # - nfs-provisioner-charts.yaml
+  # - longhorn-charts.yaml
+  # - jetstack-charts.yaml
+  # - traefik-charts.yaml
+  # - influxdata-charts.yaml
+  # - grafana-charts.yaml
+  # - prometheus-community-charts.yaml
+  # - groundhog2k-charts.yaml
+  # - portainer-charts.yaml
+  # - k8s-at-home-charts.yaml
+  # - authelia-charts.yaml
+  # - stakater-charts.yaml
+  # - kured-charts.yaml

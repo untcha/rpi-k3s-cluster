@@ -4,7 +4,7 @@ kind: Kustomization
 resources:
 - gotk-components.yaml
 - gotk-sync.yaml
-# - charts
+- charts
 # - notifications
 
 patchesStrategicMerge:
