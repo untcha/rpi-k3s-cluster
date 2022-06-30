@@ -4,4 +4,4 @@ kind: Kustomization
 
 resources:
   - digitalocean-access-token.sops.yaml
-  # - cert-manager-helmrelease.yaml
+  - cert-manager-helmrelease.yaml
