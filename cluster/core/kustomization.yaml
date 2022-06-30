@@ -7,4 +7,4 @@ resources:
   - network
   - cert-manager
   - ingress
-  # - storage
+  - storage
