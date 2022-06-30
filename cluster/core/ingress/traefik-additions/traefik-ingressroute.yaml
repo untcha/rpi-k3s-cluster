@@ -45,10 +45,10 @@ spec:
   entryPoints:
     - web
   routes:
-    - match: Host(`traefik.${SECRET_DIGITALOCEAN_DOMAIN_02}`) && (PathPrefix(`/dashboard`) || PathPrefix(`/api`))
+    - match: Host(`traefik.${SECRET_DOMAIN}`) && (PathPrefix(`/dashboard`) || PathPrefix(`/api`))
       kind: Rule
-      # middlewares:
-      #   - name: https-redirect-scheme-middleware
+      middlewares:
+        - name: https-redirect-scheme-middleware
       services:
         - name: api@internal
           kind: TraefikService
@@ -67,13 +67,13 @@ spec:
   routes:
     - match: Host(`traefik.${SECRET_DOMAIN}`) && (PathPrefix(`/dashboard`) || PathPrefix(`/api`))
       kind: Rule
-      # middlewares:
+      middlewares:
         # - name: basicauth-middleware
         #   namespace: authentication
         # - name: authelia-middleware
         #   namespace: authentication
-        # - name: secure-headers-middleware
-        #   namespace: traefik
+        - name: secure-headers-middleware
+          namespace: traefik
       services:
         - name: api@internal
           kind: TraefikService
