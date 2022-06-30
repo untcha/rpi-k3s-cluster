@@ -141,7 +141,7 @@ spec:
         allowCrossNamespace: true
         allowEmptyServices: false
         allowExternalNameServices: false
-        enabled: false
+        enabled: true
         namespaces: []
       kubernetesIngress:
         allowEmptyServices: false
