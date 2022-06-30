@@ -12,7 +12,7 @@ spec:
       sourceRef:
         kind: HelmRepository
         name: traefik
-      version: 10.21.1
+      version: 10.24.0
   interval: 1m0s
   targetNamespace: traefik
   values:
@@ -141,7 +141,7 @@ spec:
         allowCrossNamespace: true
         allowEmptyServices: false
         allowExternalNameServices: false
-        enabled: true
+        enabled: false
         namespaces: []
       kubernetesIngress:
         allowEmptyServices: false
@@ -186,22 +186,7 @@ spec:
     serviceAccount:
       name: ""
     serviceAccountAnnotations: {}
-    tlsOptions:
-      default:
-        cipherSuites:
-        - TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
-        - TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-        - TLS_ECDHE_RSA_WITH_CHACHA20_POLY1305
-        - TLS_ECDHE_ECDSA_WITH_CHACHA20_POLY1305
-        - TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256
-        - TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384
-        curvePreferences:
-        - CurveP521
-        - CurveP384
-        maxVersion: VersionTLS13
-        minVersion: VersionTLS12
-        preferServerCipherSuites: true
-        sniStrict: true
+    tlsOptions: {}
     tolerations: []
     tracing: {}
     volumes: []
