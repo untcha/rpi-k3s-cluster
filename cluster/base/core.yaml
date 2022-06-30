@@ -79,23 +79,23 @@ spec:
   sourceRef:
     kind: GitRepository
     name: flux-system
-  # healthChecks:
-  #   - apiVersion: helm.toolkit.fluxcd.io/v2beta1
-  #     kind: HelmRelease
-  #     name: cert-manager
-  #     namespace: flux-system
-  #   - apiVersion: apps/v1
-  #     kind: Deployment
-  #     name: cert-manager-cert-manager
-  #     namespace: cert-manager
-  #   - apiVersion: apps/v1
-  #     kind: Deployment
-  #     name: cert-manager-cert-manager-cainjector
-  #     namespace: cert-manager
-  #   - apiVersion: apps/v1
-  #     kind: Deployment
-  #     name: cert-manager-cert-manager-webhook
-  #     namespace: cert-manager
+  healthChecks:
+    - apiVersion: helm.toolkit.fluxcd.io/v2beta1
+      kind: HelmRelease
+      name: cert-manager
+      namespace: flux-system
+    - apiVersion: apps/v1
+      kind: Deployment
+      name: cert-manager-cert-manager
+      namespace: cert-manager
+    - apiVersion: apps/v1
+      kind: Deployment
+      name: cert-manager-cert-manager-cainjector
+      namespace: cert-manager
+    - apiVersion: apps/v1
+      kind: Deployment
+      name: cert-manager-cert-manager-webhook
+      namespace: cert-manager
   decryption:
     provider: sops
     secretRef:
