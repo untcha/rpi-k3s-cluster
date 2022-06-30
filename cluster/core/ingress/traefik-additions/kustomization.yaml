@@ -5,5 +5,5 @@ kind: Kustomization
 resources:
   - traefik-ingressroute.yaml
   - traefik-middleware.yaml
-  # - traefik-tlsoption.yaml
+  - traefik-tlsoption.yaml
   # - error-pages
