@@ -357,6 +357,7 @@ flux create helmrelease nextcloud \
 ### nfs-provisioner
 
 ```bash
+  ### NICHT mehr nötig! --> Kustomization angepasst!
   namespace: flux-system
   annotations:
     kustomize.toolkit.fluxcd.io/substitute: disabled (!!!)
