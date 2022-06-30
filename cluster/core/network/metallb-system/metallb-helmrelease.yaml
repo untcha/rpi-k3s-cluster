@@ -8,6 +8,7 @@ spec:
   chart:
     spec:
       chart: metallb
+      reconcileStrategy: ChartVersion
       sourceRef:
         kind: HelmRepository
         name: metallb
@@ -51,7 +52,7 @@ spec:
         create: true
         name: ""
       tolerations: []
-    existingConfigMap: config
+    existingConfigMap: metallb-config
     fullnameOverride: ""
     imagePullSecrets: []
     nameOverride: ""
