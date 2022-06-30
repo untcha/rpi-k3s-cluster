@@ -21,7 +21,7 @@ spec:
     affinity: {}
     image:
       pullPolicy: IfNotPresent
-      repository: k8s.gcr.io/sig-storage/nfs-subdir-external-provisioner
+      repository: dyrnq/nfs-subdir-external-provisioner
       tag: v4.0.2
     imagePullSecrets: []
     labels: {}
