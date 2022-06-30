@@ -11,8 +11,7 @@ nfs:
   server: 192.168.178.110
   path: /KubeData
   mountOptions:
-  volumeName: nfs-storage-root
-  # volumeName: nfs-subdir-external-provisioner-root
+  volumeName: nfs-subdir-external-provisioner-root
   # Reclaim policy for the main nfs volume
   reclaimPolicy: Retain
 
@@ -25,11 +24,11 @@ storageClass:
 
   # Set StorageClass as the default StorageClass
   # Ignored if storageClass.create is false
-  defaultClass: true
+  defaultClass: false
 
   # Set a StorageClass name
   # Ignored if storageClass.create is false
-  name: nfs-storage
+  name: storage-nfs-provisioner
 
   # Allow volume to be expanded dynamically
   allowVolumeExpansion: true

@@ -30,7 +30,7 @@ spec:
       path: /KubeData
       reclaimPolicy: Retain
       server: 192.168.178.110
-      volumeName: nfs-storage-root
+      volumeName: nfs-subdir-external-provisioner-root
     nodeSelector:
       node-type: worker
     podAnnotations: {}
@@ -53,8 +53,8 @@ spec:
         kustomize.toolkit.fluxcd.io/substitute: disabled
       archiveOnDelete: true
       create: true
-      defaultClass: true
-      name: nfs-storage
+      defaultClass: false
+      name: storage-nfs-provisioner
       onDelete: null
       pathPattern: ${.PVC.namespace}/${.PVC.annotations.nfs.io/storage-path}
       reclaimPolicy: Delete
