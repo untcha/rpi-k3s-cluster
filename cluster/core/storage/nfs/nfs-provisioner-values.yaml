@@ -11,7 +11,8 @@ nfs:
   server: 192.168.178.110
   path: /KubeData
   mountOptions:
-  volumeName: nfs-subdir-external-provisioner-root
+    - nfsvers=4
+  volumeName: nfs-storage-root
   # Reclaim policy for the main nfs volume
   reclaimPolicy: Retain
 
@@ -28,7 +29,7 @@ storageClass:
 
   # Set a StorageClass name
   # Ignored if storageClass.create is false
-  name: storage-nfs-provisioner
+  name: nfs-provisioner
 
   # Allow volume to be expanded dynamically
   allowVolumeExpansion: true
@@ -52,8 +53,7 @@ storageClass:
   accessModes: ReadWriteOnce
 
   # Storage class annotations
-  annotations:
-    kustomize.toolkit.fluxcd.io/substitute: disabled
+  annotations: {}
 
 leaderElection:
   # When set to false leader election will be disabled
@@ -75,6 +75,10 @@ podAnnotations: {}
 ## Set pod priorityClassName
 # priorityClassName: ""
 
+podSecurityContext: {}
+
+securityContext: {}
+
 serviceAccount:
   # Specifies whether a ServiceAccount should be created
   create: true
@@ -94,7 +98,8 @@ resources: {}
   #  cpu: 100m
   #  memory: 128Mi
 
-nodeSelector: {}
+nodeSelector:
+  node-type: worker
 
 tolerations: []
 

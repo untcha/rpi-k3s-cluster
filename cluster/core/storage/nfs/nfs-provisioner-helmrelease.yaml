@@ -4,8 +4,6 @@ kind: HelmRelease
 metadata:
   name: nfs-provisioner
   namespace: flux-system
-  annotations:
-    kustomize.toolkit.fluxcd.io/substitute: disabled
 spec:
   chart:
     spec:
@@ -14,33 +12,37 @@ spec:
       sourceRef:
         kind: HelmRepository
         name: nfs-provisioner
-      version: 4.0.14
+      version: 4.0.16
   interval: 1m0s
   targetNamespace: storage
   values:
     affinity: {}
     image:
       pullPolicy: IfNotPresent
-      repository: dyrnq/nfs-subdir-external-provisioner
+      repository: k8s.gcr.io/sig-storage/nfs-subdir-external-provisioner
       tag: v4.0.2
     imagePullSecrets: []
     labels: {}
     leaderElection:
       enabled: true
     nfs:
-      mountOptions: null
+      mountOptions:
+      - nfsvers=4
       path: /KubeData
       reclaimPolicy: Retain
       server: 192.168.178.110
-      volumeName: nfs-subdir-external-provisioner-root
-    nodeSelector: {}
+      volumeName: nfs-storage-root
+    nodeSelector:
+      node-type: worker
     podAnnotations: {}
+    podSecurityContext: {}
     podSecurityPolicy:
       enabled: false
     rbac:
       create: true
     replicaCount: 1
     resources: {}
+    securityContext: {}
     serviceAccount:
       annotations: {}
       create: true
@@ -48,12 +50,11 @@ spec:
     storageClass:
       accessModes: ReadWriteOnce
       allowVolumeExpansion: true
-      annotations:
-        kustomize.toolkit.fluxcd.io/substitute: disabled
+      annotations: {}
       archiveOnDelete: true
       create: true
       defaultClass: false
-      name: storage-nfs-provisioner
+      name: nfs-provisioner
       onDelete: null
       pathPattern: ${.PVC.namespace}/${.PVC.annotations.nfs.io/storage-path}
       reclaimPolicy: Delete
