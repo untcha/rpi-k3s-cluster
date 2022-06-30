@@ -10,6 +10,7 @@ spec:
   chart:
     spec:
       chart: nfs-subdir-external-provisioner
+      reconcileStrategy: ChartVersion
       sourceRef:
         kind: HelmRepository
         name: nfs-provisioner
@@ -31,7 +32,7 @@ spec:
       path: /KubeData
       reclaimPolicy: Retain
       server: 192.168.178.110
-      volumeName: nfs-subdir-external-provisioner-root
+      volumeName: nfs-storage-root
     nodeSelector: {}
     podAnnotations: {}
     podSecurityContext: {}
@@ -53,8 +54,8 @@ spec:
         kustomize.toolkit.fluxcd.io/substitute: disabled
       archiveOnDelete: true
       create: true
-      defaultClass: true
-      name: storage-nfs-provisioner
+      defaultClass: false
+      name: nfs-storage
       onDelete: null
       pathPattern: ${.PVC.namespace}/${.PVC.annotations.nfs.io/storage-path}
       reclaimPolicy: Delete

@@ -102,4 +102,3 @@ affinity: {}
 
 # Additional labels for any resource created
 labels: {}
-
