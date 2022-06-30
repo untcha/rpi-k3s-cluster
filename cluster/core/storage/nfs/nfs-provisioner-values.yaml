@@ -75,10 +75,6 @@ podAnnotations: {}
 ## Set pod priorityClassName
 # priorityClassName: ""
 
-podSecurityContext: {}
-
-securityContext: {}
-
 serviceAccount:
   # Specifies whether a ServiceAccount should be created
   create: true
@@ -98,8 +94,7 @@ resources: {}
   #  cpu: 100m
   #  memory: 128Mi
 
-nodeSelector:
-  node-type: worker
+nodeSelector: {}
 
 tolerations: []
 
