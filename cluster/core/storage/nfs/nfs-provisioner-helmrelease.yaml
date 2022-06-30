@@ -32,7 +32,8 @@ spec:
       reclaimPolicy: Retain
       server: 192.168.178.110
       volumeName: nfs-storage-root
-    nodeSelector: {}
+    nodeSelector:
+      node-type: worker
     podAnnotations: {}
     podSecurityContext: {}
     podSecurityPolicy:

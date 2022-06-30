@@ -11,7 +11,7 @@ nfs:
   server: 192.168.178.110
   path: /KubeData
   mountOptions:
-    - nfsvers=4
+    - nfsvers=4.0
   volumeName: nfs-storage-root
   # Reclaim policy for the main nfs volume
   reclaimPolicy: Retain
@@ -98,7 +98,8 @@ resources: {}
   #  cpu: 100m
   #  memory: 128Mi
 
-nodeSelector: {}
+nodeSelector:
+  node-type: worker
 
 tolerations: []
 
