@@ -4,9 +4,9 @@ kind: Kustomization
 
 resources:
   - metallb-charts.yaml
+  - jetstack-charts.yaml
   # - nfs-provisioner-charts.yaml
   # - longhorn-charts.yaml
-  # - jetstack-charts.yaml
   # - traefik-charts.yaml
   # - influxdata-charts.yaml
   # - grafana-charts.yaml
