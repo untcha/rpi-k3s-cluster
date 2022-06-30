@@ -79,3 +79,6 @@ spec:
           kind: TraefikService
   tls:
     secretName: "${SECRET_DOMAIN/./-}-tls"
+    options:
+      name: default-tlsoption
+      namespace: traefik
