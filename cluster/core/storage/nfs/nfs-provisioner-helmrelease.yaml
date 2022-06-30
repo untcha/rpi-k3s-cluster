@@ -27,13 +27,12 @@ spec:
       enabled: true
     nfs:
       mountOptions:
-      - nfsvers=4
+      - nfsvers=4.0
       path: /KubeData
       reclaimPolicy: Retain
       server: 192.168.178.110
       volumeName: nfs-storage-root
-    nodeSelector:
-      node-type: worker
+    nodeSelector: {}
     podAnnotations: {}
     podSecurityContext: {}
     podSecurityPolicy:

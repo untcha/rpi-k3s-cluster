@@ -98,8 +98,7 @@ resources: {}
   #  cpu: 100m
   #  memory: 128Mi
 
-nodeSelector:
-  node-type: worker
+nodeSelector: {}
 
 tolerations: []
 
