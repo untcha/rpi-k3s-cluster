@@ -5,4 +5,4 @@ kind: Kustomization
 resources:
   #- github.com/metallb/metallb//manifests?ref=v0.10.2
   - metallb-configmap.yaml
-  # - metallb-helmrelease.yaml
+  - metallb-helmrelease.yaml
