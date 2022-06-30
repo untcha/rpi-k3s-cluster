@@ -7,7 +7,7 @@ resources:
   - jetstack-charts.yaml
   - traefik-charts.yaml
   - nfs-provisioner-charts.yaml
-  # - longhorn-charts.yaml
+  - longhorn-charts.yaml
   # - influxdata-charts.yaml
   # - grafana-charts.yaml
   # - prometheus-community-charts.yaml
