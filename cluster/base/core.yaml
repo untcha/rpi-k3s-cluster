@@ -206,8 +206,8 @@ metadata:
   namespace: flux-system
 spec:
   interval: 10m0s
-  dependsOn:
-  - name: core-ingress-controller-additions
+  # dependsOn:
+  # - name: core-ingress-controller-additions
   path: ./cluster/core/storage/nfs
   prune: true
   sourceRef:
