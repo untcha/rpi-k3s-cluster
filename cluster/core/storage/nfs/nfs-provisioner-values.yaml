@@ -25,7 +25,7 @@ storageClass:
 
   # Set StorageClass as the default StorageClass
   # Ignored if storageClass.create is false
-  defaultClass: false
+  defaultClass: true
 
   # Set a StorageClass name
   # Ignored if storageClass.create is false
@@ -99,7 +99,8 @@ resources: {}
   #  cpu: 100m
   #  memory: 128Mi
 
-nodeSelector: {}
+nodeSelector:
+  node-type: worker
 
 tolerations: []
 

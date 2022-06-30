@@ -4,8 +4,6 @@ kind: HelmRelease
 metadata:
   name: nfs-provisioner
   namespace: flux-system
-  annotations:
-    kustomize.toolkit.fluxcd.io/substitute: disabled
 spec:
   chart:
     spec:
@@ -33,7 +31,8 @@ spec:
       reclaimPolicy: Retain
       server: 192.168.178.110
       volumeName: nfs-storage-root
-    nodeSelector: {}
+    nodeSelector:
+      node-type: worker
     podAnnotations: {}
     podSecurityContext: {}
     podSecurityPolicy:
@@ -54,7 +53,7 @@ spec:
         kustomize.toolkit.fluxcd.io/substitute: disabled
       archiveOnDelete: true
       create: true
-      defaultClass: false
+      defaultClass: true
       name: nfs-storage
       onDelete: null
       pathPattern: ${.PVC.namespace}/${.PVC.annotations.nfs.io/storage-path}
