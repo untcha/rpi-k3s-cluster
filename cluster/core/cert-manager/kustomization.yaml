@@ -4,4 +4,4 @@ kind: Kustomization
 
 resources:
   - controller
-  # - issuer
+  - issuer
