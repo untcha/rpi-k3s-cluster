@@ -35,23 +35,23 @@
 #         - name: prometheus@internal
 #           kind: TraefikService
 
-# ---
-# apiVersion: traefik.containo.us/v1alpha1
-# kind: IngressRoute
-# metadata:
-#   name: traefik-http-ingressroute
-#   namespace: traefik
-# spec:
-#   entryPoints:
-#     - web
-#   routes:
-#     - match: Host(`traefik.${SECRET_DIGITALOCEAN_DOMAIN_02}`) && (PathPrefix(`/dashboard`) || PathPrefix(`/api`))
-#       kind: Rule
-#       middlewares:
-#         - name: https-redirect-scheme-middleware
-#       services:
-#         - name: api@internal
-#           kind: TraefikService
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: traefik-http-ingressroute
+  namespace: traefik
+spec:
+  entryPoints:
+    - web
+  routes:
+    - match: Host(`traefik.${SECRET_DIGITALOCEAN_DOMAIN_02}`) && (PathPrefix(`/dashboard`) || PathPrefix(`/api`))
+      kind: Rule
+      # middlewares:
+      #   - name: https-redirect-scheme-middleware
+      services:
+        - name: api@internal
+          kind: TraefikService
 
 ---
 apiVersion: traefik.containo.us/v1alpha1
