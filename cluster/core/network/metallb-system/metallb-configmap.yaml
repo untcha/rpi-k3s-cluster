@@ -2,7 +2,7 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: config
+  name: metallb-config
   namespace: metallb-system
 data:
   config: |
@@ -14,8 +14,8 @@ data:
     - name: dns
       protocol: layer2
       addresses:
-      - 192.168.178.120-192.168.178.130
+      - 192.168.178.120-192.168.178.140
     - name: services
       protocol: layer2
       addresses:
-      - 192.168.178.131-192.168.178.190
+      - 192.168.178.141-192.168.178.200
