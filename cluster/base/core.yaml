@@ -49,7 +49,7 @@ spec:
     name: flux-system
   healthChecks:
     - apiVersion: helm.toolkit.fluxcd.io/v2beta1
-      kind: HelmRelease
+      kind: HelmRepository
       name: metallb
       namespace: flux-system
   decryption:
