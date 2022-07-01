@@ -150,15 +150,15 @@ spec:
   sourceRef:
     kind: GitRepository
     name: flux-system
-  # healthChecks:
-  #   - apiVersion: helm.toolkit.fluxcd.io/v2beta1
-  #     kind: HelmRelease
-  #     name: traefik
-  #     namespace: flux-system
-    # - apiVersion: apps/v1
-    #   kind: Deployment
-    #   name: traefik-traefik
-    #   namespace: traefik
+  healthChecks:
+    - apiVersion: helm.toolkit.fluxcd.io/v2beta1
+      kind: HelmRelease
+      name: traefik
+      namespace: flux-system
+    - apiVersion: apps/v1
+      kind: Deployment
+      name: traefik-traefik
+      namespace: traefik
   decryption:
     provider: sops
     secretRef:
