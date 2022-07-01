@@ -8,6 +8,7 @@ resources:
   - traefik-charts.yaml
   - nfs-provisioner-charts.yaml
   - longhorn-charts.yaml
+  - rook-ceph-release-charts.yaml
   # - influxdata-charts.yaml
   # - grafana-charts.yaml
   # - prometheus-community-charts.yaml
