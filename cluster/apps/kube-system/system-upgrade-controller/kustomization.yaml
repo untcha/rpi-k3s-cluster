@@ -5,7 +5,7 @@ kind: Kustomization
 namespace: kube-system
 
 resources:
-  - github.com/rancher/system-upgrade-controller?ref=v0.9.1
+  # - github.com/rancher/system-upgrade-controller?ref=v0.9.1
   # - k3s-upgrade-plan.yaml
 
 images:
