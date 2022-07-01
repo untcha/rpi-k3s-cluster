@@ -6,4 +6,3 @@ resources:
   - cert-manager
   - ingress
   # - storage
-  # - system-upgrade-controller
