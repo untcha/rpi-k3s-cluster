@@ -4,4 +4,4 @@ kind: Kustomization
 
 resources:
   - nfs
-  # - local
+  - rook-ceph
