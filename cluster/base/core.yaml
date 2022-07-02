@@ -200,8 +200,8 @@ metadata:
   namespace: flux-system
 spec:
   interval: 10m0s
-  dependsOn:
-  - name: core-storage-remote
+  # dependsOn:
+  # - name: core-storage-nfs
   path: ./cluster/core/storage/longhorn
   prune: true
   sourceRef:
