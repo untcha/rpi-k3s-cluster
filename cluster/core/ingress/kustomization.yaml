@@ -4,4 +4,4 @@ kind: Kustomization
 
 resources:
   - traefik
-  # - traefik-additions
+  - traefik-additions
