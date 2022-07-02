@@ -7,5 +7,5 @@ resources:
   - cert-manager.yaml
   - traefik.yaml
   - storage.yaml
-  - rook-ceph.yaml
+  # - rook-ceph.yaml
   - longhorn-system.yaml

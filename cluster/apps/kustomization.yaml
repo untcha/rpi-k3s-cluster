@@ -3,7 +3,7 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 
 resources:
-  - authentication
+  # - authentication
     # authelia
     # basicauth
   # - blogs
@@ -21,7 +21,7 @@ resources:
     # pihole
     # staging
   # - documentation
-  - kube-system
+  # - kube-system
     # kured
     # system-upgrade-controller
   # - monitoring
