@@ -2,21 +2,21 @@
 # longhorn-http-ingressroute
 # longhorn-https-ingressroute
 
----
-apiVersion: traefik.containo.us/v1alpha1
-kind: IngressRoute
-metadata:
-  name: longhorn-local-ingressroute
-  namespace: longhorn-system
-spec:
-  entryPoints:
-    - web
-  routes:
-    - match: Host(`longhorn.${SECRET_DOMAIN_LOCAL_02}`)
-      kind: Rule
-      services:
-        - name: longhorn-frontend
-          port: 80
+# ---
+# apiVersion: traefik.containo.us/v1alpha1
+# kind: IngressRoute
+# metadata:
+#   name: longhorn-local-ingressroute
+#   namespace: longhorn-system
+# spec:
+#   entryPoints:
+#     - web
+#   routes:
+#     - match: Host(`longhorn.${SECRET_DOMAIN_LOCAL_02}`)
+#       kind: Rule
+#       services:
+#         - name: longhorn-frontend
+#           port: 80
 
 ---
 apiVersion: traefik.containo.us/v1alpha1
@@ -28,7 +28,7 @@ spec:
   entryPoints:
     - web
   routes:
-    - match: Host(`longhorn.${SECRET_DIGITALOCEAN_DOMAIN_02}`)
+    - match: Host(`longhorn.${SECRET_DOMAIN}`)
       kind: Rule
       middlewares:
         - name: https-redirect-scheme-middleware
@@ -49,13 +49,13 @@ spec:
   entryPoints:
     - websecure
   routes:
-    - match: Host(`longhorn.${SECRET_DIGITALOCEAN_DOMAIN_02}`)
+    - match: Host(`longhorn.${SECRET_DOMAIN}`)
       kind: Rule
       middlewares:
-        # - name: basicauth-middleware
-        #   namespace: authentication
-        - name: authelia-middleware
+        - name: basicauth-middleware
           namespace: authentication
+        # - name: authelia-middleware
+        #   namespace: authentication
         - name: secure-headers-middleware
           namespace: traefik
         - name: longhorn-headers-middleware # avoid CORS problem
@@ -66,3 +66,6 @@ spec:
           port: 80
   tls:
     secretName: "${SECRET_DOMAIN/./-}-tls"
+    options:
+      name: default-tlsoption
+      namespace: traefik

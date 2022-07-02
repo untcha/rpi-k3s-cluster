@@ -5,6 +5,6 @@ kind: Kustomization
 resources:
   - longhorn-helmrelease.yaml
   # - storageclasses
-  # - longhorn-middleware.yaml
-  # - longhorn-ingressroute.yaml
+  - longhorn-middleware.yaml
+  - longhorn-ingressroute.yaml
   # - tools
