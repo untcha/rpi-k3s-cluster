@@ -5,3 +5,4 @@ kind: Kustomization
 resources:
   - operator
   - cluster
+  - ingressroute.yaml
