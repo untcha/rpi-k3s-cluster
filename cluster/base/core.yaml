@@ -29,8 +29,8 @@ metadata:
   namespace: flux-system
 spec:
   interval: 10m0s
-  dependsOn:
-  - name: core-namespaces
+  # dependsOn:
+  # - name: core-namespaces
   path: ./cluster/core/network/metallb-system
   prune: true
   sourceRef:
@@ -50,8 +50,8 @@ metadata:
   namespace: flux-system
 spec:
   interval: 10m0s
-  dependsOn:
-  - name: core-network
+  # dependsOn:
+  # - name: core-network
   path: ./cluster/core/cert-manager/controller
   prune: true
   sourceRef:
@@ -94,8 +94,8 @@ metadata:
   namespace: flux-system
 spec:
   interval: 10m0s
-  dependsOn:
-  - name: core-cert-manager-controller
+  # dependsOn:
+  # - name: core-cert-manager-controller
   path: ./cluster/core/cert-manager/issuer
   prune: true
   sourceRef:
@@ -121,8 +121,8 @@ metadata:
   namespace: flux-system
 spec:
   interval: 10m0s
-  dependsOn:
-  - name: core-cert-manager-issuer
+  # dependsOn:
+  # - name: core-cert-manager-issuer
   path: ./cluster/core/ingress/traefik
   prune: true
   sourceRef:
@@ -157,8 +157,8 @@ metadata:
   namespace: flux-system
 spec:
   interval: 10m0s
-  dependsOn:
-  - name: core-ingress-controller
+  # dependsOn:
+  # - name: core-ingress-controller
   path: ./cluster/core/ingress/traefik-additions
   prune: true
   sourceRef:
