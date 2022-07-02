@@ -60,7 +60,7 @@ spec:
   routes:
     - match: Host(`rook.${SECRET_DOMAIN}`)
       kind: Rule
-      middlewares:
+      # middlewares:
         # - name: basicauth-middleware
         #   namespace: authentication
         # - name: authelia-middleware
