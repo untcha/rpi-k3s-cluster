@@ -4,8 +4,8 @@
 # core-cert-manager-issuer
 # core-ingress-controller
 # core-ingress-controller-additions
-# core-storage-remote
-# core-storage-local
+# core-storage-nfs
+# core-storage-longhorn
 
 ---
 apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
@@ -196,13 +196,13 @@ spec:
 # apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
 # kind: Kustomization
 # metadata:
-#   name: core-storage-local
+#   name: core-storage-longhorn
 #   namespace: flux-system
 # spec:
 #   interval: 10m0s
 #   dependsOn:
 #   - name: core-storage-remote
-#   path: ./cluster/core/storage/local
+#   path: ./cluster/core/storage/longhorn
 #   prune: true
 #   sourceRef:
 #     kind: GitRepository
