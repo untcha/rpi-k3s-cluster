@@ -4,4 +4,4 @@ kind: Kustomization
 
 resources:
   - operator
-  - cluster
+  # - cluster
