@@ -15,6 +15,14 @@ spec:
       version: 10.24.0
   interval: 1m0s
   targetNamespace: traefik
+  install:
+    crds: CreateReplace
+    remediation:
+      retries: 5
+  upgrade:
+    crds: CreateReplace
+    remediation:
+      retries: 3
   values:
     additionalArguments:
     - --entrypoints.ssh.address=:8022/tcp
