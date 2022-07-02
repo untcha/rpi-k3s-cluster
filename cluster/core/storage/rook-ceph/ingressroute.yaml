@@ -58,7 +58,7 @@ spec:
   entryPoints:
     - websecure
   routes:
-    - match: Host(`rook.${SECRET_DOMAIN}`) && (PathPrefix(`/ceph-dashboard`)
+    - match: Host(`rook.${SECRET_DOMAIN}`) && (PathPrefix(`/ceph-dashboard`))
       kind: Rule
       # middlewares:
         # - name: basicauth-middleware
