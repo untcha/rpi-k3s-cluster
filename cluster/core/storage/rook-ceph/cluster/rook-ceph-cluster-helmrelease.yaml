@@ -170,8 +170,26 @@ spec:
             memory: 50Mi
       skipUpgradeChecks: false
       storage:
-        useAllDevices: true
-        useAllNodes: true
+        config:
+          osdsPerDevice: "1"
+        nodes:
+        - devices:
+          - name: sdb
+          name: rpi-k3s-worker-01
+        - devices:
+          - name: sdb
+          name: rpi-k3s-worker-02
+        - devices:
+          - name: sdb
+          name: rpi-k3s-worker-03
+        - devices:
+          - name: sdb
+          name: rpi-k3s-worker-04
+        - devices:
+          - name: sdb
+          name: rpi-k3s-worker-05
+        useAllDevices: false
+        useAllNodes: false
       waitTimeoutForHealthyOSDInMinutes: 10
     cephFileSystemVolumeSnapshotClass:
       annotations: {}
