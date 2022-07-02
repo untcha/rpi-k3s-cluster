@@ -1,0 +1,275 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: rook-ceph-cluster
+  namespace: flux-system
+spec:
+  chart:
+    spec:
+      chart: rook-ceph
+      reconcileStrategy: ChartVersion
+      sourceRef:
+        kind: HelmRepository
+        name: rook-ceph-release
+      version: v1.9.6
+  interval: 1m0s
+  targetNamespace: rook-ceph
+  install:
+    crds: CreateReplace
+    remediation:
+      retries: 5
+  upgrade:
+    crds: CreateReplace
+    remediation:
+      retries: 3
+  values:
+    cephBlockPools:
+    - name: ceph-blockpool
+      spec:
+        failureDomain: host
+        replicated:
+          size: 3
+      storageClass:
+        allowVolumeExpansion: true
+        enabled: true
+        isDefault: true
+        mountOptions: []
+        name: ceph-block
+        parameters:
+          csi.storage.k8s.io/controller-expand-secret-name: rook-csi-rbd-provisioner
+          csi.storage.k8s.io/controller-expand-secret-namespace: rook-ceph
+          csi.storage.k8s.io/fstype: ext4
+          csi.storage.k8s.io/node-stage-secret-name: rook-csi-rbd-node
+          csi.storage.k8s.io/node-stage-secret-namespace: rook-ceph
+          csi.storage.k8s.io/provisioner-secret-name: rook-csi-rbd-provisioner
+          csi.storage.k8s.io/provisioner-secret-namespace: rook-ceph
+          imageFeatures: layering
+          imageFormat: "2"
+        reclaimPolicy: Delete
+    cephBlockPoolsVolumeSnapshotClass:
+      annotations: {}
+      deletionPolicy: Delete
+      enabled: false
+      isDefault: false
+      labels: {}
+      name: ceph-block
+      parameters: {}
+    cephClusterSpec:
+      cephVersion:
+        allowUnsupported: false
+        image: quay.io/ceph/ceph:v16.2.9
+      cleanupPolicy:
+        allowUninstallWithVolumes: false
+        confirmation: ""
+        sanitizeDisks:
+          dataSource: zero
+          iteration: 1
+          method: quick
+      continueUpgradeAfterChecksEvenIfNotHealthy: false
+      crashCollector:
+        disable: false
+      dashboard:
+        enabled: true
+        ssl: true
+      dataDirHostPath: /var/lib/rook
+      disruptionManagement:
+        machineDisruptionBudgetNamespace: openshift-machine-api
+        manageMachineDisruptionBudgets: false
+        managePodBudgets: true
+        osdMaintenanceTimeout: 30
+        pgHealthCheckTimeout: 0
+      healthCheck:
+        daemonHealth:
+          mon:
+            disabled: false
+            interval: 45s
+          osd:
+            disabled: false
+            interval: 60s
+          status:
+            disabled: false
+            interval: 60s
+        livenessProbe:
+          mgr:
+            disabled: false
+          mon:
+            disabled: false
+          osd:
+            disabled: false
+      mgr:
+        allowMultiplePerNode: false
+        count: 2
+        modules:
+        - enabled: true
+          name: pg_autoscaler
+      mon:
+        allowMultiplePerNode: false
+        count: 3
+      priorityClassNames:
+        mgr: system-cluster-critical
+        mon: system-node-critical
+        osd: system-node-critical
+      removeOSDsIfOutAndSafeToRemove: false
+      resources:
+        cleanup:
+          limits:
+            cpu: 500m
+            memory: 1Gi
+          requests:
+            cpu: 500m
+            memory: 100Mi
+        crashcollector:
+          limits:
+            cpu: 500m
+            memory: 60Mi
+          requests:
+            cpu: 100m
+            memory: 60Mi
+        logcollector:
+          limits:
+            cpu: 500m
+            memory: 1Gi
+          requests:
+            cpu: 100m
+            memory: 100Mi
+        mgr:
+          limits:
+            cpu: 1000m
+            memory: 1Gi
+          requests:
+            cpu: 500m
+            memory: 512Mi
+        mgr-sidecar:
+          limits:
+            cpu: 500m
+            memory: 100Mi
+          requests:
+            cpu: 100m
+            memory: 40Mi
+        mon:
+          limits:
+            cpu: 2000m
+            memory: 2Gi
+          requests:
+            cpu: 1000m
+            memory: 1Gi
+        osd:
+          limits:
+            cpu: 2000m
+            memory: 4Gi
+          requests:
+            cpu: 1000m
+            memory: 4Gi
+        prepareosd:
+          limits:
+            cpu: 500m
+            memory: 400Mi
+          requests:
+            cpu: 500m
+            memory: 50Mi
+      skipUpgradeChecks: false
+      storage:
+        useAllDevices: true
+        useAllNodes: true
+      waitTimeoutForHealthyOSDInMinutes: 10
+    cephFileSystemVolumeSnapshotClass:
+      annotations: {}
+      deletionPolicy: Delete
+      enabled: false
+      isDefault: true
+      labels: {}
+      name: ceph-filesystem
+      parameters: {}
+    cephFileSystems:
+    - name: ceph-filesystem
+      spec:
+        dataPools:
+        - failureDomain: host
+          name: data0
+          replicated:
+            size: 3
+        metadataPool:
+          replicated:
+            size: 3
+        metadataServer:
+          activeCount: 1
+          activeStandby: true
+          priorityClassName: system-cluster-critical
+          resources:
+            limits:
+              cpu: 2000m
+              memory: 4Gi
+            requests:
+              cpu: 1000m
+              memory: 4Gi
+      storageClass:
+        allowVolumeExpansion: true
+        enabled: true
+        isDefault: false
+        mountOptions: []
+        name: ceph-filesystem
+        parameters:
+          csi.storage.k8s.io/controller-expand-secret-name: rook-csi-cephfs-provisioner
+          csi.storage.k8s.io/controller-expand-secret-namespace: rook-ceph
+          csi.storage.k8s.io/fstype: ext4
+          csi.storage.k8s.io/node-stage-secret-name: rook-csi-cephfs-node
+          csi.storage.k8s.io/node-stage-secret-namespace: rook-ceph
+          csi.storage.k8s.io/provisioner-secret-name: rook-csi-cephfs-provisioner
+          csi.storage.k8s.io/provisioner-secret-namespace: rook-ceph
+        pool: data0
+        reclaimPolicy: Delete
+    cephObjectStores:
+    - name: ceph-objectstore
+      spec:
+        dataPool:
+          erasureCoded:
+            codingChunks: 1
+            dataChunks: 2
+          failureDomain: host
+        gateway:
+          instances: 1
+          port: 80
+          priorityClassName: system-cluster-critical
+          resources:
+            limits:
+              cpu: 2000m
+              memory: 2Gi
+            requests:
+              cpu: 1000m
+              memory: 1Gi
+        healthCheck:
+          bucket:
+            interval: 60s
+        metadataPool:
+          failureDomain: host
+          replicated:
+            size: 3
+        preservePoolsOnDelete: true
+      storageClass:
+        enabled: true
+        name: ceph-bucket
+        parameters:
+          region: us-east-1
+        reclaimPolicy: Delete
+    ingress:
+      dashboard: {}
+    monitoring:
+      createPrometheusRules: false
+      enabled: false
+      rulesNamespaceOverride: null
+    operatorNamespace: rook-ceph
+    pspEnable: true
+    toolbox:
+      affinity: {}
+      enabled: true
+      image: rook/ceph:v1.9.6
+      resources:
+        limits:
+          cpu: 500m
+          memory: 1Gi
+        requests:
+          cpu: 100m
+          memory: 128Mi
+      tolerations: []
+
