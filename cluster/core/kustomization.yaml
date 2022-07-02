@@ -5,6 +5,6 @@ kind: Kustomization
 resources:
   - namespaces
   - network
-  # - cert-manager
+  - cert-manager
   # - ingress
   # - storage
