@@ -6,5 +6,5 @@ resources:
   - namespaces
   - network
   - cert-manager
-  # - ingress
+  - ingress
   # - storage
