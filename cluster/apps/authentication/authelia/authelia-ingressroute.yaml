@@ -11,14 +11,14 @@ spec:
   entryPoints:
     - web
   routes:
-    - match: Host(`auth.${SECRET_DIGITALOCEAN_DOMAIN_02}`)
+    - match: Host(`auth.${SECRET_DOMAIN}`)
       kind: Rule
       middlewares:
         - name: https-redirect-scheme-middleware
           namespace: traefik
       services:
         - name: authentication-authelia
-          port: 9091
+          port: 80
 
 ---
 apiVersion: traefik.containo.us/v1alpha1
@@ -32,7 +32,7 @@ spec:
   entryPoints:
     - websecure
   routes:
-    - match: Host(`auth.${SECRET_DIGITALOCEAN_DOMAIN_02}`)
+    - match: Host(`auth.${SECRET_DOMAIN}`)
       kind: Rule
       middlewares:
         - name: secure-headers-middleware
@@ -40,6 +40,6 @@ spec:
       services:
         - name: authentication-authelia
           namespace: authentication
-          port: 9091
+          port: 80
   tls:
     secretName: "${SECRET_DOMAIN/./-}-tls"

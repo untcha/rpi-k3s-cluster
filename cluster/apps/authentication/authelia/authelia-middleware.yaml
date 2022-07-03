@@ -8,7 +8,7 @@ metadata:
   namespace: authentication
 spec:
   forwardAuth:
-    address: http://authentication-authelia.authentication.svc.cluster.local:9091/api/verify?rd=https://auth.${SECRET_DIGITALOCEAN_DOMAIN_02}
+    address: http://authentication-authelia.authentication.svc.cluster.local/api/verify?rd=https://auth.${SECRET_DOMAIN}
     trustForwardHeader: true
     authResponseHeaders:
       - Remote-User
