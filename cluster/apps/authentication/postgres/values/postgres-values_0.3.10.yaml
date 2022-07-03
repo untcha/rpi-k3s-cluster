@@ -66,7 +66,8 @@ resources: {}
   #   memory: 128Mi
 
 ## Additional node selector
-nodeSelector: {}
+nodeSelector:
+  node-type: worker
 
 tolerations: []
 
@@ -118,7 +119,11 @@ extraInitContainers: []
 extraContainers: []
 
 ## Additional environment variables
-env: []
+env:
+- name: PGTZ
+  value: ${TIMEZONE}
+- name: TZ
+  value: ${TIMEZONE}
 
 ## Arguments for the container entrypoint process
 args: []
@@ -126,29 +131,29 @@ args: []
 ## Database configuration
 settings:
   ## The default postgres superuser (default when nothing is set: "postgres")
-  superuser:
+  superuser: postgres
 
   ## The superuser password
-  superuserPassword:
+  superuserPassword: ${SECRET_GLOBAL_POSTGRES_SUPERUSER_PASSWORD}
 
   ## Postgres database authentication method
   ## For example: "md5"
-  authMethod:
+  authMethod: "md5"
 
   ## Optional init database arguments
   ## For example: "--auth-local=md5"
   initDbArgs:
 
 ## Optional user database which is created during first startup with user and password
-userDatabase: {}
+userDatabase:
   ## Name of the user database
-  # name:
+  name: ${SECRET_AUTHELIA_DB_NAME}
 
   ## Database user with full access rights
-  # user:
+  user: ${SECRET_AUTHELIA_DB_USER}
 
   ## Password of the database user
-  # password:
+  password: ${SECRET_AUTHELIA_DB_PASSWORD}
 
 ## Optional custom configuration block that will be mounted as file in /etc/postgresql/postgresql.conf
 ## For more flexible options see extraSecretConfigs: section
@@ -177,7 +182,7 @@ extraSecrets: []
 ## Storage parameters
 storage:
   ##  Set persistentVolumenClaimName to reference an existing PVC
-  persistentVolumeClaimName:
+  persistentVolumeClaimName: authelia-postgres-pvc
 
   ## Internal volume name and prefix of a created PVC
   volumeName: "postgres-data"
