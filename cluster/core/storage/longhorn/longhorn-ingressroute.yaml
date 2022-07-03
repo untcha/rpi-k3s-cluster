@@ -56,8 +56,8 @@ spec:
           namespace: traefik
         # - name: authelia-middleware
         #   namespace: authentication
-        - name: secure-headers-middleware
-          namespace: traefik
+        # - name: secure-headers-middleware
+        #   namespace: traefik
         - name: longhorn-headers-middleware # avoid CORS problem
           namespace: longhorn-system
       services:
@@ -66,6 +66,6 @@ spec:
           port: 80
   tls:
     secretName: "${SECRET_DOMAIN/./-}-tls"
-    options:
-      name: default-tlsoption
-      namespace: traefik
+    # options:
+    #   name: default-tlsoption
+    #   namespace: traefik
