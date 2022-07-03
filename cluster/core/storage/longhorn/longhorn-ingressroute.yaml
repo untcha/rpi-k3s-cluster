@@ -53,7 +53,7 @@ spec:
       kind: Rule
       middlewares:
         - name: basicauth-middleware
-          namespace: authentication
+          namespace: traefik
         # - name: authelia-middleware
         #   namespace: authentication
         - name: secure-headers-middleware
