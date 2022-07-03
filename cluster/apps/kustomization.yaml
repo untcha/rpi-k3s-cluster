@@ -15,7 +15,7 @@ resources:
     # adminer
     # gitea
     # portainer
-  # - dns
+  - dns
     # do-dns-updater
     # unbound
     # pihole
