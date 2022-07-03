@@ -4,4 +4,4 @@ kind: Kustomization
 
 resources:
   - unbound
-  # - pihole
+  - pihole
