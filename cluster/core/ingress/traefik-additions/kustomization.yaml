@@ -8,4 +8,4 @@ resources:
   - traefik-ingressroute.yaml
   - traefik-middleware.yaml
   - traefik-tlsoption.yaml
-  # - error-pages
+  - error-pages
