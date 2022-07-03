@@ -52,10 +52,10 @@ spec:
     - match: Host(`longhorn.${SECRET_DOMAIN}`)
       kind: Rule
       middlewares:
-        - name: basicauth-middleware
-          namespace: traefik
-        # - name: authelia-middleware
-        #   namespace: authentication
+        # - name: basicauth-middleware
+        #   namespace: traefik
+        - name: authelia-middleware
+          namespace: authentication
         - name: secure-headers-middleware
           namespace: traefik
         - name: longhorn-headers-middleware # avoid CORS problem

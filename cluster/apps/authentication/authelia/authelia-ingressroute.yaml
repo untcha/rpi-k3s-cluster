@@ -43,3 +43,6 @@ spec:
           port: 80
   tls:
     secretName: "${SECRET_DOMAIN/./-}-tls"
+    options:
+      name: default-tlsoption
+      namespace: traefik
