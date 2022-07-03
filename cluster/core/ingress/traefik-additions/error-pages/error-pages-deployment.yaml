@@ -50,7 +50,7 @@ spec:
         imagePullPolicy: IfNotPresent
         env:
         - name: TEMPLATE_NAME
-          value: "shuffle"
+          value: "app-down"
         ports:
         - containerPort: 8080
           protocol: TCP
