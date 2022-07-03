@@ -321,7 +321,7 @@ spec:
       - configMap:
           name: users-database
         name: users-database
-      kind: DaemonSet
+      kind: Deployment
       labels: {}
       probes:
         liveness:
