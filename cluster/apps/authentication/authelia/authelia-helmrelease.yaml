@@ -8,10 +8,11 @@ spec:
   chart:
     spec:
       chart: authelia
+      reconcileStrategy: ChartVersion
       sourceRef:
         kind: HelmRepository
         name: authelia
-      version: 0.8.2
+      version: 0.8.38
   interval: 1m0s
   targetNamespace: authentication
   values:
@@ -26,9 +27,9 @@ spec:
         default_policy: deny
         networks: []
         rules:
-        - domain: auth.${SECRET_DIGITALOCEAN_DOMAIN_02}
+        - domain: auth.${SECRET_DOMAIN}
           policy: bypass
-        - domain: '*.${SECRET_DIGITALOCEAN_DOMAIN_02}'
+        - domain: '*.${SECRET_DOMAIN}'
           policy: two_factor
         secret:
           enabled: false
@@ -36,7 +37,6 @@ spec:
           key: configuration.acl.yaml
       annotations: {}
       authentication_backend:
-        disable_reset_password: true
         file:
           enabled: true
           password:
@@ -57,6 +57,8 @@ spec:
           groups_filter: ""
           implementation: activedirectory
           mail_attribute: ""
+          permit_referrals: false
+          permit_unauthenticated_bind: false
           start_tls: false
           timeout: 5s
           tls:
@@ -67,9 +69,14 @@ spec:
           user: CN=Authelia,DC=example,DC=com
           username_attribute: ""
           users_filter: ""
+        password_reset:
+          custom_url: ""
+          disable: true
         refresh_interval: 5m
-      default_redirection_url: https://doc.${SECRET_DIGITALOCEAN_DOMAIN_02}
+      default_2fa_method: totp
+      default_redirection_url: https://doc.${SECRET_DOMAIN}
       duo_api:
+        enable_self_enrollment: false
         enabled: false
         hostname: api-123456789.example.com
         integration_key: ABCDEF
@@ -80,16 +87,23 @@ spec:
           access_token_lifespan: 1h
           authorize_code_lifespan: 1m
           clients: []
+          cors:
+            allowed_origins: []
+            allowed_origins_from_client_redirect_uris: true
+            endpoints: []
           enable_client_debug_messages: false
+          enable_pkce_plain_challenge: false
           enabled: false
+          enforce_pkce: public_clients_only
           id_token_lifespan: 1h
           minimum_parameter_entropy: 8
           refresh_token_lifespan: 90m
       key: configuration.yaml
       labels: {}
       log:
+        file_path: ""
         format: text
-        level: debug
+        level: info
       notifier:
         disable_startup_check: false
         filesystem:
@@ -118,11 +132,26 @@ spec:
         disable_startup_check: false
         max_desync: 3s
         version: 4
+      password_policy:
+        standard:
+          enabled: false
+          max_length: 0
+          min_length: 8
+          require_lowercase: true
+          require_number: true
+          require_special: true
+          require_uppercase: true
+        zxcvbn:
+          enabled: false
+          min_score: 0
       regulation:
         ban_time: 5m
         find_time: 2m
         max_retries: 3
       server:
+        asset_path: ""
+        headers:
+          csp_template: ""
         path: ""
         port: 9091
         read_buffer_size: 8192
@@ -179,20 +208,36 @@ spec:
             root_certificate: ""
           timeout: 5s
           username: authelia
+      telemetry:
+        metrics:
+          enabled: false
+          port: 9959
+          serviceMonitor:
+            annotations: {}
+            enabled: false
+            labels: {}
       theme: dark
       totp:
         algorithm: sha1
         digits: 6
-        issuer: ${SECRET_DIGITALOCEAN_DOMAIN_02}
+        disable: false
+        issuer: ${SECRET_DOMAIN}
         period: 30
+        secret_size: 32
         skew: 1
-    domain: ${SECRET_DIGITALOCEAN_DOMAIN_02}
+      webauthn:
+        attestation_conveyance_preference: indirect
+        disable: false
+        display_name: Authelia
+        timeout: 60s
+        user_verification: preferred
+    domain: ${SECRET_DOMAIN}
     image:
       pullPolicy: IfNotPresent
       pullSecrets: []
       registry: ghcr.io
       repository: authelia/authelia
-      tag: 4.33.2
+      tag: ""
     ingress:
       annotations: {}
       certManager: false
@@ -223,7 +268,16 @@ spec:
               before: []
         sticky: false
         tls:
-          options: {}
+          disableTLSOptions: false
+          options:
+            cipherSuites:
+            - TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
+            - TLS_RSA_WITH_AES_256_GCM_SHA384
+            curvePreferences: []
+            maxVersion: VersionTLS13
+            minVersion: VersionTLS12
+            nameOverride: ""
+            sniStrict: false
     labels: {}
     networkPolicy:
       annotations: {}
@@ -267,7 +321,7 @@ spec:
       - configMap:
           name: users-database
         name: users-database
-      kind: Deployment
+      kind: DaemonSet
       labels: {}
       probes:
         liveness:
@@ -326,6 +380,7 @@ spec:
         filename: DUO_API_KEY
         key: DUO_API_KEY
         value: ""
+      excludeVolumeAndMounts: false
       existingSecret: ""
       jwt:
         filename: JWT_TOKEN
@@ -420,8 +475,13 @@ spec:
             command: ""
             path: secrets/authelia/storage:password
             templateValue: ""
+          storageEncryptionKey:
+            command: ""
+            path: secrets/authelia/storage:encryption_key
+            templateValue: ""
     service:
       annotations: {}
       labels: {}
-      port: 9091
+      port: 80
+    versionOverride: ""
 

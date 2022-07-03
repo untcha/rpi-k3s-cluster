@@ -11,6 +11,17 @@
 ##   - storage: MySQL
 ##   - session: redis
 
+## Version Override allows changing some chart characteristics that render only on specific versions.
+## This does NOT affect the image used, please see the below image section instead for this.
+## If this value is not specified, it's assumed the appVersion of the chart is the version.
+## The format of this value  is x.x.x, for example 4.100.0.
+##
+## Important Points:
+##   - No guarantees of support for prior versions is given. The chart is intended to be used with the AppVersion.
+##   - Does not and will not support any version prior to 4.30.0 due to a significant refactor of the configuration
+##     system.
+versionOverride: ""
+
 ## Image Parameters
 ## ref: https://hub.docker.com/r/authelia/authelia/tags/
 ##
@@ -18,7 +29,7 @@ image:
   # registry: docker.io
   registry: ghcr.io
   repository: authelia/authelia
-  tag: 4.33.2
+  tag: ""
   pullPolicy: IfNotPresent
   pullSecrets: []
   # pullSecrets:
@@ -58,7 +69,7 @@ rbac:
 ## For example if you have apps app1.example.com and app2.example.com it should be example.com
 ## This affects the ingress (partially sets the domain used) and configMap.
 ## Authelia must be served from the domain or a subdomain under it.
-domain: ${SECRET_DIGITALOCEAN_DOMAIN_02}
+domain: ${SECRET_DOMAIN}
 
 service:
   annotations: {}
@@ -69,7 +80,7 @@ service:
   # labels:
   #   myLabel: myValue
 
-  port: 9091
+  port: 80
 
   # clusterIP:
 
@@ -168,6 +179,8 @@ ingress:
 
     # Specific options for the TraefikCRD TLS configuration. The above TLS section is still used.
     tls:
+      ## Disables inclusion of the IngressRoute TLSOptions.
+      disableTLSOptions: false
       #   existingOptions:
       #     name: default-traefik-options
       #     namespace: default
@@ -175,21 +188,24 @@ ingress:
       #   sans:
       #     - *.example.com
       #
-      options: {}
-      #   nameOverride: authelia-tls-options
-      #   minVersion: VersionTLS12
-      #   maxVersion: VersionTLS13
-      #   curvePreferences:
-      #   - CurveP521
-      #   - CurveP384
-      #   cipherSuites:
-      #   - TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
-      #   - TLS_RSA_WITH_AES_256_GCM_SHA384
-      #   sniStrict: true
+      options:
+        # nameOverride: authelia-tls-options
+        nameOverride: ""
+
+        minVersion: VersionTLS12
+        maxVersion: VersionTLS13
+        sniStrict: false
+        cipherSuites:
+          - TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
+          - TLS_RSA_WITH_AES_256_GCM_SHA384
+        curvePreferences: []
+        # curvePreferences:
+        # - CurveP521
+        # - CurveP384
 
 pod:
   # Must be Deployment, DaemonSet, or StatefulSet.
-  kind: Deployment
+  kind: DaemonSet
 
   annotations: {}
   # annotations:
@@ -283,6 +299,9 @@ pod:
   env:
   - name: TZ
     value: ${TIMEZONE}
+  # env:
+  # - name: TZ
+  #   value: Australia/Melbourne
 
   resources:
     limits: {}
@@ -410,21 +429,33 @@ configMap:
     ##
     port: 9091
 
+    ## Set the single level path Authelia listens on.
+    ## Must be alphanumeric chars and should not contain any slashes.
+    path: ""
+
+    ## Set the path on disk to Authelia assets.
+    ## Useful to allow overriding of specific static assets.
+    # asset_path: /config/assets/
+    asset_path: ""
+
+    ## Customize Authelia headers.
+    headers:
+      ## Read the Authelia docs before setting this advanced option.
+      ## https://www.authelia.com/configuration/miscellaneous/server/#csp_template.
+      csp_template: ""
+
     ## Buffers usually should be configured to be the same value.
-    ## Explanation at https://www.authelia.com/docs/configuration/server.html
+    ## Explanation at https://www.authelia.com/configuration/miscellaneous/server/
     ## Read buffer size adjusts the server's max incoming request size in bytes.
     ## Write buffer size does the same for outgoing responses.
     read_buffer_size: 8192
     write_buffer_size: 8192
     # read_buffer_size: 4096
     # write_buffer_size: 4096
-    ## Set the single level path Authelia listens on.
-    ## Must be alphanumeric chars and should not contain any slashes.
-    path: ""
 
   log:
     ## Level of verbosity for logs: info, debug, trace.
-    level: debug
+    level: info
 
     ## Format the logs are written as: json, text.
     format: text
@@ -432,6 +463,27 @@ configMap:
     ## TODO: Statefulness check should check if this is set, and the configMap should enable it.
     ## File path where the logs will be written. If not set logs are written to stdout.
     # file_path: /config/authelia.log
+    file_path: ""
+
+  ##
+  ## Telemetry Configuration
+  ##
+  telemetry:
+
+    ##
+    ## Metrics Configuration
+    ##
+    metrics:
+      ## Enable Metrics.
+      enabled: false
+
+      ## The port to listen on for metrics. This should be on a different port to the main server.port value.
+      port: 9959
+
+      serviceMonitor:
+        enabled: false
+        annotations: {}
+        labels: {}
 
   ## Default redirection URL
   ##
@@ -441,30 +493,37 @@ configMap:
   ##
   ## Note: this parameter is optional. If not provided, user won't be redirected upon successful authentication.
   ## Default is https://www.<domain> (value at the top of the values.yaml).
-  default_redirection_url: "https://doc.${SECRET_DIGITALOCEAN_DOMAIN_02}"
+  default_redirection_url: "https://doc.${SECRET_DOMAIN}"
   # default_redirection_url: https://example.com
+
+  ## Set the default 2FA method for new users and for when a user has a preferred method configured that has been
+  ## disabled. This setting must be a method that is enabled.
+  ## Options are totp, webauthn, mobile_push.
+  default_2fa_method: "totp"
 
   theme: dark
 
   ##
   ## TOTP Configuration
   ##
-  ## Parameters used for TOTP generation
+  ## Parameters used for TOTP generation.
   totp:
-    ## The issuer name displayed in the Authenticator application of your choice
-    ## See: https://github.com/google/google-authenticator/wiki/Key-Uri-Format for more info on issuer names
+    ## Disable TOTP.
+    disable: false
+
+    ## The issuer name displayed in the Authenticator application of your choice.
     ## Defaults to <domain>.
-    issuer: "${SECRET_DIGITALOCEAN_DOMAIN_02}"
+    issuer: "${SECRET_DOMAIN}"
 
     ## The TOTP algorithm to use.
     ## It is CRITICAL you read the documentation before changing this option:
-    ## https://www.authelia.com/docs/configuration/one-time-password.html#algorithm
-    algorithm: "sha1"
+    ## https://www.authelia.com/configuration/second-factor/time-based-one-time-password/#algorithm
+    algorithm: sha1
 
     ## The number of digits a user has to input. Must either be 6 or 8.
     ## Changing this option only affects newly generated TOTP configurations.
     ## It is CRITICAL you read the documentation before changing this option:
-    ## https://www.authelia.com/docs/configuration/one-time-password.html#digits
+    ## https://www.authelia.com/configuration/second-factor/time-based-one-time-password/#digits
     digits: 6
 
     ## The period in seconds a one-time password is valid for.
@@ -473,8 +532,33 @@ configMap:
 
     ## The skew controls number of one-time passwords either side of the current one that are valid.
     ## Warning: before changing skew read the docs link below.
-    ## See: https://www.authelia.com/docs/configuration/one-time-password.html#period-and-skew to read the documentation.
+    ## See: https://www.authelia.com/configuration/second-factor/time-based-one-time-password/#input-validation to read the documentation.
     skew: 1
+
+    ## The size of the generated shared secrets. Default is 32 and is sufficient in most use cases, minimum is 20.
+    secret_size: 32
+
+  ##
+  ## WebAuthn Configuration
+  ##
+  ## Parameters used for WebAuthn.
+  webauthn:
+    ## Disable Webauthn.
+    disable: false
+
+    ## Adjust the interaction timeout for Webauthn dialogues.
+    timeout: 60s
+
+    ## The display name the browser should show the user for when using Webauthn to login/register.
+    display_name: Authelia
+
+    ## Conveyance preference controls if we collect the attestation statement including the AAGUID from the device.
+    ## Options are none, indirect, direct.
+    attestation_conveyance_preference: indirect
+
+    ## User verification controls if the user must make a gesture or action to confirm they are present.
+    ## Options are required, preferred, discouraged.
+    user_verification: preferred
 
   ##
   ## NTP Configuration
@@ -508,6 +592,7 @@ configMap:
     enabled: false
     hostname: api-123456789.example.com
     integration_key: ABCDEF
+    enable_self_enrollment: false
 
   ##
   ## Authentication Backend Provider Configuration
@@ -516,16 +601,24 @@ configMap:
   ##
   ## The available providers are: `file`, `ldap`. You must use one and only one of these providers.
   authentication_backend:
-    ## Disable both the HTML element and the API for reset password functionality
-    disable_reset_password: true
+
+    ## Password Reset Options.
+    password_reset:
+
+      ## Disable both the HTML element and the API for reset password functionality
+      disable: true
+
+      ## External reset password url that redirects the user to an external reset portal. This disables the internal reset
+      ## functionality.
+      custom_url: ""
 
     ## The amount of time to wait before we refresh data from the authentication backend. Uses duration notation.
     ## To disable this feature set it to 'disable', this will slightly reduce security because for Authelia, users will
     ## always belong to groups they belonged to at the time of login even if they have been removed from them in LDAP.
     ## To force update on every request you can set this to '0' or 'always', this will increase processor demand.
     ## See the below documentation for more information.
-    ## Duration Notation docs:  https://www.authelia.com/docs/configuration/index.html#duration-notation-format
-    ## Refresh Interval docs: https://www.authelia.com/docs/configuration/authentication/ldap.html#refresh-interval
+    ## Duration Notation docs:  https://www.authelia.com/configuration/prologue/common/#duration-notation-format
+    ## Refresh Interval docs: https://www.authelia.com/configuration/first-factor/ldap/#refresh-interval
     refresh_interval: 5m
 
     ## LDAP backend configuration.
@@ -546,7 +639,7 @@ configMap:
       ##
       ## Depending on the option here certain other values in this section have a default value, notably all of the
       ## attribute mappings have a default value that this config overrides, you can read more about these default values
-      ## at https://www.authelia.com/docs/configuration/authentication/ldap.html#defaults
+      ## at https://www.authelia.com/reference/guides/ldap/#defaults
       implementation: activedirectory
 
       ## The url to the ldap server. Format: <scheme>://<address>[:<port>].
@@ -633,6 +726,13 @@ configMap:
       ## The attribute holding the display name of the user. This will be used to greet an authenticated user.
       display_name_attribute: ""
 
+      ## Follow referrals returned by the server.
+      ## This is especially useful for environments where read-only servers exist. Only implemented for write operations.
+      permit_referrals: false
+
+      ## Strongly discouraged. See https://www.authelia.com/configuration/first-factor/ldap/#permit_unauthenticated_bind.
+      permit_unauthenticated_bind: false
+
       ## The username of the admin user.
       user: CN=Authelia,DC=example,DC=com
 
@@ -643,10 +743,9 @@ configMap:
     ## Therefore, this backend is meant to be used in a dev environment and not in production since it prevents Authelia
     ## to be scaled to more than one instance. The options under 'password' have sane defaults, and as it has security
     ## implications it is highly recommended you leave the default values. Before considering changing these settings
-    ## please read the docs page below:
-    ## https://www.authelia.com/docs/configuration/authentication/file.html#password-hash-algorithm-tuning
+    ## please read the docs page: https://www.authelia.com/reference/guides/passwords/#tuning
     ##
-    ## Important: Kubernetes (or HA) users must read https://www.authelia.com/docs/features/statelessness.html
+    ## Important: Kubernetes (or HA) users must read https://www.authelia.com/overview/authorization/statelessness/
     ##
     file:
       enabled: true
@@ -658,6 +757,40 @@ configMap:
         salt_length: 16
         memory: 64
         parallelism: 8
+
+  ##
+  ## Password Policy Configuration.
+  ##
+  password_policy:
+
+    ## The standard policy allows you to tune individual settings manually.
+    standard:
+      enabled: false
+
+      ## Require a minimum length for passwords.
+      min_length: 8
+
+      ## Require a maximum length for passwords.
+      max_length: 0
+
+      ## Require uppercase characters.
+      require_uppercase: true
+
+      ## Require lowercase characters.
+      require_lowercase: true
+
+      ## Require numeric characters.
+      require_number: true
+
+      ## Require special characters.
+      require_special: true
+
+    ## zxcvbn is a well known and used password strength algorithm. It does not have tunable settings.
+    zxcvbn:
+      enabled: false
+
+      ## Configures the minimum score allowed.
+      min_score: 0
 
   ##
   ## Access Control Configuration
@@ -716,11 +849,13 @@ configMap:
     #   - 10.9.0.0/16
 
     rules:
-    - domain: auth.${SECRET_DIGITALOCEAN_DOMAIN_02}
+    - domain: auth.${SECRET_DOMAIN}
       policy: bypass
-    - domain: "*.${SECRET_DIGITALOCEAN_DOMAIN_02}"
+    - domain: "*.${SECRET_DOMAIN}"
       policy: two_factor
     # rules:
+    # - domain_regex: '^.*\.example.com$'
+    #   policy: bypass
     # - domain: public.example.com
     #   policy: bypass
     # - domain: "*.example.com"
@@ -773,7 +908,7 @@ configMap:
     name: authelia_session
 
     ## Sets the Cookie SameSite value. Possible options are none, lax, or strict.
-    ## Please read https://www.authelia.com/docs/configuration/session.html#same_site
+    ## Please read https://www.authelia.com/configuration/session/introduction/#same_site
     same_site: lax
 
     ## The time in seconds before the cookie expires and session is reset.
@@ -784,7 +919,7 @@ configMap:
 
     ## The remember me duration.
     ## Value is in seconds, or duration notation. Value of 0 disables remember me.
-    ## See: https://www.authelia.com/docs/configuration/index.html#duration-notation-format
+    ## See: https://www.authelia.com/configuration/prologue/common/#duration-notation-format
     ## Longer periods are considered less secure because a stolen cookie will last longer giving attackers more time to
     ## spy or attack. Currently the default is 1M or 1 month.
     remember_me_duration: 1M
@@ -792,7 +927,7 @@ configMap:
     ##
     ## Redis Provider
     ##
-    ## Important: Kubernetes (or HA) users must read https://www.authelia.com/docs/features/statelessness.html
+    ## Important: Kubernetes (or HA) users must read https://www.authelia.com/overview/authorization/statelessness/
     ##
     ## The redis connection details
     redis:
@@ -868,11 +1003,11 @@ configMap:
 
     ## The time range during which the user can attempt login before being banned. The user is banned if the
     ## authentication failed 'max_retries' times in a 'find_time' seconds window. Find Time accepts duration notation.
-    ## See: https://www.authelia.com/docs/configuration/index.html#duration-notation-format
+    ## See: https://www.authelia.com/configuration/prologue/common/#duration-notation-format
     find_time: 2m
 
     ## The length of time before a banned user can login again. Ban Time accepts duration notation.
-    ## See: https://www.authelia.com/docs/configuration/index.html#duration-notation-format
+    ## See: https://www.authelia.com/configuration/prologue/common/#duration-notation-format
     ban_time: 5m
 
 
@@ -887,7 +1022,7 @@ configMap:
     ## This stores the data in a SQLite3 Database.
     ## This is only recommended for lightweight non-stateful installations.
     ##
-    ## Important: Kubernetes (or HA) users must read https://www.authelia.com/docs/features/statelessness.html
+    ## Important: Kubernetes (or HA) users must read https://www.authelia.com/overview/authorization/statelessness/
     ##
     local:
       enabled: false
@@ -936,7 +1071,7 @@ configMap:
     ##
     ## File System (Notification Provider)
     ##
-    ## Important: Kubernetes (or HA) users must read https://www.authelia.com/docs/features/statelessness.html
+    ## Important: Kubernetes (or HA) users must read https://www.authelia.com/overview/authorization/statelessness/
     ##
     filesystem:
       enabled: false
@@ -986,7 +1121,7 @@ configMap:
   identity_providers:
     oidc:
       ## Enables this in the config map. Currently in beta stage.
-      ## See https://www.authelia.com/docs/configuration/identity-providers/oidc.html#roadmap
+      ## See https://www.authelia.com/r/openid-connect/
       enabled: false
 
       access_token_lifespan: 1h
@@ -994,11 +1129,42 @@ configMap:
       id_token_lifespan: 1h
       refresh_token_lifespan: 90m
 
-      enable_client_debug_messages: false
+      ## Adjusts the PKCE enforcement. Options are always, public_clients_only, never.
+      ## For security reasons it's recommended this option is public_clients_only or always, however always is not
+      ## compatible with all clients.
+      enforce_pkce: public_clients_only
+
+      ## Enables the plain PKCE challenge which is not recommended for security reasons but may be necessary for some clients.
+      enable_pkce_plain_challenge: false
 
       ## SECURITY NOTICE: It's not recommended changing this option, and highly discouraged to have it below 8 for
       ## security reasons.
       minimum_parameter_entropy: 8
+
+      ## Enables additional debug messages.
+      enable_client_debug_messages: false
+
+      ## Cross-Origin Resource Sharing (CORS) settings.
+      cors:
+        ## List of endpoints in addition to the metadata endpoints to permit cross-origin requests on.
+        # endpoints:
+        #    - authorization
+        #    - token
+        #    - revocation
+        #    - introspection
+        #    - userinfo
+        endpoints: []
+
+        ## List of allowed origins.
+        ## Any origin with https is permitted unless this option is configured or the
+        ## allowed_origins_from_client_redirect_uris option is enabled.
+        # allowed_origins:
+        #   - https://example.com
+        allowed_origins: []
+
+        ## Automatically adds the origin portion of all redirect URI's on all clients to the list of allowed_origins,
+        ## provided they have the scheme http or https and do not have the hostname of localhost.
+        allowed_origins_from_client_redirect_uris: true
 
       clients: []
       # clients:
@@ -1012,11 +1178,21 @@ configMap:
           ## The client secret is a shared secret between Authelia and the consumer of this client.
           # secret: apple123
 
+          ## Sector Identifiers are occasionally used to generate pairwise subject identifiers. In most cases this is not
+          ## necessary. Read the documentation for more information.
+          ## The subject identifier must be the host component of a URL, which is a domain name with an optional port.
+          # sector_identifier: example.com
+
           ## Sets the client to public. This should typically not be set, please see the documentation for usage.
           # public: false
 
           ## The policy to require for this client; one_factor or two_factor.
           # authorization_policy: two_factor
+
+          ## By default users cannot remember pre-configured consents. Setting this value to a period of time using a
+          ## duration notation will enable users to remember consent for this client. The time configured is the amount
+          ## of time the pre-configured consent is valid for granting new authorizations to the user.
+          # pre_configured_consent_duration: 30d
 
           ## Audience this client is allowed to request.
           # audience: []
@@ -1073,6 +1249,8 @@ secret:
   #   myLabel: myValue
 
   mountPath: /secrets
+
+  excludeVolumeAndMounts: false
 
   ## Secrets.
   jwt:
@@ -1185,16 +1363,28 @@ secret:
         ## Annotation: vault.hashicorp.com/agent-inject-command-ldap
         command: ""
       storage:
-        ## Vault Path to the Authelia storage secret.
+        ## Vault Path to the Authelia storage password secret.
         ## Annotation: vault.hashicorp.com/agent-inject-secret-storage
         path: secrets/authelia/storage:password
 
-        ## Vault template specific to storage.
+        ## Vault template specific to the storage password.
         ## Annotation: vault.hashicorp.com/agent-inject-template-storage
         templateValue: ""
 
-        ## Vault after render command specific to storage.
+        ## Vault after render command specific to the storage password.
         ## Annotation: vault.hashicorp.com/agent-inject-command-storage
+        command: ""
+      storageEncryptionKey:
+        ## Vault Path to the Authelia storage encryption key secret.
+        ## Annotation: vault.hashicorp.com/agent-inject-secret-storage-encryption-key
+        path: secrets/authelia/storage:encryption_key
+
+        ## Vault template specific to the storage encryption key.
+        ## Annotation: vault.hashicorp.com/agent-inject-template-storage-encryption-key
+        templateValue: ""
+
+        ## Vault after render command specific to the storage encryption key.
+        ## Annotation: vault.hashicorp.com/agent-inject-command-storage-encryption-key
         command: ""
       session:
         ## Vault Path to the Authelia session secret.
