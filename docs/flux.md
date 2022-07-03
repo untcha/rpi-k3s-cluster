@@ -389,7 +389,7 @@ flux create helmrelease portainer \
 flux create helmrelease authelia-postgres \
   --source=HelmRepository/groundhog2k \
   --chart=postgres \
-  --chart-version="0.3.8" \
+  --chart-version="0.3.10" \
   --target-namespace=authentication \
   --values=postgres-values.yaml \
   --export > postgres-helmrelease.yaml
