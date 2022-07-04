@@ -176,7 +176,8 @@ alertmanager:
   ## Node labels for alertmanager pod assignment
   ## Ref: https://kubernetes.io/docs/user-guide/node-selection/
   ##
-  nodeSelector: {}
+  nodeSelector:
+    node-type: worker
 
   ## Pod affinity
   ##
@@ -214,7 +215,7 @@ alertmanager:
     ## alertmanager data Persistent Volume existing claim name
     ## Requires alertmanager.persistentVolume.enabled: true
     ## If defined, PVC must be created manually before volume will be bound
-    existingClaim: ""
+    existingClaim: "prometheus-alertmanager-pvc"
 
     ## alertmanager data Persistent Volume mount root path
     ##
@@ -877,7 +878,8 @@ server:
   ## Node labels for Prometheus server pod assignment
   ## Ref: https://kubernetes.io/docs/user-guide/node-selection/
   ##
-  nodeSelector: {}
+  nodeSelector:
+    node-type: worker
 
   ## Pod affinity
   ##
@@ -915,7 +917,7 @@ server:
     ## Prometheus server data Persistent Volume existing claim name
     ## Requires server.persistentVolume.enabled: true
     ## If defined, PVC must be created manually before volume will be bound
-    existingClaim: ""
+    existingClaim: "prometheus-server-pvc"
 
     ## Prometheus server data Persistent Volume mount root path
     ##
@@ -1106,11 +1108,11 @@ server:
     ##
     externalIPs: []
 
-    loadBalancerIP: ""
+    loadBalancerIP: "${PROMETHEUS_SVC_LB_IP}"
     loadBalancerSourceRanges: []
     servicePort: 80
     sessionAffinity: None
-    type: ClusterIP
+    type: LoadBalancer
 
     ## Enable gRPC port on service to allow auto discovery with thanos-querier
     gRPC:
@@ -1131,7 +1133,7 @@ server:
 
   ## Prometheus data retention period (default if not specified is 15 days)
   ##
-  retention: "15d"
+  retention: "7d"
 
   ## Array of extra Kubernetes manifests, in form of YAML object,
   ## if you want to deploy
@@ -1240,7 +1242,8 @@ pushgateway:
   ## Node labels for pushgateway pod assignment
   ## Ref: https://kubernetes.io/docs/user-guide/node-selection/
   ##
-  nodeSelector: {}
+  nodeSelector:
+    node-type: worker
 
   ## Annotations to be added to pushgateway pods
   ##
@@ -1341,7 +1344,7 @@ pushgateway:
   persistentVolume:
     ## If true, pushgateway will create/use a Persistent Volume Claim
     ##
-    enabled: false
+    enabled: true
 
     ## pushgateway data Persistent Volume access modes
     ## Must match those of existing PV or dynamic provisioner
@@ -1357,7 +1360,7 @@ pushgateway:
     ## pushgateway data Persistent Volume existing claim name
     ## Requires pushgateway.persistentVolume.enabled: true
     ## If defined, PVC must be created manually before volume will be bound
-    existingClaim: ""
+    existingClaim: "prometheus-pushgateway-pvc"
 
     ## pushgateway data Persistent Volume mount root path
     ##
