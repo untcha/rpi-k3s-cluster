@@ -5,6 +5,6 @@ kind: Kustomization
 resources:
   # - longhorn-all-node-storageclass.yaml     # storage class for volumes that can be created on all nodes (master or worker)
   # - longhorn-master-node-storageclass.yaml  # storage class for volumes that can be created ONLY on low-capacity master nodes
-  - longhorn-worker-node-storageclass.yaml  # storage class for volumes that can be created ONLY on high-capacity worker nodes
+  # - longhorn-worker-node-storageclass.yaml  # storage class for volumes that can be created ONLY on high-capacity worker nodes
 
   # - longhorn-test-pvc.yaml
