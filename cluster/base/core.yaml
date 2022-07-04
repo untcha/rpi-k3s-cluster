@@ -201,34 +201,34 @@ spec:
       name: storage-nfs-provisioner-nfs-subdir-external-provisioner
       namespace: storage
 
-# ---
-# apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
-# kind: Kustomization
-# metadata:
-#   name: core-storage-longhorn
-#   namespace: flux-system
-# spec:
-#   interval: 10m0s
-#   # dependsOn:
-#   # - name: core-storage-nfs
-#   path: ./cluster/core/storage/longhorn
-#   prune: true
-#   sourceRef:
-#     kind: GitRepository
-#     name: flux-system
-#   # healthChecks:
-#   #   - apiVersion: helm.toolkit.fluxcd.io/v2beta1
-#   #     kind: HelmRelease
-#   #     name: longhorn
-#   #     namespace: flux-system
-#   decryption:
-#     provider: sops
-#     secretRef:
-#       name: sops-gpg
-#   postBuild:
-#     substitute: {}
-#     substituteFrom:
-#       - kind: ConfigMap
-#         name: cluster-settings
-#       - kind: Secret
-#         name: cluster-secrets
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+kind: Kustomization
+metadata:
+  name: core-storage-longhorn
+  namespace: flux-system
+spec:
+  interval: 10m0s
+  # dependsOn:
+  # - name: core-storage-nfs
+  path: ./cluster/core/storage/longhorn
+  prune: true
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+  # healthChecks:
+  #   - apiVersion: helm.toolkit.fluxcd.io/v2beta1
+  #     kind: HelmRelease
+  #     name: longhorn
+  #     namespace: flux-system
+  decryption:
+    provider: sops
+    secretRef:
+      name: sops-gpg
+  postBuild:
+    substitute: {}
+    substituteFrom:
+      - kind: ConfigMap
+        name: cluster-settings
+      - kind: Secret
+        name: cluster-secrets
