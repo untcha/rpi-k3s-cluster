@@ -226,7 +226,7 @@ spec:
         sizeLimit: {}
         watchMethod: WATCH
       datasources:
-        enabled: false
+        enabled: true
         initDatasources: false
         label: grafana_datasource
         labelValue: null
