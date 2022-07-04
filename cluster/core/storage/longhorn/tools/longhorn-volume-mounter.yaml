@@ -3,7 +3,7 @@ kind: Deployment
 apiVersion: apps/v1
 metadata:
   name: longhorn-volume-mounter
-  namespace: test
+  namespace: longhorn-system
   labels:
     app: longhorn-volume-mounter
 spec:
