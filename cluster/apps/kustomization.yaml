@@ -8,7 +8,7 @@ resources:
     # basicauth
   # - blogs
     # simone
-  # - dashboards
+  - dashboards
     # homer
     # kubernetes-dashboard
   # - development
