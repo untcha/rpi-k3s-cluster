@@ -211,7 +211,7 @@ spec:
         folder: /tmp/dashboards
         folderAnnotation: null
         label: grafana_dashboard
-        labelValue: null
+        labelValue: "1"
         provider:
           allowUiUpdates: false
           disableDelete: false
@@ -229,7 +229,7 @@ spec:
         enabled: true
         initDatasources: false
         label: grafana_datasource
-        labelValue: null
+        labelValue: "1"
         reloadURL: http://localhost:3000/api/admin/provisioning/datasources/reload
         resource: both
         searchNamespace: null
