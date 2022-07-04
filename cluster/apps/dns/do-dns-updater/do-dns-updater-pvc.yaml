@@ -5,7 +5,7 @@ metadata:
   name: do-dns-updater-log-pvc
   namespace: dns
 spec:
-  storageClassName: longhorn-all-node-storageclass
+  storageClassName: longhorn-worker-node-storageclass
   accessModes:
     - ReadWriteOnce
   resources:
