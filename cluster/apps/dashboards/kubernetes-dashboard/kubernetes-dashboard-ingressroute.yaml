@@ -13,7 +13,7 @@ spec:
   entryPoints:
     - websecure
   routes:
-    - match: Host(`kube.${SECRET_DIGITALOCEAN_DOMAIN_02}`)
+    - match: Host(`kube.${SECRET_DOMAIN}`)
       kind: Rule
       middlewares:
         - name: authelia-middleware
@@ -27,6 +27,9 @@ spec:
           serversTransport: kubernetes-dashboard-transport
   tls:
     secretName: "${SECRET_DOMAIN/./-}-tls"
+    options:
+      name: default-tlsoption
+      namespace: traefik
 
 ---
 apiVersion: traefik.containo.us/v1alpha1
@@ -35,5 +38,5 @@ metadata:
   name: kubernetes-dashboard-transport
   namespace: kubernetes-dashboard
 spec:
-  serverName: "kube.${SECRET_DIGITALOCEAN_DOMAIN_02}"
+  serverName: "kube.${SECRET_DOMAIN}"
   insecureSkipVerify: true
