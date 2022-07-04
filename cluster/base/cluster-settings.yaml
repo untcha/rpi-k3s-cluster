@@ -5,18 +5,19 @@ metadata:
   namespace: flux-system
   name: cluster-settings
 data:
-  #
+  # CORE
+  TRAEFIK_SVC_LB_IP:              "192.168.178.240"
+  # DNS
   UNBOUND_SVC_LB_IP:              "192.168.178.122"
   PIHOLE_SVC_LB_IP:               "192.168.178.124"
   BLOCKY_SVC_LB_IP:               "192.168.178.125"
-  #
+  # DNS
   UNBOUND_STAGING_SVC_LB_IP:      "192.168.178.126"
   PIHOLE_STAGING_SVC_LB_IP:       "192.168.178.127"
   BLOCKY_STAGING_SVC_LB_IP:       "192.168.178.128"
-  #
-  INFLUXDB_SVC_LB_IP:             "192.168.178.131"
-  PROMETHEUS_SVC_LB_IP:           "192.168.178.132"
-  TRAEFIK_SVC_LB_IP:              "192.168.178.240"
+  # SERVICES
+  PROMETHEUS_SVC_LB_IP:           "192.168.178.141"
+  INFLUXDB_SVC_LB_IP:             "192.168.178.142"
   #
   NEXT_K3S_VERSION:               "v1.24.2+k3s1"
   NODE_MASTER_01_IP:              "192.168.178.210"
