@@ -10,6 +10,7 @@ resources:
   - longhorn-charts.yaml
   - groundhog2k-charts.yaml
   - authelia-charts.yaml
+  - prometheus-community-charts.yaml
   # - influxdata-charts.yaml
   # - grafana-charts.yaml
   # - prometheus-community-charts.yaml

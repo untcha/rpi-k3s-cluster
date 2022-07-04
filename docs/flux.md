@@ -451,7 +451,7 @@ flux create helmrelease vaultwarden-postgres \
 flux create helmrelease prometheus \
   --source=HelmRepository/prometheus-community \
   --chart=prometheus \
-  --chart-version="15.3.0" \
+  --chart-version="15.10.2" \
   --target-namespace=monitoring \
   --values=prometheus-values.yaml \
   --export > prometheus-helmrelease.yaml
