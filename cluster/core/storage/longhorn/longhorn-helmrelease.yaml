@@ -12,7 +12,7 @@ spec:
       sourceRef:
         kind: HelmRepository
         name: longhorn
-      version: 1.3.0
+      version: 1.2.4
   interval: 1m0s
   targetNamespace: longhorn-system
   values:
@@ -47,17 +47,14 @@ spec:
       disableSchedulingOnCordonedNode: null
       guaranteedEngineManagerCPU: null
       guaranteedReplicaManagerCPU: null
-      kubernetesClusterAutoscalerEnabled: null
       mkfsExt4Parameters: null
       nodeDownPodDeletionPolicy: null
-      orphanAutoDeletion: null
       priorityClass: null
       replicaAutoBalance: null
       replicaReplenishmentWaitInterval: null
       replicaSoftAntiAffinity: null
       replicaZoneSoftAntiAffinity: null
       storageMinimalAvailablePercentage: 10
-      storageNetwork: null
       storageOverProvisioningPercentage: null
       systemManagedComponentsNodeSelector: null
       systemManagedPodsImagePullPolicy: null
@@ -71,10 +68,10 @@ spec:
       csi:
         attacher:
           repository: longhornio/csi-attacher
-          tag: v3.4.0
+          tag: v3.2.1
         nodeDriverRegistrar:
           repository: longhornio/csi-node-driver-registrar
-          tag: v2.5.0
+          tag: v2.3.0
         provisioner:
           repository: longhornio/csi-provisioner
           tag: v2.1.2
@@ -87,29 +84,28 @@ spec:
       longhorn:
         backingImageManager:
           repository: longhornio/backing-image-manager
-          tag: v3_20220609
+          tag: v2_20210820
         engine:
           repository: longhornio/longhorn-engine
-          tag: v1.3.0
+          tag: v1.2.4
         instanceManager:
           repository: longhornio/longhorn-instance-manager
-          tag: v1_20220611
+          tag: v1_20220303
         manager:
           repository: longhornio/longhorn-manager
-          tag: v1.3.0
+          tag: v1.2.4
         shareManager:
           repository: longhornio/longhorn-share-manager
-          tag: v1_20220531
+          tag: v1_20211020
         ui:
           repository: longhornio/longhorn-ui
-          tag: v1.3.0
+          tag: v1.2.4
       pullPolicy: IfNotPresent
     ingress:
       annotations: null
       enabled: false
       host: sslip.io
       ingressClassName: null
-      path: /
       secrets: null
       tls: false
       tlsSecret: longhorn.local-tls
@@ -135,15 +131,12 @@ spec:
         name: null
       defaultClass: true
       defaultClassReplicaCount: 3
-      defaultDataLocality: disabled
       defaultFsType: ext4
-      migratable: false
       reclaimPolicy: Delete
       recurringJobSelector:
         enable: false
         jobList: []
     privateRegistry:
-      createSecret: null
       registryPasswd: null
       registrySecret: null
       registryUrl: null
@@ -151,13 +144,9 @@ spec:
     resources: {}
     service:
       manager:
-        loadBalancerIP: ""
-        loadBalancerSourceRanges: ""
         nodePort: ""
         type: ClusterIP
       ui:
         nodePort: null
         type: ClusterIP
-    serviceAccount:
-      annotations: {}
 
