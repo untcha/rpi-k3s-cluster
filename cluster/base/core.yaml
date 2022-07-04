@@ -149,32 +149,32 @@ spec:
       - kind: Secret
         name: cluster-secrets
 
-# ---
-# apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
-# kind: Kustomization
-# metadata:
-#   name: core-ingress-controller-additions
-#   namespace: flux-system
-# spec:
-#   interval: 10m0s
-#   # dependsOn:
-#   # - name: core-ingress-controller
-#   path: ./cluster/core/ingress/traefik-additions
-#   prune: true
-#   sourceRef:
-#     kind: GitRepository
-#     name: flux-system
-#   decryption:
-#     provider: sops
-#     secretRef:
-#       name: sops-gpg
-#   postBuild:
-#     substitute: {}
-#     substituteFrom:
-#       - kind: ConfigMap
-#         name: cluster-settings
-#       - kind: Secret
-#         name: cluster-secrets
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+kind: Kustomization
+metadata:
+  name: core-ingress-controller-additions
+  namespace: flux-system
+spec:
+  interval: 10m0s
+  # dependsOn:
+  # - name: core-ingress-controller
+  path: ./cluster/core/ingress/traefik-additions
+  prune: true
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+  decryption:
+    provider: sops
+    secretRef:
+      name: sops-gpg
+  postBuild:
+    substitute: {}
+    substituteFrom:
+      - kind: ConfigMap
+        name: cluster-settings
+      - kind: Secret
+        name: cluster-secrets
 
 # ---
 # apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
