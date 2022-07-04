@@ -29,7 +29,7 @@ resources:
     # grafana
     # influxdata
     # prometheus-exporter
-  # - nextcloud
+  - nextcloud
   # - paperless-ng
   # - recipes
   # - tools
