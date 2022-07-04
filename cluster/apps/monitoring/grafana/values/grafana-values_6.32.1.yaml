@@ -52,7 +52,7 @@ podDisruptionBudget: {}
 ## See `kubectl explain deployment.spec.strategy` for more
 ## ref: https://kubernetes.io/docs/concepts/workloads/controllers/deployment/#strategy
 deploymentStrategy:
-  type: RollingUpdate
+  type: Recreate
 
 readinessProbe:
   httpGet:
@@ -234,7 +234,8 @@ resources: {}
 ## Node labels for pod assignment
 ## ref: https://kubernetes.io/docs/user-guide/node-selection/
 #
-nodeSelector: {}
+nodeSelector:
+  node-type: worker
 
 ## Tolerations for pod assignment
 ## ref: https://kubernetes.io/docs/concepts/configuration/taint-and-toleration/
@@ -282,7 +283,7 @@ extraContainerVolumes: []
 ##
 persistence:
   type: pvc
-  enabled: false
+  enabled: true
   # storageClassName: default
   accessModes:
     - ReadWriteOnce
@@ -294,7 +295,7 @@ persistence:
   ## Sub-directory of the PV to mount. Can be templated.
   # subPath: ""
   ## Name of an existing PVC. Can be templated.
-  # existingClaim:
+  existingClaim: grafana-data-pvc
 
   ## If persistence is not enabled, this allows to mount the
   ## local storage in-memory to improve performance
@@ -334,15 +335,15 @@ initChownData:
 
 
 # Administrator credentials when not using an existing secret (see below)
-adminUser: admin
-# adminPassword: strongpassword
+adminUser: ${SECRET_GRAFANA_ADMIN_USER}
+adminPassword: ${SECRET_GRAFANA_ADMIN_PASSWORD}
 
 # Use an existing secret for the admin user.
-admin:
-  ## Name of the secret. Can be templated.
-  existingSecret: ""
-  userKey: admin-user
-  passwordKey: admin-password
+# admin:
+#   ## Name of the secret. Can be templated.
+#   existingSecret: ""
+#   userKey: admin-user
+#   passwordKey: admin-password
 
 ## Define command to be executed at startup by grafana container
 ## Needed if using `vault-env` to manage secrets (ref: https://banzaicloud.com/blog/inject-secrets-into-pods-vault/)
@@ -378,7 +379,8 @@ admin:
 ## 6. uncomment the annotation section in the serviceAccount: above
 ## make sure to replace arn:aws:iam::123456789000:role/iam-role-name-here with your role arn
 
-env: {}
+env:
+  GF_PANELS_DISABLE_SANITIZE_HTML: true
 
 ## "valueFrom" environment variable references that will be added to deployment pods. Name is templated.
 ## ref: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.19/#envvarsource-v1-core
@@ -474,7 +476,8 @@ lifecycleHooks: {}
 
 ## Pass the plugins you want installed as a list.
 ##
-plugins: []
+plugins:
+    - grafana-piechart-panel
   # - digrich-bubblechart-panel
   # - grafana-clock-panel
 
@@ -864,7 +867,7 @@ networkPolicy:
   ## When true, grafana will accept connections from any source
   ## (with the correct destination port).
   ##
-  ingress: true
+  ingress: false
   ## @param networkPolicy.ingress When true enables the creation
   ## an ingress network policy
   ##
