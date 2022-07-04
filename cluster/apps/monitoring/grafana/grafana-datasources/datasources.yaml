@@ -6,13 +6,13 @@ datasources:
     url: http://${PROMETHEUS_SVC_LB_IP}
     access: proxy
     isDefault: true
-  - name: InfluxDB_fritzboxstats
-    type: influxdb
-    access: proxy
-    database: fritzboxstats
-    user: ${SECRET_FRITZINFLUXDB_INFLUXDB_USERNAME}
-    url: http://${INFLUXDB_SVC_LB_IP}:8086
-    jsonData:
-      httpMode: GET
-    secureJsonData:
-      password: ${SECRET_FRITZINFLUXDB_INFLUXDB_PASSWORD}
+  # - name: InfluxDB_fritzboxstats
+  #   type: influxdb
+  #   access: proxy
+  #   database: fritzboxstats
+  #   user: ${SECRET_FRITZINFLUXDB_INFLUXDB_USERNAME}
+  #   url: http://${INFLUXDB_SVC_LB_IP}:8086
+  #   jsonData:
+  #     httpMode: GET
+  #   secureJsonData:
+  #     password: ${SECRET_FRITZINFLUXDB_INFLUXDB_PASSWORD}
