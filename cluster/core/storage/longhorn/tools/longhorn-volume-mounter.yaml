@@ -21,13 +21,13 @@ spec:
       containers:
         - name: longhorn-volume-mounter
           # image: praqma/network-multitool:extra
-          image: busybox:1.34.1
+          image: busybox:1.35.0
           tty: true
-          volumeMounts:
-            - name: old-vol
-              mountPath: /mnt/old
-            - name: new-vol
-              mountPath: /mnt/new
+          # volumeMounts:
+          #   - name: old-vol
+          #     mountPath: /mnt/old
+          #   - name: new-vol
+          #     mountPath: /mnt/new
           # resources:
           #   requests:
           #     cpu: "1m"
@@ -39,10 +39,10 @@ spec:
           #   runAsUser: 0
           #   capabilities:
           #     add: ["NET_ADMIN"]
-      volumes:
-        - name: old-vol
-          persistentVolumeClaim:
-            claimName: postgres-test-pvc # change to data source pvc
-        - name: new-vol
-          persistentVolumeClaim:
-            claimName: postgres-test-2-pvc # change to data target pvc
+      # volumes:
+      #   - name: old-vol
+      #     persistentVolumeClaim:
+      #       claimName: postgres-test-pvc # change to data source pvc
+      #   - name: new-vol
+      #     persistentVolumeClaim:
+      #       claimName: postgres-test-2-pvc # change to data target pvc

@@ -7,4 +7,4 @@ resources:
   - storageclasses
   - longhorn-middleware.yaml
   - longhorn-ingressroute.yaml
-  # - tools
+  - tools
