@@ -2,21 +2,21 @@
 # whoami-http-ingressroute
 # whoami-https-ingressroute
 
----
-apiVersion: traefik.containo.us/v1alpha1
-kind: IngressRoute
-metadata:
-  name: whoami-local-ingressroute
-  namespace: tools
-spec:
-  entryPoints:
-    - web
-  routes:
-    - match: Host(`whoami.${SECRET_DOMAIN_LOCAL_02}`)
-      kind: Rule
-      services:
-        - name: whoami
-          port: 80
+# ---
+# apiVersion: traefik.containo.us/v1alpha1
+# kind: IngressRoute
+# metadata:
+#   name: whoami-local-ingressroute
+#   namespace: tools
+# spec:
+#   entryPoints:
+#     - web
+#   routes:
+#     - match: Host(`whoami.${SECRET_DOMAIN_LOCAL_02}`)
+#       kind: Rule
+#       services:
+#         - name: whoami
+#           port: 80
 
 ---
 apiVersion: traefik.containo.us/v1alpha1
@@ -28,7 +28,7 @@ spec:
   entryPoints:
     - web
   routes:
-    - match: Host(`whoami.${SECRET_DIGITALOCEAN_DOMAIN_02}`)
+    - match: Host(`whoami.${SECRET_DOMAIN}`)
       kind: Rule
       middlewares:
         - name: https-redirect-scheme-middleware
@@ -50,7 +50,7 @@ spec:
   entryPoints:
     - websecure
   routes:
-    - match: Host(`whoami.${SECRET_DIGITALOCEAN_DOMAIN_02}`)
+    - match: Host(`whoami.${SECRET_DOMAIN}`)
       kind: Rule
       middlewares:
         - name: authelia-middleware
@@ -63,4 +63,6 @@ spec:
           port: 80
   tls:
     secretName: "${SECRET_DOMAIN/./-}-tls"
-    # secretName: whoami-letsencrypt-production-certificate
+    options:
+      name: default-tlsoption
+      namespace: traefik

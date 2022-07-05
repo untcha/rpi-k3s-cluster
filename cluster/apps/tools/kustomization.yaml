@@ -4,7 +4,7 @@ kind: Kustomization
 
 resources:
   - namespace.yaml
-  - reloader
+  # - reloader
   # - network-multitool
   - whoami
   # - duckdns

@@ -34,6 +34,9 @@ spec:
       containers:
         - name: whoami
           image: traefik/whoami
+          env:
+          - name: WHOAMI_NAME
+            value: "just-a-test-name"
           ports:
             - name: web
               containerPort: 80

@@ -32,7 +32,7 @@ resources:
   - nextcloud
   # - paperless-ng
   # - recipes
-  # - tools
+  - tools
     # reloader
     # whoami
   # - vaultwarden
