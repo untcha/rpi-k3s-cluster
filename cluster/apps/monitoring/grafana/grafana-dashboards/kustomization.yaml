@@ -2,17 +2,30 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 
-configMapGenerator:
-  - name: grafana-simple-cluster-dashboard
-    namespace: monitoring
-    files:
-      - grafana-simple-cluster-dashboard.json
-  - name: grafana-node-exporter-full-dashboard
-    namespace: monitoring
-    files:
-      - grafana-node-exporter-full-dashboard.json
-
-commonLabels:
-  grafana_dashboard: "1"
 generatorOptions:
   disableNameSuffixHash: true
+  labels:
+    grafana_dashboard: "1"
+
+namespace: monitoring
+
+configMapGenerator:
+  - name: dashboards-k8s-views-global
+    files:
+      - k8s-views-global.json
+
+
+# configMapGenerator:
+#   - name: grafana-simple-cluster-dashboard
+#     namespace: monitoring
+#     files:
+#       - grafana-simple-cluster-dashboard.json
+#   - name: grafana-node-exporter-full-dashboard
+#     namespace: monitoring
+#     files:
+#       - grafana-node-exporter-full-dashboard.json
+
+# commonLabels:
+#   grafana_dashboard: "1"
+# generatorOptions:
+#   disableNameSuffixHash: true
