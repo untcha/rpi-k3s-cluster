@@ -14,9 +14,9 @@ configMapGenerator:
     files:
       - k8s-views-global.json
 
-  - name: dashboards-k8s-views-namespace
+  - name: dashboards-k8s-views-namespaces
     files:
-      - k8s-views-namespace.json
+      - k8s-views-namespaces.json
 
   - name: dashboards-k8s-views-nodes
     files:
