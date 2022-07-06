@@ -14,6 +14,18 @@ configMapGenerator:
     files:
       - k8s-views-global.json
 
+  - name: dashboards-k8s-views-namespace
+    files:
+      - k8s-views-namespace.json
+
+  - name: dashboards-k8s-views-nodes
+    files:
+      - k8s-views-nodes.json
+
+  - name: dashboards-k8s-views-pods
+    files:
+      - k8s-views-pods.json
+
 
 # configMapGenerator:
 #   - name: grafana-simple-cluster-dashboard
