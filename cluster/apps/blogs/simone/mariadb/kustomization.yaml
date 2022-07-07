@@ -4,4 +4,4 @@ kind: Kustomization
 
 resources:
   - mariadb-pvc.yaml
-  # - mariadb-helmrelease.yaml
+  - mariadb-helmrelease.yaml
