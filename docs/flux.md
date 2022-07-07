@@ -383,6 +383,16 @@ flux create helmrelease nfs-provisioner \
   --export > nfs-provisioner-helmrelease.yaml
 ```
 
+``` bash
+flux create helmrelease nfs-test-provisioner \
+  --source=HelmRepository/nfs-provisioner \
+  --chart=nfs-subdir-external-provisioner \
+  --chart-version="4.0.16" \
+  --target-namespace=storage \
+  --values=nfs-test-provisioner-values.yaml \
+  --export > nfs-test-provisioner-helmrelease.yaml
+```
+
 ### Portainer
 
 ``` bash

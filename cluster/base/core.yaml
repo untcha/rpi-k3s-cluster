@@ -5,6 +5,7 @@
 # core-ingress-controller
 # core-ingress-controller-additions
 # core-storage-nfs
+# core-storage-nfs-test
 # core-storage-longhorn
 
 ---
@@ -184,8 +185,8 @@ metadata:
   namespace: flux-system
 spec:
   interval: 10m0s
-  dependsOn:
-  - name: core-ingress-controller-additions
+  # dependsOn:
+  # - name: core-ingress-controller-additions
   path: ./cluster/core/storage/nfs
   prune: true
   sourceRef:
@@ -200,6 +201,31 @@ spec:
       kind: Deployment
       name: storage-nfs-provisioner-nfs-subdir-external-provisioner
       namespace: storage
+
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+kind: Kustomization
+metadata:
+  name: core-storage-nfs-test
+  namespace: flux-system
+spec:
+  interval: 10m0s
+  # dependsOn:
+  # - name: core-storage-nfs
+  path: ./cluster/core/storage/nfs-test
+  prune: true
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+  # healthChecks:
+  #   - apiVersion: helm.toolkit.fluxcd.io/v2beta1
+  #     kind: HelmRelease
+  #     name: nfs-provisioner
+  #     namespace: flux-system
+  #   - apiVersion: apps/v1
+  #     kind: Deployment
+  #     name: storage-nfs-provisioner-nfs-subdir-external-provisioner
+  #     namespace: storage
 
 ---
 apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
