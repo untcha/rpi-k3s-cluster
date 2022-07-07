@@ -575,14 +575,14 @@ spec:
         externalIPs: []
         externalTrafficPolicy: Cluster
         labels: {}
-        loadBalancerIP: ""
+        loadBalancerIP: ${PROMETHEUS_SVC_LB_IP}
         loadBalancerSourceRanges: []
         nodePort: 30090
         port: 9090
         publishNotReadyAddresses: false
         sessionAffinity: ""
         targetPort: 9090
-        type: ClusterIP
+        type: LoadBalancer
       serviceAccount:
         annotations: {}
         create: true
@@ -749,11 +749,11 @@ spec:
         externalIPs: []
         externalTrafficPolicy: Cluster
         labels: {}
-        loadBalancerIP: ${PROMETHEUS_SVC_LB_IP}
+        loadBalancerIP: ""
         loadBalancerSourceRanges: []
         nodePort: 30080
         nodePortTls: 30443
-        type: LoadBalancer
+        type: ClusterIP
       serviceAccount:
         create: true
         name: ""
