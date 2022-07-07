@@ -1038,7 +1038,10 @@ kubeControllerManager:
 
   ## If your kube controller manager is not deployed as a pod, specify IPs it can be found on
   ##
-  endpoints: []
+  endpoints:
+    - 192.168.178.210
+    - 192.168.178.211
+    - 192.168.178.212
   # - 10.141.4.22
   # - 10.141.4.23
   # - 10.141.4.24

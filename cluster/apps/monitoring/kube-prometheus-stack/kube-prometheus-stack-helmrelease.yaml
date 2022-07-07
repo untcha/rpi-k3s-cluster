@@ -314,7 +314,10 @@ spec:
         serverName: kubernetes
     kubeControllerManager:
       enabled: true
-      endpoints: []
+      endpoints:
+      - 192.168.178.210
+      - 192.168.178.211
+      - 192.168.178.212
       service:
         enabled: true
         port: null
