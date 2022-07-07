@@ -9,6 +9,7 @@ metadata:
   annotations:
     nfs.io/storage-path: "/mariadb"
 spec:
+  storageClassName: nfs-test-provisioner
   accessModes:
     - ReadWriteOnce
   resources:
