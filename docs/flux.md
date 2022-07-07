@@ -2,7 +2,7 @@
 
 ### Create a Flux GPG Key and export the fingerprint
 
-```bash
+``` bash
 gpg --batch --full-generate-key <<EOF
 %no-protection
 Key-Type: 1
@@ -14,11 +14,11 @@ Name-Real: ${FLUX_KEY_NAME}
 EOF
 ```
 
-```bash
+``` bash
 gpg --list-secret-keys "${FLUX_KEY_NAME}"
 ```
 
-```bash
+``` bash
 gpg --list-keys "$FLUX_KEY_NAME" | grep pub -A 1 | grep -v pub
 ```
 
@@ -26,11 +26,11 @@ gpg --list-keys "$FLUX_KEY_NAME" | grep pub -A 1 | grep -v pub
 
 TODO: place encrypted sops-gpg.yaml in the repository
 
-```bash
+``` bash
 kubectl create namespace flux-system
 ```
 
-```bash
+``` bash
 gpg --export-secret-keys --armor "${FLUX_KEY_FP}" |
 kubectl create secret generic sops-gpg \
     --namespace=flux-system \
@@ -39,7 +39,7 @@ kubectl create secret generic sops-gpg \
 
 ### Create / adapt `.sops.yaml` in the repository root
 
-```bash
+``` bash
 echo "---
 creation_rules:
 - encrypted_regex: '^(data|stringData)$'
@@ -64,11 +64,11 @@ Append the following:
 
 ## Bootstrap GitHub Repository
 
-```bash
+``` bash
 flux check --pre
 ```
 
-```bash
+``` bash
 flux bootstrap github \
   --owner=$GITHUB_USER \
   --repository=$GITHUB_REPOSITORY \
@@ -83,7 +83,7 @@ flux bootstrap github \
 
 ## Clone the git repository
 
-```bash
+``` bash
 git clone https://github.com/$GITHUB_USER/$GITHUB_REPOSITORY
 ```
 
@@ -93,13 +93,13 @@ https://github.com/k8s-at-home/sops-pre-commit
 
 ### Install pre-commit
 
-```bash
+``` bash
 brew install pre-commit
 ```
 
 ### Create `.pre-commit-config.yaml` in the repository root
 
-```bash
+``` bash
 echo "repos:
 - repo: https://github.com/k8s-at-home/sops-pre-commit
   rev: v2.0.3
@@ -109,11 +109,11 @@ echo "repos:
 
 Then run:
 
-```bash
+``` bash
 pre-commit install-hooks
 ```
 
-```bash
+``` bash
 pre-commit run --all-files
 ```
 
@@ -123,7 +123,7 @@ TODO: create kustomization.yaml files recursively
 
 ## Helm Repositories
 
-```bash
+``` bash
 # grafana
 
 flux create source helm grafana \
@@ -131,7 +131,7 @@ flux create source helm grafana \
     --export > grafana-charts.yaml
 ```
 
-```bash
+``` bash
 # nextcloud, postgres, redis
 
 flux create source helm groundhog2k \
@@ -139,7 +139,7 @@ flux create source helm groundhog2k \
     --export > groundhog2k-charts.yaml
 ```
 
-```bash
+``` bash
 # influxdb, chronograf, telegraf
 
 flux create source helm influxdata \
@@ -147,7 +147,7 @@ flux create source helm influxdata \
     --export > traefik-charts.yaml
 ```
 
-```bash
+``` bash
 # cert-manager
 
 flux create source helm jetstack \
@@ -155,7 +155,7 @@ flux create source helm jetstack \
     --export > jetstack-charts.yaml
 ```
 
-```bash
+``` bash
 # librespeed
 
 flux create source helm k8s-at-home \
@@ -163,7 +163,7 @@ flux create source helm k8s-at-home \
     --export > k8s-at-home-charts.yaml
 ```
 
-```bash
+``` bash
 # longhorn
 
 flux create source helm longhorn \
@@ -171,7 +171,7 @@ flux create source helm longhorn \
     --export > longhorn-charts.yaml
 ```
 
-```bash
+``` bash
 # metallb
 
 flux create source helm metallb \
@@ -179,7 +179,7 @@ flux create source helm metallb \
     --export > metallb-charts.yaml
 ```
 
-```bash
+``` bash
 # portainer
 
 flux create source helm portainer \
@@ -187,7 +187,7 @@ flux create source helm portainer \
     --export > portainer-charts.yaml
 ```
 
-```bash
+``` bash
 # prometheus
 
 flux create source helm prometheus-community \
@@ -195,7 +195,7 @@ flux create source helm prometheus-community \
     --export > prometheus-community-charts.yaml
 ```
 
-```bash
+``` bash
 # traefik
 
 flux create source helm traefik \
@@ -203,7 +203,7 @@ flux create source helm traefik \
     --export > traefik-charts.yaml
 ```
 
-```bash
+``` bash
 # openldap
 
 flux create source helm openldap \
@@ -213,7 +213,7 @@ flux create source helm openldap \
 
 ## Helm Chart Values
 
-```bash
+``` bash
 helm show values <repository/chart> <chart>-values.yaml
 ```
 
@@ -221,7 +221,7 @@ helm show values <repository/chart> <chart>-values.yaml
 
 ### Authelia
 
-```bash
+``` bash
 flux create helmrelease authelia \
   --source=HelmRepository/authelia \
   --chart=authelia \
@@ -233,7 +233,7 @@ flux create helmrelease authelia \
 
 ### Cert-Manager
 
-```bash
+``` bash
 flux create helmrelease cert-manager \
   --source=HelmRepository/jetstack \
   --chart=cert-manager \
@@ -245,7 +245,7 @@ flux create helmrelease cert-manager \
 
 ### Chronograf
 
-```bash
+``` bash
 flux create helmrelease chronograf \
   --source=HelmRepository/influxdata \
   --chart=chronograf \
@@ -257,7 +257,7 @@ flux create helmrelease chronograf \
 
 ### Gitea
 
-```bash
+``` bash
 flux create helmrelease gitea \
   --source=HelmRepository/groundhog2k \
   --chart=gitea \
@@ -269,7 +269,7 @@ flux create helmrelease gitea \
 
 ### Grafana
 
-```bash
+``` bash
 flux create helmrelease grafana \
   --source=HelmRepository/grafana \
   --chart=grafana \
@@ -281,7 +281,7 @@ flux create helmrelease grafana \
 
 ### InfluxDB
 
-```bash
+``` bash
 flux create helmrelease influxdb \
   --source=HelmRepository/influxdata \
   --chart=influxdb \
@@ -291,9 +291,21 @@ flux create helmrelease influxdb \
   --export > influxdb-helmrelease.yaml
 ```
 
+### Kube-Prometheus-Stack
+
+``` bash
+flux create helmrelease kube-prometheus-stack \
+  --source=HelmRepository/prometheus-community \
+  --chart=kube-prometheus-stack \
+  --chart-version="36.2.1" \
+  --target-namespace=monitoring \
+  --values=kube-prometheus-stack-values.yaml \
+  --export > kube-prometheus-stack-helmrelease.yaml
+```
+
 ### Kured
 
-```bash
+``` bash
 flux create helmrelease kured \
   --source=HelmRepository/kured \
   --chart=kured \
@@ -305,7 +317,7 @@ flux create helmrelease kured \
 
 ### Longhorn
 
-```bash
+``` bash
 flux create helmrelease longhorn \
   --source=HelmRepository/longhorn \
   --chart=longhorn \
@@ -317,7 +329,7 @@ flux create helmrelease longhorn \
 
 ### MariaDB
 
-```bash
+``` bash
 flux create helmrelease wp-simone-mariadb \
   --source=HelmRepository/groundhog2k \
   --chart=mariadb \
@@ -329,7 +341,7 @@ flux create helmrelease wp-simone-mariadb \
 
 ### MetalLB
 
-```bash
+``` bash
 flux create helmrelease metallb \
   --source=HelmRepository/metallb \
   --chart=metallb \
@@ -341,7 +353,7 @@ flux create helmrelease metallb \
 
 ### Nextcloud
 
-```bash
+``` bash
 interval: 1m0s
 timeout: 25m (!!!)
 
@@ -356,7 +368,7 @@ flux create helmrelease nextcloud \
 
 ### nfs-provisioner
 
-```bash
+``` bash
   ### NICHT mehr nötig! --> Kustomization angepasst!
   namespace: flux-system
   annotations:
@@ -373,7 +385,7 @@ flux create helmrelease nfs-provisioner \
 
 ### Portainer
 
-```bash
+``` bash
 flux create helmrelease portainer \
   --source=HelmRepository/portainer \
   --chart=portainer \
@@ -385,7 +397,7 @@ flux create helmrelease portainer \
 
 ### Postgres
 
-```bash
+``` bash
 flux create helmrelease authelia-postgres \
   --source=HelmRepository/groundhog2k \
   --chart=postgres \
@@ -395,7 +407,7 @@ flux create helmrelease authelia-postgres \
   --export > postgres-helmrelease.yaml
 ```
 
-```bash
+``` bash
 flux create helmrelease gitea-postgres \
   --source=HelmRepository/groundhog2k \
   --chart=postgres \
@@ -405,7 +417,7 @@ flux create helmrelease gitea-postgres \
   --export > postgres-helmrelease.yaml
 ```
 
-```bash
+``` bash
 flux create helmrelease nextcloud-postgres \
   --source=HelmRepository/groundhog2k \
   --chart=postgres \
@@ -415,7 +427,7 @@ flux create helmrelease nextcloud-postgres \
   --export > postgres-helmrelease.yaml
 ```
 
-```bash
+``` bash
 flux create helmrelease paperless-postgres \
   --source=HelmRepository/groundhog2k \
   --chart=postgres \
@@ -425,7 +437,7 @@ flux create helmrelease paperless-postgres \
   --export > postgres-helmrelease.yaml
 ```
 
-```bash
+``` bash
 flux create helmrelease recipes-postgres \
   --source=HelmRepository/groundhog2k \
   --chart=postgres \
@@ -435,7 +447,7 @@ flux create helmrelease recipes-postgres \
   --export > postgres-helmrelease.yaml
 ```
 
-```bash
+``` bash
 flux create helmrelease vaultwarden-postgres \
   --source=HelmRepository/groundhog2k \
   --chart=postgres \
@@ -447,7 +459,7 @@ flux create helmrelease vaultwarden-postgres \
 
 ### Prometheus
 
-```bash
+``` bash
 flux create helmrelease prometheus \
   --source=HelmRepository/prometheus-community \
   --chart=prometheus \
@@ -459,7 +471,7 @@ flux create helmrelease prometheus \
 
 ### Redis
 
-```bash
+``` bash
 flux create helmrelease gitea-redis \
   --source=HelmRepository/groundhog2k \
   --chart=redis \
@@ -469,7 +481,7 @@ flux create helmrelease gitea-redis \
   --export > redis-helmrelease.yaml
 ```
 
-```bash
+``` bash
 flux create helmrelease nextcloud-redis \
   --source=HelmRepository/groundhog2k \
   --chart=redis \
@@ -479,7 +491,7 @@ flux create helmrelease nextcloud-redis \
   --export > redis-helmrelease.yaml
 ```
 
-```bash
+``` bash
 flux create helmrelease paperless-redis \
   --source=HelmRepository/groundhog2k \
   --chart=redis \
@@ -491,7 +503,7 @@ flux create helmrelease paperless-redis \
 
 ### Reloader
 
-```bash
+``` bash
 flux create helmrelease reloader \
   --source=HelmRepository/stakater \
   --chart=reloader \
@@ -502,7 +514,7 @@ flux create helmrelease reloader \
 ```
 
 ### Speedtest-Exporter
-```bash
+``` bash
 flux create helmrelease speedtest-exporter \
   --source=HelmRepository/k8s-at-home \
   --chart=speedtest-exporter \
@@ -514,7 +526,7 @@ flux create helmrelease speedtest-exporter \
 
 ### Traefik
 
-```bash
+``` bash
 flux create helmrelease traefik \
   --source=HelmRepository/traefik \
   --chart=traefik \
@@ -526,7 +538,7 @@ flux create helmrelease traefik \
 
 ### Wordpress
 
-```bash
+``` bash
 flux create helmrelease wp-simone-wordpress \
   --source=HelmRepository/groundhog2k \
   --chart=wordpress \
@@ -538,11 +550,11 @@ flux create helmrelease wp-simone-wordpress \
 
 ## Useful commands
 
-```bash
+``` bash
 echo -n 'test' | base64
 ```
 
-```bash
+``` bash
 watch flux get all
 ```
 
