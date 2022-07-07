@@ -19,7 +19,7 @@ data:
   PROMETHEUS_SVC_LB_IP:           "192.168.178.141"
   INFLUXDB_SVC_LB_IP:             "192.168.178.142"
   #
-  NEXT_K3S_VERSION:               "v1.24.2+k3s1"
+  NEXT_K3S_VERSION:               "v1.23.8+k3s2"
   NODE_MASTER_01_IP:              "192.168.178.210"
   NODE_MASTER_02_IP:              "192.168.178.211"
   NODE_MASTER_03_IP:              "192.168.178.212"
@@ -27,7 +27,7 @@ data:
   GLOBAL_SMTP_PORT:               "587"
   #
   LONGHORN_DEFAULT_DATAPATH:      "/storage/"
-  LONGHORN_BACKUP_TARGET:         "nfs://192.168.178.110:/Longhorn"
+  LONGHORN_BACKUP_TARGET:         "nfs://192.168.178.41:/longhorn"
   #
   GOOGLE_DNS1:                    "8.8.8.8"
   GOOGLE_DNS2:                    "8.8.4.4"
