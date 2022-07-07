@@ -5,5 +5,5 @@ kind: Kustomization
 resources:
   - namespace.yaml
   - mariadb
-  # - wordpress
-  # - ingressroutes.yaml
+  - wordpress
+  - ingressroutes.yaml
