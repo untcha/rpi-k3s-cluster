@@ -12,7 +12,7 @@ spec:
   entryPoints:
     - web
   routes:
-    - match: Host(`simone.${SECRET_DOMAIN_LOCAL_02}`)
+    - match: Host(`simone.${SECRET_DOMAIN_LOCAL}`)
       kind: Rule
       services:
         - name: wp-simone-wp-simone-wordpress
@@ -28,7 +28,7 @@ spec:
   entryPoints:
     - web
   routes:
-    - match: Host(`simone.${SECRET_DIGITALOCEAN_DOMAIN_02}`)
+    - match: Host(`simone.${SECRET_DOMAIN}`)
       kind: Rule
       middlewares:
         - name: https-redirect-scheme-middleware
@@ -49,7 +49,7 @@ spec:
   entryPoints:
     - websecure
   routes:
-    - match: Host(`simone.${SECRET_DIGITALOCEAN_DOMAIN_02}`)
+    - match: Host(`simone.${SECRET_DOMAIN}`)
       kind: Rule
       middlewares:
         - name: authelia-middleware
@@ -62,3 +62,6 @@ spec:
           port: 80
   tls:
     secretName: "${SECRET_DOMAIN/./-}-tls"
+    options:
+      name: default-tlsoption
+      namespace: traefik

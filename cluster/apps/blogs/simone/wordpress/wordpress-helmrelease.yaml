@@ -8,10 +8,11 @@ spec:
   chart:
     spec:
       chart: wordpress
+      reconcileStrategy: ChartVersion
       sourceRef:
         kind: HelmRepository
         name: groundhog2k
-      version: 0.5.0
+      version: 0.6.1
   interval: 1m0s
   targetNamespace: wp-simone
   values:
@@ -27,9 +28,9 @@ spec:
         - name: X-Forwarded-Proto
           value: https
         - name: X-Forwarded-Host
-          value: simone.${SECRET_DIGITALOCEAN_DOMAIN_02}
+          value: simone.${SECRET_DOMAIN}
         - name: Host
-          value: simone.${SECRET_DIGITALOCEAN_DOMAIN_02}
+          value: simone.${SECRET_DOMAIN}
         path: /wp-admin/install.php
         port: http
       initialDelaySeconds: 30
@@ -44,9 +45,9 @@ spec:
         - name: X-Forwarded-Proto
           value: https
         - name: X-Forwarded-Host
-          value: simone.${SECRET_DIGITALOCEAN_DOMAIN_02}
+          value: simone.${SECRET_DOMAIN}
         - name: Host
-          value: simone.${SECRET_DIGITALOCEAN_DOMAIN_02}
+          value: simone.${SECRET_DOMAIN}
         path: /wp-login.php
         port: http
       initialDelaySeconds: 30
@@ -60,9 +61,9 @@ spec:
         - name: X-Forwarded-Proto
           value: https
         - name: X-Forwarded-Host
-          value: simone.${SECRET_DIGITALOCEAN_DOMAIN_02}
+          value: simone.${SECRET_DOMAIN}
         - name: Host
-          value: simone.${SECRET_DIGITALOCEAN_DOMAIN_02}
+          value: simone.${SECRET_DOMAIN}
         path: /wp-admin/install.php
         port: http
       initialDelaySeconds: 10
@@ -92,7 +93,7 @@ spec:
       maxBodySize: 64m
       tls: []
     livenessProbe:
-      enabled: false
+      enabled: true
       failureThreshold: 5
       initialDelaySeconds: 30
       periodSeconds: 10
@@ -117,7 +118,7 @@ spec:
       runAsNonRoot: true
       runAsUser: 33
     readinessProbe:
-      enabled: false
+      enabled: true
       failureThreshold: 5
       initialDelaySeconds: 30
       periodSeconds: 10
@@ -146,7 +147,7 @@ spec:
       memoryLimit: 128M
       tablePrefix: null
     startupProbe:
-      enabled: false
+      enabled: true
       failureThreshold: 30
       initialDelaySeconds: 10
       periodSeconds: 10
