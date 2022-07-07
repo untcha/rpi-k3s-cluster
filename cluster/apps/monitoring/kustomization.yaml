@@ -8,5 +8,5 @@ resources:
   # - prometheus
   # - prometheus-exporter
   # - influxdata
-  # - grafana
+  - grafana
   # - tools
