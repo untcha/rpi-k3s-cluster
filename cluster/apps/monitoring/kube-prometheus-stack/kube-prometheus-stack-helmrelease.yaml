@@ -55,19 +55,18 @@ spec:
           runAsGroup: 2000
           runAsNonRoot: true
           runAsUser: 1000
-        storage: null
+        storage:
+          volumeClaimTemplate:
+            spec:
+              accessModes:
+              - ReadWriteOnce
+              resources:
+                requests:
+                  storage: 2Gi
+              storageClassName: longhorn-worker-node-storageclass
         tolerations: []
         topologySpreadConstraints: []
         useExistingSecret: false
-        volumeClaimTemplate:
-          spec:
-            accessModes:
-            - ReadWriteOnce
-            resources:
-              requests:
-                storage: 2Gi
-            selector: {}
-            storageClassName: longhorn-worker-node-storageclass
         volumeMounts: []
         volumes: []
       annotations: {}
@@ -555,7 +554,6 @@ spec:
         shards: 1
         storageSpec:
           volumeClaimTemplate:
-            selector: {}
             spec:
               accessModes:
               - ReadWriteOnce
