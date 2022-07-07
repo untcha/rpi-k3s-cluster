@@ -20,9 +20,10 @@ resources:
     # pihole
     # staging
   # - documentation
-  # - kube-system
-    # kured
+  - kube-system
+    # reloader
     # system-upgrade-controller
+    # kured
   - monitoring
     # prometheus
     # grafana
@@ -32,6 +33,5 @@ resources:
   # - paperless-ng
   # - recipes
   - tools
-    # reloader
     # whoami
   # - vaultwarden

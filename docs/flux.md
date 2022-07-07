@@ -507,8 +507,8 @@ flux create helmrelease paperless-redis \
 flux create helmrelease reloader \
   --source=HelmRepository/stakater \
   --chart=reloader \
-  --chart-version="v0.0.105" \
-  --target-namespace=tools \
+  --chart-version="v0.0.117" \
+  --target-namespace=kube-system \
   --values=reloader-values.yaml \
   --export > reloader-helmrelease.yaml
 ```

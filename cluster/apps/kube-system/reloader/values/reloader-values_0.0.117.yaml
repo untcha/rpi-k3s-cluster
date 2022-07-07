@@ -26,6 +26,7 @@ reloader:
   deployment:
     replicas: 1
     nodeSelector:
+      node-type: worker
     # cloud.google.com/gke-nodepool: default-pool
 
     # An affinity stanza to be applied to the Deployment.
