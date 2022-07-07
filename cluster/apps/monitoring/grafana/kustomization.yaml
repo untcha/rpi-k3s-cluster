@@ -3,8 +3,8 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 
 resources:
-  # - grafana-pvc.yaml
-  # - grafana-helmrelease.yaml
-  # - grafana-ingressroute.yaml
-  # - grafana-datasources
-  # - grafana-dashboards
+  - grafana-pvc.yaml
+  - grafana-helmrelease.yaml
+  - grafana-ingressroute.yaml
+  - grafana-datasources
+  - grafana-dashboards
