@@ -12,7 +12,7 @@ spec:
   entryPoints:
     - web
   routes:
-    - match: Host(`vault.${SECRET_DOMAIN_LOCAL_02}`)
+    - match: Host(`vault.${SECRET_DOMAIN_LOCAL}`)
       kind: Rule
       services:
         - name: vaultwarden
@@ -28,7 +28,7 @@ spec:
   entryPoints:
     - web
   routes:
-    - match: Host(`vault.${SECRET_DIGITALOCEAN_DOMAIN_02}`)
+    - match: Host(`vault.${SECRET_DOMAIN}`)
       kind: Rule
       middlewares:
         - name: https-redirect-scheme-middleware
@@ -49,7 +49,7 @@ spec:
   entryPoints:
     - websecure
   routes:
-    - match: Host(`vault.${SECRET_DIGITALOCEAN_DOMAIN_02}`)
+    - match: Host(`vault.${SECRET_DOMAIN}`)
       kind: Rule
       middlewares:
         - name: secure-headers-middleware
@@ -58,7 +58,7 @@ spec:
         - name: vaultwarden
           namespace: vaultwarden
           port: 80
-    - match: Host(`vault.${SECRET_DIGITALOCEAN_DOMAIN_02}`) && Path(`/notifications/hub`)
+    - match: Host(`vault.${SECRET_DOMAIN}`) && Path(`/notifications/hub`)
       kind: Rule
       services:
         - name: vaultwarden

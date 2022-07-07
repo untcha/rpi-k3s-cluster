@@ -1,4 +1,5 @@
 # prometheus-https-ingressroute
+# prometheus-alertmanager-https-ingressroute
 
 ---
 apiVersion: traefik.containo.us/v1alpha1
@@ -33,7 +34,7 @@ spec:
 apiVersion: traefik.containo.us/v1alpha1
 kind: IngressRoute
 metadata:
-  name: alertmanager-https-ingressroute
+  name: prometheus-alertmanager-https-ingressroute
   namespace: traefik
   annotations:
     cert-manager.io/cluster-issuer: "letsencrypt-dns01-production-do"

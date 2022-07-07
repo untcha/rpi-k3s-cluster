@@ -13,7 +13,7 @@
 #   entryPoints:
 #     - web
 #   routes:
-#     - match: Host(`traefik.${SECRET_DOMAIN_LOCAL_02}`) && (PathPrefix(`/dashboard`) || PathPrefix(`/api`))
+#     - match: Host(`traefik.${SECRET_DOMAIN_LOCAL}`) && (PathPrefix(`/dashboard`) || PathPrefix(`/api`))
 #       kind: Rule
 #       services:
 #         - name: api@internal
@@ -29,7 +29,7 @@
 #   entryPoints:
 #     - web
 #   routes:
-#     - match: Host(`traefik.${SECRET_DOMAIN_LOCAL_02}`) && PathPrefix(`/metrics`)
+#     - match: Host(`traefik.${SECRET_DOMAIN_LOCAL}`) && PathPrefix(`/metrics`)
 #       kind: Rule
 #       services:
 #         - name: prometheus@internal
