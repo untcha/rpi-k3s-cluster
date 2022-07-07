@@ -26,6 +26,13 @@ configMapGenerator:
     files:
       - k8s-views-pods.json
 
+  - name: dashboards-k8s-system-api-server
+    files:
+      - k8s-system-api-server.json
+
+  - name: dashboards-k8s-system-coredns
+    files:
+      - k8s-system-coredns.json
 
 # configMapGenerator:
 #   - name: grafana-simple-cluster-dashboard
