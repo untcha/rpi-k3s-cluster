@@ -8,6 +8,7 @@ resources:
   - traefik-charts.yaml
   - nfs-provisioner-charts.yaml
   - longhorn-charts.yaml
+  - stakater-charts.yaml
   - groundhog2k-charts.yaml
   - authelia-charts.yaml
   - prometheus-community-charts.yaml
@@ -15,5 +16,4 @@ resources:
   # - influxdata-charts.yaml
   # - portainer-charts.yaml
   # - k8s-at-home-charts.yaml
-  # - stakater-charts.yaml
   # - kured-charts.yaml
