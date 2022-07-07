@@ -5,3 +5,4 @@ kind: Kustomization
 resources:
   - cert-manager
   - traefik
+  # TODO: - kube-prometheus-stack
