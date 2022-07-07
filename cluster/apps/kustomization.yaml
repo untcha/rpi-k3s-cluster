@@ -5,7 +5,6 @@ kind: Kustomization
 resources:
   - authentication
     # authelia
-    # basicauth
   # - blogs
     # simone
   - dashboards
