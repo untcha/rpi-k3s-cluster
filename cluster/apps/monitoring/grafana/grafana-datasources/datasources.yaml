@@ -3,7 +3,7 @@ apiVersion: 1
 datasources:
   - name: Prometheus
     type: prometheus
-    url: http://${PROMETHEUS_SVC_LB_IP}
+    url: http://${PROMETHEUS_SVC_LB_IP}:9090
     access: proxy
     isDefault: true
   # - name: InfluxDB_fritzboxstats
