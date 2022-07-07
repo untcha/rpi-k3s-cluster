@@ -28,3 +28,32 @@ spec:
     options:
       name: default-tlsoption
       namespace: traefik
+
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: prometheus-alertmanager-https-ingressroute
+  namespace: traefik
+  annotations:
+    cert-manager.io/cluster-issuer: "letsencrypt-dns01-production-do"
+spec:
+  entryPoints:
+    - websecure
+  routes:
+    - match: Host(`prometheus-alertmanager.${SECRET_DOMAIN}`)
+      kind: Rule
+      middlewares:
+        - name: authelia-middleware
+          namespace: authentication
+        - name: secure-headers-middleware
+          namespace: traefik
+      services:
+        - name: alertmanager-operated
+          namespace: monitoring
+          port: 9090
+  tls:
+    secretName: "${SECRET_DOMAIN/./-}-tls"
+    options:
+      name: default-tlsoption
+      namespace: traefik
