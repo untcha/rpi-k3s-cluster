@@ -532,14 +532,14 @@ alertmanager:
     ## ref: https://github.com/prometheus-operator/prometheus-operator/blob/main/Documentation/user-guides/storage.md
     ##
     storage:
-    volumeClaimTemplate:
-      spec:
-        storageClassName: longhorn-worker-node-storageclass
-        accessModes: ["ReadWriteOnce"]
-        resources:
-          requests:
-            storage: 2Gi
-        selector: {}
+      volumeClaimTemplate:
+        spec:
+          storageClassName: longhorn-worker-node-storageclass
+          accessModes: ["ReadWriteOnce"]
+          resources:
+            requests:
+              storage: 2Gi
+          # selector: {}
     # volumeClaimTemplate:
     #   spec:
     #     storageClassName: gluster
@@ -2493,7 +2493,7 @@ prometheus:
          resources:
            requests:
              storage: 30Gi
-       selector: {}
+      #  selector: {}
     ## Using PersistentVolumeClaim
     ##
     #  volumeClaimTemplate:
