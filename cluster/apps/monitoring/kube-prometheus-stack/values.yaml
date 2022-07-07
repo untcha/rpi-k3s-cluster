@@ -531,7 +531,15 @@ alertmanager:
     ## Storage is the definition of how storage will be used by the Alertmanager instances.
     ## ref: https://github.com/prometheus-operator/prometheus-operator/blob/main/Documentation/user-guides/storage.md
     ##
-    storage: {}
+    storage:
+    volumeClaimTemplate:
+      spec:
+        storageClassName: longhorn-worker-node-storageclass
+        accessModes: ["ReadWriteOnce"]
+        resources:
+          requests:
+            storage: 2Gi
+        selector: {}
     # volumeClaimTemplate:
     #   spec:
     #     storageClassName: gluster
@@ -558,7 +566,8 @@ alertmanager:
     ## Define which Nodes the Pods are scheduled on.
     ## ref: https://kubernetes.io/docs/user-guide/node-selection/
     ##
-    nodeSelector: {}
+    nodeSelector:
+      node-type: worker
 
     ## Define resources requests and limits for single Pods.
     ## ref: https://kubernetes.io/docs/user-guide/compute-resources/
@@ -2258,7 +2267,8 @@ prometheus:
     ## Define which Nodes the Pods are scheduled on.
     ## ref: https://kubernetes.io/docs/user-guide/node-selection/
     ##
-    nodeSelector: {}
+    nodeSelector:
+      node-type: worker
 
     ## Secrets is a list of Secrets in the same namespace as the Prometheus object, which shall be mounted into the Prometheus Pods.
     ## The Secrets are mounted into /etc/prometheus/secrets/. Secrets changes after initial creation of a Prometheus object are not
@@ -2473,7 +2483,17 @@ prometheus:
     ## Prometheus StorageSpec for persistent data
     ## ref: https://github.com/prometheus-operator/prometheus-operator/blob/main/Documentation/user-guides/storage.md
     ##
-    storageSpec: {}
+    storageSpec:
+    # Using PersistentVolumeClaim
+    #
+     volumeClaimTemplate:
+       spec:
+         storageClassName: longhorn-worker-node-storageclass
+         accessModes: ["ReadWriteOnce"]
+         resources:
+           requests:
+             storage: 30Gi
+       selector: {}
     ## Using PersistentVolumeClaim
     ##
     #  volumeClaimTemplate:
