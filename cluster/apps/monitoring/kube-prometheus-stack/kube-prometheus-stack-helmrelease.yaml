@@ -751,11 +751,11 @@ spec:
         externalIPs: []
         externalTrafficPolicy: Cluster
         labels: {}
-        loadBalancerIP: ""
+        loadBalancerIP: ${PROMETHEUS_SVC_LB_IP}
         loadBalancerSourceRanges: []
         nodePort: 30080
         nodePortTls: 30443
-        type: ClusterIP
+        type: LoadBalancer
       serviceAccount:
         create: true
         name: ""

@@ -1606,7 +1606,7 @@ prometheusOperator:
   ## Loadbalancer IP
   ## Only use if service.type is "LoadBalancer"
   ##
-    loadBalancerIP: ""
+    loadBalancerIP: "${PROMETHEUS_SVC_LB_IP}"
     loadBalancerSourceRanges: []
 
     ## Denotes if this Service desires to route external traffic to node-local or cluster-wide endpoints
@@ -1616,7 +1616,7 @@ prometheusOperator:
   ## Service type
   ## NodePort, ClusterIP, LoadBalancer
   ##
-    type: ClusterIP
+    type: LoadBalancer
 
     ## List of IP addresses at which the Prometheus server service is available
     ## Ref: https://kubernetes.io/docs/user-guide/services/#external-ips
