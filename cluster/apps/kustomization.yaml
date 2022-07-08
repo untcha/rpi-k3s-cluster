@@ -18,7 +18,6 @@ resources:
     # do-dns-updater
     # unbound
     # pihole
-    # staging
   # - documentation
   - kube-system
     # reloader
