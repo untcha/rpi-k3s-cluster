@@ -273,8 +273,8 @@ flux create helmrelease wp-simone-mariadb \
 flux create helmrelease gitea \
   --source=HelmRepository/groundhog2k \
   --chart=gitea \
-  --chart-version="0.5.2" \
-  --target-namespace=gitea \
+  --chart-version="0.5.13" \
+  --target-namespace=development \
   --values=gitea-values.yaml \
   --export > gitea-helmrelease.yaml
 ```

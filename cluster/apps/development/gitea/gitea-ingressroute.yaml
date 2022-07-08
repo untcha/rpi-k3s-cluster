@@ -3,33 +3,33 @@
 # git-https-ingressroute
 # git-ssh-ingressroute
 
----
-apiVersion: traefik.containo.us/v1alpha1
-kind: IngressRoute
-metadata:
-  name: git-local-ingressroute
-  namespace: gitea
-spec:
-  entryPoints:
-    - web
-  routes:
-    - match: Host(`git.${SECRET_DOMAIN_LOCAL_02}`)
-      kind: Rule
-      services:
-        - name: gitea-gitea-http
-          port: 80
+# ---
+# apiVersion: traefik.containo.us/v1alpha1
+# kind: IngressRoute
+# metadata:
+#   name: git-local-ingressroute
+#   namespace: development
+# spec:
+#   entryPoints:
+#     - web
+#   routes:
+#     - match: Host(`git.${SECRET_DOMAIN_LOCAL}`)
+#       kind: Rule
+#       services:
+#         - name: gitea-gitea-http
+#           port: 80
 
 ---
 apiVersion: traefik.containo.us/v1alpha1
 kind: IngressRoute
 metadata:
   name: git-http-ingressroute
-  namespace: gitea
+  namespace: development
 spec:
   entryPoints:
     - web
   routes:
-    - match: Host(`git.${SECRET_DIGITALOCEAN_DOMAIN_02}`)
+    - match: Host(`git.${SECRET_DOMAIN}`)
       kind: Rule
       middlewares:
         - name: https-redirect-scheme-middleware
@@ -50,24 +50,27 @@ spec:
   entryPoints:
     - websecure
   routes:
-    - match: Host(`git.${SECRET_DIGITALOCEAN_DOMAIN_02}`)
+    - match: Host(`git.${SECRET_DOMAIN}`)
       kind: Rule
       middlewares:
         - name: secure-headers-middleware
           namespace: traefik
       services:
         - name: gitea-gitea-http
-          namespace: gitea
+          namespace: development
           port: 80
   tls:
     secretName: "${SECRET_DOMAIN/./-}-tls"
+    options:
+      name: default-tlsoption
+      namespace: traefik
 
 ---
 apiVersion: traefik.containo.us/v1alpha1
 kind: IngressRouteTCP
 metadata:
   name: git-ssh-ingressroute
-  namespace: gitea
+  namespace: development
 spec:
   entryPoints:
     - ssh

@@ -3,10 +3,9 @@ apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
   name: gitea-data-pvc
-  namespace: gitea
-  # annotations:
-  #   nfs.io/storage-path: "data"
+  namespace: development
 spec:
+  storageClassName: longhorn-worker-node-storageclass
   accessModes:
     - ReadWriteOnce
   resources:
@@ -18,9 +17,11 @@ spec:
 # kind: PersistentVolumeClaim
 # metadata:
 #   name: gitea-data-pvc
-#   namespace: gitea
+#   namespace: development
+#   annotations:
+#     nfs.io/storage-path: "gitea/data"
 # spec:
-#   storageClassName: longhorn-high-capacity
+#   storageClassName: nfs-provisioner
 #   accessModes:
 #     - ReadWriteOnce
 #   resources:
