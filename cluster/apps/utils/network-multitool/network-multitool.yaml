@@ -3,14 +3,14 @@ apiVersion: apps/v1
 kind: DaemonSet
 metadata:
   name: network-multitool
-  namespace: tools
+  namespace: utils
   labels:
-    tier: node
+    # tier: node
     app: network-multitool
 spec:
   selector:
     matchLabels:
-      tier: node
+      # tier: node
       app: network-multitool
   template:
     metadata:
