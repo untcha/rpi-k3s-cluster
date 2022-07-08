@@ -264,7 +264,7 @@ gitea:
       NO_REPLY_ADDRESS: "noreply.git.${SECRET_DOMAIN}"
 
     mailer:
-      SUBJECT_PREFIX: "[git.untch.io]"
+      SUBJECT_PREFIX: "[git.${SECRET_DOMAIN}]"
       ENABLED: "true"
       HOST: "${SECRET_GLOBAL_SMTP_HOST}:${GLOBAL_SMTP_PORT}"
       FROM: "${SECRET_GLOBAL_SMTP_FROM}"
