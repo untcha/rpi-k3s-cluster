@@ -333,7 +333,7 @@ flux create helmrelease longhorn \
 flux create helmrelease wp-simone-mariadb \
   --source=HelmRepository/groundhog2k \
   --chart=mariadb \
-  --chart-version="0.2.15" \
+  --chart-version="0.5.0" \
   --target-namespace=wp-simone \
   --values=mariadb-values.yaml \
   --export > mariadb-helmrelease.yaml
