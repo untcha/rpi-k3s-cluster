@@ -28,6 +28,5 @@ resources:
     #
     # kube-prometheus-stack
   - nextcloud
-  - tools
-    # whoami
+  - utils
   # - vaultwarden
