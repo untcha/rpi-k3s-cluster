@@ -551,11 +551,11 @@ flux create helmrelease traefik \
 ``` bash
 flux create helmrelease wp-simone-mariadb \
   --source=HelmRepository/groundhog2k \
-  --chart=mariadb \
-  --chart-version="0.5.0" \
+  --chart=wordpress \
+  --chart-version="0.6.1" \
   --target-namespace=wp-simone \
-  --values=mariadb-values.yaml \
-  --export > mariadb-helmrelease.yaml 
+  --values=wordpress-values.yaml \
+  --export > wordpress-helmrelease.yaml 
 ```
 
 ## Useful commands
