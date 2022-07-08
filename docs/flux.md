@@ -549,7 +549,7 @@ flux create helmrelease traefik \
 ### Wordpress
 
 ``` bash
-flux create helmrelease wp-simone-mariadb \
+flux create helmrelease wp-simone-wordpress \
   --source=HelmRepository/groundhog2k \
   --chart=wordpress \
   --chart-version="0.6.1" \
