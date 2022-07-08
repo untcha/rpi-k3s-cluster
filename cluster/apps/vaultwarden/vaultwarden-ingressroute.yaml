@@ -2,21 +2,21 @@
 # vaultwarden-http-ingressroute
 # vaultwarden-https-ingressroute
 
----
-apiVersion: traefik.containo.us/v1alpha1
-kind: IngressRoute
-metadata:
-  name: vaultwarden-local-ingressroute
-  namespace: vaultwarden
-spec:
-  entryPoints:
-    - web
-  routes:
-    - match: Host(`vault.${SECRET_DOMAIN_LOCAL}`)
-      kind: Rule
-      services:
-        - name: vaultwarden
-          port: 80
+# ---
+# apiVersion: traefik.containo.us/v1alpha1
+# kind: IngressRoute
+# metadata:
+#   name: vaultwarden-local-ingressroute
+#   namespace: vaultwarden
+# spec:
+#   entryPoints:
+#     - web
+#   routes:
+#     - match: Host(`vault.${SECRET_DOMAIN_LOCAL}`)
+#       kind: Rule
+#       services:
+#         - name: vaultwarden
+#           port: 80
 
 ---
 apiVersion: traefik.containo.us/v1alpha1
@@ -66,3 +66,6 @@ spec:
           port: 3012
   tls:
     secretName: "${SECRET_DOMAIN/./-}-tls"
+    options:
+      name: default-tlsoption
+      namespace: traefik

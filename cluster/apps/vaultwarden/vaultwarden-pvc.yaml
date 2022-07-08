@@ -5,9 +5,9 @@ metadata:
   name: vaultwarden-data-pvc
   namespace: vaultwarden
 spec:
+  storageClassName: longhorn-worker-node-storageclass
   accessModes:
     - ReadWriteOnce
-  storageClassName: longhorn-worker-node-storageclass
   resources:
     requests:
       storage: 5Gi
