@@ -231,28 +231,40 @@ flux create helmrelease authelia \
   --export > authelia-helmrelease.yaml
 ```
 
-### Cert-Manager
+### Authelia - Postgres
 
 ``` bash
-flux create helmrelease cert-manager \
-  --source=HelmRepository/jetstack \
-  --chart=cert-manager \
-  --chart-version="v1.8.2" \
-  --target-namespace=cert-manager \
-  --values=cert-manager-values.yaml \
-  --export > cert-manager-helmrelease.yaml
+flux create helmrelease authelia-postgres \
+  --source=HelmRepository/groundhog2k \
+  --chart=postgres \
+  --chart-version="0.3.10" \
+  --target-namespace=authentication \
+  --values=postgres-values.yaml \
+  --export > postgres-helmrelease.yaml
 ```
 
-### Chronograf
+### Wordpress (Simone)
 
 ``` bash
-flux create helmrelease chronograf \
-  --source=HelmRepository/influxdata \
-  --chart=chronograf \
-  --chart-version="1.2.3" \
-  --target-namespace=monitoring \
-  --values=chronograf-values.yaml \
-  --export > chronograf-helmrelease.yaml
+flux create helmrelease wp-simone-wordpress \
+  --source=HelmRepository/groundhog2k \
+  --chart=wordpress \
+  --chart-version="0.6.1" \
+  --target-namespace=wp-simone \
+  --values=wordpress-values.yaml \
+  --export > wordpress-helmrelease.yaml
+```
+
+### Wordpress (Simone) - MariaDB
+
+``` bash
+flux create helmrelease wp-simone-mariadb \
+  --source=HelmRepository/groundhog2k \
+  --chart=mariadb \
+  --chart-version="0.5.0" \
+  --target-namespace=wp-simone \
+  --values=mariadb-values.yaml \
+  --export > mariadb-helmrelease.yaml
 ```
 
 ### Gitea
@@ -267,40 +279,40 @@ flux create helmrelease gitea \
   --export > gitea-helmrelease.yaml
 ```
 
-### Grafana
+### Gitea - Postgres
 
 ``` bash
-flux create helmrelease grafana \
-  --source=HelmRepository/grafana \
-  --chart=grafana \
-  --chart-version="6.32.2" \
-  --target-namespace=monitoring \
-  --values=grafana-values.yaml \
-  --export > grafana-helmrelease.yaml
+flux create helmrelease gitea-postgres \
+  --source=HelmRepository/groundhog2k \
+  --chart=postgres \
+  --chart-version="0.3.8" \
+  --target-namespace=gitea \
+  --values=postgres-values.yaml \
+  --export > postgres-helmrelease.yaml
 ```
 
-### InfluxDB
+### Gitea - Redis
 
 ``` bash
-flux create helmrelease influxdb \
-  --source=HelmRepository/influxdata \
-  --chart=influxdb \
-  --chart-version="4.10.6" \
-  --target-namespace=monitoring \
-  --values=influxdb-values.yaml \
-  --export > influxdb-helmrelease.yaml
+flux create helmrelease gitea-redis \
+  --source=HelmRepository/groundhog2k \
+  --chart=redis \
+  --chart-version="0.4.11" \
+  --target-namespace=gitea \
+  --values=redis-values.yaml \
+  --export > redis-helmrelease.yaml
 ```
 
-### Kube-Prometheus-Stack
+### Portainer
 
 ``` bash
-flux create helmrelease kube-prometheus-stack \
-  --source=HelmRepository/prometheus-community \
-  --chart=kube-prometheus-stack \
-  --chart-version="36.2.1" \
-  --target-namespace=monitoring \
-  --values=kube-prometheus-stack-values.yaml \
-  --export > kube-prometheus-stack-helmrelease.yaml
+flux create helmrelease portainer \
+  --source=HelmRepository/portainer \
+  --chart=portainer \
+  --chart-version="1.0.22" \
+  --target-namespace=portainer \
+  --values=portainer-values.yaml \
+  --export > portainer-helmrelease.yaml
 ```
 
 ### Kured
@@ -315,40 +327,64 @@ flux create helmrelease kured \
   --export > kured-helmrelease.yaml
 ```
 
-### Longhorn
+### Reloader
 
 ``` bash
-flux create helmrelease longhorn \
-  --source=HelmRepository/longhorn \
-  --chart=longhorn \
-  --chart-version="1.2.4" \
-  --target-namespace=longhorn-system \
-  --values=longhorn-values.yaml \
-  --export > longhorn-helmrelease.yaml
+flux create helmrelease reloader \
+  --source=HelmRepository/stakater \
+  --chart=reloader \
+  --chart-version="v0.0.117" \
+  --target-namespace=kube-system \
+  --values=reloader-values.yaml \
+  --export > reloader-helmrelease.yaml
 ```
 
-### MariaDB
+### Grafana
 
 ``` bash
-flux create helmrelease wp-simone-mariadb \
-  --source=HelmRepository/groundhog2k \
-  --chart=mariadb \
-  --chart-version="0.5.0" \
-  --target-namespace=wp-simone \
-  --values=mariadb-values.yaml \
-  --export > mariadb-helmrelease.yaml
+flux create helmrelease grafana \
+  --source=HelmRepository/grafana \
+  --chart=grafana \
+  --chart-version="6.32.2" \
+  --target-namespace=monitoring \
+  --values=grafana-values.yaml \
+  --export > grafana-helmrelease.yaml
 ```
 
-### MetalLB
+### Influxdata - InfluxDB
 
 ``` bash
-flux create helmrelease metallb \
-  --source=HelmRepository/metallb \
-  --chart=metallb \
-  --chart-version="0.12.1" \
-  --target-namespace=metallb-system \
-  --values=metallb-values.yaml \
-  --export > metallb-helmrelease.yaml
+flux create helmrelease influxdb \
+  --source=HelmRepository/influxdata \
+  --chart=influxdb \
+  --chart-version="4.10.6" \
+  --target-namespace=monitoring \
+  --values=influxdb-values.yaml \
+  --export > influxdb-helmrelease.yaml
+```
+
+### Influxdata - Chronograf
+
+``` bash
+flux create helmrelease chronograf \
+  --source=HelmRepository/influxdata \
+  --chart=chronograf \
+  --chart-version="1.2.3" \
+  --target-namespace=monitoring \
+  --values=chronograf-values.yaml \
+  --export > chronograf-helmrelease.yaml
+```
+
+### Kube-Prometheus-Stack
+
+``` bash
+flux create helmrelease kube-prometheus-stack \
+  --source=HelmRepository/prometheus-community \
+  --chart=kube-prometheus-stack \
+  --chart-version="36.2.1" \
+  --target-namespace=monitoring \
+  --values=kube-prometheus-stack-values.yaml \
+  --export > kube-prometheus-stack-helmrelease.yaml
 ```
 
 ### Nextcloud
@@ -364,6 +400,90 @@ flux create helmrelease nextcloud \
   --target-namespace=nextcloud \
   --values=nextcloud-values.yaml \
   --export > nextcloud-helmrelease.yaml
+```
+
+### Nextcloud - Postgres
+
+``` bash
+flux create helmrelease nextcloud-postgres \
+  --source=HelmRepository/groundhog2k \
+  --chart=postgres \
+  --chart-version="0.3.3" \
+  --target-namespace=nextcloud \
+  --values=postgres-values.yaml \
+  --export > postgres-helmrelease.yaml
+```
+
+### Nextcloud - Redis
+
+``` bash
+flux create helmrelease nextcloud-redis \
+  --source=HelmRepository/groundhog2k \
+  --chart=redis \
+  --chart-version="0.4.11" \
+  --target-namespace=nextcloud \
+  --values=redis-values.yaml \
+  --export > redis-helmrelease.yaml
+```
+
+### Vaultwarden - Postgres
+
+``` bash
+flux create helmrelease vaultwarden-postgres \
+  --source=HelmRepository/groundhog2k \
+  --chart=postgres \
+  --chart-version="0.3.8" \
+  --target-namespace=vaultwarden \
+  --values=postgres-values.yaml \
+  --export > postgres-helmrelease.yaml
+```
+
+### Cert-Manager
+
+``` bash
+flux create helmrelease cert-manager \
+  --source=HelmRepository/jetstack \
+  --chart=cert-manager \
+  --chart-version="v1.8.2" \
+  --target-namespace=cert-manager \
+  --values=cert-manager-values.yaml \
+  --export > cert-manager-helmrelease.yaml
+```
+
+### Traefik
+
+``` bash
+flux create helmrelease traefik \
+  --source=HelmRepository/traefik \
+  --chart=traefik \
+  --chart-version="10.24.0" \
+  --target-namespace=traefik \
+  --values=traefik-values.yaml \
+  --export > traefik-helmrelease.yaml
+```
+
+### MetalLB
+
+``` bash
+flux create helmrelease metallb \
+  --source=HelmRepository/metallb \
+  --chart=metallb \
+  --chart-version="0.12.1" \
+  --target-namespace=metallb-system \
+  --values=metallb-values.yaml \
+  --export > metallb-helmrelease.yaml
+```
+
+### Longhorn
+
+``` bash
+flux create helmrelease longhorn \
+  --source=HelmRepository/longhorn \
+  --chart=longhorn \
+  --chart-version="1.2.4" \
+  --target-namespace=longhorn-system \
+  --values=longhorn-values.yaml \
+  --export > longhorn-helmrelease.yaml
 ```
 
 ### nfs-provisioner
@@ -383,6 +503,8 @@ flux create helmrelease nfs-provisioner \
   --export > nfs-provisioner-helmrelease.yaml
 ```
 
+### nfs-test-provisioner
+
 ``` bash
 flux create helmrelease nfs-test-provisioner \
   --source=HelmRepository/nfs-provisioner \
@@ -391,171 +513,6 @@ flux create helmrelease nfs-test-provisioner \
   --target-namespace=storage \
   --values=nfs-test-provisioner-values.yaml \
   --export > nfs-test-provisioner-helmrelease.yaml
-```
-
-### Portainer
-
-``` bash
-flux create helmrelease portainer \
-  --source=HelmRepository/portainer \
-  --chart=portainer \
-  --chart-version="1.0.22" \
-  --target-namespace=portainer \
-  --values=portainer-values.yaml \
-  --export > portainer-helmrelease.yaml
-```
-
-### Postgres
-
-``` bash
-flux create helmrelease authelia-postgres \
-  --source=HelmRepository/groundhog2k \
-  --chart=postgres \
-  --chart-version="0.3.10" \
-  --target-namespace=authentication \
-  --values=postgres-values.yaml \
-  --export > postgres-helmrelease.yaml
-```
-
-``` bash
-flux create helmrelease gitea-postgres \
-  --source=HelmRepository/groundhog2k \
-  --chart=postgres \
-  --chart-version="0.3.8" \
-  --target-namespace=gitea \
-  --values=postgres-values.yaml \
-  --export > postgres-helmrelease.yaml
-```
-
-``` bash
-flux create helmrelease nextcloud-postgres \
-  --source=HelmRepository/groundhog2k \
-  --chart=postgres \
-  --chart-version="0.3.3" \
-  --target-namespace=nextcloud \
-  --values=postgres-values.yaml \
-  --export > postgres-helmrelease.yaml
-```
-
-``` bash
-flux create helmrelease paperless-postgres \
-  --source=HelmRepository/groundhog2k \
-  --chart=postgres \
-  --chart-version="0.3.3" \
-  --target-namespace=paperless \
-  --values=postgres-values.yaml \
-  --export > postgres-helmrelease.yaml
-```
-
-``` bash
-flux create helmrelease recipes-postgres \
-  --source=HelmRepository/groundhog2k \
-  --chart=postgres \
-  --chart-version="0.3.3" \
-  --target-namespace=recipes \
-  --values=postgres-values.yaml \
-  --export > postgres-helmrelease.yaml
-```
-
-``` bash
-flux create helmrelease vaultwarden-postgres \
-  --source=HelmRepository/groundhog2k \
-  --chart=postgres \
-  --chart-version="0.3.8" \
-  --target-namespace=vaultwarden \
-  --values=postgres-values.yaml \
-  --export > postgres-helmrelease.yaml
-```
-
-### Prometheus
-
-``` bash
-flux create helmrelease prometheus \
-  --source=HelmRepository/prometheus-community \
-  --chart=prometheus \
-  --chart-version="15.10.2" \
-  --target-namespace=monitoring \
-  --values=prometheus-values.yaml \
-  --export > prometheus-helmrelease.yaml
-```
-
-### Redis
-
-``` bash
-flux create helmrelease gitea-redis \
-  --source=HelmRepository/groundhog2k \
-  --chart=redis \
-  --chart-version="0.4.11" \
-  --target-namespace=gitea \
-  --values=redis-values.yaml \
-  --export > redis-helmrelease.yaml
-```
-
-``` bash
-flux create helmrelease nextcloud-redis \
-  --source=HelmRepository/groundhog2k \
-  --chart=redis \
-  --chart-version="0.4.11" \
-  --target-namespace=nextcloud \
-  --values=redis-values.yaml \
-  --export > redis-helmrelease.yaml
-```
-
-``` bash
-flux create helmrelease paperless-redis \
-  --source=HelmRepository/groundhog2k \
-  --chart=redis \
-  --chart-version="0.4.9" \
-  --target-namespace=paperless \
-  --values=redis-values.yaml \
-  --export > redis-helmrelease.yaml
-```
-
-### Reloader
-
-``` bash
-flux create helmrelease reloader \
-  --source=HelmRepository/stakater \
-  --chart=reloader \
-  --chart-version="v0.0.117" \
-  --target-namespace=kube-system \
-  --values=reloader-values.yaml \
-  --export > reloader-helmrelease.yaml
-```
-
-### Speedtest-Exporter
-``` bash
-flux create helmrelease speedtest-exporter \
-  --source=HelmRepository/k8s-at-home \
-  --chart=speedtest-exporter \
-  --chart-version="3.0.0" \
-  --target-namespace=tools \
-  --values=speedtest-exporter-values.yaml \
-  --export > speedtest-exporter-helmrelease.yaml
-```
-
-### Traefik
-
-``` bash
-flux create helmrelease traefik \
-  --source=HelmRepository/traefik \
-  --chart=traefik \
-  --chart-version="10.24.0" \
-  --target-namespace=traefik \
-  --values=traefik-values.yaml \
-  --export > traefik-helmrelease.yaml
-```
-
-### Wordpress
-
-``` bash
-flux create helmrelease wp-simone-wordpress \
-  --source=HelmRepository/groundhog2k \
-  --chart=wordpress \
-  --chart-version="0.6.1" \
-  --target-namespace=wp-simone \
-  --values=wordpress-values.yaml \
-  --export > wordpress-helmrelease.yaml
 ```
 
 ## Useful commands
