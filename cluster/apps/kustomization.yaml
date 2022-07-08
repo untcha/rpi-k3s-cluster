@@ -30,7 +30,6 @@ resources:
     # influxdata
     # prometheus-exporter
   - nextcloud
-  # - paperless-ng
   # - recipes
   - tools
     # whoami
