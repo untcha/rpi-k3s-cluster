@@ -103,9 +103,9 @@ customStartupProbe:
     - name: X-Forwarded-Proto
       value: https
     - name: X-Forwarded-Host
-      value: simone.${SECRET_DIGITALOCEAN_DOMAIN_02}
+      value: simone.${SECRET_DOMAIN}
     - name: Host
-      value: simone.${SECRET_DIGITALOCEAN_DOMAIN_02}
+      value: simone.${SECRET_DOMAIN}
   initialDelaySeconds: 10
   timeoutSeconds: 5
   failureThreshold: 30
@@ -114,7 +114,7 @@ customStartupProbe:
 
 ## Default startup probe
 startupProbe:
-  enabled: false
+  enabled: true
   initialDelaySeconds: 10
   timeoutSeconds: 5
   failureThreshold: 30
@@ -130,9 +130,9 @@ customLivenessProbe:
     - name: X-Forwarded-Proto
       value: https
     - name: X-Forwarded-Host
-      value: simone.${SECRET_DIGITALOCEAN_DOMAIN_02}
+      value: simone.${SECRET_DOMAIN}
     - name: Host
-      value: simone.${SECRET_DIGITALOCEAN_DOMAIN_02}
+      value: simone.${SECRET_DOMAIN}
   initialDelaySeconds: 30
   timeoutSeconds: 5
   failureThreshold: 5
@@ -141,7 +141,7 @@ customLivenessProbe:
 
 ## Default liveness probe
 livenessProbe:
-  enabled: false
+  enabled: true
   initialDelaySeconds: 30
   timeoutSeconds: 5
   failureThreshold: 5
@@ -157,9 +157,9 @@ customReadinessProbe:
     - name: X-Forwarded-Proto
       value: https
     - name: X-Forwarded-Host
-      value: simone.${SECRET_DIGITALOCEAN_DOMAIN_02}
+      value: simone.${SECRET_DOMAIN}
     - name: Host
-      value: simone.${SECRET_DIGITALOCEAN_DOMAIN_02}
+      value: simone.${SECRET_DOMAIN}
   initialDelaySeconds: 30
   timeoutSeconds: 5
   failureThreshold: 5
@@ -168,7 +168,7 @@ customReadinessProbe:
 
 ## Default readiness probe
 readinessProbe:
-  enabled: false
+  enabled: true
   initialDelaySeconds: 30
   timeoutSeconds: 5
   failureThreshold: 5
@@ -277,4 +277,3 @@ mariadb:
 
     ## the storage class name
     className:
-
