@@ -5,4 +5,4 @@ kind: Kustomization
 resources:
   - namespace.yaml
   # - network-multitool
-  # - whoami
+  - whoami
