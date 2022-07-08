@@ -285,8 +285,8 @@ flux create helmrelease gitea \
 flux create helmrelease gitea-postgres \
   --source=HelmRepository/groundhog2k \
   --chart=postgres \
-  --chart-version="0.3.8" \
-  --target-namespace=gitea \
+  --chart-version="0.3.10" \
+  --target-namespace=development \
   --values=postgres-values.yaml \
   --export > postgres-helmrelease.yaml
 ```

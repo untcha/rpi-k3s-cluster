@@ -8,12 +8,13 @@ spec:
   chart:
     spec:
       chart: postgres
+      reconcileStrategy: ChartVersion
       sourceRef:
         kind: HelmRepository
         name: groundhog2k
-      version: 0.3.8
+      version: 0.3.10
   interval: 1m0s
-  targetNamespace: gitea
+  targetNamespace: development
   values:
     affinity: {}
     args: []
