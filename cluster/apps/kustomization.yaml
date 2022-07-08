@@ -24,10 +24,9 @@ resources:
     # system-upgrade-controller
     # kured
   - monitoring
-    # prometheus
     # grafana
-    # influxdata
-    # prometheus-exporter
+    #
+    # kube-prometheus-stack
   - nextcloud
   - tools
     # whoami
