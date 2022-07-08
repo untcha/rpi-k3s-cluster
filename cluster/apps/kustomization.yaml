@@ -7,9 +7,6 @@ resources:
     # authelia
   - blogs
     # simone
-  - dashboards
-    # homer
-    # kubernetes-dashboard
   - development
     # adminer
     # gitea
