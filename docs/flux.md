@@ -555,7 +555,7 @@ flux create helmrelease wp-simone-wordpress \
   --chart-version="0.6.1" \
   --target-namespace=wp-simone \
   --values=wordpress-values.yaml \
-  --export > wordpress-helmrelease.yaml 
+  --export > wordpress-helmrelease.yaml
 ```
 
 ## Useful commands
