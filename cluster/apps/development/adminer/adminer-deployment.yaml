@@ -3,7 +3,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: adminer
-  namespace: dev-tools
+  namespace: development
   labels:
     app: adminer
 spec:
