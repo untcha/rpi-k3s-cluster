@@ -274,7 +274,7 @@ flux create helmrelease gitea \
   --source=HelmRepository/groundhog2k \
   --chart=gitea \
   --chart-version="0.5.13" \
-  --target-namespace=development \
+  --target-namespace=gitea \
   --values=gitea-values.yaml \
   --export > gitea-helmrelease.yaml
 ```
@@ -286,7 +286,7 @@ flux create helmrelease gitea-postgres \
   --source=HelmRepository/groundhog2k \
   --chart=postgres \
   --chart-version="0.3.10" \
-  --target-namespace=development \
+  --target-namespace=gitea \
   --values=postgres-values.yaml \
   --export > postgres-helmrelease.yaml
 ```
@@ -298,7 +298,7 @@ flux create helmrelease gitea-redis \
   --source=HelmRepository/groundhog2k \
   --chart=redis \
   --chart-version="0.5.2" \
-  --target-namespace=development \
+  --target-namespace=gitea \
   --values=redis-values.yaml \
   --export > redis-helmrelease.yaml
 ```

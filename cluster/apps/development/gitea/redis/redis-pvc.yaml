@@ -3,7 +3,7 @@ apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
   name: gitea-redis-pvc
-  namespace: development
+  namespace: gitea
 spec:
   storageClassName: longhorn-worker-node-storageclass
   accessModes:

@@ -233,7 +233,7 @@ gitea:
       
     database:
       DB_TYPE: "postgres"
-      HOST: "development-gitea-postgres"
+      HOST: "gitea-gitea-postgres"
       NAME: "${SECRET_GITEA_DB_NAME}"
       USER: "${SECRET_GITEA_DB_USER}"
       PASSWD: "${SECRET_GITEA_DB_PASSWORD}"
@@ -275,13 +275,13 @@ gitea:
     cache:
       ENABLED: "true"
       ADAPTER: "redis"
-      HOST: "redis://:${SECRET_GLOBAL_REDIS_PASSWORD}@development-gitea-redis:6379/0?pool_size=100&idle_timeout=180s"
+      HOST: "redis://:${SECRET_GLOBAL_REDIS_PASSWORD}@gitea-gitea-redis:6379/0?pool_size=100&idle_timeout=180s"
       # HOST: "network=tcp,addr=dev-gitea-gitea-redis:6379,db=0,pool_size=100,idle_timeout=180"
       ITEM_TTL: "16h"
     
     session:
       PROVIDER: "redis"
-      PROVIDER_CONFIG: "redis://:${SECRET_GLOBAL_REDIS_PASSWORD}@development-gitea-redis:6379/0?pool_size=100&idle_timeout=180s"
+      PROVIDER_CONFIG: "redis://:${SECRET_GLOBAL_REDIS_PASSWORD}@gitea-gitea-redis:6379/0?pool_size=100&idle_timeout=180s"
       COOKIE_NAME: "i_like_gitea"
       GC_INTERVAL_TIME: "86400"
       SESSION_LIFE_TIME: "86400"

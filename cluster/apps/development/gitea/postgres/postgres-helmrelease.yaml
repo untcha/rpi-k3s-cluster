@@ -14,7 +14,7 @@ spec:
         name: groundhog2k
       version: 0.3.10
   interval: 1m0s
-  targetNamespace: development
+  targetNamespace: gitea
   values:
     affinity: {}
     args: []
