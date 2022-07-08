@@ -3,7 +3,7 @@ kind: Service
 apiVersion: v1
 metadata:
   name: whoami
-  namespace: tools
+  namespace: utils
 spec:
   selector:
     app: whoami
@@ -16,7 +16,7 @@ kind: Deployment
 apiVersion: apps/v1
 metadata:
   name: whoami
-  namespace: tools
+  namespace: utils
   labels:
     app: whoami
 spec:
