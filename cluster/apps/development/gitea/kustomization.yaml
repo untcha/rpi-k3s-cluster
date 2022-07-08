@@ -4,8 +4,8 @@ kind: Kustomization
 
 resources:
   - namespace.yaml
-  - postgres
-  - redis
-  - gitea-pvc.yaml
-  - gitea-helmrelease.yaml
-  - gitea-ingressroute.yaml
+  # - postgres
+  # - redis
+  # - gitea-pvc.yaml
+  # - gitea-helmrelease.yaml
+  # - gitea-ingressroute.yaml
