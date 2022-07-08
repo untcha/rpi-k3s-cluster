@@ -549,13 +549,13 @@ flux create helmrelease traefik \
 ### Wordpress
 
 ``` bash
-flux create helmrelease wp-simone-wordpress \
+flux create helmrelease wp-simone-mariadb \
   --source=HelmRepository/groundhog2k \
-  --chart=wordpress \
+  --chart=mariadb \
   --chart-version="0.5.0" \
   --target-namespace=wp-simone \
-  --values=wordpress-values.yaml \
-  --export > wordpress-helmrelease.yaml
+  --values=mariadb-values.yaml \
+  --export > mariadb-helmrelease.yaml 
 ```
 
 ## Useful commands
