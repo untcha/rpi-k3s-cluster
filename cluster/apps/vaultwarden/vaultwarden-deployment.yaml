@@ -66,13 +66,13 @@ spec:
           failureThreshold: 3
           successThreshold: 1
           periodSeconds: 10
-        # resources:
-        #   limits:
-        #     cpu: 200m
-        #     memory: 512Mi
-        #   requests:
-        #     cpu: 50m
-        #     memory: 256Mi
+        resources:
+          limits:
+            cpu: 200m
+            memory: 512Mi
+          requests:
+            cpu: 50m
+            memory: 256Mi
         volumeMounts:
           - name: vaultwarden-data
             mountPath: /data
