@@ -212,9 +212,9 @@ spec:
         type: ClusterIP
     settings:
       defaultAdmin:
-        email: root@admin.local
-        password: admin
-        user: root
+        email: ${SECRET_ADMIN_EMAIL}
+        password: ${SECRET_GITEA_ADMIN_INITIAL_PASSWORD}
+        user: ${SECRET_GITEA_ADMIN_USER}
       postInstallDelay: 60
     startupProbe:
       enabled: true

@@ -199,12 +199,9 @@ settings:
   postInstallDelay: 60
   ## Defines the default administrator (first user) - Password must be changed after first login!
   defaultAdmin:
-    # user: "${SECRET_GITEA_ADMIN_USER}"
-    # password: "${SECRET_GITEA_ADMIN_INITIAL_PASSWORD}"
-    # email: "${SECRET_ADMIN_EMAIL}"
-    user: root
-    password: admin
-    email: root@admin.local
+    user: "${SECRET_GITEA_ADMIN_USER}"
+    password: "${SECRET_GITEA_ADMIN_INITIAL_PASSWORD}"
+    email: "${SECRET_ADMIN_EMAIL}"
 
 ## Gitea specific configuration as described in https://docs.gitea.io/en-us/config-cheat-sheet/
 ## More values and sections can be added
