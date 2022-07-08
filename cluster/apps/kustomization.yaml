@@ -10,7 +10,6 @@ resources:
   - development
     # adminer
     # gitea
-    # portainer
   - dns
     # do-dns-updater
     # unbound
