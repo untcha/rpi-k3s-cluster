@@ -303,18 +303,6 @@ flux create helmrelease gitea-redis \
   --export > redis-helmrelease.yaml
 ```
 
-### Portainer
-
-``` bash
-flux create helmrelease portainer \
-  --source=HelmRepository/portainer \
-  --chart=portainer \
-  --chart-version="1.0.22" \
-  --target-namespace=portainer \
-  --values=portainer-values.yaml \
-  --export > portainer-helmrelease.yaml
-```
-
 ### Kured
 
 ``` bash
