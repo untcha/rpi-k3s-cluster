@@ -46,11 +46,11 @@ spec:
         cache:
           ADAPTER: redis
           ENABLED: "true"
-          HOST: redis://:${SECRET_GLOBAL_REDIS_PASSWORD}@gitea-gitea-redis:6379/0?pool_size=100&idle_timeout=180s
+          HOST: redis://:${SECRET_GLOBAL_REDIS_PASSWORD}@development-gitea-redis:6379/0?pool_size=100&idle_timeout=180s
           ITEM_TTL: 16h
         database:
           DB_TYPE: postgres
-          HOST: gitea-gitea-postgres
+          HOST: development-gitea-postgres
           NAME: ${SECRET_GITEA_DB_NAME}
           PASSWD: ${SECRET_GITEA_DB_PASSWORD}
           SSL_MODE: disable
@@ -67,7 +67,7 @@ spec:
           HOST: ${SECRET_GLOBAL_SMTP_HOST}:${GLOBAL_SMTP_PORT}
           MAILER_TYPE: smtp
           PASSWD: ${SECRET_GLOBAL_SMTP_PASSWORD}
-          SUBJECT_PREFIX: '[git.untch.io]'
+          SUBJECT_PREFIX: '[git.${SECRET_DOMAIN}]'
           USER: ${SECRET_GLOBAL_SMTP_USERNAME}
         oauth2:
           JWT_SECRET: null
@@ -118,7 +118,7 @@ spec:
           COOKIE_NAME: i_like_gitea
           GC_INTERVAL_TIME: "86400"
           PROVIDER: redis
-          PROVIDER_CONFIG: redis://:${SECRET_GLOBAL_REDIS_PASSWORD}@gitea-gitea-redis:6379/0?pool_size=100&idle_timeout=180s
+          PROVIDER_CONFIG: redis://:${SECRET_GLOBAL_REDIS_PASSWORD}@development-gitea-redis:6379/0?pool_size=100&idle_timeout=180s
           SESSION_LIFE_TIME: "86400"
         time:
           DEFAULT_UI_LOCATION: ${TZ}
