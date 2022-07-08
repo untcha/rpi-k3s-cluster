@@ -297,8 +297,8 @@ flux create helmrelease gitea-postgres \
 flux create helmrelease gitea-redis \
   --source=HelmRepository/groundhog2k \
   --chart=redis \
-  --chart-version="0.4.11" \
-  --target-namespace=gitea \
+  --chart-version="0.5.2" \
+  --target-namespace=development \
   --values=redis-values.yaml \
   --export > redis-helmrelease.yaml
 ```

@@ -4,7 +4,7 @@ kind: Kustomization
 
 resources:
   - postgres
-  # - redis
+  - redis
   # - gitea-pvc.yaml
   # - gitea-helmrelease.yaml
   # - gitea-ingressroute.yaml

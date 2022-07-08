@@ -8,12 +8,13 @@ spec:
   chart:
     spec:
       chart: redis
+      reconcileStrategy: ChartVersion
       sourceRef:
         kind: HelmRepository
         name: groundhog2k
-      version: 0.4.11
+      version: 0.5.2
   interval: 1m0s
-  targetNamespace: gitea
+  targetNamespace: development
   values:
     affinity: {}
     args: []
