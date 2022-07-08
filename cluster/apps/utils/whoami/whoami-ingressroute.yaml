@@ -7,7 +7,7 @@
 # kind: IngressRoute
 # metadata:
 #   name: whoami-local-ingressroute
-#   namespace: tools
+#   namespace: utils
 # spec:
 #   entryPoints:
 #     - web
@@ -23,7 +23,7 @@ apiVersion: traefik.containo.us/v1alpha1
 kind: IngressRoute
 metadata:
   name: whoami-http-ingressroute
-  namespace: tools
+  namespace: utils
 spec:
   entryPoints:
     - web
@@ -59,7 +59,7 @@ spec:
           namespace: traefik
       services:
         - name: whoami
-          namespace: tools
+          namespace: utils
           port: 80
   tls:
     secretName: "${SECRET_DOMAIN/./-}-tls"
