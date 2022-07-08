@@ -52,8 +52,8 @@ spec:
     - match: Host(`simone.${SECRET_DOMAIN}`)
       kind: Rule
       middlewares:
-        - name: authelia-middleware
-          namespace: authentication
+        # - name: authelia-middleware
+        #   namespace: authentication
         - name: secure-headers-middleware
           namespace: traefik
       services:
