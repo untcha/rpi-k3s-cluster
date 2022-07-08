@@ -10,7 +10,7 @@ resources:
   - dashboards
     # homer
     # kubernetes-dashboard
-  # - development
+  - development
     # adminer
     # gitea
     # portainer
