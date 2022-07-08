@@ -5,10 +5,10 @@ kind: Kustomization
 resources:
   - namespace.yaml
   - postgres
-  - vaultwarden-config
-  - vaultwarden-pvc.yaml
-  - vaultwarden-rbac.yaml
-  - vaultwarden-service.yaml
-  - vaultwarden-deployment.yaml
-  - vaultwarden-ingressroute.yaml
-  - vaultwarden-middleware.yaml
+  # - vaultwarden-config
+  # - vaultwarden-pvc.yaml
+  # - vaultwarden-rbac.yaml
+  # - vaultwarden-service.yaml
+  # - vaultwarden-deployment.yaml
+  # - vaultwarden-ingressroute.yaml
+  # - vaultwarden-middleware.yaml

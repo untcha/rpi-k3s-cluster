@@ -432,7 +432,7 @@ flux create helmrelease nextcloud-redis \
 flux create helmrelease vaultwarden-postgres \
   --source=HelmRepository/groundhog2k \
   --chart=postgres \
-  --chart-version="0.3.8" \
+  --chart-version="0.3.10" \
   --target-namespace=vaultwarden \
   --values=postgres-values.yaml \
   --export > postgres-helmrelease.yaml

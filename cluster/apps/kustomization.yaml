@@ -28,4 +28,4 @@ resources:
   - utils
     # network-multitool
     # whoami
-  # - vaultwarden
+  - vaultwarden
