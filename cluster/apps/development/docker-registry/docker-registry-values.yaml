@@ -67,6 +67,7 @@ persistence:
   enabled: false
   size: 10Gi
   # storageClass: '-'
+  existingClaim: docker-registry-pvc
 
 # set the type of filesystem to use: filesystem, s3
 storage: filesystem

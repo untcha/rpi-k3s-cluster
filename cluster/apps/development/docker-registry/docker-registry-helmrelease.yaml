@@ -1,0 +1,114 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: docker-registry
+  namespace: flux-system
+spec:
+  chart:
+    spec:
+      chart: docker-registry
+      reconcileStrategy: ChartVersion
+      sourceRef:
+        kind: HelmRepository
+        name: twuni
+      version: 2.1.0
+  interval: 1m0s
+  targetNamespace: development
+  values:
+    affinity: {}
+    autoscaling:
+      behavior: {}
+      enabled: false
+      maxReplicas: 2
+      minReplicas: 1
+      targetCPUUtilizationPercentage: 60
+      targetMemoryUtilizationPercentage: 60
+    configData:
+      health:
+        storagedriver:
+          enabled: true
+          interval: 10s
+          threshold: 3
+      http:
+        addr: :5000
+        debug:
+          addr: :5001
+          prometheus:
+            enabled: false
+            path: /metrics
+        headers:
+          X-Content-Type-Options:
+          - nosniff
+      log:
+        fields:
+          service: registry
+      storage:
+        cache:
+          blobdescriptor: inmemory
+      version: 0.1
+    extraEnvVars: []
+    extraVolumeMounts: []
+    extraVolumes: []
+    image:
+      pullPolicy: IfNotPresent
+      repository: registry
+      tag: 2.7.1
+    ingress:
+      annotations: {}
+      className: nginx
+      enabled: false
+      hosts:
+      - chart-example.local
+      labels: {}
+      path: /
+      tls: null
+    metrics:
+      enabled: false
+      port: 5001
+      prometheusRule:
+        enabled: false
+        labels: {}
+        rules: {}
+      serviceMonitor:
+        enabled: false
+        labels: {}
+    nodeSelector:
+      node-type: worker
+    persistence:
+      accessMode: ReadWriteOnce
+      enabled: false
+      existingClaim: docker-registry-pvc
+      size: 10Gi
+    podAnnotations: {}
+    podDisruptionBudget: {}
+    podLabels: {}
+    priorityClassName: ""
+    proxy:
+      enabled: false
+      password: ""
+      remoteurl: https://registry-1.docker.io
+      secretRef: ""
+      username: ""
+    replicaCount: 1
+    resources: {}
+    secrets:
+      haSharedSecret: ""
+      htpasswd: ""
+    securityContext:
+      enabled: true
+      fsGroup: 1000
+      runAsUser: 1000
+    service:
+      annotations: {}
+      name: registry
+      port: 5000
+      type: ClusterIP
+    serviceAccount:
+      annotations: {}
+      create: false
+      name: ""
+    storage: filesystem
+    tolerations: []
+    updateStrategy: {}
+

@@ -4,4 +4,4 @@ kind: Kustomization
 
 resources:
   - docker-registry-pvc.yaml
-  # - docker-registry-helmrelease.yaml
+  - docker-registry-helmrelease.yaml
