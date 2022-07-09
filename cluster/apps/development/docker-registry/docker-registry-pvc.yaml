@@ -2,10 +2,10 @@
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: docker-registry-data-pvc
+  name: docker-registry-pvc
   namespace: development
   annotations:
-    nfs.io/storage-path: "/data"
+    nfs.io/storage-path: "/registry"
 spec:
   storageClassName: nfs-provisioner
   accessModes:
