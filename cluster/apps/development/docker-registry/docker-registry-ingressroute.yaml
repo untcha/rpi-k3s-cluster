@@ -37,8 +37,8 @@ spec:
       middlewares:
         # - name: secure-headers-middleware
         #   namespace: traefik
-        - name: authelia-middleware
-          namespace: authentication
+        # - name: authelia-middleware
+        #   namespace: authentication
         - name: docker-registry-cors-middleware
           namespace: development
       services:
