@@ -93,8 +93,8 @@ spec:
     replicaCount: 1
     resources: {}
     secrets:
-      haSharedSecret: ""
-      htpasswd: ""
+      haSharedSecret: ${SECRET_DOCKER_REGISTRY_HASHAREDSECRET}
+      htpasswd: ${SECRET_DOCKER_REGISTRY_HTPASSWD}
     securityContext:
       enabled: true
       fsGroup: 1000
