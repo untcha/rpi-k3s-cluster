@@ -64,7 +64,7 @@ resources: {}
   #  memory: 128Mi
 persistence:
   accessMode: 'ReadWriteOnce'
-  enabled: false
+  enabled: true
   size: 10Gi
   # storageClass: '-'
   existingClaim: docker-registry-pvc

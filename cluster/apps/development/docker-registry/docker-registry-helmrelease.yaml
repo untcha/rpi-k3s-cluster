@@ -77,7 +77,7 @@ spec:
       node-type: worker
     persistence:
       accessMode: ReadWriteOnce
-      enabled: false
+      enabled: true
       existingClaim: docker-registry-pvc
       size: 10Gi
     podAnnotations: {}
