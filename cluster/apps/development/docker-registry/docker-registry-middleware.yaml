@@ -1,0 +1,21 @@
+# docker-registry-cors-middleware
+
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: Middleware
+metadata:
+  name: docker-registry-cors-middleware
+  namespace: development
+spec:
+  headers:
+    accessControlAllowMethods:
+      - GET
+      - OPTIONS
+      - PUT
+      - POST
+      - DELETE
+    accessControlAllowOriginList:
+      - https://registry-ui.${SECRET_DOMAIN}
+    accessControlAllowCredentials: true
+    accessControlMaxAge: 100
+    addVaryHeader: true

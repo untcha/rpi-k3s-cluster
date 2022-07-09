@@ -39,6 +39,8 @@ spec:
         #   namespace: traefik
         - name: authelia-middleware
           namespace: authentication
+        - name: docker-registry-cors-middleware
+          namespace: development
       services:
         - name: development-docker-registry
           namespace: development
