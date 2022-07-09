@@ -1,0 +1,50 @@
+# docker-registry-http-ingressroute
+# docker-registry-https-ingressroute
+
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: docker-registry-http-ingressroute
+  namespace: development
+spec:
+  entryPoints:
+    - web
+  routes:
+    - match: Host(`registry.${SECRET_DOMAIN}`)
+      kind: Rule
+      middlewares:
+        - name: https-redirect-scheme-middleware
+          namespace: traefik
+      services:
+        - name: development-docker-registry
+          port: 5000
+
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: docker-registry-https-ingressroute
+  namespace: traefik
+  annotations:
+    cert-manager.io/cluster-issuer: "letsencrypt-dns01-production-do"
+spec:
+  entryPoints:
+    - websecure
+  routes:
+    - match: Host(`registry.${SECRET_DOMAIN}`)
+      kind: Rule
+      middlewares:
+        # - name: secure-headers-middleware
+        #   namespace: traefik
+        - name: authelia-middleware
+          namespace: authentication
+      services:
+        - name: development-docker-registry
+          namespace: development
+          port: 5000
+  tls:
+    secretName: "${SECRET_DOMAIN/./-}-tls"
+    options:
+      name: default-tlsoption
+      namespace: traefik
