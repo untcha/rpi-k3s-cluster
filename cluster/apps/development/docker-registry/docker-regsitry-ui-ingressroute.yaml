@@ -1,0 +1,40 @@
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: docker-registry-ui-https-ingressroute
+  namespace: traefik
+  annotations:
+    cert-manager.io/cluster-issuer: "letsencrypt-dns01-production-do"
+spec:
+  entryPoints:
+    - websecure
+  routes:
+    - match: Host(`registry-ui.${SECRET_DOMAIN}`)
+      kind: Rule
+      middlewares:
+        # - name: secure-headers-middleware
+        #   namespace: traefik
+        # - name: authelia-middleware
+        #   namespace: authentication
+        - name: docker-registry-ui-auth-middleware
+          namespace: development
+      services:
+        - name: docker-registry-ui-http
+          namespace: development
+          port: 80
+  tls:
+    secretName: "${SECRET_DOMAIN/./-}-tls"
+    options:
+      name: default-tlsoption
+      namespace: traefik
+
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: Middleware
+metadata:
+  name: docker-registry-ui-auth-middleware
+  namespace: development
+spec:
+  basicAuth:
+    secret: docker-registry-ui-secret
