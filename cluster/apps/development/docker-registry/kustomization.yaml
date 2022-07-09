@@ -3,7 +3,5 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 
 resources:
-  - namespace.yaml
-  - adminer
-  - gitea
-  - docker-registry
+  - docker-registry-pvc.yaml
+  # - docker-registry-helmrelease.yaml
