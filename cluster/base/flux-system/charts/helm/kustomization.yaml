@@ -13,6 +13,7 @@ resources:
   - authelia-charts.yaml
   - prometheus-community-charts.yaml
   - grafana-charts.yaml
+  - twuni-charts.yaml
   # - influxdata-charts.yaml
   # - k8s-at-home-charts.yaml
   # - kured-charts.yaml
