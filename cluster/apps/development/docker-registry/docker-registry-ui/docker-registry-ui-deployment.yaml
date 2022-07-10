@@ -60,6 +60,10 @@ spec:
               value: "Docker registry UI"
             - name: DELETE_IMAGES
               value: "false"
+            - name: SHOW_CONTENT_DIGEST
+              value: "true"
+            - name: SINGLE_REGISTRY
+              value: "false"
             # - name: NGINX_PROXY_PASS_URL
             #   value: "http://docker-registry.default:5000"
             # - name: PULL_URL
