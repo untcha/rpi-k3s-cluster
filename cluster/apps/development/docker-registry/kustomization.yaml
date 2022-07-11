@@ -3,7 +3,7 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 
 resources:
-  - docker-registry-pvc.yaml
+  # - docker-registry-pvc.yaml
   # - docker-registry-helmrelease.yaml
   # - docker-registry-ingressroute.yaml
   # - docker-registry-middleware.yaml
