@@ -63,7 +63,7 @@ spec:
             - name: SHOW_CONTENT_DIGEST
               value: "true"
             - name: SINGLE_REGISTRY
-              value: "false"
+              value: "true"
             - name: NGINX_PROXY_PASS_URL
               value: "http://registry.${SECRET_DOMAIN}"
               # value: "http://docker-registry.default:5000"
