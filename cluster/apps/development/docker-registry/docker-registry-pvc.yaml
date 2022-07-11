@@ -5,7 +5,7 @@ metadata:
   name: docker-registry-pvc
   namespace: development
   annotations:
-    nfs.io/storage-path: "/registry"
+    nfs.io/storage-path: "/"
 spec:
   storageClassName: nfs-provisioner
   accessModes:
