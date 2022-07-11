@@ -44,9 +44,6 @@ spec:
         headers:
           Access-Control-Allow-Credentials:
           - true
-          Access-Control-Allow-Headers:
-          - Authorization
-          - Accept
           Access-Control-Allow-Methods:
           - HEAD
           - GET
