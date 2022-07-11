@@ -4,7 +4,7 @@ kind: Kustomization
 
 resources:
   - namespace.yaml
-  - docker-registry-pvc.yaml
+  # - docker-registry-pvc.yaml
   # - docker-registry-helmrelease.yaml
   # - docker-registry-ingressroute.yaml
   # - docker-registry-middleware.yaml
