@@ -17,7 +17,7 @@ spec:
         - name: https-redirect-scheme-middleware
           namespace: traefik
       services:
-        - name: development-docker-registry
+        - name: docker-registry-docker-registry
           port: 5000
 
 ---
@@ -36,10 +36,10 @@ spec:
       kind: Rule
       middlewares:
         - name: docker-registry-cors-middleware
-          namespace: development
+          namespace: docker-registry
       services:
-        - name: development-docker-registry
-          namespace: development
+        - name: docker-registry-docker-registry
+          namespace: docker-registry
           port: 5000
   tls:
     secretName: "${SECRET_DOMAIN/./-}-tls"

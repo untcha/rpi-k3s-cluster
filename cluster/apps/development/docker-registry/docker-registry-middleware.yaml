@@ -5,7 +5,7 @@ apiVersion: traefik.containo.us/v1alpha1
 kind: Middleware
 metadata:
   name: docker-registry-cors-middleware
-  namespace: development
+  namespace: docker-registry
 spec:
   headers:
     accessControlAllowMethods:
