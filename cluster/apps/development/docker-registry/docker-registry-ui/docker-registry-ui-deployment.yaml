@@ -5,11 +5,11 @@ metadata:
   labels:
     app: docker-registry-ui
   name: docker-registry-ui-http
-  namespace: development
+  namespace: docker-registry
 spec:
   selector:
     app: docker-registry-ui
-  type: LoadBalancer
+  type: ClusterIP
   ports:
     - name: http
       port: 80
@@ -23,7 +23,7 @@ metadata:
   labels:
     app: docker-registry-ui
   name: docker-registry-ui
-  namespace: development
+  namespace: docker-registry
 spec:
   replicas: 1
   revisionHistoryLimit: 1
@@ -64,8 +64,8 @@ spec:
               value: "true"
             - name: SINGLE_REGISTRY
               value: "false"
-            # - name: NGINX_PROXY_PASS_URL
-            #   value: "http://docker-registry.default:5000"
+            - name: NGINX_PROXY_PASS_URL
+              value: "http://docker-registry.default:5000"
             # - name: PULL_URL
             #   value: "docker-registry-ui.default:80"
             # - name: SINGLE_REGISTRY

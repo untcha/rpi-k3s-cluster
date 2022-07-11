@@ -8,4 +8,4 @@ resources:
   - docker-registry-helmrelease.yaml
   - docker-registry-ingressroute.yaml
   - docker-registry-middleware.yaml
-  # - docker-registry-ui
+  - docker-registry-ui
