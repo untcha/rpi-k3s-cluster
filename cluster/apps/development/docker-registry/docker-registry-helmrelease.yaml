@@ -46,6 +46,8 @@ spec:
       storage:
         cache:
           blobdescriptor: inmemory
+        delete:
+          enabled: true
       version: 0.1
     extraEnvVars: []
     extraVolumeMounts: []

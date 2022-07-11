@@ -35,10 +35,6 @@ spec:
     - match: Host(`registry.${SECRET_DOMAIN}`)
       kind: Rule
       middlewares:
-        # - name: secure-headers-middleware
-        #   namespace: traefik
-        # - name: authelia-middleware
-        #   namespace: authentication
         - name: docker-registry-cors-middleware
           namespace: development
       services:
