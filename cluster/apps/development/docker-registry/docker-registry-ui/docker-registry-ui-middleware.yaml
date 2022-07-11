@@ -1,0 +1,11 @@
+# docker-registry-ui-auth-middleware
+
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: Middleware
+metadata:
+  name: docker-registry-ui-auth-middleware
+  namespace: docker-registry
+spec:
+  basicAuth:
+    secret: docker-registry-ui-secret
