@@ -1,0 +1,55 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: docker-registry
+  name: docker-registry
+  namespace: docker-registry
+spec:
+  replicas: 1
+  revisionHistoryLimit: 1
+  selector:
+    matchLabels:
+      app: docker-registry
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 0
+    type: RollingUpdate
+  template:
+    metadata:
+      # annotations:
+      #   configmap.reloader.stakater.com/reload:
+      labels:
+        app: docker-registry
+        name: docker-registry
+    spec:
+      containers:
+        - image: docker.io/registry:2.7.1
+          imagePullPolicy: IfNotPresent
+          livenessProbe:
+            httpGet:
+              path: /v2/
+              port: http
+          name: docker-registry
+          ports:
+            - containerPort: 5000
+              name: http
+              protocol: TCP
+          readinessProbe:
+            httpGet:
+              path: /v2/
+              port: http
+          volumeMounts:
+            - mountPath: /etc/docker/registry
+              name: config
+            - mountPath: /var/lib/registry
+              name: data
+      restartPolicy: Always
+      volumes:
+        - configMap:
+            name: docker-registry-config
+          name: config
+        - persistentVolumeClaim:
+            claimName: docker-registry-pvc
+          name: data
