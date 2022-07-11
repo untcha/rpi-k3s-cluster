@@ -18,10 +18,10 @@ spec:
         # - name: authelia-middleware
         #   namespace: authentication
         - name: docker-registry-ui-auth-middleware
-          namespace: development
+          namespace: docker-registry
       services:
         - name: docker-registry-ui-http
-          namespace: development
+          namespace: docker-registry
           port: 80
   tls:
     secretName: "${SECRET_DOMAIN/./-}-tls"
@@ -34,7 +34,7 @@ apiVersion: traefik.containo.us/v1alpha1
 kind: Middleware
 metadata:
   name: docker-registry-ui-auth-middleware
-  namespace: development
+  namespace: docker-registry
 spec:
   basicAuth:
     secret: docker-registry-ui-secret
