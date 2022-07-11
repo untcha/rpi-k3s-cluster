@@ -42,6 +42,8 @@ spec:
             enabled: false
             path: /metrics
         headers:
+          Access-Control-Allow-Origin:
+          - https://registry.${SECRET_DOMAIN}
           X-Content-Type-Options:
           - nosniff
       log:
