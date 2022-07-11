@@ -27,19 +27,19 @@ spec:
       containers:
         - image: docker.io/registry:2.7.1
           imagePullPolicy: IfNotPresent
-          livenessProbe:
-            httpGet:
-              path: /v2/
-              port: http
+          # livenessProbe:
+          #   httpGet:
+          #     path: /v2/
+          #     port: http
           name: docker-registry
           ports:
             - containerPort: 5000
               name: http
               protocol: TCP
-          readinessProbe:
-            httpGet:
-              path: /v2/
-              port: http
+          # readinessProbe:
+          #   httpGet:
+          #     path: /v2/
+          #     port: http
           volumeMounts:
             - mountPath: /etc/docker/registry
               name: config
