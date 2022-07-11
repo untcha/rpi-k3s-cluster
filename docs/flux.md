@@ -267,6 +267,18 @@ flux create helmrelease wp-simone-mariadb \
   --export > mariadb-helmrelease.yaml
 ```
 
+### docker-registry
+
+``` bash
+flux create helmrelease docker-registry \
+  --source=HelmRepository/twuni \
+  --chart=docker-registry \
+  --chart-version="2.1.0" \
+  --target-namespace=docker-registry \
+  --values=docker-registry-values.yaml \
+  --export > docker-registry-helmrelease.yaml
+```
+
 ### Gitea
 
 ``` bash
