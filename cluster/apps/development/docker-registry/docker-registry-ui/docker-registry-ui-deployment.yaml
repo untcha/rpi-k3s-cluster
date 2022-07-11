@@ -59,7 +59,7 @@ spec:
             - name: REGISTRY_TITLE
               value: "Docker registry UI"
             - name: DELETE_IMAGES
-              value: "false"
+              value: "true"
             - name: SHOW_CONTENT_DIGEST
               value: "true"
             - name: SINGLE_REGISTRY
