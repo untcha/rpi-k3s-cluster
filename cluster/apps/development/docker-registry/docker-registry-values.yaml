@@ -200,24 +200,24 @@ configData:
     filesystem:
       rootdirectory: /var/lib/registry
   http:
-    addr: 0.0.0.0:5000
+    addr: :5000
     headers:
       X-Content-Type-Options: [nosniff]
-      Access-Control-Allow-Origin: ['https://registry.${SECRET_DOMAIN}']
-      Access-Control-Allow-Methods: ['HEAD', 'GET', 'OPTIONS', 'DELETE']
-      Access-Control-Allow-Headers: ['Authorization', 'Accept']
-      Access-Control-Max-Age: [1728000]
-      Access-Control-Allow-Credentials: [true]
-      Access-Control-Expose-Headers: ['Docker-Content-Digest']
+      # Access-Control-Allow-Origin: ['https://registry.${SECRET_DOMAIN}']
+      # Access-Control-Allow-Methods: ['HEAD', 'GET', 'OPTIONS', 'DELETE']
+      # Access-Control-Allow-Headers: ['Authorization', 'Accept']
+      # Access-Control-Max-Age: [1728000]
+      # Access-Control-Allow-Credentials: [true]
+      # Access-Control-Expose-Headers: ['Docker-Content-Digest']
     debug:
       addr: :5001
       prometheus:
         enabled: false
         path: /metrics
-  auth:
-    htpasswd:
-      realm: Registry Realm
-      path: /auth/htpasswd
+  # auth:
+  #   htpasswd:
+  #     realm: Registry Realm
+  #     path: /auth/htpasswd
   health:
     storagedriver:
       enabled: true

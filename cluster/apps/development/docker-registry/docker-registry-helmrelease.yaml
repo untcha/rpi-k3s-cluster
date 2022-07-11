@@ -25,39 +25,19 @@ spec:
       targetCPUUtilizationPercentage: 60
       targetMemoryUtilizationPercentage: 60
     configData:
-      auth:
-        htpasswd:
-          path: /auth/htpasswd
-          realm: Registry Realm
       health:
         storagedriver:
           enabled: true
           interval: 10s
           threshold: 3
       http:
-        addr: 0.0.0.0:5000
+        addr: :5000
         debug:
           addr: :5001
           prometheus:
             enabled: false
             path: /metrics
         headers:
-          Access-Control-Allow-Credentials:
-          - true
-          Access-Control-Allow-Headers:
-          - Authorization
-          - Accept
-          Access-Control-Allow-Methods:
-          - HEAD
-          - GET
-          - OPTIONS
-          - DELETE
-          Access-Control-Allow-Origin:
-          - https://registry.${SECRET_DOMAIN}
-          Access-Control-Expose-Headers:
-          - Docker-Content-Digest
-          Access-Control-Max-Age:
-          - 1728000
           X-Content-Type-Options:
           - nosniff
       log:
