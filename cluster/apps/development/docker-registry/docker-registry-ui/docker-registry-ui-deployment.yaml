@@ -64,8 +64,8 @@ spec:
               value: "true"
             - name: SINGLE_REGISTRY
               value: "false"
-            # - name: NGINX_PROXY_PASS_URL
-            #   value: "http://docker-registry-docker-registry.docker-registry:5000"
+            - name: NGINX_PROXY_PASS_URL
+              value: "http://registry.${SECRET_DOMAIN}"
               # value: "http://docker-registry.default:5000"
             # - name: PULL_URL
             #   value: "docker-registry-ui.default:80"
