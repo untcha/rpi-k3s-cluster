@@ -14,7 +14,7 @@ spec:
         name: twuni
       version: 2.1.0
   interval: 1m0s
-  targetNamespace: development
+  targetNamespace: docker-registry
   values:
     affinity: {}
     autoscaling:
