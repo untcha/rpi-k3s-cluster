@@ -11,7 +11,7 @@ spec:
     accessControlAllowMethods:
       - GET
       - OPTIONS
-      - HEAD
+      # - HEAD
       - PUT
       - POST
       - DELETE
