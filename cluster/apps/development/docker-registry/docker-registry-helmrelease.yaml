@@ -25,13 +25,17 @@ spec:
       targetCPUUtilizationPercentage: 60
       targetMemoryUtilizationPercentage: 60
     configData:
+      auth:
+        htpasswd:
+          path: /auth/htpasswd
+          realm: Registry Realm
       health:
         storagedriver:
           enabled: true
           interval: 10s
           threshold: 3
       http:
-        addr: :5000
+        addr: 0.0.0.0:5000
         debug:
           addr: :5001
           prometheus:
@@ -57,13 +61,18 @@ spec:
           X-Content-Type-Options:
           - nosniff
       log:
+        accesslog:
+          disabled: false
         fields:
           service: registry
+        level: debug
       storage:
         cache:
           blobdescriptor: inmemory
         delete:
           enabled: true
+        filesystem:
+          rootdirectory: /var/lib/registry
       version: 0.1
     extraEnvVars: []
     extraVolumeMounts: []
