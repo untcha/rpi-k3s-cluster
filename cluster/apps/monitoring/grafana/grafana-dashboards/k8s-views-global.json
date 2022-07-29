@@ -148,7 +148,7 @@
           },
           "editorMode": "code",
           "exemplar": true,
-          "expr": "sum(rate(container_cpu_usage_seconds_total{id=\"/\"}[$__rate_interval])) / sum(machine_cpu_cores)",
+          "expr": "avg(1-rate(node_cpu_seconds_total{mode=\"idle\"}[$__rate_interval]))",
           "interval": "",
           "legendFormat": "Real",
           "range": true,
@@ -243,7 +243,7 @@
           },
           "editorMode": "code",
           "exemplar": true,
-          "expr": "sum(container_memory_working_set_bytes{id=\"/\"}) / sum(machine_memory_bytes)",
+          "expr": "sum(node_memory_MemTotal_bytes - node_memory_MemAvailable_bytes) / sum(node_memory_MemTotal_bytes)",
           "interval": "",
           "legendFormat": "Real",
           "range": true,
@@ -686,7 +686,7 @@
           },
           "editorMode": "code",
           "exemplar": true,
-          "expr": "sum(rate(container_cpu_usage_seconds_total{id=\"/\"}[$__rate_interval]))",
+          "expr": "sum(1-rate(node_cpu_seconds_total{mode=\"idle\"}[$__rate_interval]))",
           "interval": "",
           "legendFormat": "Real",
           "range": true,
@@ -785,7 +785,7 @@
           },
           "editorMode": "code",
           "exemplar": true,
-          "expr": "sum(container_memory_working_set_bytes{id=\"/\"})",
+          "expr": "sum(node_memory_MemTotal_bytes - node_memory_MemAvailable_bytes)",
           "interval": "",
           "legendFormat": "Real",
           "range": true,
@@ -998,7 +998,7 @@
             "uid": "${datasource}"
           },
           "exemplar": true,
-          "expr": "sum(rate(container_cpu_usage_seconds_total{id=\"/\"}[$__rate_interval])) / sum(machine_cpu_cores)",
+          "expr": "avg(1-rate(node_cpu_seconds_total{mode=\"idle\"}[$__rate_interval]))",
           "interval": "$resolution",
           "legendFormat": "CPU usage in %",
           "refId": "A"
@@ -1099,7 +1099,7 @@
           },
           "editorMode": "code",
           "exemplar": true,
-          "expr": "sum(container_memory_working_set_bytes{id=\"/\"}) / sum(machine_memory_bytes)",
+          "expr": "sum(node_memory_MemTotal_bytes - node_memory_MemAvailable_bytes) / sum(node_memory_MemTotal_bytes)",
           "interval": "$resolution",
           "legendFormat": "Memory usage in %",
           "range": true,
@@ -1396,7 +1396,7 @@
             "uid": "${datasource}"
           },
           "exemplar": true,
-          "expr": "sum(rate(container_cpu_usage_seconds_total{image!=\"\"}[$__rate_interval])) by (node) / sum(machine_cpu_cores) by (node)",
+          "expr": "avg(1-rate(node_cpu_seconds_total{mode=\"idle\"}[$__rate_interval])) by (instance)",
           "interval": "$resolution",
           "legendFormat": "{{ node }}",
           "refId": "A"
@@ -2030,6 +2030,6 @@
   "timezone": "",
   "title": "Kubernetes / Views / Global",
   "uid": "k8s_views_global",
-  "version": 14,
+  "version": 15,
   "weekStart": ""
 }
