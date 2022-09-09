@@ -4,4 +4,4 @@ kind: Kustomization
 
 resources:
   - wordpress-pvc.yaml
-  - wordpress-helmrelease.yaml
+  # - wordpress-helmrelease.yaml
