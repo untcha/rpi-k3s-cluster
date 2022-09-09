@@ -4,4 +4,4 @@ kind: Kustomization
 
 resources:
   - redis-pvc.yaml
-  - redis-helmrelease.yaml
+  # - redis-helmrelease.yaml
