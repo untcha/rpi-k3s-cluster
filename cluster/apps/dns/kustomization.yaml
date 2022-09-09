@@ -5,5 +5,5 @@ kind: Kustomization
 resources:
   - namespace.yaml
   - do-dns-updater
-  # - staging
+  - staging
   - production
