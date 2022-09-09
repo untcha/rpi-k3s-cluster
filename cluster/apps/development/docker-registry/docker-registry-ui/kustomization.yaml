@@ -4,6 +4,6 @@ kind: Kustomization
 
 resources:
   - docker-registry-ui-secret.sops.yaml
-  - docker-registry-ui-deployment.yaml
-  - docker-regsitry-ui-ingressroute.yaml
-  - docker-registry-ui-middleware.yaml
+  # - docker-registry-ui-deployment.yaml
+  # - docker-regsitry-ui-ingressroute.yaml
+  # - docker-registry-ui-middleware.yaml
