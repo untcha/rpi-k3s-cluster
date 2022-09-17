@@ -12,7 +12,7 @@ spec:
       sourceRef:
         kind: HelmRepository
         name: prometheus-community
-      version: 36.2.1
+      version: 40.0.2
   interval: 1m0s
   targetNamespace: monitoring
   values:
@@ -69,6 +69,7 @@ spec:
         useExistingSecret: false
         volumeMounts: []
         volumes: []
+        web: {}
       annotations: {}
       apiVersion: v2
       config:
@@ -175,6 +176,7 @@ spec:
         type: ClusterIP
       templateFiles: {}
       tplConfig: false
+    cleanPrometheusOperatorObjectNames: false
     commonLabels: {}
     coreDns:
       enabled: true
@@ -182,6 +184,7 @@ spec:
         port: 9153
         targetPort: 9153
       serviceMonitor:
+        additionalLabels: {}
         interval: ""
         metricRelabelings: []
         proxyUrl: ""
@@ -204,6 +207,7 @@ spec:
         kubeApiserverBurnrate: true
         kubeApiserverHistogram: true
         kubeApiserverSlos: true
+        kubeControllerManager: true
         kubePrometheusGeneral: true
         kubePrometheusNodeRecording: true
         kubeProxy: true
@@ -278,6 +282,7 @@ spec:
           createPrometheusReplicasDatasources: false
           defaultDatasourceEnabled: true
           enabled: true
+          exemplarTraceIdDestinations: {}
           label: grafana_datasource
           labelValue: "1"
           uid: prometheus
@@ -300,9 +305,15 @@ spec:
     kubeApiServer:
       enabled: true
       serviceMonitor:
+        additionalLabels: {}
         interval: ""
         jobLabel: component
-        metricRelabelings: []
+        metricRelabelings:
+        - action: drop
+          regex: apiserver_request_duration_seconds_bucket;(0.15|0.2|0.3|0.35|0.4|0.45|0.6|0.7|0.8|0.9|1.25|1.5|1.75|2|3|3.5|4|4.5|6|7|8|9|15|25|40|50)
+          sourceLabels:
+          - __name__
+          - le
         proxyUrl: ""
         relabelings: []
         selector:
@@ -323,6 +334,7 @@ spec:
         port: null
         targetPort: null
       serviceMonitor:
+        additionalLabels: {}
         enabled: true
         https: null
         insecureSkipVerify: null
@@ -341,6 +353,7 @@ spec:
           port: 10055
           targetPort: 10055
       serviceMonitor:
+        additionalLabels: {}
         dnsmasqMetricRelabelings: []
         dnsmasqRelabelings: []
         interval: ""
@@ -355,6 +368,7 @@ spec:
         port: 2379
         targetPort: 2379
       serviceMonitor:
+        additionalLabels: {}
         caFile: ""
         certFile: ""
         enabled: true
@@ -374,6 +388,7 @@ spec:
         port: 10249
         targetPort: 10249
       serviceMonitor:
+        additionalLabels: {}
         enabled: true
         https: false
         interval: ""
@@ -388,6 +403,7 @@ spec:
         port: null
         targetPort: null
       serviceMonitor:
+        additionalLabels: {}
         enabled: true
         https: null
         insecureSkipVerify: null
@@ -404,8 +420,34 @@ spec:
       enabled: true
       namespace: kube-system
       serviceMonitor:
+        additionalLabels: {}
         cAdvisor: true
-        cAdvisorMetricRelabelings: []
+        cAdvisorMetricRelabelings:
+        - action: drop
+          regex: container_cpu_(cfs_throttled_seconds_total|load_average_10s|system_seconds_total|user_seconds_total)
+          sourceLabels:
+          - __name__
+        - action: drop
+          regex: container_fs_(io_current|io_time_seconds_total|io_time_weighted_seconds_total|reads_merged_total|sector_reads_total|sector_writes_total|writes_merged_total)
+          sourceLabels:
+          - __name__
+        - action: drop
+          regex: container_memory_(mapped_file|swap)
+          sourceLabels:
+          - __name__
+        - action: drop
+          regex: container_(file_descriptors|tasks_state|threads_max)
+          sourceLabels:
+          - __name__
+        - action: drop
+          regex: container_spec.*
+          sourceLabels:
+          - __name__
+        - action: drop
+          regex: .+;
+          sourceLabels:
+          - id
+          - pod
         cAdvisorRelabelings:
         - sourceLabels:
           - __metrics_path__
@@ -498,13 +540,14 @@ spec:
         enforcedTargetLimit: false
         evaluationInterval: ""
         excludedFromEnforcement: []
+        exemplars: ""
         externalLabels: {}
         externalUrl: ""
         ignoreNamespaceSelectors: false
         image:
           repository: quay.io/prometheus/prometheus
           sha: ""
-          tag: v2.36.1
+          tag: v2.38.0
         initContainers: []
         listenLocal: false
         logFormat: logfmt
@@ -569,7 +612,7 @@ spec:
         topologySpreadConstraints: []
         volumeMounts: []
         volumes: []
-        walCompression: false
+        walCompression: true
         web: {}
       service:
         additionalPorts: []
@@ -673,6 +716,7 @@ spec:
           scrapeTimeout: ""
       rbac:
         pspEnabled: false
+      releaseLabel: true
       service:
         portName: http-metrics
     prometheusOperator:
@@ -684,6 +728,8 @@ spec:
           enabled: false
           rootCert:
             duration: ""
+        createSecretJob:
+          securityContext: {}
         enabled: true
         failurePolicy: Fail
         patch:
@@ -693,7 +739,7 @@ spec:
             pullPolicy: IfNotPresent
             repository: k8s.gcr.io/ingress-nginx/kube-webhook-certgen
             sha: ""
-            tag: v1.1.1
+            tag: v1.3.0
           nodeSelector: {}
           podAnnotations: {}
           priorityClassName: ""
@@ -703,8 +749,13 @@ spec:
             runAsNonRoot: true
             runAsUser: 2000
           tolerations: []
+        patchWebhookJob:
+          securityContext: {}
+        timeoutSeconds: 10
       affinity: {}
+      alertmanagerConfigNamespaces: []
       alertmanagerInstanceNamespaces: []
+      annotations: {}
       containerSecurityContext:
         allowPrivilegeEscalation: false
         readOnlyRootFilesystem: true
@@ -716,7 +767,7 @@ spec:
         pullPolicy: IfNotPresent
         repository: quay.io/prometheus-operator/prometheus-operator
         sha: ""
-        tag: v0.57.0
+        tag: v0.59.1
       kubeletService:
         enabled: true
         name: ""
@@ -729,7 +780,7 @@ spec:
         image:
           repository: quay.io/prometheus-operator/prometheus-config-reloader
           sha: ""
-          tag: v0.57.0
+          tag: v0.59.1
         resources:
           limits:
             cpu: 200m
@@ -769,7 +820,7 @@ spec:
       thanosImage:
         repository: quay.io/thanos/thanos
         sha: ""
-        tag: v0.25.2
+        tag: v0.28.0
       thanosRulerInstanceNamespaces: []
       tls:
         enabled: true
@@ -821,17 +872,22 @@ spec:
         tlsConfig: {}
       thanosRulerSpec:
         affinity: {}
+        alertmanagersConfig: {}
         containers: []
+        evaluationInterval: ""
         externalPrefix: null
         image:
           repository: quay.io/thanos/thanos
           sha: ""
-          tag: v0.24.0
+          tag: v0.28.0
         initContainers: []
+        labels: {}
         listenLocal: false
         logFormat: logfmt
         logLevel: info
         nodeSelector: {}
+        objectStorageConfig: {}
+        objectStorageConfigFile: ""
         paused: false
         podAntiAffinity: ""
         podAntiAffinityTopologyKey: kubernetes.io/hostname
