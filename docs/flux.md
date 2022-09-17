@@ -381,7 +381,7 @@ flux create helmrelease chronograf \
 flux create helmrelease kube-prometheus-stack \
   --source=HelmRepository/prometheus-community \
   --chart=kube-prometheus-stack \
-  --chart-version="36.2.1" \
+  --chart-version="40.0.2" \
   --target-namespace=monitoring \
   --values=kube-prometheus-stack-values.yaml \
   --export > kube-prometheus-stack-helmrelease.yaml
