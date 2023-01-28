@@ -21,29 +21,19 @@ spec:
   template:
     metadata:
       annotations:
-        configmap.reloader.stakater.com/reload: pihole-env-vars, custom.list, regex.list,
-          whitelist.txt, adlists.list
+        configmap.reloader.stakater.com/reload: pihole-env-vars, custom.list, regex.list, whitelist.txt, adlists.list
       labels:
         app: pihole-production
         environment: production
         name: pihole-production
     spec:
       containers:
-      - envFrom:
-        - configMapRef:
-            name: pihole-env-vars
+      - name: pihole
         image: pihole/pihole:2023.01.10
         imagePullPolicy: IfNotPresent
-        livenessProbe:
-          failureThreshold: 3
-          httpGet:
-            path: /admin/index.php
-            port: 80
-          initialDelaySeconds: 10
-          periodSeconds: 10
-          successThreshold: 1
-          timeoutSeconds: 5
-        name: pihole
+        envFrom:
+        - configMapRef:
+            name: pihole-env-vars
         ports:
         - containerPort: 80
           name: http
@@ -60,8 +50,33 @@ spec:
         - containerPort: 67
           name: client-upd
           protocol: UDP
+        resources:
+          limits:
+            cpu: 200m
+            memory: 512Mi
+          requests:
+            cpu: 100m
+            memory: 256Mi
+        livenessProbe:
+          failureThreshold: 3
+          httpGet:
+            path: /admin/index.php
+            port: 80
+          initialDelaySeconds: 10
+          periodSeconds: 10
+          successThreshold: 1
+          timeoutSeconds: 5
         readinessProbe:
           failureThreshold: 3
+          httpGet:
+            path: /admin/index.php
+            port: 80
+          initialDelaySeconds: 10
+          periodSeconds: 10
+          successThreshold: 1
+          timeoutSeconds: 5
+        startupProbe:
+          failureThreshold: 30
           httpGet:
             path: /admin/index.php
             port: 80
@@ -75,15 +90,6 @@ spec:
           # capabilities:
           #   add:
           #   - NET_ADMIN
-        startupProbe:
-          failureThreshold: 30
-          httpGet:
-            path: /admin/index.php
-            port: 80
-          initialDelaySeconds: 10
-          periodSeconds: 10
-          successThreshold: 1
-          timeoutSeconds: 5
         volumeMounts:
         - mountPath: /etc/pihole
           name: etc-pihole
@@ -103,13 +109,6 @@ spec:
           subPath: adlists.list
       nodeSelector:
         node-type: worker
-      resources:
-        limits:
-          cpu: 200m
-          memory: 512Mi
-        requests:
-          cpu: 100m
-          memory: 256Mi
       restartPolicy: Always
       volumes:
       - emptyDir:
