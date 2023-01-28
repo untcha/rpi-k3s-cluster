@@ -78,7 +78,7 @@ spec:
         startupProbe:
           failureThreshold: 30
           httpGet:
-            path: /admin.index.php
+            path: /admin/index.php
             port: 80
           initialDelaySeconds: 10
           periodSeconds: 10
