@@ -45,26 +45,26 @@ spec:
           requests:
             cpu: 100m
             memory: 256Mi
-        livenessProbe:
-          failureThreshold: 3
-          exec:
-            command:
-            - node
-            - extra/healthcheck.js
-          initialDelaySeconds: 15
-          periodSeconds: 10
-          successThreshold: 1
-          timeoutSeconds: 5
-        readinessProbe:
-          failureThreshold: 3
-          httpGet:
-            path: /
-            port: 3001
-            scheme: HTTP
-          initialDelaySeconds: 15
-          periodSeconds: 10
-          successThreshold: 1
-          timeoutSeconds: 5
+        # livenessProbe:
+        #   failureThreshold: 3
+        #   exec:
+        #     command:
+        #     - node
+        #     - extra/healthcheck.js
+        #   initialDelaySeconds: 15
+        #   periodSeconds: 10
+        #   successThreshold: 1
+        #   timeoutSeconds: 5
+        # readinessProbe:
+        #   failureThreshold: 3
+        #   httpGet:
+        #     path: /
+        #     port: 3001
+        #     scheme: HTTP
+        #   initialDelaySeconds: 15
+        #   periodSeconds: 10
+        #   successThreshold: 1
+        #   timeoutSeconds: 5
         securityContext:
           allowPrivilegeEscalation: true
           privileged: false
