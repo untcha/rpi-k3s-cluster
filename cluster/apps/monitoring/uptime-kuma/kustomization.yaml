@@ -5,3 +5,4 @@ resources:
 - uptime-kuma-service.yaml
 - uptime-kuma-pvc.yaml
 - uptime-kuma-deployment.yaml
+- uptime-kuma-ingressroute.yaml

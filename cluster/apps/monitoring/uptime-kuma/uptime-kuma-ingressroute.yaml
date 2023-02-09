@@ -1,0 +1,44 @@
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: uptime-kuma-http-ingressroute
+  namespace: monitoring
+spec:
+  entryPoints:
+  - web
+  routes:
+  - match: Host(`uptime.${SECRET_DOMAIN}`)
+    kind: Rule
+    middlewares:
+    - name: https-redirect-scheme-middleware
+      namespace: traefik
+    services:
+    - name: uptime-kuma-service
+      port: 3001
+
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: uptime-kuma-https-ingressroute
+  namespace: traefik
+  annotations:
+    cert-manager.io/cluster-issuer: "letsencrypt-dns01-production-do"
+spec:
+  entryPoints:
+  - websecure
+  routes:
+  - match: Host(`uptime.${SECRET_DOMAIN}`)
+    kind: Rule
+    middlewares:
+    - name: secure-headers-middleware
+      namespace: traefik
+    services:
+    - name: uptime-kuma-service
+      namespace: monitoring
+      port: 3001
+  tls:
+    secretName: "${SECRET_DOMAIN/./-}-tls"
+    options:
+      name: default-tlsoption
+      namespace: traefik
