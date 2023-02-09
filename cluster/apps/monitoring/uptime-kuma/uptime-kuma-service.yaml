@@ -1,0 +1,18 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: uptime-kuma-service
+  namespace: monitoring
+  labels:
+    app: uptime-kuma
+    environment: production
+spec:
+  selector:
+    app: uptime-kuma
+    environment: production
+  ports:
+  - name: http
+    port: 3001
+    protocol: TCP
+    targetPort: http
+  type: ClusterIP
