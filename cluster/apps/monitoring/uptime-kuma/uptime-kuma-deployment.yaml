@@ -1,0 +1,80 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: uptime-kuma
+    environment: production
+  name: uptime-kuma
+  namespace: monitoring
+spec:
+  replicas: 1
+  revisionHistoryLimit: 1
+  selector:
+    matchLabels:
+      app: uptime-kuma
+      environment: production
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 0
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        app: uptime-kuma
+        environment: production
+        name: uptime-kuma
+    spec:
+      containers:
+      - name: uptime-kuma
+        image: louislam/uptime-kuma:1.19.6
+        imagePullPolicy: IfNotPresent
+        env:
+        - name: UPTIME_KUMA_PORT
+          value: "3001"
+        - name: PORT
+          value: "3001"
+        ports:
+        - containerPort: 3001
+          name: http
+          protocol: TCP
+        resources:
+          limits:
+            cpu: 200m
+            memory: 512Mi
+          requests:
+            cpu: 100m
+            memory: 256Mi
+        livenessProbe:
+          failureThreshold: 3
+          exec:
+            command:
+            - node
+            - extra/healthcheck.js
+          initialDelaySeconds: 15
+          periodSeconds: 10
+          successThreshold: 1
+          timeoutSeconds: 5
+        readinessProbe:
+          failureThreshold: 3
+          httpGet:
+            path: /
+            port: 3001
+            scheme: HTTP
+          initialDelaySeconds: 15
+          periodSeconds: 10
+          successThreshold: 1
+          timeoutSeconds: 5
+        securityContext:
+          allowPrivilegeEscalation: true
+          privileged: false
+        volumeMounts:
+        - mountPath: /app/data
+          name: uptime-kuma-data
+      nodeSelector:
+        node-type: worker
+      restartPolicy: Always
+      volumes:
+      - name: uptime-kuma-data
+        persistentVolumeClaim:
+          claimName: uptime-kuma-data-pvc
