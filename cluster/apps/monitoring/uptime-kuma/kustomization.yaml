@@ -3,3 +3,4 @@ kind: Kustomization
 
 resources:
 - uptime-kuma-service.yaml
+- uptime-kuma-pvc.yaml
