@@ -2,75 +2,67 @@
 
 # https://github.com/alexellis/k3sup
 
-echo "Installing Master 1"
+echo "Installing Control Node 1"
 k3sup install \
-    --ip $K3S_CLUSTER_IP_M01 \
-    --user $K3S_CLUSTER_USER \
+    --ip "$K3S_CONTROL_01_IP" \
+    --user "$K3S_CLUSTER_USER" \
     --cluster \
-    --merge --local-path $HOME/.kube/config-files/$K3S_CLUSTER_KUBECONFIG_NAME \
-    --k3s-extra-args "--disable traefik --disable servicelb --disable local-storage" \
-    --context $K3S_CLUSTER_CONTEXT \
-    --k3s-version $K3S_CLUSTER_VERSION \
-    --ssh-key $K3S_CLUSTER_SSH_KEY_PATH
+    --merge --local-path "$HOME/.kube/config-files/$K3S_CLUSTER_KUBECONFIG_NAME" \
+    --k3s-extra-args "--disable-cloud-controller --disable traefik --disable servicelb --disable local-storage" \
+    --context "$K3S_CLUSTER_CONTEXT" \
+    --k3s-version "$K3S_CLUSTER_VERSION" \
+    --ssh-key "$K3S_CLUSTER_SSH_KEY_PATH"
 
-echo "Installing Master 2"
+echo "Installing Control Node 2"
 k3sup join \
-    --ip $K3S_CLUSTER_IP_M02 \
-    --user $K3S_CLUSTER_USER \
-    --server-ip $K3S_CLUSTER_IP_M01 \
-    --server-user $K3S_CLUSTER_USER \
+    --ip "$K3S_CONTROL_02_IP" \
+    --user "$K3S_CLUSTER_USER" \
+    --server-ip "$K3S_CONTROL_01_IP" \
+    --server-user "$K3S_CLUSTER_USER" \
     --server \
-    --k3s-extra-args "--disable traefik --disable servicelb --disable local-storage" \
-    --k3s-version $K3S_CLUSTER_VERSION \
-    --ssh-key $K3S_CLUSTER_SSH_KEY_PATH
+    --k3s-extra-args "--disable-cloud-controller --disable traefik --disable servicelb --disable local-storage" \
+    --k3s-version "$K3S_CLUSTER_VERSION" \
+    --ssh-key "$K3S_CLUSTER_SSH_KEY_PATH"
 
-echo "Installing Master 3"
+echo "Installing Control Node 3"
 k3sup join \
-    --ip $K3S_CLUSTER_IP_M03 \
-    --user $K3S_CLUSTER_USER \
-    --server-ip $K3S_CLUSTER_IP_M01 \
-    --server-user $K3S_CLUSTER_USER \
+    --ip "$K3S_CONTROL_03_IP" \
+    --user "$K3S_CLUSTER_USER" \
+    --server-ip "$K3S_CONTROL_01_IP" \
+    --server-user "$K3S_CLUSTER_USER" \
     --server \
-    --k3s-extra-args "--disable traefik --disable servicelb --disable local-storage" \
-    --k3s-version $K3S_CLUSTER_VERSION \
-    --ssh-key $K3S_CLUSTER_SSH_KEY_PATH
+    --k3s-extra-args "--disable-cloud-controller --disable traefik --disable servicelb --disable local-storage" \
+    --k3s-version "$K3S_CLUSTER_VERSION" \
+    --ssh-key "$K3S_CLUSTER_SSH_KEY_PATH"
 
-echo "Installing Worker 1"
+echo "Installing Node NUC 1"
 k3sup join \
-    --ip $K3S_CLUSTER_IP_W01 \
-    --user $K3S_CLUSTER_USER \
-    --server-ip $K3S_CLUSTER_IP_M01 \
-    --k3s-version $K3S_CLUSTER_VERSION \
-    --ssh-key $K3S_CLUSTER_SSH_KEY_PATH
+    --ip "$K3S_NODE_NUC_01" \
+    --user "$K3S_CLUSTER_USER" \
+    --server-ip "$K3S_CONTROL_01_IP" \
+    --k3s-version "$K3S_CLUSTER_VERSION" \
+    --ssh-key "$K3S_CLUSTER_SSH_KEY_PATH"
 
-echo "Installing Worker 2"
+echo "Installing Node NUC 2"
 k3sup join \
-    --ip $K3S_CLUSTER_IP_W02 \
-    --user $K3S_CLUSTER_USER \
-    --server-ip $K3S_CLUSTER_IP_M01 \
-    --k3s-version $K3S_CLUSTER_VERSION \
-    --ssh-key $K3S_CLUSTER_SSH_KEY_PATH
+    --ip "$K3S_NODE_NUC_02" \
+    --user "$K3S_CLUSTER_USER" \
+    --server-ip "$K3S_CONTROL_01_IP" \
+    --k3s-version "$K3S_CLUSTER_VERSION" \
+    --ssh-key "$K3S_CLUSTER_SSH_KEY_PATH"
 
-echo "Installing Worker 3"
+echo "Installing Node RPi 1"
 k3sup join \
-    --ip $K3S_CLUSTER_IP_W03 \
-    --user $K3S_CLUSTER_USER \
-    --server-ip $K3S_CLUSTER_IP_M01 \
-    --k3s-version $K3S_CLUSTER_VERSION \
-    --ssh-key $K3S_CLUSTER_SSH_KEY_PATH
+    --ip "$K3S_NODE_RPI_01" \
+    --user "$K3S_CLUSTER_USER" \
+    --server-ip "$K3S_CONTROL_01_IP" \
+    --k3s-version "$K3S_CLUSTER_VERSION" \
+    --ssh-key "$K3S_CLUSTER_SSH_KEY_PATH"
 
-echo "Installing Worker 4"
+echo "Installing Node RPi 2"
 k3sup join \
-    --ip $K3S_CLUSTER_IP_W04 \
-    --user $K3S_CLUSTER_USER \
-    --server-ip $K3S_CLUSTER_IP_M01 \
-    --k3s-version $K3S_CLUSTER_VERSION \
-    --ssh-key $K3S_CLUSTER_SSH_KEY_PATH
-
-echo "Installing Worker 5"
-k3sup join \
-    --ip $K3S_CLUSTER_IP_W05 \
-    --user $K3S_CLUSTER_USER \
-    --server-ip $K3S_CLUSTER_IP_M01 \
-    --k3s-version $K3S_CLUSTER_VERSION \
-    --ssh-key $K3S_CLUSTER_SSH_KEY_PATH
+    --ip "$K3S_NODE_RPI_02" \
+    --user "$K3S_CLUSTER_USER" \
+    --server-ip "$K3S_CONTROL_01_IP" \
+    --k3s-version "$K3S_CLUSTER_VERSION" \
+    --ssh-key "$K3S_CLUSTER_SSH_KEY_PATH"
