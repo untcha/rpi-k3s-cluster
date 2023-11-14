@@ -11,6 +11,7 @@ Subkey-Type: 1
 Subkey-Length: 4096
 Expire-Date: 0
 Name-Real: ${FLUX_KEY_NAME}
+Name-Comment: ${FLUX_KEY_COMMENT}
 EOF
 ```
 
@@ -44,8 +45,7 @@ echo "---
 creation_rules:
 - encrypted_regex: '^(data|stringData)$'
   pgp: >-
-    ${FLUX_KEY_FP},
-    ${PERSONAL_KEY_FP}" >> .sops.yaml
+    ${K3S_CLUSTER_GPG_KEY_ID}" >> .sops.yaml
 ```
 
 ### Modify the `gotk-sync.yaml`
