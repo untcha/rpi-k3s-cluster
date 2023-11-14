@@ -29,8 +29,12 @@ kubectl label --overwrite node k3s-node-rpi-02 node-type=worker
 
 kubectl label --overwrite node k3s-node-nuc-01 node=nuc
 kubectl label --overwrite node k3s-node-nuc-02 node=nuc
-kubectl label --overwrite node k3s-node-rpi-01 node=raspberry
-kubectl label --overwrite node k3s-node-rpi-02 node=raspberry
+kubectl label --overwrite node k3s-node-rpi-01 node=rpi
+kubectl label --overwrite node k3s-node-rpi-02 node=rpi
+
+kubectl label --overwrite node k3s-control-01 node-type=master
+kubectl label --overwrite node k3s-control-02 node-type=master
+kubectl label --overwrite node k3s-control-03 node-type=master
 
 # unlabel
 kubectl label --overwrite node k3s-node-nuc-01 node-type-
